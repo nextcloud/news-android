@@ -24,17 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.NumberPicker;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -49,11 +40,9 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
+import de.luhmer.owncloudnewsreader.databinding.FragmentPodcastBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.CollapsePodcastView;
 import de.luhmer.owncloudnewsreader.events.podcast.ExpandPodcastView;
 import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
@@ -90,33 +79,7 @@ public class PodcastFragment extends Fragment {
     private long currentPositionInMillis = 0;
     private long maxPositionInMillis = 100000;
 
-    protected @BindView(R.id.btn_playPausePodcast) ImageButton btnPlayPausePodcast;
-    protected @BindView(R.id.btn_playPausePodcastSlider) ImageButton btnPlayPausePodcastSlider;
-    protected @BindView(R.id.btn_nextPodcastSlider) ImageButton btnNextPodcastSlider;
-    protected @BindView(R.id.btn_previousPodcastSlider) ImageButton btnPreviousPodcastSlider;
-    protected @BindView(R.id.btn_podcastSpeed) ImageButton btnPlaybackSpeed;
-
-    protected @BindView(R.id.img_feed_favicon) ImageView imgFavIcon;
-
-    protected @BindView(R.id.tv_title) TextView tvTitle;
-    protected @BindView(R.id.tv_titleSlider) TextView tvTitleSlider;
-
-    protected @BindView(R.id.tv_from) TextView tvFrom;
-    protected @BindView(R.id.tv_to) TextView tvTo;
-    protected @BindView(R.id.tv_fromSlider) TextView tvFromSlider;
-    protected @BindView(R.id.tv_ToSlider) TextView tvToSlider;
-
-    protected @BindView(R.id.sb_progress) SeekBar sb_progress;
-    protected @BindView(R.id.pb_progress) ProgressBar pb_progress;
-    protected @BindView(R.id.pb_progress2) ProgressBar pb_progress2;
-
-    protected @BindView(R.id.podcastFeedList) ListView /* CardGridView CardListView*/ podcastFeedList;
-    protected @BindView(R.id.rlPodcast) RelativeLayout rlPodcast;
-    protected @BindView(R.id.ll_podcast_header) LinearLayout rlPodcastHeader;
-    protected @BindView(R.id.fl_playPausePodcastWrapper) FrameLayout playPausePodcastWrapper;
-    protected @BindView(R.id.podcastTitleGrid) ListView /*CardGridView*/ podcastTitleGrid;
-
-    protected @BindView(R.id.viewSwitcherProgress) ViewSwitcher /*CardGridView*/ viewSwitcherProgress;
+    protected FragmentPodcastBinding binding;
 
     /**
      * Use this factory method to create a new instance of
@@ -206,9 +169,9 @@ public class PodcastFragment extends Fragment {
 
     @Subscribe
     public void onEvent(PodcastDownloadService.DownloadProgressUpdate downloadProgress) {
-        PodcastArrayAdapter podcastArrayAdapter = (PodcastArrayAdapter) podcastTitleGrid.getAdapter();
+        PodcastArrayAdapter podcastArrayAdapter = (PodcastArrayAdapter) binding.podcastTitleGrid.getAdapter();
 
-        for(int i = 0; i < podcastTitleGrid.getCount(); i++) {
+        for(int i = 0; i < binding.podcastTitleGrid.getCount(); i++) {
             if(podcastArrayAdapter.getItem(i).link.equals(downloadProgress.podcast.link)) {
 
                 if(!podcastArrayAdapter.getItem(i).downloadProgress.equals(downloadProgress.podcast.downloadProgress)) { //If Progress changed
@@ -220,7 +183,7 @@ public class PodcastFragment extends Fragment {
                         pItem.offlineCached = file.exists();
                     } else
                         pItem.downloadProgress = downloadProgress.podcast.downloadProgress;
-                    podcastTitleGrid.invalidateViews();
+                    binding.podcastTitleGrid.invalidateViews();
                 }
 
                 return;
@@ -228,29 +191,24 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.fl_playPausePodcastWrapper)
     protected void playPause() {
         eventBus.post(new TogglePlayerStateEvent());
     }
 
-    @OnClick(R.id.btn_playPausePodcastSlider)
     protected void playPauseSlider() {
         playPause();
     }
 
-    @OnClick(R.id.btn_nextPodcastSlider)
     protected void windForward() {
         eventBus.post(new WindPodcast(30000));
 
         //Toast.makeText(getActivity(), "This feature is not supported yet :(", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.btn_previousPodcastSlider)
     protected void windBack() {
         eventBus.post(new WindPodcast(-10000));
     }
 
-    @OnClick(R.id.btn_podcastSpeed)
     protected void openSpeedMenu() {
         showPlaybackSpeedPicker();
     }
@@ -263,18 +221,23 @@ public class PodcastFragment extends Fragment {
         //LayoutInflater localInflater = inflater.cloneInContext(context);
         // inflate using the cloned inflater, not the passed in default
         //View view = localInflater.inflate(R.layout.fragment_podcast, container, false);
-        View view = inflater.inflate(R.layout.fragment_podcast, container, false);
+        binding = FragmentPodcastBinding.inflate(inflater, container, false);
+
+        binding.flPlayPausePodcastWrapper.setOnClickListener((v) -> playPause());
+        binding.btnPlayPausePodcastSlider.setOnClickListener((v) -> playPauseSlider());
+        binding.btnNextPodcastSlider.setOnClickListener((v) -> windForward());
+        binding.btnPreviousPodcastSlider.setOnClickListener((v) -> windBack());
+        binding.btnPodcastSpeed.setOnClickListener((v) -> openSpeedMenu());
 
         //View view = inflater.inflate(R.layout.fragment_podcast, container, false);
-        ButterKnife.bind(this, view);
 
         if(getActivity() instanceof PodcastFragmentActivity) {
             sliding_layout = ((PodcastFragmentActivity) getActivity()).getSlidingLayout();
         }
 
         if(sliding_layout != null) {
-            sliding_layout.setSlideableView(rlPodcast);
-            sliding_layout.setDragView(rlPodcastHeader);
+            sliding_layout.setSlideableView(binding.rlPodcast);
+            sliding_layout.setDragView(binding.llPodcastHeader);
             //sliding_layout.setEnableDragViewTouchEvents(true);
 
             sliding_layout.setPanelSlideListener(onPanelSlideListener);
@@ -283,15 +246,15 @@ public class PodcastFragment extends Fragment {
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
 
         if(mArrayAdapter.getCount() > 0) {
-            view.findViewById(R.id.tv_no_podcasts_available).setVisibility(View.GONE);
+            binding.tvNoPodcastsAvailable.setVisibility(View.GONE);
         }
 
-        podcastTitleGrid.setVisibility(View.GONE);
-        podcastFeedList.setVisibility(View.VISIBLE);
+        binding.podcastTitleGrid.setVisibility(View.GONE);
+        binding.podcastFeedList.setVisibility(View.VISIBLE);
 
-        sb_progress.setOnSeekBarChangeListener(onSeekBarChangeListener);
+        binding.sbProgress.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
-        return view;
+        return binding.getRoot();
     }
 
 
@@ -303,15 +266,15 @@ public class PodcastFragment extends Fragment {
         @Override
         public void onPanelCollapsed(View view) {
             if(sliding_layout != null)
-                sliding_layout.setDragView(rlPodcastHeader);
-            viewSwitcherProgress.setDisplayedChild(0);
+                sliding_layout.setDragView(binding.llPodcastHeader);
+            binding.viewSwitcherProgress.setDisplayedChild(0);
         }
 
         @Override
         public void onPanelExpanded(View view) {
             if(sliding_layout != null)
-                sliding_layout.setDragView(viewSwitcherProgress);
-            viewSwitcherProgress.setDisplayedChild(1);
+                sliding_layout.setDragView(binding.viewSwitcherProgress);
+            binding.viewSwitcherProgress.setDisplayedChild(1);
         }
 
         @Override public void onPanelAnchored(View view) { }
@@ -409,19 +372,19 @@ public class PodcastFragment extends Fragment {
     }
 
     private MediaControllerCompat.Callback controllerCallback =
-        new MediaControllerCompat.Callback() {
-            @Override
-            public void onMetadataChanged(MediaMetadataCompat metadata) {
-                Log.v(TAG, "onMetadataChanged() called with: metadata = [" + metadata + "]");
-                displayMetadata(metadata);
-            }
+            new MediaControllerCompat.Callback() {
+                @Override
+                public void onMetadataChanged(MediaMetadataCompat metadata) {
+                    Log.v(TAG, "onMetadataChanged() called with: metadata = [" + metadata + "]");
+                    displayMetadata(metadata);
+                }
 
-            @Override
-            public void onPlaybackStateChanged(PlaybackStateCompat stateCompat) {
-                Log.v(TAG, "onPlaybackStateChanged() called with: state = [" + stateCompat + "]");
-                displayPlaybackState(stateCompat);
-            }
-        };
+                @Override
+                public void onPlaybackStateChanged(PlaybackStateCompat stateCompat) {
+                    Log.v(TAG, "onPlaybackStateChanged() called with: state = [" + stateCompat + "]");
+                    displayPlaybackState(stateCompat);
+                }
+            };
 
 
     private void displayMetadata(MediaMetadataCompat metadata) {
@@ -430,8 +393,8 @@ public class PodcastFragment extends Fragment {
         if(author != null) {
             title += " - " + author;
         }
-        tvTitle.setText(title);
-        tvTitleSlider.setText(title);
+        binding.tvTitle.setText(title);
+        binding.tvTitleSlider.setText(title);
 
         String favIconUrl = metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI);
         if(favIconUrl != null) {
@@ -441,7 +404,7 @@ public class PodcastFragment extends Fragment {
                     showImageForEmptyUri(R.drawable.default_feed_icon_light).
                     showImageOnFail(R.drawable.default_feed_icon_light).
                     build();
-            ImageLoader.getInstance().displayImage(favIconUrl, imgFavIcon, displayImageOptions);
+            ImageLoader.getInstance().displayImage(favIconUrl, binding.imgFeedFavicon, displayImageOptions);
         }
 
         PlaybackService.VideoType mediaType = PlaybackService.VideoType.valueOf(metadata.getString(CURRENT_PODCAST_MEDIA_TYPE));
@@ -482,9 +445,9 @@ public class PodcastFragment extends Fragment {
 
         // If attached to context..
         if(mActivity != null) {
-            btnPlayPausePodcast.setImageResource(drawableId);
-            btnPlayPausePodcast.setContentDescription(getString(contentDescriptionId));
-            btnPlayPausePodcastSlider.setImageResource(drawableId);
+            binding.btnPlayPausePodcast.setImageResource(drawableId);
+            binding.btnPlayPausePodcast.setContentDescription(getString(contentDescriptionId));
+            binding.btnPlayPausePodcastSlider.setImageResource(drawableId);
         }
 
         currentPositionInMillis = stateCompat.getPosition();
@@ -497,32 +460,32 @@ public class PodcastFragment extends Fragment {
         int minutes = (int)(currentPositionInMillis % (1000*60*60)) / (1000*60);
         int seconds = (int) ((currentPositionInMillis % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
-        tvFrom.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-        tvFromSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        binding.tvFrom.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        binding.tvFromSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
 
         hours = (int)(maxPositionInMillis / (1000*60*60));
         minutes = (int)(maxPositionInMillis % (1000*60*60)) / (1000*60);
         seconds = (int) ((maxPositionInMillis % (1000*60*60)) % (1000*60) / 1000);
         minutes += hours * 60;
-        tvTo.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-        tvToSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        binding.tvTo.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        binding.tvToSlider.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
 
         if(state == PlaybackStateCompat.STATE_CONNECTING) {
-            sb_progress.setVisibility(View.INVISIBLE);
-            pb_progress2.setVisibility(View.VISIBLE);
+            binding.sbProgress.setVisibility(View.INVISIBLE);
+            binding.pbProgress2.setVisibility(View.VISIBLE);
 
-            pb_progress.setIndeterminate(true);
+            binding.pbProgress.setIndeterminate(true);
         } else {
             double progress = ((double) currentPositionInMillis / (double) maxPositionInMillis) * 100d;
 
             if(!blockSeekbarUpdate) {
-                sb_progress.setVisibility(View.VISIBLE);
-                pb_progress2.setVisibility(View.INVISIBLE);
-                sb_progress.setProgress((int) progress);
+                binding.sbProgress.setVisibility(View.VISIBLE);
+                binding.pbProgress2.setVisibility(View.INVISIBLE);
+                binding.sbProgress.setProgress((int) progress);
             }
 
-            pb_progress.setIndeterminate(false);
-            pb_progress.setProgress((int) progress);
+            binding.pbProgress.setIndeterminate(false);
+            binding.pbProgress.setProgress((int) progress);
         }
     }
 

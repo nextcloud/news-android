@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,11 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemCardViewBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemTextBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemThumbnailBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemWebLayoutBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
@@ -74,7 +81,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             recyclerView
                     .addOnScrollListener(new RecyclerView.OnScrollListener() {
                         @Override
-                        public void onScrolled(RecyclerView recyclerView,
+                        public void onScrolled(@NonNull RecyclerView recyclerView,
                                                int dx, int dy) {
                             super.onScrolled(recyclerView, dx, dy);
 
@@ -88,15 +95,13 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
 
                                 Log.v(TAG, "start load more task...");
 
-                                recyclerView.post(new Runnable() {
-                                    public void run() {
-                                        // End has been reached
-                                        // Do something
-                                        lazyList.add(null);
-                                        notifyItemInserted(lazyList.size() - 1);
+                                recyclerView.post(() -> {
+                                    // End has been reached
+                                    // Do something
+                                    lazyList.add(null);
+                                    notifyItemInserted(lazyList.size() - 1);
 
-                                        AsyncTaskHelper.StartAsyncTask(new LoadMoreItemsAsyncTask());
-                                    }
+                                    AsyncTaskHelper.StartAsyncTask(new LoadMoreItemsAsyncTask());
                                 });
                             }
                         }
@@ -150,50 +155,48 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, @NonNull int viewType) {
         if (viewType == VIEW_PROG) {
             View v = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.progressbar_item, parent, false);
-
             return new ProgressViewHolder(v);
         } else {
-            Integer layout = 0;
+            Context context = parent.getContext();
+            RssItemViewHolder viewHolder = null;
             switch (Integer.parseInt(mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0"))) {
                 case 0:
-                    layout = R.layout.subscription_detail_list_item_thumbnail;
+                    viewHolder = new RssItemThumbnailViewHolder(SubscriptionDetailListItemThumbnailBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
                     break;
                 case 1:
+                    viewHolder = new RssItemTextViewHolder(SubscriptionDetailListItemTextBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
+                    break;
                 case 3:
-                    layout = R.layout.subscription_detail_list_item_text;
+                    viewHolder = new RssItemFullTextViewHolder(SubscriptionDetailListItemTextBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
                     break;
                 case 2:
-                    layout = R.layout.subscription_detail_list_item_web_layout;
+                    viewHolder = new RssItemWebViewHolder(SubscriptionDetailListItemWebLayoutBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
                     break;
                 case 4:
-                    layout = R.layout.subscription_detail_list_item_card_view;
+                    viewHolder = new RssItemCardViewHolder(SubscriptionDetailListItemCardViewBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
                     break;
                 case 5:
-                    layout = R.layout.subscription_detail_list_item_headline;
+                    viewHolder = new RssItemHeadlineViewHolder(SubscriptionDetailListItemHeadlineBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
                     break;
                 default:
                     Log.e(TAG, "Unknown layout..");
             }
-            View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
-            final ViewHolder holder = new ViewHolder(view, mPrefs);
+            RssItemViewHolder finalViewHolder = viewHolder;
+            viewHolder.getStar().setOnClickListener(view1 -> toggleStarredStateOfItem(finalViewHolder));
 
-            holder.starImageView.setOnClickListener(view1 -> toggleStarredStateOfItem(holder));
-
-            holder.setClickListener((RecyclerItemClickListener) activity);
-
-            holder.flPlayPausePodcastWrapper.setOnClickListener(v -> {
-                if (holder.isPlaying()) {
+            viewHolder.getPlayPausePodcastWrapper().setOnClickListener(v -> {
+                if (finalViewHolder.isPlaying()) {
                     playPausePodcastClicked.pausePodcast();
                 } else {
-                    playPausePodcastClicked.openPodcast(holder.getRssItem());
+                    playPausePodcastClicked.openPodcast(finalViewHolder.getRssItem());
                 }
             });
-
+            viewHolder.setClickListener((RecyclerItemClickListener) activity);
             /*
             // TODO implement option to delete cached podcasts (https://github.com/nextcloud/news-android/issues/742)
             holder.flPlayPausePodcastWrapper.setOnLongClickListener(v -> {
@@ -208,47 +211,48 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 return false;
             });
             */
-
-            return holder;
+            return viewHolder;
         }
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, int position) {
-        if(viewHolder instanceof ProgressViewHolder) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
+        if (viewHolder instanceof ProgressViewHolder) {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
         } else {
-            final ViewHolder holder = (ViewHolder) viewHolder;
+            final RssItemViewHolder holder = (RssItemViewHolder) viewHolder;
             RssItem item = lazyList.get(position);
-            holder.setRssItem(item);
+            holder.bind(item);
             holder.setStayUnread(NewsReaderListActivity.stayUnreadItems.contains(item.getId()));
 
             //Podcast stuff
             if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(item.getEnclosureMime())) {
                 final boolean isPlaying = idOfCurrentlyPlayedPodcast == item.getId();
                 //Enable podcast buttons in view
-                holder.flPlayPausePodcastWrapper.setVisibility(View.VISIBLE);
+                holder.getPlayPausePodcastWrapper().setVisibility(View.VISIBLE);
                 holder.setPlaying(isPlaying);
                 holder.setDownloadPodcastProgressbar();
             } else {
-                holder.flPlayPausePodcastWrapper.setVisibility(View.GONE);
+                holder.getPlayPausePodcastWrapper().setVisibility(View.GONE);
             }
         }
     }
 
     @Override
-    public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
-        if(holder instanceof ViewHolder)
+    public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
+        if (holder instanceof RssItemViewHolder) {
             EventBus.getDefault().unregister(holder);
+        }
     }
 
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
-        if(holder instanceof ViewHolder)
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
+        if (holder instanceof RssItemViewHolder) {
             EventBus.getDefault().register(holder);
+        }
     }
 
-    public void changeReadStateOfItem(ViewHolder viewHolder, boolean isChecked) {
+    public void changeReadStateOfItem(RssItemViewHolder viewHolder, boolean isChecked) {
         RssItem rssItem = viewHolder.getRssItem();
         if (rssItem.getRead_temp() != isChecked) { // Only perform database operations if really needed
             rssItem.setRead_temp(isChecked);
@@ -263,13 +267,13 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void toggleReadStateOfItem(ViewHolder viewHolder) {
+    public void toggleReadStateOfItem(RssItemViewHolder viewHolder) {
         RssItem rssItem = viewHolder.getRssItem();
         boolean isRead = !rssItem.getRead_temp();
         changeReadStateOfItem(viewHolder, isRead);
     }
 
-    public void toggleStarredStateOfItem(ViewHolder viewHolder) {
+    public void toggleStarredStateOfItem(RssItemViewHolder viewHolder) {
         RssItem rssItem = viewHolder.getRssItem();
         boolean isStarred = !rssItem.getStarred_temp();
         rssItem.setStarred_temp(isStarred);
@@ -394,16 +398,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(activity);
             List<RssItem> items = dbConn.getCurrentRssItemView(cachedPages++);
 
-            /*
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-
             sw.stop();
             Log.v(TAG, "Time needed (loading more): " + sw.toString());
-
             return items;
         }
 

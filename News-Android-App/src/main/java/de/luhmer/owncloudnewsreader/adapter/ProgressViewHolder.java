@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import de.luhmer.owncloudnewsreader.R;
 
 public class ProgressViewHolder extends RecyclerView.ViewHolder {
@@ -11,6 +12,6 @@ public class ProgressViewHolder extends RecyclerView.ViewHolder {
 
     public ProgressViewHolder(View v) {
         super(v);
-        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+        progressBar = v.findViewById(R.id.progressBar);
     }
 }

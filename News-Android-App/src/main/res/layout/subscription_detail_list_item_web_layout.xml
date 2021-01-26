@@ -4,7 +4,9 @@
     android:layout_height="500dp"
     android:orientation="vertical">
 
-    <include layout="@layout/subscription_detail_list_item_thumbnail" />
+    <include
+        android:id="@+id/layout_thumbnail"
+        layout="@layout/subscription_detail_list_item_thumbnail" />
 
     <WebView
         android:id="@+id/webView_body"

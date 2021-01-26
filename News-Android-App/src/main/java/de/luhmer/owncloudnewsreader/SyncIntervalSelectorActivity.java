@@ -16,14 +16,12 @@ import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
+import de.luhmer.owncloudnewsreader.databinding.ActivitySyncIntervalSelectorBinding;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 
@@ -31,7 +29,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     private PlaceholderFragment mFragment;
     private String[] items_values;
-    protected @BindView(R.id.toolbar) Toolbar toolbar;
+    protected ActivitySyncIntervalSelectorBinding binding;
     protected @Inject SharedPreferences mPrefs;
 
     @Override
@@ -42,12 +40,11 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ThemeChooser.afterOnCreate(this);
 
-        setContentView(R.layout.activity_sync_interval_selector);
+        binding = ActivitySyncIntervalSelectorBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ButterKnife.bind(this);
-
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (binding.toolbarLayout.toolbar != null) {
+            setSupportActionBar(binding.toolbarLayout.toolbar);
         }
 
         items_values = getResources().getStringArray(R.array.array_sync_interval_values);

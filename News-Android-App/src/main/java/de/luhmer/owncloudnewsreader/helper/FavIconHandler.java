@@ -27,13 +27,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.core.content.ContextCompat;
+import androidx.palette.graphics.Palette;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import androidx.core.content.ContextCompat;
-import androidx.palette.graphics.Palette;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
@@ -42,10 +43,7 @@ public class FavIconHandler {
     private static final String TAG = FavIconHandler.class.getCanonicalName();
     private final DisplayImageOptions displayImageOptions;
 
-    private Context context;
-
     public FavIconHandler(Context context) {
-        this.context = context;
         int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
         displayImageOptions = new DisplayImageOptions.Builder()
                 .showImageOnLoading(placeHolder)
@@ -73,19 +71,18 @@ public class FavIconHandler {
         imgView.setTranslationY(offset);
     }
 
-    private static int getResourceIdForRightDefaultFeedIcon()
-	{
-		if(ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
+    private static int getResourceIdForRightDefaultFeedIcon() {
+        if (ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
             return R.drawable.default_feed_icon_dark;
         } else {
             return R.drawable.default_feed_icon_light;
         }
 
-	}
+    }
 
-	public void preCacheFavIcon(final Feed feed) throws IllegalStateException {
-        if(feed.getFaviconUrl() == null) {
-            Log.v(TAG, "No favicon for "+feed.getFeedTitle());
+    public void preCacheFavIcon(final Feed feed, Context context) throws IllegalStateException {
+        if (feed.getFaviconUrl() == null) {
+            Log.v(TAG, "No favicon for " + feed.getFeedTitle());
             return;
         }
 
@@ -103,7 +100,7 @@ public class FavIconHandler {
 
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                DownloadFinished(feed.getId(), loadedImage);
+                DownloadFinished(feed.getId(), loadedImage, context);
             }
 
             @Override
@@ -113,8 +110,8 @@ public class FavIconHandler {
         });
     }
 
-    private void DownloadFinished(long feedId, Bitmap bitmap) {
-        if(bitmap != null) {
+    private void DownloadFinished(long feedId, Bitmap bitmap, Context context) {
+        if (bitmap != null) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             Feed feed = dbConn.getFeedById(feedId);
             Palette palette = Palette.from(bitmap).generate();
