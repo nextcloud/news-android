@@ -72,7 +72,7 @@
             android:singleLine="true"
             android:textIsSelectable="false"
             android:clickable="false"
-            android:textColor="@color/options_menu_item_text"
+            android:textColor="@color/material_grey_300"
             tools:text="07.08.14 19:00"
             android:textSize="14sp" />
 

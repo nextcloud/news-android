@@ -1,8 +1,6 @@
 package de.luhmer.owncloudnewsreader;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +11,7 @@ public class Constants {
     public static final int maxItemsCount = 1500;
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
     public static final String NOTIFICATION_ACTION_STOP_STRING = "NOTIFICATION_STOP";
+    public static final String NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING = "NOTIFICATION_MARK_ALL_AS_READ";
     protected static final String NEWS_WEB_VERSION_NUMBER_STRING = "NewsWebVersionNumber";
 
     protected static final int MIN_NEXTCLOUD_FILES_APP_VERSION_CODE = 30030052;

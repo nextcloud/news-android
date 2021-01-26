@@ -56,7 +56,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -310,13 +309,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
         @Override public void onPageScrollStateChanged(int arg0) { }
     };
 
-    public static SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
-        SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-        String sortDirection = prefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
-        if ("1".equals(sortDirection))
-            sDirection = SORT_DIRECTION.desc;
-        return sDirection;
-    }
 
 	@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
