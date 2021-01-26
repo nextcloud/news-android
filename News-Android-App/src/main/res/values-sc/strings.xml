@@ -217,5 +217,7 @@
     <string name="content_desc_rewind">torra in segus</string>
     <string name="content_desc_forward">avantza</string>
     <string name="content_desc_expand">ismànnia</string>
-    <string name="content_desc_collapse">Mìnima</string>
+    <string name="content_desc_collapse">mìnima</string>
+    <string name="content_desc_mark_as_read">sinna comente lèghidu</string>
+    <string name="content_desc_mark_as_unread">sinna comente non lèghidu</string>
     </resources>
