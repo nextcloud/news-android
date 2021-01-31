@@ -53,7 +53,7 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Feed URL</string>
+    <string name="hint_feed_url">提要URL</string>
     <string name="action_add_feed">新增訂閱</string>
     <string name="import_opml">匯入OPML格式</string>
     <string name="export_opml">匯出OPML格式</string>
