@@ -20,7 +20,7 @@
 
     <string name="menu_update">重新整理</string>
     <string name="menu_markAllAsRead">全部標示為已閱讀</string>
-    <string name="menu_StartImageCaching">下載圖片</string>
+    <string name="menu_StartImageCaching">下載圖像</string>
     <string name="menu_downloadMoreItems">下載更多項目</string>
 
     <string name="tv_showing_cached_version">顯示快取的版本</string>
