@@ -245,7 +245,7 @@
 
     <string name="pref_data_sync_image_cache_never">絕不</string>
     <string name="pref_data_sync_image_cache_wifi_only">只透過 WiFi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 Wi-Fi 和行動網路</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 Wi-Fi 和流動網路</string>
     <string name="pref_data_sync_image_cache_ask">當未連接到 WiFi 時詢問</string>
 
     <string name="array_sync_interval_min_0">絕不</string>
