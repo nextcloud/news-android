@@ -42,7 +42,7 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.TestApplication;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
-import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import de.luhmer.owncloudnewsreader.adapter.RssItemViewHolder;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.di.TestApiProvider;
 import de.luhmer.owncloudnewsreader.di.TestComponent;
@@ -150,7 +150,7 @@ public class NewsReaderListActivityUiTests {
         assertNotNull(ndf);
         final NewsListRecyclerAdapter na = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
         assertNotNull(na);
-        final ViewHolder vh = (ViewHolder) ndf.getRecyclerView().getChildViewHolder(ndf.getRecyclerView().getLayoutManager().findViewByPosition(scrollPosition));
+        final RssItemViewHolder vh = (RssItemViewHolder) ndf.getRecyclerView().getChildViewHolder(ndf.getRecyclerView().getLayoutManager().findViewByPosition(scrollPosition));
         assertNotNull(vh);
         LinearLayoutManager llm = (LinearLayoutManager) ndf.getRecyclerView().getLayoutManager();
 
