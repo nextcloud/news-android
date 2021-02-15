@@ -183,9 +183,6 @@
     <string name="pref_title_ShowFastActions">Activate fast access functions</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
 
-    <string name="dialog_feature_not_available">This feature is not available in this (open-source) version of this app. If you want to use this feature please download the app from the GitHub Repository or download the App from the Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accept Unknown Certificate?</string>
     <string name="mtm_decision_always">Always</string>
