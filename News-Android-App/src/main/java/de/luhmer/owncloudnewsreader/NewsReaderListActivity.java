@@ -119,6 +119,7 @@ import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static androidx.annotation.VisibleForTesting.PROTECTED;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
 
@@ -145,7 +146,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private static MenuItem menuItemDownloadMoreItems;
 
-	protected ActivityNewsreaderBinding binding;
+	@VisibleForTesting(otherwise = PROTECTED)
+	public ActivityNewsreaderBinding binding;
 
 	//private ServiceConnection mConnection = null;
 

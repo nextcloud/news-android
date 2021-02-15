@@ -93,14 +93,6 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	SharedPreferences mPrefs;
 
 	private boolean mShowFastActions;
-	
-	public static SORT_DIRECTION getSortDirectionFromSettings(SharedPreferences prefs) {
-		SORT_DIRECTION sDirection = SORT_DIRECTION.asc;
-		String sortDirection = prefs.getString(SettingsActivity.SP_SORT_ORDER, "1");
-		if ("1".equals(sortDirection))
-			sDirection = SORT_DIRECTION.desc;
-		return sDirection;
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
