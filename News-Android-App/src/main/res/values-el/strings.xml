@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Ενεργοποιήστε τις λειτουργίες γρήγορης πρόσβασης</string>
     <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αρχείου στον περιηγητή</string>
 
-    <string name="dialog_feature_not_available">Αυτή η επιλογή δεν είναι διαθέσιμη σε αυτή την (ανοιχτού-λογισμικού) εφαρμογή. Εάν επιθυμείτε αυτή την επιλογή παρακαλώ κάνετε λήψη από το GitHub Repository ή από το Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
     <string name="mtm_decision_always">Πάντα</string>

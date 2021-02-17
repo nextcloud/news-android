@@ -152,9 +152,6 @@
     <string name="pref_title_ShowFastActions">Aktiviraj funkcije brzog pristupa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči detaljan prikaz i otvori članak u pregledniku</string>
 
-    <string name="dialog_feature_not_available">Ova značajka nije dostupna u ovoj inačici aplikacije (otvorenog koda). Ako se želite koristiti ovom značajkom, preuzmite aplikaciju iz repozitorija GitHub ili preuzmite aplikaciju iz trgovine Google Play.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Prihvati nepoznatu vjerodajnicu?</string>
     <string name="mtm_decision_always">Uvijek</string>

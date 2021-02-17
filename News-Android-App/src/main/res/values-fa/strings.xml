@@ -144,9 +144,6 @@
     <string name="pref_title_ShowFastActions">فعال کردن عمل‌کردهای دسترسی سریع</string>
     <string name="pref_title_OpenInBrowserDirectly">پرش از نمای باجزییات و گشودن مقاله در مرورگر</string>
 
-    <string name="dialog_feature_not_available">این ویژگی در این نگارش (آزاد) کاره موجود نیست. اگر می‌خواهید از این ویژگی استفاده کنید، لطفاً کاره را از مخزن گیت‌هاب یا فروشگاه پلی گوگل بارگیری کنید.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">پذیرش گواهی‌نامهٔ ناشناس؟</string>
     <string name="mtm_decision_always">همواره</string>

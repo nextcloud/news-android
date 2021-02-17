@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Ativa funtziones de atzessu lestru</string>
     <string name="pref_title_OpenInBrowserDirectly">Brinca sa vista a sa minuda e aberi s\'artìculu in su navigadore</string>
 
-    <string name="dialog_feature_not_available">Custa funtzionalidade no est a disponimentu in custa versione (còdighe abertu) de s\'aplicatzione. Si cheres impreare custa funtzionalidade, iscàrriga s\'aplicatzione dae su  depòsitu GitHub o dae Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Cheres atzetare unu tzertificadu disconnotu?</string>
     <string name="mtm_decision_always">Semper</string>

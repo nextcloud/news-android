@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Activar funciones de acceso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltarse la vista detallada y abrir el artículo en el navegador</string>
 
-    <string name="dialog_feature_not_available">Esta característica no está disponible en esta versión (de código abierto) de la app. Si quieres usar esta característica, por favor descarga la app desde el repositorio de GitHub o desde Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">¿Aceptar certificado desconocido?</string>
     <string name="mtm_decision_always">Siempre</string>

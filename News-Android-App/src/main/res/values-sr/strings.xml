@@ -152,9 +152,6 @@
     <string name="pref_title_ShowFastActions">Активирај функције за брзи приступ</string>
     <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљни преглед и одмах отвори чланак у прегледачу</string>
 
-    <string name="dialog_feature_not_available">Ова могућност није доступна у овој верзији (отвореног кода). Ако желите да је користите, преузмите апликацију са Гитхаб ризнице или скините апликацију са Гугл Плеј продавнице.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
     <string name="mtm_decision_always">Увек</string>

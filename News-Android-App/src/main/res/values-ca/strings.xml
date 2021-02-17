@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Activa les funcions d\'accés ràpid</string>
     <string name="pref_title_OpenInBrowserDirectly">Omet la vista detallada i obre l\'article dins del navegador</string>
 
-    <string name="dialog_feature_not_available">Aquesta funcionalitat no és disponible en aquesta versió de l\'aplicació (de codi font obert). Si voleu fer servir aquesta funcionalitat, si us plau descarregueu-vos l\'Aplicació del repositori GitHub o del Google Play Store</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
     <string name="mtm_decision_always">Sempre</string>

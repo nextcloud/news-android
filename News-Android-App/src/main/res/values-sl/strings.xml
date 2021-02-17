@@ -157,9 +157,6 @@
     <string name="pref_title_ShowFastActions">Omogoči možnosti hitrega dostopa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči podrobni pogled in odpri vir v brskalniku</string>
 
-    <string name="dialog_feature_not_available">Možnost v tej (odprtokodni) različici ni na voljo. Če želite to možnost uporabiti, prejmite program neposredno iz skladišča GitHub, ali pa ga namestite prek Googlove trgovine Play.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
     <string name="mtm_decision_always">Vedno</string>

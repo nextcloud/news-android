@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini etkinleştir</string>
     <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp makaleyi tarayıcıda aç</string>
 
-    <string name="dialog_feature_not_available">Bu özellik uygulamanın bu sürümünde (açık kaynaklı) kullanılamaz. Bu özelliği kullanmak istiyorsanız lütfen uygulamayı GitHub deposundan ya da Google Play Store üzerinden indirin.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
     <string name="mtm_decision_always">Her Zaman</string>
