@@ -144,7 +144,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
-	private static MenuItem menuItemDownloadMoreItems;
+	private MenuItem menuItemDownloadMoreItems;
 
 	@VisibleForTesting(otherwise = PROTECTED)
 	public ActivityNewsreaderBinding binding;
