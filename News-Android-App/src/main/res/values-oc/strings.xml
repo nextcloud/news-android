@@ -103,6 +103,7 @@
     <string name="no_podcast_selected">Cap de podcast pas seleccionat</string>
     <!-- Settings for About -->
     <string name="pref_header_about">A prepaus de</string>
+    <string name="pref_privacy">Confidencialitat</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Afichatge</string>
     <string name="pref_title_feed_list_layout">Disposicion de la lista dels fluxes</string>
