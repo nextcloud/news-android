@@ -179,6 +179,7 @@
     <string name="pref_report_issue_summary">Требуется (бесплатный) аккаунт GitHub</string>
     <string name="pref_contribute">Внесите свой вклад!</string>
     <string name="pref_contribute_summary">Получить исходный код</string>
+    <string name="pref_privacy">Конфиденциальность</string>
     <string name="pref_version">Приложение Nextcloud Новости для Android</string>
 
 
