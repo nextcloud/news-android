@@ -23,7 +23,7 @@
             android:background="?attr/dividerLineColor"
             />
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
             android:layout_marginStart="@dimen/listview_row_margin_left"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                 app:tint="?attr/starredColor"
                 android:layout_alignParentEnd="true"
                 android:paddingEnd="@dimen/listview_row_margin_left"
-                android:contentDescription="@string/content_desc_add_to_favorites"/>
+                android:contentDescription="@string/content_desc_add_to_favorites" />
 
             <include
                 layout="@layout/subscription_detail_list_item_podcast_wrapper"

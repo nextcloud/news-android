@@ -447,7 +447,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
                             //String imagePath = downloadManager.getUriForDownloadedFile(refID).toString();
 
-                            String downloadFileLocalUri = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                            String downloadFileLocalUri = cursor.getString(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI));
                             File image = new File(Uri.parse(downloadFileLocalUri).getPath());
 
                             NextcloudNotificationManager.showNotificationDownloadSingleImageComplete(context, image);
