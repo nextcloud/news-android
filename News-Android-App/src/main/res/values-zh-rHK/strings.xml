@@ -2,7 +2,7 @@
 <resources>
 
     <string name="auto_sync_string">自動同步</string>
-    <string name="title_activity_sync_interval_selector">同步時間間隔</string>
+    <string name="title_activity_sync_interval_selector">同步時間間距</string>
     <string name="empty_view_content">無任何項目</string>
     <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
     <string name="no_wifi_available">WiFi 未連線</string>
@@ -54,8 +54,8 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">提要URL</string>
     <string name="action_add_feed">新增訂閱</string>
-    <string name="import_opml">匯入OPML格式</string>
-    <string name="export_opml">匯出OPML格式</string>
+    <string name="import_opml">導入OPML格式</string>
+    <string name="export_opml">導出OPML格式</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
