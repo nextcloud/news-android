@@ -60,7 +60,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
     public OwnCloudSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
 
-        ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectService(this);
+        ((NewsReaderApplication) context).getAppComponent().injectService(this);
     }
 
 
