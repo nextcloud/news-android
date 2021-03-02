@@ -123,10 +123,10 @@ repositories {
     maven { url  "https://dl.bintray.com/lukaville/maven" } //Needed for com.nbsp:library:1.8 in Material File Picker
 }
 
-final DAGGER_VERSION = '2.32'
+final DAGGER_VERSION = '2.33'
 final ESPRESSO_VERSION = '3.3.0'
-final OKHTTP_VERSION = '3.12.10'
-final MOCKITO_VERSION = '3.7.7'
+final OKHTTP_VERSION = '3.12.13'
+final MOCKITO_VERSION = '3.8.0'
 final RETROFIT_VERSION = '2.6.4'
 
 dependencies {
@@ -159,7 +159,7 @@ dependencies {
 
     implementation 'com.sothree.slidinguppanel:library:3.2.1'
 
-    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'de.greenrobot:greendao:2.0.0'
     implementation ('de.greenrobot:greendao-generator:2.0.0') {
         exclude group: 'org.freemarker'
@@ -190,7 +190,7 @@ dependencies {
     implementation 'com.nbsp:library:1.8' // MaterialFilePicker
 
     implementation 'androidx.multidex:multidex:2.0.1'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation("org.mockito:mockito-core:$MOCKITO_VERSION") {
