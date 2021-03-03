@@ -111,6 +111,7 @@
     <string name="pref_display_apptheme_dark">Escur</string>
 
     <string name="pref_display_font_size_d">Defaut</string>
+    <string name="content_desc_show_password">Mostrar lo senhal</string>
     <string name="content_desc_delete">suprimir</string>
     <!-- Settings for Notifications -->
     <string name="pref_header_notifications">Notificacions</string>
