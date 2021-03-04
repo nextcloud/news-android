@@ -22,6 +22,7 @@ package de.luhmer.owncloudnewsreader;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -35,6 +36,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -58,6 +60,8 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
+
+import static de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
 
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
@@ -139,12 +143,13 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 		*/
 
-		/*
 		// For Debugging the WebView using Chrome Remote Debugging
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			WebView.setWebContentsDebuggingEnabled(true);
+			if (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)) {
+				WebView.setWebContentsDebuggingEnabled(true);
+			}
 		}
-		*/
+
 
 		if (binding.toolbarLayout.toolbar != null) {
 			setSupportActionBar(binding.toolbarLayout.toolbar);
@@ -251,15 +256,15 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if (mShowFastActions) {
 			// Set click listener for buttons on action bar
 			binding.faDetailBar.faOpenInBrowser.setOnClickListener(v -> this.openInBrowser(currentPosition));
-			binding.faDetailBar.faToggle.setOnClickListener(v -> this.toggleFastActionBar()); // toggle expand / collapse
+			//binding.faDetailBar.faToggle.setOnClickListener(v -> this.toggleFastActionBar()); // toggle expand / collapse
 			binding.faDetailBar.faStar.setOnClickListener(v -> NewsDetailActivity.this.toggleRssItemStarredState());
 			binding.faDetailBar.faMarkAsRead.setOnClickListener(v -> NewsDetailActivity.this.markRead(currentPosition));
-			binding.faDetailBar.faShare.setOnClickListener(v -> this.share(currentPosition));
+			// binding.faDetailBar.faShare.setOnClickListener(v -> this.share(currentPosition));
 
 			binding.faDetailBar.getRoot().setVisibility(View.VISIBLE);
 
 			// initially the bar should be opened in the expanded state
-			this.toggleFastActionBar();
+			// this.toggleFastActionBar();
 		} else {
 			binding.faDetailBar.getRoot().setVisibility(View.INVISIBLE);
 		}
@@ -268,6 +273,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	/**
 	 * Expands or shrinks the fast action bar to show/hide secondary functions
 	 */
+	/*
 	private void toggleFastActionBar() {
 		int currentState = binding.faDetailBar.faCollapseLayout.getVisibility();
 		switch (currentState) {
@@ -285,6 +291,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//((Animatable)fastActionToggle.getDrawable()).start();
 		binding.faDetailBar.faToggle.setScaleX(-1);
 	}
+	*/
 
 	@Override
 	protected void onDestroy() {
@@ -416,13 +423,13 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		if (menuItem_Read != null) {
 			if (isRead) {
-				menuItem_Read.setIcon(R.drawable.ic_check_box_white);
+				menuItem_Read.setIcon(R.drawable.ic_checkbox_white);
 				menuItem_Read.setChecked(true);
-				binding.faDetailBar.faMarkAsRead.setImageResource(R.drawable.ic_check_box_white);
+				binding.faDetailBar.faMarkAsRead.setImageResource(R.drawable.ic_checkbox_white);
 			} else {
-				menuItem_Read.setIcon(R.drawable.ic_check_box_outline_blank_white);
+				menuItem_Read.setIcon(R.drawable.ic_checkbox_outline_white);
 				menuItem_Read.setChecked(false);
-				binding.faDetailBar.faMarkAsRead.setImageResource(R.drawable.ic_check_box_outline_blank_white);
+				binding.faDetailBar.faMarkAsRead.setImageResource(R.drawable.ic_checkbox_outline_white);
 			}
 		}
 	}
@@ -450,7 +457,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			menuItem_Starred.setVisible(false);
 			menuItem_Read.setVisible(false);
 			menuItem_OpenInBrowser.setVisible(false);
-			menuItem_ShareItem.setVisible(false);
+			// menuItem_ShareItem.setVisible(false);
 		}
 
 		Set<String> selections = mPrefs.getStringSet("sp_news_detail_actionbar_icons", new HashSet<>());

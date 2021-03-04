@@ -7,19 +7,21 @@
     android:orientation="horizontal"
     android:animateLayoutChanges="true">
 
+    <!--
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/fa_toggle"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:background="@color/transparent"
         app:srcCompat="@drawable/ic_fa_expand" />
+    -->
 
+    <!-- android:layout_toRightOf="@id/fa_toggle" android:visibility="gone"-->
     <LinearLayout
         android:id="@+id/fa_collapse_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/fa_toggle"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/fa_star"
@@ -33,15 +35,18 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_check_box_outline_blank_white" />
+            android:src="@drawable/ic_checkbox_outline_white" />
 
+        <!--
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/fa_share"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_share_white" />
+        -->
     </LinearLayout>
+
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/fa_open_in_browser"
@@ -51,4 +56,5 @@
         android:background="@drawable/fa_button"
         android:src="@drawable/ic_action_open_in_browser"
         android:translationZ="50dp" />
+
 </RelativeLayout>

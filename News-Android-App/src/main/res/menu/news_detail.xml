@@ -49,13 +49,13 @@
 
     <item
         android:id="@+id/action_ShareItem"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_share"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_share_white"
         android:title="@string/action_Share" />
 
     <item
         android:id="@+id/action_incognito_mode"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:icon="@drawable/incognito"
         app:iconTint="@android:color/white"
         android:title="Incognito Mode"/>
