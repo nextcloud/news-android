@@ -143,7 +143,6 @@ dependencies {
     // implementation project(':Android-SingleSignOn')
     // implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
     implementation 'com.github.nextcloud:Android-SingleSignOn:0.5.5'
-    implementation 'com.github.David-Development:MaterialShowcaseView:bf6afa225d'
 
     implementation "androidx.core:core:1.3.2"
     implementation 'androidx.annotation:annotation:1.1.0'
@@ -151,7 +150,7 @@ dependencies {
     implementation "androidx.preference:preference:1.1.1"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
-    implementation "com.google.android.material:material:1.3.0-beta01"
+    implementation "com.google.android.material:material:1.3.0-rc01"
     //implementation "com.google.android.material:material:1.0.0"
     implementation "androidx.palette:palette:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"

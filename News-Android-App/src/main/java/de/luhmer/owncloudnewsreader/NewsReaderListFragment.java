@@ -68,7 +68,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+
 
 import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
@@ -314,18 +314,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
     public ExpandableListView getListView() {
         return binding.expandableListView;
-    }
-
-
-    protected void showTapLogoToSyncShowcaseView() {
-        new MaterialShowcaseView.Builder(getActivity())
-                .setTarget(binding.headerLogo)
-                .setDismissText("GOT IT")
-                .setContentText("Tap this logo to sync with server")
-                .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
-                .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
-                .setHideSkipButton(true)
-                .show();
     }
 
     public void startAsyncTaskGetUserInfo() {

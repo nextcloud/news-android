@@ -115,8 +115,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
@@ -190,12 +188,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			startSync();
 		}
 
-		boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
-		if (tabletSize) {
-			showTapLogoToSyncShowcaseView();
-		}
-
-
 		// In case automatic theme selection based on time is selected, check if location permission
 		// for twilight manager is given.. otherwise request it
 		if (isUserLoggedIn() && ThemeChooser.isAutoThemeSelectionEnabled() && ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -266,8 +258,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					reloadCountNumbersOfSlidingPaneAdapter();
 
 					syncState();
-
-					showTapLogoToSyncShowcaseView();
 				}
 			};
 
@@ -368,11 +358,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		} catch (Exception e) {
 			Log.e(TAG, "Setting edge width of drawer failed..", e);
 		}
-	}
-
-
-	private void showTapLogoToSyncShowcaseView() {
-		getSlidingListFragment().showTapLogoToSyncShowcaseView();
 	}
 
 	public int getEdgeSizeOfDrawer() {
@@ -491,16 +476,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * @return true if new items count was greater than 0
 	 */
 	private boolean syncFinishedHandler() {
-		ShowcaseConfig config = new ShowcaseConfig();
-		config.setDelay(300); // half second between each showcase view
-		MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SWIPE_LEFT_RIGHT_AND_PTR");
-		sequence.setConfig(config);
-		sequence.addSequenceItem(getNewsReaderDetailFragment().binding.pbLoading,
-                "Pull-to-Refresh to sync with server", "GOT IT", true);
-		sequence.addSequenceItem(getNewsReaderDetailFragment().binding.pbLoading,
-                "Swipe Left/Right to mark article as read", "GOT IT", true);
-		sequence.start();
-
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 		newsReaderListFragment.reloadAdapter();
 		UpdateItemList();
