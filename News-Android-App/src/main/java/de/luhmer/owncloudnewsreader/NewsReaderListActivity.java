@@ -186,7 +186,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		updateButtonLayout();
 
 		//Start auto sync if enabled
-		if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, false)) {
+		if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
 			startSync();
 		}
 

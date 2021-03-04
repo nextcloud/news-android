@@ -61,7 +61,8 @@
         <SwitchPreference
             android:key="cb_AutoSyncOnStart"
             android:title="@string/pref_title_AutoSyncOnStart"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"/>
 
         <SwitchPreference
             android:key="cb_ShowOnlyUnread"
