@@ -287,7 +287,7 @@ public class NextcloudNotificationManager {
                         .setContentTitle(tickerMessage)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(previewText))
                         //.setDefaults(Notification.DEFAULT_ALL)
-                        .addAction(R.drawable.ic_check_box_white, context.getString(R.string.menu_markAllAsRead), markAllAsReadPendingIntent)
+                        .addAction(R.drawable.ic_checkbox_white, context.getString(R.string.menu_markAllAsRead), markAllAsReadPendingIntent)
                         .setAutoCancel(true)
                         .setNumber(newItemsCount)
                         .setContentText(contentText);
