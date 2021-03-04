@@ -64,14 +64,20 @@ span {
 }
 
 body {
-    font-size:  var(--fontsize-body);
-    font-weight:normal;
-    margin:     0px;
-    word-wrap:  break-word !important;
-    font-family:'ROBOTO_REGULAR';
+    font-size:    var(--fontsize-body);
+    font-weight:  normal;
+    margin:       0px;
+    word-wrap:    break-word !important;
+    font-family:  'ROBOTO_REGULAR';
 
-    margin-left:   1rem;
-    margin-right:  1rem;
+    margin-left:  1rem;
+    margin-right: 1rem;
+}
+
+img {
+    /* make images fill the whole screen */
+    max-width:   calc(100% + 2rem) !important;
+    margin-left: -1rem !important;
 }
 
 div#content > p {
@@ -128,6 +134,7 @@ a {
     font-size:      var(--fontsize-header);
     margin-bottom:  10px;
     font-weight:    bold;
+    line-height:    1.6;
 }
 
 #header a:link, a:active, a:hover, a:visited {
@@ -205,6 +212,7 @@ ul li:before {
 
 #content {
     margin-top:     0.6rem;
+    margin-bottom:  100px;
     line-height:    1.5em !important;
 }
 
