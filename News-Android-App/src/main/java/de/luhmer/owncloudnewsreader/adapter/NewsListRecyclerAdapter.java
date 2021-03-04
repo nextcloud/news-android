@@ -26,6 +26,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemCardViewBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemTextBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemThumbnailBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemWebLayoutBinding;
@@ -182,12 +183,17 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
                 case 5:
                     viewHolder = new RssItemHeadlineViewHolder(SubscriptionDetailListItemHeadlineBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
                     break;
+                case 6:
+                    viewHolder = new RssItemHeadlineThumbnailViewHolder(SubscriptionDetailListItemHeadlineThumbnailBinding.inflate(LayoutInflater.from(context), parent, false), mPrefs);
+                    break;
                 default:
                     Log.e(TAG, "Unknown layout..");
             }
 
             RssItemViewHolder finalViewHolder = viewHolder;
-            viewHolder.getStar().setOnClickListener(view1 -> toggleStarredStateOfItem(finalViewHolder));
+            if(viewHolder.getStar() != null) {
+                viewHolder.getStar().setOnClickListener(view1 -> toggleStarredStateOfItem(finalViewHolder));
+            }
 
             viewHolder.getPlayPausePodcastWrapper().setOnClickListener(v -> {
                 if (finalViewHolder.isPlaying()) {

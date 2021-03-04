@@ -184,7 +184,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
         boolean isIncognito = ndActivity.isIncognitoEnabled();
         binding.webview.getSettings().setBlockNetworkLoads(isIncognito);
-        binding.webview.getSettings().setBlockNetworkImage(isIncognito);
+        // binding.webview.getSettings().setBlockNetworkImage(isIncognito);
     }
 
 	@Override

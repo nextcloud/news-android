@@ -26,11 +26,15 @@ import android.util.Log;
 import com.google.gson.JsonObject;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 
 class InsertRssItemIntoDatabase {
+
+    private final static String TAG = InsertRssItemIntoDatabase.class.getCanonicalName();
 
     static RssItem parseItem(JsonObject e) {
 		Date pubDate = new Date(e.get("pubDate").getAsLong() * 1000);
@@ -53,7 +57,6 @@ class InsertRssItemIntoDatabase {
         String enclosureLink = getStringOrEmpty("enclosureLink", e);
         String enclosureMime = getStringOrEmpty("enclosureMime", e);
 
-        String mediaThumbnail = getStringOrEmpty("mediaThumbnail", e);
         String mediaDescription = getStringOrEmpty("mediaDescription", e);
 
         Boolean rtl = getBooleanOrDefault("rtl", false, e);
@@ -84,7 +87,6 @@ class InsertRssItemIntoDatabase {
         rssItem.setEnclosureLink(enclosureLink);
         rssItem.setEnclosureMime(enclosureMime);
         rssItem.setMediaDescription(mediaDescription);
-        rssItem.setMediaThumbnail(mediaThumbnail);
 
         if(rssItem.getFingerprint() == null) {
             rssItem.setFingerprint(UUID.randomUUID().toString());
@@ -108,6 +110,18 @@ class InsertRssItemIntoDatabase {
         }
 
         rssItem.setBody(content);
+
+        String mediaThumbnail = getStringOrEmpty("mediaThumbnail", e); // Possible XSS Fields
+        if(mediaThumbnail.isEmpty()) {
+            List<String> images = ImageHandler.getImageLinksFromText(content);
+            if(images.size() > 0) {
+                Log.d(TAG, "extracted mediaThumbnail from body");
+                mediaThumbnail = images.get(0);
+            } else {
+                Log.d(TAG, "extracting mediaThumbnail from body failed - no images detected");
+            }
+        }
+        rssItem.setMediaThumbnail(mediaThumbnail);
 
         return rssItem;
 	}

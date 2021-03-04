@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,16 +18,16 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemThumbnailBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding;
 import de.luhmer.owncloudnewsreader.helper.SquareRoundedBitmapDisplayer;
 
 import static android.view.View.GONE;
 
-public class RssItemThumbnailViewHolder extends RssItemViewHolder {
+public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder {
     private final DisplayImageOptions displayImageOptionsThumbnail;
-    private final SubscriptionDetailListItemThumbnailBinding binding;
+    private final SubscriptionDetailListItemHeadlineThumbnailBinding binding;
 
-    RssItemThumbnailViewHolder(@NonNull SubscriptionDetailListItemThumbnailBinding binding, SharedPreferences sharedPreferences) {
+    RssItemHeadlineThumbnailViewHolder(@NonNull SubscriptionDetailListItemHeadlineThumbnailBinding binding, SharedPreferences sharedPreferences) {
         super(binding.getRoot(), sharedPreferences);
         this.binding = binding;
 
@@ -52,7 +51,7 @@ public class RssItemThumbnailViewHolder extends RssItemViewHolder {
 
     @Override
     protected ImageView getStar() {
-        return binding.starImageview;
+        return null;
     }
 
     @Override
@@ -77,13 +76,14 @@ public class RssItemThumbnailViewHolder extends RssItemViewHolder {
 
     @Override
     protected TextView getTextViewBody() {
-        return binding.body;
+        return null;
     }
 
     @Override
     protected TextView getTextViewItemDate() {
-        return binding.tvItemDate;
+        return null;
     }
+
 
     @Override
     protected FrameLayout getPlayPausePodcastWrapper() {

@@ -136,7 +136,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         } else {
             // When incognito is on, we need to provide some error handling
             //description = description.replaceAll("<img", "<img onerror=\"this.style='width: 40px !important; height: 40px !important'\" ");
-            description = description.replaceAll("<img", "<img width=\"40px\" height=\"40px\" ");
+            description = description.replaceAll("<img", "<img onerror=\\\"this.onerror=null;this.src='file:///android_asset/broken-image.png';this.style='margin-left: 0px !important; width: 80px !important; height: 80px !important'\\\"");
         }
         description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_REMOVE, description, "$1 $3"); // remove whatever preload is there
         description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_INSERT, description, "$1 preload=\"metadata\" $3"); // add preload attribute

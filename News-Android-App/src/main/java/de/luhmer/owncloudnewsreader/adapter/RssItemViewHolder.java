@@ -31,6 +31,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
+import de.luhmer.owncloudnewsreader.helper.DateTimeFormatter;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
@@ -123,19 +124,15 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
     public void bind(@NonNull RssItem rssItem) {
         this.rssItem = rssItem;
 
-        int[] attribute = new int[]{R.attr.starredColor, R.attr.unstarredColor};
-        TypedArray array = getStar().getContext().getTheme().obtainStyledAttributes(attribute);
-        starColor = array.getColor(0, Color.TRANSPARENT);
-        inactiveStarColor = array.getColor(1, Color.LTGRAY);
-        array.recycle();
+        if(getStar() != null) {
+            int[] attribute = new int[]{R.attr.starredColor, R.attr.unstarredColor};
+            TypedArray array = getStar().getContext().getTheme().obtainStyledAttributes(attribute);
+            starColor = array.getColor(0, Color.TRANSPARENT);
+            inactiveStarColor = array.getColor(1, Color.LTGRAY);
+            array.recycle();
+        }
 
         TextView textViewBody = getTextViewBody();
-
-        // get and store initial item text sizes (can't figure out how to directly get this info from layout definition)
-        int textSizeSummary = Math.round(getTextViewSummary().getTextSize());
-        int textSizeTitle = Math.round(getTextViewTitle().getTextSize());
-        int textSizeItemDate = Math.round(getTextViewItemDate().getTextSize());
-
 
         String title = null;
         String favIconUrl = null;
@@ -154,6 +151,7 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
         TextView textViewSummary = getTextViewSummary();
         if (textViewSummary != null) {
             try {
+                int textSizeSummary = Math.round(getTextViewSummary().getTextSize());
                 textViewSummary.setText(Html.fromHtml(rssItem.getTitle()));
                 scaleTextSize(textViewSummary, textSizeSummary, false, mPrefs);
             } catch (Exception e) {
@@ -162,25 +160,42 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
         }
 
         TextView textViewTitle = getTextViewTitle();
-        if (textViewTitle != null && title != null) {
-            textViewTitle.setText(Html.fromHtml(title));
-            scaleTextSize(textViewTitle, textSizeTitle, true, mPrefs);
-        }
-
-        int height = 0; // used for feed icon vertical offset calculation
-
         TextView textViewItemDate = getTextViewItemDate();
-        if (textViewItemDate != null) {
-            textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
-            scaleTextSize(textViewItemDate, textSizeItemDate, true, mPrefs);
-            height = Math.round(textViewItemDate.getTextSize());
+        int sizeOfFavIcon = 32;
+        int marginFavIcon = 0;
+        if (textViewTitle != null && title != null) {
+            if(textViewItemDate != null) {
+                // we have seperate views for title and date
+                textViewTitle.setText(Html.fromHtml(title));
+            } else {
+                // append date to title
+                textViewTitle.setText(Html.fromHtml(title) + " · " + DateTimeFormatter.getTimeAgo(rssItem.getPubDate()));
+            }
+
+            int textSizeTitle = Math.round(textViewTitle.getTextSize());
+            scaleTextSize(textViewTitle, textSizeTitle, true, mPrefs);
+
+            sizeOfFavIcon = textSizeTitle;
+            marginFavIcon = Math.round(textViewTitle.getTextSize());
         }
+
+
+        if (textViewItemDate != null) {
+            int textSizeItemDate = Math.round(getTextViewItemDate().getTextSize());
+            //textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
+            textViewItemDate.setText(DateTimeFormatter.getTimeAgo(rssItem.getPubDate()));
+            scaleTextSize(textViewItemDate, textSizeItemDate, true, mPrefs);
+
+            sizeOfFavIcon = textSizeItemDate;
+            marginFavIcon = Math.round(textViewItemDate.getTextSize());
+        }
+
+
 
         ImageView imgViewFavIcon = getImageViewFavIcon();
         if (imgViewFavIcon != null) {
-            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((height - textSizeItemDate) / 2));
+            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((marginFavIcon - sizeOfFavIcon) / 2));
         }
-
 
         if (textViewBody != null) {
             int textSizeBody = Math.round(textViewBody.getTextSize());
@@ -199,7 +214,12 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
                 textViewBody.setMaxLines(scaleTextLines(mPrefs));
                 limitLength = false;
             }
-            body = getBodyText(body, limitLength);
+
+            // long startTime = System.nanoTime();
+            body = getBodyText(body, limitLength); // This is a bottleneck
+            // long difference = System.nanoTime() - startTime;
+            // Log.d(TAG, "Duration: " + difference / 1000 / 1000 + "ms");
+
             textViewBody.setText(Html.fromHtml(body));
             scaleTextSize(textViewBody, textSizeBody, false, mPrefs);
         }
@@ -225,8 +245,10 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
                 R.string.content_desc_remove_from_favorites :
                 R.string.content_desc_add_to_favorites;
         ImageView star = getStar();
-        star.setColorFilter(color);
-        star.setContentDescription(star.getContext().getString(contentDescriptionId));
+        if(star != null) {
+            star.setColorFilter(color);
+            star.setContentDescription(star.getContext().getString(contentDescriptionId));
+        }
     }
 
     public RssItem getRssItem() {

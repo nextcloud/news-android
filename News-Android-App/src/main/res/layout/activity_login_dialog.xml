@@ -22,6 +22,18 @@
             android:layout_height="wrap_content"
             android:src="@drawable/nextcloud_logo" />
 
+        <TextView
+            android:id="@+id/tv_manual_login2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:text="@string/full_app_name"
+            android:textColor="@color/material_grey_100" />
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSingleSignOn"
             android:layout_width="match_parent"
