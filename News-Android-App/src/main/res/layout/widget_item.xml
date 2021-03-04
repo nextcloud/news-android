@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_row_layout"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="64dp"
     android:orientation="horizontal"
-    android:background="#8a000000"
     android:baselineAligned="false">
 
-    
+
+    <!--
     <LinearLayout
         android:id="@+id/color_line_feed"
         android:layout_width="4dip"
         android:layout_height="match_parent"
         android:orientation="horizontal" />
-
+    -->
 
 
     <RelativeLayout
@@ -26,10 +26,9 @@
 
         <RelativeLayout
             android:id="@+id/cb_lv_item_read_wrapper"
-            android:layout_width="35dp"
-            android:layout_height="50dp"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
             android:layout_gravity="end"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true">
 
             <ImageView
@@ -37,10 +36,10 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
                 android:clickable="false"
-                android:background="@drawable/ic_check_box_white"
-                android:contentDescription="@string/content_desc_mark_as_read"/>
-
+                android:background="@drawable/ic_checkbox_white"
+                android:contentDescription="@string/content_desc_mark_as_read" />
         </RelativeLayout>
 
         <TextView
@@ -56,11 +55,11 @@
             android:clickable="false"
             tools:text="Item title"
             android:ellipsize="end"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/widget_foreground"
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/feed_datetime"
@@ -68,13 +67,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/feed_title"
             android:layout_toStartOf="@id/cb_lv_item_read_wrapper"
-            android:layout_marginEnd="10dp"
             android:singleLine="true"
             android:textIsSelectable="false"
             android:clickable="false"
-            android:textColor="@color/material_grey_300"
+            android:alpha="0.8"
             tools:text="07.08.14 19:00"
-            android:textSize="14sp" />
+            android:textColor="@color/widget_foreground"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/feed_author_source"
@@ -88,9 +87,10 @@
             android:singleLine="true"
             android:textIsSelectable="false"
             android:clickable="false"
-            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"
             tools:text="Feed name"
-            android:textSize="14sp" />
+            android:textColor="@color/widget_foreground"
+            android:textSize="13sp" />
 
     </RelativeLayout>
 </LinearLayout>

@@ -29,7 +29,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -40,7 +39,6 @@ import javax.inject.Inject;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderApplication;
-import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -221,15 +219,15 @@ public class WidgetProvider extends AppWidgetProvider {
         */
 
 
-        Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intentToDoListAct, 0);
-        rv.setOnClickPendingIntent(R.id.tV_widget_header, pendingIntent);
-        
-       
+        // Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
+        // PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intentToDoListAct, 0);
+        // rv.setOnClickPendingIntent(R.id.tV_widget_header, pendingIntent);
+
+
         appWidgetManager.updateAppWidget(appWidgetId, rv);
-                
-        if(Constants.debugModeWidget)
-        	Log.d(TAG, "updateAppWidget - WidgetID: " + appWidgetId);
+
+        if (Constants.debugModeWidget)
+            Log.d(TAG, "updateAppWidget - WidgetID: " + appWidgetId);
     }
 
     private void inject(Context context) {

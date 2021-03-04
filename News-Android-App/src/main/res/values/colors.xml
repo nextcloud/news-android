@@ -41,8 +41,7 @@
     <color name="chglib_background_default_divider_color">#00000000</color>
 
 
-
-    <color name="material_grey_50"  tools:override="true">#fffafafa</color>
+    <color name="material_grey_50" tools:override="true">#fffafafa</color>
     <color name="material_grey_100" tools:override="true">#fff5f5f5</color>
     <color name="material_grey_300" tools:override="true">#ffeeeeee</color>
     <color name="material_grey_500" tools:override="true">#9E9E9E</color>
@@ -50,6 +49,10 @@
     <color name="material_grey_700" tools:override="true">#ff717171</color>
     <color name="material_grey_800" tools:override="true">#424242</color>
     <color name="material_grey_900" tools:override="true">#212121</color>
-  
+
     <color name="material_red_600" tools:override="true">#e53935</color>
+
+    <color name="widget_background">#ddffffff</color>
+    <color name="widget_foreground">#222222</color>
+
 </resources>
