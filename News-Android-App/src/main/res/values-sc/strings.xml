@@ -233,7 +233,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errore</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Paret chi is aplicatziones noas non sunt installadas o ativadas in su serbidore tuo. Pro praghere, sighi is istrutziones frunidas inoghe pro cunfigurare is aplicatziones noas in su serbidore: %1$s</string>
-    <string name="login_dialog_text_something_went_wrong">B\'at àpidu un\'errore :(</string>
+    <string name="login_dialog_text_something_went_wrong">Ddoe at àpidu un\'errore :(</string>
     <string name="login_dialog_text_zero_version_code">S\'aplicatzione Web News at torradu sa Version \"0\". Càstias a sa sinnalatzione de bug inoghe in fatu:https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Sa versione de custa aplicatzione no est cumpatìbile cun s\'aplicatzione News de Nextcloud. Agiorna s\'aplicatzione e su framework.</string>
     <string name="login_dialog_title_security_warning">Avisu de Seguridade</string>
