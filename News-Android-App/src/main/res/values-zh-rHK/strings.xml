@@ -69,7 +69,7 @@
     <string name="toast_img_download_wait">下載中…請稍候</string>
     <string name="toast_img_saved">圖片已儲存</string>
     <string name="toast_img_notwriteable">寫入圖片失敗</string>
-    <string name="toast_copied_to_clipboard">複製至剪貼簿</string>
+    <string name="toast_copied_to_clipboard">已複製到剪貼板</string>
     <string name="error_download_failed">下載失敗</string>
     <string name="intent_title_share">分享到</string>
 
