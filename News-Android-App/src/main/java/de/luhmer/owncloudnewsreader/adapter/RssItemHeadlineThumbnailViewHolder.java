@@ -19,12 +19,14 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding;
+import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.SquareRoundedBitmapDisplayer;
 
 import static android.view.View.GONE;
 
 public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder {
     private final DisplayImageOptions displayImageOptionsThumbnail;
+
     private final SubscriptionDetailListItemHeadlineThumbnailBinding binding;
 
     RssItemHeadlineThumbnailViewHolder(@NonNull SubscriptionDetailListItemHeadlineThumbnailBinding binding, SharedPreferences sharedPreferences) {
@@ -32,10 +34,10 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder {
         this.binding = binding;
 
         Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
-        int width = Math.round(88f * binding.imgViewThumbnail.getContext().getResources().getDisplayMetrics().density);
+        int widthThumbnail = Math.round(88f * binding.imgViewThumbnail.getContext().getResources().getDisplayMetrics().density);
         displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
                 .resetViewBeforeLoading(true)
-                .preProcessor(new SquareRoundedBitmapDisplayer(30, 0,width))
+                .preProcessor(new SquareRoundedBitmapDisplayer(30, 0, widthThumbnail))
                 .showImageOnLoading(feedIcon)
                 .showImageForEmptyUri(feedIcon)
                 .showImageOnFail(feedIcon)
@@ -112,7 +114,8 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder {
                 Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
                 binding.imgViewThumbnail.setImageDrawable(feedIcon);
             } else {
-                binding.imgViewThumbnail.setVisibility(GONE);
+                binding.imgViewThumbnail.setImageDrawable(null);
+                binding.imgViewThumbnail.setVisibility(View.GONE);
             }
         }
     }

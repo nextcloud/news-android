@@ -1,97 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/list_item_header"
+    android:layout_width="match_parent"
+    android:layout_height="116dp"
+    android:paddingTop="@dimen/listview_row_margin_top"
+    android:paddingBottom="@dimen/listview_row_margin_bottom"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingStart="@dimen/listview_row_margin_left"
+    android:paddingEnd="@dimen/listview_row_margin_right"
+    android:background="?attr/selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="?attr/selectableItemBackground">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!--
-    <View
-        android:id="@+id/color_line_feed"
-        android:layout_height="match_parent"
-        android:layout_width="4dp"
-        android:background="?attr/dividerLineColor"
-        android:layout_marginEnd="@dimen/listview_row_margin_left" />
-    -->
-
-    <RelativeLayout
-        android:id="@+id/list_item_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/listview_row_margin_bottom"
-        android:descendantFocusability="blocksDescendants"
-        android:paddingStart="@dimen/listview_row_margin_left"
-        android:paddingEnd="0dp">
-
-        <TextView
-            android:id="@+id/summary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/listview_row_margin_top"
-            android:layout_marginBottom="8dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgViewThumbnail"
             android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/imgViewThumbnail"
-            android:lineSpacingMultiplier="1.2"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="3"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:textColor="?attr/primaryTextColor"
-            tools:text="Headline - some longer text might go here.. and it can be multiline.. and it can also be reaaally long so we need to consider that as well" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/summary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:maxLines="3"
+                    android:textColor="?attr/primaryTextColor"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Some very long text that can fill up to three lines and still fits on the screen! So cool! Pretty good design" />
+
+                <ImageView
+                    android:id="@+id/imgViewFavIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_below="@id/summary"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/content_desc_none"
+                    app:layout_constraintTop_toBottomOf="@id/summary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:src="@drawable/default_feed_icon_light" />
+
+
+                <TextView
+                    android:id="@+id/tv_subscription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/summary"
+                    android:ellipsize="middle"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/material_grey_500"
+                    android:textSize="13sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/summary"
+                    app:layout_constraintStart_toEndOf="@id/imgViewFavIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Caschys Blo ds d dsadadsaadadaasdasdadasdad" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/imgViewThumbnail"
             android:layout_width="88dp"
             android:layout_height="88dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
+            android:visibility="visible"
             android:contentDescription="@string/img_view_thumbnail"
             android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/feed_icon" />
 
         <include
             android:id="@+id/podcast_wrapper"
             layout="@layout/subscription_detail_list_item_podcast_wrapper"
-            android:layout_height="88dp"
             android:layout_width="88dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_alignParentEnd="true"/>
+            android:layout_height="88dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/imgViewFavIcon"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/summary"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="2dp"
-            android:contentDescription="@string/content_desc_none"
-            tools:src="@drawable/default_feed_icon_light" />
 
-
-        <TextView
-            android:id="@+id/tv_subscription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="middle"
-            android:gravity="start"
-            android:singleLine="true"
-            android:textAlignment="viewStart"
-            android:textColor="@color/material_grey_500"
-            android:textSize="13sp"
-            android:layout_below="@id/summary"
-            android:layout_toEndOf="@id/imgViewFavIcon"
-            android:layout_toStartOf="@id/imgViewThumbnail"
-            android:layout_marginEnd="16dp"
-            tools:text="Caschys Blo ds d dsadadsaadadaasdasdadasdad" />
-
-    </RelativeLayout>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
