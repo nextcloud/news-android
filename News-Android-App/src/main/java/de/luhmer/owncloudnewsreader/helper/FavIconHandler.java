@@ -24,6 +24,7 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -45,7 +46,10 @@ public class FavIconHandler {
 
     public FavIconHandler(Context context) {
         int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
+
+        int widthFavIcon = Math.round(20f * context.getResources().getDisplayMetrics().density);
         displayImageOptions = new DisplayImageOptions.Builder()
+                .preProcessor(new SquareRoundedBitmapDisplayer(6, 0, widthFavIcon))
                 .showImageOnLoading(placeHolder)
                 .showImageForEmptyUri(placeHolder)
                 .showImageOnFail(placeHolder)
@@ -55,6 +59,10 @@ public class FavIconHandler {
     }
 
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
+        ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
+    }
+
+    public void loadFavIconForFeed(String favIconUrl, ImageView imgView, DisplayImageOptions displayImageOptions) {
         ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
     }
 
@@ -71,7 +79,7 @@ public class FavIconHandler {
         imgView.setTranslationY(offset);
     }
 
-    private static int getResourceIdForRightDefaultFeedIcon() {
+    public static int getResourceIdForRightDefaultFeedIcon() {
         if (ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
             return R.drawable.default_feed_icon_dark;
         } else {
