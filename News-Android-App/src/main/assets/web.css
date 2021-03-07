@@ -176,27 +176,27 @@ ul li:before {
     */
 }
 
+#subscription {
+    display: flex;
+}
+
+#subscription span {
+    line-height: 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
 #subscription, #datetime {
     margin-bottom:3px;
     font-size: var(--fontsize-subscript);
 }
 
-#subscription {
-    float:left;
-}
-.rtl #subscription {
-    float: right;
-}
-
-#datetime {
-    float:right;
-}
-.rtl #datetime {
-    float: left;
-}
 
 #header_small_text {
+    display: flex;
+    justify-content: space-between;
     overflow: auto;
+    flex-direction: row;
 }
 
 #header_small_text {
@@ -205,9 +205,6 @@ ul li:before {
 
 #top_section {
     margin-top:    1rem;
-}
-.rtl #top_section {
-    text-align: right;
 }
 
 #content {
@@ -220,11 +217,11 @@ ul li:before {
     margin-right: 4px;
     vertical-align:middle;
     margin-bottom:2px;
+    margin-left: 0px !important;
     width:16px !important;
     height:16px !important;
 }
 .rtl #imgFavicon {
-    float: right;
-    margin-right: 0;
-    margin-left: 4px;
+    margin-right: 0 !important;
+    margin-left: 4px !important;
 }
