@@ -144,9 +144,6 @@
     <string name="pref_title_ShowFastActions">Gyors elérési funkciók aktiválása</string>
     <string name="pref_title_OpenInBrowserDirectly">Részletes nézet megjelenítésének átugrása és megnyitás böngészőben</string>
 
-    <string name="dialog_feature_not_available">Ez a funkció az alkalmazás ezen (nyílt forráskódú) verziójában nem érhető el. Ha használni akarja ezt a funkciót, akkor töltse le az alkalmazást a GitHub tárolóból vagy a Google Play Áruházból.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Elfogadja az ismeretlen tanúsítványokat?</string>
     <string name="mtm_decision_always">Mindig</string>

@@ -162,7 +162,7 @@
 
         <provider
             android:name=".providers.OwnCloudSyncProvider"
-            android:authorities="de.luhmer.owncloudnewsreader"
+            android:authorities="@string/authority"
             android:label="@string/auto_sync_string"
             android:syncable="true" />
         <provider

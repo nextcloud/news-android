@@ -142,9 +142,6 @@
     <string name="pref_title_ShowFastActions">激活快速访问功能</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
 
-    <string name="dialog_feature_not_available">当前功能在此（开源）版本未开放。如果您想使用此功能，请从 GitHub 仓库中下载或从 Google Play Store 中下载。</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">允许未知证书？</string>
     <string name="mtm_decision_always">总是</string>

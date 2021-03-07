@@ -131,9 +131,6 @@
     <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome de Anfitrião</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
-    <string name="dialog_feature_not_available">Esta funcionalidade não está disponível nesta versão (código aberto) desta aplicação. Se quiser usar esta funcionalidade, por favor, transfira a aplicação do Repositório do GitHub ou transfira a \'Aplicação\' da Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aceitar os certificados desconhecidos?</string>
     <string name="mtm_decision_always">Sempre</string>

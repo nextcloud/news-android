@@ -37,7 +37,7 @@ import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.interfaces.IPlayPausePodcastClicked;
 import de.luhmer.owncloudnewsreader.model.CurrentRssViewDataHolder;
 
-public class NewsListRecyclerAdapter extends RecyclerView.Adapter {
+public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "NewsListRecyclerAdapter";
 
     private final int VIEW_ITEM = 1; // Item

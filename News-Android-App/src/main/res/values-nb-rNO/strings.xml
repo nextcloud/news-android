@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Aktiver funksjoner for rask tilgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
 
-    <string name="dialog_feature_not_available">Funksjonalitet er ikke tilgjengelig i denne (åpen kildekode) versjon. Hvis du ønsker å bruke denne funksjonen kan den lastes ned via GitHub eller fra Google Play butikken.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
     <string name="mtm_decision_always">Alltid</string>

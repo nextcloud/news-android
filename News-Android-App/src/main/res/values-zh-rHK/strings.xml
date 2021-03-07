@@ -2,12 +2,11 @@
 <resources>
 
     <string name="auto_sync_string">自動同步</string>
-    <string name="title_activity_sync_interval_selector">同步時間間隔</string>
-    <string name="title_activity_news_detail">新聞內容活動</string>
+    <string name="title_activity_sync_interval_selector">同步時間間距</string>
     <string name="empty_view_content">無任何項目</string>
     <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
     <string name="no_wifi_available">WiFi 未連線</string>
-    <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖片</string>
+    <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖像</string>
     <string name="current_version">您在使用版本 %s</string>
     <string name="widget_header">Nextcloud 新聞</string>
     <plurals name="message_bar_new_articles_available">
@@ -20,7 +19,7 @@
 
     <string name="menu_update">重新整理</string>
     <string name="menu_markAllAsRead">全部標示為已閱讀</string>
-    <string name="menu_StartImageCaching">下載圖片</string>
+    <string name="menu_StartImageCaching">下載圖像</string>
     <string name="menu_downloadMoreItems">下載更多項目</string>
 
     <string name="tv_showing_cached_version">顯示快取的版本</string>
@@ -53,10 +52,10 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Feed URL</string>
+    <string name="hint_feed_url">提要URL</string>
     <string name="action_add_feed">新增訂閱</string>
-    <string name="import_opml">匯入OPML格式</string>
-    <string name="export_opml">匯出OPML格式</string>
+    <string name="import_opml">導入OPML格式</string>
+    <string name="export_opml">導出OPML格式</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -70,7 +69,7 @@
     <string name="toast_img_download_wait">下載中…請稍候</string>
     <string name="toast_img_saved">圖片已儲存</string>
     <string name="toast_img_notwriteable">寫入圖片失敗</string>
-    <string name="toast_copied_to_clipboard">複製至剪貼簿</string>
+    <string name="toast_copied_to_clipboard">已複製到剪貼板</string>
     <string name="error_download_failed">下載失敗</string>
     <string name="intent_title_share">分享到</string>
 
@@ -88,7 +87,7 @@
     <!-- Strings related to login -->
     <string name="login_manual">手動登入</string>
     <string name="login_sso">使用 Nextcloud Files 應用程式登入</string>
-    <string name="pref_title_username">使用者名稱</string>
+    <string name="pref_title_username">用戶名稱</string>
     <string name="pref_title_password">密碼</string>
     <string name="pref_title_owncloudRootPath">NextCloud 根目錄</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
@@ -106,7 +105,7 @@
     </plurals>
     <string name="toast_no_more_downloads_available">已經載入所有項目</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="other">目前已抓取 %d 項…</item>
+        <item quantity="other">目前已取得 %d 項…</item>
     </plurals>
 
 
@@ -161,7 +160,7 @@
     <string name="pref_license">授權</string>
     <string name="pref_license_summary">GNU Affero 通用公眾授權條款 (GNU AGPL) 第 3 版</string>
     <string name="pref_report_issue">回報問題</string>
-    <string name="pref_report_issue_summary">需要一個 (免費的) GitHub 帳戶</string>
+    <string name="pref_report_issue_summary">需要一個 (免費的) GitHub 賬戶</string>
     <string name="pref_contribute">貢獻</string>
     <string name="pref_contribute_summary">取得原始碼</string>
     <string name="pref_privacy">隱私</string>
@@ -229,8 +228,8 @@
     <string name="login_dialog_title_error">錯誤</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">似乎您未在伺服器安裝或啟用您的 News App。請遵循此處提示，先在您的伺服器安裝 News App：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
-    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述臭蟲回報：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">此 App 版本不相容您的 Nextcloud News 應用程式，請更新 Nextcloud News應用程式和 appframework</string>
+    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述錯誤回報：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">此 App 版本與您的Nextcloud News App 不兼容，請更新 Nextcloud News 應用程式和 appframework</string>
     <string name="login_dialog_title_security_warning">安全性警告</string>
     <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼）</string>
 
@@ -243,7 +242,7 @@
 
     <string name="pref_data_sync_image_cache_never">絕不</string>
     <string name="pref_data_sync_image_cache_wifi_only">只透過 WiFi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 Wi-Fi 和行動網路</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">透過 Wi-Fi 和流動網路</string>
     <string name="pref_data_sync_image_cache_ask">當未連接到 WiFi 時詢問</string>
 
     <string name="array_sync_interval_min_0">絕不</string>

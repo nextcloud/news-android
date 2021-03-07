@@ -35,8 +35,8 @@ import android.widget.RemoteViewsService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -47,7 +47,7 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 	private static final String TAG = WidgetNewsViewsFactory.class.getCanonicalName();
 
     private DatabaseConnectionOrm dbConn;
-    private List<RssItem> rssItems;
+    private LazyList<RssItem> rssItems;
 	private Context context;
 
 	private int appWidgetId;
@@ -70,6 +70,7 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public void onDestroy() {
+	    rssItems.close();
 	}
 
 	@Override
@@ -186,11 +187,13 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 		return(true);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onDataSetChanged() {
         Log.v(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
 
+        if (rssItems != null && !rssItems.isClosed()) {
+            rssItems.close();
+        }
         rssItems = dbConn.getAllUnreadRssItemsForWidget();
 
         Log.v(TAG, "DataSetChanged finished!");

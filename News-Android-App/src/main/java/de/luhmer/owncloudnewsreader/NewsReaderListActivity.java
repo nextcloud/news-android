@@ -117,6 +117,7 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static androidx.annotation.VisibleForTesting.PROTECTED;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
 
@@ -141,9 +142,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
-	private static MenuItem menuItemDownloadMoreItems;
+	private MenuItem menuItemDownloadMoreItems;
 
-	protected ActivityNewsreaderBinding binding;
+	@VisibleForTesting(otherwise = PROTECTED)
+	public ActivityNewsreaderBinding binding;
 
 	//private ServiceConnection mConnection = null;
 
@@ -383,8 +385,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		boolean isAccountThere = false;
 		Account[] accounts = mAccountManager.getAccounts();
+		String accountType = AccountGeneral.getAccountType(this);
 		for (Account account : accounts) {
-			if (account.type.intern().equals(AccountGeneral.ACCOUNT_TYPE)) {
+			if (account.type.intern().equals(accountType)) {
 				isAccountThere = true;
 			}
 		}
@@ -392,7 +395,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		//If the account is not in the Android Account Manager
 		if (!isAccountThere) {
 			//Then add the new account
-			Account account = new Account(getString(R.string.app_name), AccountGeneral.ACCOUNT_TYPE);
+			Account account = new Account(getString(R.string.app_name), accountType);
 			mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
 			SyncIntervalSelectorActivity.setAccountSyncInterval(this, mPrefs);
@@ -652,8 +655,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				AccountManager mAccountManager = AccountManager.get(this);
 				Account[] accounts = mAccountManager.getAccounts();
 				for(Account acc : accounts) {
-                    if (acc.type.equals(AccountGeneral.ACCOUNT_TYPE)) {
-                        ContentResolver.requestSync(acc, AccountGeneral.ACCOUNT_TYPE, accBundle);
+					String accountType = AccountGeneral.getAccountType(this);
+					if (acc.type.equals(accountType)) {
+                        ContentResolver.requestSync(acc, accountType, accBundle);
                     }
                 }
 				//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync

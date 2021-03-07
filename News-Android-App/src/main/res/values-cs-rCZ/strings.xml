@@ -157,9 +157,6 @@
     <string name="pref_title_ShowFastActions">Aktivovat funkce pro rychlý přístup</string>
     <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobné zobrazení a otevřít článek v prohlížeči</string>
 
-    <string name="dialog_feature_not_available">Tato funkce není k dispozici v této (open source) variantě aplikace. Pokud chcete tuto funkci používat, stáhněte si aplikaci z GitHub repozitáře nebo z Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
     <string name="mtm_decision_always">Vždy</string>

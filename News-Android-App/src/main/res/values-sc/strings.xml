@@ -31,7 +31,7 @@
 
     <!-- Action Bar Items -->
     <string name="action_starred">Preferidos</string>
-    <string name="action_read">Leghidura</string>
+    <string name="action_read">Letura</string>
     <string name="action_playPodacst">Riprodue Podcast</string>
     <string name="action_openInBrowser">Aberi in su navigadore Web</string>
     <string name="action_Share">Cumpartzi</string>
@@ -40,7 +40,7 @@
     <string name="action_settings">Impostatziones</string>
     <string name="action_sync_settings">Sincroniza impostatziones</string>
     <string name="action_add_new_feed">Agiunghe fonte noa</string>
-    <string name="action_textToSpeech">Leghidura vocale</string>
+    <string name="action_textToSpeech">Letura vocale</string>
     <string name="action_search">Chirca</string>
     <string name="action_download_articles_offline">Iscàrriga artìculos fora de lìnia</string>
     <!-- notifications -->
@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Ativa funtziones de atzessu lestru</string>
     <string name="pref_title_OpenInBrowserDirectly">Brinca sa vista a sa minuda e aberi s\'artìculu in su navigadore</string>
 
-    <string name="dialog_feature_not_available">Custa funtzionalidade no est a disponimentu in custa versione (còdighe abertu) de s\'aplicatzione. Si cheres impreare custa funtzionalidade, iscàrriga s\'aplicatzione dae su  depòsitu GitHub o dae Google PlayStore.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Cheres atzetare unu tzertificadu disconnotu?</string>
     <string name="mtm_decision_always">Semper</string>
@@ -196,7 +193,7 @@
 
     <string name="pref_display_browser_cct"> Ischedas personalizadas de Chrome integradas</string>
     <string name="pref_display_browser_built_in">Navigadore integradu</string>
-    <string name="pref_display_browser_external">Navigadore esternu</string>
+    <string name="pref_display_browser_external">Navigadore foranu</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
     <string name="pref_display_feed_list_layout_simple_text">Testu simpre</string>
@@ -220,4 +217,50 @@
     <string name="content_desc_collapse">mìnima</string>
     <string name="content_desc_mark_as_read">sinna comente lèghidu</string>
     <string name="content_desc_mark_as_unread">sinna comente non lèghidu</string>
+    <string name="content_desc_tap_to_refresh">toca pro agiornare</string>
+    <string name="content_desc_add_to_favorites">agiunghe a is preferidos</string>
+    <string name="content_desc_remove_from_favorites">boga dae is preferidos</string>
+    <string name="content_desc_show_password">mustra crae</string>
+    <string name="content_desc_delete">cantzella</string>
+    <string name="content_desc_download">iscàrriga</string>
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Notìficas</string>
+    <string name="pref_title_notification_new_articles_available">Mustra notìficas cando b\'at artìculos a disponimentu</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Errore</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Paret chi is aplicatziones noas non sunt installadas o ativadas in su serbidore tuo. Pro praghere, sighi is istrutziones frunidas inoghe pro cunfigurare is aplicatziones noas in su serbidore: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Ddoe at àpidu un\'errore :(</string>
+    <string name="login_dialog_text_zero_version_code">S\'aplicatzione Web News at torradu sa Version \"0\". Càstias a sa sinnalatzione de bug inoghe in fatu:https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Sa versione de custa aplicatzione no est cumpatìbile cun s\'aplicatzione News de Nextcloud. Agiorna s\'aplicatzione e su framework.</string>
+    <string name="login_dialog_title_security_warning">Avisu de Seguridade</string>
+    <string name="login_dialog_text_security_warning">Non ses impreende HTTPS, chi est cussigiadu forte. Unu malintentzionadu diat pòdere intertzetare su tràficu tuo e otènnere s\'atzessu a datos sensìbiles (pro nàrrere, sa crae).</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Datos &amp; e sincronizzazione</string>
+    <string name="pref_title_clearCache">Lìmpia memòria temporànea</string>
+    <string name="pref_title_CacheImagesOffline">Immàgines de memòria temporànea foras de lìnia</string>
+    <string name="pref_title_Max_Cache_Size">Mannària Màssima de sa Memòria Temporànea</string>
+
+    <string name="pref_data_sync_image_cache_never">Mai</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Cun su WiFi ebbia</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Cun su WiFi &amp; e Mòbile</string>
+    <string name="pref_data_sync_image_cache_ask">Pregonta si no ses connètidu a su WiFi</string>
+
+    <string name="array_sync_interval_min_0">Mai</string>
+    <string name="array_sync_interval_min_5">5 Minutos</string>
+    <string name="array_sync_interval_min_15">15 Minutos</string>
+    <string name="array_sync_interval_min_30">30 Minutos</string>
+    <string name="array_sync_interval_min_45">45 Minutos</string>
+    <string name="array_sync_interval_hour_1">1 Ora</string>
+    <string name="array_sync_interval_hour_2">2 Oras</string>
+    <string name="array_sync_interval_hour_3">3 Oras</string>
+    <string name="array_sync_interval_hour_6">6 Oras</string>
+    <string name="array_sync_interval_hour_12">12 Oras</string>
+    <string name="array_sync_interval_hour_24">24 Oras</string>
+
     </resources>

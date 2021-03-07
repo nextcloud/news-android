@@ -1,10 +1,10 @@
 package de.luhmer.owncloudnewsreader.authentication;
 
+import android.content.Context;
+
+import de.luhmer.owncloudnewsreader.R;
+
 public class AccountGeneral {
-	/**
-	 * Account type id
-	 */
-	public static final String ACCOUNT_TYPE = "de.luhmer.owncloudnewsreader";
 
 	/**
 	 * Account name
@@ -21,4 +21,10 @@ public class AccountGeneral {
 	public static final String AUTHTOKEN_TYPE_FULL_ACCESS = "Full access";
 	public static final String AUTHTOKEN_TYPE_FULL_ACCESS_LABEL = "Full access to an Nextcloud News account";
 
+	/**
+	 * Account type id
+	 */
+	public static String getAccountType(Context context) {
+		return context.getString(R.string.account_type);
+	}
 }
