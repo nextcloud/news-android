@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturas (apenas títulos)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
     <string name="pref_display_feed_list_layout_simple_text">Texto simples</string>
     <string name="pref_display_feed_list_layout_headlines">Manchetes</string>

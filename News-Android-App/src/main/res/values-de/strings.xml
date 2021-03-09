@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">Integrierter Browser</string>
     <string name="pref_display_browser_external">Externer Browser</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturbilder (nur Überschriften)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Vorschaubilder</string>
     <string name="pref_display_feed_list_layout_simple_text">Einfacher Text</string>
     <string name="pref_display_feed_list_layout_headlines">Schlagzeilen</string>

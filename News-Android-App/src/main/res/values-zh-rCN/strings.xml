@@ -190,6 +190,7 @@
     <string name="pref_display_browser_built_in">内置浏览器</string>
     <string name="pref_display_browser_external">外部浏览器</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">缩略图 （仅标题）</string>
     <string name="pref_display_feed_list_layout_thumbnails">缩略图</string>
     <string name="pref_display_feed_list_layout_simple_text">简述文本</string>
     <string name="pref_display_feed_list_layout_headlines">头条新闻</string>

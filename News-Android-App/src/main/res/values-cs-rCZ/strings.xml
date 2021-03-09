@@ -205,6 +205,7 @@
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
     <string name="pref_display_browser_external">Externí prohlížeč</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Náhledy (pouze nadpisy)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Náhledy</string>
     <string name="pref_display_feed_list_layout_simple_text">Jednoduchý text</string>
     <string name="pref_display_feed_list_layout_headlines">Nadpisy</string>

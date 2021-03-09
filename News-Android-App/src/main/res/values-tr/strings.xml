@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">İç Tarayıcı</string>
     <string name="pref_display_browser_external">Dış Tarayıcı</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Küçük görseller (yalnız başlıklar)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Küçük görseller</string>
     <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
     <string name="pref_display_feed_list_layout_headlines">Başlıklar</string>
