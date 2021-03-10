@@ -189,6 +189,7 @@
     <string name="pref_display_browser_built_in">內建瀏覽器</string>
     <string name="pref_display_browser_external">外部瀏覽器</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">縮略圖（僅標題）</string>
     <string name="pref_display_feed_list_layout_thumbnails">縮圖</string>
     <string name="pref_display_feed_list_layout_simple_text">簡單文字</string>
     <string name="pref_display_feed_list_layout_headlines">標題</string>

@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">Nabigatzaile integratua</string>
     <string name="pref_display_browser_external">Kanpoko nabigatzailea</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Koadro txikiak (Tituluak bakarrik)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Koadro txikiak</string>
     <string name="pref_display_feed_list_layout_simple_text">Testu sinplea</string>
     <string name="pref_display_feed_list_layout_headlines">Izenburuak</string>

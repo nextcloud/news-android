@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Tự đồng b</string>
+    <string name="title_activity_news_detail">Chi tiết hoạt </string>
+    <string name="empty_view_content">Không có mục nào ở đây</string>
+    <string name="no_wifi_available">Không có kết nối WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải hình ảnh xuống mà không có kết nối Wi-Fi không</string>
+    <string name="current_version">Bạn đang sử dụng phiên bản %s</string>
+    <string name="widget_header">ownCloud News</string>
+    <string name="message_bar_reload">Tải lại</string>
+    <string name="allUnreadFeeds">Tất cả các mục chưa đọc</string>
+    <string name="starredFeeds">Những mục được đánh dấu</string>
+    <string name="title_activity_new_feed">Thêm feed mới</string>
+
+    <string name="menu_update">Làm mới</string>
+    <string name="menu_markAllAsRead">Đánh dấu tất cả là đã đọc</string>
+    <string name="menu_StartImageCaching">Tải hình ảnh xuống</string>
+    <string name="menu_downloadMoreItems">Tải nhiều h</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Starred</string>
+    <string name="action_read">Đọc</string>
+    <string name="action_playPodacst">Chơi Podcast</string>
+    <string name="action_openInBrowser">Mở trong trình duyệt web</string>
+    <string name="action_Share">Chia sẻ</string>
+    <string name="action_login">Cài đặt máy chủ</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="action_sync_settings">Đồng bộ cài đặt</string>
+    <string name="action_add_new_feed">Thêm feed mới</string>
+    <string name="action_textToSpeech">Đọc ra</string>
+    <string name="action_search">Tìm</string>
+    <string name="action_add_feed">Thêm feed</string>
+    <string name="import_opml">Nhập OPML</string>
+    <string name="export_opml">Xuất OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Tải hình ảnh xuống</string>
+    <string name="action_img_sharelink">Chia sẻ liên kết hình ảnh</string>
+    <string name="action_img_open">Mở hình ảnh trong trình duyệt</string>
+    <string name="action_link_share">Chia sẻ liên kết</string>
+    <string name="action_link_copy">Sao chép liên kết</string>
+    <string name="error_download_failed">Tải về thất bại</string>
+    <string name="intent_title_share">Chia sẻ qua</string>
+
+
+    <string name="feed_remove_button">Xóa</string>
+    <string name="feed_rename_button">Đổi tên</string>
+    <string name="move_feed_root_folder">Thư mục gốc</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Đăng nhập thủ công</string>
+    <string name="pref_title_username">Tên đăng nhập</string>
+    <string name="pref_title_password">Mật khẩu</string>
+    <string name="pref_title_owncloudRootPath">Địa chỉ gốc Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Đăng nhập</string>
+    <string name="login_progress_signing_in">Đang đăng nhập...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Những mục cần th</string>
+    <string name="toast_no_more_downloads_available">Không có thư mục </string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="other">Đến giờ đã lấy được %d mục...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Cài đặt</string>
+    <string name="cache_is_cleared">Đã xoá bộ nhớ đệm!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Cài đặt chung</string>
+    <string name="pref_title_general_sort_order">Thứ tự sắp xếp</string>
+
+    <string name="pref_general_search_in_title">Tiêu đề</string>
+    <string name="pref_general_search_in_body">Thân</string>
+
+    <string name="dialog_clearing_cache">Đang xoá bộ nhớ đệm</string>
+    <string name="reset_cache_unsaved_changes">Có sự thay đổi đồng bộ. Bạn muốn thiết lập lại bộ nhớ đệm ?</string>
+    <string name="warning">Cảnh báo</string>
+    <string name="pref_title_AutoSyncOnStart">Đồng bộ khi khởi </string>
+    <string name="pref_title_ShowOnlyUnread">Hiển thị bài chưa </string>
+    <string name="pref_title_DisableHostnameVerification">Tắt H</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Điều chỉnh m lượng</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Đánh dấu đã đọc trong khi di chuyển</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Chấp nhận Certificate không biết nguồn gốc ?</string>
+    <string name="mtm_decision_always">Luôn luôn</string>
+    <string name="mtm_decision_abort">Hủy bỏ</string>
+    <string name="mtm_notification">Xác minh chứng chỉ</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Khôngc có podcast nào được chọn</string>
+    <string name="no_chapters_available">Không có chương nào</string>
+    <string name="podcast_playback_speed_dialog_title">Tốc độ phát</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Thông tin</string>
+    <string name="pref_license">Giấy phép</string>
+    <string name="pref_report_issue">Báo cáo vấn đề</string>
+    <string name="pref_report_issue_summary">Yêu cầu tài khoản GitHub (miễn phí)</string>
+    <string name="pref_contribute">Đóng góp!</string>
+    <string name="pref_contribute_summary">Lấy mã nguồn</string>
+    <string name="pref_privacy">Riêng tư</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Hiển th</string>
+    <string name="pref_title_app_theme">Chủ đề</string>
+    <string name="pref_title_feed_list_layout">Danh sách bố trí F</string>
+    <string name="pref_display_browser">Trình duyệt</string>
+
+
+    <string name="pref_display_apptheme_auto">Sáng / Tối (dựa trên thời gian trong ngày)</string>
+    <string name="pref_display_apptheme_light">Sáng</string>
+    <string name="pref_display_apptheme_dark">Tối</string>
+
+    <string name="pref_oled_mode">Nền đen</string>
+    <string name="pref_oled_mode_summary">Dành cho chủ đề tối trên màn hình OLED</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Nhỏ</string>
+    <string name="pref_display_font_size_d">Mặc định</string>
+    <string name="pref_display_font_size_l">Lớn</string>
+    <string name="pref_display_font_size_xl">Rất lớn</string>
+
+    <string name="content_desc_play">phát</string>
+    <string name="content_desc_pause">tạm dừng</string>
+    <string name="content_desc_playback_speed">tốc độ phát</string>
+    <string name="content_desc_rewind">tua lại</string>
+    <string name="content_desc_forward">tua đi</string>
+    <string name="content_desc_expand">mở rộng</string>
+    <string name="content_desc_collapse">thu gọn</string>
+    <string name="content_desc_mark_as_read">đánh dấu là đã đọc</string>
+    <string name="content_desc_mark_as_unread">đánh dấu là chưa đọc</string>
+    <string name="content_desc_tap_to_refresh">nhấn để làm mới</string>
+    <string name="content_desc_show_password">hiện mật khẩu</string>
+    <string name="content_desc_delete">xóa</string>
+    <string name="content_desc_download">tải xuống</string>
+
+
+    <!-- Settings for Notifications -->
+    <string name="pref_header_notifications">Thông báo</string>
+    <string name="pref_title_notification_new_articles_available">Hiển thị thông báo khi bài viết mới có giá trị</string>
+
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Lỗi</string>
+    <string name="login_dialog_text_something_went_wrong">Có một lỗi gì đó :(</string>
+    <string name="login_dialog_title_security_warning">Cảnh bảo bảo mật</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Dữ liệu &amp; đồng bộ</string>
+    <string name="pref_title_clearCache">Xóa bộ nhớ đệm</string>
+    <string name="pref_title_CacheImagesOffline">Bộ đệm hình ảnh ẩn</string>
+    <string name="pref_title_Max_Cache_Size">Kích cỡ tối đa bộ </string>
+
+    <string name="pref_data_sync_image_cache_never">Không bao giờ</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Chỉ qua Wifi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Qua Wifi và mạng di động</string>
+    <string name="pref_data_sync_image_cache_ask">Hỏi khi không kết nối WiFi</string>
+
+    <string name="array_sync_interval_min_0">Không bao giờ</string>
+    <string name="array_sync_interval_min_5">5 phút</string>
+    <string name="array_sync_interval_min_15">15 phút</string>
+    <string name="array_sync_interval_min_30">30 phút</string>
+    <string name="array_sync_interval_min_45">45 phút</string>
+    <string name="array_sync_interval_hour_1">1 tiếng</string>
+    <string name="array_sync_interval_hour_2">2 tiếng</string>
+    <string name="array_sync_interval_hour_3">3 tiếng</string>
+    <string name="array_sync_interval_hour_6">6 tiếng</string>
+    <string name="array_sync_interval_hour_12">12 tiếng</string>
+    <string name="array_sync_interval_hour_24">24 tiếng</string>
+
+    </resources>
