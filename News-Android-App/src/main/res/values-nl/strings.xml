@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">Ingebouwde browser</string>
     <string name="pref_display_browser_external">Externe browser</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturen (alleen kopteksten)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturen</string>
     <string name="pref_display_feed_list_layout_simple_text">Verkorte tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Kopteksten</string>

@@ -205,6 +205,7 @@
     <string name="pref_display_browser_built_in">Wbudowana przeglądarka</string>
     <string name="pref_display_browser_external">Zewnętrzna przeglądarka</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniatury (tylko nagłówki)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniatury</string>
     <string name="pref_display_feed_list_layout_simple_text">Prosty tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Nagłówki</string>

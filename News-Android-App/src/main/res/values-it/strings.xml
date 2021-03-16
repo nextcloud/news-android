@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">Browser integrato</string>
     <string name="pref_display_browser_external">Browser esterno</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniature (solo i titoli)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniature</string>
     <string name="pref_display_feed_list_layout_simple_text">Testo semplice</string>
     <string name="pref_display_feed_list_layout_headlines">Titoli</string>
