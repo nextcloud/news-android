@@ -195,6 +195,7 @@
     <string name="pref_display_browser_built_in">Navigadore integradu</string>
     <string name="pref_display_browser_external">Navigadore foranu</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturas (tìtulos ebbia)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
     <string name="pref_display_feed_list_layout_simple_text">Testu simpre</string>
     <string name="pref_display_feed_list_layout_headlines">Tìtulos</string>
