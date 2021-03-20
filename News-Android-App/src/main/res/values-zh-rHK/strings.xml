@@ -159,7 +159,7 @@
     <string name="pref_header_about">關於</string>
     <string name="pref_license">授權</string>
     <string name="pref_license_summary">GNU Affero 通用公眾授權條款 (GNU AGPL) 第 3 版</string>
-    <string name="pref_report_issue">回報問題</string>
+    <string name="pref_report_issue">舉報問題</string>
     <string name="pref_report_issue_summary">需要一個 (免費的) GitHub 賬戶</string>
     <string name="pref_contribute">貢獻</string>
     <string name="pref_contribute_summary">取得原始碼</string>
@@ -229,7 +229,7 @@
     <string name="login_dialog_title_error">錯誤</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">似乎您未在伺服器安裝或啟用您的 News App。請遵循此處提示，先在您的伺服器安裝 News App：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">發生錯誤了 :(</string>
-    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述錯誤回報：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述錯誤舉報：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">此 App 版本與您的Nextcloud News App 不兼容，請更新 Nextcloud News 應用程式和 appframework</string>
     <string name="login_dialog_title_security_warning">安全性警告</string>
     <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼）</string>
@@ -238,7 +238,7 @@
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">資料 &amp; 同步</string>
     <string name="pref_title_clearCache">清除快取</string>
-    <string name="pref_title_CacheImagesOffline">暫存離線圖片</string>
+    <string name="pref_title_CacheImagesOffline">緩存離線圖片</string>
     <string name="pref_title_Max_Cache_Size">最大快取容量</string>
 
     <string name="pref_data_sync_image_cache_never">絕不</string>
