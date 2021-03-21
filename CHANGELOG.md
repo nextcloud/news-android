@@ -1,3 +1,19 @@
+0.9.9.54
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/918">#918 Poor scroll performance for some feeds</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/903">#903 Bottom part of article not visible because of action icons</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/929">#929 Widget should respect dark / light theme</a>
+- Changed - Auto-Sync is enabled by default now (every 15min)
+- Changed - Minor adjustments to UI (including new default list layout)
+- Changed - New list layout in the app
+- Changed - Widget redesign
+
+
+0.9.9.53
+---------------------
+- Version bump for another Google review
+
+
 0.9.9.52
 ---------------------
 - Version bump for another Google review
