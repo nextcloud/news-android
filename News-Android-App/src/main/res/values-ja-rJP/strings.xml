@@ -164,6 +164,8 @@
     <string name="pref_report_issue_summary">(無料の) GitHub アカウントが必要です</string>
     <string name="pref_contribute">貢献する！</string>
     <string name="pref_contribute_summary">ソースコードを入手</string>
+    <string name="pref_privacy">プライバシー</string>
+    <string name="pref_privacy_summary">Nextcloud ニュース Android 個人情報保護方針</string>
     <string name="pref_version">Nextcloud ニュース Android アプリ</string>
 
 
@@ -227,7 +229,7 @@
     <string name="login_dialog_title_error">エラー</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">あなたのニュースアプリがあなたのサーバーにインストールされていないか、起動されていないようです。 まず、あなたのサーバーにニュースアプリをインストールするには、こちらの指示に従ってください：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
-    <string name="login_dialog_text_zero_version_code">Web News Appはバージョン \"0\"を返しました。 次のバグレポートをご覧ください：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">Web News アプリはバージョン \"0\"を返しました。 次のバグレポートをご覧ください：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">このアプリのバージョンは Nextcloud ニュースアプリと互換性がありません。ニュースアプリと appframework をアップデートしてください。</string>
     <string name="login_dialog_title_security_warning">セキュリティ警告</string>
     <string name="login_dialog_text_security_warning">HTTPSを使用していないので、強くお勧めします。 攻撃者はトラフィックを傍受し、機密データ（パスワードなど）にアクセスする可能性があります。</string>

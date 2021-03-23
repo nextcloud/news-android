@@ -17,7 +17,7 @@
     <string name="menu_update">Làm mới</string>
     <string name="menu_markAllAsRead">Đánh dấu tất cả là đã đọc</string>
     <string name="menu_StartImageCaching">Tải hình ảnh xuống</string>
-    <string name="menu_downloadMoreItems">Tải nhiều h</string>
+    <string name="menu_downloadMoreItems">Tải nhiều mục hơn xuống</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>

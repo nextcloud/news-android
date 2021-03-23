@@ -79,7 +79,7 @@
     <string name="toast_img_download_wait">Pobieranie… proszę czekać</string>
     <string name="toast_img_saved">Zapisano obraz</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
-    <string name="toast_copied_to_clipboard">Skopiuj do schowka</string>
+    <string name="toast_copied_to_clipboard">Kopiuj do schowka</string>
     <string name="error_download_failed">Pobieranie nieudane</string>
     <string name="intent_title_share">Współdziel przez</string>
 
