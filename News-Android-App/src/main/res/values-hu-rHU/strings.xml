@@ -124,8 +124,8 @@
     <string name="pref_header_general">Általános</string>
     <string name="pref_title_general_sort_order">Rendezés iránya</string>
 
-    <string name="pref_general_sort_order_new_old">Új -> régi</string>
-    <string name="pref_general_sort_order_old_new">Régi -> új</string>
+    <string name="pref_general_sort_order_new_old">Új → régi</string>
+    <string name="pref_general_sort_order_old_new">Régi → új</string>
 
     <string name="pref_rename_action_swipe_right">Művelet jobbra sepréskor</string>
     <string name="pref_rename_action_swipe_left">Művelet balra sepréskor</string>
@@ -170,7 +170,7 @@
     <string name="pref_contribute">Közreműködés!</string>
     <string name="pref_contribute_summary">Töltse le a forráskódot</string>
     <string name="pref_privacy">Adatvédelem</string>
-    <string name="pref_privacy_summary">Nextcloud hírek androidos adatvédelmi irányelvek</string>
+    <string name="pref_privacy_summary">Nextcloud Hírek androidos adatvédelmi irányelvek</string>
     <string name="pref_version">Nextcloud hírek androidos alkalmazás</string>
 
 
