@@ -205,6 +205,7 @@
     <string name="pref_display_browser_built_in">Vgrajen brskalnik</string>
     <string name="pref_display_browser_external">Zunanji brskalnik</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Sličice (le za glavne novice)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Sličice</string>
     <string name="pref_display_feed_list_layout_simple_text">Enostavno besedilo</string>
     <string name="pref_display_feed_list_layout_headlines">Naslovi</string>
