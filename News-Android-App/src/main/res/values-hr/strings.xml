@@ -200,6 +200,7 @@
     <string name="pref_display_browser_built_in">Ugrađeni preglednik</string>
     <string name="pref_display_browser_external">Vanjski preglednik</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Umanjeni prikazi (samo Naslovi)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Umanjeni prikazi</string>
     <string name="pref_display_feed_list_layout_simple_text">Jednostavan tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Naslovi</string>
