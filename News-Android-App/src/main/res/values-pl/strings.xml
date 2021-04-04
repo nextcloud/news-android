@@ -80,14 +80,14 @@
     <string name="toast_img_saved">Zapisano obraz</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
     <string name="toast_copied_to_clipboard">Kopiuj do schowka</string>
-    <string name="error_download_failed">Pobieranie nieudane</string>
-    <string name="intent_title_share">Współdziel przez</string>
+    <string name="error_download_failed">Pobieranie nie powiodło się</string>
+    <string name="intent_title_share">Udostępnij przez</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Usuń kanał</string>
     <string name="action_feed_rename">Zmień nazwę kanału</string>
-    <string name="action_feed_move">Przenieś dane</string>
+    <string name="action_feed_move">Przenieś kanał</string>
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>

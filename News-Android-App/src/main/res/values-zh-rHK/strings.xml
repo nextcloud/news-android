@@ -4,7 +4,7 @@
     <string name="auto_sync_string">自動同步</string>
     <string name="title_activity_sync_interval_selector">同步時間間距</string>
     <string name="empty_view_content">無任何項目</string>
-    <string name="toast_GettingMoreItems">正在開始下載更多項目。。。請稍後</string>
+    <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
     <string name="no_wifi_available">WiFi 未連線</string>
     <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖像</string>
     <string name="current_version">您在使用版本 %s</string>
@@ -90,7 +90,7 @@
     <string name="pref_title_username">用戶名稱</string>
     <string name="pref_title_password">密碼</string>
     <string name="pref_title_owncloudRootPath">NextCloud 根目錄</string>
-    <string name="pref_default_owncloudRootPath">https：//1。2。3。4/nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">登入</string>
     <string name="login_progress_signing_in">登入中…</string>
