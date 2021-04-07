@@ -8,17 +8,17 @@ import android.widget.TextView;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
 
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemWebLayoutBinding;
 
-public class RssItemWebViewHolder extends RssItemViewHolder {
-    SubscriptionDetailListItemWebLayoutBinding binding;
+public class RssItemWebViewHolder extends RssItemViewHolder<SubscriptionDetailListItemWebLayoutBinding> {
 
-    RssItemWebViewHolder(@NonNull SubscriptionDetailListItemWebLayoutBinding binding, SharedPreferences sharedPreferences) {
-        super(binding.getRoot(), sharedPreferences);
-        this.binding = binding;
+
+    public RssItemWebViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
+        super(binding, sharedPreferences);
     }
 
     @Override

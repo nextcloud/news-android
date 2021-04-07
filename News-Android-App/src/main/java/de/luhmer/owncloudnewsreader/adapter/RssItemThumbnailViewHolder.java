@@ -2,7 +2,6 @@ package de.luhmer.owncloudnewsreader.adapter;
 
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -24,19 +23,17 @@ import de.luhmer.owncloudnewsreader.helper.SquareRoundedBitmapDisplayer;
 
 import static android.view.View.GONE;
 
-public class RssItemThumbnailViewHolder extends RssItemViewHolder {
+public class RssItemThumbnailViewHolder extends RssItemViewHolder<SubscriptionDetailListItemThumbnailBinding> {
     private final DisplayImageOptions displayImageOptionsThumbnail;
-    private final SubscriptionDetailListItemThumbnailBinding binding;
 
     RssItemThumbnailViewHolder(@NonNull SubscriptionDetailListItemThumbnailBinding binding, SharedPreferences sharedPreferences) {
-        super(binding.getRoot(), sharedPreferences);
-        this.binding = binding;
+        super(binding, sharedPreferences);
 
         Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
         int width = Math.round(88f * binding.imgViewThumbnail.getContext().getResources().getDisplayMetrics().density);
         displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
                 .resetViewBeforeLoading(true)
-                .preProcessor(new SquareRoundedBitmapDisplayer(30, 0,width))
+                .preProcessor(new SquareRoundedBitmapDisplayer(30, 0, width))
                 .showImageOnLoading(feedIcon)
                 .showImageForEmptyUri(feedIcon)
                 .showImageOnFail(feedIcon)

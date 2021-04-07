@@ -13,12 +13,11 @@ import androidx.annotation.NonNull;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemCardViewBinding;
 
-public class RssItemCardViewHolder extends RssItemViewHolder {
+public class RssItemCardViewHolder extends RssItemViewHolder<SubscriptionDetailListItemCardViewBinding> {
     SubscriptionDetailListItemCardViewBinding binding;
 
     RssItemCardViewHolder(@NonNull SubscriptionDetailListItemCardViewBinding binding, SharedPreferences sharedPreferences) {
-        super(binding.getRoot(), sharedPreferences);
-        this.binding = binding;
+        super(binding, sharedPreferences);
     }
 
     @Override

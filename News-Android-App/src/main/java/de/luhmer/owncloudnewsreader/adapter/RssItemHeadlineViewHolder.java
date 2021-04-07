@@ -9,16 +9,15 @@ import android.widget.TextView;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
 
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineBinding;
 
-public class RssItemHeadlineViewHolder extends RssItemViewHolder {
-    SubscriptionDetailListItemHeadlineBinding binding;
+public class RssItemHeadlineViewHolder extends RssItemViewHolder<SubscriptionDetailListItemHeadlineBinding> {
 
-    RssItemHeadlineViewHolder(@NonNull SubscriptionDetailListItemHeadlineBinding binding, SharedPreferences sharedPreferences) {
-        super(binding.getRoot(), sharedPreferences);
-        this.binding = binding;
+    RssItemHeadlineViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
+        super(binding, sharedPreferences);
     }
 
     @Override

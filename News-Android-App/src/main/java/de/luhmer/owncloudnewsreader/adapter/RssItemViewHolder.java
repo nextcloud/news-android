@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -22,6 +21,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -35,9 +35,10 @@ import de.luhmer.owncloudnewsreader.helper.DateTimeFormatter;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
-public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private final static String TAG = RssItemViewHolder.class.getCanonicalName();
 
+    protected T binding;
     private static final SparseIntArray downloadProgressList = new SparseIntArray();
     private static FavIconHandler favIconHandler = null;
     protected final SharedPreferences mPrefs;
@@ -50,9 +51,11 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
     private int starColor;
     private int inactiveStarColor;
 
+    private SparseIntArray initalFontSizes = new SparseIntArray();
 
-    RssItemViewHolder(@NonNull View itemView, SharedPreferences sharedPreferences) {
-        super(itemView);
+    RssItemViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
+        super(binding.getRoot());
+        this.binding = (T) binding;
         this.mPrefs = sharedPreferences;
 
         bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(itemView.getContext(), android.R.color.secondary_text_dark));
@@ -63,6 +66,18 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
+
+        extractInitialFontSize(getTextViewBody());
+        extractInitialFontSize(getTextViewTitle());
+        extractInitialFontSize(getTextViewSummary());
+        extractInitialFontSize(getTextViewBody());
+        extractInitialFontSize(getTextViewItemDate());
+    }
+
+    private void extractInitialFontSize(TextView tv) {
+        if (tv != null) {
+            initalFontSizes.append(tv.getId(), Math.round(tv.getTextSize()));
+        }
     }
 
     /**
@@ -72,18 +87,21 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
      * @param initialTvSize app layout definition default size of TextView element
      * @param halfScale     if set to true, will only apply half of the scaling factor
      */
-    private static void scaleTextSize(TextView tv, int initialTvSize, boolean halfScale, SharedPreferences mPrefs) {
+    private void scaleTextSize(TextView tv, int initialTvSize, boolean halfScale, SharedPreferences mPrefs) {
         float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
         if (halfScale) {
             scalingFactor = scalingFactor + (1 - scalingFactor) / 2;
         }
 
-        int initialSize = initialTvSize;
-        if (initialSize < 0) {
-            initialSize = Math.round(tv.getTextSize());
+        if (initialTvSize < 0) {
+            initialTvSize = Math.round(tv.getTextSize());
         }
         // float sp = initialSize / tv.getContext().getResources().getDisplayMetrics().scaledDensity;  // transform scaled pixels, device pixels
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, Math.round(initialSize * scalingFactor));
+        int newSize = Math.round(initialTvSize * scalingFactor);
+
+        // String name = tv.getResources().getResourceEntryName(tv.getId());
+        // Log.d(TAG, name + " scale textsize from " + initialTvSize + " to " + newSize);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
     }
 
     /**
@@ -151,7 +169,7 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
         TextView textViewSummary = getTextViewSummary();
         if (textViewSummary != null) {
             try {
-                int textSizeSummary = Math.round(getTextViewSummary().getTextSize());
+                int textSizeSummary = initalFontSizes.get(getTextViewSummary().getId());
                 textViewSummary.setText(Html.fromHtml(rssItem.getTitle()));
                 scaleTextSize(textViewSummary, textSizeSummary, false, mPrefs);
             } catch (Exception e) {
@@ -169,10 +187,10 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
                 textViewTitle.setText(Html.fromHtml(title));
             } else {
                 // append date to title
-                textViewTitle.setText(Html.fromHtml(title) + " · " + DateTimeFormatter.getTimeAgo(rssItem.getPubDate()));
+                textViewTitle.setText(String.format("%s · %s", Html.fromHtml(title), DateTimeFormatter.getTimeAgo(rssItem.getPubDate())));
             }
 
-            int textSizeTitle = Math.round(textViewTitle.getTextSize());
+            int textSizeTitle = initalFontSizes.get(textViewTitle.getId());
             scaleTextSize(textViewTitle, textSizeTitle, true, mPrefs);
 
             sizeOfFavIcon = textSizeTitle;
@@ -181,7 +199,7 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
 
 
         if (textViewItemDate != null) {
-            int textSizeItemDate = Math.round(getTextViewItemDate().getTextSize());
+            int textSizeItemDate = initalFontSizes.get(getTextViewItemDate().getId());
             //textViewItemDate.setText(DateUtils.getRelativeTimeSpanString(rssItem.getPubDate().getTime()));
             textViewItemDate.setText(DateTimeFormatter.getTimeAgo(rssItem.getPubDate()));
             scaleTextSize(textViewItemDate, textSizeItemDate, true, mPrefs);
@@ -194,11 +212,11 @@ public abstract class RssItemViewHolder extends RecyclerView.ViewHolder implemen
 
         ImageView imgViewFavIcon = getImageViewFavIcon();
         if (imgViewFavIcon != null) {
-            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((marginFavIcon - sizeOfFavIcon) / 2));
+            favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((marginFavIcon - sizeOfFavIcon) / 2f));
         }
 
         if (textViewBody != null) {
-            int textSizeBody = Math.round(textViewBody.getTextSize());
+            int textSizeBody = initalFontSizes.get(textViewBody.getId());
 
             String body = rssItem.getMediaDescription();
             if (body == null || body.isEmpty()) {
