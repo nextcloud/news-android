@@ -210,8 +210,8 @@
     <string name="content_desc_forward">早送り</string>
     <string name="content_desc_expand">展開</string>
     <string name="content_desc_collapse">折りたたみ</string>
-    <string name="content_desc_mark_as_read">既読としてマーク</string>
-    <string name="content_desc_mark_as_unread">未読としてマーク</string>
+    <string name="content_desc_mark_as_read">既読にする</string>
+    <string name="content_desc_mark_as_unread">未読にする</string>
     <string name="content_desc_tap_to_refresh">タップして更新</string>
     <string name="content_desc_add_to_favorites">お気に入りに追加</string>
     <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
