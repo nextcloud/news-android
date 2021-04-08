@@ -37,7 +37,7 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 
 ### Requirements
 
-1. [ndroid Studio](https://developer.android.com/studio/)
+1. [Android Studio](https://developer.android.com/studio/)
 
 ### Download and install
 
