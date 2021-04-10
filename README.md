@@ -21,6 +21,9 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"
       height="80">](https://f-droid.org/app/de.luhmer.owncloudnewsreader)
+[<img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png"
+      alt="Donate with PayPal"
+      height="80">](https://www.paypal.com/donate?hosted_button_id=5TJ6LTEVTDF5J)
 
 [![Beta channel](https://img.shields.io/badge/Play%0DStore-Beta%0Dchannel-informational)](https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader)
 
