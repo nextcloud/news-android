@@ -190,6 +190,7 @@
     <string name="pref_display_browser_built_in">組み込みブラウザ</string>
     <string name="pref_display_browser_external">外部ブラウザ</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">サムネール（見出しのみ）</string>
     <string name="pref_display_feed_list_layout_thumbnails">サムネイル</string>
     <string name="pref_display_feed_list_layout_simple_text">単純なテキスト</string>
     <string name="pref_display_feed_list_layout_headlines">見出し</string>
