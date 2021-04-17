@@ -223,7 +223,7 @@
     <string name="content_desc_remove_from_favorites">von Favoriten entfernen</string>
     <string name="content_desc_show_password">Passwort anzeigen</string>
     <string name="content_desc_delete">löschen</string>
-    <string name="content_desc_download">runterladen</string>
+    <string name="content_desc_download">Herunterladen</string>
 
 
     <!-- Settings for Notifications -->
