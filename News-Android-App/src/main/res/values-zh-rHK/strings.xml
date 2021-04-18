@@ -121,8 +121,8 @@
     <string name="pref_general_sort_order_new_old">新 → 舊</string>
     <string name="pref_general_sort_order_old_new">舊 → 新</string>
 
-    <string name="pref_rename_action_swipe_right">往右滑的動作</string>
-    <string name="pref_rename_action_swipe_left">往左滑的動作</string>
+    <string name="pref_rename_action_swipe_right">向右滑時的操作</string>
+    <string name="pref_rename_action_swipe_left">向左滑時的操作</string>
 
     <string name="pref_title_general_search_in">搜尋</string>
 
@@ -176,7 +176,7 @@
     <string name="pref_display_browser">瀏覽器</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">動作圖示（詳細檢視)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">操作圖示（詳細檢視)</string>
 
     <string name="pref_display_apptheme_auto">明亮 / 暗黑（根據日照時間)</string>
     <string name="pref_display_apptheme_light">亮色</string>
