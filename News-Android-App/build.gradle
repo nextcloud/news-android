@@ -119,7 +119,7 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url "https://jitpack.io" }
-    maven { url 'https://guardian.github.com/maven/repo-releases' } //needed for com.gu:option:1.3 in Android-DirectoryChooser
+    maven { url 'https://guardian.github.io/maven/repo-releases' } //needed for com.gu:option:1.3 in Android-DirectoryChooser
     maven { url  "https://dl.bintray.com/lukaville/maven" } //Needed for com.nbsp:library:1.8 in Material File Picker
 }
 
