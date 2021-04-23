@@ -184,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Atziones de is iconas (bista a minudu)</string>
 
-    <string name="pref_display_apptheme_auto">Craru / Iscuru (basadu a pitzu de Daytime)</string>
     <string name="pref_display_apptheme_light">Craru</string>
     <string name="pref_display_apptheme_dark">Iscuru</string>
 

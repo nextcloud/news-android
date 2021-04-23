@@ -139,7 +139,6 @@
     <string name="pref_display_browser">Браузър</string>
 
 
-    <string name="pref_display_apptheme_auto">Светъл / Тъмен (в зависимост от часа)</string>
     <string name="pref_display_apptheme_light">Светъл</string>
     <string name="pref_display_apptheme_dark">Тъмен</string>
 

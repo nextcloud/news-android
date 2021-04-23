@@ -184,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Exibição detalhada)</string>
 
-    <string name="pref_display_apptheme_auto">Claro / Escuro (baseado na hora do dia)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 

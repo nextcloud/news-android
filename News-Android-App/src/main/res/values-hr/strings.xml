@@ -189,7 +189,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone radnji (prikaz pojedinosti)</string>
 
-    <string name="pref_display_apptheme_auto">Svijetla/tamna (ovisno o vremenu)</string>
     <string name="pref_display_apptheme_light">Svijetlo</string>
     <string name="pref_display_apptheme_dark">Tamno</string>
 

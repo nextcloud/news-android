@@ -184,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Műveletikonok (Részletes nézet)</string>
 
-    <string name="pref_display_apptheme_auto">Világos / sötét (napszak alapján)</string>
     <string name="pref_display_apptheme_light">Világos</string>
     <string name="pref_display_apptheme_dark">Sötét</string>
 

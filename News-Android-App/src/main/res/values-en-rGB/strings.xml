@@ -182,7 +182,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
-    <string name="pref_display_apptheme_auto">Light / Dark (based on Daytime)</string>
     <string name="pref_display_apptheme_light">Light</string>
     <string name="pref_display_apptheme_dark">Dark</string>
 

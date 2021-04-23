@@ -184,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Icônes d\'action (Vue détaillée)</string>
 
-    <string name="pref_display_apptheme_auto">Clair / Sombre (basé sur l\'heure)</string>
     <string name="pref_display_apptheme_light">Clair</string>
     <string name="pref_display_apptheme_dark">Sombre</string>
 

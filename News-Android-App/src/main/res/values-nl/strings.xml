@@ -184,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
-    <string name="pref_display_apptheme_auto">Licht / Donker (op basis van tijd van de dag)</string>
     <string name="pref_display_apptheme_light">Licht</string>
     <string name="pref_display_apptheme_dark">Donker</string>
 

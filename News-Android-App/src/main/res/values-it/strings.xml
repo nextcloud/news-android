@@ -184,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Azioni delle icone (vista dettagliata)</string>
 
-    <string name="pref_display_apptheme_auto">Chiaro / Scuro (basato sull\'orario)</string>
     <string name="pref_display_apptheme_light">Chiaro</string>
     <string name="pref_display_apptheme_dark">Scuro</string>
 

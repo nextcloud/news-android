@@ -179,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">동작 아이콘(자세히 보기)</string>
 
-    <string name="pref_display_apptheme_auto">밝음 / 어두움 (낮 기준)</string>
     <string name="pref_display_apptheme_light">밝게</string>
     <string name="pref_display_apptheme_dark">어둡게</string>
 

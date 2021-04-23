@@ -179,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">نقشک‌های فعالیت (نمای باجزییات)</string>
 
-    <string name="pref_display_apptheme_auto">روشن / تیره (بر اساس زمان روز)</string>
     <string name="pref_display_apptheme_light">روشن</string>
     <string name="pref_display_apptheme_dark">تیره</string>
 

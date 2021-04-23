@@ -178,7 +178,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljeret visning)</string>
 
-    <string name="pref_display_apptheme_auto">Lys / Mørk (afhængig af tid på dagen)</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
 

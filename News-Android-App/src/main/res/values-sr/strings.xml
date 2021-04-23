@@ -189,7 +189,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Иконе радњи (детаљни приказ)</string>
 
-    <string name="pref_display_apptheme_auto">Светло / тамно (у односу на доба дана)</string>
     <string name="pref_display_apptheme_light">Светла</string>
     <string name="pref_display_apptheme_dark">Тамна</string>
 

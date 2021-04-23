@@ -179,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
 
-    <string name="pref_display_apptheme_auto">Ljóst / Dökkt (byggt á dagsþema)</string>
     <string name="pref_display_apptheme_light">Ljóst</string>
     <string name="pref_display_apptheme_dark">Dökkt</string>
 

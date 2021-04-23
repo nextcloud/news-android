@@ -188,7 +188,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
 
-    <string name="pref_display_apptheme_auto">בהיר / כהה (מבוסס על Daytime)</string>
     <string name="pref_display_apptheme_light">בהירה</string>
     <string name="pref_display_apptheme_dark">כהה</string>
 

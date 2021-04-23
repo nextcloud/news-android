@@ -194,7 +194,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
 
-    <string name="pref_display_apptheme_auto">Světlý/tmavý (podle denní doby)</string>
     <string name="pref_display_apptheme_light">Světlý</string>
     <string name="pref_display_apptheme_dark">Tmavý</string>
 

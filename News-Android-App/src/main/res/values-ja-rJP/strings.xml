@@ -179,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">アクションアイコン（詳細表示）</string>
 
-    <string name="pref_display_apptheme_auto">ライト / ダーク（時刻に基づく）</string>
     <string name="pref_display_apptheme_light">ライト</string>
     <string name="pref_display_apptheme_dark">ダーク</string>
 

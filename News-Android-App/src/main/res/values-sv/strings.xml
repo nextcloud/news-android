@@ -179,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
 
-    <string name="pref_display_apptheme_auto">Ljust / mörk (baserat på dagtid)</string>
     <string name="pref_display_apptheme_light">Ljus</string>
     <string name="pref_display_apptheme_dark">Mörk</string>
 

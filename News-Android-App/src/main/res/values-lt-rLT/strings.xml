@@ -172,7 +172,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Veiksmų ikonos (Išsamus atvaizdavimas)</string>
 
-    <string name="pref_display_apptheme_auto">Šviesus / Tamsus (priklausomai nuo paros laiko)</string>
     <string name="pref_display_apptheme_light">Šviesus</string>
     <string name="pref_display_apptheme_dark">Tamsus</string>
 
