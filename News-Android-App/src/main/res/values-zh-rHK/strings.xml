@@ -178,6 +178,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">操作圖示（詳細檢視)</string>
 
+    <string name="pref_display_apptheme_auto">淺色/深色（基於日光）</string>
     <string name="pref_display_apptheme_light">亮色</string>
     <string name="pref_display_apptheme_dark">暗色</string>
 

@@ -179,6 +179,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Biểu tượng hành động (Hiển thị chi tiết)</string>
 
+    <string name="pref_display_apptheme_auto">Sáng / Tối (dựa trên thời gian trong ngày)</string>
     <string name="pref_display_apptheme_light">Sáng</string>
     <string name="pref_display_apptheme_dark">Tối</string>
 

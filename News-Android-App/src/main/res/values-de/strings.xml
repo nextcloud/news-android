@@ -184,6 +184,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
 
+    <string name="pref_display_apptheme_auto">Hell/Dunkel (je nach Tageszeit)</string>
     <string name="pref_display_apptheme_light">Hell</string>
     <string name="pref_display_apptheme_dark">Dunkel</string>
 
