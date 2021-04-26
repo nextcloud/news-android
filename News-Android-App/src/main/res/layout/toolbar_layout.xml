@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme"
-        app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme"/>
+        android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:theme="@style/ToolbarTheme"
+            app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme" />
+
+        <ImageButton
+            android:id="@+id/avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/spacer_1x"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/switch_account"
+            android:padding="@dimen/spacer_1x"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_baseline_account_circle_24"
+            tools:visibility="visible" />
+    </LinearLayout>
 </com.google.android.material.appbar.AppBarLayout>

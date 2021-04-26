@@ -19,6 +19,8 @@
 
     <dimen name="podcast_media_control_height">80dp</dimen>
 
+    <dimen name="spacer_1hx">4dp</dimen>
     <dimen name="spacer_1x">8dp</dimen>
+    <dimen name="spacer_2x">16dp</dimen>
     <dimen name="widget_outer_radius">@dimen/spacer_1x</dimen>
 </resources>

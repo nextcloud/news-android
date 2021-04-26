@@ -72,6 +72,9 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -100,6 +103,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
+import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
@@ -120,6 +124,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static androidx.annotation.VisibleForTesting.PROTECTED;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SERVER_SETTINGS;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -225,6 +230,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		setSupportActionBar(binding.toolbarLayout.toolbar);
 
 		initAccountManager();
+
+		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
+		binding.toolbarLayout.avatar.setOnClickListener((v) -> {
+			startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN);
+		});
 
 		// Init config --> if nothing is configured start the login dialog.
 		if (!isUserLoggedIn()) {
@@ -568,6 +578,28 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onTopItemLongClicked(long idFeed, boolean isFolder) {
 		startDialogFragment(idFeed, isFolder);
+	}
+
+	@Override
+	public void onUserInfoUpdated(OcsUser userInfo) {
+		final int placeHolder = R.mipmap.ic_launcher;
+		DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+				.displayer(new CircleBitmapDisplayer())
+				.showImageOnLoading(placeHolder)
+				.showImageForEmptyUri(placeHolder)
+				.showImageOnFail(placeHolder)
+				.cacheOnDisk(true)
+				.cacheInMemory(true)
+				.build();
+
+		if(userInfo.getId() != null) {
+			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
+			ImageLoader.getInstance().displayImage(avatarUrl, binding.toolbarLayout.avatar, displayImageOptions);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				binding.toolbarLayout.avatar.setTooltipText(userInfo.getDisplayName());
+			}
+		}
 	}
 
 	@Override
@@ -920,9 +952,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             getSlidingListFragment().ListViewNotifyDataSetChanged();
         }
 
+		if (requestCode == RESULT_LOGIN) {
+			Intent intent = getIntent().putExtra(PREF_SERVER_SETTINGS, true);
+			setResult(RESULT_OK, intent);
+		}
+
         if(requestCode == RESULT_SETTINGS) {
         	// Extra is set if user entered/modified server settings
-        	if (data == null || data.getBooleanExtra(SettingsActivity.PREF_SERVER_SETTINGS,false)) {
+        	if (data == null || data.getBooleanExtra(PREF_SERVER_SETTINGS,false)) {
 				resetUiAndStartSync();
 			} else {
 				//Update settings of image Loader
@@ -1025,7 +1062,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void resetUiAndStartSync() {
-        getSlidingListFragment().loadOwncloudOrNextcloudBanner();
         getSlidingListFragment().reloadAdapter();
 		updateCurrentRssView();
 		startSync();

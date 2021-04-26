@@ -156,34 +156,4 @@ public class SettingsActivity extends AppCompatActivity {
         );
         setResult(RESULT_OK,intent);
     }
-
-    /**
-     * Used to notify Activity, that server settings were touched by user.
-     *
-     * If server settings were touched, a result is provided by intent with corresponding request code.
-     * No notify the calling activity that server settings were touched, a new extra is put to
-     * response intent: PREF_SERVER_SETTINGS is set to true.
-     *
-     * Result has to be handled by receiving activity.
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOGIN) {
-            Intent intent = getIntent().putExtra(PREF_SERVER_SETTINGS, true);
-            setResult(RESULT_OK, intent);
-        }
-    }
-
-    //@Override
-    public boolean onIsMultiPane() {
-        return this.getResources().getBoolean(R.bool.isTablet);
-    }
-
-
 }
