@@ -23,9 +23,8 @@
     <color name="owncloudBlue">#35537A</color>
     <color name="nextcloudBlue">#0082C9</color>
 
-    <color name="colorPrimary">@color/nextcloudBlue</color>
-    <color name="colorPrimaryDark">@color/nextcloudBlue</color>
-    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="colorPrimary">@android:color/white</color>
+    <color name="colorAccent">@android:color/black</color>
     <color name="rss_item_list_background">@android:color/white</color>
 
 

@@ -440,7 +440,7 @@ public class PodcastFragment extends Fragment {
             }
         }
 
-        int drawableId = showPlayingButton ? R.drawable.ic_action_pause : R.drawable.ic_action_play;
+        int drawableId = showPlayingButton ? R.drawable.ic_action_pause : R.drawable.ic_baseline_play_arrow_24;
         int contentDescriptionId = showPlayingButton ? R.string.content_desc_pause : R.string.content_desc_play;
 
         // If attached to context..

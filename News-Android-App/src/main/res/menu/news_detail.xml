@@ -31,7 +31,7 @@
     <item
         android:id="@+id/action_playPodcast"
         app:showAsAction="always"
-        android:icon="@drawable/ic_play_arrow_white"
+        android:icon="@drawable/ic_baseline_play_arrow_24_theme_aware"
         android:title="@string/action_playPodacst"/>
 
     <item
