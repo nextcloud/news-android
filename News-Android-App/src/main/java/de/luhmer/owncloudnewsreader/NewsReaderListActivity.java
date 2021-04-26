@@ -582,7 +582,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onUserInfoUpdated(OcsUser userInfo) {
-		final int placeHolder = R.mipmap.ic_launcher;
+		final int placeHolder = R.drawable.ic_baseline_account_circle_24;
 		DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
 				.displayer(new CircleBitmapDisplayer())
 				.showImageOnLoading(placeHolder)
