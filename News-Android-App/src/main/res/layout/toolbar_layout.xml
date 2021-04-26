@@ -17,17 +17,23 @@
             android:theme="@style/ToolbarTheme"
             app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme" />
 
-        <ImageButton
-            android:id="@+id/avatar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/spacer_1x"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="@string/switch_account"
-            android:padding="@dimen/spacer_1x"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24"
-            tools:visibility="visible" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <ImageButton
+                android:id="@+id/avatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/spacer_1x"
+                android:background="@null"
+                android:contentDescription="@string/switch_account"
+                android:padding="@dimen/spacer_1x"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_baseline_account_circle_24"
+                tools:visibility="visible" />
+        </FrameLayout>
     </LinearLayout>
 </com.google.android.material.appbar.AppBarLayout>

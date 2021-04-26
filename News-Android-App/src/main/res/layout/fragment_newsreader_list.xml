@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/ic_launcher_foreground_full" />
 
         <ProgressBar
             android:id="@+id/header_logo_progress"
