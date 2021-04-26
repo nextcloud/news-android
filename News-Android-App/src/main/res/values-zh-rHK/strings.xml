@@ -80,7 +80,7 @@
     <string name="action_feed_move">移動摘要</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
-    <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
+    <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此操作無法復原</string>
     <string name="feed_move_list_description">選擇要移動摘要至的資料夾</string>
     <string name="move_feed_root_folder">根目錄</string>
 

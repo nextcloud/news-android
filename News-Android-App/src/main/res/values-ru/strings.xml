@@ -205,6 +205,7 @@
     <string name="pref_display_browser_built_in">Встроенный браузер</string>
     <string name="pref_display_browser_external">Сторонний браузер</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Миниатюры (только заголовки)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Миниатюры</string>
     <string name="pref_display_feed_list_layout_simple_text">Простой текст</string>
     <string name="pref_display_feed_list_layout_headlines">Заголовки</string>
