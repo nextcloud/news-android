@@ -38,6 +38,7 @@
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>
 
+    <color name="button_ripple">@color/material_grey_800</color>
 
     <color name="widget_background">#dd000000</color>
     <color name="widget_foreground">#d8d8d8</color>

@@ -43,8 +43,6 @@
         <item name="starredDrawable">@drawable/swipe_setstarred</item>
 
         <item name="news_detail_background_color">@color/news_detail_background_color</item>
-
-        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
     <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.MaterialComponents.DayNight">
@@ -52,13 +50,9 @@
         <item name="android:itemBackground">@color/rss_item_list_background</item>
     </style>
 
-
-    <!-- https://stackoverflow.com/a/54751236 -->
-    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
-    </style>
-    <style name="ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
-        <item name="android:textColor">@color/primaryTextColor</item>
+    <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="rippleColor">@color/button_ripple</item>
+        <item name="android:textColor">@color/material_button_text_color</item>
     </style>
 
 

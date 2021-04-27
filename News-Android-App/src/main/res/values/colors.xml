@@ -51,6 +51,8 @@
 
     <color name="material_red_600" tools:override="true">#e53935</color>
 
+    <color name="button_ripple">@color/material_grey_300</color>
+
     <color name="widget_background">#ddffffff</color>
     <color name="widget_foreground">#222222</color>
 
