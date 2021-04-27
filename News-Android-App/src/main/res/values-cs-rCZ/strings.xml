@@ -28,7 +28,7 @@
 
     <string name="tv_showing_cached_version">Zobrazuje se verze z mezipaměti</string>
 
-    <string name="permission_req_location_twilight_title">Automatický světlý/tmavý motiv</string>
+    <string name="permission_req_location_twilight_title">Automaticky přepínat mezi světlým/tmavým motivem</string>
     <string name="permission_req_location_twilight_text">Aby bylo možné automaticky přepínat mezi světlým a tmavým motivem, je potřeba zařízení poskytnout aktuální polohu za účelem výpočtu času východu a západu slunce.</string>
 
     <!-- Action Bar Items -->
@@ -157,9 +157,6 @@
     <string name="pref_title_ShowFastActions">Aktivovat funkce pro rychlý přístup</string>
     <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobné zobrazení a otevřít článek v prohlížeči</string>
 
-    <string name="dialog_feature_not_available">Tato funkce není k dispozici v této (open source) variantě aplikace. Pokud chcete tuto funkci používat, stáhněte si aplikaci z GitHub repozitáře nebo z Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Přijmout neznámý certifikát?</string>
     <string name="mtm_decision_always">Vždy</string>
@@ -183,6 +180,7 @@
     <string name="pref_contribute">Zapojení se</string>
     <string name="pref_contribute_summary">Získat zdrojové kódy</string>
     <string name="pref_privacy">Soukromí</string>
+    <string name="pref_privacy_summary">Zásady ochrany soukromí aplikace Nextcloud Novinky pro Android</string>
     <string name="pref_version">Aplikace Nextcloud Novinky pro Android</string>
 
 
@@ -196,7 +194,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
 
-    <string name="pref_display_apptheme_auto">Světlý/tmavý (podle denní doby)</string>
+    <string name="pref_display_apptheme_auto">Světlý/Tmavý (podle denní doby)</string>
     <string name="pref_display_apptheme_light">Světlý</string>
     <string name="pref_display_apptheme_dark">Tmavý</string>
 
@@ -207,6 +205,7 @@
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
     <string name="pref_display_browser_external">Externí prohlížeč</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Náhledy (pouze nadpisy)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Náhledy</string>
     <string name="pref_display_feed_list_layout_simple_text">Jednoduchý text</string>
     <string name="pref_display_feed_list_layout_headlines">Nadpisy</string>
@@ -244,7 +243,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Chyba</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Vypadá to, že aplikace Novinky není na serveru nainstalovaná nebo zapnutá. Následujte zde dané pokny k nastavení aplikace Novinky na server: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Vypadá to, že aplikace Novinky není na serveru nainstalovaná nebo zapnutá. Postupujte podle zde uvedených pokynů a nastavte aplikaci Novinky na serveru: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Něco se pokazilo :(</string>
     <string name="login_dialog_text_zero_version_code">Aplikace Novinky na webu vrátila verzi „0“. Nahlédněte do následujícího hlášení chyby: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Tato verze mobilní aplikace není kompatibilní s aplikací Nextcloud Novinky na straně vámi využívaného serveru. Aktualizujte tam ji i její aplikační rámec (framework).</string>

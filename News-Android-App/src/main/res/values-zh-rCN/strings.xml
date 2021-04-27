@@ -142,9 +142,6 @@
     <string name="pref_title_ShowFastActions">激活快速访问功能</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
 
-    <string name="dialog_feature_not_available">当前功能在此（开源）版本未开放。如果您想使用此功能，请从 GitHub 仓库中下载或从 Google Play Store 中下载。</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">允许未知证书？</string>
     <string name="mtm_decision_always">总是</string>
@@ -182,7 +179,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">动作图标（详情页）</string>
 
-    <string name="pref_display_apptheme_auto">浅色 / 深色（基于时间）</string>
+    <string name="pref_display_apptheme_auto">浅色/深色主题 （基于白天时间）</string>
     <string name="pref_display_apptheme_light">浅色</string>
     <string name="pref_display_apptheme_dark">深色</string>
 
@@ -193,6 +190,7 @@
     <string name="pref_display_browser_built_in">内置浏览器</string>
     <string name="pref_display_browser_external">外部浏览器</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">缩略图 （仅标题）</string>
     <string name="pref_display_feed_list_layout_thumbnails">缩略图</string>
     <string name="pref_display_feed_list_layout_simple_text">简述文本</string>
     <string name="pref_display_feed_list_layout_headlines">头条新闻</string>

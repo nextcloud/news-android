@@ -17,15 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -47,6 +43,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -54,12 +51,10 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.databinding.ActivityNewFeedBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.OpmlXmlParser;
@@ -79,12 +74,7 @@ public class NewFeedActivity extends AppCompatActivity {
     private final static int REQUEST_CODE_OPML_IMPORT = 2;
 
     // UI references.
-    protected @BindView(R.id.et_feed_url) EditText mFeedUrlView;
-    protected @BindView(R.id.sp_folder) Spinner mFolderView;
-    protected @BindView(R.id.new_feed_progress) View mProgressView;
-    protected @BindView(R.id.new_feed_form) View mLoginFormView;
-    protected @BindView(R.id.btn_addFeed) Button mAddFeedButton;
-    protected @BindView(R.id.toolbar) Toolbar toolbar;
+    protected ActivityNewFeedBinding binding;
 
     private List<Folder> folders;
     protected @Inject ApiProvider mApi;
@@ -96,13 +86,16 @@ public class NewFeedActivity extends AppCompatActivity {
         ThemeChooser.chooseTheme(this);
         super.onCreate(savedInstanceState);
         ThemeChooser.afterOnCreate(this);
-        setContentView(R.layout.activity_new_feed);
 
-        ButterKnife.bind(this);
+        binding = ActivityNewFeedBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        binding.btnAddFeed.setOnClickListener((v) -> btnAddFeedClick());
+        binding.btnImportOpml.setOnClickListener((v) -> importOpml());
+        binding.btnExportOpml.setOnClickListener((v) -> exportOpml());
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (binding.toolbarLayout.toolbar != null) {
+            setSupportActionBar(binding.toolbarLayout.toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -118,7 +111,7 @@ public class NewFeedActivity extends AppCompatActivity {
         }
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
-        mFolderView.setAdapter(spinnerArrayAdapter);
+        binding.spFolder.setAdapter(spinnerArrayAdapter);
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -140,22 +133,20 @@ public class NewFeedActivity extends AppCompatActivity {
 
             //Uri uri = intent.getData();
             Log.v("tag" , "Content intent detected: " + action + " : " + url);
-            mFeedUrlView.setText(url);
+            binding.etFeedUrl.setText(url);
         }
     }
 
-    @OnClick(R.id.btn_addFeed)
     public void btnAddFeedClick() {
         //Hide keyboard
         InputMethodManager imm = (InputMethodManager)getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mFeedUrlView.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(binding.etFeedUrl.getWindowToken(), 0);
 
 
         attemptAddNewFeed();
     }
 
-    @OnClick(R.id.btn_import_opml)
     public void importOpml() {
         String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
 
@@ -181,9 +172,6 @@ public class NewFeedActivity extends AppCompatActivity {
                 .start();
     }
 
-
-
-    @OnClick(R.id.btn_export_opml)
     public void exportOpml() {
         String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -236,7 +224,7 @@ public class NewFeedActivity extends AppCompatActivity {
         }
     }
 
-    public class ImportOpmlSubscriptionsTask extends AsyncTask<Void, Void, Boolean> {
+    public class ImportOpmlSubscriptionsTask extends AsyncTask<Void, List<String>, Boolean> {
 
         private final String mUrlToFile;
         private HashMap<String, String> extractedUrls;
@@ -254,7 +242,7 @@ public class NewFeedActivity extends AppCompatActivity {
             pd.setTitle("Parsing OMPL...");
             pd.setMessage("Please wait.");
             pd.setCancelable(false);
-            pd.setIndeterminate(true);
+            pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pd.show();
 
             super.onPreExecute();
@@ -277,34 +265,49 @@ public class NewFeedActivity extends AppCompatActivity {
                 parser.nextTag();
                 extractedUrls = OpmlXmlParser.ReadFeed(parser);
 
-                publishProgress();
+                List<String> result = new ArrayList<>();
+                publishProgress(result);
 
                 final HashMap<String, Long> existingFolders = new HashMap<>();
 
                 mApi.getNewsAPI().folders().blockingSubscribe(folders -> {
-                    for(Folder folder : folders) {
+                    for (Folder folder : folders) {
                         existingFolders.put(folder.getLabel(), folder.getId());
                     }
                 });
 
-                for(String feedUrl : extractedUrls.keySet()) {
+                for (String feedUrl : extractedUrls.keySet()) {
                     long folderId = 0; //id of the parent folder, 0 for root
                     String folderName = extractedUrls.get(feedUrl);
                     if(folderName != null) { //Get Folder ID (create folder if not exists)
-                        if(existingFolders.containsKey(folderName)) { //Check if folder exists
-                            folderId = existingFolders.get(folderName);
-                        } else { //If not, create a new one on the server
-                            //mApi.getAPI().createFolder(foldername) // HttpJsonRequest.getInstance().performCreateFolderRequest(api.getFolderUrl(), folderName);
-                            final Map<String, Object> folderMap = new HashMap<>(2);
+                        if (!existingFolders.containsKey(folderName)) {
+                            // If folder does not exist, create a new one on the server
+                            final Map<String, Object> folderMap = new HashMap<>(1);
                             folderMap.put("name", folderName);
                             Folder folder = mApi.getNewsAPI().createFolder(folderMap).execute().body().get(0);
-                            //TODO test this!!!
-                            existingFolders.put(folder.getLabel(), folder.getId()); //Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
+                            folderId = folder.getId();
+                            // Add folder to list of existing folder in order to prevent that the method tries to create it multiple times
+                            existingFolders.put(folder.getLabel(), folderId);
                         }
+
+                        folderId = existingFolders.get(folderName);
                     }
 
-                    Feed feed = mApi.getNewsAPI().createFeed(feedUrl, folderId).execute().body().get(0);
-                    Log.v(TAG, "New Feed-ID: " + feed.getId());
+                    Response<List<Feed>> response = mApi.getNewsAPI().createFeed(feedUrl, folderId).execute();
+                    if (response.isSuccessful()) {
+                        Feed feed = response.body().get(0);
+                        result.add("✓ " + feed.getLink());
+                        Log.e(TAG, "Successfully imported feed: " + feedUrl + " - Feed-ID: " + feed.getId());
+                    } else if (response.code() == 409) {
+                        // already exists
+                        result.add("✓ " + " - " + feedUrl);
+                    } else {
+                        result.add("✗ " + response.code() + " - " + feedUrl);
+                        Log.e(TAG, "Failed to import feed: " + feedUrl + " - Status-Code: " + response.code());
+                        Log.e(TAG, response.errorBody().string());
+                    }
+
+                    publishProgress(result);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -314,11 +317,16 @@ public class NewFeedActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
-            String text = "Extracted the following feeds:\n";
-            for (String url : extractedUrls.keySet()) {
-                text += "\n" + url;
+        protected void onProgressUpdate(List<String>... values) {
+            String text = "This might take a few minutes.. please wait:\n";
+
+            List<String> log = values[0];
+            for (String line : log) {
+                text += "\n" + line;
             }
+
+            pd.setMax(extractedUrls.size());
+            pd.setProgress(log.size());
             pd.setMessage(text);
 
             super.onProgressUpdate(values);
@@ -333,7 +341,7 @@ public class NewFeedActivity extends AppCompatActivity {
             if(!result) {
                 Toast.makeText(mContext, "Failed to parse OPML file", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(mContext, "Successfully imported OPML!", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, "Imported done!", Toast.LENGTH_LONG).show();
             }
 
             super.onPostExecute(result);
@@ -348,13 +356,13 @@ public class NewFeedActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptAddNewFeed() {
-        Folder folder = folders.get(mFolderView.getSelectedItemPosition());
+        Folder folder = folders.get(binding.spFolder.getSelectedItemPosition());
 
         // Reset errors.
-        mFeedUrlView.setError(null);
+        binding.etFeedUrl.setError(null);
 
         // Store values at the time of the login attempt.
-        String urlToFeed = mFeedUrlView.getText().toString();
+        String urlToFeed = binding.etFeedUrl.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -362,12 +370,12 @@ public class NewFeedActivity extends AppCompatActivity {
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(urlToFeed)) {
-            mFeedUrlView.setError(getString(R.string.error_field_required));
-            focusView = mFeedUrlView;
+            binding.etFeedUrl.setError(getString(R.string.error_field_required));
+            focusView = binding.etFeedUrl;
             cancel = true;
         } else if (!isUrlValid(urlToFeed)) {
-            mFeedUrlView.setError(getString(R.string.error_invalid_url));
-            focusView = mFeedUrlView;
+            binding.etFeedUrl.setError(getString(R.string.error_invalid_url));
+            focusView = binding.etFeedUrl;
             cancel = true;
         }
 
@@ -403,13 +411,13 @@ public class NewFeedActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     Log.e(TAG, "Extracting error message failed: " + errorMessage, e);
                                 }
-                                mFeedUrlView.setError(errorMessage);
+                                binding.etFeedUrl.setError(errorMessage);
                                 Log.e(TAG, errorMessage);
                             } catch (IOException e) {
                                 Log.e(TAG, "IOException", e);
-                                mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong));
+                                binding.etFeedUrl.setError(getString(R.string.login_dialog_text_something_went_wrong));
                             }
-                            mFeedUrlView.requestFocus();
+                            binding.etFeedUrl.requestFocus();
                         }
                     });
                 }
@@ -419,8 +427,8 @@ public class NewFeedActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         showProgress(false);
 
-                        mFeedUrlView.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
-                        mFeedUrlView.requestFocus();
+                        binding.etFeedUrl.setError(getString(R.string.login_dialog_text_something_went_wrong) + " - " + OkHttpSSLClient.HandleExceptions((Exception) t).getMessage());
+                        binding.etFeedUrl.requestFocus();
                     });
                 }
             });
@@ -451,21 +459,21 @@ public class NewFeedActivity extends AppCompatActivity {
     public void showProgress(final boolean show) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+            binding.newFeedForm.setVisibility(show ? View.GONE : View.VISIBLE);
+            binding.newFeedForm.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    binding.newFeedForm.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
+            binding.newFeedProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+            binding.newFeedProgress.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                    binding.newFeedProgress.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });
     }

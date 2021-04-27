@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini etkinleştir</string>
     <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp makaleyi tarayıcıda aç</string>
 
-    <string name="dialog_feature_not_available">Bu özellik uygulamanın bu sürümünde (açık kaynaklı) kullanılamaz. Bu özelliği kullanmak istiyorsanız lütfen uygulamayı GitHub deposundan ya da Google Play Store üzerinden indirin.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
     <string name="mtm_decision_always">Her Zaman</string>
@@ -187,7 +184,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
 
-    <string name="pref_display_apptheme_auto">Açık / Koyu /Gün ışığına göre)</string>
+    <string name="pref_display_apptheme_auto">Açık/Koyu (Gün ışığına göre)</string>
     <string name="pref_display_apptheme_light">Açık</string>
     <string name="pref_display_apptheme_dark">Koyu</string>
 
@@ -198,6 +195,7 @@
     <string name="pref_display_browser_built_in">İç Tarayıcı</string>
     <string name="pref_display_browser_external">Dış Tarayıcı</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Küçük görseller (yalnız başlıklar)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Küçük görseller</string>
     <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
     <string name="pref_display_feed_list_layout_headlines">Başlıklar</string>

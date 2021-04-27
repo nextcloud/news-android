@@ -66,10 +66,8 @@ import java.net.URL;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.databinding.ActivityLoginDialogBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.model.NextcloudNewsVersion;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
@@ -106,15 +104,7 @@ public class LoginDialogActivity extends AppCompatActivity {
     private String mOc_root_path;
 
     // UI references.
-    protected @BindView(R.id.username) EditText mUsernameView;
-    protected @BindView(R.id.password) EditText mPasswordView;
-    protected @BindView(R.id.password_container) TextInputLayout mPasswordContainerView;
-    protected @BindView(R.id.edt_owncloudRootPath) EditText mOc_root_path_View;
-    protected @BindView(R.id.cb_AllowAllSSLCertificates) CheckBox mCbDisableHostnameVerificationView;
-    protected @BindView(R.id.imgView_ShowPassword) ImageView mImageViewShowPwd;
-    protected @BindView(R.id.tv_manual_login) TextView mTvManualLogin;
-    protected @BindView(R.id.old_login_wrapper) RelativeLayout mOldLoginWrapper;
-
+    protected ActivityLoginDialogBinding binding;
 
     private SingleSignOnAccount importedAccount = null;
     private boolean mPasswordVisible = false;
@@ -124,13 +114,17 @@ public class LoginDialogActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
 		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
-        setContentView(R.layout.activity_login_dialog);
-        ButterKnife.bind(this);
+		
+		binding = ActivityLoginDialogBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        binding.btnSingleSignOn.setOnClickListener((v) -> startSingleSignOn());
+        binding.btnLogin.setOnClickListener((v) -> startManualLogin());
+        binding.tvManualLogin.setOnClickListener((v) -> manualLogin());
 
         // Manual Login
-        mImageViewShowPwd.setOnClickListener(ImgViewShowPasswordListener);
-        mPasswordView.addTextChangedListener(PasswordTextChangedListener);
+        binding.imgViewShowPassword.setOnClickListener(ImgViewShowPasswordListener);
+        binding.password.addTextChangedListener(PasswordTextChangedListener);
 
         mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
         mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
@@ -138,16 +132,16 @@ public class LoginDialogActivity extends AppCompatActivity {
         boolean mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
 
         if(!mPassword.isEmpty()) {
-            mImageViewShowPwd.setVisibility(View.GONE);
+            binding.imgViewShowPassword.setVisibility(View.GONE);
         }
 
         // Set up the login form.
-        mUsernameView.setText(mUsername);
-        mPasswordView.setText(mPassword);
-        mOc_root_path_View.setText(mOc_root_path);
+        binding.username.setText(mUsername);
+        binding.password.setText(mPassword);
+        binding.edtOwncloudRootPath.setText(mOc_root_path);
 
-        mCbDisableHostnameVerificationView.setChecked(mCbDisableHostnameVerification);
-        mCbDisableHostnameVerificationView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        binding.cbAllowAllSSLCertificates.setChecked(mCbDisableHostnameVerification);
+        binding.cbAllowAllSSLCertificates.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @SuppressLint("ApplySharedPref")
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -181,14 +175,13 @@ public class LoginDialogActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    @OnClick(R.id.btnSingleSignOn)
     public void startSingleSignOn() {
 	    if (!VersionCheckHelper.verifyMinVersion(LoginDialogActivity.this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
             // Dialog will be shown automatically
             return;
         }
 
-        mOldLoginWrapper.setVisibility(View.GONE);
+        binding.oldLoginWrapper.setVisibility(View.GONE);
 
         try {
             AccountImporter.pickNewAccount(LoginDialogActivity.this);
@@ -199,14 +192,12 @@ public class LoginDialogActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.btnLogin)
     public void startManualLogin() {
         attemptLogin();
     }
 
-    @OnClick(R.id.tv_manual_login)
     public void manualLogin() {
-        mOldLoginWrapper.setVisibility(View.VISIBLE);
+        binding.oldLoginWrapper.setVisibility(View.VISIBLE);
     }
 
 	private TextWatcher PasswordTextChangedListener = new TextWatcher() {
@@ -223,7 +214,7 @@ public class LoginDialogActivity extends AppCompatActivity {
 		@Override
 		public void afterTextChanged(Editable s) {
             if(s.toString().isEmpty()) {
-                mImageViewShowPwd.setVisibility(View.VISIBLE);
+                binding.imgViewShowPassword.setVisibility(View.VISIBLE);
             }
 		}
 	};
@@ -234,9 +225,9 @@ public class LoginDialogActivity extends AppCompatActivity {
             mPasswordVisible = !mPasswordVisible;
 
             if(mPasswordVisible) {
-                mPasswordView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             } else {
-                mPasswordView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
         }
     };
@@ -285,40 +276,40 @@ public class LoginDialogActivity extends AppCompatActivity {
 	 */
 	public void attemptLogin() {
 		// Reset errors.
-		mUsernameView.setError(null);
-		mPasswordView.setError(null);
-		mOc_root_path_View.setError(null);
+		binding.username.setError(null);
+		binding.password.setError(null);
+		binding.edtOwncloudRootPath.setError(null);
 
 		// Append "https://" is url doesn't contain it already
-        mOc_root_path = mOc_root_path_View.getText().toString().trim();
+        mOc_root_path = binding.edtOwncloudRootPath.getText().toString().trim();
         if(!mOc_root_path.startsWith("http")) {
-            mOc_root_path_View.setText("https://" + mOc_root_path);
+            binding.edtOwncloudRootPath.setText("https://" + mOc_root_path);
         }
 
 		// Store values at the time of the login attempt.
-		mUsername = mUsernameView.getText().toString().trim();
-		mPassword = mPasswordView.getText().toString();
-		mOc_root_path = mOc_root_path_View.getText().toString().trim();
+		mUsername = binding.username.getText().toString().trim();
+		mPassword = binding.password.getText().toString();
+		mOc_root_path = binding.edtOwncloudRootPath.getText().toString().trim();
 
 		boolean cancel = false;
 		View focusView = null;
 
         // Check for a valid password.
         if (TextUtils.isEmpty(mPassword)) {
-            mPasswordView.setError(getString(R.string.error_field_required));
-            focusView = mPasswordView;
+            binding.password.setError(getString(R.string.error_field_required));
+            focusView = binding.password;
             cancel = true;
         }
         // Check for a valid email address.
         if (TextUtils.isEmpty(mUsername)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
+            binding.username.setError(getString(R.string.error_field_required));
+            focusView = binding.username;
             cancel = true;
         }
 
         if (TextUtils.isEmpty(mOc_root_path)) {
-            mOc_root_path_View.setError(getString(R.string.error_field_required));
-            focusView = mOc_root_path_View;
+            binding.edtOwncloudRootPath.setError(getString(R.string.error_field_required));
+            focusView = binding.edtOwncloudRootPath;
             cancel = true;
         } else {
             try {
@@ -331,8 +322,8 @@ public class LoginDialogActivity extends AppCompatActivity {
                             getString(R.string.login_dialog_text_security_warning), this);
                 }
             } catch (MalformedURLException e) {
-                mOc_root_path_View.setError(getString(R.string.error_invalid_url));
-                focusView = mOc_root_path_View;
+                binding.edtOwncloudRootPath.setError(getString(R.string.error_invalid_url));
+                focusView = binding.edtOwncloudRootPath;
                 cancel = true;
             }
         }

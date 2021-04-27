@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Schnellzugriffsfunktionen aktivieren</string>
     <string name="pref_title_OpenInBrowserDirectly">Detailansicht überspringen und Artikel in Browser öffnen</string>
 
-    <string name="dialog_feature_not_available">Diese Funktion ist in dieser (Open-Source-)Version dieser App nicht verfügbar. Wenn Sie diese Funktion nutzen möchten, laden Sie bitte die App aus dem GitHub-Repository oder aus dem Google Play Store herunter.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Unbekanntes Zertifikat akzeptieren?</string>
     <string name="mtm_decision_always">Immer</string>
@@ -187,7 +184,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
 
-    <string name="pref_display_apptheme_auto">Hell / Dunkel (je nach Tageszeit)</string>
+    <string name="pref_display_apptheme_auto">Hell/Dunkel (je nach Tageszeit)</string>
     <string name="pref_display_apptheme_light">Hell</string>
     <string name="pref_display_apptheme_dark">Dunkel</string>
 
@@ -198,6 +195,7 @@
     <string name="pref_display_browser_built_in">Integrierter Browser</string>
     <string name="pref_display_browser_external">Externer Browser</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturbilder (nur Überschriften)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Vorschaubilder</string>
     <string name="pref_display_feed_list_layout_simple_text">Einfacher Text</string>
     <string name="pref_display_feed_list_layout_headlines">Schlagzeilen</string>
@@ -225,7 +223,7 @@
     <string name="content_desc_remove_from_favorites">von Favoriten entfernen</string>
     <string name="content_desc_show_password">Passwort anzeigen</string>
     <string name="content_desc_delete">löschen</string>
-    <string name="content_desc_download">runterladen</string>
+    <string name="content_desc_download">Herunterladen</string>
 
 
     <!-- Settings for Notifications -->

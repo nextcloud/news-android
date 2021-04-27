@@ -25,25 +25,29 @@ import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
+import de.greenrobot.dao.query.LazyList;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 	private static final String TAG = WidgetNewsViewsFactory.class.getCanonicalName();
 
     private DatabaseConnectionOrm dbConn;
-    private List<RssItem> rssItems;
+    private LazyList<RssItem> rssItems;
 	private Context context;
 
 	private int appWidgetId;
@@ -66,6 +70,7 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public void onDestroy() {
+	    rssItems.close();
 	}
 
 	@Override
@@ -88,34 +93,46 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
         try {
             RssItem rssItem = rssItems.get(position);
             String header = rssItem.getFeed().getFeedTitle();
-            String colorString = rssItem.getFeed().getAvgColour();
+            // String colorString = rssItem.getFeed().getAvgColour();
 
             String authorOfArticle = rssItem.getAuthor();
-            header += authorOfArticle == null ? "" : " - " + authorOfArticle.trim();
+            header += authorOfArticle == null || authorOfArticle.isEmpty() ? "" : " - " + authorOfArticle.trim();
             String title = Html.fromHtml(rssItem.getTitle()).toString();
             long id = rssItem.getId();
 
             Date date = rssItem.getPubDate();
             String dateString = "";
-            if(date != null)
-            {
+            if (date != null) {
                 SimpleDateFormat formater = new SimpleDateFormat();
                 dateString = formater.format(date);
             }
 
             rv.setTextViewText(R.id.feed_datetime, dateString);
             rv.setTextViewText(R.id.feed_author_source, header);
-            rv.setTextViewText(R.id.feed_title, title);
+
+            SpannableStringBuilder titleSpan = new SpannableStringBuilder(title);
+            if (!rssItem.getRead_temp()) {
+                titleSpan.setSpan(new StyleSpan(Typeface.BOLD), 0, titleSpan.length(), 0);
+            }
+            rv.setTextViewText(R.id.feed_title, titleSpan);
 
 
-            int resId = rssItem.getRead_temp() ? R.drawable.ic_check_box_white : R.drawable.ic_check_box_outline_blank_white;
+            int resId;
+            if (ThemeChooser.getSelectedTheme() == ThemeChooser.THEME.LIGHT) {
+                resId = rssItem.getRead_temp() ? R.drawable.ic_checkbox_black : R.drawable.ic_checkbox_outline_black;
+            } else {
+                resId = rssItem.getRead_temp() ? R.drawable.ic_checkbox_white : R.drawable.ic_checkbox_outline_white;
+            }
+
             int contentDescriptionId = rssItem.getRead_temp() ? R.string.content_desc_mark_as_unread : R.string.content_desc_mark_as_read;
             rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", resId);
             rv.setContentDescription(R.id.cb_lv_item_read, context.getString(contentDescriptionId));
 
+            /*
             if(colorString != null) {
                 rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
             }
+            */
 
 
             //Get a fresh new intent
@@ -170,11 +187,13 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 		return(true);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onDataSetChanged() {
         Log.v(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
 
+        if (rssItems != null && !rssItems.isClosed()) {
+            rssItems.close();
+        }
         rssItems = dbConn.getAllUnreadRssItemsForWidget();
 
         Log.v(TAG, "DataSetChanged finished!");

@@ -35,16 +35,16 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private static final double SUBSCRIPT_FONT_SIZE = 0.7;
     private static final String TAG = RssItemToHtmlTask.class.getCanonicalName();
 
-    private static Pattern PATTERN_PRELOAD_VIDEOS_REMOVE = Pattern.compile("(<video[^>]*)(preload=\".*?\")(.*?>)");
-    private static Pattern PATTERN_PRELOAD_VIDEOS_INSERT = Pattern.compile("(<video[^>]*)(.*?)(.*?>)");
-    private static Pattern PATTERN_AUTOPLAY_VIDEOS_1 = Pattern.compile("(<video[^>]*)(autoplay=\".*?\")(.*?>)");
-    private static Pattern PATTERN_AUTOPLAY_VIDEOS_2 = Pattern.compile("(<video[^>]*)(\\sautoplay)(.*?>)");
-    private static Pattern PATTERN_AUTOPLAY_REGEX_CB = Pattern.compile("(.*?)^(Unser Feedsponsor:\\s*<\\/p><p>\\s*.*?\\s*<\\/p>)(.*)", Pattern.MULTILINE);
+    private static final Pattern PATTERN_PRELOAD_VIDEOS_REMOVE = Pattern.compile("(<video[^>]*)(preload=\".*?\")(.*?>)");
+    private static final Pattern PATTERN_PRELOAD_VIDEOS_INSERT = Pattern.compile("(<video[^>]*)(.*?)(.*?>)");
+    private static final Pattern PATTERN_AUTOPLAY_VIDEOS_1 = Pattern.compile("(<video[^>]*)(autoplay=\".*?\")(.*?>)");
+    private static final Pattern PATTERN_AUTOPLAY_VIDEOS_2 = Pattern.compile("(<video[^>]*)(\\sautoplay)(.*?>)");
+    // private static final Pattern PATTERN_AUTOPLAY_REGEX_CB = Pattern.compile("(.*?)^(Unser Feedsponsor:\\s*<\\/p><p>\\s*.*?\\s*<\\/p>)(.*)", Pattern.MULTILINE);
 
-    private RssItem mRssItem;
-    private Listener mListener;
-    private SharedPreferences mPrefs;
-    private boolean isRightToLeft;
+    private final RssItem mRssItem;
+    private final Listener mListener;
+    private final SharedPreferences mPrefs;
+    private final boolean isRightToLeft;
 
 
     public interface Listener {
@@ -106,9 +106,10 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         Log.v(TAG, "Selected Theme: " + body_id);
 
         String rtlClass = isRightToLeft ? "rtl" : "";
+        String rtlDir = isRightToLeft ? "rtl" : "ltr";
 
         StringBuilder builder = new StringBuilder();
-        builder.append("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />");
+        builder.append(String.format("<html dir=\"%s\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />", rtlDir));
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
 
         // font size scaling
@@ -116,7 +117,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         builder.append(getFontSizeScalingCss(mPrefs));
         builder.append("</style>");
 
-        builder.append(String.format("</head><body class=\"%s\" class=\"%s\">", body_id, rtlClass));
+        builder.append(String.format("</head><body class=\"%s %s\">", body_id, rtlClass));
 
         if (showHeader) {
             builder.append(
@@ -136,7 +137,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         } else {
             // When incognito is on, we need to provide some error handling
             //description = description.replaceAll("<img", "<img onerror=\"this.style='width: 40px !important; height: 40px !important'\" ");
-            description = description.replaceAll("<img", "<img width=\"40px\" height=\"40px\" ");
+            description = description.replaceAll("<img", "<img onerror=\\\"this.onerror=null;this.src='file:///android_asset/broken-image.png';this.style='margin-left: 0px !important; width: 80px !important; height: 80px !important'\\\"");
         }
         description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_REMOVE, description, "$1 $3"); // remove whatever preload is there
         description = replacePatternInText(PATTERN_PRELOAD_VIDEOS_INSERT, description, "$1 preload=\"metadata\" $3"); // add preload attribute
@@ -190,7 +191,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         builder.append("<div id=\"subscription\">");
         builder.append(String.format("<img id=\"imgFavicon\" src=\"%s\" />", favIconUrl));
-        builder.append(authorLine.trim());
+        builder.append(String.format("<span>%s</span>", authorLine.trim()));
         builder.append("</div>");
 
         Date date = rssItem.getPubDate();

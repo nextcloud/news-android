@@ -64,14 +64,20 @@ span {
 }
 
 body {
-    font-size:  var(--fontsize-body);
-    font-weight:normal;
-    margin:     0px;
-    word-wrap:  break-word !important;
-    font-family:'ROBOTO_REGULAR';
+    font-size:    var(--fontsize-body);
+    font-weight:  normal;
+    margin:       0px;
+    word-wrap:    break-word !important;
+    font-family:  'ROBOTO_REGULAR';
 
-    margin-left:   1rem;
-    margin-right:  1rem;
+    margin-left:  1rem;
+    margin-right: 1rem;
+}
+
+img {
+    /* make images fill the whole screen */
+    max-width:   calc(100% + 2rem) !important;
+    margin-left: -1rem !important;
 }
 
 div#content > p {
@@ -128,6 +134,7 @@ a {
     font-size:      var(--fontsize-header);
     margin-bottom:  10px;
     font-weight:    bold;
+    line-height:    1.6;
 }
 
 #header a:link, a:active, a:hover, a:visited {
@@ -169,27 +176,27 @@ ul li:before {
     */
 }
 
+#subscription {
+    display: flex;
+}
+
+#subscription span {
+    line-height: 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
 #subscription, #datetime {
     margin-bottom:3px;
     font-size: var(--fontsize-subscript);
 }
 
-#subscription {
-    float:left;
-}
-.rtl #subscription {
-    float: right;
-}
-
-#datetime {
-    float:right;
-}
-.rtl #datetime {
-    float: left;
-}
 
 #header_small_text {
+    display: flex;
+    justify-content: space-between;
     overflow: auto;
+    flex-direction: row;
 }
 
 #header_small_text {
@@ -199,12 +206,10 @@ ul li:before {
 #top_section {
     margin-top:    1rem;
 }
-.rtl #top_section {
-    text-align: right;
-}
 
 #content {
     margin-top:     0.6rem;
+    margin-bottom:  100px;
     line-height:    1.5em !important;
 }
 
@@ -212,11 +217,11 @@ ul li:before {
     margin-right: 4px;
     vertical-align:middle;
     margin-bottom:2px;
+    margin-left: 0px !important;
     width:16px !important;
     height:16px !important;
 }
 .rtl #imgFavicon {
-    float: right;
-    margin-right: 0;
-    margin-left: 4px;
+    margin-right: 0 !important;
+    margin-left: 4px !important;
 }

@@ -55,10 +55,9 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.databinding.FragmentNewsreaderListBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
@@ -69,7 +68,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+
 
 import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
@@ -90,12 +89,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
     private SubscriptionExpandableListAdapter lvAdapter;
 
-    @BindView(R.id.expandableListView) protected ExpandableListView eListView;
-    @BindView(R.id.urlTextView) protected TextView urlTextView;
-    @BindView(R.id.userTextView) protected TextView userTextView;
-    @BindView(R.id.header_view) protected ViewGroup headerView;
-    @BindView(R.id.header_logo) protected ImageView headerLogo;
-    @BindView(R.id.header_logo_progress) protected View headerLogoProgress;
+    protected FragmentNewsreaderListBinding binding;
 
     /**
      * The fragment's current callback object, which is notified of list item
@@ -118,12 +112,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	public void setRefreshing(boolean isRefreshing) {
 		if(isRefreshing) {
 			//headerLogo.setImageResource(R.drawable.ic_launcher_background);
-			headerLogo.setVisibility(View.INVISIBLE);
-			headerLogoProgress.setVisibility(View.VISIBLE);
+			binding.headerLogo.setVisibility(View.INVISIBLE);
+			binding.headerLogoProgress.setVisibility(View.VISIBLE);
 		} else {
 			//headerLogo.setImageResource(R.drawable.ic_launcher);
-			headerLogo.setVisibility(View.VISIBLE);
-			headerLogoProgress.setVisibility(View.INVISIBLE);
+			binding.headerLogo.setVisibility(View.VISIBLE);
+			binding.headerLogoProgress.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -158,25 +152,23 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-	    View view = inflater.inflate(R.layout.fragment_newsreader_list, container, false);
-
-        ButterKnife.bind(this, view);
+	    binding = FragmentNewsreaderListBinding.inflate(requireActivity().getLayoutInflater(), container, false);
 
         loadOwncloudOrNextcloudBanner();
 
-        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), eListView, mPrefs);
+        lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), binding.expandableListView, mPrefs);
         lvAdapter.setHandlerListener(expListTextClickedListener);
 
-		eListView.setGroupIndicator(null);
+		binding.expandableListView.setGroupIndicator(null);
 
-		eListView.setOnChildClickListener(onChildClickListener);
-		eListView.setOnItemLongClickListener(onItemLongClickListener);
+		binding.expandableListView.setOnChildClickListener(onChildClickListener);
+		binding.expandableListView.setOnItemLongClickListener(onItemLongClickListener);
 
-		eListView.setClickable(true);
-		eListView.setLongClickable(true);
-		eListView.setAdapter(lvAdapter);
+		binding.expandableListView.setClickable(true);
+		binding.expandableListView.setLongClickable(true);
+		binding.expandableListView.setAdapter(lvAdapter);
 
-		headerView.setOnClickListener(new View.OnClickListener() {
+		binding.headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((NewsReaderListActivity) getActivity()).startSync();
@@ -186,9 +178,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         lvAdapter.notifyDataSetChanged();
         reloadAdapter();
 
-        bindNavigationMenu(view, inflater);
+        bindNavigationMenu(binding.getRoot(), inflater);
 
-		return view;
+		return binding.getRoot();
 	}
 
 	@Override
@@ -214,7 +206,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	protected void loadOwncloudOrNextcloudBanner() {
         if(!Constants.isNextCloud(mPrefs)) {
             // Set ownCloud view
-            headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
+            binding.headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
         }
     }
 
@@ -321,19 +313,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 
     public ExpandableListView getListView() {
-        return eListView;
-    }
-
-
-    protected void showTapLogoToSyncShowcaseView() {
-        new MaterialShowcaseView.Builder(getActivity())
-                .setTarget(headerLogo)
-                .setDismissText("GOT IT")
-                .setContentText("Tap this logo to sync with server")
-                .setDelay(300) // optional but starting animations immediately in onCreate can make them choppy
-                .singleUse("LOGO_SYNC") // provide a unique ID used to ensure it is only shown once
-                .setHideSkipButton(true)
-                .show();
+        return binding.expandableListView;
     }
 
     public void startAsyncTaskGetUserInfo() {
@@ -392,8 +372,8 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
         String mOc_root_path_without_protocol = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
 
-        userTextView.setText(mUsername);
-        urlTextView.setText(mOc_root_path_without_protocol);
+        binding.userTextView.setText(mUsername);
+        binding.urlTextView.setText(mOc_root_path_without_protocol);
 
         String uInfo = mPrefs.getString(USER_INFO_STRING, null);
         if(uInfo == null) {
@@ -403,7 +383,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         try {
             OcsUser userInfo = (OcsUser) fromString(uInfo);
             if (userInfo.getDisplayName() != null)
-                userTextView.setText(userInfo.getDisplayName());
+                binding.userTextView.setText(userInfo.getDisplayName());
             final int placeHolder = R.mipmap.ic_launcher;
             DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
                     .displayer(new CircleBitmapDisplayer())
@@ -416,7 +396,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
             if(userInfo.getId() != null) {
                 String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
-                ImageLoader.getInstance().displayImage(avatarUrl, this.headerLogo, displayImageOptions);
+                ImageLoader.getInstance().displayImage(avatarUrl, binding.headerLogo, displayImageOptions);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -157,9 +157,6 @@
     <string name="pref_title_ShowFastActions">Включить функции быстрого доступа</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустить детальный обзор и открыть статью в браузере</string>
 
-    <string name="dialog_feature_not_available">Эта возможность недоступна в установленной (open-source) версии приложения. Для использования этой возможности загрузите приложение из репозитория GitHub или установите его из Google Play Маркет.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
     <string name="mtm_decision_always">Всегда</string>
@@ -182,6 +179,8 @@
     <string name="pref_report_issue_summary">Требуется (бесплатный) аккаунт GitHub</string>
     <string name="pref_contribute">Внесите свой вклад!</string>
     <string name="pref_contribute_summary">Получить исходный код</string>
+    <string name="pref_privacy">Конфиденциальность</string>
+    <string name="pref_privacy_summary">Политика конфиденциальности новостей Nextcloud Android </string>
     <string name="pref_version">Приложение Nextcloud Новости для Android</string>
 
 
@@ -195,7 +194,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
 
-    <string name="pref_display_apptheme_auto">Светлый / тёмный (в зависимости от времени суток)</string>
+    <string name="pref_display_apptheme_auto">Светлая/тёмная (в зависимости от времени суток)</string>
     <string name="pref_display_apptheme_light">Светлая</string>
     <string name="pref_display_apptheme_dark">Тёмная</string>
 
@@ -206,6 +205,7 @@
     <string name="pref_display_browser_built_in">Встроенный браузер</string>
     <string name="pref_display_browser_external">Сторонний браузер</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Миниатюры (только заголовки)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Миниатюры</string>
     <string name="pref_display_feed_list_layout_simple_text">Простой текст</string>
     <string name="pref_display_feed_list_layout_headlines">Заголовки</string>

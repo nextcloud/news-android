@@ -16,7 +16,7 @@
     </plurals>
     <string name="message_bar_reload">Päivitä</string>
     <string name="allUnreadFeeds">Kaikki lukemattomat artikkelit</string>
-    <string name="starredFeeds">Tähdellä merkityt</string>
+    <string name="starredFeeds">Suosikit</string>
     <string name="title_activity_new_feed">Lisää uusi syöte</string>
 
     <string name="menu_update">Päivitä</string>
@@ -30,7 +30,7 @@
     <string name="permission_req_location_twilight_text">Automaattinen teeman vaihto valoisasta tummaan vaatii laitteen sijainnin, jotta auringon nousu- ja laskuaika voidaan määrittää.</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Merkkaa tähdellä</string>
+    <string name="action_starred">Suosikkimerkintä päälle/pois</string>
     <string name="action_read">Merkkaa luetuksi</string>
     <string name="action_playPodacst">Toista podcast</string>
     <string name="action_openInBrowser">Avaa selaimessa</string>
@@ -144,9 +144,6 @@
     <string name="pref_title_ShowFastActions">Ota käyttöön pikatoiminnot</string>
     <string name="pref_title_OpenInBrowserDirectly">Ohita artikkelinäkymä ja avaa se suoraan selaimessa</string>
 
-    <string name="dialog_feature_not_available">Tämä ominaisuus ei ole käytettävissä tässä sovelluksen (avoimen lähdekoodin) versiossa. Jos haluat käyttää ominaisuutta, lataa sovellus GitHubista tai Google Play-kaupasta.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
     <string name="mtm_decision_always">Aina</string>
@@ -182,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Artikkelinäkymän toimintopainikkeet</string>
 
-    <string name="pref_display_apptheme_auto">Vaalea/tumma (pohjautuu kellonaikaan)</string>
     <string name="pref_display_apptheme_light">Vaalea</string>
     <string name="pref_display_apptheme_dark">Tumma</string>
 

@@ -16,7 +16,7 @@ import de.luhmer.owncloudnewsreader.NewsReaderDetailFragment;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.adapter.NewsListRecyclerAdapter;
-import de.luhmer.owncloudnewsreader.adapter.ViewHolder;
+import de.luhmer.owncloudnewsreader.adapter.RssItemViewHolder;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import tools.fastlane.screengrab.Screengrab;
@@ -106,7 +106,7 @@ public class ScreenshotTest {
 
         mActivity.runOnUiThread(() -> {
             NewsListRecyclerAdapter na = (NewsListRecyclerAdapter) nrdf.getRecyclerView().getAdapter();
-            ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(itemPos));
+            RssItemViewHolder vh = (RssItemViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(itemPos));
             na.changeReadStateOfItem(vh, false);
         });
     }
@@ -132,7 +132,7 @@ public class ScreenshotTest {
         //Screengrab.screenshot("podcast_list");
 
         mActivity.runOnUiThread(() -> {
-            ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(0));
+            RssItemViewHolder vh = (RssItemViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(0));
             PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(mActivity, vh.getRssItem());
             mActivity.openMediaItem(podcastItem);
         });
@@ -177,7 +177,7 @@ public class ScreenshotTest {
         }
 
         mActivity.runOnUiThread(() -> {
-            ViewHolder vh = (ViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(1));
+            RssItemViewHolder vh = (RssItemViewHolder) nrdf.getRecyclerView().getChildViewHolder(nrdf.getRecyclerView().getLayoutManager().findViewByPosition(1));
             PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(mActivity, vh.getRssItem());
             mActivity.openMediaItem(podcastItem);
         });
@@ -207,14 +207,14 @@ public class ScreenshotTest {
     }
 
     private void openDrawer() {
-        if(mActivity.drawerLayout != null) {
-            mActivity.drawerLayout.openDrawer(GravityCompat.START, true);
+        if(mActivity.binding.drawerLayout != null) {
+            mActivity.binding.drawerLayout.openDrawer(GravityCompat.START, true);
         }
     }
 
     private void closeDrawer() {
-        if(mActivity.drawerLayout != null) {
-            mActivity.drawerLayout.closeDrawer(GravityCompat.START, true);
+        if(mActivity.binding.drawerLayout != null) {
+            mActivity.binding.drawerLayout.closeDrawer(GravityCompat.START, true);
         }
     }
 }

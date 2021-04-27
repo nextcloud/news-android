@@ -124,6 +124,9 @@
     <string name="pref_header_general">Geral</string>
     <string name="pref_title_general_sort_order">Ordem de Classificação</string>
 
+    <string name="pref_general_sort_order_new_old">Novo → Antigo</string>
+    <string name="pref_general_sort_order_old_new">Antigo → Novo</string>
+
     <string name="pref_rename_action_swipe_right">Ação ao deslizar para a direita</string>
     <string name="pref_rename_action_swipe_left">Ação ao deslizar para a esquerda</string>
 
@@ -143,9 +146,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
     <string name="pref_title_ShowFastActions">Ativar as funções de acesso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltar exibição detalhada e abrir o artigo no navegador</string>
-
-    <string name="dialog_feature_not_available">Este recurso não está disponível nesta versão deste aplicativo (de código aberto). Se você quiser usá-lo, baixe o aplicativo do repositório do GitHub ou faça o download na Google Play Store.</string>
-
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
@@ -169,6 +169,8 @@
     <string name="pref_report_issue_summary">Necessita uma conta GitHub (gratuita)</string>
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código-fonte</string>
+    <string name="pref_privacy">Privacidade</string>
+    <string name="pref_privacy_summary">Notícias Nextcloud Política de privacidade do Android</string>
     <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
 
 
@@ -182,7 +184,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Exibição detalhada)</string>
 
-    <string name="pref_display_apptheme_auto">Claro / Escuro (baseado na hora do dia)</string>
+    <string name="pref_display_apptheme_auto">Claro/Escuro (com base no período do dia)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 
@@ -193,6 +195,7 @@
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturas (apenas títulos)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
     <string name="pref_display_feed_list_layout_simple_text">Texto simples</string>
     <string name="pref_display_feed_list_layout_headlines">Manchetes</string>

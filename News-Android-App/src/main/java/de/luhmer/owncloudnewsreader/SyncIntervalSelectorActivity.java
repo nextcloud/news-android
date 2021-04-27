@@ -16,14 +16,12 @@ import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
+import de.luhmer.owncloudnewsreader.databinding.ActivitySyncIntervalSelectorBinding;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
 
@@ -31,7 +29,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     private PlaceholderFragment mFragment;
     private String[] items_values;
-    protected @BindView(R.id.toolbar) Toolbar toolbar;
+    protected ActivitySyncIntervalSelectorBinding binding;
     protected @Inject SharedPreferences mPrefs;
 
     @Override
@@ -42,12 +40,11 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ThemeChooser.afterOnCreate(this);
 
-        setContentView(R.layout.activity_sync_interval_selector);
+        binding = ActivitySyncIntervalSelectorBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ButterKnife.bind(this);
-
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (binding.toolbarLayout.toolbar != null) {
+            setSupportActionBar(binding.toolbarLayout.toolbar);
         }
 
         items_values = getResources().getStringArray(R.array.array_sync_interval_values);
@@ -64,55 +61,33 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.sync_interval_selector, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically StartYoutubePlayer clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if(id == R.id.action_save) {
-            int checkedPosition = mFragment.lvItems.getCheckedItemPosition();
-
-            Integer minutes = Integer.parseInt(items_values[checkedPosition]);
-
-            mPrefs.edit().putInt(SYNC_INTERVAL_IN_MINUTES_STRING, minutes).commit();
-
-            setAccountSyncInterval(this, mPrefs);
-
-            finish();
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    public static final int SYNC_DEFAULT_INTERVAL = 15;
 
     public static void setAccountSyncInterval(Context context, SharedPreferences mPrefs) {
-        int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 1440);
+        int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, SYNC_DEFAULT_INTERVAL);
 
         AccountManager mAccountManager = AccountManager.get(context);
-        Account[] accounts = mAccountManager.getAccountsByType(AccountGeneral.ACCOUNT_TYPE);
+        String accountType = AccountGeneral.getAccountType(context);
+        Account[] accounts = mAccountManager.getAccountsByType(accountType);
         for (Account account : accounts) {
             if (minutes != 0) {
                 long SYNC_INTERVAL = minutes * SECONDS_PER_MINUTE;
-                ContentResolver.setSyncAutomatically(account, AccountGeneral.ACCOUNT_TYPE, true);
+                ContentResolver.setSyncAutomatically(account, accountType, true);
 
                 Bundle bundle = new Bundle();
                 ContentResolver.addPeriodicSync(
                         account,
-                        AccountGeneral.ACCOUNT_TYPE,
+                        accountType,
                         bundle,
                         SYNC_INTERVAL);
 
             } else {
-                ContentResolver.setSyncAutomatically(account, AccountGeneral.ACCOUNT_TYPE, false);
+                ContentResolver.setSyncAutomatically(account, accountType, false);
             }
         }
     }
@@ -123,15 +98,33 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
      */
 
     // Sync interval constants
-    public static final long MILLISECONDS_PER_SECOND = 1000L;
     public static final long SECONDS_PER_MINUTE = 60L;
-    //public static final long SYNC_INTERVAL_IN_MINUTES = 60L;
     public static final String SYNC_INTERVAL_IN_MINUTES_STRING = "SYNC_INTERVAL_IN_MINUTES_STRING";
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically StartYoutubePlayer clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_save) {
+            int checkedPosition = mFragment.lvItems.getCheckedItemPosition();
+            int minutes = Integer.parseInt(items_values[checkedPosition]);
+            mPrefs.edit().putInt(SYNC_INTERVAL_IN_MINUTES_STRING, minutes).commit();
+            setAccountSyncInterval(this, mPrefs);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    // public static final int SYNC_DEFAULT_INTERVAL = 60*24;
 
     public static class PlaceholderFragment extends Fragment {
 
         private ListView lvItems;
-        protected @Inject SharedPreferences mPrefs;
+        protected @Inject
+        SharedPreferences mPrefs;
 
         public PlaceholderFragment() {
         }
@@ -152,25 +145,19 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
             lvItems = rootView.findViewById(R.id.lv_sync_interval_items);
             lvItems.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_list_item_single_choice, android.R.id.text1, items);
 
-
             lvItems.setAdapter(adapter);
 
-            if(!mPrefs.contains(SYNC_INTERVAL_IN_MINUTES_STRING)) {
-                lvItems.setItemChecked(items.length - 1, true); // The last item is 24hours. This is the default value!
-            } else {
-                int position = 0;
-                int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, 1440);
-                for(String item : ((SyncIntervalSelectorActivity)getActivity()).items_values) {
-                    if(Integer.parseInt(item) == minutes)
-                        break;
-                    position++;
-                }
-                lvItems.setItemChecked(position, true);//The last item is 24hours. This is the default value!
+            int position = 0;
+            int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, SYNC_DEFAULT_INTERVAL);
+            for (String item : ((SyncIntervalSelectorActivity) getActivity()).items_values) {
+                if (Integer.parseInt(item) == minutes)
+                    break;
+                position++;
             }
+            lvItems.setItemChecked(position, true);
 
             return rootView;
         }

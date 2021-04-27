@@ -144,9 +144,6 @@
     <string name="pref_title_ShowFastActions">Virkja aðgerðir fyrir skyndiaðgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
 
-    <string name="dialog_feature_not_available">Þessi eiginleiki er ekki tiltækur í þessari (frjálsu-opnu/open-source) útgáfu forritsins. Ef þú ætlar að nota þennan eiginleika ættirðu að sækja forritið í GitHub hugbúnaðarsafnið eða ná í forritið úr Google Play Store safninu.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
     <string name="mtm_decision_always">Alltaf</string>
@@ -182,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Táknmyndir aðgerða (ítarleg sýn)</string>
 
-    <string name="pref_display_apptheme_auto">Ljóst / Dökkt (byggt á dagsþema)</string>
     <string name="pref_display_apptheme_light">Ljóst</string>
     <string name="pref_display_apptheme_dark">Dökkt</string>
 

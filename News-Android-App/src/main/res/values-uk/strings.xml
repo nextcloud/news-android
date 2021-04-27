@@ -117,7 +117,6 @@
     <string name="pref_display_browser">Переглядач</string>
 
 
-    <string name="pref_display_apptheme_auto">Світла/темна (залежно від часу доби)</string>
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 

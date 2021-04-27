@@ -157,9 +157,6 @@
     <string name="pref_title_ShowFastActions">Omogoči možnosti hitrega dostopa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči podrobni pogled in odpri vir v brskalniku</string>
 
-    <string name="dialog_feature_not_available">Možnost v tej (odprtokodni) različici ni na voljo. Če želite to možnost uporabiti, prejmite program neposredno iz skladišča GitHub, ali pa ga namestite prek Googlove trgovine Play.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
     <string name="mtm_decision_always">Vedno</string>
@@ -197,7 +194,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone dejavnosti (podrobni pogled)</string>
 
-    <string name="pref_display_apptheme_auto">Svetla / Temna (glede na čas dneva)</string>
     <string name="pref_display_apptheme_light">Svetla</string>
     <string name="pref_display_apptheme_dark">Temna</string>
 
@@ -208,6 +204,7 @@
     <string name="pref_display_browser_built_in">Vgrajen brskalnik</string>
     <string name="pref_display_browser_external">Zunanji brskalnik</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Sličice (le za glavne novice)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Sličice</string>
     <string name="pref_display_feed_list_layout_simple_text">Enostavno besedilo</string>
     <string name="pref_display_feed_list_layout_headlines">Naslovi</string>

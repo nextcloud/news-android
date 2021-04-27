@@ -124,6 +124,9 @@
     <string name="pref_header_general">Γενικά</string>
     <string name="pref_title_general_sort_order">Σειρά ταξινόμησης</string>
 
+    <string name="pref_general_sort_order_new_old">Νέο →  Παλιό</string>
+    <string name="pref_general_sort_order_old_new">Παλιό → Νέο</string>
+
     <string name="pref_rename_action_swipe_right">Ενέργεια με κύληση δεξιά</string>
     <string name="pref_rename_action_swipe_left">Ενέργεια με κύληση αριστερά</string>
 
@@ -143,9 +146,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
     <string name="pref_title_ShowFastActions">Ενεργοποιήστε τις λειτουργίες γρήγορης πρόσβασης</string>
     <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αρχείου στον περιηγητή</string>
-
-    <string name="dialog_feature_not_available">Αυτή η επιλογή δεν είναι διαθέσιμη σε αυτή την (ανοιχτού-λογισμικού) εφαρμογή. Εάν επιθυμείτε αυτή την επιλογή παρακαλώ κάνετε λήψη από το GitHub Repository ή από το Google Play Store.</string>
-
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
@@ -169,6 +169,8 @@
     <string name="pref_report_issue_summary">Απαιτείται ένας (δωρεάν) λογαριασμός στο GitHub </string>
     <string name="pref_contribute">Συνεισφέρετε!</string>
     <string name="pref_contribute_summary">Λήψη πηγαίου κώδικα</string>
+    <string name="pref_privacy">Ιδιωτικότητα</string>
+    <string name="pref_privacy_summary">Πολιτική απορρήτου Android Nextcloud News</string>
     <string name="pref_version">Εφαρμογή Android Nextcloud News</string>
 
 
@@ -182,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Εικονίδια ενεργειών (Προβολή Λεπτομερειών)</string>
 
-    <string name="pref_display_apptheme_auto">Φωτεινό/Σκούρο (ανάλογα τη ζώνη ώρας)</string>
     <string name="pref_display_apptheme_light">Φωτεινό</string>
     <string name="pref_display_apptheme_dark">Σκούρο</string>
 

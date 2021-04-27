@@ -124,6 +124,9 @@
     <string name="pref_header_general">Generelt</string>
     <string name="pref_title_general_sort_order">Sorteringsrekkefølge</string>
 
+    <string name="pref_general_sort_order_new_old">Ny → Gammel</string>
+    <string name="pref_general_sort_order_old_new">Gammel → Ny</string>
+
     <string name="pref_rename_action_swipe_right">Handling ved sveiping til høyre</string>
     <string name="pref_rename_action_swipe_left">Handling ved sveiping til venstre</string>
 
@@ -143,9 +146,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
     <string name="pref_title_ShowFastActions">Aktiver funksjoner for rask tilgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
-
-    <string name="dialog_feature_not_available">Funksjonalitet er ikke tilgjengelig i denne (åpen kildekode) versjon. Hvis du ønsker å bruke denne funksjonen kan den lastes ned via GitHub eller fra Google Play butikken.</string>
-
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
@@ -169,6 +169,8 @@
     <string name="pref_report_issue_summary">Krever en (gratis) GitHub konto</string>
     <string name="pref_contribute">Bidra!</string>
     <string name="pref_contribute_summary">Hent kildekode</string>
+    <string name="pref_privacy">Personvern</string>
+    <string name="pref_privacy_summary">Nextcloud News Android Personvernserklæring</string>
     <string name="pref_version">Nextcloud Nyheter Android app</string>
 
 
@@ -182,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
-    <string name="pref_display_apptheme_auto">Lys/mørk (ut fra tid på dagen)</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
 

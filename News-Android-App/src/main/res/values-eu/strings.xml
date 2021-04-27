@@ -124,6 +124,9 @@
     <string name="pref_header_general">Orokorra</string>
     <string name="pref_title_general_sort_order">Ordenatzeko irizpidea</string>
 
+    <string name="pref_general_sort_order_new_old">Berria → Zaharra</string>
+    <string name="pref_general_sort_order_old_new">Zaharra → Berria</string>
+
     <string name="pref_rename_action_swipe_right">Ekintza hatza eskuinera pasatzean</string>
     <string name="pref_rename_action_swipe_left">Ekintza hatza ezkerrera pasatzean</string>
 
@@ -143,9 +146,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
     <string name="pref_title_ShowFastActions">Gaitu sarbide azkarreko funtzioak</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltatu ikuspegi xehatua eta ireki artikulua nabigatzailean</string>
-
-    <string name="dialog_feature_not_available">Ezaugarri hau ez dago erabilgarri aplikazio honen (kode irekiko) bertsio honetan. Ezaugarri hau erabili nahi baduzu, deskarga ezazu aplikazioa GitHub biltegitik edo Google Play Store-tik.</string>
-
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ziurtagiri ezezaguna onartu?</string>
@@ -169,6 +169,8 @@
     <string name="pref_report_issue_summary">Github kontua (doakoa) behar du</string>
     <string name="pref_contribute">Lagundu!</string>
     <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
+    <string name="pref_privacy">Pribatutasuna</string>
+    <string name="pref_privacy_summary">Nextcloud Albisteak Android Pribatutasun Gidalerroa</string>
     <string name="pref_version">Nextcloud Albisteak Android aplikazioa</string>
 
 
@@ -182,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Ikuspegi xehatua)</string>
 
-    <string name="pref_display_apptheme_auto">Argia / Iluna (orduaren arabera)</string>
     <string name="pref_display_apptheme_light">Argia</string>
     <string name="pref_display_apptheme_dark">Iluna</string>
 
@@ -193,6 +194,7 @@
     <string name="pref_display_browser_built_in">Nabigatzaile integratua</string>
     <string name="pref_display_browser_external">Kanpoko nabigatzailea</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Koadro txikiak (Tituluak bakarrik)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Koadro txikiak</string>
     <string name="pref_display_feed_list_layout_simple_text">Testu sinplea</string>
     <string name="pref_display_feed_list_layout_headlines">Izenburuak</string>

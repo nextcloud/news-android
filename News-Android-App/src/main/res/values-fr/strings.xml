@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Activer les fonctions d\'accès rapide</string>
     <string name="pref_title_OpenInBrowserDirectly">Ignorer la vue détaillée et ouvrir dans un navigateur</string>
 
-    <string name="dialog_feature_not_available">Cette fonctionnalité n\'est pas disponible dans cette version (open-source) de cette application. Si vous souhaitez utiliser cette fonctionnalité, veuillez télécharger l\'application depuis le dépôt GitHub ou télécharger l\'application depuis le Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
     <string name="mtm_decision_always">Toujours</string>
@@ -173,6 +170,7 @@
     <string name="pref_contribute">Contribuez !</string>
     <string name="pref_contribute_summary">Obtenir le code source</string>
     <string name="pref_privacy">Vie privée</string>
+    <string name="pref_privacy_summary">Politique de confidentialité de Nextcloud News pour Android</string>
     <string name="pref_version">Application Android NextCloud News</string>
 
 
@@ -186,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Icônes d\'action (Vue détaillée)</string>
 
-    <string name="pref_display_apptheme_auto">Clair / Sombre (basé sur l\'heure)</string>
     <string name="pref_display_apptheme_light">Clair</string>
     <string name="pref_display_apptheme_dark">Sombre</string>
 

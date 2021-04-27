@@ -2,12 +2,10 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -19,7 +17,7 @@ public class Search {
     private static final String SEARCH_IN_BODY = "1";
     
     public static List<RssItem> PerformSearch(Context context, Long idFolder, Long idFeed, String searchString, SharedPreferences mPrefs) {
-        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = NewsDetailActivity.getSortDirectionFromSettings(mPrefs);
+        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = DatabaseUtils.getSortDirectionFromSettings(mPrefs);
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
         String sqlSelectStatement = null;
         if (idFeed != null) {

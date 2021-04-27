@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="enable-background:new 0 0 1400 980;" height="1000px" id="master-artboard" version="1.1"
+    viewBox="0 0 1000 1000" width="1000px" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
+    <defs>
+        <style id="ee-google-fonts">@import
+            url(https://fonts.googleapis.com/css?family=Rubik:300,300italic,400,400italic,500,500italic,700,700italic,900,900italic);
+        </style>
+    </defs>
+    <rect style="fill: white; fill-opacity: 0; pointer-events: none;" height="1000"
+        id="ee-background" width="1000" x="0" y="0" />
+
+
+    <g transform="matrix(9.458986074551676, 0, 0, 9.458986074551676, -540.5614075506047, -7389.7724005992595)">
+        <g id="g-1" transform="matrix(1, 0, 0, 1, 0, 0)">
+            <g id="g-2">
+                <g>
+                    <path style="fill: rgb(51, 51, 51); fill-opacity: 1;" class="st0"
+                        d="M163,887H57V781h106V887z M63,881h94v-94H63V881z" />
+                </g>
+            </g>
+        </g>
+    </g>
+    <g transform="matrix(2.1436004638671875, 0, 0, 2.1436004638671875, -1118.969468981916, -1507.9395410733707)">
+        <g id="g-5" transform="matrix(1, 0, 0, 1, 0, 0)">
+            <g id="g-6">
+                <g>
+                    <path style="fill: rgb(51, 51, 51); stroke: rgb(51, 51, 51); stroke-width: 12;"
+                        class="st0"
+                        d="M654,884c-29.2,0-53-23.8-53-53s23.8-53,53-53s53,23.8,53,53S683.2,884,654,884z M654,784&#10;&#9;&#9;&#9;&#9;c-25.9,0-47,21.1-47,47s21.1,47,47,47s47-21.1,47-47S679.9,784,654,784z" />
+                </g>
+            </g>
+        </g>
+    </g>
+    <g transform="matrix(6.63356113433838, -7.100837230682374, 7.100837230682374, 6.63356113433838, -5934.007716332111, -3658.6457292495593)">
+        <g id="g-9" transform="matrix(1, 0, 0, 1, 0, 0)">
+            <g id="g-10">
+                <g>
+                    <path style="fill: rgb(51, 51, 51);" class="st0"
+                        d="M163,887H57V781h106V887z M63,881h94v-94H63V881z" />
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

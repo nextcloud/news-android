@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">News Dev</string>
+    <string name="account_type" translatable="false">de.luhmer.owncloudnewsreader.dev</string>
+    <string name="authority" translatable="false">de.luhmer.owncloudnewsreader.dev</string>
+</resources>

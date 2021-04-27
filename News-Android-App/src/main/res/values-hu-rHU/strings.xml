@@ -124,6 +124,9 @@
     <string name="pref_header_general">Általános</string>
     <string name="pref_title_general_sort_order">Rendezés iránya</string>
 
+    <string name="pref_general_sort_order_new_old">Új → régi</string>
+    <string name="pref_general_sort_order_old_new">Régi → új</string>
+
     <string name="pref_rename_action_swipe_right">Művelet jobbra sepréskor</string>
     <string name="pref_rename_action_swipe_left">Művelet balra sepréskor</string>
 
@@ -143,9 +146,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben megjelölés olvasottként</string>
     <string name="pref_title_ShowFastActions">Gyors elérési funkciók aktiválása</string>
     <string name="pref_title_OpenInBrowserDirectly">Részletes nézet megjelenítésének átugrása és megnyitás böngészőben</string>
-
-    <string name="dialog_feature_not_available">Ez a funkció az alkalmazás ezen (nyílt forráskódú) verziójában nem érhető el. Ha használni akarja ezt a funkciót, akkor töltse le az alkalmazást a GitHub tárolóból vagy a Google Play Áruházból.</string>
-
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Elfogadja az ismeretlen tanúsítványokat?</string>
@@ -169,6 +169,8 @@
     <string name="pref_report_issue_summary">GitHub-fiók szükséges (ingyenes)</string>
     <string name="pref_contribute">Közreműködés!</string>
     <string name="pref_contribute_summary">Töltse le a forráskódot</string>
+    <string name="pref_privacy">Adatvédelem</string>
+    <string name="pref_privacy_summary">Nextcloud Hírek androidos adatvédelmi irányelvek</string>
     <string name="pref_version">Nextcloud hírek androidos alkalmazás</string>
 
 
@@ -182,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Műveletikonok (Részletes nézet)</string>
 
-    <string name="pref_display_apptheme_auto">Világos / sötét (napszak alapján)</string>
     <string name="pref_display_apptheme_light">Világos</string>
     <string name="pref_display_apptheme_dark">Sötét</string>
 
@@ -193,6 +194,7 @@
     <string name="pref_display_browser_built_in">Beépített böngésző</string>
     <string name="pref_display_browser_external">Külső böngésző</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Bélyegképek (csak szalagcímek)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Előnézetek</string>
     <string name="pref_display_feed_list_layout_simple_text">Egyszerű szöveg</string>
     <string name="pref_display_feed_list_layout_headlines">Főcímek</string>

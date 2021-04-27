@@ -25,7 +25,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -34,23 +33,21 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionListItemBinding;
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionListSubItemBinding;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
@@ -150,8 +147,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             viewHolder = (ChildHolder) convertView.getTag();
         } else {
             LinearLayout view = new LinearLayout(mContext);
-            convertView = inflater.inflate(R.layout.subscription_list_sub_item, view, true);
-            viewHolder = new ChildHolder(convertView);
+            SubscriptionListSubItemBinding binding = SubscriptionListSubItemBinding.inflate(LayoutInflater.from(mContext), view, true);
+            convertView = binding.getRoot();
+            viewHolder = new ChildHolder(binding);
             convertView.setTag(viewHolder);
         }
 
@@ -159,7 +157,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         if(item != null)
         {
 	        String headerText = (item.header != null) ? item.header : "";
-	        viewHolder.tV_HeaderText.setText(headerText);
+	        viewHolder.binding.summary.setText(headerText);
 
 
             String unreadCount;
@@ -170,30 +168,27 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             }
 
             if(unreadCount != null)
-                viewHolder.tV_UnreadCount.setText(unreadCount);
+                viewHolder.binding.tvUnreadCount.setText(unreadCount);
             else
-                viewHolder.tV_UnreadCount.setText("");
+                viewHolder.binding.tvUnreadCount.setText("");
 
-            favIconHandler.loadFavIconForFeed(item.favIcon, viewHolder.imgView_FavIcon);
+            favIconHandler.loadFavIconForFeed(item.favIcon, viewHolder.binding.iVFavicon);
         }
         else
         {
-	        viewHolder.tV_HeaderText.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
-	        viewHolder.tV_UnreadCount.setText("");
-	        viewHolder.imgView_FavIcon.setImageDrawable(null);
+	        viewHolder.binding.summary.setText(mContext.getString(R.string.login_dialog_text_something_went_wrong));
+	        viewHolder.binding.tvUnreadCount.setText("");
+	        viewHolder.binding.iVFavicon.setImageDrawable(null);
         }
 
         return convertView;
 	}
 
 	static class ChildHolder {
-        @BindView(R.id.list_item_layout) View listItemLayout;
-        @BindView(R.id.summary) TextView tV_HeaderText;
-        @BindView(R.id.tv_unreadCount) TextView tV_UnreadCount;
-        @BindView(R.id.iVFavicon) ImageView imgView_FavIcon;
+        @NonNull final SubscriptionListSubItemBinding binding;
 
-        public ChildHolder(View view) {
-            ButterKnife.bind(this, view);
+        public ChildHolder(@NonNull SubscriptionListSubItemBinding binding) {
+            this.binding = binding;
         }
 	  }
 
@@ -242,16 +237,16 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         final AbstractItem group = (AbstractItem) getGroup(groupPosition);
 
         if (convertView == null) {
-            LinearLayout view = new LinearLayout(mContext);
-            convertView = inflater.inflate(R.layout.subscription_list_item, view, true);
-            viewHolder = new GroupHolder(convertView);
-            view.setTag(viewHolder);
+            SubscriptionListItemBinding binding = SubscriptionListItemBinding.inflate(LayoutInflater.from(mContext), new LinearLayout(mContext), true);
+            viewHolder = new GroupHolder(binding);
+            convertView = binding.getRoot();
+            binding.getRoot().setTag(viewHolder);
         } else {
         	viewHolder = (GroupHolder) convertView.getTag();
         }
 
-        viewHolder.txt_Summary.setText(group.header);
-        viewHolder.listItemLayout.setOnClickListener(new OnClickListener() {
+        viewHolder.binding.summary.setText(group.header);
+        viewHolder.binding.listItemLayout.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -269,7 +264,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             }
         });
 
-        viewHolder.listItemLayout.setOnLongClickListener(new View.OnLongClickListener() {
+        viewHolder.binding.listItemLayout.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {
@@ -286,12 +281,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         });
 
 
-        viewHolder.txt_UnreadCount.setText("");
+        viewHolder.binding.tVFeedsCount.setText("");
         boolean skipGetUnread = false;
         if(group.idFolder != null && group.idFolder == ITEMS_WITHOUT_FOLDER.getValue()) {
             String unreadCount = unreadCountFeeds.get((int) group.id_database);
             if(unreadCount != null) {
-                viewHolder.txt_UnreadCount.setText(unreadCount);
+                viewHolder.binding.tVFeedsCount.setText(unreadCount);
             }
 
             skipGetUnread = true;
@@ -300,7 +295,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         if(!skipGetUnread) {
             String unreadCount = unreadCountFolders.get((int) group.id_database);
             if(unreadCount != null)
-                viewHolder.txt_UnreadCount.setText(unreadCount);
+                viewHolder.binding.tVFeedsCount.setText(unreadCount);
         }
 
 
@@ -310,25 +305,25 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         if(group.idFolder != null)
         {
-            viewHolder.imgView.setVisibility(View.GONE);
+            viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
 	        if(group.idFolder == ITEMS_WITHOUT_FOLDER.getValue())
 	        {
                 ConcreteFeedItem concreteFeedItem = ((ConcreteFeedItem) group);
-                favIconHandler.loadFavIconForFeed(concreteFeedItem.favIcon, viewHolder.faviconView);
+                favIconHandler.loadFavIconForFeed(concreteFeedItem.favIcon, viewHolder.binding.imgViewFavicon);
 	        }
         } else {
         	if(group.id_database == ALL_STARRED_ITEMS.getValue()) {
-                viewHolder.imgView.setVisibility(View.GONE);
-        		viewHolder.faviconView.setVisibility(View.VISIBLE);
+                viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
+        		viewHolder.binding.imgViewFavicon.setVisibility(View.VISIBLE);
                 rotation = 0;
-                viewHolder.faviconView.setImageResource(getBtn_rating_star_off_normal_holo_light());
+                viewHolder.binding.imgViewFavicon.setImageResource(getBtn_rating_star_off_normal_holo_light());
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
-	        	viewHolder.imgView.setVisibility(View.GONE);
-                viewHolder.faviconView.setVisibility(View.INVISIBLE);
+	        	viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
+                viewHolder.binding.imgViewFavicon.setVisibility(View.INVISIBLE);
 	        } else {
-	        	viewHolder.imgView.setVisibility(View.VISIBLE);
-                viewHolder.faviconView.setVisibility(View.INVISIBLE);
-                viewHolder.imgView.setImageResource(R.drawable.ic_action_expand_less);
+	        	viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.VISIBLE);
+                viewHolder.binding.imgViewFavicon.setVisibility(View.INVISIBLE);
+                viewHolder.binding.imgViewExpandableIndicator.setImageResource(R.drawable.ic_action_expand_less);
 
 	        	if(isExpanded) {
                     rotation = 180;
@@ -342,7 +337,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                     contentDescriptionId = R.string.content_desc_expand;
                 }
         
-                viewHolder.imgView.setOnClickListener(new OnClickListener() {
+                viewHolder.binding.imgViewExpandableIndicator.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if(isExpanded)
@@ -354,8 +349,8 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             }
         }
 
-        viewHolder.imgView.setRotation(rotation);
-        viewHolder.imgView.setContentDescription(viewHolder.imgView.getContext().getString(contentDescriptionId));
+        viewHolder.binding.imgViewExpandableIndicator.setRotation(rotation);
+        viewHolder.binding.imgViewExpandableIndicator.setContentDescription(viewHolder.binding.imgViewExpandableIndicator.getContext().getString(contentDescriptionId));
 
         return convertView;
     }
@@ -373,14 +368,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     }
 
     static class GroupHolder {
-        @BindView(R.id.list_item_layout) View listItemLayout;
-        @BindView(R.id.summary) TextView txt_Summary;
-        @BindView(R.id.tV_feedsCount) TextView txt_UnreadCount;
-        @BindView(R.id.img_View_expandable_indicator) ImageButton imgView;
-        @BindView(R.id.img_view_favicon) ImageView faviconView;
+        @NonNull final SubscriptionListItemBinding binding;
 
-        public GroupHolder(View view) {
-            ButterKnife.bind(this, view);
+        public GroupHolder(@NonNull SubscriptionListItemBinding binding) {
+            this.binding = binding;
         }
     }
 

@@ -142,9 +142,6 @@
     <string name="pref_title_ShowFastActions">高速アクセス機能を有効化</string>
     <string name="pref_title_OpenInBrowserDirectly">詳細な表示をスキップし、ブラウザで記事を開く</string>
 
-    <string name="dialog_feature_not_available">この機能は、このアプリのこの（オープンソース）バージョンでは利用できません。 この機能を使用するには、GitHubリポジトリからアプリをダウンロードするか、Google Playストアからアプリをダウンロードしてください。</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
     <string name="mtm_decision_always">常に</string>
@@ -167,6 +164,8 @@
     <string name="pref_report_issue_summary">(無料の) GitHub アカウントが必要です</string>
     <string name="pref_contribute">貢献する！</string>
     <string name="pref_contribute_summary">ソースコードを入手</string>
+    <string name="pref_privacy">プライバシー</string>
+    <string name="pref_privacy_summary">Nextcloud ニュース Android 個人情報保護方針</string>
     <string name="pref_version">Nextcloud ニュース Android アプリ</string>
 
 
@@ -180,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">アクションアイコン（詳細表示）</string>
 
-    <string name="pref_display_apptheme_auto">ライト / ダーク（時刻に基づく）</string>
     <string name="pref_display_apptheme_light">ライト</string>
     <string name="pref_display_apptheme_dark">ダーク</string>
 
@@ -191,6 +189,7 @@
     <string name="pref_display_browser_built_in">組み込みブラウザ</string>
     <string name="pref_display_browser_external">外部ブラウザ</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">サムネール（見出しのみ）</string>
     <string name="pref_display_feed_list_layout_thumbnails">サムネイル</string>
     <string name="pref_display_feed_list_layout_simple_text">単純なテキスト</string>
     <string name="pref_display_feed_list_layout_headlines">見出し</string>
@@ -211,8 +210,8 @@
     <string name="content_desc_forward">早送り</string>
     <string name="content_desc_expand">展開</string>
     <string name="content_desc_collapse">折りたたみ</string>
-    <string name="content_desc_mark_as_read">既読としてマーク</string>
-    <string name="content_desc_mark_as_unread">未読としてマーク</string>
+    <string name="content_desc_mark_as_read">既読にする</string>
+    <string name="content_desc_mark_as_unread">未読にする</string>
     <string name="content_desc_tap_to_refresh">タップして更新</string>
     <string name="content_desc_add_to_favorites">お気に入りに追加</string>
     <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
@@ -230,7 +229,7 @@
     <string name="login_dialog_title_error">エラー</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">あなたのニュースアプリがあなたのサーバーにインストールされていないか、起動されていないようです。 まず、あなたのサーバーにニュースアプリをインストールするには、こちらの指示に従ってください：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">何かがおかしいです （´・ω・｀）</string>
-    <string name="login_dialog_text_zero_version_code">Web News Appはバージョン \"0\"を返しました。 次のバグレポートをご覧ください：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">Web News アプリはバージョン \"0\"を返しました。 次のバグレポートをご覧ください：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">このアプリのバージョンは Nextcloud ニュースアプリと互換性がありません。ニュースアプリと appframework をアップデートしてください。</string>
     <string name="login_dialog_title_security_warning">セキュリティ警告</string>
     <string name="login_dialog_text_security_warning">HTTPSを使用していないので、強くお勧めします。 攻撃者はトラフィックを傍受し、機密データ（パスワードなど）にアクセスする可能性があります。</string>

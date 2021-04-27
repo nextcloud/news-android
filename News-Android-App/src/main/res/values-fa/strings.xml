@@ -144,9 +144,6 @@
     <string name="pref_title_ShowFastActions">فعال کردن عمل‌کردهای دسترسی سریع</string>
     <string name="pref_title_OpenInBrowserDirectly">پرش از نمای باجزییات و گشودن مقاله در مرورگر</string>
 
-    <string name="dialog_feature_not_available">این ویژگی در این نگارش (آزاد) کاره موجود نیست. اگر می‌خواهید از این ویژگی استفاده کنید، لطفاً کاره را از مخزن گیت‌هاب یا فروشگاه پلی گوگل بارگیری کنید.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">پذیرش گواهی‌نامهٔ ناشناس؟</string>
     <string name="mtm_decision_always">همواره</string>
@@ -182,7 +179,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">نقشک‌های فعالیت (نمای باجزییات)</string>
 
-    <string name="pref_display_apptheme_auto">روشن / تیره (بر اساس زمان روز)</string>
     <string name="pref_display_apptheme_light">روشن</string>
     <string name="pref_display_apptheme_dark">تیره</string>
 

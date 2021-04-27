@@ -23,14 +23,11 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
-import java.lang.reflect.Proxy;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -52,7 +49,7 @@ import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
 
-public class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
+public abstract class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
     private static final String TAG = PodcastFragmentActivity.class.getCanonicalName();
 
@@ -63,11 +60,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
     private EventBus eventBus;
     private PodcastFragment mPodcastFragment;
-
-    @BindView(R.id.sliding_layout)
-    protected PodcastSlidingUpPanelLayout sliding_layout;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,8 +85,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         super.onPostCreate(savedInstanceState);
 
         eventBus = EventBus.getDefault();
-
-        ButterKnife.bind(this);
 
         updatePodcastView();
     }
@@ -125,7 +115,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         if (hasWindowFocus) {
             int currentOrientation = getResources().getConfiguration().orientation;
             if (currentOrientation != lastOrientation) {
-                sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                getPodcastSlidingUpPanelLayout().setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 lastOrientation = currentOrientation;
             }
         }
@@ -162,7 +152,7 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         if (NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
             int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count);
+            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count, mPrefs);
 
             if (count == 0) {
                 NextcloudNotificationManager.removeRssItemsNotification(this);
@@ -210,12 +200,12 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
     */
 
     public PodcastSlidingUpPanelLayout getSlidingLayout() {
-        return sliding_layout;
+        return getPodcastSlidingUpPanelLayout();
     }
 
     public boolean handlePodcastBackPressed() {
-        if(mPodcastFragment != null && sliding_layout.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
-            sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        if(mPodcastFragment != null && getPodcastSlidingUpPanelLayout().getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED)) {
+            getPodcastSlidingUpPanelLayout().setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
             return true;
         }
         return false;
@@ -253,17 +243,17 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
 
 
     private void collapsePodcastView() {
-        sliding_layout.setPanelHeight(0);
+        getPodcastSlidingUpPanelLayout().setPanelHeight(0);
     }
 
     private void expandPodcastView() {
-        sliding_layout.setPanelHeight((int) dipToPx(68));
+        getPodcastSlidingUpPanelLayout().setPanelHeight((int) dipToPx(68));
     }
 
     @Subscribe
     public void onEvent(PodcastCompletedEvent podcastCompletedEvent) {
         collapsePodcastView();
-        sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        getPodcastSlidingUpPanelLayout().setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         //currentlyPlaying = false;
     }
 
@@ -353,4 +343,6 @@ public class PodcastFragmentActivity extends AppCompatActivity implements IPlayP
         }
         return videoId;
     }
+
+    protected abstract PodcastSlidingUpPanelLayout getPodcastSlidingUpPanelLayout();
 }

@@ -2,8 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_style" >
+    android:background="@drawable/widget_background">
 
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,19 +21,22 @@
             android:textSize="17sp" />
 
     </LinearLayout>
+
+    android:layout_marginTop="44dp"
+    -->
     
     <ListView
         android:id="@+id/list_view"
-        android:layout_marginTop="44dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:divider="#32d1d1d1"
-        android:dividerHeight="1dp"/>
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
     
     	<!--
-    	android:divider="@null"
-		android:dividerHeight="0dp"		
+    	android:divider="#32d1d1d1"
+        android:dividerHeight="1dp"
 		 -->
     
 </FrameLayout>

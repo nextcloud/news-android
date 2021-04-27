@@ -147,9 +147,6 @@
     <string name="pref_title_ShowFastActions">Active snelle toegangsfuncties</string>
     <string name="pref_title_OpenInBrowserDirectly">Sla detailvoorbeeld over en open artikel in browser</string>
 
-    <string name="dialog_feature_not_available">Deze feature is niet beschikbaar in deze (open-source) versie van deze app. Indien je deze feature wilt gebruiken, download dan alsjeblieft de app van de GitHub Repository of de Google Play Store.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
     <string name="mtm_decision_always">Altijd</string>
@@ -172,6 +169,8 @@
     <string name="pref_report_issue_summary">Vereist een (gratis) GitHub account</string>
     <string name="pref_contribute">Bijdragen!</string>
     <string name="pref_contribute_summary">Download de broncode</string>
+    <string name="pref_privacy">Privacy</string>
+    <string name="pref_privacy_summary">Nextcloud News Android Privacy Policy</string>
     <string name="pref_version">Nextcloud Nieuws Android app</string>
 
 
@@ -185,7 +184,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
-    <string name="pref_display_apptheme_auto">Licht / Donker (op basis van tijd van de dag)</string>
     <string name="pref_display_apptheme_light">Licht</string>
     <string name="pref_display_apptheme_dark">Donker</string>
 
@@ -196,6 +194,7 @@
     <string name="pref_display_browser_built_in">Ingebouwde browser</string>
     <string name="pref_display_browser_external">Externe browser</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturen (alleen kopteksten)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturen</string>
     <string name="pref_display_feed_list_layout_simple_text">Verkorte tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Kopteksten</string>

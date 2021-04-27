@@ -153,9 +153,6 @@
     <string name="pref_title_ShowFastActions">הפעלת תכונות גישה מהירה</string>
     <string name="pref_title_OpenInBrowserDirectly">לדלג על התצוגה המפורטת ולפתוח את הכתבה בדפדפן</string>
 
-    <string name="dialog_feature_not_available">התכונה איזה זמינה בגרסת (קוד פתוח) זו של היישומון. אם תכונה זו חשובה לך נא להוריד את היישומון ממאגר ה־GitHub או מחנות היישומונים Play מבית Google.</string>
-
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">לקבל אישור בלתי ידוע?</string>
     <string name="mtm_decision_always">תמיד</string>
@@ -191,7 +188,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
 
-    <string name="pref_display_apptheme_auto">בהיר / כהה (מבוסס על Daytime)</string>
     <string name="pref_display_apptheme_light">בהירה</string>
     <string name="pref_display_apptheme_dark">כהה</string>
 

@@ -24,7 +24,7 @@ public class OwnCloudSyncService extends Service {
         */
         synchronized (sSyncAdapterLock) {
             if (sSyncAdapter == null) {
-                sSyncAdapter = new OwnCloudSyncAdapter(this, true);
+                sSyncAdapter = new OwnCloudSyncAdapter(getApplicationContext(), true);
             }
         }
     }

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsReaderApplication;
@@ -353,8 +354,25 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).limit(100).orderDesc(RssItemDao.Properties.PubDate).listLazy();
     }
 
-    public LazyList<RssItem> getAllUnreadRssItemsForNotification() {
-        return daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).limit(6).orderDesc(RssItemDao.Properties.PubDate).listLazy();
+    public LazyList<RssItem> getAllUnreadRssItemsForNotification(SORT_DIRECTION sortDirection) {
+        QueryBuilder<RssItem> qb = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Read_temp.eq(false)).limit(6);
+        if (sortDirection == SORT_DIRECTION.asc) {
+            qb = qb.orderAsc(RssItemDao.Properties.PubDate);
+        } else {
+            qb = qb.orderDesc(RssItemDao.Properties.PubDate);
+        }
+        return qb.listLazy();
+    }
+
+    public void markAllItemsAsRead() {
+        StopWatch sw = new StopWatch();
+        sw.start();
+
+        String sql = "UPDATE " + RssItemDao.TABLENAME + " SET " + RssItemDao.Properties.Read_temp.columnName + " = 1 WHERE " + RssItemDao.Properties.Read_temp.columnName + " = 0";
+        daoSession.getDatabase().execSQL(sql);
+
+        sw.stop();
+        Log.v(TAG, "Time needed for marking all unread items as read: " + sw.toString());
     }
 
     public LazyList<RssItem> getAllUnreadRssItemsForDownloadWebPageService() {
@@ -448,22 +466,22 @@ public class DatabaseConnectionOrm {
     }
 
     public List<RssItem> getCurrentRssItemView(int page) {
-        if(page != -1) {
-            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
-                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
-                    + RssItemDao.Properties.Id.columnName
-                    + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize)
-                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+        String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                + RssItemDao.Properties.Id.columnName
+                + " AND C._id > " + page * PageSize + " AND c._id <= " + ((page+1) * PageSize)
+                + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
 
-            return daoSession.getRssItemDao().queryRaw(where_clause);
-        } else {
-            String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
-                    + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
-                    + RssItemDao.Properties.Id.columnName
-                    + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+        return daoSession.getRssItemDao().queryRaw(where_clause);
+    }
 
-            return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
-        }
+    public LazyList<RssItem> getAllRssItems() {
+        String where_clause = ", " + CurrentRssItemViewDao.TABLENAME + " C "
+                + " WHERE C." + CurrentRssItemViewDao.Properties.RssItemId.columnName + " = T."
+                + RssItemDao.Properties.Id.columnName
+                + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
+
+        return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
     }
 
     /*
