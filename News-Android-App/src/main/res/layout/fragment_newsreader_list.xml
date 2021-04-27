@@ -46,8 +46,8 @@
         <ProgressBar
             android:id="@+id/header_logo_progress"
             style="?android:attr/progressBarStyle"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_gravity="center"
             android:indeterminate="true"
             android:indeterminateTint="@android:color/white"

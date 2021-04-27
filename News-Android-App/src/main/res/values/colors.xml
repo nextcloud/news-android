@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="app_drawer_feed_list_background_color">#ededed</color>
+    <color name="app_drawer_feed_list_background_color">@color/colorPrimary</color>
 
     <color name="primaryTextColor">@android:color/black</color>
 
