@@ -184,6 +184,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Ikuspegi xehatua)</string>
 
+    <string name="pref_display_apptheme_auto">Argia/Iluna (orduaren arabera)</string>
     <string name="pref_display_apptheme_light">Argia</string>
     <string name="pref_display_apptheme_dark">Iluna</string>
 
