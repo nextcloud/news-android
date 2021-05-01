@@ -48,7 +48,7 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<Subscr
 
     @Override
     protected ImageView getStar() {
-        return null;
+        return binding.starImageview;
     }
 
     @Override
@@ -95,6 +95,8 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<Subscr
     @CallSuper
     public void bind(@NonNull RssItem rssItem) {
         super.bind(rssItem);
+
+        binding.starImageview.setVisibility(rssItem.getStarred_temp() ? View.VISIBLE : View.GONE);
 
         binding.imgViewThumbnail.setColorFilter(null);
         String mediaThumbnail = rssItem.getMediaThumbnail();
