@@ -287,18 +287,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             checkForUnsycedChangesInDatabaseAndResetDatabase(prefFrag.getActivity());
             return true;
         });
-
-        Preference serverSettings = prefFrag.findPreference(PREF_SERVER_SETTINGS);
-        serverSettings.setOnPreferenceClickListener(preference -> {
-            Intent loginIntent = new Intent(getActivity(), LoginDialogActivity.class);
-            getActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
-            return true;
-        });
     }
 
 
-    private void bindNotificationPreferences(PreferenceFragmentCompat prefFrag)
-    {
+    private void bindNotificationPreferences(PreferenceFragmentCompat prefFrag) {
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
     }
 

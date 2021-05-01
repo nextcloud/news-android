@@ -24,7 +24,6 @@ package de.luhmer.owncloudnewsreader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -35,16 +34,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -134,6 +128,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		void onTopItemClicked(long idFeed, boolean isFolder, Long onTopItemClicked);
 		void onChildItemLongClicked(long idFeed);
 		void onTopItemLongClicked(long idFeed, boolean isFolder);
+		void onUserInfoUpdated(OcsUser userInfo);
 	}
 
 	/**
@@ -153,8 +148,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 	    binding = FragmentNewsreaderListBinding.inflate(requireActivity().getLayoutInflater(), container, false);
-
-        loadOwncloudOrNextcloudBanner();
 
         lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), binding.expandableListView, mPrefs);
         lvAdapter.setHandlerListener(expListTextClickedListener);
@@ -202,13 +195,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
 		mCallbacks = null;
 	}
-
-	protected void loadOwncloudOrNextcloudBanner() {
-        if(!Constants.isNextCloud(mPrefs)) {
-            // Set ownCloud view
-            binding.headerView.setBackgroundResource(R.drawable.left_drawer_header_background);
-        }
-    }
 
     /**
      * Cares about settings items in news list drawer.
@@ -368,12 +354,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             // return if app is not setup yet..
             return;
         }
-        String mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-        String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-        String mOc_root_path_without_protocol = mOc_root_path.replace("http://", "").replace("https://", ""); //Remove http:// or https://
-
-        binding.userTextView.setText(mUsername);
-        binding.urlTextView.setText(mOc_root_path_without_protocol);
 
         String uInfo = mPrefs.getString(USER_INFO_STRING, null);
         if(uInfo == null) {
@@ -382,22 +362,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         try {
             OcsUser userInfo = (OcsUser) fromString(uInfo);
-            if (userInfo.getDisplayName() != null)
-                binding.userTextView.setText(userInfo.getDisplayName());
-            final int placeHolder = R.mipmap.ic_launcher;
-            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
-                    .displayer(new CircleBitmapDisplayer())
-                    .showImageOnLoading(placeHolder)
-                    .showImageForEmptyUri(placeHolder)
-                    .showImageOnFail(placeHolder)
-                    .cacheOnDisk(true)
-                    .cacheInMemory(true)
-                    .build();
-
-            if(userInfo.getId() != null) {
-                String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
-                ImageLoader.getInstance().displayImage(avatarUrl, binding.headerLogo, displayImageOptions);
-            }
+            mCallbacks.onUserInfoUpdated(userInfo);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
