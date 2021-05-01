@@ -61,8 +61,6 @@ import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
-import static de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.SORT_DIRECTION;
-
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
 
@@ -537,8 +535,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			link = rssItem.getLink();
 		}
 
-		if (link.length() > 0)
-		{
+		if (link.length() > 0) {
 			newsDetailFragment.loadURL(link);
 		}
 	}

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="AppTheme" parent="AppTheme.Base"/>
 
     <style name="SplashTheme" parent="AppTheme.Base">
@@ -43,6 +42,8 @@
         <item name="starredDrawable">@drawable/swipe_setstarred</item>
 
         <item name="news_detail_background_color">@color/news_detail_background_color</item>
+
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
     <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.MaterialComponents.DayNight">
@@ -54,10 +55,6 @@
         <item name="rippleColor">@color/button_ripple</item>
         <item name="android:textColor">@color/material_button_text_color</item>
     </style>
-
-
-
-
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="android:background">@color/colorPrimary</item>
@@ -98,7 +95,6 @@
     </style>
 
 
-
     <style name="ErrorText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/material_red_600</item>
         <item name="android:textSize">16sp</item>
@@ -108,5 +104,16 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+
+    <!-- https://stackoverflow.com/a/54751236 -->
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
+    </style>
+
+    <style name="ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
 
 </resources>

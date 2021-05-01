@@ -61,7 +61,6 @@ public class ThemeUtils {
             mCursorDrawableRes.setAccessible(true);
             mCursorDrawableRes.set(searchAutoComplete, R.drawable.cursor);
 
-
             // Set color of handle
             // https://stackoverflow.com/a/49555923
 
@@ -103,7 +102,6 @@ public class ThemeUtils {
      * @param toolbarBackgroundColor the target background color
      */
     public static void colorizeToolbar(Toolbar toolbarView, @ColorInt int toolbarBackgroundColor) {
-
         toolbarView.setBackgroundColor(toolbarBackgroundColor);
 
         for(int i = 0; i < toolbarView.getChildCount(); i++) {
