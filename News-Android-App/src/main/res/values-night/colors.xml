@@ -22,9 +22,8 @@
 
     <color name="text_medium_emphasis">#a0ffffff</color>
 
-    <color name="colorPrimary">@color/nextcloudBlue</color>
-    <color name="colorPrimaryDark">@color/nextcloudBlue</color>
-    <color name="colorAccent">#8698af</color>
+    <color name="colorPrimary">@android:color/black</color>
+    <color name="colorAccent">@android:color/white</color>
     <color name="rss_item_list_background">@color/material_grey_900</color>
 
 
@@ -39,6 +38,7 @@
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>
 
+    <color name="button_ripple">@color/material_grey_800</color>
 
     <color name="widget_background">#dd000000</color>
     <color name="widget_foreground">#d8d8d8</color>

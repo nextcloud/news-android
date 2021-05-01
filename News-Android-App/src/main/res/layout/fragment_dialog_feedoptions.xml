@@ -98,18 +98,18 @@
             android:layout_marginRight="0dp"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_remove_cancel"
-                style="?android:attr/buttonBarButtonStyle"
+                style="@style/MaterialButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_weight="1"
                 android:text="@android:string/cancel" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_remove_confirm"
-                style="?android:attr/buttonBarButtonStyle"
+                style="@style/MaterialButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"
@@ -151,18 +151,18 @@
             android:layout_marginRight="0dp"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_rename_cancel"
-                style="?android:attr/buttonBarButtonStyle"
+                style="@style/MaterialButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_weight="1"
                 android:text="@android:string/cancel" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_rename_confirm"
-                style="?android:attr/buttonBarButtonStyle"
+                style="@style/MaterialButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"

@@ -230,7 +230,7 @@ public class NextcloudNotificationManager {
     }
 
     private static NotificationCompat.Action getPlayPauseAction(Context context, boolean isPlaying) {
-        int drawableId = isPlaying ? R.drawable.ic_action_pause : R.drawable.ic_action_play;
+        int drawableId = isPlaying ? R.drawable.ic_action_pause : R.drawable.ic_baseline_play_arrow_24;
         String actionText = isPlaying ? "Pause" : "Play"; // TODO extract as string resource
 
         PendingIntent pendingIntent = MediaButtonReceiver.buildMediaButtonPendingIntent(context,

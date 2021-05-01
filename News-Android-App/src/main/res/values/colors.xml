@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="app_drawer_feed_list_background_color">#ededed</color>
+    <color name="app_drawer_feed_list_background_color">@color/colorPrimary</color>
 
     <color name="primaryTextColor">@android:color/black</color>
 
@@ -23,9 +23,8 @@
     <color name="owncloudBlue">#35537A</color>
     <color name="nextcloudBlue">#0082C9</color>
 
-    <color name="colorPrimary">@color/nextcloudBlue</color>
-    <color name="colorPrimaryDark">@color/nextcloudBlue</color>
-    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="colorPrimary">@android:color/white</color>
+    <color name="colorAccent">@android:color/black</color>
     <color name="rss_item_list_background">@android:color/white</color>
 
 
@@ -51,6 +50,8 @@
     <color name="material_grey_900" tools:override="true">#212121</color>
 
     <color name="material_red_600" tools:override="true">#e53935</color>
+
+    <color name="button_ripple">@color/material_grey_300</color>
 
     <color name="widget_background">#ddffffff</color>
     <color name="widget_foreground">#222222</color>
