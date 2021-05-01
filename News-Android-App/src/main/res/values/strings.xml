@@ -31,9 +31,6 @@
     <string name="img_view_thumbnail" translatable="false">Thumbnail</string>
     <string name="tv_showing_cached_version">Showing cached version</string>
 
-    <string name="permission_req_location_twilight_title">Automated Light/Dark Theme</string>
-    <string name="permission_req_location_twilight_text">In order to automatically switch between the light and dark theme, it is required to provide the devices location in order to determine the time for sunrise and sunset.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>

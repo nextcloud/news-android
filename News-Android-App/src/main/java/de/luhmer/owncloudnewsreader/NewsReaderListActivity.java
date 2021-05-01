@@ -48,7 +48,6 @@ import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.customview.widget.ViewDragHelper;
@@ -120,7 +119,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static androidx.annotation.VisibleForTesting.PROTECTED;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
@@ -161,7 +159,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private PublishSubject<String> searchPublishSubject;
 	private static final int REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE = 1;
-	private static final int REQUEST_CODE_PERMISSION_LOCATION = 139;
 
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
@@ -193,16 +190,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		//Start auto sync if enabled
 		if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
 			startSync();
-		}
-
-		// In case automatic theme selection based on time is selected, check if location permission
-		// for twilight manager is given.. otherwise request it
-		if (isUserLoggedIn() && ThemeChooser.isAutoThemeSelectionEnabled() && ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-			ActivityCompat.requestPermissions(
-					this,
-					new String[]{ACCESS_FINE_LOCATION},
-					REQUEST_CODE_PERMISSION_LOCATION
-			);
 		}
 	}
 
@@ -1018,21 +1005,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             } else {
                 Log.d(TAG, "No action defined here yet..");
             }
-        } else {
-			if(requestCode == REQUEST_CODE_PERMISSION_LOCATION) {
-				if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION)) {
-					AlertDialog.Builder builder = new AlertDialog.Builder(this);
-					builder.setTitle(getString(R.string.permission_req_location_twilight_title))
-							.setMessage(getString(R.string.permission_req_location_twilight_text))
-							.setPositiveButton(android.R.string.ok, (dialog, id) -> {
-								ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_LOCATION);
-							})
-							.setNegativeButton(android.R.string.cancel, (dialog, id) -> {})
-							.create()
-							.show();
-				}
-			}
-		}
+        }
     }
 
     private void ensureCorrectTheme(Intent data) {

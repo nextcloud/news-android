@@ -109,7 +109,7 @@ public class ThemeChooser {
     }
 
     /**
-     * Returns true if automatic theme selection based on Twilight Manager is enabled.
+     * Returns true if automatic theme selection is enabled.
      * Otherwise it'll return false
      */
     public static boolean isAutoThemeSelectionEnabled() {
