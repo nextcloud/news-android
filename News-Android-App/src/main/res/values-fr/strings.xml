@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Affichage de la version en cache</string>
 
-    <string name="permission_req_location_twilight_title">Thème Clair / Sombre automatique</string>
-    <string name="permission_req_location_twilight_text">Afin de basculer automatiquement entre les thèmes Clair et Sombre, vous devez autoriser l\'accès à la position de l\'appareil ce qui permettra de calculer les horaires de lever et de coucher du soleil.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Favori</string>
     <string name="action_read">Lu</string>
@@ -261,5 +258,4 @@
     <string name="array_sync_interval_hour_6">6 Heures</string>
     <string name="array_sync_interval_hour_12">12 Heures</string>
     <string name="array_sync_interval_hour_24">24 Heures</string>
-
     </resources>

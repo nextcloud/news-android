@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Sýna útgáfu í skyndiminni</string>
 
-    <string name="permission_req_location_twilight_title">Sjálfvirkt dökkt/ljóst þema</string>
-    <string name="permission_req_location_twilight_text">Til að geta skipt sjálfvirkt á milli ljósa og dökka þemans, er nauðsynlegt að gefa upp staðsetningu tækis, svo hægt sé að ákvarða tíma sólargangsins.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
@@ -256,5 +253,4 @@
     <string name="array_sync_interval_hour_6">6 klukkustundir</string>
     <string name="array_sync_interval_hour_12">12 klukkustundir</string>
     <string name="array_sync_interval_hour_24">24 klukkustundir</string>
-
     </resources>

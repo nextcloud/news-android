@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Visar cachad version</string>
 
-    <string name="permission_req_location_twilight_title">Automatiskt ljust/mörkt tema</string>
-    <string name="permission_req_location_twilight_text">För att automatiskt växla mellan ljust och mörkt tema krävs det att enheternas placering anges för att kunna bestämma tiden för soluppgång och solnedgång.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>
@@ -256,5 +253,4 @@
     <string name="array_sync_interval_hour_6">6 timmar</string>
     <string name="array_sync_interval_hour_12">12 timmar</string>
     <string name="array_sync_interval_hour_24">24 timmar</string>
-
     </resources>

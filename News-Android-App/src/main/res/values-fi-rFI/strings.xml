@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Näytetään välimuistissa oleva versio</string>
 
-    <string name="permission_req_location_twilight_title">Automaattinan vaalea/tumma teema</string>
-    <string name="permission_req_location_twilight_text">Automaattinen teeman vaihto valoisasta tummaan vaatii laitteen sijainnin, jotta auringon nousu- ja laskuaika voidaan määrittää.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Suosikkimerkintä päälle/pois</string>
     <string name="action_read">Merkkaa luetuksi</string>
@@ -256,5 +253,4 @@
     <string name="array_sync_interval_hour_6">6 tuntia</string>
     <string name="array_sync_interval_hour_12">12 tuntia</string>
     <string name="array_sync_interval_hour_24">24 tuntia</string>
-
     </resources>

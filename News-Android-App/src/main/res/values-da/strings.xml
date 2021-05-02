@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Viser version fra midlertidigt lager</string>
 
-    <string name="permission_req_location_twilight_title">Automatisk lys/mørk tema</string>
-    <string name="permission_req_location_twilight_text">For automatisk at kunne skifte mellem det lyse og mørke tema er det nødvendigt at kende lokationen for din device for således at kunne fastslå tidspunkt for solnedgang og solopgang.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Stjernemarkéret</string>
     <string name="action_read">Læst</string>
@@ -255,5 +252,4 @@
     <string name="array_sync_interval_hour_6">6 timer</string>
     <string name="array_sync_interval_hour_12">12 timer</string>
     <string name="array_sync_interval_hour_24">24 timer</string>
-
     </resources>

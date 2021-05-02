@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">در حال نمایش نگارش ذخیره‌شده</string>
 
-    <string name="permission_req_location_twilight_title">تم تاریک/روشن خودکار</string>
-    <string name="permission_req_location_twilight_text">به منظور جابجایی خودکار بین تم نور و تاریک ، لازم است مکان دستگاه ها را تعیین کنید تا زمان طلوع و غروب خورشید مشخص شود.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">ستاره‌دار</string>
     <string name="action_read">خواندن</string>
@@ -256,5 +253,4 @@
     <string name="array_sync_interval_hour_6">۶ ساعت</string>
     <string name="array_sync_interval_hour_12">۱۲ ساعت</string>
     <string name="array_sync_interval_hour_24">۲۴ ساعت</string>
-
     </resources>

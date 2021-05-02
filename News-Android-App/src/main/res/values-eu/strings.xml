@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Cache bertsioa erakusten</string>
 
-    <string name="permission_req_location_twilight_title">Itxura argi/ilun automatikoa</string>
-    <string name="permission_req_location_twilight_text">Itxura argia eta ilunaren artean automatikoki aldatzeko, beharrezkoa da gailuaren kokapena jakinaraztea, egunsentiaren eta eguzki-sarreraren orduak zehaztu ahal izateko.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Izarduna</string>
     <string name="action_read">Irakurri</string>
@@ -263,5 +260,4 @@
     <string name="array_sync_interval_hour_6">6 ordu</string>
     <string name="array_sync_interval_hour_12">12 ordu</string>
     <string name="array_sync_interval_hour_24">24 ordu</string>
-
     </resources>

@@ -28,9 +28,6 @@
 
     <string name="tv_showing_cached_version">Pokazuję wersję z pamięci cache</string>
 
-    <string name="permission_req_location_twilight_title">Automatyczny motyw Jasny/Ciemny</string>
-    <string name="permission_req_location_twilight_text">Aby automatycznie przełączać się między jasnym i ciemnym motywem, konieczne jest podanie lokalizacji urządzeń w celu określenia czasu wschodu i zachodu słońca.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Odczyt</string>
@@ -273,5 +270,4 @@
     <string name="array_sync_interval_hour_6">6 godzin</string>
     <string name="array_sync_interval_hour_12">12 godzin</string>
     <string name="array_sync_interval_hour_24">24 godziny</string>
-
     </resources>

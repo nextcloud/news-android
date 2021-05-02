@@ -25,9 +25,6 @@
 
     <string name="tv_showing_cached_version">Đang hiện phiên bản được lưu vào bộ nhớ đệm</string>
 
-    <string name="permission_req_location_twilight_title">Chủ đề sáng/tối được tự động hoá</string>
-    <string name="permission_req_location_twilight_text">Để tự động chuyển giữa chủ đề sáng và tối, ứng dụng yêu cầu được cung cấp vị trí của thiết bị để xác định thời gian mặt trời mọc và mặt trời lặn.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Starred</string>
     <string name="action_read">Đọc</string>
@@ -258,5 +255,4 @@
     <string name="array_sync_interval_hour_6">6 tiếng</string>
     <string name="array_sync_interval_hour_12">12 tiếng</string>
     <string name="array_sync_interval_hour_24">24 tiếng</string>
-
     </resources>

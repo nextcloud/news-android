@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Amosando a versión na caché</string>
 
-    <string name="permission_req_location_twilight_title">Tema claro/escuro automatizado</string>
-    <string name="permission_req_location_twilight_text">Para cambiar automaticamente entre o tema claro e escuro, é necesario fornecer a localización dos dispositivos para determinar a hora do amencer e do solpor.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Destacado</string>
     <string name="action_read">Ler</string>
@@ -262,5 +259,4 @@
     <string name="array_sync_interval_hour_6">6 horas</string>
     <string name="array_sync_interval_hour_12">12 horas</string>
     <string name="array_sync_interval_hour_24">24 horas</string>
-
     </resources>

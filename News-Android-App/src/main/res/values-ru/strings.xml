@@ -28,9 +28,6 @@
 
     <string name="tv_showing_cached_version">Показана версия из кэша</string>
 
-    <string name="permission_req_location_twilight_title">Автоматическое переключение Светлой / Темной темы оформления</string>
-    <string name="permission_req_location_twilight_text">Для того, чтобы автоматически переключаться между светлой и темной темой, необходимо предоставить месторасположение устройства для определения времени восхода и захода солнца.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
@@ -273,5 +270,4 @@
     <string name="array_sync_interval_hour_6">6 Часов</string>
     <string name="array_sync_interval_hour_12">12 Часов</string>
     <string name="array_sync_interval_hour_24">24 Часа</string>
-
     </resources>

@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Tonen van gecachte versie</string>
 
-    <string name="permission_req_location_twilight_title">Automatisch licht/donker thema</string>
-    <string name="permission_req_location_twilight_text">De locatie van het apparaat is nodig voor het automatisch wisselen tussen het lichte en donkere thema, aan de hand van zonsopkomst en zonsondergang.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Gemarkeerd</string>
     <string name="action_read">Lees</string>
@@ -263,5 +260,4 @@
     <string name="array_sync_interval_hour_6">6 uur</string>
     <string name="array_sync_interval_hour_12">12 uur</string>
     <string name="array_sync_interval_hour_24">24 uur</string>
-
     </resources>

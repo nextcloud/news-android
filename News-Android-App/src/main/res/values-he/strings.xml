@@ -27,9 +27,6 @@
 
     <string name="tv_showing_cached_version">הגרסה השמורה מוצגת</string>
 
-    <string name="permission_req_location_twilight_title">ערכת עיצוב בהירה/כהה</string>
-    <string name="permission_req_location_twilight_text">כדי להחליף אוטומטית בין ערכות העיצוב הכהה לבין הבהירה ולהיפך, יש לספק את מיקום המכשיר כדי לאתר את זמני הזריחה והשקיעה.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">מסומן בכוכב</string>
     <string name="action_read">נקרא</string>
@@ -265,5 +262,4 @@
     <string name="array_sync_interval_hour_6">6 שעות</string>
     <string name="array_sync_interval_hour_12">12 שעות</string>
     <string name="array_sync_interval_hour_24">24 שעות</string>
-
     </resources>

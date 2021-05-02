@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Προβολή προσωρινής αποθηκευμένης έκδοσης</string>
 
-    <string name="permission_req_location_twilight_title">Αυτόματο Φωτεινό/Σκούρο Θέμα</string>
-    <string name="permission_req_location_twilight_text">Για χρήση της αυτόματης επιλογής φωτεινού και σκούρου θέματος, απαιτείται ο ορισμός της τοποθεσίας συσκευής για τον καθορισμό της ώρας ανατολής και δύσης.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Με αστέρι</string>
     <string name="action_read">Ανάγνωση</string>
@@ -261,5 +258,4 @@
     <string name="array_sync_interval_hour_6">6 ώρες</string>
     <string name="array_sync_interval_hour_12">12 ώρες</string>
     <string name="array_sync_interval_hour_24">24 ώρες</string>
-
     </resources>

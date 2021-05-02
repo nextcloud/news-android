@@ -25,9 +25,6 @@
 
     <string name="tv_showing_cached_version">显示缓存的版本</string>
 
-    <string name="permission_req_location_twilight_title">自动化的浅色/深色主题</string>
-    <string name="permission_req_location_twilight_text">为能在浅色和深色主题之间自动切换，您需要提供设备位置以确定日出和日落时间。</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">已加星标</string>
     <string name="action_read">阅读</string>
@@ -258,5 +255,4 @@
     <string name="array_sync_interval_hour_6">6 小时</string>
     <string name="array_sync_interval_hour_12">12 小时</string>
     <string name="array_sync_interval_hour_24">24 小时</string>
-
     </resources>

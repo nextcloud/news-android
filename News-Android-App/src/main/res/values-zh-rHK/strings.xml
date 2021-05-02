@@ -24,9 +24,6 @@
 
     <string name="tv_showing_cached_version">顯示快取的版本</string>
 
-    <string name="permission_req_location_twilight_title">自動切換明亮/暗黑主題</string>
-    <string name="permission_req_location_twilight_text">為了自動切換明亮與暗黑主題，請提供裝置位置，以便取得日照時間</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">星號</string>
     <string name="action_read">已讀</string>
@@ -257,5 +254,4 @@
     <string name="array_sync_interval_hour_6">6 小時</string>
     <string name="array_sync_interval_hour_12">12 小時</string>
     <string name="array_sync_interval_hour_24">24 小時</string>
-
     </resources>

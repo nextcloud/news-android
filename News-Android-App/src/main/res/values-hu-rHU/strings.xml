@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Gyorsítótárazott verzió megjelenítése</string>
 
-    <string name="permission_req_location_twilight_title">Automatikus világos/sötét téma</string>
-    <string name="permission_req_location_twilight_text">A világos és sötét témák közti váltáshoz szükséges, hogy megadja az eszköz tartózkodási helyét, hogy meg lehessen határozni a napkelte és napnyugta időpontját.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Csillagozott</string>
     <string name="action_read">Olvasás</string>
@@ -262,5 +259,4 @@
     <string name="array_sync_interval_hour_6">6 óra</string>
     <string name="array_sync_interval_hour_12">12 óra</string>
     <string name="array_sync_interval_hour_24">24 óra</string>
-
     </resources>

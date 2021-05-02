@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Mostra la versione in cache</string>
 
-    <string name="permission_req_location_twilight_title">Tema chiaro/scuro automatico</string>
-    <string name="permission_req_location_twilight_text">Per passare automaticamente dal tema chiaro a quello scuro, è necessario fornire la posizione per determinare l\'orario dell\'alba e del tramonto.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Preferiti</string>
     <string name="action_read">Lettura</string>
@@ -263,5 +260,4 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="array_sync_interval_hour_6">6 ore</string>
     <string name="array_sync_interval_hour_12">12 ore</string>
     <string name="array_sync_interval_hour_24">24 ore</string>
-
     </resources>

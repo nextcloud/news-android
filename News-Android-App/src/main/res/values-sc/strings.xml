@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Mustra sa versione in sa memòria temporànea</string>
 
-    <string name="permission_req_location_twilight_title">Tema Craru/Iscuru Automàticu</string>
-    <string name="permission_req_location_twilight_text">Pro colare in automàticu dae su tema craru a s\'iscuru, tocat de frunire sa positzione pro determinare s\'oràriu de s\'arvèschida e de s\'iscurigadòrgiu.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Preferidos</string>
     <string name="action_read">Letura</string>
@@ -262,5 +259,4 @@
     <string name="array_sync_interval_hour_6">6 Oras</string>
     <string name="array_sync_interval_hour_12">12 Oras</string>
     <string name="array_sync_interval_hour_24">24 Oras</string>
-
     </resources>

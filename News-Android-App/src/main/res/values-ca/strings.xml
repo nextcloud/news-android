@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">S\'està mostrant la versió en memòria cau</string>
 
-    <string name="permission_req_location_twilight_title">Tema Clar/Fosc automatitzat </string>
-    <string name="permission_req_location_twilight_text">Per a poder canviar automàticament entre el tema clar i el fosc és necessari que proporcioneu la localització geogràfica del vostre dispositiu, i així poder determinar l\'hora de la sortida i posta del sol.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Destacat</string>
     <string name="action_read">Llegeix</string>
@@ -259,5 +256,4 @@
     <string name="array_sync_interval_hour_6">6 hores</string>
     <string name="array_sync_interval_hour_12">12 hores</string>
     <string name="array_sync_interval_hour_24">24 hores</string>
-
     </resources>

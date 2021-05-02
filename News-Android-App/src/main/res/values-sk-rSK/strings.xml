@@ -28,9 +28,6 @@
 
     <string name="tv_showing_cached_version">Zobrazuje sa verzia vo vyrovnávacej pamäti</string>
 
-    <string name="permission_req_location_twilight_title">Automatický svetlý/tmavý motív vzhľadu</string>
-    <string name="permission_req_location_twilight_text">Na automatické prepínanie medzi svetlým a tmavým motívom vzhľadu, je potrebné poskytnúť polohu zariadena, aby bolo možné určiť čas východu a západu slnka.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">S hviezdičkou</string>
     <string name="action_read">Čítať</string>
@@ -266,5 +263,4 @@
     <string name="array_sync_interval_hour_6">6 hodín</string>
     <string name="array_sync_interval_hour_12">12 hodín</string>
     <string name="array_sync_interval_hour_24">24 hodín</string>
-
     </resources>

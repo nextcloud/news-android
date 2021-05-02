@@ -28,9 +28,6 @@
 
     <string name="tv_showing_cached_version">Zobrazuje se verze z mezipaměti</string>
 
-    <string name="permission_req_location_twilight_title">Automaticky přepínat mezi světlým/tmavým motivem</string>
-    <string name="permission_req_location_twilight_text">Aby bylo možné automaticky přepínat mezi světlým a tmavým motivem, je potřeba zařízení poskytnout aktuální polohu za účelem výpočtu času východu a západu slunce.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">S hvězdičkou</string>
     <string name="action_read">Číst</string>
@@ -273,5 +270,4 @@
     <string name="array_sync_interval_hour_6">6 hodin</string>
     <string name="array_sync_interval_hour_12">12 hodin</string>
     <string name="array_sync_interval_hour_24">24 hodin</string>
-
     </resources>

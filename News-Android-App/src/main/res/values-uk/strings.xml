@@ -28,7 +28,6 @@
 
     <string name="tv_showing_cached_version">Відображається кешована версія</string>
 
-    <string name="permission_req_location_twilight_title">Автоматичне перемикання теми світла/темна</string>
     <!-- Action Bar Items -->
     <string name="action_starred">Улюблене</string>
     <string name="action_read">Читати</string>
@@ -158,5 +157,4 @@
     <string name="array_sync_interval_hour_6">6 годин</string>
     <string name="array_sync_interval_hour_12">12 годин</string>
     <string name="array_sync_interval_hour_24">24 години</string>
-
     </resources>

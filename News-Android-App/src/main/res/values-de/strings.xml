@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Zwischengespeicherte Version wird angezeigt</string>
 
-    <string name="permission_req_location_twilight_title">Automatisch helles/dunkles Design</string>
-    <string name="permission_req_location_twilight_text">Um automatisch zwischen dem dunklen und dem hellen Design umschalten zu können, ist es erforderlich den Gerätestandort abzufragen um die Sonnenaufgangs- und -untergangszeiten zu bestimmen.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
@@ -263,5 +260,4 @@
     <string name="array_sync_interval_hour_6">6 Stunden</string>
     <string name="array_sync_interval_hour_12">12 Stunden</string>
     <string name="array_sync_interval_hour_24">24 Stunden</string>
-
     </resources>

@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Mostrando a versão em cache</string>
 
-    <string name="permission_req_location_twilight_title">Tema Claro/Escuro Automático</string>
-    <string name="permission_req_location_twilight_text">Para alternar automaticamente entre o tema claro e escuro, é necessário fornecer a localização dos dispositivos para determinar a hora do nascer e do pôr do sol.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Vistos</string>
     <string name="action_read">Ler</string>
@@ -263,5 +260,4 @@
     <string name="array_sync_interval_hour_6">6 horas</string>
     <string name="array_sync_interval_hour_12">12 horas</string>
     <string name="array_sync_interval_hour_24">24 horas</string>
-
     </resources>

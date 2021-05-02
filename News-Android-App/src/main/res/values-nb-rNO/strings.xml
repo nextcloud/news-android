@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Viser versjon i hurtiglager</string>
 
-    <string name="permission_req_location_twilight_title">Automatisk lys/mørkt tema</string>
-    <string name="permission_req_location_twilight_text">For å kunne automatisk skifte mellom lys og mørkt tema, er det nødvendig å angi enhetens plassering for å avgjøre tidspunkt for sol opp- og nedgang.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
@@ -261,5 +258,4 @@
     <string name="array_sync_interval_hour_6">6 timer</string>
     <string name="array_sync_interval_hour_12">12 timer</string>
     <string name="array_sync_interval_hour_24">24 timer</string>
-
     </resources>

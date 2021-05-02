@@ -25,9 +25,6 @@
 
     <string name="tv_showing_cached_version">캐시된 버전 표시중</string>
 
-    <string name="permission_req_location_twilight_title">자동화된 밝은/어두운 테마</string>
-    <string name="permission_req_location_twilight_text">자동으로 밝은 테마와 어두운 테마를 바꾸시려면 일출과 일몰 측정을 위해 기기의 위치가 활성화 되어있어야 합니다</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">별표</string>
     <string name="action_read">읽기</string>
@@ -256,5 +253,4 @@
     <string name="array_sync_interval_hour_6">6시간</string>
     <string name="array_sync_interval_hour_12">12시간</string>
     <string name="array_sync_interval_hour_24">24시간</string>
-
     </resources>

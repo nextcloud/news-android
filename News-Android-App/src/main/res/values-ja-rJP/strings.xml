@@ -25,9 +25,6 @@
 
     <string name="tv_showing_cached_version">キャッシュされたバージョンを表示する</string>
 
-    <string name="permission_req_location_twilight_title">ライト/ダークテーマを自動切替</string>
-    <string name="permission_req_location_twilight_text">ライトテーマとダークテーマを自動的に切り替えるには、日の出と日の入りの時間を取得するためにデバイスの位置情報を提供する必要があります。</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">スター</string>
     <string name="action_read">既読</string>
@@ -257,5 +254,4 @@
     <string name="array_sync_interval_hour_6">6 時間</string>
     <string name="array_sync_interval_hour_12">12 時間</string>
     <string name="array_sync_interval_hour_24">24 時間</string>
-
     </resources>

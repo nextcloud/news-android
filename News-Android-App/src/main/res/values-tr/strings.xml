@@ -26,9 +26,6 @@
 
     <string name="tv_showing_cached_version">Ön bellekteki sürüm görüntüleniyor</string>
 
-    <string name="permission_req_location_twilight_title">Otomatik Açık/Koyu Tema Değişimi</string>
-    <string name="permission_req_location_twilight_text">Açık ve koyu temalar arasında otomatik olarak geçiş yapılabilmesi için bulunulan konumdaki gün doğumu ve batımı saatlerinin öğrenilebilmesi amacıyla aygıt konumuna izin verilmesi gerekir.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
@@ -263,5 +260,4 @@
     <string name="array_sync_interval_hour_6">6 Saat</string>
     <string name="array_sync_interval_hour_12">12 Saat</string>
     <string name="array_sync_interval_hour_24">24 Saat</string>
-
     </resources>

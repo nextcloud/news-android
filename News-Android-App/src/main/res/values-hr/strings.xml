@@ -27,9 +27,6 @@
 
     <string name="tv_showing_cached_version">Prikazuje se inačica iz predmemorije</string>
 
-    <string name="permission_req_location_twilight_title">Automatska svijetla/tamna tema</string>
-    <string name="permission_req_location_twilight_text">Kako biste automatski prebacivali između svijetle i tamne teme, morate omogućiti pristup lokaciji uređaja radi određivanja vremena izlaska i zalaska sunca.</string>
-
     <!-- Action Bar Items -->
     <string name="action_starred">Označeno zvjezdicom</string>
     <string name="action_read">Čitaj</string>
@@ -267,5 +264,4 @@
     <string name="array_sync_interval_hour_6">6 sati</string>
     <string name="array_sync_interval_hour_12">12 sati</string>
     <string name="array_sync_interval_hour_24">24 sata</string>
-
     </resources>
