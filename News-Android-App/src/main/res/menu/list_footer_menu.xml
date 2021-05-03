@@ -6,4 +6,8 @@
         android:icon="@drawable/ic_add_black_24dp"
         android:title="@string/action_add_new_feed"/>
 
+    <item
+        android:id="@+id/drawer_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/action_settings" />
 </menu>

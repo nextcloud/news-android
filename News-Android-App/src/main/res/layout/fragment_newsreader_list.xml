@@ -63,17 +63,7 @@
         android:id="@+id/expandableListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navigationMenu"
         android:layout_below="@+id/header_view"
         android:divider="@null" />
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/navigationview_bg"
-        app:menu="@menu/drawer_menu" />
-
 
 </RelativeLayout>
