@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.ListView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,8 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
 
-    private LayoutInflater inflater;
-    private EventBus eventBus;
+    private final LayoutInflater inflater;
+    private final EventBus eventBus;
 
     public PodcastArrayAdapter(Context context, PodcastItem[] values) {
         super(context, R.layout.podcast_row, values);
@@ -30,6 +31,7 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         //eventBus.register(this);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
         final ViewHolder holder;
@@ -55,32 +57,21 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         });
 
 
-        holder.binding.flDownloadPodcastWrapper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.binding.flDownloadPodcastWrapper.setVisibility(View.GONE);
+        holder.binding.flDownloadPodcastWrapper.setOnClickListener(view1 -> {
+            holder.binding.flDownloadPodcastWrapper.setVisibility(View.GONE);
 
-                Toast.makeText(getContext(), "Starting download.. Please wait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Starting download.. Please wait", Toast.LENGTH_SHORT).show();
 
-                eventBus.post(new StartDownloadPodcast() {{ podcast = podcastItem; }});
-            }
+            eventBus.post(new StartDownloadPodcast() {{ podcast = podcastItem; }});
         });
 
-        holder.binding.flPlayPodcastWrapper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playPodcast(position);
-            }
-        });
+        holder.binding.flPlayPodcastWrapper.setOnClickListener(view12 -> playPodcast(position));
 
-        holder.binding.flDeletePodcastWrapper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.link)) {
-                    podcastItem.offlineCached = false;
-                    podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
-                    notifyDataSetChanged();
-                }
+        holder.binding.flDeletePodcastWrapper.setOnClickListener(view13 -> {
+            if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.link)) {
+                podcastItem.offlineCached = false;
+                podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
+                notifyDataSetChanged();
             }
         });
 

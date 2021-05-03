@@ -15,7 +15,7 @@ public class ProgressBarWebChromeClient extends WebChromeClient {
 
     public final String TAG = getClass().getCanonicalName();
 
-    private ProgressBar mProgressBar;
+    private final ProgressBar mProgressBar;
 
     public ProgressBarWebChromeClient(ProgressBar progressBar) {
         mProgressBar = progressBar;

@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -35,6 +35,7 @@ import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 
@@ -59,7 +60,6 @@ import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -92,7 +92,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     private Callbacks mCallbacks = null;
 
 
-	@SuppressWarnings("unused")
 	protected static final String TAG = "NewsReaderListFragment";
 
     public void ListViewNotifyDataSetChanged()  {
@@ -141,12 +140,12 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+        ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
     }
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                            Bundle savedInstanceState) {
 	    binding = FragmentNewsreaderListBinding.inflate(requireActivity().getLayoutInflater(), container, false);
 
         lvAdapter = new SubscriptionExpandableListAdapter(getActivity(), new DatabaseConnectionOrm(getActivity()), binding.expandableListView, mPrefs);
@@ -161,12 +160,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		binding.expandableListView.setLongClickable(true);
 		binding.expandableListView.setAdapter(lvAdapter);
 
-		binding.headerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((NewsReaderListActivity) getActivity()).startSync();
-            }
-        });
+		binding.headerView.setOnClickListener(v -> ((NewsReaderListActivity) requireActivity()).startSync());
 
         lvAdapter.notifyDataSetChanged();
         reloadAdapter();
@@ -177,7 +171,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 	}
 
 	@Override
-	public void onAttach(Context context) {
+	public void onAttach(@NonNull Context context) {
 		super.onAttach(context);
 
 		// Activities containing this fragment must implement its callbacks.
@@ -216,10 +210,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 case R.id.action_add_new_feed:
                     if(mApi.getNewsAPI() != null) {
                         Intent newFeedIntent = new Intent(getContext(), NewFeedActivity.class);
-                        getActivity().startActivityForResult(newFeedIntent, NewsReaderListActivity.RESULT_ADD_NEW_FEED);
+                        requireActivity().startActivityForResult(newFeedIntent, NewsReaderListActivity.RESULT_ADD_NEW_FEED);
                     } else {
                         Intent loginIntent = new Intent(getContext(), LoginDialogActivity.class);
-                        getActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
+                        requireActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
                     }
                     return true;
                 case R.id.drawer_settings:
@@ -233,7 +227,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
         list.addFooterView(footerView);
     }
 
-	private ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
+	private final ExpListTextClicked expListTextClickedListener = new ExpListTextClicked() {
 
 		@Override
 		public void onTextClicked(long idFeed, boolean isFolder, Long optional_folder_id) {
@@ -275,23 +269,14 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		}
 	};
 
-	AdapterView.OnItemLongClickListener onItemLongClickListener = new AdapterView.OnItemLongClickListener() {
+	AdapterView.OnItemLongClickListener onItemLongClickListener = (parent, view, position, id) -> {
+        if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            int childPosition = ExpandableListView.getPackedPositionChild(id);
+            mCallbacks.onChildItemLongClicked(childPosition);
+        }
 
-		@Override
-		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-			if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
-				int childPosition = ExpandableListView.getPackedPositionChild(id);
-				mCallbacks.onChildItemLongClicked(childPosition);
-			}
-
-			return true;
-		}
-	};
-
-
-    public ExpandableListView getListView() {
-        return binding.expandableListView;
-    }
+        return true;
+    };
 
     public void startAsyncTaskGetUserInfo() {
         mApi.getServerAPI().user()

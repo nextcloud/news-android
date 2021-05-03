@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class SyncItemStateService extends JobIntentService {
 	}
 
 	@Override
-	protected void onHandleWork(Intent intent) {
+	protected void onHandleWork(@NonNull Intent intent) {
 		if(mApi.getNewsAPI() == null) {
 			Log.w(TAG, "API is not initialized");
 			return;

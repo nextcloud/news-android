@@ -26,7 +26,7 @@ import okhttp3.OkHttpClient;
 @Module
 public class ApiModule {
 
-    private Application mApplication;
+    private final Application mApplication;
 
     public ApiModule(Application application) {
         this.mApplication = application;
@@ -86,9 +86,8 @@ public class ApiModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(Cache cache) {
-        OkHttpClient client = new OkHttpClient();
-        //client.setCache(cache);
-        return client;
+        // setCache(cache);
+        return new OkHttpClient();
     }
 
     @Provides

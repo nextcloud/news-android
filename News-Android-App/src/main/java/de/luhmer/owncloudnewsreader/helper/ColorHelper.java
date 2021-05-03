@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.helper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 
 public class ColorHelper {
+    @SuppressLint("DefaultLocale")
     public static String getCssColor(int color) {
         // using %f for the double value would result in a localized string, e.g. 0,12 which
         // would be an invalid css color string

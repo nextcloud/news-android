@@ -96,11 +96,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDialogIcon = getArguments().getInt("titleIcon");
-        mDialogTitle = getArguments().getString("title");
-        mDialogText = getArguments().getString("text");
-        mImageUrl = (URL) getArguments().getSerializable("imageUrl");
-        mDialogType = (TYPE) getArguments().getSerializable("dialogType");
+        final Bundle args = requireArguments();
+        mDialogIcon = args.getInt("titleIcon");
+        mDialogTitle = args.getString("title");
+        mDialogText = args.getString("text");
+        mImageUrl = (URL) args.getSerializable("imageUrl");
+        mDialogType = (TYPE) args.getSerializable("dialogType");
 
         mMenuItems = new LinkedHashMap<>();
 
@@ -120,24 +121,9 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                             changeDownloadDir();
                         }
                     });
-                    mMenuItems.put(getString(R.string.action_img_open), new MenuAction() {
-                        @Override
-                        public void execute() {
-                            openLinkInBrowser(mImageUrl);
-                        }
-                    });
-                    mMenuItems.put(getString(R.string.action_img_sharelink), new MenuAction() {
-                        @Override
-                        public void execute() {
-                            shareImage();
-                        }
-                    });
-                    mMenuItems.put(getString(R.string.action_img_copylink), new MenuAction() {
-                        @Override
-                        public void execute() {
-                            copyToClipboard(mDialogTitle, mImageUrl.toString());
-                        }
-                    });
+                    mMenuItems.put(getString(R.string.action_img_open), () -> openLinkInBrowser(mImageUrl));
+                    mMenuItems.put(getString(R.string.action_img_sharelink), this::shareImage);
+                    mMenuItems.put(getString(R.string.action_img_copylink), () -> copyToClipboard(mDialogTitle, mImageUrl.toString()));
                 } else if (mImageUrl.toString().startsWith("file:///")) {
                     mMenuItems.put(getString(R.string.action_img_download), new MenuActionLongClick() {
                         @Override
@@ -157,35 +143,20 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 }
                 break;
             case URL:
-                mMenuItems.put(getString(R.string.action_link_open), new MenuAction() {
-                    @Override
-                    public void execute() {
-                        try {
-                            openLinkInBrowser(new URL(mDialogText));
-                        } catch (MalformedURLException e) {
-                            Toast.makeText(getActivity(), getString(R.string.error_invalid_url), Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
+                mMenuItems.put(getString(R.string.action_link_open), () -> {
+                    try {
+                        openLinkInBrowser(new URL(mDialogText));
+                    } catch (MalformedURLException e) {
+                        Toast.makeText(getActivity(), getString(R.string.error_invalid_url), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
                     }
                 });
-                mMenuItems.put(getString(R.string.action_link_share), new MenuAction() {
-                    @Override
-                    public void execute() {
-                        shareLink();
-                    }
-                });
-                mMenuItems.put(getString(R.string.action_link_copy), new MenuAction() {
-                    @Override
-                    public void execute() {
-                        copyToClipboard(mDialogTitle, mDialogText);
-                    }
-                });
+                mMenuItems.put(getString(R.string.action_link_share), this::shareLink);
+                mMenuItems.put(getString(R.string.action_link_copy), () -> copyToClipboard(mDialogTitle, mDialogText));
                 break;
         }
 
-        int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = R.style.FloatingDialog;
-        setStyle(style, theme);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FloatingDialog);
     }
 
     @Override
@@ -195,9 +166,10 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void showDownloadShowcase() {
-        if(mMenuItems.containsKey(getActivity().getString(R.string.action_img_download))) {
+        final Context context = requireContext();
+        if(mMenuItems.containsKey(context.getString(R.string.action_img_download))) {
             List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
-            int position = menuItemsList.indexOf(getActivity().getString(R.string.action_img_download));
+            int position = menuItemsList.indexOf(context.getString(R.string.action_img_download));
             Log.v(TAG, "Position of Download Menu: " + position);
             /*
             // Bug in the Library.. ShowcaseView is rendered behind the DialogFragment //TODO check https://github.com/deano2390/MaterialShowcaseView/issues/51 for updates
@@ -233,7 +205,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         }
 
-        ListView mListView = (ListView) v.findViewById(R.id.ic_menu_item_list);
+        ListView mListView = v.findViewById(R.id.ic_menu_item_list);
         List<String> menuItemsList = new ArrayList<>(mMenuItems.keySet());
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -278,7 +250,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
 
     private void copyToClipboard(String label, String text) {
-        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
+        ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Activity.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(label, text);
         clipboard.setPrimaryClip(clip);
         Toast.makeText(getActivity(), getString(R.string.toast_copied_to_clipboard), Toast.LENGTH_SHORT).show();
@@ -312,11 +284,11 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void downloadImage(URL url) {
-        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
 
         if(isExternalStorageWritable()) {
             String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
-            downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
             request.setDestinationUri(getDownloadDir(filename));
             request.setTitle(getString(R.string.app_name) + " - " + getString(R.string.action_img_download));
@@ -327,9 +299,9 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             //request.setVisibleInDownloadsUi(false);
             //request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             downloadID = downloadManager.enqueue(request);
-            getDialog().hide();
+            requireDialog().hide();
         } else {
-            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
             dismiss();
         }
     }
@@ -343,24 +315,24 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             try {
                 NewsFileUtils.copyFile(new FileInputStream(path), new FileOutputStream(dstPath));
             } catch (IOException e) {
-                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(requireContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
-            NextcloudNotificationManager.showNotificationSaveSingleCachedImageService(getActivity().getApplicationContext(), CHANNEL_ID, dstPath);
-            getDialog().hide();
+            NextcloudNotificationManager.showNotificationSaveSingleCachedImageService(requireContext().getApplicationContext(), CHANNEL_ID, dstPath);
+            requireDialog().hide();
         } else {
-            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
             dismiss();
         }
     }
 
     public boolean haveStoragePermission() {
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED) {
+            if (checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED) {
                 Log.v("Permission error","You have permission");
                 return true;
             } else {
                 Log.e("Permission error","Asking for permission");
-                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return false;
             }
         }
@@ -374,7 +346,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     private void changeDownloadDir() {
         final Intent chooserIntent = new Intent(getActivity(), DirectoryChooserActivity.class);
         final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
-                .initialDirectory(getActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""))
+                .initialDirectory(requireActivity().getPreferences(Context.MODE_PRIVATE).getString("manualImageDownloadLocation", ""))
                 .newDirectoryName("new folder")
                 .allowNewDirectoryNameModification(true)
                 .allowReadOnlyDirectory(false)
@@ -388,14 +360,14 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         if(path.equals("")) {
             path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         }
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("manualImageDownloadLocation", path);
         editor.commit();
     }
 
     private Uri getDownloadDir(String filename) {
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE);
         String dir = sharedPref.getString("manualImageDownloadLocation", "");
         if(dir.equals("")) { //sharedPref has never been set
             setNewDownloadDir(""); //set to default public download dir
@@ -419,7 +391,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
     private void unregisterImageDownloadReceiver() {
         if (downloadCompleteReceiver != null) {
-            getActivity().unregisterReceiver(downloadCompleteReceiver);
+            requireActivity().unregisterReceiver(downloadCompleteReceiver);
             downloadCompleteReceiver = null;
         }
     }
@@ -443,7 +415,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
 
                     switch (status) {
                         case DownloadManager.STATUS_SUCCESSFUL:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_img_saved), Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireContext().getApplicationContext(), getString(R.string.toast_img_saved), Toast.LENGTH_LONG).show();
 
                             //String imagePath = downloadManager.getUriForDownloadedFile(refID).toString();
 
@@ -457,7 +429,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                             }
                             break;
                         case DownloadManager.STATUS_FAILED:
-                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_download_failed) + ": " + reason, Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireContext().getApplicationContext(), getString(R.string.error_download_failed) + ": " + reason, Toast.LENGTH_LONG).show();
                             if(isVisible()) {
                                 dismiss();
                             }
@@ -469,7 +441,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         };
         IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-        getActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
+        requireActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
     }
 
     public boolean isExternalStorageWritable() {

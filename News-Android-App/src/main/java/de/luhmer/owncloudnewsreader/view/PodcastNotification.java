@@ -29,7 +29,7 @@ public class PodcastNotification {
     private NotificationCompat.Builder notificationBuilder;
     private final String CHANNEL_ID = "Podcast Notification";
 
-    private MediaSessionCompat mSession;
+    private final MediaSessionCompat mSession;
     private @PlaybackStateCompat.State int lastStatus = PlaybackStateCompat.STATE_NONE;
 
     public final static int NOTIFICATION_ID = 1111;

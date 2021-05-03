@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 

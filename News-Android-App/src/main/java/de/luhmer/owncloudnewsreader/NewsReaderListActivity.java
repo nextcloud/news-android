@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -171,7 +171,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	String sharedPreferencesFileName;
 
 
-	private View.OnClickListener mSnackbarListener = view -> {
+	private final View.OnClickListener mSnackbarListener = view -> {
 		//Toast.makeText(getActivity(), "button 1 pressed", 3000).show();
 		updateCurrentRssView();
 	};
@@ -219,9 +219,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		initAccountManager();
 
 		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
-		binding.toolbarLayout.avatar.setOnClickListener((v) -> {
-			startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN);
-		});
+		binding.toolbarLayout.avatar.setOnClickListener((v) -> startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN));
 
 		// Init config --> if nothing is configured start the login dialog.
 		if (!isUserLoggedIn()) {
@@ -780,63 +778,50 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerToggle != null && drawerToggle.onOptionsItemSelected(item))
 			return true;
 
-		switch (item.getItemId()) {
-
-			case android.R.id.home:
-				if (handlePodcastBackPressed())
-					return true;
-				break;
-
-			case R.id.menu_update:
-				startSync();
-				break;
-
-			case R.id.menu_StartImageCaching:
-				final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
-
-				long highestItemId = dbConn.getLowestRssItemIdUnread();
-
-
-				Intent data = new Intent();
-				data.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
-				data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
-				DownloadImagesService.enqueueWork(this, data);
-
-				break;
-
-			case R.id.menu_CreateDatabaseDump:
-				DatabaseUtils.CopyDatabaseToSdCard(this);
-
-				new AlertDialog.Builder(this)
-						.setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
-						.setNeutralButton(getString(android.R.string.ok), null)
-						.show();
-				break;
-
-			case R.id.menu_markAllAsRead:
-				NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-				if(ndf != null) {
-					DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
-					dbConn2.markAllItemsAsReadForCurrentView();
-
-					reloadCountNumbersOfSlidingPaneAdapter();
-					ndf.refreshCurrentRssView();
-				}
+		int itemId = item.getItemId();
+		if (itemId == android.R.id.home) {
+			if (handlePodcastBackPressed())
 				return true;
+		} else if (itemId == R.id.menu_update) {
+			startSync();
+		} else if (itemId == R.id.menu_StartImageCaching) {
+			final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
-			case R.id.menu_downloadMoreItems:
-				DownloadMoreItems();
-				return true;
+			long highestItemId = dbConn.getLowestRssItemIdUnread();
 
-			case R.id.menu_search:
-				mSearchView.setIconified(false);
-				mSearchView.setFocusable(true);
-				mSearchView.requestFocusFromTouch();
-                return true;
 
-            case R.id.menu_download_web_archive:
-                checkAndStartDownloadWebPagesForOfflineReadingPermission();
-                return true;
+			Intent data = new Intent();
+			data.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
+			data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
+			DownloadImagesService.enqueueWork(this, data);
+		} else if (itemId == R.id.menu_CreateDatabaseDump) {
+			DatabaseUtils.CopyDatabaseToSdCard(this);
+
+			new AlertDialog.Builder(this)
+					.setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
+					.setNeutralButton(getString(android.R.string.ok), null)
+					.show();
+		} else if (itemId == R.id.menu_markAllAsRead) {
+			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+			if (ndf != null) {
+				DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
+				dbConn2.markAllItemsAsReadForCurrentView();
+
+				reloadCountNumbersOfSlidingPaneAdapter();
+				ndf.refreshCurrentRssView();
+			}
+			return true;
+		} else if (itemId == R.id.menu_downloadMoreItems) {
+			DownloadMoreItems();
+			return true;
+		} else if (itemId == R.id.menu_search) {
+			mSearchView.setIconified(false);
+			mSearchView.setFocusable(true);
+			mSearchView.requestFocusFromTouch();
+			return true;
+		} else if (itemId == R.id.menu_download_web_archive) {
+			checkAndStartDownloadWebPagesForOfflineReadingPermission();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -914,19 +899,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		})
 				.subscribeOn(Schedulers.newThread())
 				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new Action() {
-					@Override
-					public void run() throws Exception {
-						updateCurrentRssView();
-						Log.v(TAG, "Finished Download extra items..");
-					}
-				}, new Consumer<Throwable>() {
-					@Override
-					public void accept(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
-						throwable.printStackTrace();
-						Throwable e = OkHttpSSLClient.HandleExceptions(throwable);
-						Toast.makeText(NewsReaderListActivity.this, getString(R.string.login_dialog_text_something_went_wrong) + " - " + e.getMessage(), Toast.LENGTH_SHORT).show();
-					}
+				.subscribe(() -> {
+					updateCurrentRssView();
+					Log.v(TAG, "Finished Download extra items..");
+				}, throwable -> {
+					throwable.printStackTrace();
+					Throwable e = OkHttpSSLClient.HandleExceptions(throwable);
+					Toast.makeText(NewsReaderListActivity.this, getString(R.string.login_dialog_text_something_went_wrong) + " - " + e.getMessage(), Toast.LENGTH_SHORT).show();
 				});
 	}
 

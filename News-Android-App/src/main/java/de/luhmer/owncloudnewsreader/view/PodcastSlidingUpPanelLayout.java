@@ -65,8 +65,7 @@ public class PodcastSlidingUpPanelLayout extends SlidingUpPanelLayout {
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 v.getLayoutParams().height = interpolatedTime == 1

@@ -17,7 +17,7 @@ import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
 
 public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
 
-    private String TAG = "UdinicAuthenticator";
+    private static final String TAG = "UdinicAuthenticator";
     private final Context mContext;
 
     public OwnCloudAccountAuthenticator(Context context) {
@@ -28,7 +28,7 @@ public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
     }
 
     @Override
-    public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType, String[] requiredFeatures, Bundle options) throws NetworkErrorException {
+    public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType, String[] requiredFeatures, Bundle options) {
         Log.d("udinic", TAG + "> addAccount");
 
         final Intent intent = new Intent(mContext, LoginDialogActivity.class);
@@ -43,7 +43,7 @@ public class OwnCloudAccountAuthenticator extends AbstractAccountAuthenticator {
     }
 
     @Override
-    public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) throws NetworkErrorException {
+    public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) {
 
         Log.d("udinic", TAG + "> getAuthToken");
 

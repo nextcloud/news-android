@@ -48,6 +48,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -64,6 +65,8 @@ import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.util.Objects.requireNonNull;
 
 public class NewFeedActivity extends AppCompatActivity {
 
@@ -94,10 +97,8 @@ public class NewFeedActivity extends AppCompatActivity {
         binding.btnImportOpml.setOnClickListener((v) -> importOpml());
         binding.btnExportOpml.setOnClickListener((v) -> exportOpml());
 
-        if (binding.toolbarLayout.toolbar != null) {
-            setSupportActionBar(binding.toolbarLayout.toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
@@ -124,7 +125,7 @@ public class NewFeedActivity extends AppCompatActivity {
                 url = intent.getStringExtra(Intent.EXTRA_TEXT);
             }
 
-            if(url.endsWith(".opml")) {
+            if(url != null && url.endsWith(".opml")) {
                 AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(url, NewFeedActivity.this));
             }
 
@@ -229,7 +230,7 @@ public class NewFeedActivity extends AppCompatActivity {
         private final String mUrlToFile;
         private HashMap<String, String> extractedUrls;
         private ProgressDialog pd;
-        private Context mContext;
+        private final Context mContext;
 
         ImportOpmlSubscriptionsTask(String urlToFile, Context context) {
             this.mUrlToFile = urlToFile;
@@ -318,16 +319,16 @@ public class NewFeedActivity extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(List<String>... values) {
-            String text = "This might take a few minutes.. please wait:\n";
+            StringBuilder text = new StringBuilder("This might take a few minutes.. please wait:\n");
 
             List<String> log = values[0];
             for (String line : log) {
-                text += "\n" + line;
+                text.append("\n").append(line);
             }
 
             pd.setMax(extractedUrls.size());
             pd.setProgress(log.size());
-            pd.setMessage(text);
+            pd.setMessage(text.toString());
 
             super.onProgressUpdate(values);
         }
@@ -390,7 +391,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
             mApi.getNewsAPI().createFeed(urlToFeed, folder.getId()).enqueue(new Callback<List<Feed>>() {
                 @Override
-                public void onResponse(Call<List<Feed>> call, final Response<List<Feed>> response) {
+                public void onResponse(@NonNull Call<List<Feed>> call, @NonNull final Response<List<Feed>> response) {
                     runOnUiThread(() -> {
                         showProgress(false);
 
@@ -423,7 +424,7 @@ public class NewFeedActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<Feed>> call, final Throwable t) {
+                public void onFailure(@NonNull Call<List<Feed>> call, @NonNull final Throwable t) {
                     runOnUiThread(() -> {
                         showProgress(false);
 
@@ -480,14 +481,12 @@ public class NewFeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                //NavUtils.navigateUpFromSameTask(this);
-                finish();
-                return true;
-            default:
-                    Log.v(TAG, "Unknown option selected..");
+        // Respond to the action bar's Up/Home button
+        if (item.getItemId() == android.R.id.home) {//NavUtils.navigateUpFromSameTask(this);
+            finish();
+            return true;
+        } else {
+            Log.v(TAG, "Unknown option selected..");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -498,7 +497,7 @@ public class NewFeedActivity extends AppCompatActivity {
     @NonNull public static String convertStreamToString(InputStream is) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
-        String line = null;
+        String line;
         while ((line = reader.readLine()) != null) {
             sb.append(line).append("\n");
         }

@@ -16,6 +16,7 @@ package de.luhmer.owncloudnewsreader.helper;
  *  0. You just DO WHAT THE FUCK YOU WANT TO.
  */
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
@@ -233,6 +234,7 @@ public class AutoResizeTextView extends AppCompatTextView {
      * @param width
      * @param height
      */
+    @SuppressLint("SetTextI18n")
     public void resizeText(int width, int height) {
         CharSequence text = getText();
         // Do not resize if the view does not have dimensions or there is no text

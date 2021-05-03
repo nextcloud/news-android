@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -46,6 +46,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
@@ -58,6 +59,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -81,6 +83,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION_DEFAULT;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION_DEFAULT;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -125,7 +128,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.mActivity = (PodcastFragmentActivity) context;
     }
@@ -138,7 +141,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
     protected DisposableObserver<List<RssItem>> searchResultObserver = new DisposableObserver<List<RssItem>>() {
         @Override
-        public void onNext(List<RssItem> rssItems) {
+        public void onNext(@NonNull List<RssItem> rssItems) {
             loadRssItemsIntoView(rssItems);
         }
 
@@ -186,7 +189,7 @@ public class NewsReaderDetailFragment extends Fragment {
         this.idFeed = idFeed;
         this.idFolder = idFolder;
         this.titel = title;
-        mActivity.getSupportActionBar().setTitle(title);
+        requireNonNull(mActivity.getSupportActionBar()).setTitle(title);
 
         if (updateListView) {
             updateCurrentRssView();
@@ -200,7 +203,7 @@ public class NewsReaderDetailFragment extends Fragment {
         Log.v(TAG, "onResume called!");
 
         mMarkAsReadWhileScrollingEnabled = mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false);
-        this.initFastDoneAll(this.getView());
+        this.initFastDoneAll(this.requireView());
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
         if (onResumeCount >= 2) {
@@ -216,11 +219,7 @@ public class NewsReaderDetailFragment extends Fragment {
     protected void updateMenuItemsState() {
         NewsReaderListActivity nla = (NewsReaderListActivity) mActivity;
         if(nla != null && nla.getMenuItemDownloadMoreItems() != null) {
-            if (idFolder != null && idFolder == ALL_UNREAD_ITEMS.getValue()) {
-                nla.getMenuItemDownloadMoreItems().setEnabled(false);
-            } else {
-                nla.getMenuItemDownloadMoreItems().setEnabled(true);
-            }
+            nla.getMenuItemDownloadMoreItems().setEnabled(idFolder == null || idFolder != ALL_UNREAD_ITEMS.getValue());
         }
     }
 
@@ -243,7 +242,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 binding.pbLoading.setVisibility(View.GONE);
 
                 if (layoutManagerSavedState != null) {
-                    binding.list.getLayoutManager().onRestoreInstanceState(layoutManagerSavedState);
+                    requireNonNull(binding.list.getLayoutManager()).onRestoreInstanceState(layoutManagerSavedState);
                     layoutManagerSavedState = null;
                 }
             });
@@ -278,7 +277,6 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     public LinearLayoutManager getLayoutManager() {
-        if (binding.list == null) return null;
         return (LinearLayoutManager) binding.list.getLayoutManager();
     }
 
@@ -319,7 +317,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentNewsreaderDetailBinding.inflate(inflater, container, false);
 
@@ -346,7 +344,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         binding.list.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0) { //check for scroll down
                     if (mMarkAsReadWhileScrollingEnabled) {
                         //Log.v(TAG, "Scroll Delta y: " + dy);
@@ -357,16 +355,16 @@ public class NewsReaderDetailFragment extends Fragment {
         });
 
         itemTouchListener = new RecyclerView.OnItemTouchListener() {
-            GestureDetectorCompat detector = new GestureDetectorCompat(mActivity, new RecyclerViewOnGestureListener());
+            final GestureDetectorCompat detector = new GestureDetectorCompat(mActivity, new RecyclerViewOnGestureListener());
 
             @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
                 detector.onTouchEvent(e);
                 return false;
             }
 
             @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
             }
 
             @Override
@@ -431,10 +429,10 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     @Override
-    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+    public void onInflate(@NonNull Context context, @NonNull AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
 
-        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+        ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
 
         TypedArray styledAttributes = context.obtainStyledAttributes(attrs, new int[]{R.attr.colorAccent});
         updateSwipeDrawables(true);
@@ -460,7 +458,7 @@ public class NewsReaderDetailFragment extends Fragment {
         int leftId  = getLayoutId(leftAction);
         int rightId = getLayoutId(rightAction);
 
-        TypedArray styledAttributes = getContext().obtainStyledAttributes(new int[]{leftId, rightId});
+        TypedArray styledAttributes = requireContext().obtainStyledAttributes(new int[]{leftId, rightId});
         leftSwipeDrawable = styledAttributes.getDrawable(0);
         rightSwipeDrawable = styledAttributes.getDrawable(1);
         styledAttributes.recycle();
@@ -485,7 +483,7 @@ public class NewsReaderDetailFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putParcelable(LAYOUT_MANAGER_STATE, getLayoutManager().onSaveInstanceState());
@@ -597,17 +595,17 @@ public class NewsReaderDetailFragment extends Fragment {
         }
 
         @Override
-        public float getSwipeThreshold(RecyclerView.ViewHolder viewHolder) {
+        public float getSwipeThreshold(@NonNull RecyclerView.ViewHolder viewHolder) {
             return 0.25f;
         }
 
         @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
         }
 
         @Override
-        public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int direction) {
+        public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, final int direction) {
             final NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) binding.list.getAdapter();
 
             String swipeAction;
@@ -637,7 +635,7 @@ public class NewsReaderDetailFragment extends Fragment {
         }
 
         @Override
-        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             // binding.swipeRefresh cancels swiping left/right when accidentally moving in the y direction;
             binding.swipeRefresh.setEnabled(!isCurrentlyActive);
@@ -673,8 +671,8 @@ public class NewsReaderDetailFragment extends Fragment {
      * A movement up is required to prevent accidentally marking articles as read.
      */
     private class FastMarkReadMotionListener implements View.OnTouchListener {
-        private View fabMarkAllAsRead;
-        private ImageView targetView;
+        private final View fabMarkAllAsRead;
+        private final ImageView targetView;
 
         private boolean markAsRead = false;
         private float originX,
@@ -684,7 +682,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         public FastMarkReadMotionListener(View fabMarkAllAsRead) {
             this.fabMarkAllAsRead = fabMarkAllAsRead;
-            this.targetView = (ImageView)fabMarkAllAsRead.findViewById(R.id.target_done_all);
+            this.targetView = fabMarkAllAsRead.findViewById(R.id.target_done_all);
         }
 
         @Override

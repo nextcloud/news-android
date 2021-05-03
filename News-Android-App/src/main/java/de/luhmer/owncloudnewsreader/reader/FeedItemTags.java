@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -29,7 +29,7 @@ public enum FeedItemTags {
 	ALL_STARRED("2"),
 	ALL("3");
 
-	private String segment;
+	private final String segment;
 
 	FeedItemTags(String segment) {
 		this.segment = segment;

@@ -85,7 +85,8 @@ public class NextcloudNotificationManager {
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
-        NotificationCompat.Builder mNotificationDownloadImages = new NotificationCompat.Builder(context, channelId)
+
+        return new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
                 .setContentText(context.getString(R.string.notification_download_images_offline))
                 .setSmallIcon(R.drawable.ic_notification)
@@ -93,8 +94,6 @@ public class NextcloudNotificationManager {
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setOngoing(true);
-
-        return mNotificationDownloadImages;
     }
 
     public static void showNotificationSaveSingleCachedImageService(Context context, String channelId, File file) {
@@ -118,7 +117,8 @@ public class NextcloudNotificationManager {
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
-        NotificationCompat.Builder mNotificationWebPages = new NotificationCompat.Builder(context, channelId)
+
+        return new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
                 .setContentText(context.getString(R.string.notification_download_articles_offline))
                 .setSmallIcon(R.drawable.ic_notification)
@@ -126,8 +126,6 @@ public class NextcloudNotificationManager {
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setOngoing(true);
-
-        return mNotificationWebPages;
     }
 
 

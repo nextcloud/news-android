@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -60,7 +60,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
 
     public static void UpdateWidget(Context context) {
-        int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
+        int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
 
         for(int appWidgetId : ids) {
             AppWidgetManager.getInstance(context).notifyAppWidgetViewDataChanged(appWidgetId, R.id.list_view);
@@ -83,7 +83,7 @@ public class WidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         inject(context);
 
-    	final int appWidgetId[];
+    	final int[] appWidgetId;
         if(intent.hasExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS))
             appWidgetId = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
     	else if(intent.hasExtra(AppWidgetManager.EXTRA_APPWIDGET_ID))
@@ -111,7 +111,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
             } */ else if (action.equals(ACTION_LIST_CLICK)) {
                 try {
-                    Long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID);
+                    long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID);
 
 
                     if (intent.hasExtra(ACTION_CHECKED_CLICK)) {

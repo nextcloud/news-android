@@ -18,8 +18,8 @@ import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 
 public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
 
-    private LayoutInflater inflater;
-    private EventBus eventBus;
+    private final LayoutInflater inflater;
+    private final EventBus eventBus;
 
     public PodcastFeedArrayAdapter(Context context, PodcastFeedItem[] values) {
         super(context, R.layout.podcast_feed_row, values);

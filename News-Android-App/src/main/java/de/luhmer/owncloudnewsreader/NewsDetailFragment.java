@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -39,11 +39,14 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import org.jsoup.Jsoup;
@@ -92,7 +95,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+        ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
 
         // Retain this fragment across configuration changes.
         setRetainInstance(true);
@@ -115,24 +118,18 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(binding.webview != null) {
-            binding.webview.destroy();
-        }
+        binding.webview.destroy();
     }
 
     public void pauseCurrentPage() {
-        if(binding.webview != null) {
-            binding.webview.onPause();
-            binding.webview.pauseTimers();
-        }
+        binding.webview.onPause();
+        binding.webview.pauseTimers();
     }
 
 
     public void resumeCurrentPage() {
-        if(binding.webview != null) {
-            binding.webview.onResume();
-            binding.webview.resumeTimers();
-        }
+        binding.webview.onResume();
+        binding.webview.resumeTimers();
     }
 
     /**
@@ -159,10 +156,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     }
 
     @Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNewsDetailBinding.inflate(inflater, container, false);
 
-		section_number = (Integer) getArguments().get(ARG_SECTION_NUMBER);
+		section_number = (Integer) requireArguments().get(ARG_SECTION_NUMBER);
 
         // Do not reload webview if retained
         if(savedInstanceState == null) {
@@ -181,14 +178,14 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 	}
 
 	protected void syncIncognitoState() {
-        NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
+        NewsDetailActivity ndActivity = ((NewsDetailActivity) requireActivity());
         boolean isIncognito = ndActivity.isIncognitoEnabled();
         binding.webview.getSettings().setBlockNetworkLoads(isIncognito);
         // binding.webview.getSettings().setBlockNetworkImage(isIncognito);
     }
 
 	@Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         binding.webview.saveState(outState);
     }
 
@@ -261,8 +258,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     /**
      * This function has no effect on devices with api level < HONEYCOMB
-     * @param htmlPage
-     * @param webView
      */
     private void setSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
         if (htmlPage.contains(".gif")) {
@@ -307,7 +302,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         binding.webview.setWebViewClient(new WebViewClient() {
 
-            private Map<String, Boolean> loadedUrls = new HashMap<>();
+            private final Map<String, Boolean> loadedUrls = new HashMap<>();
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
@@ -385,13 +380,14 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             binding.tvOfflineVersion.setVisibility(View.GONE);
             switch (selectedBrowser) {
                 case 0: // Custom Tabs
+                    final FragmentActivity activity = requireActivity();
                     CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
-                            .setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary))
+                            .setToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
                             .setShowTitle(true)
-                            .setStartAnimations(getActivity(), R.anim.slide_in_right, R.anim.slide_out_left)
-                            .setExitAnimations(getActivity(), R.anim.slide_in_left, R.anim.slide_out_right)
+                            .setStartAnimations(activity, R.anim.slide_in_right, R.anim.slide_out_left)
+                            .setExitAnimations(activity, R.anim.slide_in_left, R.anim.slide_out_right)
                             .addDefaultShareMenuItem();
-                    builder.build().launchUrl(getActivity(), Uri.parse(url));
+                    builder.build().launchUrl(activity, Uri.parse(url));
                     break;
                 case 1: // External Browser
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -407,7 +403,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     }
 
 
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View view, ContextMenu.ContextMenuInfo menuInfo) {
 	    if (!(view instanceof WebView)) {
             Log.w(TAG, "onCreateContextMenu - no webview reference found");
             return;
@@ -421,7 +417,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         int type = result.getType();
         Document htmlDoc = Jsoup.parse(html);
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft = requireFragmentManager().beginTransaction();
         String text;
         DialogFragment newFragment;
 
@@ -505,6 +501,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      * @return true when the current page on the webview's history stack is
      * the original rss item page
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean isCurrentPageRssItem() {
         if(binding.webview.copyBackForwardList().getCurrentItem() != null) {
             String currentPageUrl = binding.webview.copyBackForwardList().getCurrentItem().getOriginalUrl();

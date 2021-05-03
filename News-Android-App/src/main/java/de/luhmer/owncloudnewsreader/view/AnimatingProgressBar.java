@@ -85,13 +85,7 @@ public class AnimatingProgressBar extends ProgressBar {
             animator = ValueAnimator.ofInt(getProgress() * RESOLUTION, progress * RESOLUTION);
             animator.setInterpolator(DEFAULT_INTERPOLATOR);
             animator.setDuration(ANIMATION_DURATION);
-            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    AnimatingProgressBar.super.setProgress((Integer) animation.getAnimatedValue());
-                }
-            });
+            animator.addUpdateListener(animation -> AnimatingProgressBar.super.setProgress((Integer) animation.getAnimatedValue()));
         }
 
         animator.cancel();
@@ -110,13 +104,7 @@ public class AnimatingProgressBar extends ProgressBar {
             animatorSecondary = ValueAnimator.ofInt(getSecondaryProgress() * RESOLUTION, secondaryProgress * RESOLUTION);
             animatorSecondary.setInterpolator(DEFAULT_INTERPOLATOR);
             animatorSecondary.setDuration(ANIMATION_DURATION);
-            animatorSecondary.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    AnimatingProgressBar.super.setSecondaryProgress((Integer) animation.getAnimatedValue());
-                }
-            });
+            animatorSecondary.addUpdateListener(animation -> AnimatingProgressBar.super.setSecondaryProgress((Integer) animation.getAnimatedValue()));
         }
 
         animatorSecondary.cancel();

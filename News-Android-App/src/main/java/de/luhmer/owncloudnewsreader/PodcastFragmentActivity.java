@@ -261,7 +261,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
-    private float dipToPx(float dip) {
+    private float dipToPx(@SuppressWarnings("SameParameterValue") float dip) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
     }
 

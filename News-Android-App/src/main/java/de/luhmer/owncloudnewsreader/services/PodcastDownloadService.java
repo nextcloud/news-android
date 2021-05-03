@@ -36,7 +36,6 @@ import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
  */
 public class PodcastDownloadService extends IntentService {
 
-    @SuppressWarnings("unused")
     private static final String TAG = PodcastDownloadService.class.getCanonicalName();
 
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
@@ -45,7 +44,7 @@ public class PodcastDownloadService extends IntentService {
     private static final String EXTRA_RECEIVER = "de.luhmer.owncloudnewsreader.services.extra.RECEIVER";
     private static final String EXTRA_URL = "de.luhmer.owncloudnewsreader.services.extra.URL";
 
-    private EventBus eventBus;
+    private final EventBus eventBus;
 
     /**
      * Starts this service to download a podcast. If
@@ -164,7 +163,7 @@ public class PodcastDownloadService extends IntentService {
 
             long startTime = System.nanoTime();
 
-            byte data[] = new byte[1024];
+            byte[] data = new byte[1024];
             long total = 0;
             int count;
             int lastProgress = -1;
@@ -236,7 +235,7 @@ public class PodcastDownloadService extends IntentService {
     //public static final int UPDATE_PROGRESS = 5555;
 
 
-    public class DownloadProgressUpdate {
+    public static class DownloadProgressUpdate {
         public DownloadProgressUpdate(PodcastItem podcast) {
             this.podcast = podcast;
         }

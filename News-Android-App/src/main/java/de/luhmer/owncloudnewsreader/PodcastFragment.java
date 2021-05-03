@@ -214,7 +214,7 @@ public class PodcastFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create ContextThemeWrapper from the original Activity Context with the custom theme
         //Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_MaterialComponents_Light_DarkActionBar);
         // clone the inflater using the ContextThemeWrapper
@@ -259,7 +259,7 @@ public class PodcastFragment extends Fragment {
 
 
 
-    private SlidingUpPanelLayout.PanelSlideListener onPanelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
+    private final SlidingUpPanelLayout.PanelSlideListener onPanelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
         @Override
         public void onPanelSlide(View view, float v) { }
 
@@ -284,7 +284,7 @@ public class PodcastFragment extends Fragment {
 
 
     boolean blockSeekbarUpdate = false;
-    private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+    private final SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         int before;
 
         @Override
@@ -335,7 +335,7 @@ public class PodcastFragment extends Fragment {
         numberPicker.setWrapSelectorWheel(false);
 
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext());
 
         // set title
         alertDialogBuilder.setTitle(getString(R.string.podcast_playback_speed_dialog_title));
@@ -371,7 +371,7 @@ public class PodcastFragment extends Fragment {
         }
     }
 
-    private MediaControllerCompat.Callback controllerCallback =
+    private final MediaControllerCompat.Callback controllerCallback =
             new MediaControllerCompat.Callback() {
                 @Override
                 public void onMetadataChanged(MediaMetadataCompat metadata) {
@@ -569,7 +569,7 @@ public class PodcastFragment extends Fragment {
     }
     */
 
-    private MediaControllerCompat.Callback mediaControllerCallback = new MediaControllerCompat.Callback() {
+    private final MediaControllerCompat.Callback mediaControllerCallback = new MediaControllerCompat.Callback() {
         @Override
         public void onSessionReady() {
             Log.d(TAG, "onSessionReady() called");

@@ -32,6 +32,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import de.luhmer.owncloudnewsreader.R;
@@ -51,11 +52,11 @@ public class MemorizingDialogFragment extends DialogFragment
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "onCreate");
-        Bundle i = getArguments();
+        Bundle args = requireArguments();
 
-        app = i.getString(MemorizingTrustManager.DECISION_INTENT_APP);
-        decisionId = i.getInt(MemorizingTrustManager.DECISION_INTENT_ID, MTMDecision.DECISION_INVALID);
-        cert = i.getString(MemorizingTrustManager.DECISION_INTENT_CERT);
+        app = args.getString(MemorizingTrustManager.DECISION_INTENT_APP);
+        decisionId = args.getInt(MemorizingTrustManager.DECISION_INTENT_ID, MTMDecision.DECISION_INVALID);
+        cert = args.getString(MemorizingTrustManager.DECISION_INTENT_CERT);
         //Log.d(TAG, "onResume with " + i.getExtras() + " decId=" + decisionId);
         //Log.d(TAG, "data: " + i.getData());
 
@@ -66,7 +67,7 @@ public class MemorizingDialogFragment extends DialogFragment
 	public void onResume() {
 		super.onResume();
 		
-		new AlertDialog.Builder(getActivity()).setTitle(R.string.mtm_accept_cert)
+		new AlertDialog.Builder(requireContext()).setTitle(R.string.mtm_accept_cert)
 			.setMessage(cert)
 			.setPositiveButton(R.string.mtm_decision_always, this)
 			.setNegativeButton(R.string.mtm_decision_abort, this)
@@ -79,9 +80,9 @@ public class MemorizingDialogFragment extends DialogFragment
 		Intent i = new Intent(MemorizingTrustManager.DECISION_INTENT + "/" + app);
 		i.putExtra(MemorizingTrustManager.DECISION_INTENT_ID, decisionId);
 		i.putExtra(MemorizingTrustManager.DECISION_INTENT_CHOICE, decision);
-		getActivity().sendBroadcast(i);
+		requireActivity().sendBroadcast(i);
 		//finish();
-		getDialog().dismiss();
+		requireDialog().dismiss();
 	}
 
 	// react on AlertDialog button press
@@ -101,7 +102,7 @@ public class MemorizingDialogFragment extends DialogFragment
 		sendDecision(decision);
 	}
 
-	public void onCancel(DialogInterface dialog) {
+	public void onCancel(@NonNull DialogInterface dialog) {
 		sendDecision(MTMDecision.DECISION_ABORT);
 	}
 }

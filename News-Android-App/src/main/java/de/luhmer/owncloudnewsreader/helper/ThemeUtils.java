@@ -1,5 +1,5 @@
-/**
- * Android ownCloud News
+/*
+* Android ownCloud News
  *
  * @author David Luhmer
  * @copyright 2019 David Luhmer david-dev@live.de
@@ -33,6 +33,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -122,6 +123,7 @@ public class ThemeUtils {
      * @param activity
      * @param statusBarColor
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void changeStatusBarColor(Activity activity, @ColorInt int statusBarColor) {
         Window window = activity.getWindow();
         // clear FLAG_TRANSLUCENT_STATUS flag:

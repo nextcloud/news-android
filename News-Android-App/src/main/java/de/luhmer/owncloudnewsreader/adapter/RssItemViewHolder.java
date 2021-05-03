@@ -42,6 +42,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
     private static final SparseIntArray downloadProgressList = new SparseIntArray();
     private static FavIconHandler favIconHandler = null;
     protected final SharedPreferences mPrefs;
+    @SuppressWarnings("FieldCanBeLocal")
     private final int LengthBody = 400;
     private final ForegroundColorSpan bodyForegroundColor;
     private RecyclerItemClickListener clickListener;
@@ -51,7 +52,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
     private int starColor;
     private int inactiveStarColor;
 
-    private SparseIntArray initalFontSizes = new SparseIntArray();
+    private final SparseIntArray initalFontSizes = new SparseIntArray();
 
     RssItemViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
         super(binding.getRoot());
@@ -273,6 +274,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
         return rssItem;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean shouldStayUnread() {
         return stayUnread;
     }

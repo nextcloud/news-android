@@ -61,7 +61,7 @@ public class DatabaseConnectionOrm {
     private static final String[] VIDEO_FORMATS = { "video/mp4" };
     public enum SORT_DIRECTION { asc, desc }
 
-    private DaoSession daoSession;
+    private final DaoSession daoSession;
 
     private final static int PageSize = 100;
 
@@ -314,8 +314,13 @@ public class DatabaseConnectionOrm {
         List<RssItem> rssItemList;
         do {
             int offset = iterationCount * itemsPerIteration;
-            int limit = itemsPerIteration;
-            rssItemList = daoSession.getRssItemDao().queryBuilder().where(whereCondition).limit(limit).offset(offset).listLazy();
+            rssItemList = daoSession
+                    .getRssItemDao()
+                    .queryBuilder()
+                    .where(whereCondition)
+                    .limit(itemsPerIteration)
+                    .offset(offset)
+                    .listLazy();
             for (RssItem rssItem : rssItemList) {
                 rssItem.setRead_temp(true);
             }
@@ -394,7 +399,7 @@ public class DatabaseConnectionOrm {
 
     class UpdateRssItemAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private RssItem rssItem;
+        private final RssItem rssItem;
 
         UpdateRssItemAsyncTask(RssItem rssItem) {
             this.rssItem = rssItem;
@@ -665,13 +670,9 @@ public class DatabaseConnectionOrm {
 
         int totalUnreadItemsCount = 0;
 
-        Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
-        try
-        {
-            if(cursor != null)
-            {
-                if(cursor.getCount() > 0)
-                {
+        try (Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null)) {
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
                     cursor.moveToFirst();
                     do {
                         int folderId = cursor.getInt(0);
@@ -681,18 +682,16 @@ public class DatabaseConnectionOrm {
                         totalUnreadItemsCount += unreadCount;
 
                         values[1].put(feedId, String.valueOf(unreadCount));
-                        if(folderId != 0) {
-                            if(values[0].get(folderId) != null) {
+                        if (folderId != 0) {
+                            if (values[0].get(folderId) != null) {
                                 unreadCount += Integer.parseInt(values[0].get(folderId));
                             }
 
                             values[0].put(folderId, String.valueOf(unreadCount));
                         }
-                    } while(cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
             }
-        } finally {
-            cursor.close();
         }
 
 
@@ -791,14 +790,10 @@ public class DatabaseConnectionOrm {
     {
         long result = -1;
 
-        Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
-        try
-        {
-            if(cursor != null && cursor.moveToFirst()) {
+        try (Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
                 result = cursor.getLong(0);
             }
-        } finally {
-            cursor.close();
         }
 
         return result;
@@ -807,23 +802,17 @@ public class DatabaseConnectionOrm {
     public SparseArray<Integer> getIntegerSparseArrayFromSQL(String buildSQL, int indexKey, int indexValue) {
         SparseArray<Integer> result = new SparseArray<>();
 
-        Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
-        try
-        {
-            if(cursor != null)
-            {
-                if(cursor.getCount() > 0)
-                {
+        try (Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null)) {
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
                     cursor.moveToFirst();
                     do {
                         int key = cursor.getInt(indexKey);
                         Integer value = cursor.getInt(indexValue);
                         result.put(key, value);
-                    } while(cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
             }
-        } finally {
-            cursor.close();
         }
 
         return result;
@@ -832,23 +821,17 @@ public class DatabaseConnectionOrm {
     public SparseArray<String> getStringSparseArrayFromSQL(String buildSQL, int indexKey, int indexValue) {
         SparseArray<String> result = new SparseArray<>();
 
-        Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null);
-        try
-        {
-            if(cursor != null)
-            {
-                if(cursor.getCount() > 0)
-                {
+        try (Cursor cursor = daoSession.getDatabase().rawQuery(buildSQL, null)) {
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
                     cursor.moveToFirst();
                     do {
                         int key = cursor.getInt(indexKey);
                         String value = cursor.getString(indexValue);
                         result.put(key, value);
-                    } while(cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
             }
-        } finally {
-            cursor.close();
         }
 
         return result;

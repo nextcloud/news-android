@@ -1,5 +1,5 @@
-/**
- * Android ownCloud News
+/*
+* Android ownCloud News
  *
  * @author David Luhmer
  * @copyright 2013 David Luhmer david-dev@live.de

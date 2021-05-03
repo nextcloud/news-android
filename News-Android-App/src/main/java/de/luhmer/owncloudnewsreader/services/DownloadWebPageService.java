@@ -127,7 +127,7 @@ public class DownloadWebPageService extends Service {
         }
     }
 
-    private void delayedRunOnMainThread(Runnable runnable, int waitMillis) {
+    private void delayedRunOnMainThread(Runnable runnable, @SuppressWarnings("SameParameterValue") int waitMillis) {
         try {
             Thread.sleep(waitMillis);
             runOnMainThreadAndWait(runnable);
@@ -189,7 +189,7 @@ public class DownloadWebPageService extends Service {
 
     class DownloadWebPage implements Runnable {
 
-        private String url;
+        private final String url;
         private WebView webView;
         private final Object lock;
 
@@ -239,7 +239,7 @@ public class DownloadWebPageService extends Service {
         }
     }
 
-    class DownloadImageWebViewChromeClient extends WebChromeClient {
+    static class DownloadImageWebViewChromeClient extends WebChromeClient {
         @Override
         public boolean onConsoleMessage(ConsoleMessage cm) {
             //Log.d("TAG", cm.message() + " at " + cm.sourceId() + ":" + cm.lineNumber());

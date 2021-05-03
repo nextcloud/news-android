@@ -46,6 +46,7 @@ public class SquareRoundedBitmapDisplayer implements BitmapProcessor {
 
         // float scaleFactor = (float) width / bitmap.getWidth();
         int side = Math.min(bitmap.getWidth(), bitmap.getHeight());
+        //noinspection SuspiciousNameCombination
         int height = width;
 
          Log.d(TAG, "scale bitmap " + bitmap.getWidth() + "x" + bitmap.getHeight() + " -> " + width + "x" + height);

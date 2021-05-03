@@ -9,7 +9,7 @@ public class NextcloudStatus {
     public String version;
     public Warnings warnings;
 
-    class Warnings {
+    static class Warnings {
         public String improperlyConfiguredCron;
     }
 }

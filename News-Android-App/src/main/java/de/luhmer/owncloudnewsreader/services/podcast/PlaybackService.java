@@ -13,8 +13,8 @@ public abstract class PlaybackService {
     public enum VideoType { None, Video, VideoType, YouTube }
 
     private @PlaybackStateCompat.State int mStatus = PlaybackStateCompat.STATE_NONE;
-    private PodcastStatusListener podcastStatusListener;
-    private MediaItem mediaItem;
+    private final PodcastStatusListener podcastStatusListener;
+    private final MediaItem mediaItem;
 
     public interface PodcastStatusListener {
         void podcastStatusUpdated();
