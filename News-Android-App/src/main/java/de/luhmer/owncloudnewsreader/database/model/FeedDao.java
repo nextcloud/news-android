@@ -106,27 +106,26 @@ public class FeedDao extends AbstractDao<Feed, Long> {
     /** @inheritdoc */
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.getLong(offset);
     }    
 
     /** @inheritdoc */
     @Override
     public Feed readEntity(Cursor cursor, int offset) {
-        Feed entity = new Feed( //
-            cursor.getLong(offset + 0), // id
+        return new Feed( //
+            cursor.getLong(offset), // id
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // folderId
             cursor.getString(offset + 2), // feedTitle
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // faviconUrl
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // link
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // avgColour
         );
-        return entity;
     }
      
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, Feed entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setFolderId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setFeedTitle(cursor.getString(offset + 2));
         entity.setFaviconUrl(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
@@ -209,9 +208,8 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         String sql = builder.toString();
         
         String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
+
+        try (Cursor cursor = db.rawQuery(sql, keyArray)) {
             boolean available = cursor.moveToFirst();
             if (!available) {
                 return null;
@@ -219,8 +217,6 @@ public class FeedDao extends AbstractDao<Feed, Long> {
                 throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
             }
             return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
         }
     }
     

@@ -21,7 +21,7 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 
 public class MediaPlayerPlaybackService extends PlaybackService {
     private static final String TAG = MediaPlayerPlaybackService.class.getCanonicalName();
-    private MediaPlayer mMediaPlayer;
+    private final MediaPlayer mMediaPlayer;
     //private View parentView;
 
     public MediaPlayerPlaybackService(final Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
@@ -145,7 +145,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
         return mMediaPlayer.getVideoWidth();
     }
 
-    public void setVideoView(SurfaceView surfaceView, View parentResizableView) {
+    public void setVideoView(SurfaceView surfaceView) {
         if (surfaceView == null) {
             mMediaPlayer.setDisplay(null);
             //Log.v(TAG, "Disable Screen output!");
@@ -166,7 +166,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
     //private int mSurfaceWidth;
     //private int mSurfaceHeight;
     private SurfaceHolder mSurfaceHolder;
-    private SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback() {
+    private final SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback() {
         public void surfaceChanged(SurfaceHolder holder, int format, int surfaceWidth, int surfaceHeight) {
             Log.v(TAG, "surfaceChanged() called with: holder = [" + holder + "], format = [" + format + "], surfaceWidth = [" + surfaceWidth + "], surfaceHeight = [" + surfaceHeight + "]");
             //mSurfaceWidth = surfaceWidth;

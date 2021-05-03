@@ -35,9 +35,9 @@ import okio.BufferedSource;
  */
 public class RssItemObservable implements Publisher<Integer> {
 
-    private DatabaseConnectionOrm mDbConn;
-    private NewsAPI mNewsApi;
-    private SharedPreferences mPrefs;
+    private final DatabaseConnectionOrm mDbConn;
+    private final NewsAPI mNewsApi;
+    private final SharedPreferences mPrefs;
     private static final String TAG = RssItemObservable.class.getCanonicalName();
     private static int maxSizePerSync = 300;
 
@@ -130,7 +130,7 @@ public class RssItemObservable implements Publisher<Integer> {
                     .subscribe(new Observer<RssItem>() {
                         int totalUpdatedUnreadItemCount = 0;
                         final int bufferSize = 150;
-                        List<RssItem> buffer = new ArrayList<>(bufferSize); //Buffer of size X
+                        final List<RssItem> buffer = new ArrayList<>(bufferSize); //Buffer of size X
 
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {

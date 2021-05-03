@@ -158,7 +158,7 @@ public class OpmlXmlParser {
 
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
     // to their respective "read" methods for processing. Otherwise, skips the tag.
-    private static Entry ReadOutline(XmlPullParser parser) throws XmlPullParserException, IOException {
+    private static Entry ReadOutline(XmlPullParser parser) {
         //parser.require(XmlPullParser.START_TAG, ns, "outline");
 
         String link = parser.getAttributeValue(null, "xmlUrl");

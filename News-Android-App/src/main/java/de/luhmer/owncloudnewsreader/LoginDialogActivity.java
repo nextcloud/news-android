@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -63,6 +63,7 @@ import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -79,6 +80,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -141,15 +143,9 @@ public class LoginDialogActivity extends AppCompatActivity {
         binding.edtOwncloudRootPath.setText(mOc_root_path);
 
         binding.cbAllowAllSSLCertificates.setChecked(mCbDisableHostnameVerification);
-        binding.cbAllowAllSSLCertificates.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @SuppressLint("ApplySharedPref")
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mPrefs.edit()
-                        .putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
-                        .commit();
-            }
-        });
+        binding.cbAllowAllSSLCertificates.setOnCheckedChangeListener((buttonView, isChecked) -> mPrefs.edit()
+                .putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
+                .commit());
 	}
 
     @Override
@@ -200,7 +196,7 @@ public class LoginDialogActivity extends AppCompatActivity {
         binding.oldLoginWrapper.setVisibility(View.VISIBLE);
     }
 
-	private TextWatcher PasswordTextChangedListener = new TextWatcher() {
+	private final TextWatcher PasswordTextChangedListener = new TextWatcher() {
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -219,7 +215,7 @@ public class LoginDialogActivity extends AppCompatActivity {
 		}
 	};
 
-	private View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
+	private final View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mPasswordVisible = !mPasswordVisible;
@@ -274,21 +270,22 @@ public class LoginDialogActivity extends AppCompatActivity {
 	 * If there are form errors (invalid email, missing fields, etc.), the
 	 * errors are presented and no actual login attempt is made.
 	 */
-	public void attemptLogin() {
+	@SuppressLint({"SetTextI18n"})
+    public void attemptLogin() {
 		// Reset errors.
 		binding.username.setError(null);
 		binding.password.setError(null);
 		binding.edtOwncloudRootPath.setError(null);
 
 		// Append "https://" is url doesn't contain it already
-        mOc_root_path = binding.edtOwncloudRootPath.getText().toString().trim();
+        mOc_root_path = requireNonNull(binding.edtOwncloudRootPath.getText()).toString().trim();
         if(!mOc_root_path.startsWith("http")) {
             binding.edtOwncloudRootPath.setText("https://" + mOc_root_path);
         }
 
 		// Store values at the time of the login attempt.
-		mUsername = binding.username.getText().toString().trim();
-		mPassword = binding.password.getText().toString();
+		mUsername = requireNonNull(binding.username.getText()).toString().trim();
+		mPassword = requireNonNull(binding.password.getText()).toString();
 		mOc_root_path = binding.edtOwncloudRootPath.getText().toString().trim();
 
 		boolean cancel = false;

@@ -44,6 +44,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.util.SparseArray;
 
+import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -61,9 +65,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
 import de.luhmer.owncloudnewsreader.R;
 
 /**
@@ -94,11 +95,11 @@ public class MemorizingTrustManager implements X509TrustManager {
 	private static final SparseArray<MTMDecision> openDecisions = new SparseArray<>();
 
 	Handler masterHandler;
-	private File keyStoreFile;
-	private KeyStore appKeyStore;
-	private X509TrustManager defaultTrustManager;
+	private final File keyStoreFile;
+	private final KeyStore appKeyStore;
+	private final X509TrustManager defaultTrustManager;
 	private X509TrustManager appTrustManager;
-	private Context mContext;
+	private final Context mContext;
 	
 	/** Creates an instance of the MemorizingTrustManager class.
 	 *
@@ -496,24 +497,22 @@ public class MemorizingTrustManager implements X509TrustManager {
 			public void onReceive(Context ctx, Intent i) { interactResult(i); }
 		};
 		mContext.registerReceiver(decisionReceiver, new IntentFilter(DECISION_INTENT + "/" + mContext.getPackageName()));
-		masterHandler.post(new Runnable() {
-			public void run() {
-				Intent ni = new Intent(mContext, MemorizingDialogFragment.class);
-				ni.setData(Uri.parse(MemorizingTrustManager.class.getName() + "/" + myId));
+		masterHandler.post(() -> {
+			Intent ni = new Intent(mContext, MemorizingDialogFragment.class);
+			ni.setData(Uri.parse(MemorizingTrustManager.class.getName() + "/" + myId));
 
-                Bundle bundle = new Bundle();
-                bundle.putString(DECISION_INTENT_APP, mContext.getPackageName());
-                bundle.putInt(DECISION_INTENT_ID, myId);
-                bundle.putString(DECISION_INTENT_CERT, certMessage);
-				
-				DialogFragment dialog = new MemorizingDialogFragment();
-                dialog.setArguments(bundle);
-				try {
-					dialog.show(((FragmentActivity) getUI()).getSupportFragmentManager(), "NoticeDialogFragment");
-				} catch(Exception ex) {
-					Log.e(TAG, "startActivity: " + ex);
-					startActivityNotification(ni, certMessage);					
-				}
+			Bundle bundle = new Bundle();
+			bundle.putString(DECISION_INTENT_APP, mContext.getPackageName());
+			bundle.putInt(DECISION_INTENT_ID, myId);
+			bundle.putString(DECISION_INTENT_CERT, certMessage);
+
+			DialogFragment dialog = new MemorizingDialogFragment();
+			dialog.setArguments(bundle);
+			try {
+				dialog.show(((FragmentActivity) getUI()).getSupportFragmentManager(), "NoticeDialogFragment");
+			} catch (Exception ex) {
+				Log.e(TAG, "startActivity: " + ex);
+				startActivityNotification(ni, certMessage);
 			}
 		});
 

@@ -24,15 +24,14 @@ import de.luhmer.owncloudnewsreader.view.ChangeLogFileListView;
  */
 public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
 
-    @SuppressWarnings("unused")
     private static final String TAG = "DownloadChangelogTask";
 
     private static final String README_URL = "https://raw.githubusercontent.com/nextcloud/news-android/master/CHANGELOG.md";
     private static final String FILE_NAME = "changelog.xml";
 
-    private Context mContext;
-    private ChangeLogFileListView mChangelogView;
-    private Listener mListener;
+    private final Context mContext;
+    private final ChangeLogFileListView mChangelogView;
+    private final Listener mListener;
     private IOException exception;
 
     /**
@@ -126,7 +125,7 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
             } else if (!line.contains("---------------------")) {
                 // version start
                 versionStarted = true;
-                builder.append("<changelogversion versionName=\"" + line + "\">");
+                builder.append("<changelogversion versionName=\"").append(line).append("\">");
             }
         }
 
@@ -135,14 +134,11 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
         return builder.toString();
     }
 
-    private String saveToTempFile(String content, String fileName) throws IOException {
+    private String saveToTempFile(String content, @SuppressWarnings("SameParameterValue") String fileName) throws IOException {
         File file = File.createTempFile(fileName, null, mContext.getCacheDir());
-        BufferedWriter out = new BufferedWriter(new FileWriter(file));
 
-        try {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
             out.write(content);
-        } finally {
-            out.close();
         }
 
         return "file://" + file.getAbsolutePath();

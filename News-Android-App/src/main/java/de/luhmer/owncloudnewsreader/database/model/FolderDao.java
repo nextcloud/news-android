@@ -68,23 +68,22 @@ public class FolderDao extends AbstractDao<Folder, Long> {
     /** @inheritdoc */
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.getLong(offset);
     }    
 
     /** @inheritdoc */
     @Override
     public Folder readEntity(Cursor cursor, int offset) {
-        Folder entity = new Folder( //
-            cursor.getLong(offset + 0), // id
+        return new Folder( //
+            cursor.getLong(offset), // id
             cursor.getString(offset + 1) // label
         );
-        return entity;
     }
      
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, Folder entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setLabel(cursor.getString(offset + 1));
      }
     

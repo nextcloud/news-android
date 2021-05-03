@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -42,7 +42,7 @@ public class ImageHandler {
 	    	Matcher matcherSrcLink = patternImgSrcLink.matcher(matcher.group());
 	    	if(matcherSrcLink.find()) {
                 String link = matcherSrcLink.group(1);
-                if(link.startsWith("//")) { //Maybe the text contains image urls without http or https prefix.
+                if(link != null && link.startsWith("//")) { //Maybe the text contains image urls without http or https prefix.
                     link = "https:" + link;
                 }
 	    		links.add(link);

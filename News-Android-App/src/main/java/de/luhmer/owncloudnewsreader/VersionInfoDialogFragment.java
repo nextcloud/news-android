@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -59,12 +59,7 @@ public class VersionInfoDialogFragment extends DialogFragment {
         // build dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setView(view)
-                .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dismiss();
-                    }
-                })
+                .setPositiveButton(getString(android.R.string.ok), (dialog, which) -> dismiss())
                 .setCancelable(true) // React to click outside of version info
                 .setTitle("Changelog"); // changelog content is in english only anyways..
 

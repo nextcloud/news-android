@@ -40,26 +40,27 @@ import de.luhmer.owncloudnewsreader.model.CurrentRssViewDataHolder;
 public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "NewsListRecyclerAdapter";
 
+    @SuppressWarnings("FieldCanBeLocal")
     private final int VIEW_ITEM = 1; // Item
     private final int VIEW_PROG = 0; // Progress
 
     private long idOfCurrentlyPlayedPodcast = -1;
 
     private List<RssItem> lazyList;
-    private DatabaseConnectionOrm dbConn;
-    private PostDelayHandler pDelayHandler;
-    private FragmentActivity activity;
+    private final DatabaseConnectionOrm dbConn;
+    private final PostDelayHandler pDelayHandler;
+    private final FragmentActivity activity;
 
     private int totalItemCount = 0;
     private int cachedPages = 1;
 
-    private IPlayPausePodcastClicked playPausePodcastClicked;
+    private final IPlayPausePodcastClicked playPausePodcastClicked;
 
     private boolean loading = false;
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 5;
-    private SharedPreferences mPrefs;
+    private final int visibleThreshold = 5;
+    private final SharedPreferences mPrefs;
 
     public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler, SharedPreferences prefs) {
         this.activity = activity;
@@ -155,8 +156,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         Log.v(TAG, "Updating Listview - Podcast completed");
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, @NonNull int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_PROG) {
             View v = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.progressbar_item, parent, false);
@@ -355,7 +357,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private class RefreshDataAsyncTask extends AsyncTask<Void, Void, List<RssItem>> {
 
-        private IOnRefreshFinished listener;
+        private final IOnRefreshFinished listener;
 
         public RefreshDataAsyncTask(IOnRefreshFinished listener) {
             this.listener = listener;

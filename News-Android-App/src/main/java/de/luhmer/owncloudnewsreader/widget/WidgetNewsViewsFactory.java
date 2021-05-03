@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -48,9 +48,9 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 
     private DatabaseConnectionOrm dbConn;
     private LazyList<RssItem> rssItems;
-	private Context context;
+	private final Context context;
 
-	private int appWidgetId;
+	private final int appWidgetId;
 
 	public WidgetNewsViewsFactory(Context context, Intent intent) {
 		this.context = context;

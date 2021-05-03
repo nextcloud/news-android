@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -32,7 +32,7 @@ public class PostDelayHandler {
 
     private static final String TAG = "PostDelayHandler";
     private static Handler handlerTimer;
-    private Context context;
+    private final Context context;
     private static boolean isDelayed = false;
 
     public PostDelayHandler(Context context) {
@@ -67,17 +67,16 @@ public class PostDelayHandler {
         Log.v(TAG, "delay() called with: time = [" + time + "]");
         if(!isDelayed) {
             isDelayed = true;
-            handlerTimer.postDelayed(new Runnable(){
-                public void run() {
-                    isDelayed = false;
-                    Log.v(TAG, "Time exceeded.. Sync state of changed items. Delay was: " + time);
-                    if((!SyncItemStateService.isMyServiceRunning(context)) && NetworkConnection.isNetworkAvailable(context))
-                    {
-                        Log.v(TAG, "Starting SyncItemStateService");
+            handlerTimer.postDelayed(() -> {
+                isDelayed = false;
+                Log.v(TAG, "Time exceeded.. Sync state of changed items. Delay was: " + time);
+                if((!SyncItemStateService.isMyServiceRunning(context)) && NetworkConnection.isNetworkAvailable(context))
+                {
+                    Log.v(TAG, "Starting SyncItemStateService");
 
-                        SyncItemStateService.enqueueWork(context, new Intent());
-                    }
-                }}, time);
+                    SyncItemStateService.enqueueWork(context, new Intent());
+                }
+            }, time);
         }
     }
 }

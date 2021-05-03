@@ -188,14 +188,14 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
     /** @inheritdoc */
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.getLong(offset);
     }    
 
     /** @inheritdoc */
     @Override
     public RssItem readEntity(Cursor cursor, int offset) {
-        RssItem entity = new RssItem( //
-            cursor.getLong(offset + 0), // id
+        return new RssItem( //
+            cursor.getLong(offset), // id
             cursor.getLong(offset + 1), // feedId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // link
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // title
@@ -216,13 +216,12 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
             cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // mediaDescription
             cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19) != 0 // rtl
         );
-        return entity;
     }
      
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, RssItem entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setFeedId(cursor.getLong(offset + 1));
         entity.setLink(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setTitle(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
@@ -321,9 +320,8 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         String sql = builder.toString();
         
         String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
+
+        try (Cursor cursor = db.rawQuery(sql, keyArray)) {
             boolean available = cursor.moveToFirst();
             if (!available) {
                 return null;
@@ -331,8 +329,6 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
                 throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
             }
             return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
         }
     }
     

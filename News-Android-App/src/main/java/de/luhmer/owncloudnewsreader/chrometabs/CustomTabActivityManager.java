@@ -128,7 +128,7 @@ public class CustomTabActivityManager {
             List<ResolveInfo> handlers = pm.queryIntentActivities(
                     intent,
                     PackageManager.GET_RESOLVED_FILTER);
-            if (handlers == null || handlers.size() == 0) {
+            if (handlers.size() == 0) {
                 return false;
             }
             for (ResolveInfo resolveInfo : handlers) {

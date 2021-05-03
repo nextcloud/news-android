@@ -96,7 +96,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
 
 
-    private class NextcloudSyncResult {
+    private static class NextcloudSyncResult {
         private final List<Folder> folders;
         private final List<Feed>   feeds;
         private final boolean      stateSyncSuccessful;
@@ -122,17 +122,14 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
 
         Observable<Boolean> rssStateSync = Observable.fromPublisher(
-                new Publisher<Boolean>() {
-                    @Override
-                    public void subscribe(Subscriber<? super Boolean> s) {
-                        Log.v(TAG, "(rssStateSync) subscribe() called with: s = [" + s + "] [" + Thread.currentThread().getName() + "]");
-                        try {
-                            boolean success = ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
-                            s.onNext(success);
-                            s.onComplete();
-                        } catch(Exception ex) {
-                            s.onError(ex);
-                        }
+                (Publisher<Boolean>) s -> {
+                    Log.v(TAG, "(rssStateSync) subscribe() called with: s = [" + s + "] [" + Thread.currentThread().getName() + "]");
+                    try {
+                        boolean success = ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
+                        s.onNext(success);
+                        s.onComplete();
+                    } catch(Exception ex) {
+                        s.onError(ex);
                     }
                 }).subscribeOn(Schedulers.newThread());
 
@@ -148,12 +145,9 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                 .subscribeOn(Schedulers.newThread());
 
         // Wait for results
-        Observable<NextcloudSyncResult> combined = Observable.zip(folderObservable, feedsObservable, rssStateSync, new Function3<List<Folder>, List<Feed>, Boolean, NextcloudSyncResult>() {
-            @Override
-            public NextcloudSyncResult apply(@NonNull List<Folder> folders, @NonNull List<Feed> feeds, @NonNull Boolean mRes) {
-                Log.v(TAG, "apply() called with: folders = [" + folders + "], feeds = [" + feeds + "], mRes = [" + mRes + "] [" + Thread.currentThread().getName() + "]");
-                return new NextcloudSyncResult(folders, feeds, mRes);
-            }
+        Observable<NextcloudSyncResult> combined = Observable.zip(folderObservable, feedsObservable, rssStateSync, (folders, feeds, mRes) -> {
+            Log.v(TAG, "apply() called with: folders = [" + folders + "], feeds = [" + feeds + "], mRes = [" + mRes + "] [" + Thread.currentThread().getName() + "]");
+            return new NextcloudSyncResult(folders, feeds, mRes);
         });
 
         Log.v(TAG, "subscribing now.. [" + Thread.currentThread().getName() + "]");
@@ -192,15 +186,10 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                         Log.v(TAG, "[syncRssItems] - onNext() called with: totalCount = [" + totalCount + "]");
 
                         Handler handler = new Handler(Looper.getMainLooper());
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(
-                                        getContext(),
-                                        getContext().getResources().getQuantityString(R.plurals.fetched_items_so_far, totalCount, totalCount),
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        handler.post(() -> Toast.makeText(
+                                getContext(),
+                                getContext().getResources().getQuantityString(R.plurals.fetched_items_so_far, totalCount, totalCount),
+                                Toast.LENGTH_SHORT).show());
                     }
 
                     @Override

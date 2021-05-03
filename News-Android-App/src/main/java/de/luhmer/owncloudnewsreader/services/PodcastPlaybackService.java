@@ -106,7 +106,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     private PlaybackService mPlaybackService;
     private MediaSessionCompat mSession;
 
-    public static final float PLAYBACK_SPEEDS[] = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
+    public static final float[] PLAYBACK_SPEEDS = { 0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
     private float currentPlaybackSpeed = 1;
 
 
@@ -163,7 +163,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 mediaItems.add(new MediaBrowserCompat.MediaItem(desc.build(), MediaBrowserCompat.MediaItem.FLAG_BROWSABLE));
             }
         } else {
-            Long feedId = Long.parseLong(s.substring(5));
+            long feedId = Long.parseLong(s.substring(5));
             for (PodcastItem item: dbConn.getListOfAudioPodcastsForFeed(this, feedId)) {
                 MediaDescriptionCompat.Builder desc =
                         new MediaDescriptionCompat.Builder()
@@ -333,7 +333,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     }
     */
 
-    private PlaybackService.PodcastStatusListener podcastStatusListener = new PlaybackService.PodcastStatusListener() {
+    private final PlaybackService.PodcastStatusListener podcastStatusListener = new PlaybackService.PodcastStatusListener() {
         @Override
         public void podcastStatusUpdated() {
             syncMediaAndPlaybackStatus();
@@ -411,7 +411,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     @Subscribe
     public void onEvent(RegisterVideoOutput videoOutput) {
         if(mPlaybackService != null && mPlaybackService instanceof MediaPlayerPlaybackService) {
-            ((MediaPlayerPlaybackService) mPlaybackService).setVideoView(videoOutput.surfaceView, videoOutput.parentResizableView);
+            ((MediaPlayerPlaybackService) mPlaybackService).setVideoView(videoOutput.surfaceView);
         }
     }
 
@@ -471,7 +471,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         audioManager.abandonAudioFocus(audioFocusChangeListener);
     }
 
-    private AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = focusChange -> {
+    private final AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = focusChange -> {
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
             // Permanent loss of audio focus
             // Pause playback immediately
@@ -562,11 +562,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 .build());
         }
 
-        if(playbackState == PlaybackStateCompat.STATE_PLAYING) {
-            mSession.setActive(true);
-        } else {
-            mSession.setActive(false);
-        }
+        mSession.setActive(playbackState == PlaybackStateCompat.STATE_PLAYING);
 
         podcastNotification.updateStateOfNotification(playbackState, currentPosition, totalDuration);
     }
@@ -769,10 +765,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         List<PodcastItem> audioPodcasts= new ArrayList<>();
         for(PodcastFeedItem podcastFeed : dbConn.getListOfFeedsWithAudioPodcasts()) {
             long id = podcastFeed.mFeed.getId();
-            for(PodcastItem podcastItem : dbConn.getListOfAudioPodcastsForFeed(PodcastPlaybackService.this, id)) {
-
-                audioPodcasts.add(podcastItem);
-            }
+            audioPodcasts.addAll(dbConn.getListOfAudioPodcastsForFeed(PodcastPlaybackService.this, id));
         }
         return audioPodcasts;
     }

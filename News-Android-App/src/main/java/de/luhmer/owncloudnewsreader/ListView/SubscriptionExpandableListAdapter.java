@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -64,15 +64,14 @@ import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAd
 public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter {
     private final String TAG = getClass().getCanonicalName();
 
-    private Context mContext;
-    private DatabaseConnectionOrm dbConn;
+    private final Context mContext;
+    private final DatabaseConnectionOrm dbConn;
 
-    private ListView listView;
+    private final ListView listView;
 
     private ExpListTextClicked eListTextClickHandler;
 
-    private FavIconHandler favIconHandler;
-    private LayoutInflater inflater;
+    private final FavIconHandler favIconHandler;
 
     private ArrayList<AbstractItem> mCategoriesArrayList;
     private SparseArray<ArrayList<ConcreteFeedItem>> mItemsArrayList;
@@ -83,12 +82,12 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private SparseArray<String> unreadCountFolders;
     private SparseArray<String> unreadCountFeeds;
 
-    private SharedPreferences mPrefs;
+    private final SharedPreferences mPrefs;
 
     public enum SPECIAL_FOLDERS  {
         ALL_UNREAD_ITEMS(-10), ALL_STARRED_ITEMS(-11), ALL_ITEMS(-12), ITEMS_WITHOUT_FOLDER(-22);
 
-        private int id;
+        private final int id;
         SPECIAL_FOLDERS(int id) {
             this.id = id;
         }
@@ -112,7 +111,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         this.favIconHandler = new FavIconHandler(mContext);
         this.mPrefs = prefs;
 
-        this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	this.mContext = mContext;
     	this.dbConn = dbConn;
 
@@ -246,38 +244,30 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
 
         viewHolder.binding.summary.setText(group.header);
-        viewHolder.binding.listItemLayout.setOnClickListener(new OnClickListener() {
+        viewHolder.binding.listItemLayout.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
+            long idFeed = group.id_database;
+            boolean skipFireEvent = false;
 
-                long idFeed = group.id_database;
-                boolean skipFireEvent = false;
-
-                if (group instanceof ConcreteFeedItem) {
-                    fireListTextClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
-                    skipFireEvent = true;
-                }
-
-                if (!skipFireEvent)
-                    fireListTextClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
+            if (group instanceof ConcreteFeedItem) {
+                fireListTextClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
+                skipFireEvent = true;
             }
+
+            if (!skipFireEvent)
+                fireListTextClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
         });
 
-        viewHolder.binding.listItemLayout.setOnLongClickListener(new View.OnLongClickListener() {
+        viewHolder.binding.listItemLayout.setOnLongClickListener(v -> {
 
-            @Override
-            public boolean onLongClick(View v) {
+            long idFeed = group.id_database;
 
-                long idFeed = group.id_database;
-
-                if (group instanceof ConcreteFeedItem) {
-                    fireListTextLongClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
-                } else {
-                    fireListTextLongClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
-                }
-                return true; //consume event
+            if (group instanceof ConcreteFeedItem) {
+                fireListTextLongClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
+            } else {
+                fireListTextLongClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
             }
+            return true; //consume event
         });
 
 
@@ -337,14 +327,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                     contentDescriptionId = R.string.content_desc_expand;
                 }
         
-                viewHolder.binding.imgViewExpandableIndicator.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(isExpanded)
-                            ((ExpandableListView)listView).collapseGroup(groupPosition);
-                        else
-                            ((ExpandableListView)listView).expandGroup(groupPosition);
-                    }
+                viewHolder.binding.imgViewExpandableIndicator.setOnClickListener(v -> {
+                    if(isExpanded)
+                        ((ExpandableListView)listView).collapseGroup(groupPosition);
+                    else
+                        ((ExpandableListView)listView).expandGroup(groupPosition);
                 });
             }
         }
@@ -448,7 +435,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 }
             }
 
-            notifyCountDataSetChanged(unreadCountFoldersTemp, unreadCountFeedsTemp, urlsToFavIconsTemp, starredCountFeedsTemp);
+            notifyCountDataSetChanged(unreadCountFoldersTemp, unreadCountFeedsTemp, starredCountFeedsTemp);
             super.onPostExecute(aVoid);
         }
     }
@@ -527,7 +514,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         for(int groupPosition = 0; groupPosition < mCategoriesArrayListAsync.size(); groupPosition++) {
             //int parent_id = (int)getGroupId(groupPosition);
             int parent_id = (int) mCategoriesArrayListAsync.get(groupPosition).id_database;
-            mItemsArrayListAsync.append(parent_id, new ArrayList<ConcreteFeedItem>());
+            mItemsArrayListAsync.append(parent_id, new ArrayList<>());
 
             List<Feed> feedItemList = null;
 
@@ -557,7 +544,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
 
     @SuppressLint("NewApi") // wrongly reports setSelectionFromTop is only available in lollipop
-    public void notifyCountDataSetChanged(SparseArray<String> unreadCountFolders, SparseArray<String> unreadCountFeeds, SparseArray<String> urlsToFavIcons, SparseArray<String> starredCountFeeds) {
+    public void notifyCountDataSetChanged(SparseArray<String> unreadCountFolders, SparseArray<String> unreadCountFeeds, SparseArray<String> starredCountFeeds) {
         this.unreadCountFolders = unreadCountFolders;
         this.unreadCountFeeds = unreadCountFeeds;
         this.starredCountFeeds = starredCountFeeds;

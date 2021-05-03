@@ -17,11 +17,6 @@ public class DatabaseOrmGenerator {
      * (including older versions used for migration test purposes) and ensures
      * business rules are met; these include ensuring we only have a single
      * current schema instance and the version numbering is correct.
-     *
-     * @param args
-     *
-     * @throws Exception
-     * @throws IOException
      */
     public static void main(String[] args) throws Exception {
         List<SchemaVersion> versions = new ArrayList<>();
@@ -42,7 +37,6 @@ public class DatabaseOrmGenerator {
     /**
      * Validate the schema, throws
      *
-     * @param versions
      * @throws IllegalArgumentException
      *             if data is invalid
      */

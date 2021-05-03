@@ -15,10 +15,9 @@ import okhttp3.ResponseBody;
 
 public class OkHttpImageDownloader extends BaseImageDownloader {
 
-    @SuppressWarnings("unused")
     private static final String TAG = "OkHttpImageDownloader";
 
-    private OkHttpClient imageClient;
+    private final OkHttpClient imageClient;
 
     public OkHttpImageDownloader(Context context, OkHttpClient imageClient) {
         super(context);

@@ -1,5 +1,5 @@
-/**
- * Android ownCloud News
+/*
+* Android ownCloud News
  *
  * @author David Luhmer
  * @copyright 2013 David Luhmer david-dev@live.de
@@ -38,6 +38,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -47,6 +48,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -60,6 +62,8 @@ import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
+
+import static java.util.Objects.requireNonNull;
 
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
@@ -141,9 +145,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 
-		if (binding.toolbarLayout.toolbar != null) {
-			setSupportActionBar(binding.toolbarLayout.toolbar);
-		}
+		setSupportActionBar(binding.toolbarLayout.toolbar);
 		/*
 		if (bottomAppBar != null) {
 			setSupportActionBar(bottomAppBar);
@@ -159,10 +161,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			item_id = intent.getExtras().getInt(NewsReaderListActivity.ITEM_ID);
 		}
 		if (intent.hasExtra(NewsReaderListActivity.TITLE)) {
-			getSupportActionBar().setTitle(intent.getExtras().getString(NewsReaderListActivity.TITLE));
+			requireNonNull(getSupportActionBar()).setTitle(intent.getExtras().getString(NewsReaderListActivity.TITLE));
 		}
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 		rssItems = dbConn.getAllRssItems();
 
@@ -289,7 +291,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		rssItems.close();
 	}
 
-    private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+    private final ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
 
         @Override
         public void onPageSelected(int pos) {
@@ -348,9 +350,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		if (rssItems.get(position).getFeed() != null) {
 			// Try getting the feed title and use it for the action bar title
-			getSupportActionBar().setTitle(rssItems.get(position).getFeed().getFeedTitle());
+			requireNonNull(getSupportActionBar()).setTitle(rssItems.get(position).getFeed().getFeedTitle());
 		} else {
-			getSupportActionBar().setTitle(rssItems.get(position).getTitle());
+			requireNonNull(getSupportActionBar()).setTitle(rssItems.get(position).getTitle());
 		}
 
 		RssItem rssItem = rssItems.get(position);
@@ -480,38 +482,24 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		RssItem rssItem = rssItems.get(currentPosition);
 
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				onBackPressed();
-				return true;
-
-			case R.id.action_read:
-				this.markRead(currentPosition);
-				break;
-
-			case R.id.action_starred:
-				toggleRssItemStarredState();
-				break;
-
-			case R.id.action_openInBrowser:
-				this.openInBrowser(currentPosition);
-				break;
-
-			case R.id.action_playPodcast:
-				openPodcast(rssItem);
-				break;
-
-			case R.id.action_tts:
-				this.startTTS(currentPosition);
-				break;
-
-			case R.id.action_ShareItem:
-				this.share(currentPosition);
-				break;
-
-			case R.id.action_incognito_mode:
-				toggleIncognitoMode();
-				break;
+		final int itemId = item.getItemId();
+		if (itemId == android.R.id.home) {
+			onBackPressed();
+			return true;
+		} else if (itemId == R.id.action_read) {
+			this.markRead(currentPosition);
+		} else if (itemId == R.id.action_starred) {
+			toggleRssItemStarredState();
+		} else if (itemId == R.id.action_openInBrowser) {
+			this.openInBrowser(currentPosition);
+		} else if (itemId == R.id.action_playPodcast) {
+			openPodcast(rssItem);
+		} else if (itemId == R.id.action_tts) {
+			this.startTTS(currentPosition);
+		} else if (itemId == R.id.action_ShareItem) {
+			this.share(currentPosition);
+		} else if (itemId == R.id.action_incognito_mode) {
+			toggleIncognitoMode();
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -527,7 +515,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
 		String link = "about:blank";
 
-		if (newsDetailFragment != null && newsDetailFragment.binding.webview != null) {
+		if (newsDetailFragment != null) {
 			link = newsDetailFragment.binding.webview.getUrl();
 		}
 
@@ -536,7 +524,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		if (link.length() > 0) {
-			newsDetailFragment.loadURL(link);
+			requireNonNull(newsDetailFragment).loadURL(link);
 		}
 	}
 
@@ -610,7 +598,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
 		ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
 
-		Log.v(TAG, "Default Browser is: " + resolveInfo.loadLabel(getPackageManager()).toString());
+		Log.v(TAG, "Default Browser is: " + requireNonNull(resolveInfo).loadLabel(getPackageManager()).toString());
 		return (resolveInfo.loadLabel(getPackageManager()).toString().contains("Chrome"));
 	}
 
@@ -710,6 +698,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			}
 		}
 
+		@NonNull
 		@Override
 		public Fragment getItem(int position) {
 			NewsDetailFragment fragment = null;
@@ -730,7 +719,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
+		public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 			items.remove(position);
 
 			super.destroyItem(container, position, object);

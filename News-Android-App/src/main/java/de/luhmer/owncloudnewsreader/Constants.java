@@ -31,7 +31,7 @@ public class Constants {
         Pattern p = Pattern.compile("(\\d+).(\\d+).(\\d+)");
         Matcher m = p.matcher(appVersion);
 
-        int version[] = new int[] { 0, 0, 0 };
+        int[] version = new int[] { 0, 0, 0 };
         if (m.matches()) {
             version[0] = Integer.parseInt(m.group(1));
             version[1] = Integer.parseInt(m.group(2));

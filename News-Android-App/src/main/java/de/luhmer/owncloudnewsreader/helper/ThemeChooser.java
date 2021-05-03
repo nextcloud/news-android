@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -57,6 +57,7 @@ public class ThemeChooser {
             case 0: // Auto (Light / Dark)
                 Log.v(TAG, "Auto (Light / Dark)");
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    //noinspection deprecation
                     defaultNightMode = AppCompatDelegate.MODE_NIGHT_AUTO_TIME;
                 } else { // Android 10+ (Q) supports a system-wide dark mode
                     defaultNightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
@@ -131,6 +132,7 @@ public class ThemeChooser {
                 Log.v(TAG, "MODE_NIGHT_YES (Dark Theme)");
                 return true;
             case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
+                //noinspection deprecation
             case AppCompatDelegate.MODE_NIGHT_AUTO:
                 //Log.v(TAG, "MODE_NIGHT_AUTO");
                 int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;

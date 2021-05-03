@@ -68,59 +68,42 @@ public class NewsReaderListDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+        ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
 
-        mFeedId = getArguments().getLong("feedid");
-        mDialogTitle = getArguments().getString("title");
-        mDialogIconUrl = getArguments().getString("iconurl");
-        mDialogText = getArguments().getString("feedurl");
+        final Bundle args = requireArguments();
+        mFeedId = args.getLong("feedid");
+        mDialogTitle = args.getString("title");
+        mDialogIconUrl = args.getString("iconurl");
+        mDialogText = args.getString("feedurl");
         mMenuItems = new LinkedHashMap<>();
 
-        mMenuItems.put(getString(R.string.action_feed_rename), new MenuAction() {
-            @Override
-            public void execute() {
-                showRenameFeedView(mFeedId, mDialogTitle);
-            }
-        });
+        mMenuItems.put(getString(R.string.action_feed_rename), () -> showRenameFeedView(mFeedId, mDialogTitle));
 
-        mMenuItems.put(getString(R.string.action_feed_remove), new MenuAction() {
-            @Override
-            public void execute() {
-                showRemoveFeedView(mFeedId);
-            }
-        });
+        mMenuItems.put(getString(R.string.action_feed_remove), () -> showRemoveFeedView(mFeedId));
 
-        mMenuItems.put(getString(R.string.action_feed_move), new MenuAction() {
-            @Override
-            public void execute() { showMoveFeedView(mFeedId); }
-        });
+        mMenuItems.put(getString(R.string.action_feed_move), () -> showMoveFeedView(mFeedId));
 
-        int style = DialogFragment.STYLE_NO_TITLE;
-        int theme = R.style.FloatingDialog;
-        setStyle(style, theme);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FloatingDialog);
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentDialogFeedoptionsBinding.inflate(inflater, container, false);
 
-        FavIconHandler favIconHandler = new FavIconHandler(getContext());
+        FavIconHandler favIconHandler = new FavIconHandler(requireContext());
         favIconHandler.loadFavIconForFeed(mDialogIconUrl, binding.icMenuFeedicon);
 
         binding.tvMenuTitle.setText(mDialogTitle);
         binding.tvMenuText.setText(mDialogText);
 
-        binding.tvMenuText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mDialogText != null) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(mDialogText));
-                    startActivity(i);
-                }
+        binding.tvMenuText.setOnClickListener(v -> {
+            if (mDialogText != null) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(mDialogText));
+                startActivity(i);
             }
         });
 
@@ -133,13 +116,10 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
         binding.lvMenuList.setAdapter(arrayAdapter);
 
-        binding.lvMenuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String key = arrayAdapter.getItem(i);
-                MenuAction mAction = mMenuItems.get(key);
-                mAction.execute();
-            }
+        binding.lvMenuList.setOnItemClickListener((adapterView, view, i, l) -> {
+            String key = arrayAdapter.getItem(i);
+            MenuAction mAction = mMenuItems.get(key);
+            mAction.execute();
         });
         return binding.getRoot();
     }
@@ -182,19 +162,11 @@ public class NewsReaderListDialogFragment extends DialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if (s.toString().equals(feedName) || s.length() == 0) {
-                    binding.buttonRenameConfirm.setEnabled(false);
-                } else {
-                    binding.buttonRenameConfirm.setEnabled(true);
-                }
+                binding.buttonRenameConfirm.setEnabled(!s.toString().equals(feedName) && s.length() != 0);
             }
         });
 
-        binding.buttonRenameCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        binding.buttonRenameCancel.setOnClickListener(v -> dismiss());
 
         binding.buttonRenameConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -208,23 +180,17 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                 mApi.getNewsAPI().renameFeed(feedId, paramMap)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action() {
-                            @Override
-                            public void run() throws Exception {
-                                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-                                dbConn.renameFeedById(mFeedId, binding.renamefeedFeedname.getText().toString());
+                        .subscribe(() -> {
+                            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+                            dbConn.renameFeedById(mFeedId, binding.renamefeedFeedname.getText().toString());
 
-                                parentActivity.getSlidingListFragment().reloadAdapter();
-                                parentActivity.startSync();
+                            parentActivity.getSlidingListFragment().reloadAdapter();
+                            parentActivity.startSync();
 
-                                dismiss();
-                            }
-                        }, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(@NonNull Throwable throwable) throws Exception {
-                                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-                                dismiss();
-                            }
+                            dismiss();
+                        }, throwable -> {
+                            Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                            dismiss();
                         });
             }
         });
@@ -235,45 +201,33 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         binding.lvMenuList.setVisibility(View.GONE);
         binding.removeFeedDialog.setVisibility(View.VISIBLE);
 
-        binding.buttonRemoveCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        binding.buttonRemoveCancel.setOnClickListener(v -> dismiss());
 
-        binding.buttonRemoveConfirm.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                showProgress(true);
-                setCancelable(false);
-                getDialog().setCanceledOnTouchOutside(false);
+        binding.buttonRemoveConfirm.setOnClickListener(v -> {
+            showProgress(true);
+            setCancelable(false);
+            getDialog().setCanceledOnTouchOutside(false);
 
 
-                mApi.getNewsAPI().deleteFeed(feedId)
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action() {
-                            @Override
-                            public void run() throws Exception {
-                                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-                                dbConn.removeFeedById(mFeedId);
+            mApi.getNewsAPI().deleteFeed(feedId)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(() -> {
+                        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+                        dbConn.removeFeedById(mFeedId);
 
-                                Long currentFeedId = parentActivity.getNewsReaderDetailFragment().getIdFeed();
-                                if(currentFeedId != null && currentFeedId == mFeedId) {
-                                    parentActivity.switchToAllUnreadItemsFolder();
-                                }
-                                parentActivity.getSlidingListFragment().reloadAdapter();
-                                parentActivity.updateCurrentRssView();
+                        Long currentFeedId = parentActivity.getNewsReaderDetailFragment().getIdFeed();
+                        if(currentFeedId != null && currentFeedId == mFeedId) {
+                            parentActivity.switchToAllUnreadItemsFolder();
+                        }
+                        parentActivity.getSlidingListFragment().reloadAdapter();
+                        parentActivity.updateCurrentRssView();
 
-                                dismiss();
-                            }
-                        }, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(@NonNull Throwable throwable) throws Exception {
-                                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-                                dismiss();
-                            }
-                        });
-            }
+                        dismiss();
+                    }, throwable -> {
+                        Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        dismiss();
+                    });
         });
     }
 
@@ -299,40 +253,31 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
         ArrayAdapter<String> folderAdapter = new ArrayAdapter<> (getActivity(), R.layout.dialog_list_folder, android.R.id.text1, folderNames);
         binding.folderList.setAdapter(folderAdapter);
-        binding.folderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final Folder folder = folders.get(position);
+        binding.folderList.setOnItemClickListener((parent, view, position, id) -> {
+            final Folder folder = folders.get(position);
 
-                showProgress(true);
-                setCancelable(false);
-                getDialog().setCanceledOnTouchOutside(false);
+            showProgress(true);
+            setCancelable(false);
+            getDialog().setCanceledOnTouchOutside(false);
 
-                Map<String, Long> paramMap = new LinkedHashMap<>();
-                paramMap.put("folderId", folder.getId());
-                mApi.getNewsAPI().moveFeed(mFeedId, paramMap)
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action() {
-                            @Override
-                            public void run() {
-                                DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-                                Feed feed = dbConn.getFeedById(mFeedId);
-                                feed.setFolder(folder);
+            Map<String, Long> paramMap = new LinkedHashMap<>();
+            paramMap.put("folderId", folder.getId());
+            mApi.getNewsAPI().moveFeed(mFeedId, paramMap)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(() -> {
+                        DatabaseConnectionOrm dbConn1 = new DatabaseConnectionOrm(getContext());
+                        Feed feed = dbConn1.getFeedById(mFeedId);
+                        feed.setFolder(folder);
 
-                                parentActivity.getSlidingListFragment().reloadAdapter();
-                                parentActivity.startSync();
+                        parentActivity.getSlidingListFragment().reloadAdapter();
+                        parentActivity.startSync();
 
-                                dismiss();
-                            }
-                        }, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(@NonNull Throwable throwable) throws Exception {
-                                Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-                                dismiss();
-                            }
-                        });
-            }
+                        dismiss();
+                    }, throwable -> {
+                        Toast.makeText(getContext().getApplicationContext(), getString(R.string.login_dialog_text_something_went_wrong) + " - " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        dismiss();
+                    });
         });
 
     }

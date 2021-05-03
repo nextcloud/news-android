@@ -43,9 +43,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         binding = ActivitySyncIntervalSelectorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if (binding.toolbarLayout.toolbar != null) {
-            setSupportActionBar(binding.toolbarLayout.toolbar);
-        }
+        setSupportActionBar(binding.toolbarLayout.toolbar);
 
         items_values = getResources().getStringArray(R.array.array_sync_interval_values);
 
@@ -132,7 +130,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+            ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
         }
 
         @Override
@@ -152,7 +150,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
 
             int position = 0;
             int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING, SYNC_DEFAULT_INTERVAL);
-            for (String item : ((SyncIntervalSelectorActivity) getActivity()).items_values) {
+            for (String item : ((SyncIntervalSelectorActivity) requireActivity()).items_values) {
                 if (Integer.parseInt(item) == minutes)
                     break;
                 position++;

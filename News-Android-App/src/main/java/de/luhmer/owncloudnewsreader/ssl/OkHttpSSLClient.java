@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.JsonParseException;
 
 import java.io.IOException;
@@ -123,6 +125,7 @@ public class OkHttpSSLClient {
             this.mCredentials = credentials;
         }
 
+        @NonNull
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();

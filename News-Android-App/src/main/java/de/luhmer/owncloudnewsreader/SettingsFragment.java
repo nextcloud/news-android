@@ -75,7 +75,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        ((NewsReaderApplication) getActivity().getApplication()).getAppComponent().injectFragment(this);
+        ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
 
         // Define the settings file to use by this settings fragment
         getPreferenceManager().setSharedPreferencesName(sharedPreferencesFileName);
@@ -126,7 +126,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = (preference, value) -> {
+    private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = (preference, value) -> {
         String stringValue = value.toString();
 
         if (preference instanceof ListPreference) {
@@ -140,10 +140,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             // only enable black-bg setting if light or auto theme is selected
             if(SP_APP_THEME.equals(preference.getKey())) {
-                if (value.equals("1")) 	// value "1" means Light theme
-                    preference.getPreferenceManager().findPreference(CB_OLED_MODE).setEnabled(false);
-                else
-                    preference.getPreferenceManager().findPreference(CB_OLED_MODE).setEnabled(true);
+                // value "1" means Light theme
+                preference.getPreferenceManager().findPreference(CB_OLED_MODE).setEnabled(!value.equals("1"));
             }
 
         } else {
@@ -158,7 +156,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         return true;
     };
 
-    private static Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = (preference, newValue) -> {
+    private static final Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = (preference, newValue) -> {
         if(preference instanceof CheckBoxPreference) { //For legacy Android support
             CheckBoxPreference cbPreference = ((CheckBoxPreference) preference);
             cbPreference.setChecked((Boolean) newValue);
@@ -300,7 +298,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference changelogPreference = prefFrag.findPreference(CB_VERSION);
         changelogPreference.setOnPreferenceClickListener(preference -> {
             DialogFragment dialog = new VersionInfoDialogFragment();
-            dialog.show(prefFrag.getActivity().getFragmentManager(), "VersionChangelogDialogFragment");
+            dialog.show(prefFrag.requireActivity().getFragmentManager(), "VersionChangelogDialogFragment");
             return true;
         });
 
@@ -353,7 +351,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         String debugInfo = "Please describe your bug here...\n\n---\n";
 
         try {
-            PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            PackageInfo pInfo = requireContext().getPackageManager().getPackageInfo(requireContext().getPackageName(), 0);
             debugInfo += "\nApp Version: " + pInfo.versionName;
             debugInfo += "\nApp Version Code: " + pInfo.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
@@ -394,7 +392,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private ProgressDialog pd;
-        private Context context;
+        private final Context context;
 
         public ResetDatabaseAsyncTask(Context context) {
             this.context = context;

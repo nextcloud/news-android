@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -34,6 +34,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import de.greenrobot.dao.query.LazyList;
@@ -112,7 +113,7 @@ public class DownloadImagesService extends JobIntentService {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
         mNotificationDownloadImages = NextcloudNotificationManager.buildNotificationDownloadImageService(this, CHANNEL_ID);
 
-        if(downloadMode.equals(DownloadMode.FAVICONS_ONLY)) {
+        if(Objects.equals(downloadMode, DownloadMode.FAVICONS_ONLY)) {
             List<Feed> feedList = dbConn.getListOfFeeds();
             FavIconHandler favIconHandler = new FavIconHandler(getApplicationContext());
             for(Feed feed : feedList) {
@@ -122,7 +123,7 @@ public class DownloadImagesService extends JobIntentService {
                     Log.e(TAG, ex.getMessage());
                 }
             }
-        } else if(downloadMode.equals(DownloadMode.FAVICONS_AND_PICTURES) || downloadMode.equals(DownloadMode.PICTURES_ONLY)) {
+        } else if(Objects.equals(downloadMode, DownloadMode.FAVICONS_AND_PICTURES) || Objects.equals(downloadMode, DownloadMode.PICTURES_ONLY)) {
             long lastId = intent.getLongExtra(LAST_ITEM_ID, 0);
             List<RssItem> rssItemList = dbConn.getAllItemsWithIdHigher(lastId);
             List<String> links = new ArrayList<>();

@@ -1,4 +1,4 @@
-/**
+/*
 * Android ownCloud News
 *
 * @author David Luhmer
@@ -138,6 +138,7 @@ class InsertRssItemIntoDatabase {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static Boolean getBooleanOrDefault(String key, Boolean defaultValue, JsonObject jObj) {
         if(jObj.has(key) && !jObj.get(key).isJsonNull()) {
             return jObj.get(key).getAsBoolean();

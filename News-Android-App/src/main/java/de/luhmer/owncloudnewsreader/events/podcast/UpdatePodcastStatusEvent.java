@@ -6,14 +6,15 @@ import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 
 public class UpdatePodcastStatusEvent {
 
-    private long current;
-    private long max;
-    private String author;
-    private String title;
-    private @PlaybackStateCompat.State int status;
-    private PlaybackService.VideoType videoType;
-    private long rssItemId;
-    private float speed;
+    private final long current;
+    private final long max;
+    private final String author;
+    private final String title;
+    private @PlaybackStateCompat.State
+    final int status;
+    private final PlaybackService.VideoType videoType;
+    private final long rssItemId;
+    private final float speed;
 
     public long getRssItemId() {
         return rssItemId;

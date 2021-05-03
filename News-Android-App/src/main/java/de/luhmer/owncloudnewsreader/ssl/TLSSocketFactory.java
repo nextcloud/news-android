@@ -60,19 +60,19 @@ public class TLSSocketFactory extends SSLSocketFactory {
 
     //NoTLS
     @Override
-    public Socket createSocket(String s, int i) throws IOException {
+    public Socket createSocket(String s, int i) {
         return null;
     }
     @Override
-    public Socket createSocket(String s, int i, InetAddress inetAddress, int i2) throws IOException {
+    public Socket createSocket(String s, int i, InetAddress inetAddress, int i2) {
         return null;
     }
     @Override
-    public Socket createSocket(InetAddress inetAddress, int i) throws IOException {
+    public Socket createSocket(InetAddress inetAddress, int i) {
         return null;
     }
     @Override
-    public Socket createSocket(InetAddress inetAddress, int i, InetAddress inetAddress2, int i2) throws IOException {
+    public Socket createSocket(InetAddress inetAddress, int i, InetAddress inetAddress2, int i2) {
         return null;
     }
 

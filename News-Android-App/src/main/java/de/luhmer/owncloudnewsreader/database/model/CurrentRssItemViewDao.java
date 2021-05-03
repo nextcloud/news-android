@@ -48,7 +48,6 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
         db.execSQL(sql);
     }
 
-    /** @inheritdoc */
     @Override
     protected void bindValues(SQLiteStatement stmt, CurrentRssItemView entity) {
         stmt.clearBindings();
@@ -56,37 +55,31 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
         stmt.bindLong(2, entity.getRssItemId());
     }
 
-    /** @inheritdoc */
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.getLong(offset);
     }    
 
-    /** @inheritdoc */
     @Override
     public CurrentRssItemView readEntity(Cursor cursor, int offset) {
-        CurrentRssItemView entity = new CurrentRssItemView( //
-            cursor.getLong(offset + 0), // id
+        return new CurrentRssItemView( //
+            cursor.getLong(offset), // id
             cursor.getLong(offset + 1) // rssItemId
         );
-        return entity;
     }
      
-    /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, CurrentRssItemView entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setRssItemId(cursor.getLong(offset + 1));
      }
     
-    /** @inheritdoc */
     @Override
     protected Long updateKeyAfterInsert(CurrentRssItemView entity, long rowId) {
         entity.setId(rowId);
         return rowId;
     }
     
-    /** @inheritdoc */
     @Override
     public Long getKey(CurrentRssItemView entity) {
         if(entity != null) {
@@ -96,8 +89,7 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
         }
     }
 
-    /** @inheritdoc */
-    @Override    
+    @Override
     protected boolean isEntityUpdateable() {
         return true;
     }

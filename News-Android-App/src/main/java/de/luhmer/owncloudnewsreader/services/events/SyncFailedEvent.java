@@ -5,7 +5,7 @@ package de.luhmer.owncloudnewsreader.services.events;
  */
 public class SyncFailedEvent {
 
-    private Throwable throwable;
+    private final Throwable throwable;
 
     public SyncFailedEvent(Throwable throwable) {
         this.throwable = throwable;
