@@ -206,19 +206,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
      * @param inflater inflater provided to fragment
      */
     private void bindNavigationMenu(View parent, LayoutInflater inflater) {
-        // Bind settings menu at bottom of drawer
-        NavigationView navigationView = parent.findViewById(R.id.navigationMenu);
-        navigationView.setNavigationItemSelectedListener(item -> {
-            switch(item.getItemId()) {
-                case R.id.drawer_settings:
-                    Intent intent = new Intent(getContext(), SettingsActivity.class);
-                    getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
-                    return true;
-                default:
-                    return false;
-            }
-        });
-
         // Create NavigationView to show as footer of ListView
         View footerView =  inflater.inflate(R.layout.fragment_newsreader_list_footer, null, false);
         ExpandableListView list = parent.findViewById(R.id.expandableListView);
@@ -234,6 +221,10 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         Intent loginIntent = new Intent(getContext(), LoginDialogActivity.class);
                         getActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
                     }
+                    return true;
+                case R.id.drawer_settings:
+                    Intent intent = new Intent(getContext(), SettingsActivity.class);
+                    getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
                     return true;
                 default:
                     return false;
