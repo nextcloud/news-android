@@ -260,4 +260,6 @@
     <string name="array_sync_interval_hour_6">6 Stunden</string>
     <string name="array_sync_interval_hour_12">12 Stunden</string>
     <string name="array_sync_interval_hour_24">24 Stunden</string>
+    <string name="switch_account">Konto wechseln</string>
+
     </resources>

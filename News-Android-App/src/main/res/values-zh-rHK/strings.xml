@@ -254,4 +254,6 @@
     <string name="array_sync_interval_hour_6">6 小時</string>
     <string name="array_sync_interval_hour_12">12 小時</string>
     <string name="array_sync_interval_hour_24">24 小時</string>
+    <string name="switch_account">切換賬號</string>
+
     </resources>

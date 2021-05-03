@@ -260,4 +260,6 @@
     <string name="array_sync_interval_hour_6">6 ordu</string>
     <string name="array_sync_interval_hour_12">12 ordu</string>
     <string name="array_sync_interval_hour_24">24 ordu</string>
+    <string name="switch_account">Aldatu kontua</string>
+
     </resources>
