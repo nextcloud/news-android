@@ -18,7 +18,6 @@
     <color name="news_detail_background_color_oled">@android:color/black</color>
 
     <color name="owncloudBlue">#1D2D44</color>
-    <color name="nextcloudBlue">#006AA3</color>
 
     <color name="text_medium_emphasis">#a0ffffff</color>
 
