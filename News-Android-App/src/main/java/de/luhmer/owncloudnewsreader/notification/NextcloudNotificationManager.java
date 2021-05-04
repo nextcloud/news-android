@@ -332,7 +332,7 @@ public class NextcloudNotificationManager {
 
     private static NotificationManager getNotificationManagerAndCreateChannel(Context context, String channelId) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel mChannel = new NotificationChannel(channelId, channelId, importance);
             mChannel.setSound(null, null);

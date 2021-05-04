@@ -261,7 +261,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
      */
     private void setSoftwareRenderModeForWebView(String htmlPage, WebView webView) {
         if (htmlPage.contains(".gif")) {
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 // Workaround some playback issues with gifs on devices below android oreo
                 webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
             }

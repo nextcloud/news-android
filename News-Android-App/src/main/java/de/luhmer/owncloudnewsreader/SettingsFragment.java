@@ -11,8 +11,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -210,24 +210,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             return result;
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            // If we're running pre-L, we need to 'inject' our tint aware Views in place of the
-            // standard framework versions
-            switch (name) {
-                case "EditText":
-                    return new AppCompatEditText(this, attrs);
-                case "Spinner":
-                    return new AppCompatSpinner(this, attrs);
-                case "CheckBox":
-                    return new AppCompatCheckBox(this, attrs);
-                case "RadioButton":
-                    return new AppCompatRadioButton(this, attrs);
-                case "CheckedTextView":
-                    return new AppCompatCheckedTextView(this, attrs);
-                default:
-                    Log.v(TAG, "Error. Didn't find view of type: " + name);
-            }
-        }
         return null;
     }
     */
@@ -364,10 +346,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
         debugInfo += "\n\n---\n";
-        debugInfo += "\nOS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
-        debugInfo += "\nOS API Level: " + android.os.Build.VERSION.SDK_INT;
-        debugInfo += "\nDevice: " + android.os.Build.DEVICE;
-        debugInfo += "\nModel (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+        debugInfo += "\nOS Version: " + System.getProperty("os.version") + "(" + Build.VERSION.INCREMENTAL + ")";
+        debugInfo += "\nOS API Level: " + Build.VERSION.SDK_INT;
+        debugInfo += "\nDevice: " + Build.DEVICE;
+        debugInfo += "\nModel (and Product): " + Build.MODEL + " ("+ Build.PRODUCT + ")";
 
         debugInfo += "\n\n---\n\n";
 

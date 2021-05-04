@@ -149,10 +149,8 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
 
         super.onStop();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
-                finishAndRemoveTask();
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
+            finishAndRemoveTask();
         }
     }
 
@@ -164,11 +162,7 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
     @Subscribe
     public void onEvent(CollapsePodcastView event) {
         Log.d(TAG, "onEvent() called with: event = [" + event + "]");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAndRemoveTask();
-        } else {
-            finish();
-        }
+        finishAndRemoveTask();
     }
     */
 

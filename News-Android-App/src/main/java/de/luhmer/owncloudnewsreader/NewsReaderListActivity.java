@@ -827,7 +827,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 	private void checkAndStartDownloadWebPagesForOfflineReadingPermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
                     checkSelfPermission(Manifest.permission.FOREGROUND_SERVICE) == PackageManager.PERMISSION_GRANTED) {
                 Log.v("Permission error","You have permission");
