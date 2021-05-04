@@ -14,6 +14,7 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 
 [![Latest Release](https://img.shields.io/github/v/tag/nextcloud/news-android?label=latest+release&sort=semver)](https://github.com/nextcloud/news-android/releases)
 [![F-Droid Release](https://img.shields.io/f-droid/v/de.luhmer.owncloudnewsreader)](https://f-droid.org/de/packages/de.luhmer.owncloudnewsreader/)
+[![Beta channel](https://img.shields.io/badge/Play%0DStore-Beta%0Dchannel-informational)](https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader)
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Get it on Play Store"
@@ -25,7 +26,12 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
       alt="Donate with PayPal"
       height="80">](https://www.paypal.com/donate?hosted_button_id=5TJ6LTEVTDF5J)
 
-[![Beta channel](https://img.shields.io/badge/Play%0DStore-Beta%0Dchannel-informational)](https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader)
+
+## 👀 Screenshots
+
+| 1 | 2 | 3 |
+| --- | --- | --- |
+| ![Feed list](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Articles](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Details](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
 
 ## 👪 Join the team
 * Test the app with different devices
