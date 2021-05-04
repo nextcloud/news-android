@@ -159,7 +159,7 @@
 
 
     <!-- Settings for About -->
-    <string name="pref_header_about">A pitzu de</string>
+    <string name="pref_header_about">In contu de</string>
     <string name="pref_license">Lissèntzia</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) versione 3</string>
     <string name="pref_report_issue">Sinnala unu problema</string>

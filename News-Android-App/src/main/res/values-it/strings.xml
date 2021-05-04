@@ -181,6 +181,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Azioni delle icone (vista dettagliata)</string>
 
+    <string name="pref_display_apptheme_auto">Chiaro/Scuro (in base all\'orario)</string>
     <string name="pref_display_apptheme_light">Chiaro</string>
     <string name="pref_display_apptheme_dark">Scuro</string>
 
@@ -260,4 +261,6 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="array_sync_interval_hour_6">6 ore</string>
     <string name="array_sync_interval_hour_12">12 ore</string>
     <string name="array_sync_interval_hour_24">24 ore</string>
+    <string name="switch_account">Cambia account</string>
+
     </resources>
