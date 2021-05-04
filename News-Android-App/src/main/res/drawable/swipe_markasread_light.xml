@@ -7,6 +7,6 @@
         </selector>
     </item>
     <item android:left="5dp">
-        <bitmap android:src="@drawable/ic_check_box_white" android:gravity="center_vertical|left" />
+        <bitmap android:src="@drawable/ic_check_box_white" android:gravity="center_vertical|start" />
     </item>
 </layer-list>
