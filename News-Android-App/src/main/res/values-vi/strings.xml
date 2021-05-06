@@ -255,4 +255,6 @@
     <string name="array_sync_interval_hour_6">6 tiếng</string>
     <string name="array_sync_interval_hour_12">12 tiếng</string>
     <string name="array_sync_interval_hour_24">24 tiếng</string>
+    <string name="switch_account">Chuyển tài khoản</string>
+
     </resources>
