@@ -181,6 +181,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Atziones de is iconas (bista a minudu)</string>
 
+    <string name="pref_display_apptheme_auto">Craru/iscuru (basadu subra de Daytime)</string>
     <string name="pref_display_apptheme_light">Craru</string>
     <string name="pref_display_apptheme_dark">Iscuru</string>
 
@@ -259,4 +260,6 @@
     <string name="array_sync_interval_hour_6">6 Oras</string>
     <string name="array_sync_interval_hour_12">12 Oras</string>
     <string name="array_sync_interval_hour_24">24 Oras</string>
+    <string name="switch_account">Passa a àteru contu</string>
+
     </resources>
