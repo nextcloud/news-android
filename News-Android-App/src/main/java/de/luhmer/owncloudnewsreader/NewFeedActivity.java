@@ -4,9 +4,11 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,9 +26,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import com.nbsp.materialfilepicker.MaterialFilePicker;
-import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +47,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -164,13 +162,9 @@ public class NewFeedActivity extends AppCompatActivity {
     }
 
     private void openFilePicker() {
-        new MaterialFilePicker()
-                .withActivity(this)
-                .withRequestCode(REQUEST_CODE_OPML_IMPORT)
-                //.withFilter(Pattern.compile(".*\\.opml$")) // Filtering files and directories by file name using regexp
-                .withFilterDirectories(true) // Set directories filterable (false by default)
-                .withHiddenFiles(true) // Show hidden files and folders
-                .start();
+        startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT)
+                .addCategory(Intent.CATEGORY_OPENABLE)
+                .setType("text/*"), REQUEST_CODE_OPML_IMPORT);
     }
 
     public void exportOpml() {
@@ -219,9 +213,32 @@ public class NewFeedActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_OPML_IMPORT && resultCode == RESULT_OK) {
-            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            final Uri importUri = data.getData();
 
-            AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(filePath, NewFeedActivity.this));
+            switch (importUri.getScheme()) {
+                case ContentResolver.SCHEME_CONTENT:
+                case ContentResolver.SCHEME_FILE:
+                    new Thread(() -> {
+                        try {
+                            final File cacheFile = new File(getCacheDir().getAbsolutePath() + "/import.opml");
+                            final FileOutputStream outputStream = new FileOutputStream(cacheFile);
+                            byte[] buffer = new byte[4096];
+                            final InputStream inputStream = getContentResolver().openInputStream(importUri);
+
+                            int count;
+                            while ((count = inputStream.read(buffer)) > 0) {
+                                outputStream.write(buffer, 0, count);
+                            }
+                            runOnUiThread(() -> AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(cacheFile.getAbsolutePath(), NewFeedActivity.this)));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }).start();
+                    break;
+                default:
+                    Toast.makeText(this, "Unknown URI scheme: " + importUri.getScheme(), Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -240,8 +257,8 @@ public class NewFeedActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pd = new ProgressDialog(mContext);
-            pd.setTitle("Parsing OMPL...");
-            pd.setMessage("Please wait.");
+            pd.setTitle(getString(R.string.parsing_opml));
+            pd.setMessage(getString(R.string.please_wait));
             pd.setCancelable(false);
             pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pd.show();
