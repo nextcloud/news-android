@@ -7,6 +7,6 @@
         </selector>
     </item>
     <item android:right="5dp">
-        <bitmap android:src="@drawable/ic_action_star_dark" android:gravity="center_vertical|right" />
+        <bitmap android:src="@drawable/ic_action_star_dark" android:gravity="center_vertical|end" />
     </item>
 </layer-list>

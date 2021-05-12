@@ -201,7 +201,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             Log.v(TAG, "Stopping PodcastPlaybackService because of inactivity");
             stopSelf();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && mSession != null) {
+            if (mSession != null) {
                 mSession.release();
             }
         }

@@ -111,16 +111,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		/*
 		//make full transparent statusBar
-		if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-			setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
-		}
-		if (Build.VERSION.SDK_INT >= 19) {
-			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-		}
-		if (Build.VERSION.SDK_INT >= 21) {
-			setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-			getWindow().setStatusBarColor(Color.TRANSPARENT);
-		}
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+		setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+		getWindow().setStatusBarColor(Color.TRANSPARENT);
 
 
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -132,16 +125,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 		}
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			getWindow().setStatusBarColor(Color.WHITE);
-		}
+		getWindow().setStatusBarColor(Color.WHITE);
 		*/
 
 		// For Debugging the WebView using Chrome Remote Debugging
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			if (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)) {
-				WebView.setWebContentsDebuggingEnabled(true);
-			}
+		if (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)) {
+			WebView.setWebContentsDebuggingEnabled(true);
 		}
 
 
@@ -632,31 +621,28 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);
 		//ThemeUtils.changeStatusBarColor(this, color);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			//getWindow().setNavigationBarColor(color);
-			getWindow().setStatusBarColor(color);
+		//getWindow().setNavigationBarColor(color);
+		getWindow().setStatusBarColor(color);
 
-			/*
-			switch (ThemeChooser.getSelectedTheme()) {
-				case LIGHT:
-					Log.d(TAG, "initIncognitoMode: LIGHT");
-					setLightStatusBar(getWindow().getDecorView());
-					getWindow().setStatusBarColor(Color.WHITE);
-					break;
-				case DARK:
-					clearLightStatusBar(getWindow().getDecorView());
-					Log.d(TAG, "initIncognitoMode: DARK");
-					getWindow().setStatusBarColor(getResources().getColor(R.color.material_grey_900));
-					break;
-				case OLED:
-					clearLightStatusBar(getWindow().getDecorView());
-					Log.d(TAG, "initIncognitoMode: OLED");
-					getWindow().setStatusBarColor(Color.BLACK);
-					break;
-			}
-			*/
+		/*
+		switch (ThemeChooser.getSelectedTheme()) {
+			case LIGHT:
+				Log.d(TAG, "initIncognitoMode: LIGHT");
+				setLightStatusBar(getWindow().getDecorView());
+				getWindow().setStatusBarColor(Color.WHITE);
+				break;
+			case DARK:
+				clearLightStatusBar(getWindow().getDecorView());
+				Log.d(TAG, "initIncognitoMode: DARK");
+				getWindow().setStatusBarColor(getResources().getColor(R.color.material_grey_900));
+				break;
+			case OLED:
+				clearLightStatusBar(getWindow().getDecorView());
+				Log.d(TAG, "initIncognitoMode: OLED");
+				getWindow().setStatusBarColor(Color.BLACK);
+				break;
 		}
-
+		*/
 	}
 
 	/*

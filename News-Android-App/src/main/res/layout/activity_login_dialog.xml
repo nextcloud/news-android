@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/abc_dialog_padding_material"
+        android:layout_marginStart="@dimen/abc_dialog_padding_material"
         android:layout_marginTop="@dimen/abc_dialog_padding_material"
-        android:layout_marginRight="@dimen/abc_dialog_padding_material"
+        android:layout_marginEnd="@dimen/abc_dialog_padding_material"
         android:layout_marginBottom="@dimen/abc_dialog_padding_material"
         android:orientation="vertical">
 
@@ -144,8 +144,8 @@
                 android:layout_alignBottom="@+id/password_container"
                 android:layout_gravity="end"
                 android:contentDescription="@string/content_desc_show_password"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:src="@drawable/ic_action_visibility" />
 
             <CheckBox

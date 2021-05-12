@@ -326,7 +326,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     public boolean haveStoragePermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED) {
                 Log.v("Permission error","You have permission");
                 return true;
