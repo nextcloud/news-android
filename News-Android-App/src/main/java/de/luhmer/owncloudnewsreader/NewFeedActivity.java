@@ -163,8 +163,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
     private void openFilePicker() {
         startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT)
-                .addCategory(Intent.CATEGORY_OPENABLE)
-                .setType("text/*"), REQUEST_CODE_OPML_IMPORT);
+                .addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"), REQUEST_CODE_OPML_IMPORT);
     }
 
     public void exportOpml() {
@@ -219,12 +218,12 @@ public class NewFeedActivity extends AppCompatActivity {
                 case ContentResolver.SCHEME_CONTENT:
                 case ContentResolver.SCHEME_FILE:
                     new Thread(() -> {
-                        try {
-                            final File cacheFile = new File(getCacheDir().getAbsolutePath() + "/import.opml");
-                            final FileOutputStream outputStream = new FileOutputStream(cacheFile);
-                            byte[] buffer = new byte[4096];
-                            final InputStream inputStream = getContentResolver().openInputStream(importUri);
-
+                        final File cacheFile = new File(getCacheDir().getAbsolutePath() + "/import.opml");
+                        byte[] buffer = new byte[4096];
+                        try (
+                                final InputStream inputStream = getContentResolver().openInputStream(importUri);
+                                final FileOutputStream outputStream = new FileOutputStream(cacheFile)
+                        ) {
                             int count;
                             while ((count = inputStream.read(buffer)) > 0) {
                                 outputStream.write(buffer, 0, count);
