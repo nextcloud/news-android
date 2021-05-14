@@ -421,6 +421,9 @@
     <string name="array_sync_interval_hour_12">12 Hours</string>
     <string name="array_sync_interval_hour_24">24 Hours</string>
     <string name="switch_account">Switch account</string>
+    
+    <string name="successfully_exported">Successfully exported to:</string>
+    <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Parsing OPML</string>
     <string name="please_wait">Please wait…</string>
 
