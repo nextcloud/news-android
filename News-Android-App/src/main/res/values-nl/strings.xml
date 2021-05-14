@@ -261,5 +261,4 @@
     <string name="array_sync_interval_hour_12">12 uur</string>
     <string name="array_sync_interval_hour_24">24 uur</string>
     <string name="switch_account">Account wisselen</string>
-
     </resources>

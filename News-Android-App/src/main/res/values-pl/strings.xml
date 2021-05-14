@@ -271,5 +271,4 @@
     <string name="array_sync_interval_hour_12">12 godzin</string>
     <string name="array_sync_interval_hour_24">24 godziny</string>
     <string name="switch_account">Przełącz konto</string>
-
     </resources>

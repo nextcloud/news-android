@@ -262,5 +262,4 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="array_sync_interval_hour_12">12 ore</string>
     <string name="array_sync_interval_hour_24">24 ore</string>
     <string name="switch_account">Cambia account</string>
-
     </resources>

@@ -3,6 +3,7 @@
 
     <string name="auto_sync_string">自動同步</string>
     <string name="title_activity_sync_interval_selector">同步時間間距</string>
+    <string name="title_activity_news_detail">無需翻譯。Android 僅使用官方翻譯。</string>
     <string name="empty_view_content">無任何項目</string>
     <string name="toast_GettingMoreItems">正在開始下載更多項目...請稍後</string>
     <string name="no_wifi_available">WiFi 未連線</string>
@@ -255,5 +256,4 @@
     <string name="array_sync_interval_hour_12">12 小時</string>
     <string name="array_sync_interval_hour_24">24 小時</string>
     <string name="switch_account">切換賬號</string>
-
     </resources>
