@@ -196,9 +196,9 @@ public class NewFeedActivity extends AppCompatActivity {
             fos.close();
 
             new AlertDialog.Builder(this)
-                    .setMessage("Successfully exported to: " + path)
-                    .setTitle("OPML Export")
-                    .setNeutralButton("Ok", null)
+                    .setMessage(getString(R.string.successfully_exported) + " " + path)
+                    .setTitle(getString(R.string.opml_export))
+                    .setNeutralButton(getString(android.R.string.ok), null)
                     .create()
                     .show();
         }
