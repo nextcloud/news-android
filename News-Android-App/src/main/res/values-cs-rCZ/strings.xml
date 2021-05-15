@@ -73,7 +73,6 @@
     <string name="action_link_share">Sdílet odkaz</string>
     <string name="action_link_open">Otevřít odkaz v prohlížeči</string>
     <string name="action_link_copy">Zkopírovat odkaz</string>
-    <string name="toast_img_download_wait">Stahování… čekejte</string>
     <string name="toast_img_saved">Obrázek uložen</string>
     <string name="toast_img_notwriteable">Obrázek se nepodařilo zapsat.</string>
     <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
@@ -271,4 +270,5 @@
     <string name="array_sync_interval_hour_12">12 hodin</string>
     <string name="array_sync_interval_hour_24">24 hodin</string>
     <string name="switch_account">Přepnout účet</string>
+    
     </resources>

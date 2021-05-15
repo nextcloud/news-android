@@ -69,7 +69,6 @@
     <string name="action_link_share">Podeli vezu</string>
     <string name="action_link_open">Otvori vezu u pregledaču</string>
     <string name="action_link_copy">Kopiraj vezu</string>
-    <string name="toast_img_download_wait">Preuzimam… sačekajte molim</string>
     <string name="toast_img_saved">Slika sačuvana.</string>
     <string name="toast_img_notwriteable">Greška pri čuvanju slike.</string>
     <string name="toast_copied_to_clipboard">Kopirano u klipbord</string>

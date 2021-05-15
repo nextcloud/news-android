@@ -70,7 +70,6 @@
     <string name="action_link_share">Dijeli poveznicu</string>
     <string name="action_link_open">Otvori poveznicu u pregledniku</string>
     <string name="action_link_copy">Kopiraj poveznicu</string>
-    <string name="toast_img_download_wait">Preuzimanje... pričekajte</string>
     <string name="toast_img_saved">Slika je spremljena</string>
     <string name="toast_img_notwriteable">Zapisivanje slike nije uspjelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano u međuspremnik</string>

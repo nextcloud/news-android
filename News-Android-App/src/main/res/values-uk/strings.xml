@@ -49,7 +49,6 @@
     <string name="action_link_share">Поділитися посиланням</string>
     <string name="action_link_open">Відкрити посилання у переглядачі</string>
     <string name="action_link_copy">Копіювати посилання</string>
-    <string name="toast_img_download_wait">Звантаження.... зачекайте</string>
     <string name="toast_img_saved">Зображення збережено</string>
     <string name="toast_img_notwriteable">Помилка із записом зображення.</string>
     <string name="toast_copied_to_clipboard">Скопійовано в буфер обміну</string>

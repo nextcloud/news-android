@@ -72,7 +72,6 @@
     <string name="action_link_share">שיתוף קישור</string>
     <string name="action_link_open">פתיחת קישור בדפדפן</string>
     <string name="action_link_copy">העתקת קישור</string>
-    <string name="toast_img_download_wait">בהורדה... יש להמתין</string>
     <string name="toast_img_saved">תמונה נשמרה</string>
     <string name="toast_img_notwriteable">כתיבת התמונה נכשלה.</string>
     <string name="toast_copied_to_clipboard">הועתק ללוח הגזירים - clipboard</string>

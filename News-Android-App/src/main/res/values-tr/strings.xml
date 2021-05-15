@@ -67,7 +67,6 @@
     <string name="action_link_share">Paylaşım Bağlantısı</string>
     <string name="action_link_open">Bağlantıyı Tarayıcıda Aç</string>
     <string name="action_link_copy">Bağlantıyı Kopyala</string>
-    <string name="toast_img_download_wait">Lütfen bekleyin, indiriliyor …</string>
     <string name="toast_img_saved">Görsel kaydedildi</string>
     <string name="toast_img_notwriteable">Görsel diske yazılamadı.</string>
     <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
@@ -261,4 +260,5 @@
     <string name="array_sync_interval_hour_12">12 Saat</string>
     <string name="array_sync_interval_hour_24">24 Saat</string>
     <string name="switch_account">Hesabı değiştir</string>
+    
     </resources>

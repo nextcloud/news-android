@@ -67,7 +67,6 @@
     <string name="action_link_share">Compartir a ligazón</string>
     <string name="action_link_open">Abrir a ligazón no navegador</string>
     <string name="action_link_copy">Copiar a ligazón</string>
-    <string name="toast_img_download_wait">Descargando… Agarde</string>
     <string name="toast_img_saved">Imaxe gardada</string>
     <string name="toast_img_notwriteable">Produciuse un erro ao gravar a imaxe</string>
     <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>

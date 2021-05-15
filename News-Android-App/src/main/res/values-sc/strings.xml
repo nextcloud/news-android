@@ -67,7 +67,6 @@
     <string name="action_link_share">Cumpartzi Lingòngiu</string>
     <string name="action_link_open">Aberi Ligòngiu in su Navigadore</string>
     <string name="action_link_copy">Còpia Ligòngiu</string>
-    <string name="toast_img_download_wait">Iscarrighende… iseta pro praghere</string>
     <string name="toast_img_saved">Immàgines sarvadas</string>
     <string name="toast_img_notwriteable">Iscritura Immàgine faddida.</string>
     <string name="toast_copied_to_clipboard">Copiadu in is apuntos</string>
@@ -261,4 +260,5 @@
     <string name="array_sync_interval_hour_12">12 Oras</string>
     <string name="array_sync_interval_hour_24">24 Oras</string>
     <string name="switch_account">Passa a àteru contu</string>
+    
     </resources>

@@ -64,7 +64,6 @@
     <string name="action_link_share">Partilhar hiperligação</string>
     <string name="action_link_open">Abrir ligação num explorador</string>
     <string name="action_link_copy">Copiar hiperligação</string>
-    <string name="toast_img_download_wait">A transferir... por favor, aguarde</string>
     <string name="toast_img_saved">Imagem guardada</string>
     <string name="toast_img_notwriteable">Falhou ao guardar a imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>

@@ -67,7 +67,6 @@
     <string name="action_link_share">Del Link</string>
     <string name="action_link_open">Åbn Link i Browser</string>
     <string name="action_link_copy">Kopier link</string>
-    <string name="toast_img_download_wait">Henter... vent venligst</string>
     <string name="toast_img_saved">Billede gemp</string>
     <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>

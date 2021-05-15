@@ -67,7 +67,6 @@
     <string name="action_link_share">Delen link</string>
     <string name="action_link_open">Openen link in browser</string>
     <string name="action_link_copy">Kopiëren link </string>
-    <string name="toast_img_download_wait">Downloaden... even geduld...</string>
     <string name="toast_img_saved">Afbeelding opgeslagen</string>
     <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
     <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
@@ -261,4 +260,5 @@
     <string name="array_sync_interval_hour_12">12 uur</string>
     <string name="array_sync_interval_hour_24">24 uur</string>
     <string name="switch_account">Account wisselen</string>
+    
     </resources>

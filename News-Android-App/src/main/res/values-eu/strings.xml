@@ -67,7 +67,6 @@
     <string name="action_link_share">Partekatu esteka</string>
     <string name="action_link_open">Ireki esteka nabigatzailean</string>
     <string name="action_link_copy">Kopiatu esteka</string>
-    <string name="toast_img_download_wait">Deskargatzen... itxaron mesedez</string>
     <string name="toast_img_saved">Irudia gordeta</string>
     <string name="toast_img_notwriteable">Irudiaren idazketak huts egin du</string>
     <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
@@ -261,4 +260,5 @@
     <string name="array_sync_interval_hour_12">12 ordu</string>
     <string name="array_sync_interval_hour_24">24 ordu</string>
     <string name="switch_account">Aldatu kontua</string>
+    
     </resources>

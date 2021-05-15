@@ -67,7 +67,6 @@
     <string name="action_link_share">Del lenke</string>
     <string name="action_link_open">Åpne lenke i nettleser</string>
     <string name="action_link_copy">Kopier lenke</string>
-    <string name="toast_img_download_wait">Laster ned … vennligst vent</string>
     <string name="toast_img_saved">Bilde er lagret</string>
     <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
     <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>

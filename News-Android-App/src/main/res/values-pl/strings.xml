@@ -73,7 +73,6 @@
     <string name="action_link_share">Udostępnij link</string>
     <string name="action_link_open">Otwórz link w przeglądarce</string>
     <string name="action_link_copy">Kopiuj link</string>
-    <string name="toast_img_download_wait">Pobieranie… proszę czekać</string>
     <string name="toast_img_saved">Zapisano obraz</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
     <string name="toast_copied_to_clipboard">Kopiuj do schowka</string>
@@ -271,4 +270,5 @@
     <string name="array_sync_interval_hour_12">12 godzin</string>
     <string name="array_sync_interval_hour_24">24 godziny</string>
     <string name="switch_account">Przełącz konto</string>
+    
     </resources>

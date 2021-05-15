@@ -67,7 +67,6 @@
     <string name="action_link_share">Διαμοιρασμός συνδέσμου</string>
     <string name="action_link_open">Άνοιγμα συνδέσμου στον περιηγητή</string>
     <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
-    <string name="toast_img_download_wait">Λήψη... Παρακαλούμε περιμένετε</string>
     <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε</string>
     <string name="toast_img_notwriteable">Αποτυχία Εγγραφής Εικόνας.</string>
     <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>

@@ -67,7 +67,6 @@
     <string name="action_link_share">هم‌رسانی پیوند</string>
     <string name="action_link_open">گشودن پیوند در مرورگر</string>
     <string name="action_link_copy">رونوشت از پیوند</string>
-    <string name="toast_img_download_wait">در حال بارگیری… صبر لطفاً</string>
     <string name="toast_img_saved">تصویر ذخیره شد</string>
     <string name="toast_img_notwriteable">شکست در نوشتن تصویر</string>
     <string name="toast_copied_to_clipboard">در حافظه رونویسی شد</string>

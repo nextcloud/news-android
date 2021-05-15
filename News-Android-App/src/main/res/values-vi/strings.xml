@@ -64,7 +64,6 @@
     <string name="action_link_share">Chia sẻ liên kết</string>
     <string name="action_link_open">Mở liên kết trong trình duyệt</string>
     <string name="action_link_copy">Sao chép liên kết</string>
-    <string name="toast_img_download_wait">Đang tải xuống... vui lòng đợi</string>
     <string name="toast_img_saved">Đã lưu hình ảnh</string>
     <string name="toast_img_notwriteable">Ghi hình ảnh thất bại.</string>
     <string name="toast_copied_to_clipboard">Đã sao chép vào bộ nhớ tạm</string>
@@ -256,4 +255,5 @@
     <string name="array_sync_interval_hour_12">12 tiếng</string>
     <string name="array_sync_interval_hour_24">24 tiếng</string>
     <string name="switch_account">Chuyển tài khoản</string>
+    
     </resources>

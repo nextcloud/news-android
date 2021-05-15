@@ -67,7 +67,6 @@
     <string name="action_link_share">Jaa linkki</string>
     <string name="action_link_open">Avaa linkki selaimessa</string>
     <string name="action_link_copy">Kopioi linkki</string>
-    <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
     <string name="toast_img_saved">Kuva tallennettu</string>
     <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
     <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>

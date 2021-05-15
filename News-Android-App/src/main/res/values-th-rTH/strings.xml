@@ -50,7 +50,6 @@
     <string name="action_link_share">แชร์ลิงค์</string>
     <string name="action_link_open">เปิดลิงค์ในบราวเซอร์</string>
     <string name="action_link_copy">คัดลอกลิงค์</string>
-    <string name="toast_img_download_wait">กำลังดาวน์โหลด... โปรดรอสักครู่</string>
     <string name="toast_img_notwriteable">บันทึกรูปภาพล้มเหลว</string>
     <string name="toast_copied_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
     <string name="error_download_failed">ดาวน์โหลดล้มเหลว</string>

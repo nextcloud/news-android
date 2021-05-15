@@ -59,7 +59,6 @@
     <string name="action_link_share">Сподели връзката</string>
     <string name="action_link_open">Отвори връзката в браузъра</string>
     <string name="action_link_copy">Копирай връзката</string>
-    <string name="toast_img_download_wait">Сваляне... Моля изчакайте</string>
     <string name="toast_img_saved">Изображението е записано</string>
     <string name="toast_img_notwriteable">Записването на изображението се провали.</string>
     <string name="toast_copied_to_clipboard">Копирана</string>
