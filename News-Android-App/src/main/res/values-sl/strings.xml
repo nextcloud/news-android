@@ -73,6 +73,7 @@
     <string name="action_link_share">Objavi povezavo</string>
     <string name="action_link_open">Odpri povezavo v brskalniku</string>
     <string name="action_link_copy">Kopiraj povezavo</string>
+    <string name="toast_img_download_wait">Počakajte, poteka prejemanje ...</string>
     <string name="toast_img_saved">Slika je shranjena.</string>
     <string name="toast_img_notwriteable">Zapisovanje slike je spodletelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano v odložišče</string>
@@ -271,4 +272,9 @@
     <string name="array_sync_interval_hour_24">24 ur</string>
     <string name="switch_account">Preklopi račun</string>
     
+    <string name="successfully_exported">Uspešno izvoženo v;</string>
+    <string name="opml_export">Izvoz OPML</string>
+    <string name="parsing_opml">Razčlenjevanje OPML</string>
+    <string name="please_wait">Počakajte ...</string>
+
     </resources>

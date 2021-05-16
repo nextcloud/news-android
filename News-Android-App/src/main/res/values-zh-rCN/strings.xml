@@ -64,6 +64,7 @@
     <string name="action_link_share">共享图片链接</string>
     <string name="action_link_open">在浏览器中打开链接</string>
     <string name="action_link_copy">复制链接</string>
+    <string name="toast_img_download_wait">下载中 ... 请等待</string>
     <string name="toast_img_saved">图片已保存</string>
     <string name="toast_img_notwriteable">未能写入图片。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
@@ -256,4 +257,9 @@
     <string name="array_sync_interval_hour_24">24 小时</string>
     <string name="switch_account">切换账户</string>
     
+    <string name="successfully_exported">已成功导出到：</string>
+    <string name="opml_export">OPML 导出</string>
+    <string name="parsing_opml">解析 OPML</string>
+    <string name="please_wait">请等待 ...</string>
+
     </resources>
