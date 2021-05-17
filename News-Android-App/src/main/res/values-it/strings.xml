@@ -67,6 +67,7 @@
     <string name="action_link_share">Condividi collegamento</string>
     <string name="action_link_open">Apri collegamento nel browser</string>
     <string name="action_link_copy">Copia collegamento</string>
+    <string name="toast_img_download_wait">Scaricamento... Attendi per favore.</string>
     <string name="toast_img_saved">Immagine salvata</string>
     <string name="toast_img_notwriteable">Scrittura dell\'immagine non riuscita.</string>
     <string name="toast_copied_to_clipboard">Copiato negli appunti</string>
@@ -262,4 +263,9 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="array_sync_interval_hour_24">24 ore</string>
     <string name="switch_account">Cambia account</string>
     
+    <string name="successfully_exported">Esportazione riuscita verso:</string>
+    <string name="opml_export">Esportazione OPML</string>
+    <string name="parsing_opml">Analisi OMPL</string>
+    <string name="please_wait">Attendi per favore...</string>
+
     </resources>

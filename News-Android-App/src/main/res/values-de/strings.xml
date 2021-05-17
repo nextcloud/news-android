@@ -67,6 +67,7 @@
     <string name="action_link_share">Link teilen</string>
     <string name="action_link_open">Link im Browser öffnen</string>
     <string name="action_link_copy">Link kopieren</string>
+    <string name="toast_img_download_wait">Lade herunter... Bitte warten Sie.</string>
     <string name="toast_img_saved">Bild gespeichert</string>
     <string name="toast_img_notwriteable">Fehler beim Schreiben des Bildes.</string>
     <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
@@ -261,4 +262,9 @@
     <string name="array_sync_interval_hour_24">24 Stunden</string>
     <string name="switch_account">Konto wechseln</string>
     
+    <string name="successfully_exported">Erfolgreich exportiert nach:</string>
+    <string name="opml_export">OPML Export</string>
+    <string name="parsing_opml">Analysiere OPML</string>
+    <string name="please_wait">Bitte warten Sie ...</string>
+
     </resources>

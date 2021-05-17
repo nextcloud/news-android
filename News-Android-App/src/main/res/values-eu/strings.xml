@@ -67,6 +67,7 @@
     <string name="action_link_share">Partekatu esteka</string>
     <string name="action_link_open">Ireki esteka nabigatzailean</string>
     <string name="action_link_copy">Kopiatu esteka</string>
+    <string name="toast_img_download_wait">Deskargatzen... Itxaron mesedez.</string>
     <string name="toast_img_saved">Irudia gordeta</string>
     <string name="toast_img_notwriteable">Irudiaren idazketak huts egin du</string>
     <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
@@ -261,4 +262,9 @@
     <string name="array_sync_interval_hour_24">24 ordu</string>
     <string name="switch_account">Aldatu kontua</string>
     
+    <string name="successfully_exported">Ondo esportatu da:</string>
+    <string name="opml_export">OPML Esportatu</string>
+    <string name="parsing_opml">OPML analizatzen</string>
+    <string name="please_wait">Itxaron mesedez...</string>
+
     </resources>
