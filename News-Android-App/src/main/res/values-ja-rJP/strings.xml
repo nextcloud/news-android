@@ -64,6 +64,7 @@
     <string name="action_link_share">共有リンク</string>
     <string name="action_link_open">リンクをブラウザーで開く</string>
     <string name="action_link_copy">リンクをコピー</string>
+    <string name="toast_img_download_wait">ダウンロード中…しばらくお待ちください。</string>
     <string name="toast_img_saved">画像を保存しました</string>
     <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
     <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
@@ -253,4 +254,10 @@
     <string name="array_sync_interval_hour_6">6 時間</string>
     <string name="array_sync_interval_hour_12">12 時間</string>
     <string name="array_sync_interval_hour_24">24 時間</string>
+    <string name="switch_account">アカウントの切り替え</string>
+    
+    <string name="opml_export">OPMLをエクスポート</string>
+    <string name="parsing_opml">OPMLを解析中</string>
+    <string name="please_wait">しばらくお待ちください…</string>
+
     </resources>
