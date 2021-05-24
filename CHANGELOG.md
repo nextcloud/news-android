@@ -1,3 +1,12 @@
+0.9.9.60
+---------------------
+- Changed - Major Design Update thanks to @stefan-niedermann!
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/944">#944 Drop dark mode based on location</a>
+- Fixed - OPML Export Dialog is now translated <a href="https://github.com/nextcloud/news-android/issues/958">#958</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/945">#945 New Thubmnails list layout does not show favorite status</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/938">#938 Everincreasing Fontsize with Fontsize setting "Big"</a>
+
+
 0.9.9.54
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/918">#918 Poor scroll performance for some feeds</a>
