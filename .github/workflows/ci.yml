@@ -65,3 +65,8 @@ jobs:
         with:
           name: app-dev-debug
           path: News-Android-App/build/outputs/apk/dev/debug/News-Android-App-dev-debug.apk
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk
+          path: android/app/build/outputs/apk/release/app-release.apk
