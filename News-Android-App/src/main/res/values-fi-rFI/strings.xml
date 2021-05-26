@@ -67,6 +67,7 @@
     <string name="action_link_share">Jaa linkki</string>
     <string name="action_link_open">Avaa linkki selaimessa</string>
     <string name="action_link_copy">Kopioi linkki</string>
+    <string name="toast_img_download_wait">Ladataan... Odota.</string>
     <string name="toast_img_saved">Kuva tallennettu</string>
     <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
     <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
@@ -120,6 +121,9 @@
     <string name="pref_header_general">Yleiset</string>
     <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
 
+    <string name="pref_general_sort_order_new_old">Uusi → Vanha</string>
+    <string name="pref_general_sort_order_old_new">Vanha → Uusi</string>
+
     <string name="pref_rename_action_swipe_right">Toiminto oikealle pyyhkäistäessä</string>
     <string name="pref_rename_action_swipe_left">Toiminto vasemmalle pyyhkäistäessä</string>
 
@@ -162,6 +166,7 @@
     <string name="pref_report_issue_summary">Vaatii (ilmaisen) GitHub-tilin</string>
     <string name="pref_contribute">Osallistu!</string>
     <string name="pref_contribute_summary">Hanki lähdekoodi</string>
+    <string name="pref_privacy">Yksityisyys</string>
     <string name="pref_version">Nextcloud News Android-sovellus</string>
 
 
@@ -175,6 +180,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Artikkelinäkymän toimintopainikkeet</string>
 
+    <string name="pref_display_apptheme_auto">Vaalea/Tumma (Vuorokaudenaikaan perustuen)</string>
     <string name="pref_display_apptheme_light">Vaalea</string>
     <string name="pref_display_apptheme_dark">Tumma</string>
 
@@ -185,6 +191,7 @@
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Pienoiskuvat (otsikoissa)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Esikatselukuvat</string>
     <string name="pref_display_feed_list_layout_simple_text">Yksinkertainen teksti</string>
     <string name="pref_display_feed_list_layout_headlines">Otsikot</string>
@@ -252,4 +259,11 @@
     <string name="array_sync_interval_hour_6">6 tuntia</string>
     <string name="array_sync_interval_hour_12">12 tuntia</string>
     <string name="array_sync_interval_hour_24">24 tuntia</string>
+    <string name="switch_account">Vaihda tiliä</string>
+    
+    <string name="successfully_exported">Viety onnistuneesti kohteeseen:</string>
+    <string name="opml_export">OPML-vienti</string>
+    <string name="parsing_opml">Jäsennetään OPML-tietoja</string>
+    <string name="please_wait">Odota...</string>
+
     </resources>
