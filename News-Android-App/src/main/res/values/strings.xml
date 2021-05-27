@@ -410,16 +410,16 @@
 
 
     <string name="array_sync_interval_min_0">Never</string>
-    <string name="array_sync_interval_min_5">5 Minutes</string>
-    <string name="array_sync_interval_min_15">15 Minutes</string>
-    <string name="array_sync_interval_min_30">30 Minutes</string>
-    <string name="array_sync_interval_min_45">45 Minutes</string>
-    <string name="array_sync_interval_hour_1">1 Hour</string>
-    <string name="array_sync_interval_hour_2">2 Hours</string>
-    <string name="array_sync_interval_hour_3">3 Hours</string>
-    <string name="array_sync_interval_hour_6">6 Hours</string>
-    <string name="array_sync_interval_hour_12">12 Hours</string>
-    <string name="array_sync_interval_hour_24">24 Hours</string>
+    <string name="array_sync_interval_min_5">5 minutes</string>
+    <string name="array_sync_interval_min_15">15 minutes</string>
+    <string name="array_sync_interval_min_30">30 minutes</string>
+    <string name="array_sync_interval_min_45">45 minutes</string>
+    <string name="array_sync_interval_hour_1">1 hour</string>
+    <string name="array_sync_interval_hour_2">2 hours</string>
+    <string name="array_sync_interval_hour_3">3 hours</string>
+    <string name="array_sync_interval_hour_6">6 hours</string>
+    <string name="array_sync_interval_hour_12">12 hours</string>
+    <string name="array_sync_interval_hour_24">24 hours</string>
     <string name="switch_account">Switch account</string>
     
     <string name="successfully_exported">Successfully exported to:</string>
