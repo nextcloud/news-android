@@ -245,14 +245,4 @@
     <string name="pref_data_sync_image_cache_ask">Pitaj kada nema bežične veze</string>
 
     <string name="array_sync_interval_min_0">Nikad</string>
-    <string name="array_sync_interval_min_5">5 minuta</string>
-    <string name="array_sync_interval_min_15">15 minuta</string>
-    <string name="array_sync_interval_min_30">30 minuta</string>
-    <string name="array_sync_interval_min_45">45 minuta</string>
-    <string name="array_sync_interval_hour_1">1 sat</string>
-    <string name="array_sync_interval_hour_2">2 sata</string>
-    <string name="array_sync_interval_hour_3">3 sata</string>
-    <string name="array_sync_interval_hour_6">6 sati</string>
-    <string name="array_sync_interval_hour_12">12 sati</string>
-    <string name="array_sync_interval_hour_24">24 sata</string>
     </resources>

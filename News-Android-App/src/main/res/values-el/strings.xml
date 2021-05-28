@@ -247,14 +247,4 @@
     <string name="pref_data_sync_image_cache_ask">Ερώτηση αν δεν υπάρχει σύνδεση WiFi</string>
 
     <string name="array_sync_interval_min_0">Ποτέ</string>
-    <string name="array_sync_interval_min_5">5 λεπτά</string>
-    <string name="array_sync_interval_min_15">15 λεπτά</string>
-    <string name="array_sync_interval_min_30">30 λεπτά</string>
-    <string name="array_sync_interval_min_45">45 λεπτά</string>
-    <string name="array_sync_interval_hour_1">1 ώρα</string>
-    <string name="array_sync_interval_hour_2">2 ώρες</string>
-    <string name="array_sync_interval_hour_3">3 ώρες</string>
-    <string name="array_sync_interval_hour_6">6 ώρες</string>
-    <string name="array_sync_interval_hour_12">12 ώρες</string>
-    <string name="array_sync_interval_hour_24">24 ώρες</string>
     </resources>

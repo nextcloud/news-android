@@ -245,14 +245,4 @@
     <string name="pref_data_sync_image_cache_ask">Pregunta-m\'ho quan no estigui connectat a una xarxa Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Mai</string>
-    <string name="array_sync_interval_min_5">5 minuts</string>
-    <string name="array_sync_interval_min_15">15 minuts</string>
-    <string name="array_sync_interval_min_30">30 minuts</string>
-    <string name="array_sync_interval_min_45">45 minuts</string>
-    <string name="array_sync_interval_hour_1">1 hora</string>
-    <string name="array_sync_interval_hour_2">2 hores</string>
-    <string name="array_sync_interval_hour_3">3 hores</string>
-    <string name="array_sync_interval_hour_6">6 hores</string>
-    <string name="array_sync_interval_hour_12">12 hores</string>
-    <string name="array_sync_interval_hour_24">24 hores</string>
     </resources>

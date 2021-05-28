@@ -146,14 +146,4 @@
     <string name="pref_data_sync_image_cache_wifi_only">Лише через WiFi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Через WiFi та у мобільних мережах</string>
     <string name="array_sync_interval_min_0">Ніколи</string>
-    <string name="array_sync_interval_min_5">5 хвилин</string>
-    <string name="array_sync_interval_min_15">15 хвилин</string>
-    <string name="array_sync_interval_min_30">30 хвилин</string>
-    <string name="array_sync_interval_min_45">45 хвилин</string>
-    <string name="array_sync_interval_hour_1">1 година</string>
-    <string name="array_sync_interval_hour_2">2 години</string>
-    <string name="array_sync_interval_hour_3">3 години</string>
-    <string name="array_sync_interval_hour_6">6 годин</string>
-    <string name="array_sync_interval_hour_12">12 годин</string>
-    <string name="array_sync_interval_hour_24">24 години</string>
     </resources>

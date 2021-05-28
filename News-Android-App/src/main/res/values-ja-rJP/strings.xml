@@ -244,16 +244,6 @@
     <string name="pref_data_sync_image_cache_ask">WiFi接続がない場合は尋ねる</string>
 
     <string name="array_sync_interval_min_0">なし</string>
-    <string name="array_sync_interval_min_5">5 分</string>
-    <string name="array_sync_interval_min_15">15 分</string>
-    <string name="array_sync_interval_min_30">30 分</string>
-    <string name="array_sync_interval_min_45">45 分</string>
-    <string name="array_sync_interval_hour_1">1 時間</string>
-    <string name="array_sync_interval_hour_2">2 時間</string>
-    <string name="array_sync_interval_hour_3">3 時間</string>
-    <string name="array_sync_interval_hour_6">6 時間</string>
-    <string name="array_sync_interval_hour_12">12 時間</string>
-    <string name="array_sync_interval_hour_24">24 時間</string>
     <string name="switch_account">アカウントの切り替え</string>
     
     <string name="opml_export">OPMLをエクスポート</string>

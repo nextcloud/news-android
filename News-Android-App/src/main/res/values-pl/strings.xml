@@ -260,16 +260,6 @@
     <string name="pref_data_sync_image_cache_ask">Zapytaj gdy nie podłączony do WiFi</string>
 
     <string name="array_sync_interval_min_0">Nigdy</string>
-    <string name="array_sync_interval_min_5">5 minut</string>
-    <string name="array_sync_interval_min_15">15 minut</string>
-    <string name="array_sync_interval_min_30">30 minut</string>
-    <string name="array_sync_interval_min_45">45 minut</string>
-    <string name="array_sync_interval_hour_1">1 godzina</string>
-    <string name="array_sync_interval_hour_2">2 godziny</string>
-    <string name="array_sync_interval_hour_3">3 godziny</string>
-    <string name="array_sync_interval_hour_6">6 godzin</string>
-    <string name="array_sync_interval_hour_12">12 godzin</string>
-    <string name="array_sync_interval_hour_24">24 godziny</string>
     <string name="switch_account">Przełącz konto</string>
     
     <string name="successfully_exported">Pomyślnie wyeksportowano do:</string>
