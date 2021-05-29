@@ -67,7 +67,7 @@
     <string name="action_link_share">Link de Compartilhamento</string>
     <string name="action_link_open">Abrir o Link no Navegador</string>
     <string name="action_link_copy">Copiar link</string>
-    <string name="toast_img_download_wait">Fazendo o download... Por favor aguarde.</string>
+    <string name="toast_img_download_wait">Fazendo o download... Aguarde.</string>
     <string name="toast_img_saved">Imagem gravada</string>
     <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
@@ -167,7 +167,7 @@
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código-fonte</string>
     <string name="pref_privacy">Privacidade</string>
-    <string name="pref_privacy_summary">Notícias Nextcloud Política de privacidade do Android</string>
+    <string name="pref_privacy_summary">Política de privacidade do Android para o Nextcloud Notícias</string>
     <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
 
 
@@ -181,7 +181,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Exibição detalhada)</string>
 
-    <string name="pref_display_apptheme_auto">Claro/Escuro (com base no período do dia)</string>
+    <string name="pref_display_apptheme_auto">Claro/Escuro (com base no horário)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 
@@ -250,11 +250,21 @@
     <string name="pref_data_sync_image_cache_ask">Perguntar quando não conectado por WiFi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 horas</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
     <string name="switch_account">Mudar de conta</string>
     
     <string name="successfully_exported">Exportado com sucesso para:</string>
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Analisando o arquivo OPML</string>
-    <string name="please_wait">Por favor aguarde...</string>
+    <string name="please_wait">Aguarde...</string>
 
     </resources>
