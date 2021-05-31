@@ -250,6 +250,16 @@
     <string name="pref_data_sync_image_cache_ask">Wi-Fi bağlı değilken sorulsun</string>
 
     <string name="array_sync_interval_min_0">Asla</string>
+    <string name="array_sync_interval_min_5">5 dakika</string>
+    <string name="array_sync_interval_min_15">15 dakika</string>
+    <string name="array_sync_interval_min_30">30 dakika</string>
+    <string name="array_sync_interval_min_45">45 dakika</string>
+    <string name="array_sync_interval_hour_1">1 saat</string>
+    <string name="array_sync_interval_hour_2">2 saat</string>
+    <string name="array_sync_interval_hour_3">3 saat</string>
+    <string name="array_sync_interval_hour_6">6 saat</string>
+    <string name="array_sync_interval_hour_12">12 saat</string>
+    <string name="array_sync_interval_hour_24">24 saat</string>
     <string name="switch_account">Hesabı değiştir</string>
     
     <string name="successfully_exported">Şuraya dışa aktarıldı:</string>

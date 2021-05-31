@@ -251,6 +251,16 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="pref_data_sync_image_cache_ask">Chiedi se non connesso al WiFi</string>
 
     <string name="array_sync_interval_min_0">Mai</string>
+    <string name="array_sync_interval_min_5">5 minuti</string>
+    <string name="array_sync_interval_min_15">15 minuti</string>
+    <string name="array_sync_interval_min_30">30 minuti</string>
+    <string name="array_sync_interval_min_45">45 minuti</string>
+    <string name="array_sync_interval_hour_1">1 ora</string>
+    <string name="array_sync_interval_hour_2">2 ore</string>
+    <string name="array_sync_interval_hour_3">3 ore</string>
+    <string name="array_sync_interval_hour_6">6 ore</string>
+    <string name="array_sync_interval_hour_12">12 ore</string>
+    <string name="array_sync_interval_hour_24">24 ore</string>
     <string name="switch_account">Cambia account</string>
     
     <string name="successfully_exported">Esportazione riuscita verso:</string>
