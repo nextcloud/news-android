@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/slide_up_panel_slider_background_color">
+            android:background="@color/slide_up_panel_background_color">
 
             <TextView
                 android:id="@+id/tv_titleSlider"
@@ -243,7 +243,7 @@
         android:layout_height="@dimen/podcast_media_control_height"
         android:paddingStart="@dimen/podcast_horizontal_margin"
         android:paddingEnd="@dimen/podcast_horizontal_margin"
-        android:background="@color/slide_up_panel_slider_background_color"
+        android:background="@color/slide_up_panel_background_color"
         android:orientation="vertical"
         android:layoutDirection="ltr">
 
