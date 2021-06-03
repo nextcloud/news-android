@@ -40,7 +40,7 @@
     <string name="action_sync_settings">Ustawienia synchronizacji</string>
     <string name="action_add_new_feed">Dodaj nowy kanał</string>
     <string name="action_textToSpeech">Przeczytane</string>
-    <string name="action_search">Wyszukaj</string>
+    <string name="action_search">Szukaj</string>
     <string name="action_download_articles_offline">Pobierz artykuły offline</string>
     <!-- notifications -->
     <string name="notification_download_articles_offline">Pobieranie artykułów do użytku offline</string>

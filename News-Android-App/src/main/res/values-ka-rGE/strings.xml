@@ -171,14 +171,4 @@
     <string name="pref_data_sync_image_cache_ask">შეკითხვა როდესაც არაა კავშირი WiFi-სთან</string>
 
     <string name="array_sync_interval_min_0">არასდროს</string>
-    <string name="array_sync_interval_min_5">5 წუთი</string>
-    <string name="array_sync_interval_min_15">15 წუთი</string>
-    <string name="array_sync_interval_min_30">30 წუთი</string>
-    <string name="array_sync_interval_min_45">45 წუთი</string>
-    <string name="array_sync_interval_hour_1">1 საათი</string>
-    <string name="array_sync_interval_hour_2">2 საათი</string>
-    <string name="array_sync_interval_hour_3">3 საათი</string>
-    <string name="array_sync_interval_hour_6">6 საათი</string>
-    <string name="array_sync_interval_hour_12">12 საათი</string>
-    <string name="array_sync_interval_hour_24">24 საათი</string>
     </resources>

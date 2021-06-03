@@ -64,6 +64,7 @@
     <string name="action_link_share">링크 공유</string>
     <string name="action_link_open">브라우저에서 링크 열기</string>
     <string name="action_link_copy">링크 복사</string>
+    <string name="toast_img_download_wait">다운로드 중… 잠시만 기다려주세요.</string>
     <string name="toast_img_saved">이미지 저장됨</string>
     <string name="toast_img_notwriteable">사진을 기록할 수 없습니다.</string>
     <string name="toast_copied_to_clipboard">클립보드로 복사됨</string>
@@ -175,6 +176,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">동작 아이콘(자세히 보기)</string>
 
+    <string name="pref_display_apptheme_auto">밝음 / 어두움 (낮 기준)</string>
     <string name="pref_display_apptheme_light">밝게</string>
     <string name="pref_display_apptheme_dark">어둡게</string>
 
@@ -185,6 +187,7 @@
     <string name="pref_display_browser_built_in">내장 브라우저</string>
     <string name="pref_display_browser_external">외부 브라우저</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">미리보기 이미지 (헤드라인만 해당)</string>
     <string name="pref_display_feed_list_layout_thumbnails">썸네일</string>
     <string name="pref_display_feed_list_layout_simple_text">간단한 텍스트</string>
     <string name="pref_display_feed_list_layout_headlines">헤드라인</string>
@@ -242,14 +245,11 @@
     <string name="pref_data_sync_image_cache_ask">Wi-Fi에 연결되지 않았을 때 묻기</string>
 
     <string name="array_sync_interval_min_0">하지 않음</string>
-    <string name="array_sync_interval_min_5">5분</string>
-    <string name="array_sync_interval_min_15">15분</string>
-    <string name="array_sync_interval_min_30">30분</string>
-    <string name="array_sync_interval_min_45">45분</string>
-    <string name="array_sync_interval_hour_1">1시간</string>
-    <string name="array_sync_interval_hour_2">2시간</string>
-    <string name="array_sync_interval_hour_3">3시간</string>
-    <string name="array_sync_interval_hour_6">6시간</string>
-    <string name="array_sync_interval_hour_12">12시간</string>
-    <string name="array_sync_interval_hour_24">24시간</string>
+    <string name="switch_account">계정 전환</string>
+    
+    <string name="successfully_exported">성공적으로 내보낸 위치 :</string>
+    <string name="opml_export">OPML 내보내기</string>
+    <string name="parsing_opml">OPML 구문 분석</string>
+    <string name="please_wait">잠시 기다리십시오 …</string>
+
     </resources>

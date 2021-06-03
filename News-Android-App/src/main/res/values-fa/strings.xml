@@ -242,14 +242,4 @@
     <string name="pref_data_sync_image_cache_ask">پرسش هنگام وصل نبودن به وای‌فای</string>
 
     <string name="array_sync_interval_min_0">هرگز</string>
-    <string name="array_sync_interval_min_5">۵ دقیقه</string>
-    <string name="array_sync_interval_min_15">یک ربع</string>
-    <string name="array_sync_interval_min_30">نیم ساعت</string>
-    <string name="array_sync_interval_min_45">سه ربع</string>
-    <string name="array_sync_interval_hour_1">۱ ساعت</string>
-    <string name="array_sync_interval_hour_2">۲ ساعت</string>
-    <string name="array_sync_interval_hour_3">۳ ساعت</string>
-    <string name="array_sync_interval_hour_6">۶ ساعت</string>
-    <string name="array_sync_interval_hour_12">۱۲ ساعت</string>
-    <string name="array_sync_interval_hour_24">۲۴ ساعت</string>
     </resources>

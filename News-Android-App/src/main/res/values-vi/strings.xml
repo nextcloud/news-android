@@ -244,16 +244,6 @@
     <string name="pref_data_sync_image_cache_ask">Hỏi khi không kết nối WiFi</string>
 
     <string name="array_sync_interval_min_0">Không bao giờ</string>
-    <string name="array_sync_interval_min_5">5 phút</string>
-    <string name="array_sync_interval_min_15">15 phút</string>
-    <string name="array_sync_interval_min_30">30 phút</string>
-    <string name="array_sync_interval_min_45">45 phút</string>
-    <string name="array_sync_interval_hour_1">1 tiếng</string>
-    <string name="array_sync_interval_hour_2">2 tiếng</string>
-    <string name="array_sync_interval_hour_3">3 tiếng</string>
-    <string name="array_sync_interval_hour_6">6 tiếng</string>
-    <string name="array_sync_interval_hour_12">12 tiếng</string>
-    <string name="array_sync_interval_hour_24">24 tiếng</string>
     <string name="switch_account">Chuyển tài khoản</string>
     
     </resources>

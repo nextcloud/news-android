@@ -29,7 +29,7 @@
     <string name="action_starred">スター</string>
     <string name="action_read">既読</string>
     <string name="action_playPodacst">Podcast を再生</string>
-    <string name="action_openInBrowser">ブラウザで開く</string>
+    <string name="action_openInBrowser">ブラウザーで開く</string>
     <string name="action_Share">共有</string>
     <string name="action_login">サーバー設定</string>
     <string name="action_save">保存</string>
@@ -137,7 +137,7 @@
     <string name="pref_title_NavigateWithVolumeButtons">ボリュームボタンで移動する</string>
     <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
     <string name="pref_title_ShowFastActions">高速アクセス機能を有効化</string>
-    <string name="pref_title_OpenInBrowserDirectly">詳細な表示をスキップし、ブラウザで記事を開く</string>
+    <string name="pref_title_OpenInBrowserDirectly">詳細な表示をスキップし、ブラウザーで記事を開く</string>
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
@@ -171,7 +171,7 @@
     <string name="pref_title_app_theme">テーマ</string>
     <string name="pref_title_feed_list_layout">フィードリストのレイアウト</string>
     <string name="pref_title_font_size">フォントサイズ</string>
-    <string name="pref_display_browser">ブラウザ</string>
+    <string name="pref_display_browser">ブラウザー</string>
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">アクションアイコン（詳細表示）</string>
@@ -183,8 +183,8 @@
     <string name="pref_oled_mode_summary">OLED画面でのダークテーマ用</string>
 
     <string name="pref_display_browser_cct">内蔵のChromeカスタムタブ</string>
-    <string name="pref_display_browser_built_in">組み込みブラウザ</string>
-    <string name="pref_display_browser_external">外部ブラウザ</string>
+    <string name="pref_display_browser_built_in">組み込みブラウザー</string>
+    <string name="pref_display_browser_external">外部ブラウザー</string>
 
     <string name="pref_display_feed_list_layout_headline_thumbnails">サムネール（見出しのみ）</string>
     <string name="pref_display_feed_list_layout_thumbnails">サムネイル</string>
@@ -244,16 +244,6 @@
     <string name="pref_data_sync_image_cache_ask">WiFi接続がない場合は尋ねる</string>
 
     <string name="array_sync_interval_min_0">なし</string>
-    <string name="array_sync_interval_min_5">5 分</string>
-    <string name="array_sync_interval_min_15">15 分</string>
-    <string name="array_sync_interval_min_30">30 分</string>
-    <string name="array_sync_interval_min_45">45 分</string>
-    <string name="array_sync_interval_hour_1">1 時間</string>
-    <string name="array_sync_interval_hour_2">2 時間</string>
-    <string name="array_sync_interval_hour_3">3 時間</string>
-    <string name="array_sync_interval_hour_6">6 時間</string>
-    <string name="array_sync_interval_hour_12">12 時間</string>
-    <string name="array_sync_interval_hour_24">24 時間</string>
     <string name="switch_account">アカウントの切り替え</string>
     
     <string name="opml_export">OPMLをエクスポート</string>

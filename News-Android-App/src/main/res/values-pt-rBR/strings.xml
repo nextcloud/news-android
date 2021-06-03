@@ -67,7 +67,7 @@
     <string name="action_link_share">Link de Compartilhamento</string>
     <string name="action_link_open">Abrir o Link no Navegador</string>
     <string name="action_link_copy">Copiar link</string>
-    <string name="toast_img_download_wait">Fazendo o download... Por favor aguarde.</string>
+    <string name="toast_img_download_wait">Fazendo o download... Aguarde.</string>
     <string name="toast_img_saved">Imagem gravada</string>
     <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
@@ -167,7 +167,7 @@
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código-fonte</string>
     <string name="pref_privacy">Privacidade</string>
-    <string name="pref_privacy_summary">Notícias Nextcloud Política de privacidade do Android</string>
+    <string name="pref_privacy_summary">Política de privacidade do Android para o Nextcloud Notícias</string>
     <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
 
 
@@ -181,7 +181,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Exibição detalhada)</string>
 
-    <string name="pref_display_apptheme_auto">Claro/Escuro (com base no período do dia)</string>
+    <string name="pref_display_apptheme_auto">Claro/Escuro (com base no horário)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 
@@ -265,6 +265,6 @@
     <string name="successfully_exported">Exportado com sucesso para:</string>
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Analisando o arquivo OPML</string>
-    <string name="please_wait">Por favor aguarde...</string>
+    <string name="please_wait">Aguarde...</string>
 
     </resources>

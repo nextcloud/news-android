@@ -251,14 +251,4 @@
     <string name="pref_data_sync_image_cache_ask">לשאול כאשר אין חיבור אלחוטי</string>
 
     <string name="array_sync_interval_min_0">מעולם לא</string>
-    <string name="array_sync_interval_min_5">5 דקות</string>
-    <string name="array_sync_interval_min_15">15 דקות</string>
-    <string name="array_sync_interval_min_30">30 דקות</string>
-    <string name="array_sync_interval_min_45">45 דקות</string>
-    <string name="array_sync_interval_hour_1">שעה אחת</string>
-    <string name="array_sync_interval_hour_2">שעתיים</string>
-    <string name="array_sync_interval_hour_3">3 שעות</string>
-    <string name="array_sync_interval_hour_6">6 שעות</string>
-    <string name="array_sync_interval_hour_12">12 שעות</string>
-    <string name="array_sync_interval_hour_24">24 שעות</string>
     </resources>

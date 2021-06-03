@@ -188,14 +188,4 @@
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a WiFi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
-    <string name="array_sync_interval_min_5">5 Minutos</string>
-    <string name="array_sync_interval_min_15">15 Minutos</string>
-    <string name="array_sync_interval_min_30">30 Minutos</string>
-    <string name="array_sync_interval_min_45">45 Minutos</string>
-    <string name="array_sync_interval_hour_1">1 Hora</string>
-    <string name="array_sync_interval_hour_2">2 Horas</string>
-    <string name="array_sync_interval_hour_3">3 Horas</string>
-    <string name="array_sync_interval_hour_6">6 Horas</string>
-    <string name="array_sync_interval_hour_12">12 Horas</string>
-    <string name="array_sync_interval_hour_24">24 Horas</string>
     </resources>

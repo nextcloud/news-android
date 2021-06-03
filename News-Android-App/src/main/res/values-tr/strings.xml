@@ -2,14 +2,14 @@
 <resources>
 
     <string name="auto_sync_string">Otomatik eşitleme</string>
-    <string name="title_activity_sync_interval_selector">Eşitleme Sıklığı</string>
+    <string name="title_activity_sync_interval_selector">Eşitleme sıklığı</string>
     <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
     <string name="empty_view_content">Burada herhangi bir öge yok</string>
     <string name="toast_GettingMoreItems">Lütfen bekleyin, diğer ögelerin indirilmesine başlandı …</string>
     <string name="no_wifi_available">Wi-Fi bağlantısı yapılmamış</string>
     <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz</string>
     <string name="current_version">%s sürümünü kullanıyorsunuz</string>
-    <string name="widget_header">Nextcloud Haberleri</string>
+    <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d yeni öge var</item>
         <item quantity="other">%d yeni öge var</item>
@@ -29,13 +29,13 @@
     <!-- Action Bar Items -->
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
-    <string name="action_playPodacst">Podcast\'i Oynat</string>
-    <string name="action_openInBrowser">Web Tarayıcıda Aç</string>
+    <string name="action_playPodacst">Podcast oynat</string>
+    <string name="action_openInBrowser">Web tarayıcıda aç</string>
     <string name="action_Share">Paylaş</string>
-    <string name="action_login">Sunucu Ayarları</string>
+    <string name="action_login">Sunucu ayarları</string>
     <string name="action_save">Kaydet</string>
     <string name="action_settings">Ayarlar</string>
-    <string name="action_sync_settings">Eşitleme Ayarları</string>
+    <string name="action_sync_settings">Eşitleme ayarları</string>
     <string name="action_add_new_feed">Yeni akış ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
     <string name="action_search">Arama</string>
@@ -53,20 +53,20 @@
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Akış Adresi</string>
-    <string name="action_add_feed">Akış Ekle</string>
-    <string name="import_opml">İçe OPML Aktar</string>
-    <string name="export_opml">Dışa OPML Aktar</string>
+    <string name="hint_feed_url">Akış adresi</string>
+    <string name="action_add_feed">Akış ekle</string>
+    <string name="import_opml">İçe OPML aktar</string>
+    <string name="export_opml">Dışa OPML aktar</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Görseli İndir</string>
-    <string name="action_img_sharelink">Görsel Bağlantısını Paylaş</string>
-    <string name="action_img_open">Görseli Tarayıcıda Aç</string>
-    <string name="action_img_copylink">Görsel Bağlantısını Kopyala</string>
-    <string name="action_link_share">Paylaşım Bağlantısı</string>
-    <string name="action_link_open">Bağlantıyı Tarayıcıda Aç</string>
-    <string name="action_link_copy">Bağlantıyı Kopyala</string>
+    <string name="action_img_download">Görseli indir</string>
+    <string name="action_img_sharelink">Görsel bağlantısını paylaş</string>
+    <string name="action_img_open">Görseli tarayıcıda aç</string>
+    <string name="action_img_copylink">Görsel bağlantısını kopyala</string>
+    <string name="action_link_share">Paylaşım bağlantısı</string>
+    <string name="action_link_open">Bağlantıyı tarayıcıda aç</string>
+    <string name="action_link_copy">Bağlantıyı kopyala</string>
     <string name="toast_img_download_wait">İndiriliyor… Lütfen bekleyin.</string>
     <string name="toast_img_saved">Görsel kaydedildi</string>
     <string name="toast_img_notwriteable">Görsel diske yazılamadı.</string>
@@ -76,27 +76,27 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Akışı Sil</string>
-    <string name="action_feed_rename">Akışı Yeniden Adlandır</string>
-    <string name="action_feed_move">Akışı Taşı</string>
+    <string name="action_feed_remove">Akışı sil</string>
+    <string name="action_feed_rename">Akışı yeniden adlandır</string>
+    <string name="action_feed_move">Akışı taşı</string>
     <string name="feed_remove_button">Sil</string>
-    <string name="feed_rename_button">Yeniden Adlandır</string>
+    <string name="feed_rename_button">Yeniden adlandır</string>
     <string name="confirm_feed_remove">Bu akışı gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
     <string name="feed_move_list_description">Akışın içine taşınacağı klasörü seçin</string>
     <string name="move_feed_root_folder">Kök klasör</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">El ile oturum açma</string>
-    <string name="login_sso">Nextcloud Files Uygulaması ile Oturum Aç</string>
-    <string name="pref_title_username">Kullanıcı Adı</string>
+    <string name="login_sso">Nextcloud Files uygulaması ile oturum aç</string>
+    <string name="pref_title_username">Kullanıcı adı</string>
     <string name="pref_title_password">Parola</string>
     <string name="pref_title_owncloudRootPath">Nextcloud kök adresi</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
-    <string name="action_sign_in_short">Oturum Açın</string>
+    <string name="action_sign_in_short">Oturum açın</string>
     <string name="login_progress_signing_in">Oturum açılıyor …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Bu alan zorunludur</string>
+    <string name="error_field_required">Bu alanın doldurulması zorunludur</string>
     <string name="error_invalid_url">Adres yanlış</string>
 
 
@@ -121,13 +121,13 @@
     <string name="pref_header_general">Genel</string>
     <string name="pref_title_general_sort_order">Sıralama</string>
 
-    <string name="pref_general_sort_order_new_old">Yeni → Eski</string>
-    <string name="pref_general_sort_order_old_new">Eski → Yeni</string>
+    <string name="pref_general_sort_order_new_old">Yeni → eski</string>
+    <string name="pref_general_sort_order_old_new">Eski → yeni</string>
 
     <string name="pref_rename_action_swipe_right">Sağa kaydırma işlemi</string>
     <string name="pref_rename_action_swipe_left">Sola kaydırma işlemi</string>
 
-    <string name="pref_title_general_search_in">Şurada Aransın</string>
+    <string name="pref_title_general_search_in">Şurada aransın</string>
 
     <string name="pref_general_search_in_title">Başlık</string>
     <string name="pref_general_search_in_body">İçerik</string>
@@ -138,37 +138,37 @@
     <string name="warning">Uyarı</string>
     <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
     <string name="pref_title_ShowOnlyUnread">Yalnız okunmamış makaleler görüntülensin</string>
-    <string name="pref_title_DisableHostnameVerification">Sunucu Adı Doğrulanmasın</string>
+    <string name="pref_title_DisableHostnameVerification">Sunucu adı doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
     <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini etkinleştir</string>
     <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp makaleyi tarayıcıda aç</string>
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Bilinmeyen Sertifika Kabul Edilsin mi?</string>
-    <string name="mtm_decision_always">Her Zaman</string>
+    <string name="mtm_accept_cert">Bilinmeyen sertifikalar kabul edilsin mi?</string>
+    <string name="mtm_decision_always">Her zaman</string>
     <string name="mtm_decision_abort">Vazgeç</string>
-    <string name="mtm_notification">Sertifika Doğrulama</string>
+    <string name="mtm_notification">Sertifika doğrulama</string>
 
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Herhangi bir podcast seçilmemiş</string>
     <string name="no_chapters_available">Kullanılabilecek bir bölüm yok</string>
-    <string name="podcast_playback_speed_dialog_title">Oynatma Hızı</string>
+    <string name="podcast_playback_speed_dialog_title">Oynatma hızı</string>
     <string name="notification_downloading_podcast_title">Podcast indiriliyor</string>
 
 
     <!-- Settings for About -->
     <string name="pref_header_about">Hakkında</string>
     <string name="pref_license">Lisans</string>
-    <string name="pref_license_summary">GNU Affero Genel Kamu Lisansı (AGPL) 3. Sürüm</string>
+    <string name="pref_license_summary">GNU Affero Genel Kamu Lisansı (AGPL) 3. sürüm</string>
     <string name="pref_report_issue">Sorun bildirin</string>
     <string name="pref_report_issue_summary">Bir GitHub hesabınız olmalıdır (ücretsiz)</string>
-    <string name="pref_contribute">Katkıda Bulunun!</string>
+    <string name="pref_contribute">Katkıda bulunun!</string>
     <string name="pref_contribute_summary">Kaynak kodunu alın</string>
     <string name="pref_privacy">Gizlilik</string>
-    <string name="pref_privacy_summary">Nextcloud Haberleri Android Kişisel Verilerin Gizliliği İlkesi</string>
-    <string name="pref_version">Nextcloud Haberleri Android uygulaması</string>
+    <string name="pref_privacy_summary">Nextcloud News Android kişisel verilerin gizliliği ilkesi</string>
+    <string name="pref_version">Nextcloud News Android uygulaması</string>
 
 
     <!-- Settings for Display -->
@@ -179,18 +179,18 @@
     <string name="pref_display_browser">Tarayıcı</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (Ayrıntı Görünümü)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (ayrıntı görünümü)</string>
 
-    <string name="pref_display_apptheme_auto">Açık/Koyu (Gün ışığına göre)</string>
+    <string name="pref_display_apptheme_auto">Açık/koyu (gün ışığına göre)</string>
     <string name="pref_display_apptheme_light">Açık</string>
     <string name="pref_display_apptheme_dark">Koyu</string>
 
     <string name="pref_oled_mode">Siyah arka plan</string>
     <string name="pref_oled_mode_summary">OLED ekranlarda koyu tema için</string>
 
-    <string name="pref_display_browser_cct">Özel İç Chrome Sekmeleri</string>
-    <string name="pref_display_browser_built_in">İç Tarayıcı</string>
-    <string name="pref_display_browser_external">Dış Tarayıcı</string>
+    <string name="pref_display_browser_cct">Özel iç Chrome sekmeleri</string>
+    <string name="pref_display_browser_built_in">İç tarayıcı</string>
+    <string name="pref_display_browser_external">Dış tarayıcı</string>
 
     <string name="pref_display_feed_list_layout_headline_thumbnails">Küçük görseller (yalnız başlıklar)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Küçük görseller</string>
@@ -204,7 +204,7 @@
     <string name="pref_display_font_size_s">Küçük</string>
     <string name="pref_display_font_size_d">Varsayılan</string>
     <string name="pref_display_font_size_l">Büyük</string>
-    <string name="pref_display_font_size_xl">Çok Büyük</string>
+    <string name="pref_display_font_size_xl">Çok büyük</string>
 
     <string name="content_desc_play">oynat</string>
     <string name="content_desc_pause">duraklat</string>
@@ -234,7 +234,7 @@
     <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
     <string name="login_dialog_text_zero_version_code">Web Haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Bu uygulama sürümü kullandığınız Nextcloud Haberler uygulaması ile uyumlu değil. Lütfen Haberler uygulaması ve uygulama çatısını güncelleyin.</string>
-    <string name="login_dialog_title_security_warning">Güvenlik Uyarısı</string>
+    <string name="login_dialog_title_security_warning">Güvenlik uyarısı</string>
     <string name="login_dialog_text_security_warning">Kullanılması önemle önerilen HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinizi izleyip önemli verilere erişebilir (parolanız gibi).</string>
 
 
@@ -242,28 +242,28 @@
     <string name="pref_header_data_sync">Veri ve eşitleme</string>
     <string name="pref_title_clearCache">Ön belleği temizle</string>
     <string name="pref_title_CacheImagesOffline">Görseller çevrimdışı ön belleğe alınsın</string>
-    <string name="pref_title_Max_Cache_Size">En Büyük Ön Bellek Boyutu</string>
+    <string name="pref_title_Max_Cache_Size">En büyük ön bellek boyutu</string>
 
     <string name="pref_data_sync_image_cache_never">Asla</string>
-    <string name="pref_data_sync_image_cache_wifi_only">Yalnız WiFi Üzerinden</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi ve Mobil Veri Üzerinden</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Yalnız Wi-Fi üzerinden</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Wi-Fi ve mobil veri üzerinden</string>
     <string name="pref_data_sync_image_cache_ask">Wi-Fi bağlı değilken sorulsun</string>
 
     <string name="array_sync_interval_min_0">Asla</string>
-    <string name="array_sync_interval_min_5">5 Dakika</string>
-    <string name="array_sync_interval_min_15">15 Dakika</string>
-    <string name="array_sync_interval_min_30">30 Dakika</string>
-    <string name="array_sync_interval_min_45">45 Dakika</string>
-    <string name="array_sync_interval_hour_1">1 Saat</string>
-    <string name="array_sync_interval_hour_2">2 Saat</string>
-    <string name="array_sync_interval_hour_3">3 Saat</string>
-    <string name="array_sync_interval_hour_6">6 Saat</string>
-    <string name="array_sync_interval_hour_12">12 Saat</string>
-    <string name="array_sync_interval_hour_24">24 Saat</string>
+    <string name="array_sync_interval_min_5">5 dakika</string>
+    <string name="array_sync_interval_min_15">15 dakika</string>
+    <string name="array_sync_interval_min_30">30 dakika</string>
+    <string name="array_sync_interval_min_45">45 dakika</string>
+    <string name="array_sync_interval_hour_1">1 saat</string>
+    <string name="array_sync_interval_hour_2">2 saat</string>
+    <string name="array_sync_interval_hour_3">3 saat</string>
+    <string name="array_sync_interval_hour_6">6 saat</string>
+    <string name="array_sync_interval_hour_12">12 saat</string>
+    <string name="array_sync_interval_hour_24">24 saat</string>
     <string name="switch_account">Hesabı değiştir</string>
     
     <string name="successfully_exported">Şuraya dışa aktarıldı:</string>
-    <string name="opml_export">OPML Dışa Aktar</string>
+    <string name="opml_export">OPML dışa aktar</string>
     <string name="parsing_opml">OPML işleniyor</string>
     <string name="please_wait">Lütfen bekleyin…</string>
 
