@@ -14,8 +14,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemCardViewBinding;
 
 public class RssItemCardViewHolder extends RssItemViewHolder<SubscriptionDetailListItemCardViewBinding> {
-    SubscriptionDetailListItemCardViewBinding binding;
-
     RssItemCardViewHolder(@NonNull SubscriptionDetailListItemCardViewBinding binding, SharedPreferences sharedPreferences) {
         super(binding, sharedPreferences);
     }
