@@ -39,14 +39,12 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 
 import static android.app.Activity.RESULT_OK;
 import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
-import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_REPORT_ISSUE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOWONLYUNREAD_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_FAST_ACTIONS;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNCONSTARTUP_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_VERSION;
@@ -55,7 +53,6 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_OWNCLOUDROOTPATH
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_PASSWORD_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_USERNAME_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SERVER_SETTINGS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SYNC_SETTINGS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_DISPLAY_BROWSER;
@@ -91,13 +88,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         addPreferencesFromResource(R.xml.pref_data_sync);
         bindDataSyncPreferences(this);
 
-        addPreferencesFromResource(R.xml.pref_notification);
-        bindNotificationPreferences(this);
-
         addPreferencesFromResource(R.xml.pref_about);
         bindAboutPreferences(this);
-
-
 
         //addPreferencesFromResource(R.xml.pref_podcast);
         //bindPodcastPreferences(this);
@@ -268,12 +260,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             return true;
         });
     }
-
-
-    private void bindNotificationPreferences(PreferenceFragmentCompat prefFrag) {
-        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING));
-    }
-
 
     private void bindAboutPreferences(final PreferenceFragmentCompat prefFrag) {
         prefFrag.findPreference(CB_VERSION).setSummary(version);

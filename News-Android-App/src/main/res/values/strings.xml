@@ -347,13 +347,7 @@
     <string name="content_desc_show_password">show password</string>
     <string name="content_desc_delete">delete</string>
     <string name="content_desc_download">download</string>
-
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-    <string name="pref_title_notification_new_articles_available">Show notification when new articles are available</string>
-
-
+    cb_showNotificationNewArticles
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">It looks like your news app is not installed or activated on your server. Please follow the instructions given here to setup the news app on your server first: %1$s</string>

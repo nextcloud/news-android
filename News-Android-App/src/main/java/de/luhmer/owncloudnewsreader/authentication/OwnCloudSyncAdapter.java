@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
 
 import java.util.List;
 
@@ -24,7 +23,6 @@ import javax.inject.Inject;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
@@ -45,7 +43,6 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function3;
 import io.reactivex.schedulers.Schedulers;
 
 public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
@@ -222,9 +219,8 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         //int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
         if(newItemsCount > 0) {
-            boolean showNotificationOnNewArticles = mPrefs.getBoolean(SettingsActivity.CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING, true);
-            // If another app is opened show a notification
-            if (!ForegroundListener.isInForeground() && showNotificationOnNewArticles) {
+            // If another app is not in foreground
+            if (!ForegroundListener.isInForeground()) {
                 NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount, mPrefs);
             }
         }
