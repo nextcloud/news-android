@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:background="@color/slide_up_panel_header_background_color" >
+            android:background="@color/slide_up_panel_background_color">
 
             <ImageView
                 android:id="@+id/img_feed_favicon"
@@ -34,7 +34,7 @@
                 android:layout_marginStart="@dimen/podcast_horizontal_margin"
                 android:layout_marginEnd="@dimen/podcast_horizontal_margin"
                 android:src="@drawable/default_feed_icon_light"
-                android:contentDescription="@string/content_desc_none"/>
+                android:contentDescription="@string/content_desc_none" />
 
             <LinearLayout
                 android:id="@+id/ll_podcast_header"

@@ -8,16 +8,13 @@
 
     <color name="options_menu_item_text">@color/options_menu_item_night</color>
 
-    <!-- Color of slide up panel in closed state -->
-    <color name="slide_up_panel_header_background_color">#ff343434</color>
-    <!-- Color when slide up panel is opened (toolbar and bottom bar background -->
-    <color name="slide_up_panel_slider_background_color">#ff343434</color>
+    <!-- Color of slide up panel -->
+    <color name="slide_up_panel_background_color">#ff343434</color>
+
 
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">@color/material_grey_900</color>
     <color name="news_detail_background_color_oled">@android:color/black</color>
-
-    <color name="owncloudBlue">#1D2D44</color>
 
     <color name="text_medium_emphasis">#a0ffffff</color>
 
@@ -25,17 +22,7 @@
     <color name="colorAccent">@android:color/white</color>
     <color name="rss_item_list_background">@color/material_grey_900</color>
 
-
-    <color name="starredColor">@android:color/holo_orange_light</color>
-    <color name="unstarredColor">#ffcccccc</color>
-    <color name="markasreadColor">@android:color/holo_green_light</color>
-    <color name="swipeBackground">#aaa</color>
-    <color name="menuSeparator">#555</color>
-
     <color name="tintColor">@android:color/white</color>
-
-    <!-- override libs -->
-    <color name="chglib_background_default_divider_color">#00000000</color>
 
     <color name="button_ripple">@color/material_grey_800</color>
 

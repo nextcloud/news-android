@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <color name="app_drawer_feed_list_background_color">@color/colorPrimary</color>
 
     <color name="primaryTextColor">@android:color/black</color>
 
     <color name="divider_row_color">#292929</color>
 
-    <!-- Color of slide up panel in closed state -->
-    <color name="slide_up_panel_header_background_color">#e6e6e6</color>
-    <!-- Color when slide up panel is opened (toolbar and bottom bar background -->
-    <color name="slide_up_panel_slider_background_color">#e6e6e6</color>
+    <!-- Color of slide up panel -->
+    <color name="slide_up_panel_background_color">#e6e6e6</color>
 
     <color name="options_menu_item_text">@color/options_menu_item</color>
 
@@ -39,7 +36,12 @@
     <!-- override libs -->
     <color name="chglib_background_default_divider_color">#00000000</color>
 
+    <color name="button_ripple">@color/material_grey_300</color>
 
+    <color name="widget_background">#ddffffff</color>
+    <color name="widget_foreground">#222222</color>
+
+    <!-- Default Material Design Colors -->
     <color name="material_grey_50" tools:override="true">#fffafafa</color>
     <color name="material_grey_100" tools:override="true">#fff5f5f5</color>
     <color name="material_grey_300" tools:override="true">#ffeeeeee</color>
@@ -50,10 +52,5 @@
     <color name="material_grey_900" tools:override="true">#212121</color>
 
     <color name="material_red_600" tools:override="true">#e53935</color>
-
-    <color name="button_ripple">@color/material_grey_300</color>
-
-    <color name="widget_background">#ddffffff</color>
-    <color name="widget_foreground">#222222</color>
 
 </resources>
