@@ -4,10 +4,12 @@
     --fontsize-subscript: 0.7em;
 }
 
+/*
 @font-face {
     font-family: "ROBOTO_REGULAR";
     src: url('fonts/Roboto-Regular.ttf');
 }
+*/
 
 body.lightTheme {
     background-color:	#ffffff;
@@ -68,7 +70,7 @@ body {
     font-weight:  normal;
     margin:       0px;
     word-wrap:    break-word !important;
-    font-family:  'ROBOTO_REGULAR';
+    /* font-family:  'ROBOTO_REGULAR'; */
 
     margin-left:  1rem;
     margin-right: 1rem;
