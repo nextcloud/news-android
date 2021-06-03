@@ -1,8 +1,16 @@
+0.9.9.61
+---------------------
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/969">#969 Remove unnecessary Notifications setting</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/968">#968 Rename "Light/Dark (based on Daytime)" to "System Default"</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/960">#960 Make articles respect default system font</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/964">#964 Crash when using card layout</a>
+
+
 0.9.9.60
 ---------------------
 - Changed - Major Design Update thanks to @stefan-niedermann!
 - Changed - <a href="https://github.com/nextcloud/news-android/issues/944">#944 Drop dark mode based on location</a>
-- Fixed - OPML Export Dialog is now translated <a href="https://github.com/nextcloud/news-android/issues/958">#958</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/958">#958 OPML Export Dialog is now translated </a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/945">#945 New Thubmnails list layout does not show favorite status</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/938">#938 Everincreasing Fontsize with Fontsize setting "Big"</a>
 
