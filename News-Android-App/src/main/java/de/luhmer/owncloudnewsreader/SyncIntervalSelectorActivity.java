@@ -31,6 +31,7 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
     private String[] items_values;
     protected ActivitySyncIntervalSelectorBinding binding;
     protected @Inject SharedPreferences mPrefs;
+    private Integer btn_save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +57,39 @@ public class SyncIntervalSelectorActivity extends AppCompatActivity {
         }
     }
 
+    private int getBtn_save_normal_holo() {
+        if (btn_save == null) {
+            if (ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
+                btn_save = R.drawable.ic_action_save_light;
+            } else {
+                btn_save = R.drawable.ic_action_save_dark; // dark
+            }
+        }
+        return btn_save;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.sync_interval_selector, menu);
+
+
+        MenuItem btnSave = (MenuItem) menu.getItem(0);
+        if (btnSave != null) {
+            //btnSave.setIcon(getBtn_save_normal_holo());
+            //btnSave.setIcon(ContextCompat.getDrawable(this, getBtn_save_normal_holo()));
+        }
+
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem btnSave = (MenuItem) menu.getItem(0);
+        if (btnSave != null) {
+            btnSave.setIcon(getBtn_save_normal_holo());
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     public static final int SYNC_DEFAULT_INTERVAL = 15;
