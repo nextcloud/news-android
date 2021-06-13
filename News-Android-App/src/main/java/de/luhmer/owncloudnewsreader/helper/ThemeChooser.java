@@ -126,8 +126,8 @@ public class ThemeChooser {
         return themeChanged || oledChanged;
     }
 
-    private static boolean isDarkTheme(Context context) {
-        switch(AppCompatDelegate.getDefaultNightMode()) {
+    public static boolean isDarkTheme(Context context) {
+        switch (AppCompatDelegate.getDefaultNightMode()) {
             case AppCompatDelegate.MODE_NIGHT_YES:
                 Log.v(TAG, "MODE_NIGHT_YES (Dark Theme)");
                 return true;
@@ -136,7 +136,7 @@ public class ThemeChooser {
             case AppCompatDelegate.MODE_NIGHT_AUTO:
                 //Log.v(TAG, "MODE_NIGHT_AUTO");
                 int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                if(Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
+                if (Configuration.UI_MODE_NIGHT_YES == nightModeFlags) {
                     Log.v(TAG, "MODE_NIGHT_AUTO (Dark Theme)");
                     return true;
                 }

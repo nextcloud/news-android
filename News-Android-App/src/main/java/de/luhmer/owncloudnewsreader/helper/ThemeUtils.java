@@ -22,13 +22,17 @@
 package de.luhmer.owncloudnewsreader.helper;
 
 import android.app.Activity;
+import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -110,8 +114,8 @@ public class ThemeUtils {
 
             v.setBackgroundColor(toolbarBackgroundColor);
 
-            if(v instanceof ActionMenuView) {
-                for(int j = 0; j < ((ActionMenuView)v).getChildCount(); j++) {
+            if (v instanceof ActionMenuView) {
+                for (int j = 0; j < ((ActionMenuView) v).getChildCount(); j++) {
                     v.setBackgroundColor(toolbarBackgroundColor);
                 }
             }
@@ -119,7 +123,45 @@ public class ThemeUtils {
     }
 
     /**
+     * Use this method to colorize the toolbar to the desired target color
+     *
+     * @param toolbarView            toolbar view being colored
+     * @param toolbarForegroundColor the target background color
+     * @param skipMenuItems          how many menu items should not be colored
+     */
+    public static void colorizeToolbarForeground(Toolbar toolbarView, @ColorInt int toolbarForegroundColor, int skipMenuItems) {
+        toolbarView.setTitleTextColor(toolbarForegroundColor);
+
+        ColorFilter cf = new PorterDuffColorFilter(toolbarForegroundColor, PorterDuff.Mode.SRC_IN);
+        Drawable drawable = toolbarView.getOverflowIcon();
+        if (drawable != null) {
+            drawable.setColorFilter(cf);
+        }
+
+        for (int i = 0; i < toolbarView.getChildCount(); i++) {
+            final View v = toolbarView.getChildAt(i);
+            if (v instanceof ImageButton) {
+                ((ImageButton) v).setColorFilter(cf);
+            } else if (v instanceof ActionMenuView) {
+                Menu menu = ((ActionMenuView) v).getMenu();
+                for (int x = skipMenuItems; x < menu.size(); x++) {
+                    Drawable d = menu.getItem(x).getIcon();
+                    if (d != null) {
+                        d.setColorFilter(cf);
+                    }
+                }
+            }
+            /*
+            else {
+                Log.d(TAG, v.toString());
+            }
+            */
+        }
+    }
+
+    /**
      * Use this method to colorize the status bar to the desired target color
+     *
      * @param activity
      * @param statusBarColor
      */
