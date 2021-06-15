@@ -80,6 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static final String PREF_SERVER_SETTINGS = "pref_server_settings";
     public static final String PREF_SYNC_SETTINGS = "pref_sync_settings";
+    public static final String SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED = "SYNC_INTERVAL_IN_MINUTES_STRING";
 
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String CB_OLED_MODE = "cb_oled_mode";
