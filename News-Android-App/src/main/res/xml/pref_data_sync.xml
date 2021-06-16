@@ -29,7 +29,7 @@
             android:entries="@array/array_sync_interval"
             android:entryValues="@array/array_sync_interval_values"
             android:key="pref_sync_settings"
-            android:title="Interval Sync"
+            android:title="@string/interval_sync_title"
             app:iconSpaceReserved="false"
             />
 
