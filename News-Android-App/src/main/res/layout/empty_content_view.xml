@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacer_2x"
+    android:visibility="gone"
+    tools:background="?attr/colorPrimary"
+    tools:visibility="visible">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_above="@+id/title"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_launcher_foreground_full"
+        app:tint="@color/empty_content_view_logo" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/empty_view_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/empty_content_font_size" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="@dimen/spacer_2x"
+        android:paddingEnd="@dimen/spacer_2x"
+        android:text="@string/empty_view_content_action"
+        android:textAlignment="center" />
+</RelativeLayout>

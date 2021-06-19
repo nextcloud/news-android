@@ -20,14 +20,9 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <TextView
+    <include
         android:id="@+id/tv_no_items_available"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/empty_view_content"
-        android:visibility="gone"
-        android:textSize="18sp" />
+        layout="@layout/empty_content_view" />
 
     <ProgressBar
         android:id="@+id/pb_loading"

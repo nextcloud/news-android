@@ -30,6 +30,7 @@
     <color name="markasreadColor">@android:color/holo_green_light</color>
     <color name="swipeBackground">#aaa</color>
     <color name="menuSeparator">#aaa</color>
+    <color name="empty_content_view_logo">#999</color>
 
     <color name="tintColor">@android:color/black</color>
 

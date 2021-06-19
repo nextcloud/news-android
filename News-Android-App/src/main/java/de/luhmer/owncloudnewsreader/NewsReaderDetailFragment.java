@@ -285,7 +285,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         Runnable myRunnable = () -> {
             binding.pbLoading.setVisibility(View.VISIBLE);
-            binding.tvNoItemsAvailable.setVisibility(View.GONE);
+            binding.tvNoItemsAvailable.getRoot().setVisibility(View.GONE);
         };
         mainHandler.post(myRunnable);
 
@@ -304,9 +304,9 @@ public class NewsReaderDetailFragment extends Fragment {
 
             binding.pbLoading.setVisibility(View.GONE);
             if (nra.getItemCount() <= 0) {
-                binding.tvNoItemsAvailable.setVisibility(View.VISIBLE);
+                binding.tvNoItemsAvailable.getRoot().setVisibility(View.VISIBLE);
             } else {
-                binding.tvNoItemsAvailable.setVisibility(View.GONE);
+                binding.tvNoItemsAvailable.getRoot().setVisibility(View.GONE);
             }
 
             binding.list.scrollToPosition(0);
@@ -499,7 +499,7 @@ public class NewsReaderDetailFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             binding.pbLoading.setVisibility(View.VISIBLE);
-            binding.tvNoItemsAvailable.setVisibility(View.GONE);
+            binding.tvNoItemsAvailable.getRoot().setVisibility(View.GONE);
             super.onPreExecute();
         }
 
