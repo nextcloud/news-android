@@ -394,7 +394,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public static final long SECONDS_PER_MINUTE = 60L;
 
     public static void setAccountSyncInterval(Context context, int minutes) {
-         AccountManager mAccountManager = AccountManager.get(context);
+        AccountManager mAccountManager = AccountManager.get(context);
         String accountType = AccountGeneral.getAccountType(context);
         Account[] accounts = mAccountManager.getAccountsByType(accountType);
         for (Account account : accounts) {
