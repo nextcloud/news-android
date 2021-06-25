@@ -1,8 +1,11 @@
 package de.luhmer.owncloudnewsreader;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,6 +35,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
@@ -63,6 +67,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SEARCH_IN;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -78,6 +83,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         getPreferenceManager().setSharedPreferencesName(sharedPreferencesFileName);
 
         version = VersionInfoDialogFragment.getVersionString(getActivity());
+
+        migrateSyncIntervalValue(); // migrates pref SYNC_INTERVAL_IN_MINUTES_STRING to pref_sync_settings
 
         addPreferencesFromResource(R.xml.pref_general);
         bindGeneralPreferences(this);
@@ -135,6 +142,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 // value "1" means Light theme
                 preference.getPreferenceManager().findPreference(CB_OLED_MODE).setEnabled(!value.equals("1"));
             }
+            else if(PREF_SYNC_SETTINGS.equals(preference.getKey())) {
+                // set the sync value in account
+                setAccountSyncInterval(preference.getContext(), Integer.parseInt(stringValue));
+            }
 
         } else {
             String key = preference.getKey();
@@ -191,6 +202,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 mPrefs.getBoolean(preference.getKey(), false));
     }
 
+
     // TODO DO WE NEED THE CODE BELOW?!!
     /*
     @Nullable
@@ -236,8 +248,31 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SWIPE_LEFT_ACTION));
     }
 
+    /**
+     * migrates pref SYNC_INTERVAL_IN_MINUTES_STRING to pref_sync_settings
+     * temporary function, could be removed whenever is wished
+     */
+    private void migrateSyncIntervalValue() {
+        // For migration compatibility, in case preference SYNC_INTERVAL_IN_MINUTES_STRING is there
+        // we migrate its value in PREF_SYNC_SETTINGS
+        int minutes = mPrefs.getInt(SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED, -1);
+        if (minutes != -1) { // we need to migrate
+            mPrefs.edit().putString(PREF_SYNC_SETTINGS, String.valueOf(minutes)).commit();
+            mPrefs.edit().remove(SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED).commit();
+        }
+        // impact if the above code is removed:
+        //   the list will show the default sync interval value of 15min
+        //   whereas the user may have configured some other value
+        //   once the user selects a value, this new value is actually used; and no more impact is expected
+
+    }
+
     private void bindDataSyncPreferences(final PreferenceFragmentCompat prefFrag)
     {
+
+        // handle the sync interval list:
+        bindPreferenceSummaryToValue(prefFrag.findPreference(PREF_SYNC_SETTINGS));
+
         // String[] authorities = { "de.luhmer.owncloudnewsreader" };
         // Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
         // intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
@@ -245,8 +280,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // String[] authorities = { "de.luhmer.owncloudnewsreader" };
         // Intent intentSyncSettings = new Intent(Settings.ACTION_SYNC_SETTINGS);
         // intentSyncSettings.putExtra(Settings.EXTRA_AUTHORITIES, authorities);
-        Intent intentSyncSettings = new Intent(getActivity(), SyncIntervalSelectorActivity.class);
-        prefFrag.findPreference(PREF_SYNC_SETTINGS).setIntent(intentSyncSettings);
 
         //bindPreferenceSummaryToValue(prefFrag.findPreference(SP_MAX_ITEMS_SYNC));
         Preference clearCachePref = prefFrag.findPreference(EDT_CLEAR_CACHE);
@@ -355,6 +388,31 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
         startActivity(browserIntent);
+    }
+
+
+    public static final long SECONDS_PER_MINUTE = 60L;
+
+    public static void setAccountSyncInterval(Context context, int minutes) {
+        AccountManager mAccountManager = AccountManager.get(context);
+        String accountType = AccountGeneral.getAccountType(context);
+        Account[] accounts = mAccountManager.getAccountsByType(accountType);
+        for (Account account : accounts) {
+            if (minutes != 0) {
+                long SYNC_INTERVAL = minutes * SECONDS_PER_MINUTE;
+                ContentResolver.setSyncAutomatically(account, accountType, true);
+
+                Bundle bundle = new Bundle();
+                ContentResolver.addPeriodicSync(
+                        account,
+                        accountType,
+                        bundle,
+                        SYNC_INTERVAL);
+
+            } else {
+                ContentResolver.setSyncAutomatically(account, accountType, false);
+            }
+        }
     }
 
     public static class ResetDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {

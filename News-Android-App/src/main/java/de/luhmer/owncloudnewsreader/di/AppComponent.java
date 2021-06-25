@@ -14,7 +14,6 @@ import de.luhmer.owncloudnewsreader.NewsReaderListFragment;
 import de.luhmer.owncloudnewsreader.PodcastFragmentActivity;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.SettingsFragment;
-import de.luhmer.owncloudnewsreader.SyncIntervalSelectorActivity;
 import de.luhmer.owncloudnewsreader.authentication.OwnCloudSyncAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.services.SyncItemStateService;
@@ -33,7 +32,6 @@ public interface AppComponent {
     void injectActivity(PodcastFragmentActivity activity);
     void injectActivity(NewFeedActivity activity);
     void injectActivity(SettingsActivity activity);
-    void injectActivity(SyncIntervalSelectorActivity activity);
     void injectActivity(LoginDialogActivity activity);
 
     void injectFragment(NewsReaderListDialogFragment fragment);
@@ -41,7 +39,6 @@ public interface AppComponent {
     void injectFragment(SettingsFragment fragment);
     void injectFragment(NewsDetailFragment fragment);
     void injectFragment(NewsReaderDetailFragment fragment);
-    void injectFragment(SyncIntervalSelectorActivity.PlaceholderFragment fragment);
 
     void injectService(SyncItemStateService service);
     void injectService(OwnCloudSyncAdapter ownCloudSyncAdapter);

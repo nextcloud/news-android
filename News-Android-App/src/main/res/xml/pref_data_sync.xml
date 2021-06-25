@@ -24,12 +24,14 @@
              This preference simply launches an intent when selected. Use this UI sparingly, per
              design guidelines.
         -->
-
-        <Preference
+        <ListPreference
+            android:defaultValue="@integer/default_sync_minutes"
+            android:entries="@array/array_sync_interval"
+            android:entryValues="@array/array_sync_interval_values"
             android:key="pref_sync_settings"
-            android:title="@string/action_sync_settings"
-            app:iconSpaceReserved="false">
-        </Preference>
+            android:title="@string/interval_sync_title"
+            app:iconSpaceReserved="false"
+            />
 
 
         <!--

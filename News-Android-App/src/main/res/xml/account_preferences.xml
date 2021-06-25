@@ -9,8 +9,6 @@
         android:title="Sync Interval"
         android:summary="Set the sync interval">
         <intent
-            android:action="de.luhmer.owncloudnewsreader.Preferences.SYNC_INTERVAL"
-            android:targetPackage="de.luhmer.owncloudnewsreader"
-            android:targetClass="de.luhmer.owncloudnewsreader.SyncIntervalSelectorActivity" />
+            android:action="de.luhmer.owncloudnewsreader.ACCOUNT_MANAGER_ENTRY" />
     </PreferenceScreen>
 </PreferenceScreen>

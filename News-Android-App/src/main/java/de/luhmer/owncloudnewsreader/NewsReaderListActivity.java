@@ -391,7 +391,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Account account = new Account(getString(R.string.app_name), accountType);
 			mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
-			SyncIntervalSelectorActivity.setAccountSyncInterval(this, mPrefs);
+			SettingsFragment.setAccountSyncInterval(this, getResources().getInteger(R.integer.default_sync_minutes));
 		}
 	}
 

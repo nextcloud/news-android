@@ -421,6 +421,7 @@
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Parsing OPML</string>
     <string name="please_wait">Please wait…</string>
+    <string name="interval_sync_title">Interval Sync</string>
 
     <string-array name="array_sync_interval" translatable="false">
         <item>@string/array_sync_interval_min_0</item>
