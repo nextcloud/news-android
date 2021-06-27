@@ -20,6 +20,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.R;
@@ -215,10 +216,11 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
     private void updateNotification() {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-        int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-        //int newItemsCount = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
+        int newItemsCountLastSync = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
-        if(newItemsCount > 0) {
+        if (newItemsCountLastSync > 0) {
+            int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
+
             // If another app is not in foreground
             if (!ForegroundListener.isInForeground()) {
                 NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount, mPrefs);
