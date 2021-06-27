@@ -1,3 +1,10 @@
+0.9.9.62
+---------------------
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/824">#824 Enhance empty content view (thanks Stefan)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/976">#976 Sync Interval - settings menu is now a popup (thanks @fabienli)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/issues/974">#974 only show notification if it is different to the previous unread articles list</a>
+
+
 0.9.9.61
 ---------------------
 - Changed - <a href="https://github.com/nextcloud/news-android/issues/969">#969 Remove unnecessary Notifications setting</a>
