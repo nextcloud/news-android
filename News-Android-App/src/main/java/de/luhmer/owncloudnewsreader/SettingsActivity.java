@@ -74,7 +74,6 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String CB_SHOW_FAST_ACTIONS = "cb_ShowFastActions";
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
-    public static final String CB_SHOW_NOTIFICATION_NEW_ARTICLES_STRING = "cb_showNotificationNewArticles";
 
     //public static final String CB_ENABLE_PODCASTS_STRING = "cb_enablePodcasts";
 
