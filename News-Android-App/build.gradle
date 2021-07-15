@@ -155,7 +155,7 @@ dependencies {
 
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'de.greenrobot:greendao:2.0.0'
-    implementation ('de.greenrobot:greendao-generator:2.0.0') {
+    implementation ('de.greenrobot:greendao-generator:2.1.0') {
         exclude group: 'org.freemarker'
     }
     //implementation 'org.freemarker:freemarker:2.3.23' // Required for DAO generation
