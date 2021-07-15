@@ -191,7 +191,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcji (Widok szczegółowy)</string>
 
-    <string name="pref_display_apptheme_auto">Jasny/Ciemny (zależy od pory dnia)</string>
     <string name="pref_display_apptheme_light">Jasny</string>
     <string name="pref_display_apptheme_dark">Ciemny</string>
 
@@ -232,19 +231,13 @@
     <string name="content_desc_delete">skasuj</string>
     <string name="content_desc_download">pobierz</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Powiadomienia</string>
-    <string name="pref_title_notification_new_articles_available">Pokaż powiadomienie, gdy pojawią się nowe artykuły</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Błąd</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Wygląda na to, że aplikacja obsługująca aktualności nie jest zainstalowana lub aktywowana na twoim serwerze. Aby skonfigurować aplikację na swoim serwerze skorzystaj z tych porad: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Coś poszło nie tak :(</string>
     <string name="login_dialog_text_zero_version_code">Aplikacja Web News zwróciła wersję \"0\". Proszę sprawdź następujący raport o błędzie: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Ta wersja aplikacji nie jest zgodna z aplikacją Nextcloud News. Zaktualizuj aplikację i appframeworka do nowej wersji.</string>
-    <string name="login_dialog_title_security_warning">Ostrzeżenie o zabezpieczeniach</string>
+    <string name="login_dialog_title_security_warning">Ostrzeżenie bezpieczeństwa</string>
     <string name="login_dialog_text_security_warning">Nie korzystasz z HTTPS, co jest bardzo zalecane. Osoba atakująca może przechwycić ruch i uzyskać dostęp do poufnych danych (np. Hasła).</string>
 
 
@@ -276,5 +269,4 @@
     <string name="opml_export">Eksport OPML</string>
     <string name="parsing_opml">Przetwarzanie OPML</string>
     <string name="please_wait">Proszę czekać…</string>
-
     </resources>

@@ -134,12 +134,6 @@
     <string name="content_desc_delete">ลบ</string>
     <string name="content_desc_download">ดาวน์โหลด</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">การแจ้งเตือน</string>
-    <string name="pref_title_notification_new_articles_available">แสดงการแจ้งเตือนเมื่อมีบทความใหม่</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">ข้อผิดพลาด</string>
     <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>

@@ -174,9 +174,8 @@
     <string name="pref_display_browser">瀏覽器</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">操作圖示（詳細檢視)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">操作圖示（詳細檢視）</string>
 
-    <string name="pref_display_apptheme_auto">淺色/深色（基於日光）</string>
     <string name="pref_display_apptheme_light">亮色</string>
     <string name="pref_display_apptheme_dark">暗色</string>
 
@@ -217,17 +216,11 @@
     <string name="content_desc_delete">刪除</string>
     <string name="content_desc_download">下載</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">通知</string>
-    <string name="pref_title_notification_new_articles_available">當有新條目時顯示通知</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">錯誤</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">似乎您未在伺服器安裝或啟動您的 News App。請遵循此處提示，先在您的伺服器安裝 News App：%1$s</string>
-    <string name="login_dialog_text_something_went_wrong">發生錯誤了 ：(</string>
-    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述錯誤舉報：https：//github。com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_something_went_wrong">發生錯誤了：（</string>
+    <string name="login_dialog_text_zero_version_code">網頁 News App 回傳版本為「0」。請看看下述錯誤舉報：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">此 App 版本與您的Nextcloud News App 不兼容，請更新 Nextcloud News 應用程式和 appframework</string>
     <string name="login_dialog_title_security_warning">安全性警告</string>
     <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼）</string>
@@ -261,5 +254,4 @@
     <string name="opml_export">導出 OPML</string>
     <string name="parsing_opml">分析 OPML …</string>
     <string name="please_wait">請稍候…</string>
-
     </resources>

@@ -154,12 +154,6 @@
     <string name="content_desc_delete">fshi</string>
     <string name="content_desc_download">shkarkoje</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Njoftime</string>
-    <string name="pref_title_notification_new_articles_available">Shfaq njoftime kur ka gati artikuj të rinj</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Gabim</string>
     <string name="login_dialog_text_something_went_wrong">Diçka shkoi ters :(</string>

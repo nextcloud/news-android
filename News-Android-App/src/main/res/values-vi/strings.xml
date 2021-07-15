@@ -64,6 +64,7 @@
     <string name="action_link_share">Chia sẻ liên kết</string>
     <string name="action_link_open">Mở liên kết trong trình duyệt</string>
     <string name="action_link_copy">Sao chép liên kết</string>
+    <string name="toast_img_download_wait">Đang tải xuống... Vui lòng đợi.</string>
     <string name="toast_img_saved">Đã lưu hình ảnh</string>
     <string name="toast_img_notwriteable">Ghi hình ảnh thất bại.</string>
     <string name="toast_copied_to_clipboard">Đã sao chép vào bộ nhớ tạm</string>
@@ -175,7 +176,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Biểu tượng hành động (Hiển thị chi tiết)</string>
 
-    <string name="pref_display_apptheme_auto">Sáng / Tối (dựa trên thời gian trong ngày)</string>
     <string name="pref_display_apptheme_light">Sáng</string>
     <string name="pref_display_apptheme_dark">Tối</string>
 
@@ -216,12 +216,6 @@
     <string name="content_desc_delete">xóa</string>
     <string name="content_desc_download">tải xuống</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Thông báo</string>
-    <string name="pref_title_notification_new_articles_available">Hiển thị thông báo khi bài viết mới có giá trị</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Lỗi</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Có vẻ như ứng dụng tin tức của bạn không được cài đặt hoặc kích hoạt trên máy chủ của bạn. Vui lòng làm theo hướng dẫn ở đây để thiết lập ứng dụng tin tức trên máy chủ của bạn trước tiên: %1$s</string>
@@ -244,6 +238,20 @@
     <string name="pref_data_sync_image_cache_ask">Hỏi khi không kết nối WiFi</string>
 
     <string name="array_sync_interval_min_0">Không bao giờ</string>
+    <string name="array_sync_interval_min_5">5 phút</string>
+    <string name="array_sync_interval_min_15">15 phút</string>
+    <string name="array_sync_interval_min_30">30 phút</string>
+    <string name="array_sync_interval_min_45">45 phút</string>
+    <string name="array_sync_interval_hour_1">1 tiếng</string>
+    <string name="array_sync_interval_hour_2">2 tiếng</string>
+    <string name="array_sync_interval_hour_3">3 tiếng</string>
+    <string name="array_sync_interval_hour_6">6 tiếng</string>
+    <string name="array_sync_interval_hour_12">12 tiếng</string>
+    <string name="array_sync_interval_hour_24">24 tiếng</string>
     <string name="switch_account">Chuyển tài khoản</string>
     
+    <string name="successfully_exported">Đã xuất thành công ra:</string>
+    <string name="opml_export">Bản xuất OPML</string>
+    <string name="parsing_opml">Đang xử lý OPML</string>
+    <string name="please_wait">Vui lòng đợi...</string>
     </resources>

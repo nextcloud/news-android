@@ -67,6 +67,7 @@
     <string name="action_link_share">Dela länk</string>
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
+    <string name="toast_img_download_wait">Hämtar… Vänligen vänta.</string>
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
@@ -120,6 +121,9 @@
     <string name="pref_header_general">Allmänt</string>
     <string name="pref_title_general_sort_order">Sorteringsordning</string>
 
+    <string name="pref_general_sort_order_new_old">Ny → Gammal</string>
+    <string name="pref_general_sort_order_old_new">Gammal → Ny</string>
+
     <string name="pref_rename_action_swipe_right">Åtgärd när du sveper åt höger</string>
     <string name="pref_rename_action_swipe_left">Åtgärd när du sveper åt vänster</string>
 
@@ -162,6 +166,8 @@
     <string name="pref_report_issue_summary">Kräver ett (gratis) GitHub-konto</string>
     <string name="pref_contribute">Bidra!</string>
     <string name="pref_contribute_summary">Hämta källkoden</string>
+    <string name="pref_privacy">Integritet</string>
+    <string name="pref_privacy_summary">Nextcloud Nyheter Android Integritetspolicy</string>
     <string name="pref_version">Nextcloud Nyheter Android-app</string>
 
 
@@ -185,6 +191,7 @@
     <string name="pref_display_browser_built_in">Inbyggd webbläsare</string>
     <string name="pref_display_browser_external">Extern webbläsare</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniatyrer (endast rubriker)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniatyrbilder</string>
     <string name="pref_display_feed_list_layout_simple_text">Enkel text</string>
     <string name="pref_display_feed_list_layout_headlines">Rubriker</string>
@@ -214,12 +221,6 @@
     <string name="content_desc_delete">radera</string>
     <string name="content_desc_download">hämta</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Aviseringar</string>
-    <string name="pref_title_notification_new_articles_available">Visa notifiering när nya artiklar är tillgängliga</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fel</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det verkar som din nyhetsapp inte är installerad eller aktiverad på din server. Följ instruktionerna här för att konfigurera nyhetsapplikationen på din server först: %1$s</string>
@@ -242,4 +243,20 @@
     <string name="pref_data_sync_image_cache_ask">Fråga när du inte är ansluten till Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Aldrig</string>
+    <string name="array_sync_interval_min_5">5 minuter</string>
+    <string name="array_sync_interval_min_15">15 minuter</string>
+    <string name="array_sync_interval_min_30">30 minuter</string>
+    <string name="array_sync_interval_min_45">45 minuter</string>
+    <string name="array_sync_interval_hour_1">1 timme</string>
+    <string name="array_sync_interval_hour_2">2 timmar</string>
+    <string name="array_sync_interval_hour_3">3 timmar</string>
+    <string name="array_sync_interval_hour_6">6 timmar</string>
+    <string name="array_sync_interval_hour_12">12 timmar</string>
+    <string name="array_sync_interval_hour_24">24 timmar</string>
+    <string name="switch_account">Växla konto</string>
+    
+    <string name="successfully_exported">Lyckad exportering till:</string>
+    <string name="opml_export">OPML-export</string>
+    <string name="parsing_opml">Läser OPML</string>
+    <string name="please_wait">Vänligen vänta…</string>
     </resources>

@@ -181,7 +181,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Ikuspegi xehatua)</string>
 
-    <string name="pref_display_apptheme_auto">Argia/Iluna (orduaren arabera)</string>
     <string name="pref_display_apptheme_light">Argia</string>
     <string name="pref_display_apptheme_dark">Iluna</string>
 
@@ -222,12 +221,6 @@
     <string name="content_desc_delete">ezabatu</string>
     <string name="content_desc_download">deskargatu</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Jakinarazpenak</string>
-    <string name="pref_title_notification_new_articles_available">Erakutsi jakinarazpena artikulu berriak eskuragarri daudenean</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errorea</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Dirudienez albisteen aplikazioa ez dago instalatua edo aktibatua zure zerbitzarian. Mesedez jarraitu honako argibideak zure zerbitzarian albisteen aplikazioa behar bezala ezartzeko lehenengo: %1$s</string>
@@ -250,11 +243,20 @@
     <string name="pref_data_sync_image_cache_ask">Galdetu WiFi-ra konektatu gabe badago</string>
 
     <string name="array_sync_interval_min_0">Inoiz ez</string>
+    <string name="array_sync_interval_min_5">5 minutu</string>
+    <string name="array_sync_interval_min_15">15 minutu</string>
+    <string name="array_sync_interval_min_30">30 minutu</string>
+    <string name="array_sync_interval_min_45">45 minutu</string>
+    <string name="array_sync_interval_hour_1">Ordu 1</string>
+    <string name="array_sync_interval_hour_2">2 ordu</string>
+    <string name="array_sync_interval_hour_3">3 ordu</string>
+    <string name="array_sync_interval_hour_6">6 ordu</string>
+    <string name="array_sync_interval_hour_12">12 ordu</string>
+    <string name="array_sync_interval_hour_24">24 ordu</string>
     <string name="switch_account">Aldatu kontua</string>
     
     <string name="successfully_exported">Ondo esportatu da:</string>
     <string name="opml_export">OPML Esportatu</string>
     <string name="parsing_opml">OPML analizatzen</string>
     <string name="please_wait">Itxaron mesedez...</string>
-
     </resources>

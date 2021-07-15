@@ -67,6 +67,7 @@
     <string name="action_link_share">Partager par un Lien</string>
     <string name="action_link_open">Ouvrir le Lien dans le Navigateur</string>
     <string name="action_link_copy">Copier le Lien</string>
+    <string name="toast_img_download_wait">Téléchargement... Merci de patienter.</string>
     <string name="toast_img_saved">Image sauvegardée</string>
     <string name="toast_img_notwriteable">Erreur d\'écriture de l\'Image.</string>
     <string name="toast_copied_to_clipboard">Copié dans le presse-papier</string>
@@ -180,7 +181,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Icônes d\'action (Vue détaillée)</string>
 
-    <string name="pref_display_apptheme_auto">Clair/Sombre (basé sur l\'heure)</string>
     <string name="pref_display_apptheme_light">Clair</string>
     <string name="pref_display_apptheme_dark">Sombre</string>
 
@@ -221,12 +221,6 @@
     <string name="content_desc_delete">suppression</string>
     <string name="content_desc_download">télécharger</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-    <string name="pref_title_notification_new_articles_available">Afficher une notification lorsque de nouveaux articles sont disponibles</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erreur</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Il semble que l\'application d\'actualités ne soit pas installée ou ne soit pas activée sur votre serveur. Consultez les instructions pour paramétrer l\'application d\'actualités sur votre serveur : %1$s.</string>
@@ -249,6 +243,18 @@
     <string name="pref_data_sync_image_cache_ask">Demander lorsqu\'il n\'y a pas de connexion WiFi</string>
 
     <string name="array_sync_interval_min_0">Jamais</string>
+    <string name="array_sync_interval_min_5">5 minutes</string>
+    <string name="array_sync_interval_min_15">15 minutes</string>
+    <string name="array_sync_interval_min_30">30 minutes</string>
+    <string name="array_sync_interval_min_45">45 minutes</string>
+    <string name="array_sync_interval_hour_1">1 heure</string>
+    <string name="array_sync_interval_hour_2">2 heures</string>
+    <string name="array_sync_interval_hour_3">3 heures</string>
+    <string name="array_sync_interval_hour_6">6 heures</string>
+    <string name="array_sync_interval_hour_12">12 heures</string>
+    <string name="array_sync_interval_hour_24">24 heures</string>
     <string name="switch_account">Basculer de compte</string>
     
+    <string name="successfully_exported">Export effectué vers:</string>
+    <string name="please_wait">Veuillez patienter...</string>
     </resources>

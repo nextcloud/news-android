@@ -161,11 +161,6 @@
     <string name="content_desc_add_to_favorites">добави към любимите</string>
     <string name="content_desc_remove_from_favorites">премахни от любимите</string>
     <string name="content_desc_delete">изтриване</string>
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Известия</string>
-    <string name="pref_title_notification_new_articles_available">Показвай известия за нови статии</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изглежда, че приложението за новини не е инсталирано/включено на сървъра. Следвайте следните инструкции: %1$s, за да настроите приложението за новини на сървъра.</string>

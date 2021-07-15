@@ -214,12 +214,6 @@
     <string name="content_desc_delete">حذف</string>
     <string name="content_desc_download">بارگیری</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">آگاهی‌ها</string>
-    <string name="pref_title_notification_new_articles_available">نمایش آگاهی هنگام موجود بودن مقاله‌های جدید</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">خطا</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">به نظر می‌رسد کارهٔ اخبار روی کارسازتان نصب یا فعّال نشده است. لطفاً برای برپایی کارهٔ اخبار روی کارسازتان، ابتدا روشی که این‌جا گفته شده را دنبال کنید: %1$s</string>

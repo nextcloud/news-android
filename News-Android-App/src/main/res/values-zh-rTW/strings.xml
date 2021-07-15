@@ -64,6 +64,7 @@
     <string name="action_link_share">分享連結</string>
     <string name="action_link_open">在瀏覽器中打開連結</string>
     <string name="action_link_copy">複製連結</string>
+    <string name="toast_img_download_wait">下載中… 請稍候。</string>
     <string name="toast_img_saved">圖片已儲存</string>
     <string name="toast_img_notwriteable">寫入圖片失敗</string>
     <string name="toast_copied_to_clipboard">複製至剪貼簿</string>
@@ -185,6 +186,7 @@
     <string name="pref_display_browser_built_in">內建瀏覽器</string>
     <string name="pref_display_browser_external">外部瀏覽器</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">縮圖 (只有頭條)</string>
     <string name="pref_display_feed_list_layout_thumbnails">縮圖</string>
     <string name="pref_display_feed_list_layout_simple_text">簡單文字</string>
     <string name="pref_display_feed_list_layout_headlines">標題</string>
@@ -214,12 +216,6 @@
     <string name="content_desc_delete">刪除</string>
     <string name="content_desc_download">下載</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">通知</string>
-    <string name="pref_title_notification_new_articles_available">當有新條目時顯示通知</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">錯誤</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">似乎您未在伺服器安裝或啟用您的 News App。請遵循此處提示，先在您的伺服器安裝 News App：%1$s</string>
@@ -242,4 +238,20 @@
     <string name="pref_data_sync_image_cache_ask">當未連接到 WiFi 時詢問</string>
 
     <string name="array_sync_interval_min_0">絕不</string>
+    <string name="array_sync_interval_min_5">5 分鐘</string>
+    <string name="array_sync_interval_min_15">15 分鐘</string>
+    <string name="array_sync_interval_min_30">30 分鐘</string>
+    <string name="array_sync_interval_min_45">45 分鐘</string>
+    <string name="array_sync_interval_hour_1">1 小時</string>
+    <string name="array_sync_interval_hour_2">2 小時</string>
+    <string name="array_sync_interval_hour_3">3 小時</string>
+    <string name="array_sync_interval_hour_6">6 小時</string>
+    <string name="array_sync_interval_hour_12">12 小時</string>
+    <string name="array_sync_interval_hour_24">24 小時</string>
+    <string name="switch_account">切換帳號</string>
+    
+    <string name="successfully_exported">成功匯出至：</string>
+    <string name="opml_export">OPML 匯出</string>
+    <string name="parsing_opml">剖析 OPML</string>
+    <string name="please_wait">請稍候…</string>
     </resources>

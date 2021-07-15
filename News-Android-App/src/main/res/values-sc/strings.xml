@@ -67,6 +67,7 @@
     <string name="action_link_share">Cumpartzi Lingòngiu</string>
     <string name="action_link_open">Aberi Ligòngiu in su Navigadore</string>
     <string name="action_link_copy">Còpia Ligòngiu</string>
+    <string name="toast_img_download_wait">Iscarrighende... Abeta.</string>
     <string name="toast_img_saved">Immàgines sarvadas</string>
     <string name="toast_img_notwriteable">Iscritura Immàgine faddida.</string>
     <string name="toast_copied_to_clipboard">Copiadu in is apuntos</string>
@@ -180,7 +181,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Atziones de is iconas (bista a minudu)</string>
 
-    <string name="pref_display_apptheme_auto">Craru/iscuru (basadu subra de Daytime)</string>
     <string name="pref_display_apptheme_light">Craru</string>
     <string name="pref_display_apptheme_dark">Iscuru</string>
 
@@ -221,12 +221,6 @@
     <string name="content_desc_delete">cantzella</string>
     <string name="content_desc_download">iscàrriga</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notìficas</string>
-    <string name="pref_title_notification_new_articles_available">Mustra notìficas cando b\'at artìculos a disponimentu</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errore</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Paret chi is aplicatziones noas non sunt installadas o ativadas in su serbidore tuo. Pro praghere, sighi is istrutziones frunidas inoghe pro cunfigurare is aplicatziones noas in su serbidore: %1$s</string>
@@ -249,6 +243,20 @@
     <string name="pref_data_sync_image_cache_ask">Pregonta si no ses connètidu a su WiFi</string>
 
     <string name="array_sync_interval_min_0">Mai</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 ora</string>
+    <string name="array_sync_interval_hour_2">2 oras</string>
+    <string name="array_sync_interval_hour_3">3 oras</string>
+    <string name="array_sync_interval_hour_6">6 oras</string>
+    <string name="array_sync_interval_hour_12">12 oras</string>
+    <string name="array_sync_interval_hour_24">24 oras</string>
     <string name="switch_account">Passa a àteru contu</string>
     
+    <string name="successfully_exported">Esportadu a:</string>
+    <string name="opml_export">Esporta OPML</string>
+    <string name="parsing_opml">Anàlisi de OPML</string>
+    <string name="please_wait">Abeta...</string>
     </resources>

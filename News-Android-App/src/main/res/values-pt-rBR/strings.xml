@@ -181,7 +181,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de ação (Exibição detalhada)</string>
 
-    <string name="pref_display_apptheme_auto">Claro/Escuro (com base no horário)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 
@@ -222,12 +221,6 @@
     <string name="content_desc_delete">excluir</string>
     <string name="content_desc_download">baixar</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notificações</string>
-    <string name="pref_title_notification_new_articles_available">Exibir notificações quando novos artigos estiverem disponíveis</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Parece que o seu aplicativo de notícias não está instalado ou ativado no servidor. Por favor, siga as instruções dadas aqui para configurar o aplicativo no servidor primeiro: %1$s</string>
@@ -266,5 +259,4 @@
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Analisando o arquivo OPML</string>
     <string name="please_wait">Aguarde...</string>
-
     </resources>

@@ -190,7 +190,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
 
-    <string name="pref_display_apptheme_auto">Светлая/тёмная (в зависимости от времени суток)</string>
     <string name="pref_display_apptheme_light">Светлая</string>
     <string name="pref_display_apptheme_dark">Тёмная</string>
 
@@ -230,12 +229,6 @@
     <string name="content_desc_show_password">показать пароль</string>
     <string name="content_desc_delete">удалить</string>
     <string name="content_desc_download">загрузить</string>
-
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Уведомления</string>
-    <string name="pref_title_notification_new_articles_available">Отображать уведомление когда появляются новые статьи</string>
-
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Ошибка</string>
