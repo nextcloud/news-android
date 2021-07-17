@@ -218,6 +218,7 @@ public class LoginDialogActivity extends AppCompatActivity {
 	private final View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            int lastSelection = binding.password.getSelectionEnd();
             mPasswordVisible = !mPasswordVisible;
 
             if(mPasswordVisible) {
@@ -225,6 +226,8 @@ public class LoginDialogActivity extends AppCompatActivity {
             } else {
                 binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
+
+            binding.password.setSelection(lastSelection);
         }
     };
 
