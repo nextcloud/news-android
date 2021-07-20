@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="title_activity_news_detail">NieuwsDetailActiviteit</string>
     <string name="empty_view_content">Geen items hier</string>
+    <string name="empty_view_content_action">Omlaag trekken om te verversen</string>
     <string name="toast_GettingMoreItems">Begonnen meer bestanden te downloaden... Even geduld.</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
     <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
 
+    <string name="pref_display_apptheme_auto">Systeemstandaard</string>
     <string name="pref_display_apptheme_light">Licht</string>
     <string name="pref_display_apptheme_dark">Donker</string>
 
@@ -259,4 +261,6 @@
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Interpreteren OPML</string>
     <string name="please_wait">Even geduld...</string>
+    <string name="interval_sync_title">Interval Sync</string>
+
     </resources>

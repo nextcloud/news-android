@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Eşitleme sıklığı</string>
     <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
     <string name="empty_view_content">Burada herhangi bir öge yok</string>
+    <string name="empty_view_content_action">Yenilemek için aşağı çekin</string>
     <string name="toast_GettingMoreItems">Lütfen bekleyin, diğer ögelerin indirilmesine başlandı …</string>
     <string name="no_wifi_available">Wi-Fi bağlantısı yapılmamış</string>
     <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">İşlem simgeleri (ayrıntı görünümü)</string>
 
+    <string name="pref_display_apptheme_auto">Sistem varsayılanı</string>
     <string name="pref_display_apptheme_light">Açık</string>
     <string name="pref_display_apptheme_dark">Koyu</string>
 
@@ -259,4 +261,6 @@
     <string name="opml_export">OPML dışa aktar</string>
     <string name="parsing_opml">OPML işleniyor</string>
     <string name="please_wait">Lütfen bekleyin…</string>
+    <string name="interval_sync_title">Eşitleme aralığı</string>
+
     </resources>

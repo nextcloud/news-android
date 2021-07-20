@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Interval synchronizácie</string>
     <string name="title_activity_news_detail">Podrobná aktivita noviniek</string>
     <string name="empty_view_content">Žiadne položky</string>
+    <string name="empty_view_content_action">Pre obnovenie potiahnite nadol</string>
     <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím.</string>
     <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Chcete obrázky stiahnuť bez pripojenia Wi-Fi</string>
@@ -191,6 +192,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akcií (podrobné zobrazenie)</string>
 
+    <string name="pref_display_apptheme_auto">Predvolené systémom</string>
     <string name="pref_display_apptheme_light">Svetlý</string>
     <string name="pref_display_apptheme_dark">Tmavý</string>
 
@@ -269,4 +271,6 @@
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Parsovanie OPML</string>
     <string name="please_wait">Čakajte prosím...</string>
+    <string name="interval_sync_title">Interval synchronizácie</string>
+
     </resources>

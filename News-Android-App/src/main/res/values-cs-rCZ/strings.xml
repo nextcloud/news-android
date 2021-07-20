@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Interval synchronizace</string>
     <string name="title_activity_news_detail">Podrobná aktivita zpráv</string>
     <string name="empty_view_content">Žádné položky</string>
+    <string name="empty_view_content_action">Pokud chcete znovu načíst, popotáhněte směrem dolů</string>
     <string name="toast_GettingMoreItems">Zahájeno stahování vícero položek… Čekejte.</string>
     <string name="no_wifi_available">Wi-Fi není připojeno</string>
     <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez Wi-Fi připojení</string>
@@ -191,6 +192,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikony akce (podrobné zobrazení)</string>
 
+    <string name="pref_display_apptheme_auto">Systémový výchozí</string>
     <string name="pref_display_apptheme_light">Světlý</string>
     <string name="pref_display_apptheme_dark">Tmavý</string>
 
@@ -269,4 +271,6 @@
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Analyzování OPML</string>
     <string name="please_wait">Prosíme čekejte…</string>
+    <string name="interval_sync_title">Synchronizace v intervalu</string>
+
     </resources>

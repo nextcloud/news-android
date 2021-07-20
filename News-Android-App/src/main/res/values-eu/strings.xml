@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sinkronizazio bitartea</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ez dago elementurik hemen</string>
+    <string name="empty_view_content_action">Tiratu behera freskatzeko</string>
     <string name="toast_GettingMoreItems">Elementu gehiagoren deskarga hasita... Itxaron mesedez.</string>
     <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
     <string name="do_you_want_to_download_without_wifi">Irudiak Wi-Fi konexiorik gabe deskargatu nahi dituzu</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ekintza ikonoak (Ikuspegi xehatua)</string>
 
+    <string name="pref_display_apptheme_auto">Sistemaren balio lehenetsia</string>
     <string name="pref_display_apptheme_light">Argia</string>
     <string name="pref_display_apptheme_dark">Iluna</string>
 
@@ -259,4 +261,6 @@
     <string name="opml_export">OPML Esportatu</string>
     <string name="parsing_opml">OPML analizatzen</string>
     <string name="please_wait">Itxaron mesedez...</string>
+    <string name="interval_sync_title">Tarteen sinkronizazioa</string>
+
     </resources>
