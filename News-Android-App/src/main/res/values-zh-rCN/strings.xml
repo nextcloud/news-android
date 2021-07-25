@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">同步间隔</string>
     <string name="title_activity_news_detail">新闻详细活动</string>
     <string name="empty_view_content">无内容</string>
+    <string name="empty_view_content_action">下拉刷新</string>
     <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>
     <string name="no_wifi_available">没有连接到 WiFi</string>
     <string name="do_you_want_to_download_without_wifi">确定要通过非 Wi-Fi 连接下载图片？</string>
@@ -176,6 +177,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">动作图标（详情页）</string>
 
+    <string name="pref_display_apptheme_auto">系统默认</string>
     <string name="pref_display_apptheme_light">浅色</string>
     <string name="pref_display_apptheme_dark">深色</string>
 
@@ -254,4 +256,6 @@
     <string name="opml_export">OPML 导出</string>
     <string name="parsing_opml">解析 OPML</string>
     <string name="please_wait">请等待 ...</string>
+    <string name="interval_sync_title">间隔同步</string>
+
     </resources>
