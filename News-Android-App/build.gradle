@@ -200,6 +200,9 @@ dependencies {
 
 
     androidTestImplementation 'tools.fastlane:screengrab:2.1.0'
+    // Add falcon:2.2.0 explicitly, because screengrab:2.1.0 relies on falcon:2.1.1 which is not available on mavenCentral
+    // See https://github.com/fastlane/fastlane/issues/12651#issuecomment-849653404
+    androidTestImplementation 'com.jraska:falcon:2.2.0'
     //androidTestImplementation "org.mockito:mockito-core:MOCKITO_VERSION"
     androidTestImplementation "org.mockito:mockito-android:$MOCKITO_VERSION"
 
