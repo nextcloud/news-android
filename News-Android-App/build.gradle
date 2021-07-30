@@ -38,6 +38,8 @@ android {
 
     compileOptions {
         coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     buildTypes {
@@ -113,7 +115,6 @@ android {
 
 repositories {
     mavenCentral()
-    jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://guardian.github.io/maven/repo-releases' } //needed for com.gu:option:1.3 in Android-DirectoryChooser
 }
