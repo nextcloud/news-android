@@ -21,6 +21,7 @@
 
 package de.luhmer.owncloudnewsreader.helper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
@@ -62,7 +63,8 @@ public class ThemeUtils {
             searchTextViewRef.setAccessible(true);
             Object searchAutoComplete = searchTextViewRef.get(searchView);
 
-            Field mCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
+            // FIXME Reflective access to mTextSelectHandleRes will throw an exception when targeting API 30 and above
+            @SuppressLint("SoonBlockedPrivateApi") Field mCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
             mCursorDrawableRes.setAccessible(true);
             mCursorDrawableRes.set(searchAutoComplete, R.drawable.cursor);
 
@@ -70,7 +72,8 @@ public class ThemeUtils {
             // https://stackoverflow.com/a/49555923
 
             //get the pointer resource id
-            Field textSelectHandleRef = TextView.class.getDeclaredField("mTextSelectHandleRes");
+            // FIXME Reflective access to mTextSelectHandleRes will throw an exception when targeting API 30 and above
+            @SuppressLint("SoonBlockedPrivateApi") Field textSelectHandleRef = TextView.class.getDeclaredField("mTextSelectHandleRes");
             textSelectHandleRef.setAccessible(true);
             int drawableResId = textSelectHandleRef.getInt(searchAutoComplete);
 
