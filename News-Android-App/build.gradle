@@ -199,7 +199,7 @@ dependencies {
     //androidTestImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_VERSION}"
 
 
-    androidTestImplementation 'tools.fastlane:screengrab:2.0.0'
+    androidTestImplementation 'tools.fastlane:screengrab:2.1.0'
     //androidTestImplementation "org.mockito:mockito-core:MOCKITO_VERSION"
     androidTestImplementation "org.mockito:mockito-android:$MOCKITO_VERSION"
 
