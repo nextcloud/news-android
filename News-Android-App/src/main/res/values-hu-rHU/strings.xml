@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Szinkronizáció gyakorisága</string>
     <string name="title_activity_news_detail">HírekRészletTevékenység</string>
     <string name="empty_view_content">Itt nincs semmi</string>
+    <string name="empty_view_content_action">Húzza lefelé a frissítéshez</string>
     <string name="toast_GettingMoreItems">További elemek letöltése megkezdődött… Várjon.</string>
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Letölti a képeket Wi-Fi kapcsolat nélkül?</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Műveletikonok (Részletes nézet)</string>
 
+    <string name="pref_display_apptheme_auto">Rendszer alapértelmezése</string>
     <string name="pref_display_apptheme_light">Világos</string>
     <string name="pref_display_apptheme_dark">Sötét</string>
 
@@ -259,4 +261,6 @@
     <string name="opml_export">OPML export</string>
     <string name="parsing_opml">OPML feldolgozása</string>
     <string name="please_wait">Kis türelmet…</string>
+    <string name="interval_sync_title">Szinkronizálási időköz</string>
+
     </resources>
