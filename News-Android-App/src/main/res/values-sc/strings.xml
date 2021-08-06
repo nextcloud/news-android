@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Intervallu de sincronizatzione</string>
     <string name="title_activity_news_detail">AtividadeDetàlliosNoas</string>
     <string name="empty_view_content">Perunu elementu inoghe</string>
+    <string name="empty_view_content_action">Tira a bàsciu pro agiornare</string>
     <string name="toast_GettingMoreItems">Iscarrigamentu de àteros elementos cumintzadu... Iseta pro praghere.</string>
     <string name="no_wifi_available">WiFi disconnètidu</string>
     <string name="do_you_want_to_download_without_wifi">Nche cheres iscarrigare is immàgines sena connessione Wi-Fi </string>
@@ -21,7 +22,7 @@
 
     <string name="menu_update">Agiorna</string>
     <string name="menu_markAllAsRead">Marca totu comente lèghidu</string>
-    <string name="menu_StartImageCaching">Iscarriga immàgines</string>
+    <string name="menu_StartImageCaching">Iscarriga imàgines</string>
     <string name="menu_downloadMoreItems">Iscarriga àteros elementos</string>
 
     <string name="tv_showing_cached_version">Mustra sa versione in sa memòria temporànea</string>
@@ -60,16 +61,16 @@
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Iscàrriga Immàgine</string>
-    <string name="action_img_sharelink">Cumpartzi Ligòngiu Immàgine</string>
-    <string name="action_img_open">Aberi Immàgine in su Navigadore</string>
-    <string name="action_img_copylink">Còpia Ligòngiu Immàgine</string>
+    <string name="action_img_download">Iscàrriga imàgine</string>
+    <string name="action_img_sharelink">Cumpartzi ligòngiu imàgine</string>
+    <string name="action_img_open">Aberi imàgine in su Navigadore</string>
+    <string name="action_img_copylink">Còpia ligòngiu imàgine</string>
     <string name="action_link_share">Cumpartzi Lingòngiu</string>
     <string name="action_link_open">Aberi Ligòngiu in su Navigadore</string>
     <string name="action_link_copy">Còpia Ligòngiu</string>
     <string name="toast_img_download_wait">Iscarrighende... Abeta.</string>
-    <string name="toast_img_saved">Immàgines sarvadas</string>
-    <string name="toast_img_notwriteable">Iscritura Immàgine faddida.</string>
+    <string name="toast_img_saved">Imàgines sarvadas</string>
+    <string name="toast_img_notwriteable">Iscritura imàgine faddida.</string>
     <string name="toast_copied_to_clipboard">Copiadu in is apuntos</string>
     <string name="error_download_failed">Iscarrigamentu faddidu</string>
     <string name="intent_title_share">Cumpartzi tràmite</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Atziones de is iconas (bista a minudu)</string>
 
+    <string name="pref_display_apptheme_auto">Predefinidu de sistema</string>
     <string name="pref_display_apptheme_light">Craru</string>
     <string name="pref_display_apptheme_dark">Iscuru</string>
 
@@ -259,4 +261,6 @@
     <string name="opml_export">Esporta OPML</string>
     <string name="parsing_opml">Anàlisi de OPML</string>
     <string name="please_wait">Abeta...</string>
+    <string name="interval_sync_title">Sincronizatzione in tretu</string>
+
     </resources>

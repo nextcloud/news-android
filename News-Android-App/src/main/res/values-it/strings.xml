@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Intervallo di sincronizzazione</string>
     <string name="title_activity_news_detail">AttivitàDettagliNotizie</string>
     <string name="empty_view_content">Nessun elemento</string>
+    <string name="empty_view_content_action">Tira in giù per aggiornare</string>
     <string name="toast_GettingMoreItems">Iniziato lo scaricamento di altri elementi... Attendi.</string>
     <string name="no_wifi_available">WiFi non connesso</string>
     <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le immagini senza una connessione WiFi</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Azioni delle icone (vista dettagliata)</string>
 
+    <string name="pref_display_apptheme_auto">Predefinito di sistema</string>
     <string name="pref_display_apptheme_light">Chiaro</string>
     <string name="pref_display_apptheme_dark">Scuro</string>
 
@@ -260,4 +262,6 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="opml_export">Esportazione OPML</string>
     <string name="parsing_opml">Analisi OMPL</string>
     <string name="please_wait">Attendi...</string>
+    <string name="interval_sync_title">Sincronizzazione intervallo</string>
+
     </resources>
