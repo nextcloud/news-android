@@ -4,26 +4,28 @@
     <string name="auto_sync_string">ประสานข้อมูลอัตโนมัติ</string>
     <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
     <string name="empty_view_content">ไม่มีรายการที่นี่</string>
+    <string name="empty_view_content_action">ดึงลงเพื่อรีเฟรช</string>
     <string name="no_wifi_available">ไม่มีการเชื่อมต่อ Wifi</string>
     <string name="current_version">คุณกำลังใช้รุ่น %s</string>
-    <string name="widget_header">ข่าว ownCloud</string>
+    <string name="widget_header">NextCloud ข่าว</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d รายการใหม่ที่สามารถใช้ได้</item>
     </plurals>
     <string name="message_bar_reload">โหลดใหม่อีกครั้ง</string>
-    <string name="allUnreadFeeds">ยังไม่ได้อ่านรายการทั้งหมด</string>
+    <string name="allUnreadFeeds">รายการที่ยังไม่ได้อ่าน</string>
     <string name="starredFeeds">รายการที่ติดดาว</string>
-    <string name="title_activity_new_feed">เพิ่ม feed ใหม่</string>
+    <string name="title_activity_new_feed">เพิ่มฟีดใหม่</string>
 
     <string name="menu_update">รีเฟรช</string>
-    <string name="menu_markAllAsRead">เลือกอ่านทั้งหมด</string>
+    <string name="menu_markAllAsRead">เปลี่ยนทั้งหมดเป็น \"อ่านแล้ว\"</string>
     <string name="menu_StartImageCaching">ดาวน์โหลดรูปภาพ</string>
     <string name="menu_downloadMoreItems">ดาวน์โหลดรายการอื่นๆ</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">ติดดาวแล้ว</string>
-    <string name="action_read">อ่าน</string>
+    <string name="action_read">อ่านแล้ว</string>
     <string name="action_playPodacst">เล่นพอดคาสต์</string>
+    <string name="action_openInBrowser">เปิดในเว็บเบราว์เซอร์</string>
     <string name="action_Share">แชร์</string>
     <string name="action_login">ตั้งค่าเซิร์ฟเวอร์</string>
     <string name="action_save">บันทึก</string>
