@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Interval sinkronizacije</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ovdje nema stavki</string>
+    <string name="empty_view_content_action">Povuci prema dolje za osvježavanje</string>
     <string name="toast_GettingMoreItems">Počelo je preuzimanje više stavki... Pričekajte.</string>
     <string name="no_wifi_available">Nije povezana bežična (Wi-Fi) mreža</string>
     <string name="do_you_want_to_download_without_wifi">Želite li preuzeti slike van bežične (Wi-Fi) veze</string>
@@ -70,6 +71,7 @@
     <string name="action_link_share">Dijeli poveznicu</string>
     <string name="action_link_open">Otvori poveznicu u pregledniku</string>
     <string name="action_link_copy">Kopiraj poveznicu</string>
+    <string name="toast_img_download_wait">Preuzimanje... Pričekajte.</string>
     <string name="toast_img_saved">Slika je spremljena</string>
     <string name="toast_img_notwriteable">Zapisivanje slike nije uspjelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano u međuspremnik</string>
@@ -185,6 +187,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone radnji (prikaz pojedinosti)</string>
 
+    <string name="pref_display_apptheme_auto">Zadana postavka sustava</string>
     <string name="pref_display_apptheme_light">Svijetlo</string>
     <string name="pref_display_apptheme_dark">Tamno</string>
 
@@ -247,4 +250,22 @@
     <string name="pref_data_sync_image_cache_ask">Pitaj kada uređaj nije spojen na bežičnu (Wi-Fi) mrežu</string>
 
     <string name="array_sync_interval_min_0">Nikad</string>
+    <string name="array_sync_interval_min_5">5 minuta</string>
+    <string name="array_sync_interval_min_15">15 minuta</string>
+    <string name="array_sync_interval_min_30">30 minuta</string>
+    <string name="array_sync_interval_min_45">45 minuta</string>
+    <string name="array_sync_interval_hour_1">1 sat</string>
+    <string name="array_sync_interval_hour_2">2 sata</string>
+    <string name="array_sync_interval_hour_3">3 sata</string>
+    <string name="array_sync_interval_hour_6">6 sati</string>
+    <string name="array_sync_interval_hour_12">12 sati</string>
+    <string name="array_sync_interval_hour_24">24 sata</string>
+    <string name="switch_account">Zamijeni račun</string>
+    
+    <string name="successfully_exported">Uspješno izvezeno u:</string>
+    <string name="opml_export">OPML izvoz</string>
+    <string name="parsing_opml">Parsiranje OPML-a</string>
+    <string name="please_wait">Pričekajte...</string>
+    <string name="interval_sync_title">Sinkronizacija intervala</string>
+
     </resources>
