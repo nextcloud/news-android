@@ -216,12 +216,6 @@
     <string name="content_desc_delete">削除</string>
     <string name="content_desc_download">ダウンロード</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">通知</string>
-    <string name="pref_title_notification_new_articles_available">新しい記事が追加された時のみ通知</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">エラー</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">あなたのニュースアプリがあなたのサーバーにインストールされていないか、起動されていないようです。 まず、あなたのサーバーにニュースアプリをインストールするには、こちらの指示に従ってください：%1$s</string>
@@ -244,10 +238,19 @@
     <string name="pref_data_sync_image_cache_ask">WiFi接続がない場合は尋ねる</string>
 
     <string name="array_sync_interval_min_0">なし</string>
+    <string name="array_sync_interval_min_5">5分</string>
+    <string name="array_sync_interval_min_15">15分</string>
+    <string name="array_sync_interval_min_30">30分</string>
+    <string name="array_sync_interval_min_45">45分</string>
+    <string name="array_sync_interval_hour_1">1時間</string>
+    <string name="array_sync_interval_hour_2">2時間</string>
+    <string name="array_sync_interval_hour_3">3時間</string>
+    <string name="array_sync_interval_hour_6">6時間</string>
+    <string name="array_sync_interval_hour_12">12時間</string>
+    <string name="array_sync_interval_hour_24">24時間</string>
     <string name="switch_account">アカウントの切り替え</string>
     
     <string name="opml_export">OPMLをエクスポート</string>
     <string name="parsing_opml">OPMLを解析中</string>
     <string name="please_wait">しばらくお待ちください…</string>
-
     </resources>

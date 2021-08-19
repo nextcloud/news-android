@@ -137,12 +137,6 @@
     <string name="content_desc_delete">hapus</string>
     <string name="content_desc_download">unduh</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Pemberitahuan</string>
-    <string name="pref_title_notification_new_articles_available">Tampilkan pemberitahuan ketika artikel baru tersedia</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Kesalahan</string>
     <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>

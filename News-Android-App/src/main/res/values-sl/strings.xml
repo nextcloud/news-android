@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Časovni razmik usklajevanj</string>
     <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
     <string name="empty_view_content">Ni novic</string>
+    <string name="empty_view_content_action">Povlecite navzdol za osvežitev</string>
     <string name="toast_GettingMoreItems">Začeto je prejemanje več prispevkov ...</string>
     <string name="no_wifi_available">Ni vzpostavljene povezave Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike, čeprav ni vzpostavljene povezave prek Wi-Fi?</string>
@@ -191,7 +192,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ikone dejavnosti (podrobni pogled)</string>
 
-    <string name="pref_display_apptheme_auto">Svetla / Temna (glede na čas dneva)</string>
+    <string name="pref_display_apptheme_auto">Sistemsko privzeto</string>
     <string name="pref_display_apptheme_light">Svetla</string>
     <string name="pref_display_apptheme_dark">Temna</string>
 
@@ -232,12 +233,6 @@
     <string name="content_desc_delete">izbriši</string>
     <string name="content_desc_download">prejmi</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Obvestila</string>
-    <string name="pref_title_notification_new_articles_available">Ob prispetju novega prispevka pokaži obvestilo</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Napaka</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Kaže, da novičarski program na strežniku ni nameščen oziroma ni zagnan. Oglejte si navodila, kako ga namestiti na strežnik: %1$s</string>
@@ -260,11 +255,22 @@
     <string name="pref_data_sync_image_cache_ask">Vprašaj, kadar povezava ni vzpostavljena prek Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Nikoli</string>
+    <string name="array_sync_interval_min_5">5 minut</string>
+    <string name="array_sync_interval_min_15">15 minut</string>
+    <string name="array_sync_interval_min_30">30 minut</string>
+    <string name="array_sync_interval_min_45">45 minut</string>
+    <string name="array_sync_interval_hour_1">1 ura</string>
+    <string name="array_sync_interval_hour_2">2 uri</string>
+    <string name="array_sync_interval_hour_3">3 ure</string>
+    <string name="array_sync_interval_hour_6">6 ur</string>
+    <string name="array_sync_interval_hour_12">12 ur</string>
+    <string name="array_sync_interval_hour_24">24 ur</string>
     <string name="switch_account">Preklopi račun</string>
     
     <string name="successfully_exported">Uspešno izvoženo v;</string>
     <string name="opml_export">Izvoz OPML</string>
     <string name="parsing_opml">Razčlenjevanje OPML</string>
     <string name="please_wait">Počakajte ...</string>
+    <string name="interval_sync_title">Časovni razmik usklajevanja</string>
 
     </resources>

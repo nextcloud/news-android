@@ -181,7 +181,6 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Iconos de acción (vista detallada)</string>
 
-    <string name="pref_display_apptheme_auto">Claro/Oscuro (basado en la hora)</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Oscuro</string>
 
@@ -222,12 +221,6 @@
     <string name="content_desc_delete">borrar</string>
     <string name="content_desc_download">descargar</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notificaciones</string>
-    <string name="pref_title_notification_new_articles_available">Mostrar notificación cuando nuevos artículos estén disponibles</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Parece que tu aplicación de noticias no está instalada o activada en tu servidor. Siga las instrucciones para configurar la aplicación de noticias en tu servidor: %1$s</string>
@@ -250,11 +243,20 @@
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a una WiFi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 horas</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
     <string name="switch_account">Cambiar cuenta</string>
     
     <string name="successfully_exported">Exportado con éxito a:</string>
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Procesando OPML</string>
     <string name="please_wait">Por favor, espere…</string>
-
     </resources>

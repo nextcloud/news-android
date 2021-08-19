@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synchronisierungsintervall</string>
     <string name="title_activity_news_detail">NewsDetailAktivität</string>
     <string name="empty_view_content">Keine Artikel vorhanden</string>
+    <string name="empty_view_content_action">Zum Aktualisieren herunterziehen</string>
     <string name="toast_GettingMoreItems">Herunterladen weiterer Elemente gestartet … Bitte warten.</string>
     <string name="no_wifi_available">Keine WLAN-Verbindung</string>
     <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
@@ -181,7 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Aktionssymbole (Detailansicht)</string>
 
-    <string name="pref_display_apptheme_auto">Hell/Dunkel (je nach Tageszeit)</string>
+    <string name="pref_display_apptheme_auto">Systemstandard</string>
     <string name="pref_display_apptheme_light">Hell</string>
     <string name="pref_display_apptheme_dark">Dunkel</string>
 
@@ -222,12 +223,6 @@
     <string name="content_desc_delete">löschen</string>
     <string name="content_desc_download">Herunterladen</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Benachrichtigungen</string>
-    <string name="pref_title_notification_new_articles_available">Benachrichtigungen anzeigen, wenn neue Artikel verfügbar sind</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fehler</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Die News-App ist auf Ihrem Server nicht installiert oder aktiviert. Folgen Sie den Anweisungen zur Installation und Einrichtung: %1$s</string>
@@ -266,5 +261,6 @@
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Analysiere OPML</string>
     <string name="please_wait">Bitte warten Sie …</string>
+    <string name="interval_sync_title">Intervall-Synchronisation</string>
 
     </resources>

@@ -214,12 +214,6 @@
     <string name="content_desc_delete">eyða</string>
     <string name="content_desc_download">sækja</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Tilkynningar</string>
-    <string name="pref_title_notification_new_articles_available">Birta tilkynningu þegar nýjar greinar eru tiltækar</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Villa</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Það lítur út fyrir að fréttaforritið sé ekki sett upp eða virkjað á þjóninum þínum. Farðu eftir leiðbeinungunum hér til að setja fréttaforritið upp fyrst á þjóninum þínum: %1$s</string>

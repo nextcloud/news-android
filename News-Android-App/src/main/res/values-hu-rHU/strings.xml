@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Szinkronizáció gyakorisága</string>
     <string name="title_activity_news_detail">HírekRészletTevékenység</string>
     <string name="empty_view_content">Itt nincs semmi</string>
+    <string name="empty_view_content_action">Húzza lefelé a frissítéshez</string>
     <string name="toast_GettingMoreItems">További elemek letöltése megkezdődött… Várjon.</string>
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Letölti a képeket Wi-Fi kapcsolat nélkül?</string>
@@ -67,6 +68,7 @@
     <string name="action_link_share">Hivatkozás megosztása</string>
     <string name="action_link_open">Hivatkozás megnyitása böngészőben</string>
     <string name="action_link_copy">Hivatkozás másolása</string>
+    <string name="toast_img_download_wait">Letöltés… Kis türelmet.</string>
     <string name="toast_img_saved">Kép elmentve</string>
     <string name="toast_img_notwriteable">Kép írása nem sikerült.</string>
     <string name="toast_copied_to_clipboard">Vágólapra másolva</string>
@@ -180,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Műveletikonok (Részletes nézet)</string>
 
+    <string name="pref_display_apptheme_auto">Rendszer alapértelmezése</string>
     <string name="pref_display_apptheme_light">Világos</string>
     <string name="pref_display_apptheme_dark">Sötét</string>
 
@@ -220,12 +223,6 @@
     <string name="content_desc_delete">törlés</string>
     <string name="content_desc_download">letöltés</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Értesítések</string>
-    <string name="pref_title_notification_new_articles_available">Értesítés megjelenítés, ha új cikk érhető el</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hiba</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Úgy tűnik hogy a hírek alkalmazás nincs telepítve vagy aktiválva a kiszolgálóján. Először kövesse az utasításokat, hogy telepítse a hírek alkalmazást a kiszolgálójára: %1$s</string>
@@ -248,4 +245,22 @@
     <string name="pref_data_sync_image_cache_ask">Kérdezze meg, ha nincs WiFi-n</string>
 
     <string name="array_sync_interval_min_0">Soha</string>
+    <string name="array_sync_interval_min_5">5 perc</string>
+    <string name="array_sync_interval_min_15">15 perc</string>
+    <string name="array_sync_interval_min_30">30 perc</string>
+    <string name="array_sync_interval_min_45">45 perc</string>
+    <string name="array_sync_interval_hour_1">1 óra</string>
+    <string name="array_sync_interval_hour_2">2 óra</string>
+    <string name="array_sync_interval_hour_3">3 óra</string>
+    <string name="array_sync_interval_hour_6">6 óra</string>
+    <string name="array_sync_interval_hour_12">12 óra</string>
+    <string name="array_sync_interval_hour_24">24 óra</string>
+    <string name="switch_account">Fiókváltás</string>
+    
+    <string name="successfully_exported">Sikeresen exportálva ide:</string>
+    <string name="opml_export">OPML export</string>
+    <string name="parsing_opml">OPML feldolgozása</string>
+    <string name="please_wait">Kis türelmet…</string>
+    <string name="interval_sync_title">Szinkronizálási időköz</string>
+
     </resources>

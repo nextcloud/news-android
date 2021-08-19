@@ -213,12 +213,6 @@
     <string name="content_desc_delete">slet</string>
     <string name="content_desc_download">hent</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notifikationer</string>
-    <string name="pref_title_notification_new_articles_available">Vis notifikation når der er nye artikler tilgængelige</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fejl</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det ser ud til at news app-en ikke er installeret eller aktiveret på din server. Følg venligst instruktionerne her for at installere news app-en på din server først: %1$s</string>

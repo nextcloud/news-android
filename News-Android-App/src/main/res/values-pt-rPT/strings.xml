@@ -205,12 +205,6 @@
     <string name="content_desc_delete">eliminar</string>
     <string name="content_desc_download">transferir</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notificações</string>
-    <string name="pref_title_notification_new_articles_available">Mostrar notificações quando existirem novos artigos</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>

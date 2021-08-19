@@ -161,12 +161,6 @@
     <string name="content_desc_delete">borrar</string>
     <string name="content_desc_download">descargar</string>
 
-
-    <!-- Settings for Notifications -->
-    <string name="pref_header_notifications">Notificaciones</string>
-    <string name="pref_title_notification_new_articles_available">Mostrar una notificación cuando artículos nuevos estén disponibles</string>
-
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
