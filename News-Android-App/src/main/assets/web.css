@@ -34,13 +34,17 @@ body.darkTheme {
     color:              #ffffff;
 }
 
-body.lightTheme a:link, a:active, a:hover {
+body.lightTheme a:link,
+body.lightTheme a:active,
+body.lightTheme a:hover {
     color: #333 !important;
 }
 body.lightTheme a:visited {
     color: #000 !important;
 }
-body.darkTheme a:link, a:active, a:hover {
+body.darkTheme a:link,
+body.darkTheme a:active,
+body.darkTheme a:hover {
     color: #dadada !important;
 }
 body#darkTheme a:visited {
@@ -139,16 +143,25 @@ a {
     line-height:    1.6;
 }
 
-#header a:link, a:active, a:hover, a:visited {
+#header a:link,
+#header a:active,
+#header a:hover,
+#header a:visited {
     color:           #000000 !important;
     text-decoration: none !important;
 }
 
-#header.darkTheme a:link, a:active, a:hover, a:visited {
+#header.darkTheme a:link,
+#header.darkTheme a:active,
+#header.darkTheme a:hover,
+#header.darkTheme a:visited {
     color: #ffffff !important;
 }
 
-#header.darkThemeOLED a:link, a:active, a:hover, a:visited {
+#header.darkThemeOLED a:link,
+#header.darkThemeOLED a:active,
+#header.darkThemeOLED a:hover,
+#header.darkThemeOLED a:visited {
     color: #ffffff !important;
 }
 
