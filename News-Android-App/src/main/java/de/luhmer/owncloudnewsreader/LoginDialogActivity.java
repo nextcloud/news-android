@@ -421,7 +421,7 @@ public class LoginDialogActivity extends AppCompatActivity {
                 });
     }
 
-	public static void ShowAlertDialog(String title, String text, Activity activity) {
+    public static void ShowAlertDialog(String title, String text, Activity activity) {
         // Linkify the message
         final SpannableString s = new SpannableString(text != null ? text : activity.getString(R.string.login_dialog_select_account_unknown_error_toast));
         Linkify.addLinks(s, Linkify.ALL);
@@ -434,8 +434,8 @@ public class LoginDialogActivity extends AppCompatActivity {
         aDialog.show();
 
         // Make the textview clickable. Must be called after show()
-		((TextView)aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-	}
+        ((TextView) aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

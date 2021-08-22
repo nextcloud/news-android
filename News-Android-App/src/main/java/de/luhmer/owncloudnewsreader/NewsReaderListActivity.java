@@ -430,9 +430,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                         getString(R.string.login_dialog_text_news_app_not_installed_on_server,
                                 "https://github.com/nextcloud/news/blob/master/docs/install.md#installing-from-the-app-store"),
                         this);
-            } else if(exception instanceof TokenMismatchException) {
-                Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
-
+            } else if (exception instanceof TokenMismatchException) {
+				Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
 				try {
 					SingleAccountHelper.reauthenticateCurrentAccount(this);
 				} catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
