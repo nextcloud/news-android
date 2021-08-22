@@ -21,6 +21,11 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import static androidx.annotation.VisibleForTesting.PROTECTED;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SERVER_SETTINGS;
+
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -32,7 +37,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -101,7 +106,6 @@ import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
 import de.luhmer.owncloudnewsreader.services.DownloadImagesService;
@@ -117,11 +121,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
-
-import static androidx.annotation.VisibleForTesting.PROTECTED;
-import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
-import static de.luhmer.owncloudnewsreader.LoginDialogActivity.ShowAlertDialog;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SERVER_SETTINGS;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -434,20 +433,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
             } else if(exception instanceof TokenMismatchException) {
                 Toast.makeText(NewsReaderListActivity.this, "Token out of sync. Please reauthenticate", Toast.LENGTH_LONG).show();
 
-                try {
-                    SingleAccountHelper.reauthenticateCurrentAccount(this);
-                } catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
-                    UiExceptionManager.showDialogForException(this, e);
-                } catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
-                    // Unable to reauthenticate account just like that..
-                    startLoginActivity();
-                }
-                //StartLoginFragment(this);
-
-            } else {
-                UiExceptionManager.showDialogForException(this, (SSOException) exception);
-                //UiExceptionManager.showNotificationForException(this, (SSOException) exception);
-            }
+				try {
+					SingleAccountHelper.reauthenticateCurrentAccount(this);
+				} catch (NextcloudFilesAppAccountNotFoundException | NoCurrentAccountSelectedException | NextcloudFilesAppNotSupportedException e) {
+					UiExceptionManager.showDialogForException(this, e);
+				} catch (NextcloudFilesAppAccountPermissionNotGrantedException e) {
+					// Unable to reauthenticate account just like that..
+					startLoginActivity();
+				}
+				//StartLoginFragment(this);
+			} else {
+				UiExceptionManager.showDialogForException(this, (SSOException) exception);
+				//UiExceptionManager.showNotificationForException(this, (SSOException) exception);
+			}
         } else {
             Toast.makeText(NewsReaderListActivity.this, exception.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
@@ -565,7 +563,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onUserInfoUpdated(OcsUser userInfo) {
-		final int placeHolder = R.drawable.ic_baseline_account_circle_24;
+		final Drawable placeHolder = getDrawable(R.drawable.ic_baseline_account_circle_24);
 		DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
 				.displayer(new CircleBitmapDisplayer())
 				.showImageOnLoading(placeHolder)
@@ -575,7 +573,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				.cacheInMemory(true)
 				.build();
 
-		if(userInfo.getId() != null) {
+		if (userInfo.getId() != null) {
 			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
 			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
 			ImageLoader.getInstance().displayImage(avatarUrl, binding.toolbarLayout.avatar, displayImageOptions);
@@ -730,8 +728,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 clearSearchViewFocus();
             }
         });
-
-        ThemeUtils.colorSearchViewCursorColor(mSearchView, Color.WHITE);
 
         NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
         if(ndf != null) {
