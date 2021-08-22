@@ -7,7 +7,6 @@
     <string name="account_type" translatable="false">de.luhmer.owncloudnewsreader</string>
     <string name="authority" translatable="false">de.luhmer.owncloudnewsreader</string>
     <string name="title_activity_sync_interval_selector">Sync Interval</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">No items here</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="toast_GettingMoreItems">Download of more items started… Please wait.</string>

@@ -50,9 +50,7 @@
             </intent-filter>
         </activity> <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
 
-        <activity
-            android:name=".NewsDetailActivity"
-            android:label="@string/title_activity_news_detail" />
+        <activity android:name=".NewsDetailActivity" />
 
         <activity android:name=".PiPVideoPlaybackActivity"
             android:resizeableActivity="true"
