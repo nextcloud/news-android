@@ -1,5 +1,8 @@
 package de.luhmer.owncloudnewsreader.notification;
 
+import static android.app.Notification.EXTRA_NOTIFICATION_ID;
+import static de.luhmer.owncloudnewsreader.Constants.NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -40,9 +43,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.NotificationActionReceiver;
 
-import static android.app.Notification.EXTRA_NOTIFICATION_ID;
-import static de.luhmer.owncloudnewsreader.Constants.NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING;
-
 public class NextcloudNotificationManager {
 
     private static final int ID_DownloadSingleImageComplete = 10;
@@ -70,7 +70,7 @@ public class NextcloudNotificationManager {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelDownloadImage)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle(context.getString(R.string.toast_img_saved))
+                .setContentTitle(context.getString(R.string.toast_img_saved) + " - " + imagePath.getName())
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
@@ -99,14 +99,21 @@ public class NextcloudNotificationManager {
     public static void showNotificationSaveSingleCachedImageService(Context context, String channelId, File file) {
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
 
-        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
-        //PendingIntent contentIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        Uri imageUri = FileProvider.getUriForFile(context,
+                BuildConfig.APPLICATION_ID + ".provider",
+                file.getAbsoluteFile());
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setDataAndType(imageUri, "image/*");
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         NotificationCompat.Builder mNotificationDownloadImages = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
-                .setContentText("Saved image to: " + file.getPath())
-                .setSmallIcon(R.drawable.ic_notification);
-                //.setContentIntent(contentIntent);
+                .setContentText(context.getString(R.string.toast_img_saved) + " - " + file.getName())
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentIntent(pendingIntent);
 
 
         notificationManager.notify(1235, mNotificationDownloadImages.build());
