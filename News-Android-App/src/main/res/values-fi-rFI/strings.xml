@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkronointiväli</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ei artikkeleita</string>
+    <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
     <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
     <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Artikkelinäkymän toimintopainikkeet</string>
 
+    <string name="pref_display_apptheme_auto">Järjestelmäoletus</string>
     <string name="pref_display_apptheme_light">Vaalea</string>
     <string name="pref_display_apptheme_dark">Tumma</string>
 
