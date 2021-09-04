@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
     <string name="empty_view_content">No hay artículos aquí</string>
+    <string name="empty_view_content_action">Arrastra hacia abajo para recargar</string>
     <string name="toast_GettingMoreItems">Se ha iniciado la descarga de varios elementos... por favor, espere.</string>
     <string name="no_wifi_available">No hay una conexión WiFi</string>
     <string name="do_you_want_to_download_without_wifi">¿Quieres descargar las imágenes sin conexión WiFi?</string>
@@ -181,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Iconos de acción (vista detallada)</string>
 
+    <string name="pref_display_apptheme_auto">Predeterminado del sistema</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Oscuro</string>
 
@@ -259,4 +261,6 @@
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Procesando OPML</string>
     <string name="please_wait">Por favor, espere…</string>
+    <string name="interval_sync_title">Intervalo Sync</string>
+
     </resources>
