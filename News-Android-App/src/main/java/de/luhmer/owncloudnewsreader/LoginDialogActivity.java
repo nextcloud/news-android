@@ -21,6 +21,9 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import static java.util.Objects.requireNonNull;
+import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -38,18 +41,11 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.AccountImportCancelledException;
@@ -63,7 +59,6 @@ import com.nextcloud.android.sso.ui.UiExceptionManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -78,9 +73,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
-import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -429,22 +421,21 @@ public class LoginDialogActivity extends AppCompatActivity {
                 });
     }
 
-	public static void ShowAlertDialog(String title, String text, Activity activity)
-	{
-		// Linkify the message
-		final SpannableString s = new SpannableString(text != null ? text : activity.getString(R.string.select_account_unknown_error_toast));
-		Linkify.addLinks(s, Linkify.ALL);
+    public static void ShowAlertDialog(String title, String text, Activity activity) {
+        // Linkify the message
+        final SpannableString s = new SpannableString(text != null ? text : activity.getString(R.string.login_dialog_select_account_unknown_error_toast));
+        Linkify.addLinks(s, Linkify.ALL);
 
-		AlertDialog aDialog = new AlertDialog.Builder(activity)
-				.setTitle(title)
-				.setMessage(s)
-				.setPositiveButton(activity.getString(android.R.string.ok) , null)
-				.create();
-		aDialog.show();
+        AlertDialog aDialog = new AlertDialog.Builder(activity)
+                .setTitle(title)
+                .setMessage(s)
+                .setPositiveButton(activity.getString(android.R.string.ok), null)
+                .create();
+        aDialog.show();
 
-		// Make the textview clickable. Must be called after show()
-		((TextView)aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-	}
+        // Make the textview clickable. Must be called after show()
+        ((TextView) aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
