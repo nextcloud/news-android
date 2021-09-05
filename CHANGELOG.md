@@ -1,3 +1,9 @@
+0.9.9.63
+---------------------
+- Changed - added file extension to downloaded/exported images
+- Changed - allow clicks on notification after an image has been saved/downloaded from detail view
+
+
 0.9.9.62
 ---------------------
 - Changed - <a href="https://github.com/nextcloud/news-android/issues/824">#824 Enhance empty content view (thanks Stefan)</a>
