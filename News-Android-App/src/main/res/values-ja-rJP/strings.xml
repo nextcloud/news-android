@@ -224,8 +224,6 @@
     <string name="login_dialog_text_not_compatible">このアプリのバージョンは Nextcloud ニュースアプリと互換性がありません。ニュースアプリと appframework をアップデートしてください。</string>
     <string name="login_dialog_title_security_warning">セキュリティ警告</string>
     <string name="login_dialog_text_security_warning">HTTPSを使用していないので、強くお勧めします。 攻撃者はトラフィックを傍受し、機密データ（パスワードなど）にアクセスする可能性があります。</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">データと同期</string>
     <string name="pref_title_clearCache">キャッシュをクリア</string>

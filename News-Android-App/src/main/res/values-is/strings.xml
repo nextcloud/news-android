@@ -222,8 +222,6 @@
     <string name="login_dialog_text_not_compatible">Útgáfa þessa forrits er ekki samhæfð við Nextcloud fréttaforritið þitt. Endilega uppfærðu fréttaforritið og forritsumhverfi þess.</string>
     <string name="login_dialog_title_security_warning">Öryggisaðvörun</string>
     <string name="login_dialog_text_security_warning">Þú ert ekki að nota HTTPS, sem sterklega er mælt með að gera. Utanaðkomandi aðili gæti komist inn í samskiptin og öðlast þannig aðgang að viðkvæmum gögnum (t.d. lykilorðinu þínu).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Gögn &amp; samstilling</string>
     <string name="pref_title_clearCache">Hreinsa skyndiminni</string>

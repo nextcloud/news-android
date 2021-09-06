@@ -241,8 +241,6 @@
     <string name="login_dialog_text_not_compatible">Tato verze mobilní aplikace není kompatibilní s aplikací Nextcloud Novinky na straně vámi využívaného serveru. Aktualizujte tam ji i její aplikační rámec (framework).</string>
     <string name="login_dialog_title_security_warning">Varování ohledně zabezpečení</string>
     <string name="login_dialog_text_security_warning">Nepoužíváte HTTPS, což je silně nedoporučeno. Útočník může zachytit váš provoz a získat přístup k nějakým citlivým datům (např. vašemu heslu).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data a synchronizace</string>
     <string name="pref_title_clearCache">Vyprázdnit mezipaměť</string>

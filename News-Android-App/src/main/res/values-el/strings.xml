@@ -227,8 +227,6 @@
     <string name="login_dialog_text_not_compatible">Η έκδοση αυτής της Εφαρμογής δεν είναι συμβατή με την Εφαρμογή Ειδήσεων του Nextclound.</string>
     <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
     <string name="login_dialog_text_security_warning">Δεν γίνετε χρήση του HTTPS, οπου συνιστάται οπωσδήποτε. Κάποιος κακόβουλος μπορεί να ελέγξη την κίνησή σας και να έχει πρόσβαση σε ευαίσθητα δεδομένα (π.χ τον κωδικό σας).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Δεδομένα &amp; συγχρονισμός</string>
     <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>

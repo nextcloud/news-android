@@ -224,8 +224,6 @@
     <string name="login_dialog_text_not_compatible">Phiên bản ứng dụng này không tương thích với ứng dụng Nextcloud News của bạn. Vui lòng nâng cấp ứng dụng tin tức và khung mẫu ứng dụng.</string>
     <string name="login_dialog_title_security_warning">Cảnh bảo bảo mật</string>
     <string name="login_dialog_text_security_warning">Bạn đang không sử dụng HTTPS, nó được khuyến khích mạnh mẽ. Một kẻ tấn công có thể can thiệp vào lưu lượng của bạn và lấy quyền truy cập vào một số dữ liệu nhạy cảm (vd: mật khẩu của bạn).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dữ liệu &amp; đồng bộ</string>
     <string name="pref_title_clearCache">Xóa bộ nhớ đệm</string>

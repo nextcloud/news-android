@@ -226,8 +226,6 @@
     <string name="login_dialog_text_not_compatible">Aquesta versió d\'aplicació no és compatible amb la vostra aplicació de notícies de Nextcloud. Si us plau, actualitzeu l\'aplicació de notícies i el seu marc de treball.</string>
     <string name="login_dialog_title_security_warning">Avís de seguretat</string>
     <string name="login_dialog_text_security_warning">No esteu fent servir HTTPS, i no és gens recomanable. Un atacant podria interceptar el vostre trafic de dades i guanyar accés a les vostres dades més sensibles (p.ex. la vostra contrasenya).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
     <string name="pref_title_clearCache">Neteja la memòria cau</string>

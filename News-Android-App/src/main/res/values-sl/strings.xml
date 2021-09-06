@@ -241,8 +241,6 @@
     <string name="login_dialog_text_not_compatible">Program ni skladen s programom Novice Nextcloud. Posodobiti je treba program in vire.</string>
     <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
     <string name="login_dialog_text_security_warning">Trenutna povezava ni varna povezava HTTPS. Spletni goljufi lahko prestrežejo prenos podatkov in si pridobijo dostop do občutljivih podatkov (na primer gesel).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podatki in usklajevanje</string>
     <string name="pref_title_clearCache">Počisti predpomnilnik</string>

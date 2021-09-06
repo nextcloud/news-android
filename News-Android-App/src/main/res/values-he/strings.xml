@@ -231,8 +231,6 @@
     <string name="login_dialog_text_not_compatible">גרסת יישומון זו אינה תואמת ליישומון החדשות שלך ב־Nextcloud. נא לשדרג את יישומון החדשות ואת סביבת עבודת היישומונים.</string>
     <string name="login_dialog_title_security_warning">אזהרת אבטחה</string>
     <string name="login_dialog_text_security_warning">אינך עושה שימוש ב־HTTPS, שהיא שיטת העבודה המומלצת. לתוקף יש אפשרות ליירט את התעבורה שלך ולקבל גישה לנתונים רגישים (למשל: הססמה שלך).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">נתונים וסנכרון</string>
     <string name="pref_title_clearCache">פינוי מטמון</string>

@@ -238,8 +238,6 @@
     <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
     <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
     <string name="login_dialog_text_security_warning">Вы не используете HTTPS, что настоятельно рекомендуется. Злоумышленник может перехватить ваш трафик и получить доступ к некоторым конфиденциальным данным (например, к вашему паролю). </string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Данные и синхронизация</string>
     <string name="pref_title_clearCache">Очистить кэш</string>

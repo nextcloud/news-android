@@ -236,8 +236,6 @@
     <string name="login_dialog_text_not_compatible">Ova inačica aplikacije nije kompatibilna s aplikacijom Nextcloud News. Nadogradite aplikaciju za vijesti i razvojnu komponentu appframework.</string>
     <string name="login_dialog_title_security_warning">Sigurnosno upozorenje</string>
     <string name="login_dialog_text_security_warning">Ne upotrebljavate HTTPS, što se snažno preporučuje. Napadač može presresti vaš promet i tako pristupiti osjetljivim podacima (npr. vašoj zaporci).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podaci i sinkronizacija</string>
     <string name="pref_title_clearCache">Izbriši predmemoriju</string>

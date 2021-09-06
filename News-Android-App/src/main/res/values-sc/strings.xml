@@ -231,8 +231,6 @@
     <string name="login_dialog_text_not_compatible">Sa versione de custa aplicatzione no est cumpatìbile cun s\'aplicatzione News de Nextcloud. Agiorna s\'aplicatzione e su framework.</string>
     <string name="login_dialog_title_security_warning">Avisu de Seguresa</string>
     <string name="login_dialog_text_security_warning">Non ses impreende HTTPS, chi est cussigiadu forte. Unu malintentzionadu diat pòdere intertzetare su tràficu tuo e otènnere s\'atzessu a datos sensìbiles (pro nàrrere, sa crae).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Datos &amp; e sincronizzazione</string>
     <string name="pref_title_clearCache">Lìmpia memòria temporànea</string>

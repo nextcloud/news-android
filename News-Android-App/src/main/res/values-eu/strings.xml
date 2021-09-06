@@ -231,8 +231,6 @@
     <string name="login_dialog_text_not_compatible">Aplikazioaren bertsio hau ez da zure Nextcloud Berriak aplikazioarekin bateragarria. Mesedez, bertsio-berritu berrien aplikazioa eta app framework-a.</string>
     <string name="login_dialog_title_security_warning">Segurtasun abisua</string>
     <string name="login_dialog_text_security_warning">Ez zara HTTPS erabiltzen ari, oso gomendagarria den arren. Erasotzaile batek zure trafikoa atzeman dezake eta datu sentikorrak eskuratu (adibidez, pasahitza).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Datuak &amp; sink</string>
     <string name="pref_title_clearCache">Garbitu cachea</string>

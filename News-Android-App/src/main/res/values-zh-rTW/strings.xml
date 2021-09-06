@@ -226,8 +226,6 @@
     <string name="login_dialog_text_not_compatible">此 App 版本不相容您的 Nextcloud News 應用程式，請更新 Nextcloud News應用程式和 appframework</string>
     <string name="login_dialog_title_security_warning">安全性警告</string>
     <string name="login_dialog_text_security_warning">您不是使用 HTTPS，攻擊者可能攔截您的通訊，進而取得敏感資料（例如您的密碼）</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">資料 &amp; 同步</string>
     <string name="pref_title_clearCache">清除快取</string>

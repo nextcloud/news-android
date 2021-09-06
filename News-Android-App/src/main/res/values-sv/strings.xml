@@ -229,8 +229,6 @@
     <string name="login_dialog_text_not_compatible">Den här appversionen är inte kompatibel med din Nextcloud nyheter-app. Vänligen uppgradera nyhetsappen och appframework.</string>
     <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
     <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få åtkomst till vissa känsliga data (t.ex. ditt lösenord).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synkronisering</string>
     <string name="pref_title_clearCache">Rensa cachen</string>

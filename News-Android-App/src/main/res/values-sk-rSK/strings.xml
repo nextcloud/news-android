@@ -241,8 +241,6 @@
     <string name="login_dialog_text_not_compatible">Táto verzia aplikácie nie je kompatibilná s vašou aplikáciou Nextcloud Novinky na strane sevra. Aktualizujte ju a jej aplikačné prostredie (framework). </string>
     <string name="login_dialog_title_security_warning">Bezpečnostné varovanie</string>
     <string name="login_dialog_text_security_warning">Nepoužívate protokol HTTPS, čo sa dôrazne odporúča. Útočník by mohol zachytiť vašu komunikáciu a získať prístup k niektorým citlivým údajom (napr. k heslu).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dáta &amp; synchronizácia</string>
     <string name="pref_title_clearCache">Vyčistiť medzipamäť</string>

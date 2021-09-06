@@ -222,8 +222,6 @@
     <string name="login_dialog_text_not_compatible">نگارش کاره با کارهٔ اخبار نکست‌کلودتان سازگار نیست. لطفاً کارهٔ اخبار و چارچوب کاره را ارتقا دهید.</string>
     <string name="login_dialog_title_security_warning">اخطار امنیتی</string>
     <string name="login_dialog_text_security_warning">شما از HTTPS که قویاً تشویق می‌شود، استفاده نمی‌کنید. یک نفوذگر می‌تواند ترافیکتان را شنود کرده و به برخی داده‌های حسّاس (مانند گذرواژه) دسترسی پیدا کنید.</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">داده ها و همگام سازی</string>
     <string name="pref_title_clearCache">پاک‌سازی انباره</string>

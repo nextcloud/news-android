@@ -227,8 +227,6 @@
     <string name="login_dialog_text_not_compatible">Denne app-versjonen er ikke kompatibel md Nextcloud nyhetsapp. Vennligst oppgrader denne appen. </string>
     <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
     <string name="login_dialog_text_security_warning">HTTPS er sterkt anbefalt for din sikkerhet. Uten HTTPS kan andre se din trafikk og hente ut innholdet  som for eksempel passord.</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synk.</string>
     <string name="pref_title_clearCache">Slett hurtiglager</string>

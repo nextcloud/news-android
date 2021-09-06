@@ -231,8 +231,6 @@
     <string name="login_dialog_text_not_compatible">Deze app versie is niet compatibel met je Nextcloud Nieuws App. Werk de Nieuws App en het Appframework bij.</string>
     <string name="login_dialog_title_security_warning">Beveiligingswaarschuwing</string>
     <string name="login_dialog_text_security_warning">Je gebruikt geen HTTPS, wat wel sterk wordt aanbevolen. Een aanvaller zou het niet versleutelde verkeer kunnen onderscheppen en toegang krijgen tot gevoelige gegevens (bijv. je wachtwoord).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synch</string>
     <string name="pref_title_clearCache">Leegmaken cache</string>

@@ -231,8 +231,6 @@
     <string name="login_dialog_text_not_compatible">Az alkalmazás nem kompatibilis a Nextcloud hírek alkalmazásával. Frissítse a hírek alkalmazást és az alkalmazás-keretrendszert.</string>
     <string name="login_dialog_title_security_warning">Biztonsági figyelmeztetés</string>
     <string name="login_dialog_text_security_warning">Nem használ HTTPS-t, amely erősen javasolt. Egy támadó lehallgathatja a kommunikációját a kiszolgálóval, így érzékeny adatokhoz jutva (például a jelszavához).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Adatok és szinkronizálás</string>
     <string name="pref_title_clearCache">Gyorsítótár ürítése</string>

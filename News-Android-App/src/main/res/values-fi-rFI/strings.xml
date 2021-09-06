@@ -231,8 +231,6 @@
     <string name="login_dialog_text_not_compatible">Tämä sovellus versio ei ole yhteensopiva käyttämäsi Nextcloud uutis sovelluksen kanssa. Päivitä uutissovellus ja sovelluskehikko.</string>
     <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
     <string name="login_dialog_text_security_warning">Et käytä HTTPS protokollaa, jota vahvasti suositellaan. Hyökkääjä voi siepata viestit ja saada pääsyn joihinkin arkaluontoisiin tietoihin, kuten salasana tms..</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synkronointi</string>
     <string name="pref_title_clearCache">Tyhjennä välimuisti</string>

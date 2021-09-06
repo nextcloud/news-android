@@ -232,8 +232,6 @@
     <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са апликацијом Некстклауд Вести. Ажурирајте апликацију и њен радни оквир.</string>
     <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
     <string name="login_dialog_text_security_warning">Не користите препоручени ХТТПС протокол. Нападач може пресрести ваш саобраћај и имати приступ осетљивим подацима (нпр. вашој лозинки).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Подаци и синхронизација</string>
     <string name="pref_title_clearCache">Очисти кеш</string>

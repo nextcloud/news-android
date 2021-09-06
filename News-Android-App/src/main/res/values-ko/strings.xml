@@ -224,8 +224,6 @@
     <string name="login_dialog_text_not_compatible">이 앱 버전은 Nextcloud News App과 호환되지 않습니다. 뉴스앱과 앱프레임워크를 업그레이드해주세요.</string>
     <string name="login_dialog_title_security_warning">보안 경고</string>
     <string name="login_dialog_text_security_warning">HTTPS를 사용하고 있지 않습니다. 공격자가 트래픽을 가로채어 민감한 정보를 악용할 수 있습니다. (예: 비밀번호)</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">데이터 및 동기화</string>
     <string name="pref_title_clearCache">캐시 비우기</string>

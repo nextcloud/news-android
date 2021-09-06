@@ -225,8 +225,6 @@
     <string name="login_dialog_text_not_compatible">Verzija ove aplikacije nije usklađena sa aplikacijom Nekstklaud Vesti. Ažurirajte aplikaciju i njen radni okvir.</string>
     <string name="login_dialog_title_security_warning">Sigurnosno upozorenje</string>
     <string name="login_dialog_text_security_warning">Ne koristite preporučeni HTTPS protokol. Napadač može presresti vaš saobraćaj i imati pristup osetljivim podacima (npr. vašoj lozinki).</string>
-
-
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podaci i sinhronizacija</string>
     <string name="pref_title_clearCache">Očisti keš</string>
