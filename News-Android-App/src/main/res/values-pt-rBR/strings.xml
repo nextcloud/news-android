@@ -231,6 +231,9 @@
     <string name="login_dialog_text_not_compatible">Esta versão do aplicativo não é compatível com o seu aplicativo Nextcloud News. Atualize o aplicativo de notícias e o quadro de aplicativos.</string>
     <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
     <string name="login_dialog_text_security_warning">Você não está usando HTTPS, que é fortemente encorajado. Um invasor pode interceptar seu tráfego e obter acesso a alguns dados confidenciais (sua senha, por exemplo).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Algo deu errado. Por favor, tente novamente.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dados &amp; sincronização</string>
     <string name="pref_title_clearCache">Limpar cache</string>
