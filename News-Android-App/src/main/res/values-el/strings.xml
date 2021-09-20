@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Διάστημα συγχρονισμού</string>
     <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
+    <string name="empty_view_content_action">Σύρετε προς τα κάτω για ανανέωση</string>
     <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
     <string name="do_you_want_to_download_without_wifi"> Θα θέλατε τη λήψη εικόνων χωρίς σύνδεση Wi-Fi </string>
@@ -67,6 +68,7 @@
     <string name="action_link_share">Διαμοιρασμός συνδέσμου</string>
     <string name="action_link_open">Άνοιγμα συνδέσμου στον περιηγητή</string>
     <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
+    <string name="toast_img_download_wait">Γίνεται λήψη... Παρακαλούμε περιμένετε.</string>
     <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε</string>
     <string name="toast_img_notwriteable">Αποτυχία Εγγραφής Εικόνας.</string>
     <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
@@ -180,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Εικονίδια ενεργειών (Προβολή Λεπτομερειών)</string>
 
+    <string name="pref_display_apptheme_auto">Προεπιλογή συστήματος</string>
     <string name="pref_display_apptheme_light">Φωτεινό</string>
     <string name="pref_display_apptheme_dark">Σκούρο</string>
 
@@ -190,6 +193,7 @@
     <string name="pref_display_browser_built_in">Ενσωματωμένος Περιηγητής</string>
     <string name="pref_display_browser_external">Εξωτερικός περιηγητής</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Μικρογραφίες (μόνο τίτλοι)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Μικρογραφίες</string>
     <string name="pref_display_feed_list_layout_simple_text">Απλό κείμενο</string>
     <string name="pref_display_feed_list_layout_headlines">Επικεφαλίδες</string>
@@ -227,6 +231,9 @@
     <string name="login_dialog_text_not_compatible">Η έκδοση αυτής της Εφαρμογής δεν είναι συμβατή με την Εφαρμογή Ειδήσεων του Nextclound.</string>
     <string name="login_dialog_title_security_warning">Προειδοποίηση Ασφαλείας</string>
     <string name="login_dialog_text_security_warning">Δεν γίνετε χρήση του HTTPS, οπου συνιστάται οπωσδήποτε. Κάποιος κακόβουλος μπορεί να ελέγξη την κίνησή σας και να έχει πρόσβαση σε ευαίσθητα δεδομένα (π.χ τον κωδικό σας).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Κάτι πήγε στραβά. Παρακαλούμε προσπαθήστε ξανά.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Δεδομένα &amp; συγχρονισμός</string>
     <string name="pref_title_clearCache">Εκκαθάριση προσωρινής μνήμης</string>
@@ -249,4 +256,12 @@
     <string name="array_sync_interval_hour_6">6 ώρες</string>
     <string name="array_sync_interval_hour_12">12 ώρες</string>
     <string name="array_sync_interval_hour_24">24 ώρες</string>
+    <string name="switch_account">Αλλαγή λογαριασμού</string>
+    
+    <string name="successfully_exported">Επιτυχής εξαγωγή σε:</string>
+    <string name="opml_export">Εξαγωγή OPML</string>
+    <string name="parsing_opml">Ανάλυση OPML</string>
+    <string name="please_wait">Παρακαλούμε περιμένετε…</string>
+    <string name="interval_sync_title">Διάστημα συγχρονισμού</string>
+
     </resources>
