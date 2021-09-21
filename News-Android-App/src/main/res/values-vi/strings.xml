@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Thời gian giữa mỗi lần đồng bộ</string>
     <string name="title_activity_news_detail">Chi tiết hoạt </string>
     <string name="empty_view_content">Không có mục nào ở đây</string>
+    <string name="empty_view_content_action">Kéo xuống để làm mới</string>
     <string name="toast_GettingMoreItems">Đã bắt đầu tải xuống nhiều mục hơn... Vui lòng đợi.</string>
     <string name="no_wifi_available">Không có kết nối WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải hình ảnh xuống mà không có kết nối Wi-Fi không</string>
@@ -176,6 +177,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Biểu tượng hành động (Hiển thị chi tiết)</string>
 
+    <string name="pref_display_apptheme_auto">Mặc định hệ thống</string>
     <string name="pref_display_apptheme_light">Sáng</string>
     <string name="pref_display_apptheme_dark">Tối</string>
 
@@ -224,6 +226,9 @@
     <string name="login_dialog_text_not_compatible">Phiên bản ứng dụng này không tương thích với ứng dụng Nextcloud News của bạn. Vui lòng nâng cấp ứng dụng tin tức và khung mẫu ứng dụng.</string>
     <string name="login_dialog_title_security_warning">Cảnh bảo bảo mật</string>
     <string name="login_dialog_text_security_warning">Bạn đang không sử dụng HTTPS, nó được khuyến khích mạnh mẽ. Một kẻ tấn công có thể can thiệp vào lưu lượng của bạn và lấy quyền truy cập vào một số dữ liệu nhạy cảm (vd: mật khẩu của bạn).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Một điều gì đó không mong muốn đã xảy ra. Vui lòng thử lại.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dữ liệu &amp; đồng bộ</string>
     <string name="pref_title_clearCache">Xóa bộ nhớ đệm</string>
@@ -252,4 +257,6 @@
     <string name="opml_export">Bản xuất OPML</string>
     <string name="parsing_opml">Đang xử lý OPML</string>
     <string name="please_wait">Vui lòng đợi...</string>
+    <string name="interval_sync_title">Khoảng thời gian đồng bộ</string>
+
     </resources>
