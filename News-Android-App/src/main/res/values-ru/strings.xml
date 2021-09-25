@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Интервал синхронизации</string>
     <string name="title_activity_news_detail">Последние новости</string>
     <string name="empty_view_content">Здесь нет элементов</string>
+    <string name="empty_view_content_action">Потяните вниз, чтобы обновить</string>
     <string name="toast_GettingMoreItems">Началось скачивание элементов… Пожалуйста подождите.</string>
     <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
@@ -73,6 +74,7 @@
     <string name="action_link_share">Поделиться ссылкой</string>
     <string name="action_link_open">Открыть ссылку в браузере</string>
     <string name="action_link_copy">Копировать ссылку</string>
+    <string name="toast_img_download_wait">Скачивание... Пожалуйста, подождите.</string>
     <string name="toast_img_saved">Изображение записано</string>
     <string name="toast_img_notwriteable">Не удалось записать изображение.</string>
     <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
@@ -190,6 +192,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Значки действия (подробный просмотр)</string>
 
+    <string name="pref_display_apptheme_auto">Системная</string>
     <string name="pref_display_apptheme_light">Светлая</string>
     <string name="pref_display_apptheme_dark">Тёмная</string>
 
@@ -238,6 +241,9 @@
     <string name="login_dialog_text_not_compatible">Эта версия приложения не совместима с вашим приложением ownCloud News. Обновите новостное приложение и appframework.</string>
     <string name="login_dialog_title_security_warning">Предупреждение безопасности</string>
     <string name="login_dialog_text_security_warning">Вы не используете HTTPS, что настоятельно рекомендуется. Злоумышленник может перехватить ваш трафик и получить доступ к некоторым конфиденциальным данным (например, к вашему паролю). </string>
+    <string name="login_dialog_select_account_unknown_error_toast">Что-то пошло не так. Пожалуйста, попробуйте снова.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Данные и синхронизация</string>
     <string name="pref_title_clearCache">Очистить кэш</string>
@@ -250,4 +256,22 @@
     <string name="pref_data_sync_image_cache_ask">Спросить, если не подключён к WiFi</string>
 
     <string name="array_sync_interval_min_0">Никогда</string>
+    <string name="array_sync_interval_min_5">5 минут</string>
+    <string name="array_sync_interval_min_15">15 минут</string>
+    <string name="array_sync_interval_min_30">30 минут</string>
+    <string name="array_sync_interval_min_45">45 минут</string>
+    <string name="array_sync_interval_hour_1">1 час</string>
+    <string name="array_sync_interval_hour_2">2 часа</string>
+    <string name="array_sync_interval_hour_3">3 часа</string>
+    <string name="array_sync_interval_hour_6">6 часов</string>
+    <string name="array_sync_interval_hour_12">12 часов</string>
+    <string name="array_sync_interval_hour_24">24 часа</string>
+    <string name="switch_account">Сменить аккаунт</string>
+    
+    <string name="successfully_exported">Успешно экспортировано в:</string>
+    <string name="opml_export">OPML экспорт</string>
+    <string name="parsing_opml">Парсинг OPML</string>
+    <string name="please_wait">Пожалуйста, подождите...</string>
+    <string name="interval_sync_title">Частота синхронизации</string>
+
     </resources>
