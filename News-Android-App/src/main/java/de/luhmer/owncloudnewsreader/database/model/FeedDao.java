@@ -22,32 +22,6 @@ public class FeedDao extends AbstractDao<Feed, Long> {
 
     public static final String TABLENAME = "FEED";
 
-    /**
-     * Properties of entity Feed.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
-        public final static Property FolderId = new Property(1, Long.class, "folderId", false, "FOLDER_ID");
-        public final static Property FeedTitle = new Property(2, String.class, "feedTitle", false, "FEED_TITLE");
-        public final static Property FaviconUrl = new Property(3, String.class, "faviconUrl", false, "FAVICON_URL");
-        public final static Property Link = new Property(4, String.class, "link", false, "LINK");
-        public final static Property AvgColour = new Property(5, String.class, "avgColour", false, "AVG_COLOUR");
-    };
-
-    private DaoSession daoSession;
-
-    private Query<Feed> folder_FeedListQuery;
-
-    public FeedDao(DaoConfig config) {
-        super(config);
-    }
-    
-    public FeedDao(DaoConfig config, DaoSession daoSession) {
-        super(config, daoSession);
-        this.daoSession = daoSession;
-    }
-
     /** Creates the underlying database table. */
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
@@ -57,44 +31,75 @@ public class FeedDao extends AbstractDao<Feed, Long> {
                 "\"FEED_TITLE\" TEXT NOT NULL ," + // 2: feedTitle
                 "\"FAVICON_URL\" TEXT," + // 3: faviconUrl
                 "\"LINK\" TEXT," + // 4: link
-                "\"AVG_COLOUR\" TEXT);"); // 5: avgColour
+                "\"AVG_COLOUR\" TEXT," + // 5: avgColour
+                "\"NOTIFICATION_CHANNEL\" TEXT);"); // 6: notificationChannel
         // Add Indexes
         db.execSQL("CREATE INDEX " + constraint + "IDX_FEED_FOLDER_ID ON FEED" +
                 " (\"FOLDER_ID\");");
     }
 
-    /** Drops the underlying database table. */
-    public static void dropTable(SQLiteDatabase db, boolean ifExists) {
-        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"FEED\"";
-        db.execSQL(sql);
+    private DaoSession daoSession;
+
+    private Query<Feed> folder_FeedListQuery;
+
+    public FeedDao(DaoConfig config) {
+        super(config);
     }
 
-    /** @inheritdoc */
+    public FeedDao(DaoConfig config, DaoSession daoSession) {
+        super(config, daoSession);
+        this.daoSession = daoSession;
+    }
+
+    /**
+     * @inheritdoc
+     */
     @Override
     protected void bindValues(SQLiteStatement stmt, Feed entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
- 
+
         Long folderId = entity.getFolderId();
         if (folderId != null) {
             stmt.bindLong(2, folderId);
         }
         stmt.bindString(3, entity.getFeedTitle());
- 
+
         String faviconUrl = entity.getFaviconUrl();
         if (faviconUrl != null) {
             stmt.bindString(4, faviconUrl);
         }
- 
+
         String link = entity.getLink();
         if (link != null) {
             stmt.bindString(5, link);
         }
- 
+
         String avgColour = entity.getAvgColour();
         if (avgColour != null) {
             stmt.bindString(6, avgColour);
         }
+
+        String notificationChannel = entity.getNotificationChannel();
+        if (notificationChannel != null) {
+            stmt.bindString(7, notificationChannel);
+        }
+    }
+
+    /**
+     * Drops the underlying database table.
+     */
+    public static void dropTable(SQLiteDatabase db, boolean ifExists) {
+        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"FEED\"";
+        db.execSQL(sql);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.getLong(offset + 0);
     }
 
     @Override
@@ -103,37 +108,67 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         entity.__setDaoSession(daoSession);
     }
 
-    /** @inheritdoc */
-    @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset);
-    }    
-
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     @Override
     public Feed readEntity(Cursor cursor, int offset) {
-        return new Feed( //
-            cursor.getLong(offset), // id
-            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // folderId
-            cursor.getString(offset + 2), // feedTitle
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // faviconUrl
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // link
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // avgColour
+        Feed entity = new Feed( //
+                cursor.getLong(offset + 0), // id
+                cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // folderId
+                cursor.getString(offset + 2), // feedTitle
+                cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // faviconUrl
+                cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // link
+                cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // avgColour
+                cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // notificationChannel
         );
+        return entity;
     }
-     
-    /** @inheritdoc */
+
+    /**
+     * @inheritdoc
+     */
     @Override
     public void readEntity(Cursor cursor, Feed entity, int offset) {
-        entity.setId(cursor.getLong(offset));
+        entity.setId(cursor.getLong(offset + 0));
         entity.setFolderId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setFeedTitle(cursor.getString(offset + 2));
         entity.setFaviconUrl(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setLink(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setAvgColour(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-     }
-    
-    /** @inheritdoc */
+        entity.setNotificationChannel(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+    }
+
+    public Feed loadDeep(Long key) {
+        assertSinglePk();
+        if (key == null) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder(getSelectDeep());
+        builder.append("WHERE ");
+        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
+        String sql = builder.toString();
+
+        String[] keyArray = new String[]{key.toString()};
+        Cursor cursor = db.rawQuery(sql, keyArray);
+
+        try {
+            boolean available = cursor.moveToFirst();
+            if (!available) {
+                return null;
+            } else if (!cursor.isLast()) {
+                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
+            }
+            return loadCurrentDeep(cursor, true);
+        } finally {
+            cursor.close();
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
     @Override
     protected Long updateKeyAfterInsert(Feed entity, long rowId) {
         entity.setId(rowId);
@@ -185,7 +220,7 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         }
         return selectDeep;
     }
-    
+
     protected Feed loadCurrentDeep(Cursor cursor, boolean lock) {
         Feed entity = loadCurrent(cursor, 0, lock);
         int offset = getAllColumns().length;
@@ -193,38 +228,30 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         Folder folder = loadCurrentOther(daoSession.getFolderDao(), cursor, offset);
         entity.setFolder(folder);
 
-        return entity;    
+        return entity;
     }
 
-    public Feed loadDeep(Long key) {
-        assertSinglePk();
-        if (key == null) {
-            return null;
-        }
-
-        StringBuilder builder = new StringBuilder(getSelectDeep());
-        builder.append("WHERE ");
-        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
-        String sql = builder.toString();
-        
-        String[] keyArray = new String[] { key.toString() };
-
-        try (Cursor cursor = db.rawQuery(sql, keyArray)) {
-            boolean available = cursor.moveToFirst();
-            if (!available) {
-                return null;
-            } else if (!cursor.isLast()) {
-                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
-            }
-            return loadCurrentDeep(cursor, true);
-        }
+    /**
+     * Properties of entity Feed.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property FolderId = new Property(1, Long.class, "folderId", false, "FOLDER_ID");
+        public final static Property FeedTitle = new Property(2, String.class, "feedTitle", false, "FEED_TITLE");
+        public final static Property FaviconUrl = new Property(3, String.class, "faviconUrl", false, "FAVICON_URL");
+        public final static Property Link = new Property(4, String.class, "link", false, "LINK");
+        public final static Property AvgColour = new Property(5, String.class, "avgColour", false, "AVG_COLOUR");
+        public final static Property NotificationChannel = new Property(6, String.class, "notificationChannel", false, "NOTIFICATION_CHANNEL");
     }
-    
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
+
+    /**
+     * Reads all available rows from the given cursor and returns a list of new ImageTO objects.
+     */
     public List<Feed> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
         List<Feed> list = new ArrayList<Feed>(count);
-        
+
         if (cursor.moveToFirst()) {
             if (identityScope != null) {
                 identityScope.lock();

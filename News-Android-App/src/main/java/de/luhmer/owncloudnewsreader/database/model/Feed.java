@@ -20,6 +20,7 @@ public class Feed {
     private String faviconUrl;
     private String link;
     private String avgColour;
+    private String notificationChannel;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -42,13 +43,14 @@ public class Feed {
         this.id = id;
     }
 
-    public Feed(long id, Long folderId, String feedTitle, String faviconUrl, String link, String avgColour) {
+    public Feed(long id, Long folderId, String feedTitle, String faviconUrl, String link, String avgColour, String notificationChannel) {
         this.id = id;
         this.folderId = folderId;
         this.feedTitle = feedTitle;
         this.faviconUrl = faviconUrl;
         this.link = link;
         this.avgColour = avgColour;
+        this.notificationChannel = notificationChannel;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -107,7 +109,17 @@ public class Feed {
         this.avgColour = avgColour;
     }
 
-    /** To-one relationship, resolved on first access. */
+    public String getNotificationChannel() {
+        return notificationChannel;
+    }
+
+    public void setNotificationChannel(String notificationChannel) {
+        this.notificationChannel = notificationChannel;
+    }
+
+    /**
+     * To-one relationship, resolved on first access.
+     */
     public Folder getFolder() {
         Long __key = this.folderId;
         if (folder__resolvedKey == null || !folder__resolvedKey.equals(__key)) {

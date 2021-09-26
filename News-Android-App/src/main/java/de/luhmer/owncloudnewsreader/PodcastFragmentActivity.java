@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
+import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +30,6 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
@@ -46,8 +47,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
-
-import static de.luhmer.owncloudnewsreader.Constants.MIN_NEXTCLOUD_FILES_APP_VERSION_CODE;
 
 public abstract class PodcastFragmentActivity extends AppCompatActivity implements IPlayPausePodcastClicked {
 
@@ -149,16 +148,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
         WidgetProvider.UpdateWidget(this);
 
-        if (NextcloudNotificationManager.isUnreadRssCountNotificationVisible(this)) {
-            DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
-            int count = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
-            NextcloudNotificationManager.showUnreadRssItemsNotification(this, count, mPrefs);
-
-            if (count == 0) {
-                NextcloudNotificationManager.removeRssItemsNotification(this);
-            }
-        }
-
+        NextcloudNotificationManager.showUnreadRssItemsNotification(this, mPrefs, true);
 
         super.onPause();
     }

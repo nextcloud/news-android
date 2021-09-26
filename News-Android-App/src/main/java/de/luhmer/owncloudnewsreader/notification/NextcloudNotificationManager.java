@@ -34,7 +34,9 @@ import com.nostra13.universalimageloader.core.assist.ImageSize;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import de.greenrobot.dao.query.QueryBuilder;
 import de.luhmer.owncloudnewsreader.BuildConfig;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
@@ -46,7 +48,7 @@ import de.luhmer.owncloudnewsreader.helper.NotificationActionReceiver;
 public class NextcloudNotificationManager {
 
     private static final int ID_DownloadSingleImageComplete = 10;
-    private static final int UNREAD_RSS_ITEMS_NOTIFICATION_ID = 246;
+    // private static final int UNREAD_RSS_ITEMS_NOTIFICATION_ID = 246;
 
     public static void showNotificationDownloadSingleImageComplete(Context context, File imagePath) {
         String channelDownloadImage = context.getString(R.string.action_img_download);
@@ -262,69 +264,85 @@ public class NextcloudNotificationManager {
     }
 
 
-    public static void showUnreadRssItemsNotification(Context context, int newItemsCount, SharedPreferences mPrefs) {
+    public static void showUnreadRssItemsNotification(Context context, SharedPreferences mPrefs, Boolean updateExistingNotificationsOnly) {
         Resources res = context.getResources();
-        String tickerMessage = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
-        String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
 
         String channelId = context.getString(R.string.app_name);
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
         DatabaseConnectionOrm.SORT_DIRECTION sortDirection = DatabaseUtils.getSortDirectionFromSettings(mPrefs);
-        List<RssItem> items = dbConn.getAllUnreadRssItemsForNotification(sortDirection);
 
-        List<String> previewLines = new ArrayList<>();
-        for (RssItem item : items) {
-            // • = \u2022,   ● = \u25CF,   ○ = \u25CB,   ▪ = \u25AA,   ■ = \u25A0,   □ = \u25A1,   ► = \u25BA
-            previewLines.add("\u2022 " + item.getTitle().trim());
+        Set<String> notificationGroups = dbConn.getNotificationGroups();
+        for (String notificationGroup : notificationGroups) {
+            // use hashcode for notification group as identifier for the notification
+            Integer notificationId = notificationGroup.hashCode();
+
+            QueryBuilder<RssItem> qbItemsForNotificationGroup = dbConn.getAllUnreadRssItemsForNotificationGroup(sortDirection, notificationGroup);
+
+            Integer newItemsCount = Math.toIntExact(qbItemsForNotificationGroup.count());
+            List<RssItem> items = qbItemsForNotificationGroup.limit(6).list(); // only read 6 items from database
+            String tickerMessage = res.getQuantityString(R.plurals.notification_new_items_ticker, newItemsCount, newItemsCount);
+            String contentText = res.getQuantityString(R.plurals.notification_new_items_text, newItemsCount, newItemsCount);
+            if (items.size() > 0) {
+                contentText = "\u2022 " + items.get(0).getTitle();
+            }
+            String contentTitle = notificationGroup.equals("default") ? tickerMessage : String.format("[%s] %s", notificationGroup, tickerMessage);
+
+            List<String> previewLines = new ArrayList<>();
+            for (RssItem item : items) {
+                // • = \u2022,   ● = \u25CF,   ○ = \u25CB,   ▪ = \u25AA,   ■ = \u25A0,   □ = \u25A1,   ► = \u25BA
+                previewLines.add("\u2022 " + item.getTitle().trim());
+            }
+            String previewText = TextUtils.join("\n", previewLines);
+
+            Intent markAllAsReadIntent = new Intent(context, NotificationActionReceiver.class);
+            markAllAsReadIntent.setAction(NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING);
+            markAllAsReadIntent.putExtra(EXTRA_NOTIFICATION_ID, notificationId);
+            PendingIntent markAllAsReadPendingIntent = PendingIntent.getBroadcast(context, 0, markAllAsReadIntent, PendingIntent.FLAG_ONE_SHOT);
+
+            NotificationCompat.Builder builder =
+                    new NotificationCompat.Builder(context, channelId)
+                            .setSmallIcon(R.drawable.ic_notification)
+                            .setContentTitle(contentTitle)
+                            .setStyle(new NotificationCompat.BigTextStyle().bigText(previewText))
+                            //.setDefaults(Notification.DEFAULT_ALL)
+                            .addAction(R.drawable.ic_checkbox_white, context.getString(R.string.menu_markAllAsRead), markAllAsReadPendingIntent)
+                            .setAutoCancel(true)
+                            .setNumber(newItemsCount)
+                            .setContentText(contentText);
+
+
+            Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, notificationId, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(contentIntent);
+
+            // if the user exists the app we need to update the notifications - but only if the notification is already visible
+            if (updateExistingNotificationsOnly && !isUnreadRssCountNotificationVisible(context, notificationId)) {
+                continue;
+            }
+
+            if (newItemsCount > 0) {
+                notificationManager.notify(notificationId, builder.build());
+            } else {
+                // no new items available - hide/remove notification
+                notificationManager.cancel(notificationId);
+            }
         }
-        String previewText = TextUtils.join("\n", previewLines);
-
-        Intent markAllAsReadIntent = new Intent(context, NotificationActionReceiver.class);
-        markAllAsReadIntent.setAction(NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING);
-        markAllAsReadIntent.putExtra(EXTRA_NOTIFICATION_ID, UNREAD_RSS_ITEMS_NOTIFICATION_ID);
-        PendingIntent markAllAsReadPendingIntent = PendingIntent.getBroadcast(context, 0, markAllAsReadIntent, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context, channelId)
-                        .setSmallIcon(R.drawable.ic_notification)
-                        .setContentTitle(tickerMessage)
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText(previewText))
-                        //.setDefaults(Notification.DEFAULT_ALL)
-                        .addAction(R.drawable.ic_checkbox_white, context.getString(R.string.menu_markAllAsRead), markAllAsReadPendingIntent)
-                        .setAutoCancel(true)
-                        .setNumber(newItemsCount)
-                        .setContentText(contentText);
-
-
-        Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, UNREAD_RSS_ITEMS_NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
-
-        notificationManager.notify(UNREAD_RSS_ITEMS_NOTIFICATION_ID, builder.build());
     }
 
-    public static boolean isUnreadRssCountNotificationVisible(Context context) {
+    public static boolean isUnreadRssCountNotificationVisible(Context context, Integer notificationId) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for(StatusBarNotification statusBarNotification : notificationManager.getActiveNotifications()) {
-                if(statusBarNotification.getId() == UNREAD_RSS_ITEMS_NOTIFICATION_ID) {
+            for (StatusBarNotification statusBarNotification : notificationManager.getActiveNotifications()) {
+                if (statusBarNotification.getId() == notificationId) {
                     return true;
                 }
             }
         }
         return false;
-
     }
-
-    public static void removeRssItemsNotification(Context context) {
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancel(UNREAD_RSS_ITEMS_NOTIFICATION_ID);
-    }
-
-
 
 
 

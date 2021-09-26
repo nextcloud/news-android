@@ -10,7 +10,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -31,8 +30,6 @@ import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -82,6 +79,8 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         mMenuItems.put(getString(R.string.action_feed_remove), () -> showRemoveFeedView(mFeedId));
 
         mMenuItems.put(getString(R.string.action_feed_move), () -> showMoveFeedView(mFeedId));
+
+        mMenuItems.put("Notification settings", () -> showNotificationSettingsView(mFeedId));
 
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FloatingDialog);
     }
@@ -279,7 +278,47 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                         dismiss();
                     });
         });
+    }
 
+    private void showNotificationSettingsView(final long feedId) {
+        binding.lvMenuList.setVisibility(View.GONE);
+        binding.notificationFeedDialog.setVisibility(View.VISIBLE);
+
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+        Feed feed = dbConn.getFeedById(feedId);
+        String notificationChannel = feed.getNotificationChannel();
+
+        binding.notificationSettingNone.setChecked(false);
+        binding.notificationSettingDefault.setChecked(false);
+        binding.notificationSettingUnique.setChecked(false);
+
+        switch (notificationChannel) {
+            case "none":
+                binding.notificationSettingNone.setChecked(true);
+                break;
+            case "default":
+                binding.notificationSettingDefault.setChecked(true);
+                break;
+            default:
+                binding.notificationSettingUnique.setChecked(true);
+                break;
+        }
+
+        binding.notificationSettingNone.setOnCheckedChangeListener((button, checked) ->
+                setNotificationChannelForFeed(feed, "none", checked));
+        binding.notificationSettingDefault.setOnCheckedChangeListener((button, checked) ->
+                setNotificationChannelForFeed(feed, "default", checked));
+        binding.notificationSettingUnique.setOnCheckedChangeListener((button, checked) ->
+                // Use the feed name as notification channel name
+                setNotificationChannelForFeed(feed, feed.getFeedTitle(), checked));
+    }
+
+    private void setNotificationChannelForFeed(Feed feed, String channel, Boolean checked) {
+        if (checked) {
+            feed.setNotificationChannel(channel);
+            feed.update();
+            this.showNotificationSettingsView(feed.getId()); // reload dialog
+        }
     }
 
     interface MenuAction {

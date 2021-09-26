@@ -6,7 +6,6 @@ public abstract class SchemaVersion {
 
     public static final String CURRENT_SCHEMA_PACKAGE = "de.luhmer.owncloudnewsreader.database.model";
 
-
     private final Schema schema;
 
     private final boolean current;

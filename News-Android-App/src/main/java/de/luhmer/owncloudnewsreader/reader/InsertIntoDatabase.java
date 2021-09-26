@@ -80,8 +80,10 @@ public class InsertIntoDatabase {
                     if(oldFeed.getId() == newFeed.getId()) {
                         found = true;
 
-                        //Set the avg color after sync again.
+                        // Set the avg color after sync again.
                         newFeed.setAvgColour(oldFeed.getAvgColour());
+                        // Set the notification channel after sync again
+                        newFeed.setNotificationChannel(oldFeed.getNotificationChannel());
                         dbConn.updateFeed(newFeed);
                         break;
                     }
