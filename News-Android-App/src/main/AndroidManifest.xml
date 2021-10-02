@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.luhmer.owncloudnewsreader"
     android:installLocation="internalOnly"
-    android:versionCode="165"
-    android:versionName="0.9.9.62">
+    android:versionCode="166"
+    android:versionName="0.9.9.63">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -50,9 +50,7 @@
             </intent-filter>
         </activity> <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
 
-        <activity
-            android:name=".NewsDetailActivity"
-            android:label="@string/title_activity_news_detail" />
+        <activity android:name=".NewsDetailActivity" />
 
         <activity android:name=".PiPVideoPlaybackActivity"
             android:resizeableActivity="true"

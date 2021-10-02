@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader.database.generator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +10,6 @@ import de.greenrobot.daogenerator.DaoGenerator;
 public class DatabaseOrmGenerator {
     private static final String SCHEMA_OUTPUT_DIR = "./News-Android-App/src/main/java/";
 
-
     /**
      * Generator main application which builds all of the schema versions
      * (including older versions used for migration test purposes) and ensures
@@ -21,7 +19,7 @@ public class DatabaseOrmGenerator {
     public static void main(String[] args) throws Exception {
         List<SchemaVersion> versions = new ArrayList<>();
 
-        versions.add(new Version7(true));
+        versions.add(new Version8(true));
 
         validateSchemas(versions);
 

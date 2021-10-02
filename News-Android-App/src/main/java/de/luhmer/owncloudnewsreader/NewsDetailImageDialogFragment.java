@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
+import static androidx.core.content.PermissionChecker.checkSelfPermission;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -11,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -26,25 +30,25 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.PermissionChecker;
+import androidx.fragment.app.DialogFragment;
+
 import net.rdrei.android.dirchooser.DirectoryChooserConfig;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.PermissionChecker;
-import androidx.fragment.app.DialogFragment;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
-
-import static androidx.core.content.PermissionChecker.checkSelfPermission;
 
 public class NewsDetailImageDialogFragment extends DialogFragment {
 
@@ -283,11 +287,27 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         dismiss();
     }
 
+    public static String getMimeTypeOfUri(String path) throws IOException {
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        /* The doc says that if inJustDecodeBounds set to true, the decoder
+         * will return null (no bitmap), but the out... fields will still be
+         * set, allowing the caller to query the bitmap without having to
+         * allocate the memory for its pixels. */
+        opt.inJustDecodeBounds = true;
+
+        InputStream inStream = new FileInputStream(path);
+        BitmapFactory.decodeStream(inStream, null, opt);
+        inStream.close();
+
+        return opt.outMimeType;
+    }
+
     private void downloadImage(URL url) {
         Toast.makeText(requireContext().getApplicationContext(), getString(R.string.toast_img_download_wait), Toast.LENGTH_SHORT).show();
 
-        if(isExternalStorageWritable()) {
-            String filename = url.getFile().substring(url.getFile().lastIndexOf('/') + 1, url.getFile().length());
+        if (isExternalStorageWritable()) {
+            String filename = getFileNameFromPath(url.getFile(), true);
+
             downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.toString()));
             request.setDestinationUri(getDownloadDir(filename));
@@ -306,17 +326,18 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         }
     }
 
-
     private void storeCachedImage(String path) {
         final String CHANNEL_ID = "Store cached Image";
         if(isExternalStorageWritable()) {
-            String filename = path.substring(path.lastIndexOf('/') + 1, path.length());
+            String filename = getFileNameFromPath(path, false);
+
             File dstPath = new File(getDownloadDir(filename).getPath());
             try {
                 NewsFileUtils.copyFile(new FileInputStream(path), new FileOutputStream(dstPath));
             } catch (IOException e) {
                 Toast.makeText(requireContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
+
             NextcloudNotificationManager.showNotificationSaveSingleCachedImageService(requireContext().getApplicationContext(), CHANNEL_ID, dstPath);
             requireDialog().hide();
         } else {
@@ -325,13 +346,35 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         }
     }
 
+    private String getFileNameFromPath(String path, boolean web) {
+        String filename = path.substring(path.lastIndexOf('/') + 1);
+        if (!(filename.endsWith(".jpg") || filename.endsWith(".png") || filename.endsWith(".webp"))) {
+            try {
+                String fileExtension = "";
+
+                if (web) {
+                    fileExtension = MimeTypeMap.getFileExtensionFromUrl(path);
+                } else {
+                    fileExtension = getMimeTypeOfUri(path).replace("image/", "");
+                }
+
+                if (!fileExtension.isEmpty()) {
+                    filename += "." + fileExtension;
+                }
+            } catch (Exception ex) {
+                Log.e(TAG, "Failed to extract file extension from url: " + ex.getMessage());
+            }
+        }
+        return filename;
+    }
+
     public boolean haveStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED) {
-                Log.v("Permission error","You have permission");
+                Log.v("Permission error", "You have permission");
                 return true;
             } else {
-                Log.e("Permission error","Asking for permission");
+                Log.e("Permission error", "Asking for permission");
                 ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return false;
             }

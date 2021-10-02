@@ -223,7 +223,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
             // If another app is not in foreground
             if (!ForegroundListener.isInForeground()) {
-                NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), newItemsCount, mPrefs);
+                NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), mPrefs, false);
             }
         }
     }

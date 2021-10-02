@@ -186,6 +186,37 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/notification_feed_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontalDivider"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <CheckBox
+            android:id="@+id/notification_setting_none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:drawable/btn_radio"
+            android:text="@string/notification_feed_none" />
+
+        <CheckBox
+            android:id="@+id/notification_setting_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:drawable/btn_radio"
+            android:text="@string/notification_feed_default" />
+
+        <CheckBox
+            android:id="@+id/notification_setting_unique"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:drawable/btn_radio"
+            android:text="@string/notification_feed_unique" />
+
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/progressView"
         android:layout_width="match_parent"

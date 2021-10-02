@@ -62,6 +62,7 @@ public class NextcloudNewsDeserializer<T> implements JsonDeserializer<List<T>> {
                 faviconLink = null;
 
         Feed feed = new Feed();
+        feed.setNotificationChannel("default");
         feed.setId(e.get("id").getAsLong());
 
         JsonElement folderId = e.get("folderId");
