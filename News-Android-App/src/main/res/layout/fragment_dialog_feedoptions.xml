@@ -199,21 +199,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:button="@android:drawable/btn_radio"
-            android:text="No notifications at all" />
+            android:text="@string/notification_feed_none" />
 
         <CheckBox
             android:id="@+id/notification_setting_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:button="@android:drawable/btn_radio"
-            android:text="All feeds with the default settings will appear in one notification" />
+            android:text="@string/notification_feed_default" />
 
         <CheckBox
             android:id="@+id/notification_setting_unique"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:button="@android:drawable/btn_radio"
-            android:text="Receive unique notifications for this feed" />
+            android:text="@string/notification_feed_unique" />
 
     </LinearLayout>
 
