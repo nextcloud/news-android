@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">ซิงค์อัตโนมัติ</string>
-    <string name="title_activity_news_detail">รายละเอียดกิจกรรม</string>
     <string name="empty_view_content">ไม่มีรายการที่นี่</string>
     <string name="empty_view_content_action">ดึงลงเพื่อรีเฟรช</string>
     <string name="no_wifi_available">ไม่ได้เชื่อมต่อ WiFi</string>

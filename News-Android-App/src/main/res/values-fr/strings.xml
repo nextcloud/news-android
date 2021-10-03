@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Synchronisation auto.</string>
     <string name="title_activity_sync_interval_selector">Intervalle de synchronisation</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Aucun article</string>
     <string name="empty_view_content_action">Tirer vers le bas pour rafraichir</string>
     <string name="toast_GettingMoreItems">Téléchargement d\'articles additionnels en cours... Veuillez patienter.</string>

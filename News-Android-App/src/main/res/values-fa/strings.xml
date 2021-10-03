@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">همگام‌سازی خودکار</string>
     <string name="title_activity_sync_interval_selector">فواصل همگام‌سازی</string>
-    <string name="title_activity_news_detail">فعالیت جزییات اخبار</string>
     <string name="empty_view_content">موردی وجود ندارد</string>
     <string name="toast_GettingMoreItems">بارگیری موارد بیش‌تر آغاز شد… صبر لطفاً </string>
     <string name="no_wifi_available">وای‌فایی وصل نیست</string>

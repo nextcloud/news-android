@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Automatikus szinkronizáció</string>
     <string name="title_activity_sync_interval_selector">Szinkronizáció gyakorisága</string>
-    <string name="title_activity_news_detail">HírekRészletTevékenység</string>
     <string name="empty_view_content">Itt nincs semmi</string>
     <string name="empty_view_content_action">Húzza lefelé a frissítéshez</string>
     <string name="toast_GettingMoreItems">További elemek letöltése megkezdődött… Várjon.</string>

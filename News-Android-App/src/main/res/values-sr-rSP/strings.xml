@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">Auto-osvežavanje</string>
-    <string name="title_activity_news_detail">Detaljne aktivnosti Vesti</string>
     <string name="empty_view_content">Nema stavki</string>
     <string name="toast_GettingMoreItems">Započeto skidanje još stavki… Sačekajte.</string>
     <string name="no_wifi_available">Nema bežične veze</string>

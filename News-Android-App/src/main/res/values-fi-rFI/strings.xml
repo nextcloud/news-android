@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Automaattinen synkronointi</string>
     <string name="title_activity_sync_interval_selector">Synkronointiväli</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ei artikkeleita</string>
     <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
     <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>

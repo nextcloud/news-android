@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">自动同步</string>
     <string name="title_activity_sync_interval_selector">同步间隔</string>
-    <string name="title_activity_news_detail">新闻详细活动</string>
     <string name="empty_view_content">无内容</string>
     <string name="empty_view_content_action">下拉刷新</string>
     <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>

@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Autosynk</string>
     <string name="title_activity_sync_interval_selector">Synkroniseringsintervall</string>
-    <string name="title_activity_news_detail">NyheterDetaljAktivitet</string>
     <string name="empty_view_content">Ingenting her</string>
     <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet… Vennligst vent.</string>
     <string name="no_wifi_available">Ingen WiFI tilkoblet</string>

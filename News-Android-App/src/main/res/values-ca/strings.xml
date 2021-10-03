@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Sincronitza automàticament</string>
     <string name="title_activity_sync_interval_selector">Interval de sincronització</string>
-    <string name="title_activity_news_detail">NotíciesDetailActivitat</string>
     <string name="empty_view_content">Cap element</string>
     <string name="toast_GettingMoreItems">Ha començat la descàrrega de més elements... Espereu si us plau.</string>
     <string name="no_wifi_available">Sense connexió Wi-Fi</string>

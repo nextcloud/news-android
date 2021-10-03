@@ -2,7 +2,6 @@
 <resources>
 
     <string name="auto_sync_string">ავტო სინქ.</string>
-    <string name="title_activity_news_detail">სიახლეებიდეტალებიაქტივობები</string>
     <string name="empty_view_content">აქ ელემენტები არაა</string>
     <string name="no_wifi_available">WiFi არაა დაკავშირებული</string>
     <string name="current_version">თქვენ სარგებლობთ ვერსიით %s</string>

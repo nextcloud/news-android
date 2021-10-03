@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Sincronização Automática</string>
     <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
-    <string name="title_activity_news_detail">NotíciasDetalheAtividade</string>
     <string name="empty_view_content">Sem itens aqui</string>
     <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>

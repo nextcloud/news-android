@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Αυτόματος συγχρονισμός</string>
     <string name="title_activity_sync_interval_selector">Διάστημα συγχρονισμού</string>
-    <string name="title_activity_news_detail">Λεπτομέρειες Δραστηριότητας Ειδήσεων</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
     <string name="empty_view_content_action">Σύρετε προς τα κάτω για ανανέωση</string>
     <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>

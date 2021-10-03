@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Samodejno usklajevanje</string>
     <string name="title_activity_sync_interval_selector">Časovni razmik usklajevanj</string>
-    <string name="title_activity_news_detail">Podrobnosti pregledovanja novic</string>
     <string name="empty_view_content">Ni novic</string>
     <string name="empty_view_content_action">Povlecite navzdol za osvežitev</string>
     <string name="toast_GettingMoreItems">Začeto je prejemanje več prispevkov ...</string>

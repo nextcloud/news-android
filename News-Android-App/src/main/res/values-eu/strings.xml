@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Sinkronizazio automatikoa</string>
     <string name="title_activity_sync_interval_selector">Sinkronizazio bitartea</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">Ez dago elementurik hemen</string>
     <string name="empty_view_content_action">Tiratu behera freskatzeko</string>
     <string name="toast_GettingMoreItems">Elementu gehiagoren deskarga hasita... Itxaron mesedez.</string>

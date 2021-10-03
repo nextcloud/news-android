@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Tự động đồng bộ</string>
     <string name="title_activity_sync_interval_selector">Thời gian giữa mỗi lần đồng bộ</string>
-    <string name="title_activity_news_detail">Chi tiết hoạt </string>
     <string name="empty_view_content">Không có mục nào ở đây</string>
     <string name="empty_view_content_action">Kéo xuống để làm mới</string>
     <string name="toast_GettingMoreItems">Đã bắt đầu tải xuống nhiều mục hơn... Vui lòng đợi.</string>

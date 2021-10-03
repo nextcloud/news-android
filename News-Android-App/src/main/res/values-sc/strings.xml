@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Auto sincronizatzione</string>
     <string name="title_activity_sync_interval_selector">Intervallu de sincronizatzione</string>
-    <string name="title_activity_news_detail">AtividadeDetàlliosNoas</string>
     <string name="empty_view_content">Perunu elementu inoghe</string>
     <string name="empty_view_content_action">Tira a bàsciu pro agiornare</string>
     <string name="toast_GettingMoreItems">Iscarrigamentu de àteros elementos cumintzadu... Iseta pro praghere.</string>

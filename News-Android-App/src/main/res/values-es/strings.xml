@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Autosincronizar</string>
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
-    <string name="title_activity_news_detail">ActividadDetallesNoticias</string>
     <string name="empty_view_content">No hay artículos aquí</string>
     <string name="empty_view_content_action">Arrastra hacia abajo para recargar</string>
     <string name="toast_GettingMoreItems">Se ha iniciado la descarga de varios elementos... por favor, espere.</string>

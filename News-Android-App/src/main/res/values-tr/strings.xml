@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Otomatik eşitleme</string>
     <string name="title_activity_sync_interval_selector">Eşitleme sıklığı</string>
-    <string name="title_activity_news_detail">HaberAyrıntıİşlem</string>
     <string name="empty_view_content">Burada herhangi bir öge yok</string>
     <string name="empty_view_content_action">Yenilemek için aşağı çekin</string>
     <string name="toast_GettingMoreItems">Lütfen bekleyin, diğer ögelerin indirilmesine başlandı …</string>

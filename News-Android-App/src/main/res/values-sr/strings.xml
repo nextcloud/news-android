@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Ауто-освежавање</string>
     <string name="title_activity_sync_interval_selector">Интервал синхронизације</string>
-    <string name="title_activity_news_detail">Детаљне активности Вести</string>
     <string name="empty_view_content">Нема ставки</string>
     <string name="toast_GettingMoreItems">Започето скидање још ставки… Сачекајте.</string>
     <string name="no_wifi_available">Нема бежичне везе</string>

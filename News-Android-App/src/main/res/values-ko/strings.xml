@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">자동 동기화</string>
     <string name="title_activity_sync_interval_selector">동기화 간격</string>
-    <string name="title_activity_news_detail">NewsDetailActivity</string>
     <string name="empty_view_content">항목 없음</string>
     <string name="toast_GettingMoreItems">더 많은 아이템들을 다운로드 하고 있습니다... 잠시 기다려 주십시오.</string>
     <string name="no_wifi_available">Wi-Fi에 연결되지 않았음</string>
