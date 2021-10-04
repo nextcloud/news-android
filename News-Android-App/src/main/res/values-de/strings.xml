@@ -85,6 +85,11 @@
     <string name="feed_move_list_description">Den Zielordner für den Feed auswählen</string>
     <string name="move_feed_root_folder">Quellordner</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Spezielle Benachrichtigungen für diesen Feed erhalten</string>
+    <string name="notification_feed_default">Alle Feeds mit den Standardeinstellungen werden in einer Benachrichtigung angezeigt</string>
+    <string name="notification_feed_none">Überhaupt keine Benachrichtigungen</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Manuelle Anmeldung</string>
     <string name="login_sso">Anmeldung mittels Nextcloud-App</string>

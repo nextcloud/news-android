@@ -82,6 +82,11 @@
     <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
     <string name="move_feed_root_folder">根目录</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">接收此订阅源的单独通知</string>
+    <string name="notification_feed_default">所有默认设置的订阅源的通知将整合成一个</string>
+    <string name="notification_feed_none">完全没有通知</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">手动登录</string>
     <string name="login_sso">使用Nextcloud文件应用登录</string>
