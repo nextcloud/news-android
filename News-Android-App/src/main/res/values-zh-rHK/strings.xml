@@ -82,6 +82,11 @@
     <string name="feed_move_list_description">選擇要移動摘要至的資料夾</string>
     <string name="move_feed_root_folder">根目錄</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">我想收到有關此提要的個別通知</string>
+    <string name="notification_feed_default">所有具有默認設置的提要將顯示在同一個通知中</string>
+    <string name="notification_feed_none">完全没有通知</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">手動登入</string>
     <string name="login_sso">使用 Nextcloud Files 應用程式登入</string>

@@ -91,6 +91,11 @@
     <string name="feed_move_list_description">Vyberte složku do které zdroj přesunout</string>
     <string name="move_feed_root_folder">Kořenová složka</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Pro tento kanál dostávat samostatná upozornění</string>
+    <string name="notification_feed_default">Všechny kanály, které mají výchozí nastavení, se objeví v jednom upozornění</string>
+    <string name="notification_feed_none">Vůbec žádná upozornění</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Ruční přihlášení</string>
     <string name="login_sso">Přihlášení pomocí aplikace Nextcloud Files</string>

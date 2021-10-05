@@ -83,6 +83,8 @@
     <string name="feed_move_list_description">Select folder to move feed in</string>
     <string name="move_feed_root_folder">Root folder</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Receive individual notification for this feed</string>
     <!-- Strings related to login -->
     <string name="login_manual">Manual login</string>
     <string name="login_sso">Login using Nextcloud Files App</string>
