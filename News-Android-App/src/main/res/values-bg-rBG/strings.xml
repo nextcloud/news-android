@@ -2,7 +2,9 @@
 <resources>
 
     <string name="auto_sync_string">Автоматично синхронизиране</string>
+    <string name="title_activity_sync_interval_selector">Интервал на синхронизиране</string>
     <string name="empty_view_content">Няма елементи</string>
+    <string name="empty_view_content_action">Издърпване надолу, за опресняване</string>
     <string name="toast_GettingMoreItems">Започва свалянето на няколко елемента... Моля изчакайте.</string>
     <string name="no_wifi_available">Няма WiFi връзка</string>
     <string name="do_you_want_to_download_without_wifi">Желаете ли изображенията да бъдат свалени при отсъствието на WiFi връзка</string>
@@ -38,6 +40,9 @@
     <string name="action_textToSpeech">Прочитане</string>
     <string name="action_search">Търси</string>
     <string name="action_download_articles_offline">Свали статиите</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Изтегляне на статии за офлайн използване</string>
+    <string name="notification_download_images_offline">Изтегляне на изображения за офлайн използване</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Имате %d нови непрочетени елементи</item>
         <item quantity="other">Имате %d нови непрочетени елементи</item>
@@ -50,6 +55,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL на емисията</string>
     <string name="action_add_feed">Добави емисията</string>
+    <string name="import_opml">Импортиране OPML</string>
+    <string name="export_opml">Експортиранеt OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Свали изображението</string>
     <string name="action_img_sharelink">Сподели връзката към изображението</string>
@@ -58,6 +67,7 @@
     <string name="action_link_share">Сподели връзката</string>
     <string name="action_link_open">Отвори връзката в браузъра</string>
     <string name="action_link_copy">Копирай връзката</string>
+    <string name="toast_img_download_wait">Изтегляне ... Моля, изчакайте.</string>
     <string name="toast_img_saved">Изображението е записано</string>
     <string name="toast_img_notwriteable">Записването на изображението се провали.</string>
     <string name="toast_copied_to_clipboard">Копирана</string>
@@ -73,6 +83,16 @@
     <string name="feed_rename_button">Преименувай</string>
     <string name="confirm_feed_remove">Наистина ли желаете емисията да бъде премахната? Изтриването е необратима операция!</string>
     <string name="feed_move_list_description">Изберете в коя папка да бъде преместена емисията</string>
+    <string name="move_feed_root_folder">Основна папка</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Получаване на уникални известия за тази емисия</string>
+    <string name="notification_feed_default">Всички емисии с настройките по подразбиране ще се появят в едно известие</string>
+    <string name="notification_feed_none">Няма никакви известия</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Ръчно влизане</string>
+    <string name="login_sso">Влизане с помощта на приложението Nextcloud Files</string>
     <string name="pref_title_username">Потребител</string>
     <string name="pref_title_password">Парола</string>
     <string name="pref_title_owncloudRootPath">Nextcloud root адрес</string>
@@ -91,6 +111,12 @@
         <item quantity="other">Свалени са %d стари елементи</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Няма повече елементи</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">До сега са извлечени %d елемента …</item>
+        <item quantity="other">До сега са извлечени %d елемента …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="cache_is_cleared">Кеша е изчистен!</string>
@@ -99,6 +125,12 @@
     <!-- General settings -->
     <string name="pref_header_general">Общи</string>
     <string name="pref_title_general_sort_order">Сортиране</string>
+
+    <string name="pref_general_sort_order_new_old">Нови → Стари</string>
+    <string name="pref_general_sort_order_old_new">Стари → Нови</string>
+
+    <string name="pref_rename_action_swipe_right">Действие при плъзгане надясно</string>
+    <string name="pref_rename_action_swipe_left">Действие при плъзгане наляво</string>
 
     <string name="pref_title_general_search_in">Търсене в...</string>
 
@@ -114,6 +146,7 @@
     <string name="pref_title_DisableHostnameVerification">Без проверката на името на сървъра</string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигиране чрез бутоните за контрол на звука</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Означаване като \"Прочетена\" след скролиране</string>
+    <string name="pref_title_ShowFastActions">Активиране на функциите за бърз достъп</string>
     <string name="pref_title_OpenInBrowserDirectly">Без подробен изглед, директно отваряне на статиите в браузъра</string>
 
     <!-- MemorizingTrustManager -->
@@ -125,10 +158,24 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Няма избран podcast</string>
+    <string name="no_chapters_available">Няма налични глави</string>
+    <string name="podcast_playback_speed_dialog_title">Скорост на възпроизвеждане</string>
+    <string name="notification_downloading_podcast_title">Изтегляне на подкаст</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">Относно</string>
     <string name="pref_license">Лиценз</string>
+    <string name="pref_license_summary">GNU Affero Генерален Публичен Лиценз (AGPL) версия 3</string>
     <string name="pref_report_issue">Докладвайте за проблем</string>
+    <string name="pref_report_issue_summary">Изисква се (безплатен) профил в GitHub</string>
+    <string name="pref_contribute">Допринесете!</string>
+    <string name="pref_contribute_summary">Вземане на изходния код</string>
+    <string name="pref_privacy">Поверителност</string>
+    <string name="pref_privacy_summary">Политика за поверителност на Nextcloud News Android</string>
+    <string name="pref_version">Приложение Nextcloud News Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Екран</string>
     <string name="pref_title_app_theme">Тема</string>
@@ -137,35 +184,60 @@
     <string name="pref_display_browser">Браузър</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Икони за действие (подробен изглед)</string>
+
+    <string name="pref_display_apptheme_auto">Система по подразбиране</string>
     <string name="pref_display_apptheme_light">Светъл</string>
     <string name="pref_display_apptheme_dark">Тъмен</string>
 
     <string name="pref_oled_mode">Черен фон</string>
     <string name="pref_oled_mode_summary">За черни теми на OLED екрани</string>
 
+    <string name="pref_display_browser_cct">Вградени персонализирани Chrome-раздели</string>
     <string name="pref_display_browser_built_in">Вградения браузър</string>
     <string name="pref_display_browser_external">Външен браузър</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Миниатюри (само заглавия)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Миниатюри</string>
+    <string name="pref_display_feed_list_layout_simple_text">Обикновен текст</string>
+    <string name="pref_display_feed_list_layout_headlines">Заглавия</string>
+    <string name="pref_display_feed_list_layout_full_text">Пълен текст</string>
+    <string name="pref_display_feed_list_layout_web_layout">Уеб оформление</string>
+    <string name="pref_display_feed_list_layout_card_view">Изглед на карта</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Малък</string>
     <string name="pref_display_font_size_d">Стандартен</string>
     <string name="pref_display_font_size_l">Голям</string>
     <string name="pref_display_font_size_xl">Много голям</string>
 
+    <string name="content_desc_play">Пусни</string>
+    <string name="content_desc_pause">Пауза</string>
+    <string name="content_desc_playback_speed">скорост на възпроизвеждане</string>
+    <string name="content_desc_rewind">пренавиване</string>
+    <string name="content_desc_forward">препращане</string>
     <string name="content_desc_expand">разгъване</string>
     <string name="content_desc_collapse">сгъване</string>
     <string name="content_desc_mark_as_read">означи като прочетена</string>
     <string name="content_desc_mark_as_unread">означи като непрочетена</string>
+    <string name="content_desc_tap_to_refresh">докосване за опресняване</string>
     <string name="content_desc_add_to_favorites">добави към любимите</string>
     <string name="content_desc_remove_from_favorites">премахни от любимите</string>
+    <string name="content_desc_show_password">покажи парола</string>
     <string name="content_desc_delete">изтриване</string>
+    <string name="content_desc_download">изтегляне</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изглежда, че приложението за новини не е инсталирано/включено на сървъра. Следвайте следните инструкции: %1$s, за да настроите приложението за новини на сървъра.</string>
     <string name="login_dialog_text_something_went_wrong">Възникна проблем :(</string>
+    <string name="login_dialog_text_zero_version_code">Приложението Web News върна версия „0“. Моля, разгледайте следния доклад за грешки: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Версията на мобилното приложение не е съвместима с версията на Nextcloud приложението. Моля актуализирайте приложението и appframework.</string>
     <string name="login_dialog_title_security_warning">Предупреждение за сигурноста</string>
+    <string name="login_dialog_text_security_warning">Вие не използвате HTTPS, което силно се препоръчва.  Вашия трафик може да бъде прихванат от атакуващ и той да получи достъп до някои чувствителни данни (например вашата парола).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Нещо се обърка. Моля, опитайте отново.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Данни и Синхронизиране</string>
     <string name="pref_title_clearCache">Изтриване на кеша</string>
@@ -178,4 +250,22 @@
     <string name="pref_data_sync_image_cache_ask">Запитване когато няма WiFi връзка</string>
 
     <string name="array_sync_interval_min_0">Никога</string>
+    <string name="array_sync_interval_min_5">5 минути</string>
+    <string name="array_sync_interval_min_15">15 минути</string>
+    <string name="array_sync_interval_min_30">30 минути</string>
+    <string name="array_sync_interval_min_45">45 минути</string>
+    <string name="array_sync_interval_hour_1">1 час</string>
+    <string name="array_sync_interval_hour_2">2 часа</string>
+    <string name="array_sync_interval_hour_3">3 часа</string>
+    <string name="array_sync_interval_hour_6">6 часа</string>
+    <string name="array_sync_interval_hour_12">12 часа</string>
+    <string name="array_sync_interval_hour_24">24 часа</string>
+    <string name="switch_account">Смяна на профил</string>
+    
+    <string name="successfully_exported">Успешно експортиран към:</string>
+    <string name="opml_export">OPML Експортиране</string>
+    <string name="parsing_opml">Анализиране на OPML</string>
+    <string name="please_wait">Моля, изчакайте …</string>
+    <string name="interval_sync_title">Интервална синхронизация </string>
+
     </resources>
