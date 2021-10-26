@@ -34,8 +34,6 @@ import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
-import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
-
 /**
 * A {@link PreferenceActivity} that presents a set of application settings. On
 * handset devices, settings are presented as a single list. On tablets,
@@ -84,7 +82,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String CB_OLED_MODE = "cb_oled_mode";
 
-    public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout";
+    public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout"; // used for shared prefs
+    public static final String AI_FEED_LIST_LAYOUT = "ai_feed_list_layout"; // used for intents
     public static final String SP_FONT_SIZE = "sp_font_size";
 
     public static final String CACHE_CLEARED = "CACHE_CLEARED";
@@ -148,11 +147,11 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = getIntent();
-        intent.putExtra(
-                SettingsActivity.SP_FEED_LIST_LAYOUT,
-                mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0")
-        );
-        setResult(RESULT_OK,intent);
+
+        // Fix GHSL-2021-1033
+        Intent intent = new Intent();
+        String feedListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0");
+        intent.putExtra(SettingsActivity.AI_FEED_LIST_LAYOUT, feedListLayout);
+        setResult(RESULT_OK, intent);
     }
 }
