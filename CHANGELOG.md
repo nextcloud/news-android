@@ -2,7 +2,8 @@
 ---------------------
 - Changed - added file extension to downloaded/exported images
 - Changed - allow clicks on notification after an image has been saved/downloaded from detail view
-
+- Added - <a href="https://github.com/nextcloud/news-android/issues/1002">#1002 support for more granular notification settings</a>
+- Fix security issue GHSL-2021-1033
 
 0.9.9.62
 ---------------------
