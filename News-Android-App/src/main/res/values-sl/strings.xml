@@ -91,6 +91,11 @@
     <string name="feed_move_list_description">Izbor mape za premikanje vira</string>
     <string name="move_feed_root_folder">Korenska mapa</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Pridobi enoznačna obvestila za ta vir</string>
+    <string name="notification_feed_default">Vsi viri s privzetih nastavitev bodo prikazani v enem obvestilu</string>
+    <string name="notification_feed_none">Ni še prejetih obvestil.</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Ročna prijava</string>
     <string name="login_sso">Prijava s programom Nextcloud Datoteke</string>
@@ -240,6 +245,9 @@
     <string name="login_dialog_text_not_compatible">Program ni skladen s programom Novice Nextcloud. Posodobiti je treba program in vire.</string>
     <string name="login_dialog_title_security_warning">Varnostno opozorilo</string>
     <string name="login_dialog_text_security_warning">Trenutna povezava ni varna povezava HTTPS. Spletni goljufi lahko prestrežejo prenos podatkov in si pridobijo dostop do občutljivih podatkov (na primer gesel).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Prišlo je do napake. poskusite znova.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podatki in usklajevanje</string>
     <string name="pref_title_clearCache">Počisti predpomnilnik</string>
