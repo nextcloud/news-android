@@ -1,0 +1,22 @@
+Die Nextcloud News App ermöglicht die Synchronisierung von Artikeln zwischen Android und der Webbasierten Nextcloud News Anwendung.
+
+- Anpassbare Listenansicht
+- Dark/Light Theme
+- Podcasts anhören
+- Android Auto Unterstützung
+- Artikel Offline lesen
+- Bilder offline zwischenspeichern
+- Hintergrund-Synchronisierung
+- Als gelesen markieren beim scrollen
+- Schriftart einstellbar
+- Widget
+- uvm.
+
+
+Um die neuste Beta Version zu verwenden, klicke bitte auf den folgenden Link:
+https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader
+
+Die App steht unter der AGPLv3 Lizenz und ist eine freie Software deren Quellcode unter folgendem Link verfügbar ist. Jeder kann dazu beitragen die App weiter zu verbessern.
+https://github.com/nextcloud/news-android
+
+Bitte beachten Sie, dass zur Verwendung dieser App ein Nextcloud Instanz mit installierter News App benötigt wird.

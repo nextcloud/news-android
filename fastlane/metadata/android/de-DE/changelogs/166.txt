@@ -1,0 +1,5 @@
+- Added - #1002 support for more granular notification settings
+- Changed - added file extension to downloaded/exported images
+- Changed - allow clicks on notification after an image has been saved/downloaded from detail view
+- Fixed - #1018 Item state sync is not working correctly when many items have been changed
+- Fix security issue GHSL-2021-1033 (Thanks to GitHub Security Lab - with special thanks to Tony Torralba and Kevin Backhouse)

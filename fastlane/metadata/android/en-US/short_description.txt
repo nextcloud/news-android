@@ -1,1 +1,1 @@
-News/feed reader for Nextcloud/ownCloud
+Android App for Nextcloud News

@@ -1,15 +1,22 @@
-This Nextcloud News Reader app makes it possible to synchronize feeds between Android and the Nextcloud/ownCloud News App and let's you read RSS feeds on the go.
+The Nextcloud News Reader App makes it possible to synchronize feeds between Android and the Nextcloud News App.
 
-'''Features:'''
+- Dark/Light Theme
+- podcast support
+- support for Android Auto
+- Offline reading
+- Cache images offline
+- Background synchronization
+- Customizable Listview
+- Customizable font
+- Mark as read while scrolling
+- Widget
+- and many more!
 
-* Offline reading
-* Cache images offline
-* Background synchronization
-* Customizable Listview
-* Mark as read while scrolling
-* Dark/Light Theme
-* Customizable font
-* Widget
-* Pull-To-Refresh
-* and many more!
-.
+In order to use the newest beta version, please click on the following link:
+https://play.google.com/apps/testing/de.luhmer.owncloudnewsreader
+
+
+The App is under AGPLv3 license terms. It is free and the source code is available under:
+https://github.com/nextcloud/news-android
+
+Please note that in order to use this app you will need to have a nextcloud instance running with the news app installed.

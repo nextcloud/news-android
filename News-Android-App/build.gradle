@@ -26,6 +26,9 @@ android {
         testInstrumentationRunnerArguments clearPackageData: 'true'
 
         vectorDrawables.useSupportLibrary = true
+
+        versionCode 166
+        versionName "0.9.9.63"
     }
 
     buildFeatures {
