@@ -58,28 +58,22 @@ public class RssItemObservable implements Publisher<Integer> {
     }
 
     public void sync(Subscriber<? super Integer> subscriber) throws IOException {
-
         mDbConn.clearDatabaseOverSize();
 
-        //String authKey = AuthenticationManager.getGoogleAuthKey(username, password);
-        //int maxItemsInDatabase = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_MAX_ITEMS_SYNC, "200"));
-
         long lastModified = mDbConn.getLastModified();
-        //dbConn.clearDatabaseOverSize();
 
         int requestCount = 0;
         int totalCount   = 0;
         int maxSyncSize = maxSizePerSync;
 
-        if(lastModified == 0)//Only on first sync
-        {
+        if (lastModified == 0) { // Only on first sync
             long offset = 0;
 
             Log.v(TAG, "First sync - download all available unread articles!!");
-            int maxItemsInDatabase = Constants.maxItemsCount;
+            // int maxItemsInDatabase = Constants.maxItemsCount;
 
             do {
-                Log.v(TAG, "offset=" + offset + ",  requestCount=" + requestCount + "");
+                Log.v(TAG, "[unread] offset=" + offset + ",  requestCount=" + requestCount + ", maxSyncSize=" + maxSyncSize + ", total downloaded=" + totalCount);
                 List<RssItem> buffer = (mNewsApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL.toString()), 0, false, true).execute().body());
 
                 requestCount = 0;
@@ -110,38 +104,36 @@ public class RssItemObservable implements Publisher<Integer> {
                     offset = getMaxIdFromItems(buffer); // get maximum id of returned items
                     performDatabaseBatchInsert(mDbConn, buffer);
                 }
-                Log.v(TAG, "[starred] offset=" + offset + ",  requestCount=" + requestCount + ", maxSyncSize=" + maxSyncSize);
+                Log.v(TAG, "[starred] offset=" + offset + ",  requestCount=" + requestCount + ", maxSyncSize=" + maxSyncSize + ", total downloaded=" + totalCount);
                 totalCount += requestCount;
 
                 subscriber.onNext(totalCount);
             } while(requestCount == maxSyncSize);
-        }
-        else
-        {
+        } else {
             Log.v(TAG, "Incremental sync!!");
             //First reset the count of last updated items
             mPrefs.edit().putInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0).apply();
 
-            //long highestItemIdBeforeSync = mDbConn.getHighestItemId();
+            // long highestItemIdBeforeSync = mDbConn.getHighestItemId();
 
-            //Get all updated items
+            // Get all updated items
             mNewsApi.updatedItems(lastModified, Integer.parseInt(FeedItemTags.ALL.toString()), 0)
                     .flatMap((Function<ResponseBody, ObservableSource<RssItem>>) responseBody -> events(responseBody.source()))
-                    .subscribe(new Observer<RssItem>() {
+                    .subscribe(new Observer<>() {
                         int totalUpdatedUnreadItemCount = 0;
                         final int bufferSize = 150;
                         final List<RssItem> buffer = new ArrayList<>(bufferSize); //Buffer of size X
 
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
-                            Log.v(TAG, "onSubscribe() called with Disposable: d = [" + d + "]");
+                            Log.v(TAG, "onSubscribe() called");
                         }
 
                         @Override
                         public void onNext(@NonNull RssItem rssItem) {
                             long rssLastModified = rssItem.getLastModified().getTime();
                             // If updated item is unread and last modification was different from last sync time
-                            if(!rssItem.getRead() && rssLastModified != lastModified) {
+                            if (!rssItem.getRead() && rssLastModified != lastModified) {
                                 totalUpdatedUnreadItemCount++;
                             }
 
