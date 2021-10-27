@@ -912,7 +912,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
 		if (requestCode == RESULT_LOGIN) {
-			Intent intent = getIntent().putExtra(PREF_SERVER_SETTINGS, true);
+			Intent intent = new Intent();
+			intent.putExtra(PREF_SERVER_SETTINGS, true);
 			setResult(RESULT_OK, intent);
 		}
 
@@ -981,12 +982,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void ensureCorrectTheme(Intent data) {
-        String oldListLayout = data.getStringExtra(SettingsActivity.AI_FEED_LIST_LAYOUT);
-		String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0");
+        String oldListLayout = data.getStringExtra(SettingsActivity.RI_FEED_LIST_LAYOUT);
+        String newListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0");
+        boolean themeChanged = !newListLayout.equals(oldListLayout);
+        boolean cacheWasCleared = data.hasExtra(SettingsActivity.RI_CACHE_CLEARED);
 
-        if (ThemeChooser.themeRequiresRestartOfUI() || !newListLayout.equals(oldListLayout)) {
+        Log.d(TAG, "themeChanged: " + themeChanged + " cacheWasCleared: " + cacheWasCleared);
+
+        if (ThemeChooser.themeRequiresRestartOfUI() || themeChanged) {
             NewsReaderListActivity.this.recreate();
-        } else if (data.hasExtra(SettingsActivity.CACHE_CLEARED)) {
+        } else if (cacheWasCleared) {
             resetUiAndStartSync();
         }
     }

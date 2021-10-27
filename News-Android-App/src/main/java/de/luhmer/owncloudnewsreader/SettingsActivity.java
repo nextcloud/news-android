@@ -83,10 +83,10 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String CB_OLED_MODE = "cb_oled_mode";
 
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout"; // used for shared prefs
-    public static final String AI_FEED_LIST_LAYOUT = "ai_feed_list_layout"; // used for intents
+    public static final String RI_FEED_LIST_LAYOUT = "ai_feed_list_layout"; // used for result intents
     public static final String SP_FONT_SIZE = "sp_font_size";
 
-    public static final String CACHE_CLEARED = "CACHE_CLEARED";
+    public static final String RI_CACHE_CLEARED = "CACHE_CLEARED"; // used for result intents
     public static final String SP_MAX_CACHE_SIZE = "sp_max_cache_size";
     public static final String SP_SORT_ORDER = "sp_sort_order";
     public static final String SP_DISPLAY_BROWSER = "sp_display_browser";
@@ -101,6 +101,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     protected @Inject SharedPreferences mPrefs;
 
+    public Intent resultIntent = new Intent();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
@@ -112,6 +114,10 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         setupActionBar();
+
+        // some settings might add a few flags to the result Intent at runtime
+        // (e.g. clearing cache / switching list layout / theme / ...)
+        setResult(RESULT_OK, resultIntent);
     }
 
     @Override
@@ -124,7 +130,6 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-
     private void setupActionBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -133,13 +138,11 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.title_activity_settings);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -149,9 +152,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onStart();
 
         // Fix GHSL-2021-1033
-        Intent intent = new Intent();
         String feedListLayout = mPrefs.getString(SettingsActivity.SP_FEED_LIST_LAYOUT, "0");
-        intent.putExtra(SettingsActivity.AI_FEED_LIST_LAYOUT, feedListLayout);
-        setResult(RESULT_OK, intent);
+        resultIntent.putExtra(SettingsActivity.RI_FEED_LIST_LAYOUT, feedListLayout);
     }
 }

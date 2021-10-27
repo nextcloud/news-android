@@ -450,15 +450,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         @Override
         protected void onPostExecute(Void result) {
-            if(context instanceof Activity) {
-                Intent intent = ((Activity) context).getIntent();
-                intent.putExtra(SettingsActivity.CACHE_CLEARED, true);
-                ((Activity) context).setResult(RESULT_OK, intent);
-            }
+            super.onPostExecute(result);
 
             pd.dismiss();
             Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
-            super.onPostExecute(result);
+
+            if(context instanceof SettingsActivity) {
+                SettingsActivity sa = (SettingsActivity) context;
+                sa.resultIntent.putExtra(SettingsActivity.RI_CACHE_CLEARED, true);
+            }
         }
     }
 }
