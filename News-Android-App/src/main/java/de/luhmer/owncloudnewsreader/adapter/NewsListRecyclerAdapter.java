@@ -414,6 +414,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         @Override
         protected void onPostExecute(List<RssItem> rssItems) {
             int prevSize = lazyList.size();
+            Log.d(TAG, "prevSize=" + prevSize);
             lazyList.remove(prevSize - 1);
             lazyList.addAll(rssItems);
 

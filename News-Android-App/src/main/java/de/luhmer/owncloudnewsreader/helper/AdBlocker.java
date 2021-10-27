@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -71,7 +72,9 @@ public class AdBlocker {
 
     @WorkerThread
     private static void loadFromInternet(Context context) throws IOException {
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
         Request request = new Request.Builder().url("https://pgl.yoyo.org/as/serverlist.php?hostformat=nohtml&showintro=0").build();
         Response response = client.newCall(request).execute();
 
