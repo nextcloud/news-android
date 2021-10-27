@@ -1,9 +1,11 @@
 0.9.9.63
 ---------------------
+- Added - <a href="https://github.com/nextcloud/news-android/issues/1002">#1002 support for more granular notification settings</a>
 - Changed - added file extension to downloaded/exported images
 - Changed - allow clicks on notification after an image has been saved/downloaded from detail view
-- Added - <a href="https://github.com/nextcloud/news-android/issues/1002">#1002 support for more granular notification settings</a>
-- Fix security issue GHSL-2021-1033
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1018">#1018 Item state sync is not working correctly when many items have been changed</a>
+- Fix security issue GHSL-2021-1033 (Thanks to GitHub Security Lab - with special thanks to Tony Torralba and Kevin Backhouse)
+
 
 0.9.9.62
 ---------------------
