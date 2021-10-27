@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Sincronizare automată</string>
+    <string name="title_activity_sync_interval_selector">Intervalul sincronizării</string>
+    <string name="empty_view_content">Nici un articol aici</string>
+    <string name="empty_view_content_action">Trage în jos pentru a reîmprospăta</string>
+    <string name="toast_GettingMoreItems">Descărcarea a mai multor articole a început. Vă rugăm, așteptați.</string>
+    <string name="no_wifi_available">Nu exista conexiune WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Doriți să descărcați imaginile fără o conexiune Wi-Fi?</string>
+    <string name="current_version">Folosiți versiunea %s</string>
+    <string name="widget_header">Știri Nextcloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d nou item valabil</item>
+        <item quantity="few">%d noi iteme valabile</item>
+        <item quantity="other">%d noi iteme valabile</item>
+    </plurals>
+    <string name="message_bar_reload">Reîncarcă</string>
+    <string name="allUnreadFeeds">Toate articolele necitite</string>
+    <string name="starredFeeds">Articole selectate</string>
+    <string name="title_activity_new_feed">Adaugă flux nou</string>
+
+    <string name="menu_update">Împrospătare</string>
+    <string name="menu_markAllAsRead">Marcaţi tot ca fiind citit</string>
+    <string name="menu_StartImageCaching">Descarca imagini </string>
+    <string name="menu_downloadMoreItems">Descarcă mai multe articole </string>
+
+    <string name="tv_showing_cached_version">Se arată versiunea din cache</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Marcat</string>
+    <string name="action_read">Citeşte</string>
+    <string name="action_playPodacst">Inițiază Podcast</string>
+    <string name="action_openInBrowser">Deschideți în browserul Web</string>
+    <string name="action_Share">Partajează</string>
+    <string name="action_login">Setările serverului</string>
+    <string name="action_save">Salvează</string>
+    <string name="action_settings">Setări</string>
+    <string name="action_sync_settings">Setări Sincronizare</string>
+    <string name="action_add_new_feed">Adaugă flux nou</string>
+    <string name="action_textToSpeech">Citit</string>
+    <string name="action_search">Caută</string>
+    <string name="action_download_articles_offline">Descarcă articole offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Descarcă articole pentru folosirea offline</string>
+    <string name="notification_download_images_offline">Descarcă imagini pentru folosirea offline</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Aveți %d știre nouă</item>
+        <item quantity="few">Aveți %d știri noi</item>
+        <item quantity="other">Aveți %d de știri noi</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d știre nouă și necitită este disponibilă</item>
+        <item quantity="few">%d noi știri necitie sunt disponibile</item>
+        <item quantity="other">%d de știri noi sunt necitite</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL-ul Feed-ului</string>
+    <string name="action_add_feed">Adăugare flux</string>
+    <string name="import_opml">Import OPML</string>
+    <string name="export_opml">Export OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Descarcă imaginea</string>
+    <string name="action_img_sharelink">Partajează linkul cu imagine</string>
+    <string name="action_img_open">Deschide imaginea în browser</string>
+    <string name="action_img_copylink">Copiază linkul către imagine</string>
+    <string name="action_link_share">Partajează linkul</string>
+    <string name="action_link_open">Deschide linkul în browser</string>
+    <string name="action_link_copy">Copiază linkul</string>
+    <string name="toast_img_download_wait">Se descarcă... Vă rugăm așteptați</string>
+    <string name="toast_img_saved">Imagine salvată</string>
+    <string name="toast_img_notwriteable">A apărut o eroare în scrierea imaginii.</string>
+    <string name="toast_copied_to_clipboard">Copiat în clipboard</string>
+    <string name="error_download_failed">Descărcarea a eșuat</string>
+    <string name="intent_title_share">Partajează pe</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Elimină feed-ul</string>
+    <string name="action_feed_rename">Redenumește feed-ul</string>
+    <string name="action_feed_move">Muta feed-ul</string>
+    <string name="feed_remove_button">Șterge</string>
+    <string name="feed_rename_button">Redenumește</string>
+    <string name="confirm_feed_remove">Ești sigur că dorești să elimini acest feed ? Această acțiune nu poate fi anulată!</string>
+    <string name="feed_move_list_description">Seleactează dosarul în care dorești să muți feed-ul</string>
+    <string name="move_feed_root_folder">Folder principal</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Primește notificări unice pentru acest feed</string>
+    <string name="notification_feed_default">Toate feed-urile cu setări implicite vor apărea intr-o singură notificare</string>
+    <string name="notification_feed_none">Fără notificări</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Autentificare manuală</string>
+    <string name="login_sso">Autentificare folosind aplicația Fișiere Nextcloud</string>
+    <string name="pref_title_username">Nume utilizator</string>
+    <string name="pref_title_password">Parolă</string>
+    <string name="pref_title_owncloudRootPath">Adresa principală Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Înregistraţi-vă</string>
+    <string name="login_progress_signing_in">Înregistrare</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Acest câmp este obligatoriu </string>
+    <string name="error_invalid_url">URL incrorect</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Descarcă %d articol vechi</item>
+        <item quantity="few">Descarcă %d articole vechi</item>
+        <item quantity="other">Descarcă %d de articole vechi</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Nici un articol disponibil.</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">S-a preluat %d articol până în acest moment...</item>
+        <item quantity="few">S-au preluat %d articole până acum...</item>
+        <item quantity="other">S-au preluat %d de articole până în acest moment...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Setări</string>
+    <string name="cache_is_cleared">Memoria cache este ștersă!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_general_sort_order">Alegeţi ordinea</string>
+
+    <string name="pref_general_sort_order_new_old">Nou → Vechi</string>
+    <string name="pref_general_sort_order_old_new">Vechi → Nou</string>
+
+    <string name="pref_rename_action_swipe_right">Acțiune în momentul mișcării degetului de la stânga la dreapta</string>
+    <string name="pref_rename_action_swipe_left">Acțiune în momentul mișcării degetului de la dreapta la stânga</string>
+
+    <string name="pref_title_general_search_in">Caută în</string>
+
+    <string name="pref_general_search_in_title">Titlu</string>
+    <string name="pref_general_search_in_body">Corp</string>
+
+    <string name="dialog_clearing_cache">Ștergere cache</string>
+    <string name="dialog_clearing_cache_please_wait">Se golește memoria cache... Vă rugăm așteptați.</string>
+    <string name="reset_cache_unsaved_changes">Există modificări nesincronizate. Dorești totuși să ștergi cache-ul?</string>
+    <string name="warning">Atenție</string>
+    <string name="pref_title_AutoSyncOnStart">Sincronizare la pornire</string>
+    <string name="pref_title_ShowOnlyUnread">Arata doar articolele necitite </string>
+    <string name="pref_title_DisableHostnameVerification">Dezactivează Verificarea Hostname</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigheaza cu tastele de volum </string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marchează ca citit in timpul derulării</string>
+    <string name="pref_title_ShowFastActions">Activați funcția de acces rapid</string>
+    <string name="pref_title_OpenInBrowserDirectly">Sari peste vizualizarea detaliată și deschide articole în browser</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Accepta Certificat Necunoscut?</string>
+    <string name="mtm_decision_always">Întotdeauna</string>
+    <string name="mtm_decision_abort">Anuleaza</string>
+    <string name="mtm_notification">Verificare certificat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Nu a fost selectat podcastul</string>
+    <string name="no_chapters_available">Nici-un articol disponibil</string>
+    <string name="podcast_playback_speed_dialog_title">Viteză de redare</string>
+    <string name="notification_downloading_podcast_title">Se descarcă podcast-ul</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Despre</string>
+    <string name="pref_license">Licență</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versiunea 3</string>
+    <string name="pref_report_issue">Raportează o problemă</string>
+    <string name="pref_report_issue_summary">Necesită un cont (gratuit) GitHub</string>
+    <string name="pref_contribute">Contribuie!</string>
+    <string name="pref_contribute_summary">Obține codul sursă</string>
+    <string name="pref_privacy">Confindențialitate</string>
+    <string name="pref_privacy_summary">Politica de Confidențialitate a Nextcloud News pentru Android</string>
+    <string name="pref_version">aplicația Nextcloud News pentru Android</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Display</string>
+    <string name="pref_title_app_theme">Temă</string>
+    <string name="pref_title_feed_list_layout">Aspectul listei de flux</string>
+    <string name="pref_title_font_size">Mărime font</string>
+    <string name="pref_display_browser">Browser</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Pictogramă cu acțiuni(vizualizare detaliată)</string>
+
+    <string name="pref_display_apptheme_auto">Setările sitemului implicite</string>
+    <string name="pref_display_apptheme_light">Deschis</string>
+    <string name="pref_display_apptheme_dark">Închis</string>
+
+    <string name="pref_oled_mode">Fundal negru</string>
+    <string name="pref_oled_mode_summary">Pentru teme întunecate pentru ecrane OLED</string>
+
+    <string name="pref_display_browser_cct">Tab-Personalizat-Chrome-Încorporat</string>
+    <string name="pref_display_browser_built_in">Browser încorporat</string>
+    <string name="pref_display_browser_external">Browser extern</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturi (numai titluri)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Miniaturi</string>
+    <string name="pref_display_feed_list_layout_simple_text">Text simplu</string>
+    <string name="pref_display_feed_list_layout_headlines">Titluri</string>
+    <string name="pref_display_feed_list_layout_full_text">Text complet</string>
+    <string name="pref_display_feed_list_layout_web_layout">Aspect Web</string>
+    <string name="pref_display_feed_list_layout_card_view">Vizualizare carduri</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Mic</string>
+    <string name="pref_display_font_size_d">Implicit</string>
+    <string name="pref_display_font_size_l">Mare</string>
+    <string name="pref_display_font_size_xl">Foarte mare</string>
+
+    <string name="content_desc_play">Start</string>
+    <string name="content_desc_pause">Pauză</string>
+    <string name="content_desc_playback_speed">Viteză de redare</string>
+    <string name="content_desc_rewind">derulează înapoi</string>
+    <string name="content_desc_forward">Înainte</string>
+    <string name="content_desc_expand">extinde</string>
+    <string name="content_desc_collapse">Restrănge</string>
+    <string name="content_desc_mark_as_read">marchează ca citit</string>
+    <string name="content_desc_mark_as_unread">marchează ca citit</string>
+    <string name="content_desc_tap_to_refresh">atinge pentru a reîmprospăta lista</string>
+    <string name="content_desc_add_to_favorites">Adaugă la favorite</string>
+    <string name="content_desc_remove_from_favorites">șterge din favorite</string>
+    <string name="content_desc_show_password">Arată parola</string>
+    <string name="content_desc_delete">ștergere</string>
+    <string name="content_desc_download">descarcă</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Eroare</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Se pare că aplicația de știri nu este instalată sau activată pe serverul dumneavoastră. Vă rugăm să urmariți instrucțiunile oferite aici pentru a vă seta corect aplicația dumneavoastră de știri de pe server: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Undeva s-a comis o eroare :(</string>
+    <string name="login_dialog_text_zero_version_code">Aplicația web de știri a trimis versiunea \"0\".  Vă rugăm să aruncați oprivire pentru următorul raport de eroare: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Versiunea acestei aplicații nu este compatibilă cu aplicația dumneavoastră Nextcloud News. Vă rugăm să faceți un upgrade la aplicația de știri.</string>
+    <string name="login_dialog_title_security_warning">Avertisment de securitate</string>
+    <string name="login_dialog_text_security_warning">Nu folosiți HTTPS, ceea ce nu este încurajat. Un atacator ar putea intercepta traficul și ar putea obține acces la câteva informații importante (ex: parola dumneavoastră).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Ceva nu a mers bine. Vă rugăm să mai incercați o dată.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Sincronizare &amp; date</string>
+    <string name="pref_title_clearCache">Șterge cache</string>
+    <string name="pref_title_CacheImagesOffline">Imagini Cache offline</string>
+    <string name="pref_title_Max_Cache_Size">Mărime maximă Cache</string>
+
+    <string name="pref_data_sync_image_cache_never">Niciodată</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Folosind numai WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Folosind numai WiFi &amp; date mobile</string>
+    <string name="pref_data_sync_image_cache_ask">Când dispozitivul nu este conectat la WwiFi întreabă</string>
+
+    <string name="array_sync_interval_min_0">Niciodată</string>
+    <string name="array_sync_interval_min_5">5 minute</string>
+    <string name="array_sync_interval_min_15">15 minute</string>
+    <string name="array_sync_interval_min_30">30 de minute</string>
+    <string name="array_sync_interval_min_45">45 de minute</string>
+    <string name="array_sync_interval_hour_1">1 oră</string>
+    <string name="array_sync_interval_hour_2">2 ore</string>
+    <string name="array_sync_interval_hour_3">3 ore</string>
+    <string name="array_sync_interval_hour_6">6 ore</string>
+    <string name="array_sync_interval_hour_12">12 ore</string>
+    <string name="array_sync_interval_hour_24">14 de ore</string>
+    <string name="switch_account">Schimbă contul</string>
+    
+    <string name="successfully_exported">Exportat cu succes în:</string>
+    <string name="opml_export">Export în OPML</string>
+    <string name="parsing_opml">Se analizează fișierul OPML</string>
+    <string name="please_wait">Vă rugăm așteptați...</string>
+    <string name="interval_sync_title">Interval de sincronizare</string>
+
+    </resources>
