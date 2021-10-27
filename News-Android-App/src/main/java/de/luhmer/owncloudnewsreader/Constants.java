@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Constants {
 	public static final Boolean debugModeWidget = false;
 
-    public static final int maxItemsCount = 1500;
+    public static final int maxItemsCount = 5000;
     public static final String LAST_UPDATE_NEW_ITEMS_COUNT_STRING = "LAST_UPDATE_NEW_ITEMS_COUNT_STRING";
     public static final String NOTIFICATION_ACTION_STOP_STRING = "NOTIFICATION_STOP";
     public static final String NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING = "NOTIFICATION_MARK_ALL_AS_READ";
