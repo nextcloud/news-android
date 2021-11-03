@@ -55,8 +55,8 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL на емисията</string>
     <string name="action_add_feed">Добави емисията</string>
-    <string name="import_opml">Импортиране OPML</string>
-    <string name="export_opml">Експортиранеt OPML</string>
+    <string name="import_opml">Внасяне OPML</string>
+    <string name="export_opml"> Изнасяне OPML </string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -262,7 +262,7 @@
     <string name="array_sync_interval_hour_24">24 часа</string>
     <string name="switch_account">Смяна на профил</string>
     
-    <string name="successfully_exported">Успешно експортиран към:</string>
+    <string name="successfully_exported">Успешно изнесен към:</string>
     <string name="opml_export">OPML Експортиране</string>
     <string name="parsing_opml">Анализиране на OPML</string>
     <string name="please_wait">Моля, изчакайте …</string>
