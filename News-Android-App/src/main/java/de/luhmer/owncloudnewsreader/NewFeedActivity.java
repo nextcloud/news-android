@@ -1,11 +1,14 @@
 package de.luhmer.owncloudnewsreader;
 
+import static java.util.Objects.requireNonNull;
+
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -64,8 +67,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static java.util.Objects.requireNonNull;
-
 public class NewFeedActivity extends AppCompatActivity {
 
     private static final String TAG = NewFeedActivity.class.getCanonicalName();
@@ -102,12 +103,16 @@ public class NewFeedActivity extends AppCompatActivity {
 
 
         folders = dbConn.getListOfFolders();
-        folders.add(0, new Folder(0, getString(R.string.move_feed_root_folder)));
+        Folder rootFolder = new Folder(0, getString(R.string.move_feed_root_folder));
 
-        String[] folderNames = new String[folders.size()];
-        for(int i = 0; i < folders.size(); i++) {
-            folderNames[i] = folders.get(i).getLabel();
+        if (folders.isEmpty()) {
+            // list is of type EmptyList and is not modifiable - therefore create a new modifiable list
+            folders = new ArrayList<>();
         }
+
+        folders.add(0, rootFolder);
+
+        String[] folderNames = folders.stream().map(Folder::getLabel).toArray(String[]::new);
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, folderNames);
         binding.spFolder.setAdapter(spinnerArrayAdapter);
@@ -117,7 +122,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
         if (action != null) {
             String url = "";
-            if(action.equals(Intent.ACTION_VIEW)) {
+            if (action.equals(Intent.ACTION_VIEW)) {
                 url = intent.getDataString();
             } else if(action.equals(Intent.ACTION_SEND)) {
                 url = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -141,7 +146,6 @@ public class NewFeedActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager)getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(binding.etFeedUrl.getWindowToken(), 0);
-
 
         attemptAddNewFeed();
     }
@@ -314,7 +318,7 @@ public class NewFeedActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Feed feed = response.body().get(0);
                         result.add("✓ " + feed.getLink());
-                        Log.e(TAG, "Successfully imported feed: " + feedUrl + " - Feed-ID: " + feed.getId());
+                        Log.d(TAG, "Successfully imported feed: " + feedUrl + " - Feed-ID: " + feed.getId());
                     } else if (response.code() == 409) {
                         // already exists
                         result.add("✓ " + " - " + feedUrl);
@@ -351,9 +355,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            if (pd != null) {
-                pd.dismiss();
-            }
+            pd.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.yes), (dialog, which) -> pd.dismiss());
 
             if(!result) {
                 Toast.makeText(mContext, "Failed to parse OPML file", Toast.LENGTH_SHORT).show();
