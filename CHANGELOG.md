@@ -1,4 +1,11 @@
-0.9.9.63
+0.9.9.64
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1006">#1006 Refactor and fix sync issues</a>
+- Changed - Improve OPML import dialog
+- Changed - Increase the soft limit of articles in the app from 1500 to 5000 articles
+
+
+0.9.9.63 (Beta)
 ---------------------
 - Added - <a href="https://github.com/nextcloud/news-android/issues/1002">#1002 support for more granular notification settings</a>
 - Changed - added file extension to downloaded/exported images
