@@ -39,7 +39,7 @@ public class RssItemObservable implements Publisher<Integer> {
     private final NewsAPI mNewsApi;
     private final SharedPreferences mPrefs;
     private static final String TAG = RssItemObservable.class.getCanonicalName();
-    private static int maxSizePerSync = 300;
+    private static final int maxSizePerSync = 300;
 
     public RssItemObservable(DatabaseConnectionOrm dbConn, NewsAPI newsApi, SharedPreferences prefs) {
         this.mDbConn = dbConn;
@@ -57,13 +57,69 @@ public class RssItemObservable implements Publisher<Integer> {
         }
     }
 
+    public static Observable<RssItem> events(final BufferedSource source) {
+        return Observable.create(e -> {
+            try {
+                InputStreamReader isr = new InputStreamReader(source.inputStream());
+                BufferedReader br = new BufferedReader(isr);
+                JsonReader reader = new JsonReader(br);
+
+                try {
+                    reader.beginObject();
+
+                    String currentName;
+                    while (reader.hasNext() && (currentName = reader.nextName()) != null) {
+                        if (currentName.equals("items")) {
+                            break;
+                        } else {
+                            reader.skipValue();
+                        }
+                    }
+
+                    reader.beginArray();
+                    while (reader.hasNext()) {
+                        JsonObject jsonObj = getJsonObjectFromReader(reader);
+                        RssItem item = InsertRssItemIntoDatabase.parseItem(Objects.requireNonNull(jsonObj));
+                        e.onNext(item);
+                    }
+                    reader.endArray();
+                } finally {
+                    reader.close();
+                    br.close();
+                    isr.close();
+                }
+            } catch (IOException | NullPointerException err) {
+                err.printStackTrace();
+                e.onError(err);
+            }
+            e.onComplete();
+        });
+    }
+
+    private static long getMaxIdFromItems(List<RssItem> buffer) {
+        long max = 0;
+        for (RssItem item : buffer) {
+            if (item.getId() > max) {
+                max = item.getId();
+            }
+        }
+        return max;
+    }
+
+    public static boolean performDatabaseBatchInsert(DatabaseConnectionOrm dbConn, List<RssItem> buffer) {
+        Log.v(TAG, "performDatabaseBatchInsert() called with: dbConn = [" + dbConn + "], buffer = [" + buffer + "]");
+        dbConn.insertNewItems(buffer);
+        buffer.clear();
+        return true;
+    }
+
     public void sync(Subscriber<? super Integer> subscriber) throws IOException {
         mDbConn.clearDatabaseOverSize();
 
         long lastModified = mDbConn.getLastModified();
 
         int requestCount = 0;
-        int totalCount   = 0;
+        int totalCount = 0;
         int maxSyncSize = maxSizePerSync;
 
         if (lastModified == 0) { // Only on first sync
@@ -97,7 +153,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
             offset = 0;
             do {
-                List<RssItem> buffer = mNewsApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL_STARRED.toString()), 0, false, true).execute().body();
+                List<RssItem> buffer = mNewsApi.items(maxSyncSize, offset, Integer.parseInt(FeedItemTags.ALL_STARRED.toString()), 0, true, true).execute().body();
                 requestCount = 0;
                 if(buffer != null) {
                     requestCount = buffer.size();
@@ -158,65 +214,6 @@ public class RssItemObservable implements Publisher<Integer> {
                         }
                     });
         }
-    }
-
-    private static long getMaxIdFromItems(List<RssItem> buffer) {
-        long max = 0;
-        for(RssItem item : buffer) {
-            if(item.getId() > max) {
-                max = item.getId();
-            }
-        }
-        return max;
-    }
-
-    public static boolean performDatabaseBatchInsert(DatabaseConnectionOrm dbConn, List<RssItem> buffer) {
-        Log.v(TAG, "performDatabaseBatchInsert() called with: dbConn = [" + dbConn + "], buffer = [" + buffer + "]");
-        dbConn.insertNewItems(buffer);
-        buffer.clear();
-        return true;
-    }
-
-    public static Observable<RssItem> events(final BufferedSource source) {
-        return Observable.create(e -> {
-            try {
-                InputStreamReader isr = new InputStreamReader(source.inputStream());
-                BufferedReader br = new BufferedReader(isr);
-                JsonReader reader = new JsonReader(br);
-
-                try {
-                    reader.beginObject();
-
-                    String currentName;
-                    while(reader.hasNext() && (currentName = reader.nextName()) != null) {
-                        if(currentName.equals("items")) {
-                            break;
-                        } else {
-                            reader.skipValue();
-                        }
-                    }
-
-                    reader.beginArray();
-                    while (reader.hasNext()) {
-                        JsonObject jsonObj = getJsonObjectFromReader(reader);
-                        RssItem item = InsertRssItemIntoDatabase.parseItem(Objects.requireNonNull(jsonObj));
-                        e.onNext(item);
-                    }
-                    reader.endArray();
-                } finally {
-                    reader.close();
-                    br.close();
-                    isr.close();
-                }
-            } catch (IOException err) {
-                err.printStackTrace();
-                e.onError(err);
-            } catch(NullPointerException npe) {
-                npe.printStackTrace();
-                e.onError(npe);
-            }
-            e.onComplete();
-        });
     }
 
 
