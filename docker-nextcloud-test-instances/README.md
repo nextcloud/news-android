@@ -1,12 +1,16 @@
 Start image with:
 
-```
-docker-compose up --build
-```
-
-
-Default Port is 80 (for HTTP) and 443 (for HTTPS).
-NextCloud IP = Your Host IP
-
-URL in Nextcloud Android App:
-e.g. https://192.168.0.1/
+1. Start Container (`docker-compose up`)
+2. Wait until setup is complete
+3. Add IP as trusted domain (`nano nextcloud-data/config/config.php`)
+  ```
+  'trusted_domains' =>
+    array (
+      0 => 'localhost',
+      1 => '192.168.1.100',
+    ),
+  ```
+4. Open Nextcloud in Browser (e.g. http://192.168.1.100)
+5. Setup News App
+6. Add Nextcloud Account to your phone (in the nextcloud files app)
+7. Use SSO in Nextcloud News App to access test instance

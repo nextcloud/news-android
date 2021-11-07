@@ -1,9 +1,0 @@
-<IfModule mod_ssl.c>
-  <VirtualHost *:443>
-    DocumentRoot /var/www/html/
-    # ServerName *
-    SSLEngine on
-    SSLCertificateFile /nextcloud.cert
-    SSLCertificateKeyFile /nextcloud.key
-  </VirtualHost> 
-</IfModule>
