@@ -179,15 +179,15 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
                 cursor.getString(offset + 8), // guid
                 cursor.getString(offset + 9), // guidHash
                 cursor.getString(offset + 10), // fingerprint
-            cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0, // read_temp
-            cursor.isNull(offset + 12) ? null : cursor.getShort(offset + 12) != 0, // starred_temp
-            cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)), // lastModified
-            cursor.isNull(offset + 14) ? null : new java.util.Date(cursor.getLong(offset + 14)), // pubDate
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // enclosureLink
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // enclosureMime
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // mediaThumbnail
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // mediaDescription
-            cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19) != 0 // rtl
+                cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0, // read_temp
+                cursor.isNull(offset + 12) ? null : cursor.getShort(offset + 12) != 0, // starred_temp
+                cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)), // lastModified
+                cursor.isNull(offset + 14) ? null : new java.util.Date(cursor.getLong(offset + 14)), // pubDate
+                cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // enclosureLink
+                cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // enclosureMime
+                cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // mediaThumbnail
+                cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // mediaDescription
+                cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19) != 0 // rtl
         );
         return entity;
     }
@@ -215,6 +215,79 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         entity.setMediaThumbnail(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
         entity.setMediaDescription(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
         entity.setRtl(cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19) != 0);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
+    protected Long updateKeyAfterInsert(RssItem entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
+    public Long getKey(RssItem entity) {
+        if (entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
+    }
+
+    protected RssItem loadCurrentDeep(Cursor cursor, boolean lock) {
+        RssItem entity = loadCurrent(cursor, 0, lock);
+        int offset = getAllColumns().length;
+
+        Feed feed = loadCurrentOther(daoSession.getFeedDao(), cursor, offset);
+        if (feed != null) {
+            entity.setFeed(feed);
+        }
+
+        return entity;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
+    protected boolean isEntityUpdateable() {
+        return true;
+    }
+
+    /**
+     * Internal query to resolve the "rssItemList" to-many relationship of Feed.
+     */
+    public List<RssItem> _queryFeed_RssItemList(long feedId) {
+        synchronized (this) {
+            if (feed_RssItemListQuery == null) {
+                QueryBuilder<RssItem> queryBuilder = queryBuilder();
+                queryBuilder.where(Properties.FeedId.eq(null));
+                feed_RssItemListQuery = queryBuilder.build();
+            }
+        }
+        Query<RssItem> query = feed_RssItemListQuery.forCurrentThread();
+        query.setParameter(0, feedId);
+        return query.list();
+    }
+
+    private String selectDeep;
+
+    protected String getSelectDeep() {
+        if (selectDeep == null) {
+            StringBuilder builder = new StringBuilder("SELECT ");
+            SqlUtils.appendColumns(builder, "T", getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T0", daoSession.getFeedDao().getAllColumns());
+            builder.append(" FROM RSS_ITEM T");
+            builder.append(" LEFT JOIN FEED T0 ON T.\"FEED_ID\"=T0.\"_id\"");
+            builder.append(' ');
+            selectDeep = builder.toString();
+        }
+        return selectDeep;
     }
 
     public RssItem loadDeep(Long key) {
@@ -245,72 +318,28 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
     }
 
     /**
-     * @inheritdoc
+     * Reads all available rows from the given cursor and returns a list of new ImageTO objects.
      */
-    @Override
-    protected Long updateKeyAfterInsert(RssItem entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
-    }
+    public List<RssItem> loadAllDeepFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        List<RssItem> list = new ArrayList<RssItem>(count);
 
-    /**
-     * @inheritdoc
-     */
-    @Override
-    public Long getKey(RssItem entity) {
-        if(entity != null) {
-            return entity.getId();
-        } else {
-            return null;
-        }
-    }
-
-    /** @inheritdoc */
-    @Override    
-    protected boolean isEntityUpdateable() {
-        return true;
-    }
-    
-    /** Internal query to resolve the "rssItemList" to-many relationship of Feed. */
-    public List<RssItem> _queryFeed_RssItemList(long feedId) {
-        synchronized (this) {
-            if (feed_RssItemListQuery == null) {
-                QueryBuilder<RssItem> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.FeedId.eq(null));
-                feed_RssItemListQuery = queryBuilder.build();
+        if (cursor.moveToFirst()) {
+            if (identityScope != null) {
+                identityScope.lock();
+                identityScope.reserveRoom(count);
+            }
+            try {
+                do {
+                    list.add(loadCurrentDeep(cursor, false));
+                } while (cursor.moveToNext());
+            } finally {
+                if (identityScope != null) {
+                    identityScope.unlock();
+                }
             }
         }
-        Query<RssItem> query = feed_RssItemListQuery.forCurrentThread();
-        query.setParameter(0, feedId);
-        return query.list();
-    }
-
-    private String selectDeep;
-
-    protected String getSelectDeep() {
-        if (selectDeep == null) {
-            StringBuilder builder = new StringBuilder("SELECT ");
-            SqlUtils.appendColumns(builder, "T", getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getFeedDao().getAllColumns());
-            builder.append(" FROM RSS_ITEM T");
-            builder.append(" LEFT JOIN FEED T0 ON T.\"FEED_ID\"=T0.\"_id\"");
-            builder.append(' ');
-            selectDeep = builder.toString();
-        }
-        return selectDeep;
-    }
-    
-    protected RssItem loadCurrentDeep(Cursor cursor, boolean lock) {
-        RssItem entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        Feed feed = loadCurrentOther(daoSession.getFeedDao(), cursor, offset);
-        if (feed != null) {
-            entity.setFeed(feed);
-        }
-
-        return entity;
+        return list;
     }
 
     /**
@@ -338,31 +367,6 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         public final static Property MediaThumbnail = new Property(17, String.class, "mediaThumbnail", false, "MEDIA_THUMBNAIL");
         public final static Property MediaDescription = new Property(18, String.class, "mediaDescription", false, "MEDIA_DESCRIPTION");
         public final static Property Rtl = new Property(19, Boolean.class, "rtl", false, "RTL");
-    }
-
-    /**
-     * Reads all available rows from the given cursor and returns a list of new ImageTO objects.
-     */
-    public List<RssItem> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<RssItem> list = new ArrayList<RssItem>(count);
-
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
     }
     
     protected List<RssItem> loadDeepAllAndCloseCursor(Cursor cursor) {

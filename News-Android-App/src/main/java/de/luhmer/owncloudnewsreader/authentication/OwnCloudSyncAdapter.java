@@ -21,7 +21,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.Constants;
-import de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter;
 import de.luhmer.owncloudnewsreader.NewsReaderApplication;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -92,8 +91,6 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         Log.v(TAG, "Finished sync - time needed (synchronization): " + syncStopWatch.toString());
     }
 
-
-
     private static class NextcloudSyncResult {
         private final List<Folder> folders;
         private final List<Feed>   feeds;
@@ -105,7 +102,6 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
             this.stateSyncSuccessful = stateSyncSuccessful;
         }
     }
-
 
     // Start sync
     private void sync() {
@@ -123,8 +119,8 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                 (Publisher<Boolean>) s -> {
                     Log.v(TAG, "(rssStateSync) subscribe() called with: s = [" + s + "] [" + Thread.currentThread().getName() + "]");
                     try {
-                        boolean success = ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
-                        s.onNext(success);
+                        ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
+                        s.onNext(true);
                         s.onComplete();
                     } catch(Exception ex) {
                         s.onError(ex);
@@ -173,7 +169,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
         Observable.fromPublisher(new RssItemObservable(dbConn, mApi.getNewsAPI(), mPrefs))
                 .subscribeOn(Schedulers.newThread())
-                .blockingSubscribe(new Observer<Integer>() {
+                .blockingSubscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         Log.d(TAG, "[syncRssItems] - onSubscribe() called");
@@ -215,11 +211,11 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private void updateNotification() {
-        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+        // DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
         int newItemsCountLastSync = mPrefs.getInt(Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, 0);
 
         if (newItemsCountLastSync > 0) {
-            int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
+            // int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
 
             // If another app is not in foreground
             if (!ForegroundListener.isInForeground()) {

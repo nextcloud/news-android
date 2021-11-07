@@ -72,10 +72,11 @@ public class SyncItemStateService extends JobIntentService {
         final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
         try {
-            boolean success = ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
-            Log.v(TAG, "SyncItemStateService finished. Success: " + success);
-        } catch (IOException e) {
-            e.printStackTrace();
+			ItemStateSync.PerformItemStateSync(mApi.getNewsAPI(), dbConn);
+			Log.v(TAG, "SyncItemStateService finished.");
+		} catch (IOException e) {
+			Log.e(TAG, "SyncItemState failed:" + e.toString());
+			e.printStackTrace();
         }
     }
 

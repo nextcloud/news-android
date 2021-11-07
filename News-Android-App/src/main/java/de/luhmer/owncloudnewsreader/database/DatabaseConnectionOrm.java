@@ -83,47 +83,23 @@ public class DatabaseConnectionOrm {
         daoSession = DatabaseHelperOrm.getDaoSession(context, databasePath);
     }
 
-    /*
-    public void insertNewFolder (Folder folder) {
-        daoSession.getFolderDao().insertOrReplace(folder);
-    }*/
-
     public void deleteOldAndInsertNewFolders (final Folder... folder) {
-        daoSession.runInTx(new Runnable() {
-            @Override
-            public void run() {
-                daoSession.getFolderDao().deleteAll();
-                daoSession.getFolderDao().insertInTx(folder);
-            }
+        daoSession.runInTx(() -> {
+            daoSession.getFolderDao().deleteAll();
+            daoSession.getFolderDao().insertInTx(folder);
         });
     }
 
     public void deleteOldAndInsertNewFolders (final Iterable<Folder> folder) {
-        daoSession.runInTx(new Runnable() {
-            @Override
-            public void run() {
-                daoSession.getFolderDao().deleteAll();
-                daoSession.getFolderDao().insertInTx(folder);
-            }
+        daoSession.runInTx(() -> {
+            daoSession.getFolderDao().deleteAll();
+            daoSession.getFolderDao().insertInTx(folder);
         });
-
     }
-
-    /*
-    public void insertNewFeed (Feed... feeds) {
-        daoSession.getFeedDao().insertOrReplaceInTx(feeds);
-    }
-*/
 
     public void insertNewFeed (Iterable<Feed> feeds) {
         daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
-
-    /*
-    public void insertNewItems(RssItem... items) {
-        daoSession.getRssItemDao().insertOrReplaceInTx(items);
-    }
-*/
 
     public void insertNewItems(Iterable<RssItem> items) {
         daoSession.getRssItemDao().insertOrReplaceInTx(items);
@@ -445,24 +421,13 @@ public class DatabaseConnectionOrm {
         }
     }
 
-
-    /*
-    public boolean doesRssItemAlreadyExists (long feedId) {
-        List<RssItem> feeds = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.Id.eq(feedId)).list();
-        return feeds.size() > 0;
-    }
-    */
-
     public void removeFeedById(final long feedId) {
-        daoSession.runInTx(new Runnable() {
-            @Override
-            public void run() {
-                daoSession.getFeedDao().deleteByKey(feedId);
+        daoSession.runInTx(() -> {
+            daoSession.getFeedDao().deleteByKey(feedId);
 
-                List<RssItem> list = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.FeedId.eq(feedId)).list();
-                for (RssItem rssItem : list) {
-                    daoSession.getRssItemDao().delete(rssItem);
-                }
+            List<RssItem> list = daoSession.getRssItemDao().queryBuilder().where(RssItemDao.Properties.FeedId.eq(feedId)).list();
+            for (RssItem rssItem : list) {
+                daoSession.getRssItemDao().delete(rssItem);
             }
         });
     }

@@ -162,8 +162,11 @@ dependencies {
     implementation ('de.greenrobot:greendao-generator:2.1.0') {
         exclude group: 'org.freemarker'
     }
-    //implementation 'org.freemarker:freemarker:2.3.23' // Required for DAO generation
-    //implementation 'org.apache.commons:commons-lang3:3.4'
+
+    // implementation 'org.freemarker:freemarker:2.3.23' // Required for DAO generation
+    // implementation 'org.apache.commons:commons-lang3:3.4' // Required for DAO generation
+
+
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation ('net.rdrei.android.dirchooser:library:3.0@aar') {

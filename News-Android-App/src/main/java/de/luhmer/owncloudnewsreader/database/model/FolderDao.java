@@ -82,15 +82,6 @@ public class FolderDao extends AbstractDao<Folder, Long> {
     }
 
     /**
-     * Properties of entity Folder.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-     */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
-        public final static Property Label = new Property(1, String.class, "label", false, "LABEL");
-    }
-
-    /**
      * @inheritdoc
      */
     @Override
@@ -104,17 +95,28 @@ public class FolderDao extends AbstractDao<Folder, Long> {
      */
     @Override
     public Long getKey(Folder entity) {
-        if(entity != null) {
+        if (entity != null) {
             return entity.getId();
         } else {
             return null;
         }
     }
 
-    /** @inheritdoc */
-    @Override    
+    /**
+     * Properties of entity Folder.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property Label = new Property(1, String.class, "label", false, "LABEL");
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
     protected boolean isEntityUpdateable() {
         return true;
     }
-    
+
 }

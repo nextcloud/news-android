@@ -55,9 +55,7 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
         return cursor.getLong(offset + 0);
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     @Override
     public CurrentRssItemView readEntity(Cursor cursor, int offset) {
         CurrentRssItemView entity = new CurrentRssItemView( //
