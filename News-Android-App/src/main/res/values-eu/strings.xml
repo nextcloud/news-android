@@ -220,8 +220,8 @@
     <string name="content_desc_collapse">tolestu</string>
     <string name="content_desc_mark_as_read">markatu irakurri gisa</string>
     <string name="content_desc_mark_as_unread">markatu ez irakurri gisa</string>
-    <string name="content_desc_tap_to_refresh">sakatu eguneratzeko</string>
-    <string name="content_desc_add_to_favorites">gehitu gogokoetan</string>
+    <string name="content_desc_tap_to_refresh">sakatu freskatzeko</string>
+    <string name="content_desc_add_to_favorites">gehitu gogokoetara</string>
     <string name="content_desc_remove_from_favorites">kendu gogokoetatik</string>
     <string name="content_desc_show_password">erakutsi pasahitza</string>
     <string name="content_desc_delete">ezabatu</string>

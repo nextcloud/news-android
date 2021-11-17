@@ -85,6 +85,8 @@
     <string name="feed_move_list_description">Sélectionner le dossier dans lequel déplacer le flux</string>
     <string name="move_feed_root_folder">Dossier racine</string>
 
+    <string name="notification_feed_none">Aucune notification</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Connexion manuelle</string>
     <string name="login_sso">Se connecter avec l\'application Nextcloud Files</string>
