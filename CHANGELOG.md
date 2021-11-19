@@ -1,4 +1,9 @@
-0.9.9.64
+0.9.9.65 (Beta)
+---------------------
+- Fixed - Fix broken sync due to incompatibility between latest nextcloud files app and Single Sign On Library
+
+
+0.9.9.64 (Beta)
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1006">#1006 Refactor and fix sync issues</a>
 - Changed - Improve OPML import dialog
