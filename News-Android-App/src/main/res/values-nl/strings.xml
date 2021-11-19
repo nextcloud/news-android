@@ -85,6 +85,11 @@
     <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
     <string name="move_feed_root_folder">Hoofdmap</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Ontvang unieke meldingen voor deze feed</string>
+    <string name="notification_feed_default">Alle feeds met standaard instellingen zullen in één melding verschijnen</string>
+    <string name="notification_feed_none">Geen meldingen</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Handmatige inlog</string>
     <string name="login_sso">Login via Nextcloud Bestanden App</string>

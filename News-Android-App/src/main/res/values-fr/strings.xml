@@ -85,6 +85,8 @@
     <string name="feed_move_list_description">Sélectionner le dossier dans lequel déplacer le flux</string>
     <string name="move_feed_root_folder">Dossier racine</string>
 
+    <string name="notification_feed_none">Aucune notification</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Connexion manuelle</string>
     <string name="login_sso">Se connecter avec l\'application Nextcloud Files</string>
@@ -230,6 +232,9 @@
     <string name="login_dialog_text_not_compatible">La version de cette application n\'est pas compatible avec votre application News de NextCloud. Veuillez mettre à jour l\'application News et le framework d\'applications.</string>
     <string name="login_dialog_title_security_warning">Avertissement de sécurité</string>
     <string name="login_dialog_text_security_warning">Vous n\'utilisez pas HTTPS, ce qui est fortement recommandé d\'utiliser. Une personne malveillante pourrait intercepter votre trafic et obtenir des données sensibles (par ex. votre mot de passe).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Une erreur est survenue. Merci d\'essayer à nouveau.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Données &amp; synchronisation</string>
     <string name="pref_title_clearCache">Vider le cache</string>
