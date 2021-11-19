@@ -1,0 +1,1 @@
+- Fixed - Fix broken sync due to incompatibility between latest nextcloud files app and Single Sign On Library

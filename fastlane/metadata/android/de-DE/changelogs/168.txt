@@ -1,0 +1,3 @@
+- Fixed - #1006 Refactor and fix sync issues
+- Changed - Improve OPML import dialog
+- Changed - Increase the soft limit of articles in the app from 1500 to 5000 articles
