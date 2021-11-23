@@ -67,7 +67,7 @@ public class NextcloudNotificationManager {
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(imageUri, "image/*");
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelDownloadImage)
@@ -86,7 +86,7 @@ public class NextcloudNotificationManager {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, PendingIntent.FLAG_IMMUTABLE);
 
         return new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
@@ -109,7 +109,7 @@ public class NextcloudNotificationManager {
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(imageUri, "image/*");
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder mNotificationDownloadImages = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
@@ -125,7 +125,7 @@ public class NextcloudNotificationManager {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, PendingIntent.FLAG_IMMUTABLE);
 
         return new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
@@ -143,7 +143,7 @@ public class NextcloudNotificationManager {
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle("Nextcloud News")
                 .setContentText("Only " + limit + " images can be cached at once")
@@ -179,7 +179,7 @@ public class NextcloudNotificationManager {
                         context,
                         0,
                         resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                 );
 
         return new NotificationCompat.Builder(context, channelId)
@@ -250,7 +250,7 @@ public class NextcloudNotificationManager {
         getNotificationManagerAndCreateChannel(context, channelId);
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, 0);
+        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder mNotificationDownloadPodcast = new NotificationCompat.Builder(context, channelId)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
                 .setContentText(context.getString(R.string.notification_downloading_podcast_title))
@@ -299,7 +299,7 @@ public class NextcloudNotificationManager {
             Intent markAllAsReadIntent = new Intent(context, NotificationActionReceiver.class);
             markAllAsReadIntent.setAction(NOTIFICATION_ACTION_MARK_ALL_AS_READ_STRING);
             markAllAsReadIntent.putExtra(EXTRA_NOTIFICATION_ID, notificationId);
-            PendingIntent markAllAsReadPendingIntent = PendingIntent.getBroadcast(context, 0, markAllAsReadIntent, PendingIntent.FLAG_ONE_SHOT);
+            PendingIntent markAllAsReadPendingIntent = PendingIntent.getBroadcast(context, 0, markAllAsReadIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_ONE_SHOT);
 
             NotificationCompat.Builder builder =
                     new NotificationCompat.Builder(context, channelId)
@@ -314,7 +314,7 @@ public class NextcloudNotificationManager {
 
 
             Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, notificationId, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, notificationId, notificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(contentIntent);
 
             // if the user exists the app we need to update the notifications - but only if the notification is already visible

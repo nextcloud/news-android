@@ -188,23 +188,18 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
                     // Get the token for the MediaSession
                     MediaSessionCompat.Token token = mMediaBrowser.getSessionToken();
 
-                    try {
-                        // Create a MediaControllerCompat
-                        MediaControllerCompat mediaController = new MediaControllerCompat(PiPVideoPlaybackActivity.this, token);
+                    // Create a MediaControllerCompat
+                    MediaControllerCompat mediaController = new MediaControllerCompat(PiPVideoPlaybackActivity.this, token);
 
-                        // Save the controller
-                        MediaControllerCompat.setMediaController(PiPVideoPlaybackActivity.this, mediaController);
+                    // Save the controller
+                    MediaControllerCompat.setMediaController(PiPVideoPlaybackActivity.this, mediaController);
 
-                        // Register a Callback to stay in sync
-                        mediaController.registerCallback(controllerCallback);
+                    // Register a Callback to stay in sync
+                    mediaController.registerCallback(controllerCallback);
 
-                        // Display the initial state
-                        MediaMetadataCompat metadata = mediaController.getMetadata();
-                        handleMetadataChange(metadata);
-
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "Connecting to podcast service failed!", e);
-                    }
+                    // Display the initial state
+                    MediaMetadataCompat metadata = mediaController.getMetadata();
+                    handleMetadataChange(metadata);
                 }
             };
 

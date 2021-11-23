@@ -230,7 +230,7 @@
         <service
             android:name=".services.PodcastPlaybackService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>

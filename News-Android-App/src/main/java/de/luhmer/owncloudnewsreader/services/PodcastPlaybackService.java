@@ -1,9 +1,11 @@
 package de.luhmer.owncloudnewsreader.services;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -16,6 +18,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyCallback;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,6 +26,8 @@ import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.media.MediaBrowserServiceCompat;
 import androidx.media.session.MediaButtonReceiver;
 
@@ -114,6 +119,8 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     private final ScheduledExecutorService mExecutorService =
             Executors.newSingleThreadScheduledExecutor();
     private ScheduledFuture<?> mScheduleFuture;
+
+    private CustomTelephonyCallback customTelephonyCallback;
 
 
     public MediaItem getCurrentlyPlayingPodcast() {
@@ -213,9 +220,19 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         super.onCreate();
         Log.v(TAG, "onCreate PodcastPlaybackService");
 
-        TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        if(mgr != null) {
-            mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+
+        // pause podcast when phone is ringing
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                TelephonyManager telephony = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+                customTelephonyCallback = new CustomTelephonyCallback();
+                telephony.registerTelephonyCallback(this.getMainExecutor(), customTelephonyCallback);
+            } else {
+                TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+                if (mgr != null) {
+                    mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+                }
+            }
         }
 
         initMediaSessions();
@@ -230,7 +247,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
         Intent intent = new Intent(this, NewsReaderListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         mSession.setSessionActivity(pi);
 
         //startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
@@ -246,9 +263,18 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     public void onDestroy() {
         Log.v(TAG, "onDestroy PodcastPlaybackService");
 
-        TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        if (mgr != null) {
-            mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                TelephonyManager telephony = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+                telephony.unregisterTelephonyCallback(customTelephonyCallback);
+            } else {
+                TelephonyManager mgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+                if (mgr != null) {
+                    mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+                }
+            }
+        } catch(Exception ex) {
+            Log.e(TAG, "Probably missing permission.." + ex);
         }
 
         mExecutorService.shutdown();
@@ -596,6 +622,17 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             super.onCallStateChanged(state, incomingNumber);
         }
     };
+
+    @RequiresApi(Build.VERSION_CODES.S)
+    class CustomTelephonyCallback extends TelephonyCallback implements TelephonyCallback.CallStateListener {
+
+        @Override
+        public void onCallStateChanged(int state) {
+            if(state == TelephonyManager.CALL_STATE_RINGING) {
+                pause();
+            }
+        }
+    }
 
 
     private final class MediaSessionCallback extends MediaSessionCompat.Callback {

@@ -499,27 +499,23 @@ public class PodcastFragment extends Fragment {
                     // Get the token for the MediaSession
                     MediaSessionCompat.Token token = mMediaBrowser.getSessionToken();
 
-                    try {
-                        // Create a MediaControllerCompat
-                        MediaControllerCompat mediaController = new MediaControllerCompat(mActivity, token);
+                    // Create a MediaControllerCompat
+                    MediaControllerCompat mediaController = new MediaControllerCompat(mActivity, token);
 
-                        // Save the controller
-                        MediaControllerCompat.setMediaController(mActivity, mediaController);
+                    // Save the controller
+                    MediaControllerCompat.setMediaController(mActivity, mediaController);
 
-                        // Register a Callback to stay in sync
-                        mediaController.registerCallback(controllerCallback);
+                    // Register a Callback to stay in sync
+                    mediaController.registerCallback(controllerCallback);
 
-                        // Display the initial state
-                        MediaMetadataCompat metadata = mediaController.getMetadata();
-                        PlaybackStateCompat pbState = mediaController.getPlaybackState();
-                        displayMetadata(metadata);
-                        displayPlaybackState(pbState);
+                    // Display the initial state
+                    MediaMetadataCompat metadata = mediaController.getMetadata();
+                    PlaybackStateCompat pbState = mediaController.getPlaybackState();
+                    displayMetadata(metadata);
+                    displayPlaybackState(pbState);
 
-                        // Finish building the UI
-                        //buildTransportControls();
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "Connecting to podcast service failed!", e);
-                    }
+                    // Finish building the UI
+                    //buildTransportControls();
                 }
 
                 @Override

@@ -220,7 +220,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
 
         // Intent intentToDoListAct = new Intent(context, NewsReaderListActivity.class);
-        // PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intentToDoListAct, 0);
+        // PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intentToDoListAct, PendingIntent.FLAG_IMMUTABLE);
         // rv.setOnClickPendingIntent(R.id.tV_widget_header, pendingIntent);
 
 

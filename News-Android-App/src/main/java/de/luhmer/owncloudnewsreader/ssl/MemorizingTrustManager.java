@@ -462,7 +462,7 @@ public class MemorizingTrustManager implements X509TrustManager {
 
 
 	void startActivityNotification(Intent intent, String certName) {
-		PendingIntent call = PendingIntent.getActivity(mContext, 0, intent, 0);
+		PendingIntent call = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 		Notification n = new NotificationCompat.Builder(mContext)
 				.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), android.R.drawable.ic_lock_lock))
 				.setSmallIcon(android.R.drawable.ic_lock_lock)

@@ -103,7 +103,7 @@ public class DownloadWebPageService extends Service {
 
         Intent stopIntent = new Intent(this, NotificationActionReceiver.class);
         stopIntent.setAction(NOTIFICATION_ACTION_STOP_STRING);
-        PendingIntent stopPendingIntent = PendingIntent.getBroadcast(this, 0, stopIntent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent stopPendingIntent = PendingIntent.getBroadcast(this, 0, stopIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_ONE_SHOT);
         mNotificationWebPages.addAction(R.drawable.ic_action_pause, "Stop", stopPendingIntent);
     }
 
