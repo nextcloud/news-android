@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -111,15 +112,20 @@ public class WidgetProvider extends AppWidgetProvider {
 
             } */ else if (action.equals(ACTION_LIST_CLICK)) {
                 try {
-                    long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID);
+                    Bundle bundle = intent.getExtras();
+                    if (bundle != null) {
+                        for (String key : bundle.keySet()) {
+                            Log.e(TAG, key + ": " + (bundle.get(key) != null ? bundle.get(key) : "NULL"));
+                        }
+                    }
 
+                    long rssItemId = intent.getExtras().getLong(RSS_ITEM_ID, -1);
 
                     if (intent.hasExtra(ACTION_CHECKED_CLICK)) {
                         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
                         RssItem rssItem = dbConn.getRssItemById(rssItemId);
                         rssItem.setRead_temp(!rssItem.getRead_temp());
                         //rssItem.setRead_temp(true);
-
 
                         AppWidgetManager.getInstance(context)
                                 .notifyAppWidgetViewDataChanged(anAppWidgetId, R.id.list_view);
@@ -208,13 +214,13 @@ public class WidgetProvider extends AppWidgetProvider {
         final PendingIntent onListClickPendingIntent = PendingIntent.getBroadcast(context,
                                                         0,
 										        		onListClickIntent,
-										        		PendingIntent.FLAG_UPDATE_CURRENT);
+										        		PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         rv.setPendingIntentTemplate(R.id.list_view, onListClickPendingIntent);
 
 
         /*
         Intent intentWidget = new Intent(context, WidgetProvider.class);
-        PendingIntent pendingWidgetIntent = PendingIntent.getBroadcast(context, 0, intentWidget, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingWidgetIntent = PendingIntent.getBroadcast(context, 0, intentWidget, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         rv.setOnClickPendingIntent(R.id.cb_lv_item_read_wrapper, pendingWidgetIntent);
         */
 

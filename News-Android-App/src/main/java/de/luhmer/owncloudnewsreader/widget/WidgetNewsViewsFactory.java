@@ -26,6 +26,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
@@ -135,26 +136,26 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
             */
 
 
+            Bundle mBundle = new Bundle();
+            mBundle.putLong(WidgetProvider.RSS_ITEM_ID, id);
+
+
             //Get a fresh new intent
             Intent rowIntent = new Intent();
-            //Load it with whatever extra you want
-            rowIntent.putExtra(WidgetProvider.RSS_ITEM_ID, id);
+            rowIntent.putExtras(mBundle);
             //Set it on the list remote view
             rv.setOnClickFillInIntent(R.id.widget_row_layout, rowIntent);
 
-
             //Get a fresh new intent
             Intent ei = new Intent();
-            //Load it with whatever extra you want
-            ei.putExtra(WidgetProvider.RSS_ITEM_ID, id);
+            ei.putExtras(mBundle);
             //Set it on the list remote view
             rv.setOnClickFillInIntent(R.id.cb_lv_item_read_wrapper, ei);
 
             //Get a fresh new intent
             Intent iCheck = new Intent();
-            //Load it with whatever extra you want
-            iCheck.putExtra(WidgetProvider.RSS_ITEM_ID, id);
             iCheck.putExtra(WidgetProvider.ACTION_CHECKED_CLICK, true);
+            iCheck.putExtras(mBundle);
             rv.setOnClickFillInIntent(R.id.cb_lv_item_read, iCheck);
         } catch(Exception ex) {
             Log.e(TAG, "Error while getting view for widget at position: " + position, ex);
