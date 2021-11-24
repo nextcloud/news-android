@@ -85,6 +85,11 @@
     <string name="feed_move_list_description">Selecciona la carpeta a la que mover la fuente</string>
     <string name="move_feed_root_folder">Carpeta raíz</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Recibir notificaciones únicas para esta fuente</string>
+    <string name="notification_feed_default">Todas las fuentes con los ajustes por defecto aparecerán en una notificación</string>
+    <string name="notification_feed_none">Ninguna notificación</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Inicio de sesión manual</string>
     <string name="login_sso">Inicio de sesión usando la app de Archivos de Nextcloud</string>
