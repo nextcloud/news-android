@@ -59,7 +59,7 @@ protected void onStart() {
 
 Because of this, any application that uses `startActivityForResult` to start `SettingsActivity` with an arbitrary Intent will receive it back.
 
-An attacker can exploit this by including the flags `FLAG_GRANT_URI_READ_PERMISSION` and/or `FLAG_GRANT_URI_WRITE_PERMISSION` in the Intent, which once returned by Nextcloud News will provide access to any of its Content Providers that has the attribute `android:grantUriPermissions="true"`, even if it is not exported.
+An attacker can exploit this by including the flags `FLAG_GRANT_READ_URI_PERMISSION` and/or `FLAG_GRANT_WRITE_URI_PERMISSION` in the Intent, which once returned by Nextcloud News will provide access to any of its Content Providers that has the attribute `android:grantUriPermissions="true"`, even if it is not exported.
 
 Nextcloud News declares the `FileProvider` Content Provider in its Android Manifest:
 
