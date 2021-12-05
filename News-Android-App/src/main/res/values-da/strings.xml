@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Automatisk synkronisering </string>
     <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
     <string name="empty_view_content">Her er ingen artikler</string>
+    <string name="empty_view_content_action">Træk ned for at genindlæse</string>
     <string name="toast_GettingMoreItems">Hentning af flere elementer påbegyndt... Vent venligst.</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
     <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden WiFi-forbindelse</string>
@@ -66,6 +67,7 @@
     <string name="action_link_share">Del Link</string>
     <string name="action_link_open">Åbn Link i Browser</string>
     <string name="action_link_copy">Kopier link</string>
+    <string name="toast_img_download_wait">Downloader... Vent venligst.</string>
     <string name="toast_img_saved">Billede gemp</string>
     <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -220,6 +222,9 @@
     <string name="login_dialog_text_not_compatible">Denne App version er ikke kompatibel med din Nextcloud News App. Opgrader venligst news app-en og dens framework</string>
     <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
     <string name="login_dialog_text_security_warning">Du benytter ikke HTTPS, hvilket er stærkt anbefalet. En hacker kunne opsnappe din forbindelse og få adgang til følsomme data (f.eks. din adgangskode).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Noget gik galt. Prøv igen.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
     <string name="pref_title_clearCache">Ryd mellemlageret</string>
@@ -232,4 +237,17 @@
     <string name="pref_data_sync_image_cache_ask">Spørg når der ikke er wifi-forbindelse</string>
 
     <string name="array_sync_interval_min_0">Aldrig</string>
+    <string name="array_sync_interval_min_5">5 minutter</string>
+    <string name="array_sync_interval_min_15">15 minutter</string>
+    <string name="array_sync_interval_min_30">30 minutter</string>
+    <string name="array_sync_interval_min_45">45 minutter</string>
+    <string name="array_sync_interval_hour_1">1 time</string>
+    <string name="array_sync_interval_hour_2">2 timer</string>
+    <string name="array_sync_interval_hour_3">3 timer</string>
+    <string name="array_sync_interval_hour_6">6 timer</string>
+    <string name="array_sync_interval_hour_12">12 timer</string>
+    <string name="array_sync_interval_hour_24">24 timer</string>
+    <string name="switch_account">Skift konto</string>
+    
+    <string name="please_wait">Vent venligst...</string>
     </resources>

@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Autosynk</string>
     <string name="title_activity_sync_interval_selector">Synkroniseringsintervall</string>
     <string name="empty_view_content">Ingenting her</string>
+    <string name="empty_view_content_action">Dra ned for å oppdatere</string>
     <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet… Vennligst vent.</string>
     <string name="no_wifi_available">Ingen WiFI tilkoblet</string>
     <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en WiFi-tilkobling</string>
@@ -66,6 +67,7 @@
     <string name="action_link_share">Del lenke</string>
     <string name="action_link_open">Åpne lenke i nettleser</string>
     <string name="action_link_copy">Kopier lenke</string>
+    <string name="toast_img_download_wait">Laster ned … vennligst vent.</string>
     <string name="toast_img_saved">Bilde er lagret</string>
     <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
     <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
@@ -82,6 +84,11 @@
     <string name="confirm_feed_remove">Vil du fjerne denne strømmen? Dette kan ikke angres!</string>
     <string name="feed_move_list_description">Velg katalog å flytte strøm til</string>
     <string name="move_feed_root_folder">Root katalog</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Motta unike varsler for denne feeden</string>
+    <string name="notification_feed_default">Alle feeder med standardinnstillingene vises i ett varsel</string>
+    <string name="notification_feed_none">Ingen varsler</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Manuell innlogging</string>
@@ -179,6 +186,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljvisning)</string>
 
+    <string name="pref_display_apptheme_auto">System standard</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
 
@@ -189,6 +197,7 @@
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniatyrbilder (bare overskrifter)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Ikon</string>
     <string name="pref_display_feed_list_layout_simple_text">Enkel tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
@@ -226,6 +235,9 @@
     <string name="login_dialog_text_not_compatible">Denne app-versjonen er ikke kompatibel md Nextcloud nyhetsapp. Vennligst oppgrader denne appen. </string>
     <string name="login_dialog_title_security_warning">Sikkerhetsadvarsel</string>
     <string name="login_dialog_text_security_warning">HTTPS er sterkt anbefalt for din sikkerhet. Uten HTTPS kan andre se din trafikk og hente ut innholdet  som for eksempel passord.</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Noe gikk feil, vennligst forsøk på ny.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synk.</string>
     <string name="pref_title_clearCache">Slett hurtiglager</string>
@@ -238,4 +250,22 @@
     <string name="pref_data_sync_image_cache_ask">Spør når ikke tilkoblet Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Aldri</string>
+    <string name="array_sync_interval_min_5">5 minutter</string>
+    <string name="array_sync_interval_min_15">15 minutter</string>
+    <string name="array_sync_interval_min_30">30 minutter</string>
+    <string name="array_sync_interval_min_45">45 minutter</string>
+    <string name="array_sync_interval_hour_1">1 time</string>
+    <string name="array_sync_interval_hour_2">2 timer</string>
+    <string name="array_sync_interval_hour_3">3 timer</string>
+    <string name="array_sync_interval_hour_6">6 timer</string>
+    <string name="array_sync_interval_hour_12">12 timer</string>
+    <string name="array_sync_interval_hour_24">24 timer</string>
+    <string name="switch_account">Bytt konto</string>
+    
+    <string name="successfully_exported">Vellykket eksport til:</string>
+    <string name="opml_export">OPML eksport</string>
+    <string name="parsing_opml">Leser OPML</string>
+    <string name="please_wait">Vennligst vent...</string>
+    <string name="interval_sync_title">Ugyldig synkronisering</string>
+
     </resources>
