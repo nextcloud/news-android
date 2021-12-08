@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Povlecite navzdol za osvežitev</string>
     <string name="toast_GettingMoreItems">Začeto je prejemanje več prispevkov ...</string>
     <string name="no_wifi_available">Ni vzpostavljene povezave Wi-Fi</string>
-    <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike, čeprav ni vzpostavljene povezave prek Wi-Fi?</string>
+    <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike, čeprav ni vzpostavljene povezave Wi-Fi?</string>
     <string name="current_version">V uporabi je različica %s</string>
     <string name="widget_header">Novice Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -255,9 +255,9 @@
     <string name="pref_title_Max_Cache_Size">Največja velikost predpomnilnika</string>
 
     <string name="pref_data_sync_image_cache_never">Nikoli</string>
-    <string name="pref_data_sync_image_cache_wifi_only">Le prek Wi-Fi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">Prek Wi-Fi in prek mobilnega dostopa</string>
-    <string name="pref_data_sync_image_cache_ask">Vprašaj, kadar povezava ni vzpostavljena prek Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Le po Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Po Wi-Fi in po mobilnem dostopu</string>
+    <string name="pref_data_sync_image_cache_ask">Vprašaj, kadar povezava ni vzpostavljena po Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Nikoli</string>
     <string name="array_sync_interval_min_5">5 minut</string>
