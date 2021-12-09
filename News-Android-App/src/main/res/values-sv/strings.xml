@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Autosynk</string>
     <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="empty_view_content">Inga objekt här</string>
+    <string name="empty_view_content_action">Dra nedåt för uppdatera</string>
     <string name="toast_GettingMoreItems">Hämtning av fler objekt startade... Vänligen vänta.</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
@@ -83,6 +84,11 @@
     <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
     <string name="feed_move_list_description">Välj mapp för att flytta flöde till</string>
     <string name="move_feed_root_folder">Topp-mapp</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Ta emot aviseringar från det här flödet</string>
+    <string name="notification_feed_default">Alla flöden med standardval kommer att synas i en gemensam avisering</string>
+    <string name="notification_feed_none">Inga aviseringar alls</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Manuell inloggning</string>
@@ -180,6 +186,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
 
+    <string name="pref_display_apptheme_auto">Systemstandard</string>
     <string name="pref_display_apptheme_light">Ljus</string>
     <string name="pref_display_apptheme_dark">Mörk</string>
 
@@ -228,6 +235,9 @@
     <string name="login_dialog_text_not_compatible">Den här appversionen är inte kompatibel med din Nextcloud nyheter-app. Vänligen uppgradera nyhetsappen och appframework.</string>
     <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
     <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få åtkomst till vissa känsliga data (t.ex. ditt lösenord).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Något gick fel. Vänligen försök igen.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; synkronisering</string>
     <string name="pref_title_clearCache">Rensa cachen</string>
@@ -256,4 +266,6 @@
     <string name="opml_export">OPML-export</string>
     <string name="parsing_opml">Läser OPML</string>
     <string name="please_wait">Vänligen vänta…</string>
+    <string name="interval_sync_title">Synkningsintervall</string>
+
     </resources>
