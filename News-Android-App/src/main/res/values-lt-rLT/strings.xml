@@ -67,6 +67,7 @@
     <string name="action_link_share">Bendrinimo nuoroda</string>
     <string name="action_link_open">Atverti nuorodą naršyklėje</string>
     <string name="action_link_copy">Kopijuoti nuorodą</string>
+    <string name="toast_img_download_wait">Atsiunčiama… Palaukite.</string>
     <string name="toast_img_saved">Paveikslas įrašytas</string>
     <string name="toast_img_notwriteable">Nepavyko įrašyti paveikslo.</string>
     <string name="toast_copied_to_clipboard">Nukopijuota į iškarpinę</string>
@@ -160,6 +161,7 @@
     <string name="pref_report_issue">Pranešti apie klaidą</string>
     <string name="pref_report_issue_summary">Reikalinga (nemokama) GitHub paskyra</string>
     <string name="pref_contribute">Talkinti!</string>
+    <string name="pref_privacy">Privatumas</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Ekranas</string>
     <string name="pref_title_app_theme">Apipavidalinimas</string>
@@ -222,4 +224,8 @@
     <string name="pref_data_sync_image_cache_ask">Klausti, kai neprisijungta prie belaidžio (WiFi)</string>
 
     <string name="array_sync_interval_min_0">Niekada</string>
+    <string name="switch_account">Perjungti paskyrą</string>
+    
+    <string name="successfully_exported">Sėkmingai eksportuota į:</string>
+    <string name="please_wait">Palaukite…</string>
     </resources>
