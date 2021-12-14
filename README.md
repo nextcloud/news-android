@@ -31,7 +31,7 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 
 | 1 | 2 | 3 |
 | --- | --- | --- |
-| ![Feed list](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Articles](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Details](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
+| ![Feed list](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png) | ![Articles](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png) | ![Details](https://raw.githubusercontent.com/nextcloud/news-android/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.png) |
 
 ## 👪 Join the team
 * Test the app with different devices
