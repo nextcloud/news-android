@@ -1,3 +1,14 @@
+0.9.9.67 (Beta)
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1044">#1044 Colors/Theme sometimes not applied</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1042">#1042 Relative image links/URLs don't open correctly</a>
+
+
+0.9.9.66 (Beta)
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1036">#1036 Fixed crashes on Android 12 devices</a>
+
+
 0.9.9.65 (Beta)
 ---------------------
 - Fixed - Fix broken sync due to incompatibility between latest nextcloud files app and Single Sign On Library
