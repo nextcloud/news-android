@@ -54,6 +54,7 @@ import com.nextcloud.android.sso.exceptions.NextcloudFilesAppNotInstalledExcepti
 import com.nextcloud.android.sso.exceptions.NextcloudHttpRequestFailedException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
+import com.nextcloud.android.sso.model.FilesAppType;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
@@ -164,7 +165,7 @@ public class LoginDialogActivity extends AppCompatActivity {
     }
 
     public void startSingleSignOn() {
-	    if (!VersionCheckHelper.verifyMinVersion(LoginDialogActivity.this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE)) {
+        if (!VersionCheckHelper.verifyMinVersion(LoginDialogActivity.this, MIN_NEXTCLOUD_FILES_APP_VERSION_CODE, FilesAppType.PROD)) {
             // Dialog will be shown automatically
             return;
         }

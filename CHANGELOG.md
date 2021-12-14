@@ -2,11 +2,12 @@
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1044">#1044 Colors/Theme sometimes not applied</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1042">#1042 Relative image links/URLs don't open correctly</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1039">#1039 SSO not working with Beta Version of Files App</a>
 
 
 0.9.9.66 (Beta)
 ---------------------
-- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1036">#1036 Fixed crashes on Android 12 devices</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1036">#1036 Fixed crashes on Android 12 devices</a> (#1032 / #1037)
 
 
 0.9.9.65 (Beta)

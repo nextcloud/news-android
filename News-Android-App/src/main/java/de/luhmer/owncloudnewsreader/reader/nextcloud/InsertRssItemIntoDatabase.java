@@ -109,11 +109,19 @@ class InsertRssItemIntoDatabase {
             Log.w("InsertRssItem", "Large rss item detected - " + content.length() + " chars  / " + content.length()/1024d/1024d + "mb - url:" + rssItem.getLink());
         }
 
+        try {
+            // try fixing relative image links
+            content = ImageHandler.fixBrokenImageLinksInArticle(url, content);
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            Log.e(TAG, ex.toString());
+        }
+
         rssItem.setBody(content);
 
         String mediaThumbnail = getStringOrEmpty("mediaThumbnail", e); // Possible XSS Fields
         if(mediaThumbnail.isEmpty()) {
-            List<String> images = ImageHandler.getImageLinksFromText(content);
+            List<String> images = ImageHandler.getImageLinksFromText(url, content);
             if(images.size() > 0) {
                 Log.d(TAG, "extracted mediaThumbnail from body");
                 mediaThumbnail = images.get(0);

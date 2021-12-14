@@ -133,7 +133,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         if(!incognitoMode) {
             // If incognito mode is disabled, try getting images from cache
-            description = getDescriptionWithCachedImages(description).trim();
+            description = getDescriptionWithCachedImages(rssItem.getLink(), description).trim();
         } else {
             // When incognito is on, we need to provide some error handling
             //description = description.replaceAll("<img", "<img onerror=\"this.style='width: 40px !important; height: 40px !important'\" ");
@@ -234,16 +234,17 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         );
     }
 
-    private static String getDescriptionWithCachedImages(String text) {
-        List<String> links = ImageHandler.getImageLinksFromText(text);
+    private static String getDescriptionWithCachedImages(String articleUrl, String text) {
+        List<String> links = ImageHandler.getImageLinksFromText(articleUrl, text);
         DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
 
         for(String link : links) {
             link = link.trim();
             try {
                 File file = diskCache.get(link);
-                if(file != null)
+                if(file != null) {
                     text = text.replace(link, "file://" + file.getAbsolutePath());
+                }
             } catch(Exception ex) {
                 ex.printStackTrace();
             }

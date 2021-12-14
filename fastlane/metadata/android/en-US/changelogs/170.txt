@@ -1,0 +1,3 @@
+- Fixed - #1044 Colors/Theme sometimes not applied
+- Fixed - #1042 Relative image links/URLs don't open correctly
+- Fixed - #1039 SSO not working with Beta Version of Files App

@@ -129,7 +129,7 @@ public class DownloadImagesService extends JobIntentService {
             List<String> links = new ArrayList<>();
             for(RssItem rssItem : rssItemList) {
                 String body = rssItem.getBody();
-                links.addAll(ImageHandler.getImageLinksFromText(body));
+                links.addAll(ImageHandler.getImageLinksFromText(rssItem.getLink(), body));
 
                 if(links.size() > 10000) {
                     NextcloudNotificationManager.showNotificationImageDownloadLimitReached(this, CHANNEL_ID, 10000);
