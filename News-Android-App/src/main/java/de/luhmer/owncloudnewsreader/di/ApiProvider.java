@@ -100,6 +100,7 @@ public class ApiProvider {
                 .build();
 
         mNewsApi = retrofit.create(NewsAPI.class);
+        mServerApi = null;
     }
 
     protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {

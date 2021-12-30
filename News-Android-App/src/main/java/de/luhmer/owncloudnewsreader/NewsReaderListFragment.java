@@ -58,6 +58,7 @@ import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
 import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
+import de.luhmer.owncloudnewsreader.reader.nextcloud.OcsAPI;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -279,10 +280,16 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     };
 
     public void startAsyncTaskGetUserInfo() {
+        OcsAPI serverAPI = mApi.getServerAPI();
+
+        if(serverAPI == null) {
+            return;
+        }
+
         mApi.getServerAPI().user()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<OcsUser>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
@@ -293,7 +300,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                         Log.d(TAG, "onNext() called with: userInfo = [" + userInfo + "]");
 
                         try {
-                            String userInfoAsString = NewsReaderListFragment.toString((Serializable) userInfo);
+                            String userInfoAsString = NewsReaderListFragment.toString(userInfo);
                             //Log.v(TAG, userInfoAsString);
                             mPrefs.edit().putString(USER_INFO_STRING, userInfoAsString).apply();
                         } catch (IOException e) {
@@ -305,7 +312,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                     public void onError(@NonNull Throwable e) {
                         Log.e(TAG, "onError() called with:", e);
 
-                        if("Method Not Allowed".equals(e.getMessage())) { //Remove if old version is used
+                        if ("Method Not Allowed".equals(e.getMessage())) { //Remove if old version is used
                             mPrefs.edit().remove(USER_INFO_STRING).apply();
                         }
 
