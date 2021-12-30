@@ -170,7 +170,7 @@ dependencies {
 
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     implementation 'org.jsoup:jsoup:1.13.1'
-    implementation ('net.rdrei.android.dirchooser:library:3.0@aar') {
+    implementation ('net.rdrei.android.dirchooser:library:3.2@aar') {
         exclude group: 'com.google.auto.value', module: 'auto-value'
         transitive = true
     }
@@ -240,7 +240,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$ESPRESSO_VERSION"
 
     // https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator
-    androidTestUtil 'androidx.test:orchestrator:1.3.0'
+    androidTestUtil 'androidx.test:orchestrator:1.4.1'
 
     // The following Espresso dependency can be either "implementation"
     // or "androidTestImplementation", depending on whether you want the
