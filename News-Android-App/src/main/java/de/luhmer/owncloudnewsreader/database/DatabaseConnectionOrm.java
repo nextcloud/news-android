@@ -339,7 +339,11 @@ public class DatabaseConnectionOrm {
 
     public Set<String> getNotificationGroups() {
         List<Feed> feeds = daoSession.getFeedDao().loadAll();
-        String[] notificationChannelsGroups = feeds.stream().map(Feed::getNotificationChannel).toArray(String[]::new);
+        String[] notificationChannelsGroups = feeds
+                .stream()
+                .map(Feed::getNotificationChannel)
+                .filter(nc -> !nc.equals("none"))
+                .toArray(String[]::new);
         return new HashSet<>(Arrays.asList(notificationChannelsGroups));
     }
 
