@@ -1,3 +1,12 @@
+0.9.9.68 (Beta)
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1012">#1012 Loadingbar is visible even though page is done loading</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1029">#1029 Unread list does not actualize after manual update (Only when using legacy login)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1046">#1046 "No notification" setting still generates notifications in separate notification channel</a>
+- Fixed - Fix missing images if webview has been restored (e.g. after app has been in background)
+- Fixed - News App is broken after restoring it from a backup (when using SSO)
+
+
 0.9.9.67 (Beta)
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1044">#1044 Colors/Theme sometimes not applied</a>

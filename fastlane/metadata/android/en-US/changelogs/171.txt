@@ -1,0 +1,5 @@
+- Fixed - #1012 Loadingbar is visible even though page is done loading
+- Fixed - #1029 Unread list does not actualize after manual update (Only when using legacy login)
+- Fixed - #1046 "No notification" setting still generates notifications in separate notification channel
+- Fixed - Fix missing images if webview has been restored (e.g. after app has been in background)
+- Fixed - News App is broken after restoring it from a backup (when using SSO)
