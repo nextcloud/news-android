@@ -227,7 +227,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			WeakReference<NewsDetailFragment> ndf = mSectionsPagerAdapter.items.get(i);
 			if (ndf != null) {
 				ndf.get().syncIncognitoState();
-				ndf.get().startLoadRssItemToWebViewTask();
+				ndf.get().startLoadRssItemToWebViewTask(this);
 			}
 		}
 	}
