@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
-        uses: actions/setup-java@v2.4.0
+        uses: actions/setup-java@v2.5.0
         with:
           distribution: 'adopt'
           java-version: 11
@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
-        uses: actions/setup-java@v2.4.0
+        uses: actions/setup-java@v2.5.0
         with:
           distribution: 'adopt'
           java-version: 11
@@ -57,14 +57,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
-        uses: actions/setup-java@v2.4.0
+        uses: actions/setup-java@v2.5.0
         with:
           distribution: 'adopt'
           java-version: 11
       - name: Build debug APK
         run: bash ./gradlew assembleDev --stacktrace
       - name: Upload APK
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: app-dev-debug
           path: News-Android-App/build/outputs/apk/dev/debug/News-Android-App-dev-debug.apk
