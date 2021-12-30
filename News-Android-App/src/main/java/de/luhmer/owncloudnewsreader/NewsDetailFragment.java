@@ -166,6 +166,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         } else {
             binding.webview.restoreState(savedInstanceState);
             binding.progressBarLoading.setVisibility(View.GONE);
+            binding.progressbarWebview.setVisibility(View.GONE);
             // Make sure to sync the incognitio on retained views
             syncIncognitoState();
             this.addBottomPaddingForFastActions(binding.webview);
