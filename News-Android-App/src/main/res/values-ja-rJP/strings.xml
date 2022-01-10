@@ -81,6 +81,8 @@
     <string name="feed_move_list_description">フィードを移動するフォルダーを選択</string>
     <string name="move_feed_root_folder">ルートフォルダー</string>
 
+    <string name="notification_feed_none">通知はありません</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">手動ログイン</string>
     <string name="login_sso">Nextcloud ファイル アプリを使用してログイン</string>
