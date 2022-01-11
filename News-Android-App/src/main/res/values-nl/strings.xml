@@ -137,7 +137,7 @@
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Body</string>
 
-    <string name="dialog_clearing_cache">Schoonmaken cache</string>
+    <string name="dialog_clearing_cache">Leegmaken cache</string>
     <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
     <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wil je de cache toch resetten?</string>
     <string name="warning">Waarschuwing</string>
