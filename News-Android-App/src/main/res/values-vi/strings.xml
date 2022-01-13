@@ -82,6 +82,11 @@
     <string name="feed_move_list_description">Chọn thư mục để di chuyển nguồn dữ liệu vào</string>
     <string name="move_feed_root_folder">Thư mục gốc</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Nhận thông báo độc nhất cho nguồn dữ liệu này</string>
+    <string name="notification_feed_default">Tất cả nguồn dữ liệu có cài đặt mặc định sẽ hiện trong một thông báo</string>
+    <string name="notification_feed_none">Không có thông báo</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Đăng nhập thủ công</string>
     <string name="login_sso">Đăng nhập bằng ứng dụng Nextcloud Files</string>
