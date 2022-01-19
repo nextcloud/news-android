@@ -9,7 +9,7 @@
     <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="empty_view_content">No items here</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
-    <string name="toast_GettingMoreItems">Download of more items started… Please wait.</string>
+    <string name="toast_GettingMoreItems">Download of more items started. Please wait …</string>
     <string name="no_wifi_available">No WiFi connected</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection</string>
     <string name="current_version">You\'re using Version %s</string>
@@ -76,7 +76,7 @@
     <string name="action_link_share">Share Link</string>
     <string name="action_link_open">Open Link in Browser</string>
     <string name="action_link_copy">Copy Link</string>
-    <string name="toast_img_download_wait">Downloading… Please wait.</string>
+    <string name="toast_img_download_wait">Downloading. Please wait …</string>
     <string name="toast_img_saved">Image saved</string>
     <string name="toast_img_notwriteable">Failed to write Image.</string>
     <string name="toast_copied_to_clipboard">Copied to clipboard</string>
@@ -108,7 +108,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Sign in</string>
-    <string name="login_progress_signing_in">Signing in…</string>
+    <string name="login_progress_signing_in">Signing in …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_url">Incorrect URL</string>
@@ -121,8 +121,8 @@
     </plurals>
     <string name="toast_no_more_downloads_available">No further items available</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Fetched %d item so far…</item>
-        <item quantity="other">Fetched %d items so far…</item>
+        <item quantity="one">Fetched %d item so far …</item>
+        <item quantity="other">Fetched %d items so far …</item>
     </plurals>
 
 
@@ -177,7 +177,7 @@
 
 
     <string name="dialog_clearing_cache">Clearing cache</string>
-    <string name="dialog_clearing_cache_please_wait">Clearing cache… Please wait.</string>
+    <string name="dialog_clearing_cache_please_wait">Clearing cache. Please wait …</string>
     <string name="reset_cache_unsaved_changes">There are unsynchronized changes. Would you like to reset the cache anyway?</string>
     <string name="warning">Warning</string>
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>
@@ -425,7 +425,7 @@
     <string name="successfully_exported">Successfully exported to:</string>
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Parsing OPML</string>
-    <string name="please_wait">Please wait…</string>
+    <string name="please_wait">Please wait …</string>
     <string name="interval_sync_title">Interval Sync</string>
 
     <string-array name="array_sync_interval" translatable="false">
