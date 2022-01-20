@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Intervallu de sincronizatzione</string>
     <string name="empty_view_content">Perunu elementu inoghe</string>
     <string name="empty_view_content_action">Tira a bàsciu pro agiornare</string>
-    <string name="toast_GettingMoreItems">Iscarrigamentu de àteros elementos cumintzadu... Iseta pro praghere.</string>
     <string name="no_wifi_available">WiFi disconnètidu</string>
     <string name="do_you_want_to_download_without_wifi">Nche cheres iscarrigare is immàgines sena connessione Wi-Fi </string>
     <string name="current_version">Ses impreende sa Versione %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Cumpartzi Lingòngiu</string>
     <string name="action_link_open">Aberi Ligòngiu in su Navigadore</string>
     <string name="action_link_copy">Còpia Ligòngiu</string>
-    <string name="toast_img_download_wait">Iscarrighende... Abeta.</string>
     <string name="toast_img_saved">Imàgines sarvadas</string>
     <string name="toast_img_notwriteable">Iscritura imàgine faddida.</string>
     <string name="toast_copied_to_clipboard">Copiadu in is apuntos</string>
@@ -94,7 +92,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Identìfica·ti</string>
-    <string name="login_progress_signing_in">Identifichende·ti</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Custu campu est rechertu</string>
     <string name="error_invalid_url">URL isballiadu</string>
@@ -106,12 +103,6 @@
         <item quantity="other">Elementos betzos %d iscarrigados</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Non ddoe at àteros elementos a disponimentu</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Recùpera %d elementos…</item>
-        <item quantity="other">Recùpera %d elementos…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Impostatziones</string>
     <string name="cache_is_cleared">Memòria Temporànea lìmpia!</string>
@@ -133,7 +124,6 @@
     <string name="pref_general_search_in_body">Corpus</string>
 
     <string name="dialog_clearing_cache">Lìmpia memòria temporànea</string>
-    <string name="dialog_clearing_cache_please_wait">Limpiende sa memòria temporànea... Iseta, pro praghere.</string>
     <string name="reset_cache_unsaved_changes">Ddoe at càmbios non sincronizados. Cheres azerare sa memòria temporànea gasi etotu?</string>
     <string name="warning">Avisu</string>
     <string name="pref_title_AutoSyncOnStart">Sincroniza a s\'aviu</string>
@@ -257,7 +247,6 @@
     <string name="successfully_exported">Esportadu a:</string>
     <string name="opml_export">Esporta OPML</string>
     <string name="parsing_opml">Anàlisi de OPML</string>
-    <string name="please_wait">Abeta...</string>
     <string name="interval_sync_title">Sincronizatzione in tretu</string>
 
     </resources>

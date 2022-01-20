@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Intervalul sincronizării</string>
     <string name="empty_view_content">Nici un articol aici</string>
     <string name="empty_view_content_action">Trage în jos pentru a reîmprospăta</string>
-    <string name="toast_GettingMoreItems">Descărcarea a mai multor articole a început. Vă rugăm, așteptați.</string>
     <string name="no_wifi_available">Nu exista conexiune WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Doriți să descărcați imaginile fără o conexiune Wi-Fi?</string>
     <string name="current_version">Folosiți versiunea %s</string>
@@ -70,7 +69,6 @@
     <string name="action_link_share">Partajează linkul</string>
     <string name="action_link_open">Deschide linkul în browser</string>
     <string name="action_link_copy">Copiază linkul</string>
-    <string name="toast_img_download_wait">Se descarcă... Vă rugăm așteptați</string>
     <string name="toast_img_saved">Imagine salvată</string>
     <string name="toast_img_notwriteable">A apărut o eroare în scrierea imaginii.</string>
     <string name="toast_copied_to_clipboard">Copiat în clipboard</string>
@@ -102,7 +100,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Înregistraţi-vă</string>
-    <string name="login_progress_signing_in">Înregistrare</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Acest câmp este obligatoriu </string>
     <string name="error_invalid_url">URL incrorect</string>
@@ -115,13 +112,6 @@
         <item quantity="other">Descarcă %d de articole vechi</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Nici un articol disponibil.</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">S-a preluat %d articol până în acest moment...</item>
-        <item quantity="few">S-au preluat %d articole până acum...</item>
-        <item quantity="other">S-au preluat %d de articole până în acest moment...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Setări</string>
     <string name="cache_is_cleared">Memoria cache este ștersă!</string>
@@ -143,7 +133,6 @@
     <string name="pref_general_search_in_body">Corp</string>
 
     <string name="dialog_clearing_cache">Ștergere cache</string>
-    <string name="dialog_clearing_cache_please_wait">Se golește memoria cache... Vă rugăm așteptați.</string>
     <string name="reset_cache_unsaved_changes">Există modificări nesincronizate. Dorești totuși să ștergi cache-ul?</string>
     <string name="warning">Atenție</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizare la pornire</string>
@@ -270,7 +259,6 @@
     <string name="successfully_exported">Exportat cu succes în:</string>
     <string name="opml_export">Export în OPML</string>
     <string name="parsing_opml">Se analizează fișierul OPML</string>
-    <string name="please_wait">Vă rugăm așteptați...</string>
     <string name="interval_sync_title">Interval de sincronizare</string>
 
     </resources>

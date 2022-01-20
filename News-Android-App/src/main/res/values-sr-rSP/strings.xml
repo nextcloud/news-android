@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Auto-osvežavanje</string>
     <string name="empty_view_content">Nema stavki</string>
-    <string name="toast_GettingMoreItems">Započeto skidanje još stavki… Sačekajte.</string>
     <string name="no_wifi_available">Nema bežične veze</string>
     <string name="do_you_want_to_download_without_wifi">Želite li da preuzmete slike bez bežične veze</string>
     <string name="current_version">Koristite verziju %s</string>
@@ -94,7 +93,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Prijavi se</string>
-    <string name="login_progress_signing_in">Prijavljujem se...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ovo polje je neophodno</string>
     <string name="error_invalid_url">Neispravna adresa</string>
@@ -107,13 +105,6 @@
         <item quantity="other">Preuzeto %d starih stavki</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Nema više dostupnih stavki</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Do sada skinuta %d stavka…</item>
-        <item quantity="few">Do sada skinuto %d stavke…</item>
-        <item quantity="other">Do sada skinuto %d stavki…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Postavke</string>
     <string name="cache_is_cleared">Keš je očišćen!</string>
@@ -132,7 +123,6 @@
     <string name="pref_general_search_in_body">Telo</string>
 
     <string name="dialog_clearing_cache">Čistim keš</string>
-    <string name="dialog_clearing_cache_please_wait">Čistim keš… sačekajte.</string>
     <string name="reset_cache_unsaved_changes">Postoje nesinhronizovane izmene. Da ipak obrišem keš?</string>
     <string name="warning">Upozorenje</string>
     <string name="pref_title_AutoSyncOnStart">Osveži pri pokretanju</string>

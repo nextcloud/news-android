@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Sincronitza automàticament</string>
     <string name="title_activity_sync_interval_selector">Interval de sincronització</string>
     <string name="empty_view_content">Cap element</string>
-    <string name="toast_GettingMoreItems">Ha començat la descàrrega de més elements... Espereu si us plau.</string>
     <string name="no_wifi_available">Sense connexió Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Voleu descarregar les imatges sense una connexió WiFi</string>
     <string name="current_version">Esteu fent servir la versió %s</string>
@@ -66,7 +65,6 @@
     <string name="action_link_share">Comparteix l\'enllaç</string>
     <string name="action_link_open">Obre l\'enllaç al navegador</string>
     <string name="action_link_copy">Copia l\'enllaç</string>
-    <string name="toast_img_download_wait">S\'està descarregant... espereu si us plau</string>
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
@@ -93,7 +91,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inicia la sessió</string>
-    <string name="login_progress_signing_in">S\'està iniciant la sessió...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Aquest camp és obligatori</string>
     <string name="error_invalid_url">L\'URL és incorrecte</string>
@@ -105,12 +102,6 @@
         <item quantity="other">Descarregats %d elements antics</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">S\'ha recuperat %d element fins ara...</item>
-        <item quantity="other">S\'han recuperat %d elements fins ara...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Paràmetres</string>
     <string name="cache_is_cleared">S\'ha netejat la memòria cau</string>
@@ -132,7 +123,6 @@
     <string name="pref_general_search_in_body">Cos</string>
 
     <string name="dialog_clearing_cache">S\'està netejant la memòria cau</string>
-    <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau... Espereu si us plau.</string>
     <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu suprimir la memòria cau igualment?</string>
     <string name="warning">Avís</string>
     <string name="pref_title_AutoSyncOnStart">Sincronitza durant l\'inici</string>

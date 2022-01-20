@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Auto sync</string>
     <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="empty_view_content">No items here</string>
-    <string name="toast_GettingMoreItems">Download of more items started… Please wait.</string>
     <string name="no_wifi_available">No WiFi connection</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection</string>
     <string name="current_version">You\'re using Version %s</string>
@@ -94,7 +93,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Sign in</string>
-    <string name="login_progress_signing_in">Signing in…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_url">Incorrect URL</string>
@@ -106,12 +104,6 @@
         <item quantity="other">Downloaded %d old items</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No further items available</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Fetched %d item so far…</item>
-        <item quantity="other">Fetched %d items so far…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="cache_is_cleared">Cache is cleared!</string>
@@ -133,7 +125,6 @@
     <string name="pref_general_search_in_body">Body</string>
 
     <string name="dialog_clearing_cache">Clearing cache</string>
-    <string name="dialog_clearing_cache_please_wait">Clearing cache… Please wait.</string>
     <string name="reset_cache_unsaved_changes">There are unsynchronised changes. Would you like to reset the cache anyway?</string>
     <string name="warning">Warning</string>
     <string name="pref_title_AutoSyncOnStart">Sync on startup</string>

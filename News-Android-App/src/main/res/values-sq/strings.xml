@@ -3,7 +3,6 @@
 
     <string name="auto_sync_string">Vetënjëkohëso</string>
     <string name="empty_view_content">S’ka gjë këtu</string>
-    <string name="toast_GettingMoreItems">Shkarkimi i më shumë gjërave filloi... Ju lutem prisni.</string>
     <string name="no_wifi_available">Pa lidhje WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Doni të shkarkoni imazhet pa lidhje me Wi-Fi</string>
     <string name="current_version">Po përdorni Versionin %s</string>
@@ -78,7 +77,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Hyni</string>
-    <string name="login_progress_signing_in">Po hyhet…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Kjo fushë është e domosdoshme</string>
     <!-- Toast Messages -->
@@ -87,12 +85,6 @@
         <item quantity="other">U shkarkua %d objekte të vjetër</item>
     </plurals>
     <string name="toast_no_more_downloads_available">S\’ka objekte të tjerë gati</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Deri tani është sjellë %d objekt…</item>
-        <item quantity="other">Deri tani janë sjellë %d objekte…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Rregullime</string>
     <string name="cache_is_cleared">Fshehtina u pastrua!</string>
@@ -106,7 +98,6 @@
 
     <string name="pref_general_search_in_title">Titulli</string>
     <string name="dialog_clearing_cache">Pastrim fshehtine</string>
-    <string name="dialog_clearing_cache_please_wait">Fshehtina po pastrohet… Ju lutemi, pritni.</string>
     <string name="reset_cache_unsaved_changes">Ka ndryshime të panjëkohësuara. Doni ta ktheni fshehtinën në gjendjen fillestare sido qoftë?</string>
     <string name="warning">Kujdes</string>
     <string name="pref_title_AutoSyncOnStart">Njëkohësoji gjatë nisjes</string>

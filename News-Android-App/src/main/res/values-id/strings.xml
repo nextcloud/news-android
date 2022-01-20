@@ -69,7 +69,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Masuk</string>
-    <string name="login_progress_signing_in">Sedang masuk...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bidang wajib diisi</string>
     <!-- Toast Messages -->
@@ -77,11 +76,6 @@
         <item quantity="other">Mengunduh %d item lama</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="other">Mengambil %d item sejauh ini...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Setelan</string>
     <string name="cache_is_cleared">Cache dibersihkan!</string>
@@ -93,7 +87,6 @@
 
     <string name="pref_general_search_in_title">Judul</string>
     <string name="dialog_clearing_cache">Membersihkan cache</string>
-    <string name="dialog_clearing_cache_please_wait">Membersihkan cache... Mohon tunggu.</string>
     <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
     <string name="warning">Peringatan</string>
     <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>

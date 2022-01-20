@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Sinkronizazio bitartea</string>
     <string name="empty_view_content">Ez dago elementurik hemen</string>
     <string name="empty_view_content_action">Tiratu behera freskatzeko</string>
-    <string name="toast_GettingMoreItems">Elementu gehiagoren deskarga hasita... Itxaron mesedez.</string>
     <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
     <string name="do_you_want_to_download_without_wifi">Irudiak Wi-Fi konexiorik gabe deskargatu nahi dituzu</string>
     <string name="current_version">%s bertsioa erabiltzen ari zara</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Partekatu esteka</string>
     <string name="action_link_open">Ireki esteka nabigatzailean</string>
     <string name="action_link_copy">Kopiatu esteka</string>
-    <string name="toast_img_download_wait">Deskargatzen... Itxaron mesedez.</string>
     <string name="toast_img_saved">Irudia gordeta</string>
     <string name="toast_img_notwriteable">Irudiaren idazketak huts egin du</string>
     <string name="toast_copied_to_clipboard">Arbelera kopiatua</string>
@@ -99,7 +97,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Izena eman</string>
-    <string name="login_progress_signing_in">Izena ematen...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Eremu hau beharrezkoa da</string>
     <string name="error_invalid_url">URL baliogabea</string>
@@ -111,12 +108,6 @@
         <item quantity="other">%d elementu zahar deskargatu dira</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Ez dago elementu gehiago eskuragarri</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Elementu %d eskuratu da orain arte...</item>
-        <item quantity="other">%d elementu eskuratu dira orain arte...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ezarpenak</string>
     <string name="cache_is_cleared">Cachea garbitu da!</string>
@@ -138,7 +129,6 @@
     <string name="pref_general_search_in_body">Gorputza</string>
 
     <string name="dialog_clearing_cache">Cachea garbitzen</string>
-    <string name="dialog_clearing_cache_please_wait">Cachea garbitzen... Itxaron mesedez.</string>
     <string name="reset_cache_unsaved_changes">Sinkronizatu gabeko datuak daude. Hala ere cachea berrezarri nahi duzu?</string>
     <string name="warning">Abisua</string>
     <string name="pref_title_AutoSyncOnStart">Sinkronizatu abioan</string>
@@ -265,7 +255,6 @@
     <string name="successfully_exported">Ondo esportatu da:</string>
     <string name="opml_export">OPML Esportatu</string>
     <string name="parsing_opml">OPML analizatzen</string>
-    <string name="please_wait">Itxaron mesedez...</string>
     <string name="interval_sync_title">Tarteen sinkronizazioa</string>
 
     </resources>

@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Interwał synchronizacji</string>
     <string name="empty_view_content">Brak elementów</string>
     <string name="empty_view_content_action">Przeciągnij w dół, aby odświeżyć</string>
-    <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych elementów… Proszę czekać.</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
     <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi</string>
     <string name="current_version">Używasz wersji %s</string>
@@ -73,7 +72,6 @@
     <string name="action_link_share">Udostępnij link</string>
     <string name="action_link_open">Otwórz link w przeglądarce</string>
     <string name="action_link_copy">Kopiuj link</string>
-    <string name="toast_img_download_wait">Pobieranie… Proszę czekać.</string>
     <string name="toast_img_saved">Zapisano obraz</string>
     <string name="toast_img_notwriteable">Błąd zapisu obrazu.</string>
     <string name="toast_copied_to_clipboard">Kopiuj do schowka</string>
@@ -105,7 +103,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Zaloguj</string>
-    <string name="login_progress_signing_in">Loguję…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ten element jest wymagany</string>
     <string name="error_invalid_url">Nieprawidłowy adres URL</string>
@@ -119,14 +116,6 @@
         <item quantity="other">Pobrano %d starych elementów</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Brak dostępnych dodatkowych pozycji</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Pobrany do tej pory %d element…</item>
-        <item quantity="few">Pobrane do tej pory %d elementy…</item>
-        <item quantity="many">Pobrane do tej pory %d elementów…</item>
-        <item quantity="other">Pobrane do tej pory %d elementy…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ustawienia</string>
     <string name="cache_is_cleared">Cache jest wyczyszczone!</string>
@@ -148,7 +137,6 @@
     <string name="pref_general_search_in_body">Treść</string>
 
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
-    <string name="dialog_clearing_cache_please_wait">Czyszczenie cache… Proszę czekać.</string>
     <string name="reset_cache_unsaved_changes">Istnieją niezsynchronizowane zmiany. Czy mimo to chcesz zresetować pamięć podręczną?</string>
     <string name="warning">Ostrzeżenie</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizuj na starcie</string>
@@ -275,7 +263,6 @@
     <string name="successfully_exported">Pomyślnie wyeksportowano do:</string>
     <string name="opml_export">Eksport OPML</string>
     <string name="parsing_opml">Przetwarzanie OPML</string>
-    <string name="please_wait">Proszę czekać…</string>
     <string name="interval_sync_title">Interwał synchronizacji</string>
 
     </resources>

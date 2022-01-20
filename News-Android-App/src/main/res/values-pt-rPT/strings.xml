@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Sincronização Automática</string>
     <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
     <string name="empty_view_content">Sem itens aqui</string>
-    <string name="toast_GettingMoreItems">Foi iniciada a transferência de mais itens... Por favor, aguarde.</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>
     <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi</string>
     <string name="current_version">Está a usar a Versão %s</string>
@@ -89,7 +88,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Iniciar Sessão</string>
-    <string name="login_progress_signing_in">A iniciar a sessão ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatório</string>
     <string name="error_invalid_url">URL incorreto</string>
@@ -101,12 +99,6 @@
         <item quantity="other">Transferidos %d itens antigos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Descarregados %d itens até agora...</item>
-        <item quantity="other">Descarregados %d items até agora...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Definições</string>
     <string name="cache_is_cleared">A cache está limpa!</string>
@@ -122,7 +114,6 @@
     <string name="pref_general_search_in_body">Corpo</string>
 
     <string name="dialog_clearing_cache">Limpar cache</string>
-    <string name="dialog_clearing_cache_please_wait">A limpar a cache… Por favor, aguarde.</string>
     <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
     <string name="warning">Aviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>

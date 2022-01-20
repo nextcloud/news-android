@@ -4,7 +4,6 @@
     <string name="auto_sync_string">自動同期</string>
     <string name="title_activity_sync_interval_selector">同期間隔</string>
     <string name="empty_view_content">アイテムがありません</string>
-    <string name="toast_GettingMoreItems">他のアイテムのダウンロードが開始されました...しばらくお待ちください。</string>
     <string name="no_wifi_available">WiFi接続がありません</string>
     <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか</string>
     <string name="current_version">使用中のバージョンは %s です</string>
@@ -63,7 +62,6 @@
     <string name="action_link_share">共有リンク</string>
     <string name="action_link_open">リンクをブラウザーで開く</string>
     <string name="action_link_copy">リンクをコピー</string>
-    <string name="toast_img_download_wait">ダウンロード中…しばらくお待ちください。</string>
     <string name="toast_img_saved">画像を保存しました</string>
     <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
     <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
@@ -92,7 +90,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">ログイン</string>
-    <string name="login_progress_signing_in">ログイン中...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">このフィールドは必須です</string>
     <string name="error_invalid_url">URLが正しくありません</string>
@@ -103,11 +100,6 @@
         <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>
     </plurals>
     <string name="toast_no_more_downloads_available">これ以上利用できるアイテムがありません</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="other">これまでに %d 個のアイテムを読み込みました...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">設定</string>
     <string name="cache_is_cleared">キャッシュがクリアされました！</string>
@@ -129,7 +121,6 @@
     <string name="pref_general_search_in_body">本文</string>
 
     <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
-    <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています…しばらくお待ちください。</string>
     <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
     <string name="warning">警告</string>
     <string name="pref_title_AutoSyncOnStart">起動時に同期</string>
@@ -252,5 +243,4 @@
     
     <string name="opml_export">OPMLをエクスポート</string>
     <string name="parsing_opml">OPMLを解析中</string>
-    <string name="please_wait">しばらくお待ちください…</string>
     </resources>

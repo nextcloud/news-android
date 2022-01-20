@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
     <string name="empty_view_content">Her er ingen artikler</string>
     <string name="empty_view_content_action">Træk ned for at genindlæse</string>
-    <string name="toast_GettingMoreItems">Hentning af flere elementer påbegyndt... Vent venligst.</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
     <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden WiFi-forbindelse</string>
     <string name="current_version">Du bruger version %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Del Link</string>
     <string name="action_link_open">Åbn Link i Browser</string>
     <string name="action_link_copy">Kopier link</string>
-    <string name="toast_img_download_wait">Downloader... Vent venligst.</string>
     <string name="toast_img_saved">Billede gemp</string>
     <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -94,7 +92,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Log ind</string>
-    <string name="login_progress_signing_in">Logger ind...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette felt er påkrævet</string>
     <string name="error_invalid_url">Ukorrekt URL</string>
@@ -106,12 +103,6 @@
         <item quantity="other">Hentede %d gamle elementer</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Hentet %d artikel indtil nu…</item>
-        <item quantity="other">Hentet %d artikler indtil nu…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Indstillinger</string>
     <string name="cache_is_cleared">Cachen er ryddet!</string>
@@ -130,7 +121,6 @@
     <string name="pref_general_search_in_body">Krop</string>
 
     <string name="dialog_clearing_cache">Nulstil mellemlager</string>
-    <string name="dialog_clearing_cache_please_wait">Rydder mellemlageret... Vent venligst.</string>
     <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
     <string name="warning">Advarsel</string>
     <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
@@ -249,5 +239,4 @@
     <string name="array_sync_interval_hour_24">24 timer</string>
     <string name="switch_account">Skift konto</string>
     
-    <string name="please_wait">Vent venligst...</string>
     </resources>

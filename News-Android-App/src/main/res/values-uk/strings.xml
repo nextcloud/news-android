@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Автоматична синхронізація</string>
     <string name="title_activity_sync_interval_selector">Інтервал синхронізації</string>
     <string name="empty_view_content">Нічого нема</string>
-    <string name="toast_GettingMoreItems">Звантаження більшої кількості елементів... Будь ласка, зачекайте.</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
     <string name="do_you_want_to_download_without_wifi">Чи хочете ви завантажити зображення без з\'єднання Wi-Fi</string>
     <string name="current_version">Ви використовуєте версію %s</string>
@@ -66,7 +65,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Увійти...</string>
-    <string name="login_progress_signing_in">Вхід...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Обов\'язкове поле</string>
     <string name="error_invalid_url">Неправильний URL</string>
@@ -86,7 +84,6 @@
     <string name="pref_general_search_in_body">Тіло</string>
 
     <string name="dialog_clearing_cache">Очистити кеш</string>
-    <string name="dialog_clearing_cache_please_wait">Очистка кешу... Зачекайте.</string>
     <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>
     <string name="warning">Попередження</string>
     <string name="pref_title_AutoSyncOnStart">Синхронізація при включені</string>

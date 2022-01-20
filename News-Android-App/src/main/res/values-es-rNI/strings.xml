@@ -70,7 +70,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Iniciar sesión</string>
-    <string name="login_progress_signing_in">Iniciando sesión...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este es un campo requerido</string>
     <!-- Toast Messages -->
@@ -79,12 +78,6 @@
         <item quantity="other">%d elementos antiguos descargados</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hay más elementos disponibles</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">%d elemento obtenido hasta el momento</item>
-        <item quantity="other">%d elementos obtenidos hasta el momento</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Configuraciones</string>
     <string name="cache_is_cleared">¡Se ha limpiado el caché!</string>
@@ -96,7 +89,6 @@
 
     <string name="pref_general_search_in_title">Título</string>
     <string name="dialog_clearing_cache">Limpiando el caché</string>
-    <string name="dialog_clearing_cache_please_wait">Limpiando el caché... Por favor aguarda.</string>
     <string name="reset_cache_unsaved_changes">Hay cambios que no han sido sincronizados. ¿Quieres limpiar el caché de cualquier modo?</string>
     <string name="warning">Advertencia</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar al iniciar</string>

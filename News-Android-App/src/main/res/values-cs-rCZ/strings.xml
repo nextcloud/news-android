@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Interval synchronizace</string>
     <string name="empty_view_content">Žádné položky</string>
     <string name="empty_view_content_action">Pokud chcete znovu načíst, popotáhněte směrem dolů</string>
-    <string name="toast_GettingMoreItems">Zahájeno stahování vícero položek… Čekejte.</string>
     <string name="no_wifi_available">Wi-Fi není připojeno</string>
     <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez Wi-Fi připojení</string>
     <string name="current_version">Používáte verzi %s</string>
@@ -73,7 +72,6 @@
     <string name="action_link_share">Sdílet odkaz</string>
     <string name="action_link_open">Otevřít odkaz v prohlížeči</string>
     <string name="action_link_copy">Zkopírovat odkaz</string>
-    <string name="toast_img_download_wait">Stahování… Prosíme, vyčkejte.</string>
     <string name="toast_img_saved">Obrázek uložen</string>
     <string name="toast_img_notwriteable">Obrázek se nepodařilo zapsat.</string>
     <string name="toast_copied_to_clipboard">Zkopírováno do schránky</string>
@@ -105,7 +103,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Přihlásit</string>
-    <string name="login_progress_signing_in">Přihlašování…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tuto kolonku je třeba vyplnit</string>
     <string name="error_invalid_url">Nesprávná URL</string>
@@ -119,14 +116,6 @@
         <item quantity="other">Staženy %d staré položky</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Žádné další položky k dispozici</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Stažena %d položka…</item>
-        <item quantity="few">Staženy %d položky…</item>
-        <item quantity="many">Staženo %d položek…</item>
-        <item quantity="other">Staženy %d položky…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavení</string>
     <string name="cache_is_cleared">Mezipaměť vyčištěna!</string>
@@ -148,7 +137,6 @@
     <string name="pref_general_search_in_body">Těle textu</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
-    <string name="dialog_clearing_cache_please_wait">Maže se mezipaměť… Čekejte.</string>
     <string name="reset_cache_unsaved_changes">Existují nesesynchronizované změny. Přejete si přesto vyprázdnit mezipaměť?</string>
     <string name="warning">Varování</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizovat při spuštění</string>
@@ -275,7 +263,6 @@
     <string name="successfully_exported">Úspěšně exportováno do:</string>
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Analyzování OPML</string>
-    <string name="please_wait">Prosíme čekejte…</string>
     <string name="interval_sync_title">Synchronizace v intervalu</string>
 
     </resources>

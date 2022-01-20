@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Sincronización automática</string>
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">Non hai elementos aquí</string>
-    <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos... Agarde.</string>
     <string name="no_wifi_available">Non está conectado á wifi</string>
     <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
@@ -92,7 +91,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Rexistrarse</string>
-    <string name="login_progress_signing_in">Rexistrándose en...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatorio</string>
     <string name="error_invalid_url">URL incorrecto</string>
@@ -104,12 +102,6 @@
         <item quantity="other">Descargados %d elementos antigos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">%d elemento recuperado polo de agora…</item>
-        <item quantity="other">%delementos recuperados polo de agora…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Axustes</string>
     <string name="cache_is_cleared">A caché está limpa!</string>
@@ -131,7 +123,6 @@
     <string name="pref_general_search_in_body">Corpo</string>
 
     <string name="dialog_clearing_cache">Limpando a caché</string>
-    <string name="dialog_clearing_cache_please_wait">Limpando a caché… Agarde.</string>
     <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
     <string name="warning">Advertencia</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>

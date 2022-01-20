@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Sjálfvirk samstilling</string>
     <string name="title_activity_sync_interval_selector">Bil milli samstillinga</string>
     <string name="empty_view_content">Engin atriði hér</string>
-    <string name="toast_GettingMoreItems">Byrjaði að sækja fleiri atriði... Bíddu aðeins.</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
     <string name="do_you_want_to_download_without_wifi">Viltu sækja myndirnar án Wi-Fi-tengingar</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
@@ -92,7 +91,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Skrá inn</string>
-    <string name="login_progress_signing_in">Skrái inn …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
     <string name="error_invalid_url">Röng slóð</string>
@@ -104,12 +102,6 @@
         <item quantity="other">Sótti %d eldri atriði</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Engin fleiri atriði tiltæk</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Hef þegar %d sótt atriði…</item>
-        <item quantity="other">Hef þegar sótt %d atriði…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Stillingar</string>
     <string name="cache_is_cleared">Skyndiminni hreinsað!</string>
@@ -128,7 +120,6 @@
     <string name="pref_general_search_in_body">Meginmál</string>
 
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
-    <string name="dialog_clearing_cache_please_wait">Hreinsa skyndiminni... Bíddu aðeins.</string>
     <string name="reset_cache_unsaved_changes">Það eru ósamstilltar breytingar. Viltu samt endurstilla skyndiminnið?</string>
     <string name="warning">Aðvörun</string>
     <string name="pref_title_AutoSyncOnStart">Samstilla í ræsingu</string>

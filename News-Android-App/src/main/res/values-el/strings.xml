@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Διάστημα συγχρονισμού</string>
     <string name="empty_view_content">Κανένα στοιχείο</string>
     <string name="empty_view_content_action">Σύρετε προς τα κάτω για ανανέωση</string>
-    <string name="toast_GettingMoreItems">Γίνεται λήψη περισσότερων αντικειμένων... Παρακαλώ περιμένετε. </string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
     <string name="do_you_want_to_download_without_wifi"> Θα θέλατε τη λήψη εικόνων χωρίς σύνδεση Wi-Fi </string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Διαμοιρασμός συνδέσμου</string>
     <string name="action_link_open">Άνοιγμα συνδέσμου στον περιηγητή</string>
     <string name="action_link_copy">Αντιγραφή συνδέσμου</string>
-    <string name="toast_img_download_wait">Γίνεται λήψη... Παρακαλούμε περιμένετε.</string>
     <string name="toast_img_saved">Η εικόνα αποθηκεύτηκε</string>
     <string name="toast_img_notwriteable">Αποτυχία Εγγραφής Εικόνας.</string>
     <string name="toast_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
@@ -94,7 +92,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Είσοδος</string>
-    <string name="login_progress_signing_in">Είσοδος...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
     <string name="error_invalid_url">Εσφαλμένη URL</string>
@@ -106,12 +103,6 @@
         <item quantity="other">Λήφθηκαν %d παλαιά αντικείμενα</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Δεν υπάρχουν επιπλέον στοιχεία διαθέσιμα</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Αντικείμενο με σφάλμα μέχρι στιγμής %d</item>
-        <item quantity="other">Αντικείμενα με σφάλμα μέχρι στιγμής %d</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ρυθμίσεις</string>
     <string name="cache_is_cleared">Η προσωρινή μνήμη εκκαθαρίστηκε!</string>
@@ -133,7 +124,6 @@
     <string name="pref_general_search_in_body">Σώμα</string>
 
     <string name="dialog_clearing_cache">Εκκαθάριση προσωρινής μνήμης</string>
-    <string name="dialog_clearing_cache_please_wait">Εκκαθάριση προσωρινής μνήμης... Παρακαλώ περιμένετε.</string>
     <string name="reset_cache_unsaved_changes">Υπάρχουν αλλαγές που δεν έχουν συγχρονιστεί. Θα θέλατε να επαναφέρετε τα αποθηκευμένα στοιχεία ούτως ή άλλως;</string>
     <string name="warning">Προειδοποίηση</string>
     <string name="pref_title_AutoSyncOnStart">Συγχρονισμός κατά την έναρξη</string>
@@ -260,7 +250,6 @@
     <string name="successfully_exported">Επιτυχής εξαγωγή σε:</string>
     <string name="opml_export">Εξαγωγή OPML</string>
     <string name="parsing_opml">Ανάλυση OPML</string>
-    <string name="please_wait">Παρακαλούμε περιμένετε…</string>
     <string name="interval_sync_title">Διάστημα συγχρονισμού</string>
 
     </resources>

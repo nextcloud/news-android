@@ -69,7 +69,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">เข้าสู่ระบบ</string>
-    <string name="login_progress_signing_in">กำลังเข้าสู่ระบบ ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">ต้องใส่ข้อมูลลงในช่องนี้</string>
     <!-- Toast Messages -->
@@ -77,11 +76,6 @@
         <item quantity="other">ดาวน์โหลด %d รายการเก่า</item>
     </plurals>
     <string name="toast_no_more_downloads_available">ไม่มีรายการที่ใช้ได้</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="other">%d ที่ถูกเรียก...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">ตั้งค่า</string>
     <string name="cache_is_cleared">แคชจะถูกล้างออก!</string>
@@ -93,7 +87,6 @@
 
     <string name="pref_general_search_in_title">ชื่อเรื่อง</string>
     <string name="dialog_clearing_cache">กำลังล้างแคช</string>
-    <string name="dialog_clearing_cache_please_wait">กำลังล้างแคช ... โปรดรอสักครู่</string>
     <string name="reset_cache_unsaved_changes">มีการเปลี่ยนแปลงที่ไม่ได้ประสานข้อมูล คุณต้องการตั้งค่าแคชหรือไม่?</string>
     <string name="warning">คำเตือน</string>
     <string name="pref_title_AutoSyncOnStart">ประสานข้อมูลเมื่อเริ่มต้น</string>

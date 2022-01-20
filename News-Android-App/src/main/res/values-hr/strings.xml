@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Interval sinkronizacije</string>
     <string name="empty_view_content">Ovdje nema stavki</string>
     <string name="empty_view_content_action">Povuci prema dolje za osvježavanje</string>
-    <string name="toast_GettingMoreItems">Počelo je preuzimanje više stavki... Pričekajte.</string>
     <string name="no_wifi_available">Nije povezana bežična (Wi-Fi) mreža</string>
     <string name="do_you_want_to_download_without_wifi">Želite li preuzeti slike van bežične (Wi-Fi) veze</string>
     <string name="current_version">Koristite se inačicom %s</string>
@@ -70,7 +69,6 @@
     <string name="action_link_share">Dijeli poveznicu</string>
     <string name="action_link_open">Otvori poveznicu u pregledniku</string>
     <string name="action_link_copy">Kopiraj poveznicu</string>
-    <string name="toast_img_download_wait">Preuzimanje... Pričekajte.</string>
     <string name="toast_img_saved">Slika je spremljena</string>
     <string name="toast_img_notwriteable">Zapisivanje slike nije uspjelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano u međuspremnik</string>
@@ -97,7 +95,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Prijava</string>
-    <string name="login_progress_signing_in">Prijavljivanje...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ovo polje je obavezno</string>
     <string name="error_invalid_url">Netočan URL</string>
@@ -110,13 +107,6 @@
         <item quantity="other">Preuzeto je %d starih stavki</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Nema više dostupnih stavki</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Dohvaćena %d stavka...</item>
-        <item quantity="few">Dohvaćeno %d stavki...</item>
-        <item quantity="other">Dohvaćeno %d stavki...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Postavke</string>
     <string name="cache_is_cleared">Predmemorija je izbrisana!</string>
@@ -138,7 +128,6 @@
     <string name="pref_general_search_in_body">Tijelo</string>
 
     <string name="dialog_clearing_cache">Brisanje predmemorije</string>
-    <string name="dialog_clearing_cache_please_wait">Brisanje predmemorije... pričekajte.</string>
     <string name="reset_cache_unsaved_changes">Postoje nesinkronizirane promjene. Želite li resetirati predmemoriju?</string>
     <string name="warning">Upozorenje</string>
     <string name="pref_title_AutoSyncOnStart">Sinkroniziraj pri pokretanju</string>
@@ -262,7 +251,6 @@
     <string name="successfully_exported">Uspješno izvezeno u:</string>
     <string name="opml_export">OPML izvoz</string>
     <string name="parsing_opml">Parsiranje OPML-a</string>
-    <string name="please_wait">Pričekajte...</string>
     <string name="interval_sync_title">Sinkronizacija intervala</string>
 
     </resources>

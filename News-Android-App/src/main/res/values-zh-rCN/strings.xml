@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">同步间隔</string>
     <string name="empty_view_content">无内容</string>
     <string name="empty_view_content_action">下拉刷新</string>
-    <string name="toast_GettingMoreItems">正在下载多个文件...请稍候。</string>
     <string name="no_wifi_available">没有连接到 WiFi</string>
     <string name="do_you_want_to_download_without_wifi">确定要通过非 Wi-Fi 连接下载图片？</string>
     <string name="current_version">您正在使用的版本号为：%s</string>
@@ -64,7 +63,6 @@
     <string name="action_link_share">共享图片链接</string>
     <string name="action_link_open">在浏览器中打开链接</string>
     <string name="action_link_copy">复制链接</string>
-    <string name="toast_img_download_wait">下载中 ... 请等待</string>
     <string name="toast_img_saved">图片已保存</string>
     <string name="toast_img_notwriteable">未能写入图片。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
@@ -96,7 +94,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">登录</string>
-    <string name="login_progress_signing_in">正在登录...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">这个字段是必填的</string>
     <string name="error_invalid_url">网络地址不正确</string>
@@ -107,11 +104,6 @@
         <item quantity="other">已下载 %d 条旧内容</item>
     </plurals>
     <string name="toast_no_more_downloads_available">没有更多的选项了</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="other">目前已获取%d项…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">设置</string>
     <string name="cache_is_cleared">缓存已清空！</string>
@@ -133,7 +125,6 @@
     <string name="pref_general_search_in_body">主体</string>
 
     <string name="dialog_clearing_cache">清除缓存</string>
-    <string name="dialog_clearing_cache_please_wait">正在清理缓存…请稍候。</string>
     <string name="reset_cache_unsaved_changes">有一部分文件未同步，您确定仍然清空缓存吗？</string>
     <string name="warning">警告</string>
     <string name="pref_title_AutoSyncOnStart">启动后就同步</string>
@@ -260,7 +251,6 @@
     <string name="successfully_exported">已成功导出到：</string>
     <string name="opml_export">OPML 导出</string>
     <string name="parsing_opml">解析 OPML</string>
-    <string name="please_wait">请等待 ...</string>
     <string name="interval_sync_title">间隔同步</string>
 
     </resources>

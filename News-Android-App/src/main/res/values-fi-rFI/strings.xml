@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Synkronointiväli</string>
     <string name="empty_view_content">Ei artikkeleita</string>
     <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
-    <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
     <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä</string>
     <string name="current_version">Käytössäsi on versio %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Jaa linkki</string>
     <string name="action_link_open">Avaa linkki selaimessa</string>
     <string name="action_link_copy">Kopioi linkki</string>
-    <string name="toast_img_download_wait">Ladataan... Odota.</string>
     <string name="toast_img_saved">Kuva tallennettu</string>
     <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
     <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
@@ -96,7 +94,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Kirjaudu</string>
-    <string name="login_progress_signing_in">Kirjaudutaan…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tämä kenttä vaaditaan</string>
     <string name="error_invalid_url">Virheellinen URL</string>
@@ -108,12 +105,6 @@
         <item quantity="other">Ladattiin %d vanhaa artikkelia</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Ei enempää artikkeleita saatavilla</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Toistaiseksi noudettu %d artikkeli…</item>
-        <item quantity="other">Toistaiseksi noudettu %d artikkelia…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Asetukset</string>
     <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
@@ -135,7 +126,6 @@
     <string name="pref_general_search_in_body">Sisältö</string>
 
     <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
-    <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
     <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
     <string name="warning">Varoitus</string>
     <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
@@ -262,5 +252,4 @@
     <string name="successfully_exported">Viety onnistuneesti kohteeseen:</string>
     <string name="opml_export">OPML-vienti</string>
     <string name="parsing_opml">Jäsennetään OPML-tietoja</string>
-    <string name="please_wait">Odota...</string>
     </resources>

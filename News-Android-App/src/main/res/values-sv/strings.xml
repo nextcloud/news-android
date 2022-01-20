@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="empty_view_content">Inga objekt här</string>
     <string name="empty_view_content_action">Dra nedåt för uppdatera</string>
-    <string name="toast_GettingMoreItems">Hämtning av fler objekt startade... Vänligen vänta.</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Dela länk</string>
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
-    <string name="toast_img_download_wait">Hämtar… Vänligen vänta.</string>
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
@@ -99,7 +97,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Logga in</string>
-    <string name="login_progress_signing_in">Logga in...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Detta fält obligatoriskt</string>
     <string name="error_invalid_url">Felaktig webbadress</string>
@@ -111,12 +108,6 @@
         <item quantity="other">Hämtade %d gamla artiklar</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Hämtat %d artikel än så länge...</item>
-        <item quantity="other">Hämtat %d artiklar än så länge...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Inställningar</string>
     <string name="cache_is_cleared">Cacheminne rensat!</string>
@@ -138,7 +129,6 @@
     <string name="pref_general_search_in_body">Textyta</string>
 
     <string name="dialog_clearing_cache">Rensar cachen</string>
-    <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänligen vänta ...</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
     <string name="warning">Varning</string>
     <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
@@ -265,7 +255,6 @@
     <string name="successfully_exported">Lyckad exportering till:</string>
     <string name="opml_export">OPML-export</string>
     <string name="parsing_opml">Läser OPML</string>
-    <string name="please_wait">Vänligen vänta…</string>
     <string name="interval_sync_title">Synkningsintervall</string>
 
     </resources>

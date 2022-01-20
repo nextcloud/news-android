@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Auto sinchronizavimas</string>
     <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
     <string name="empty_view_content">Nėra elementų</string>
-    <string name="toast_GettingMoreItems">Elementai pradėti siųsti... Prašome palaukti.</string>
     <string name="no_wifi_available">Nėra WiFi ryšio</string>
     <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslus be Wi-Fi ryšio</string>
     <string name="current_version">Jūs naudojate versiją %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Bendrinimo nuoroda</string>
     <string name="action_link_open">Atverti nuorodą naršyklėje</string>
     <string name="action_link_copy">Kopijuoti nuorodą</string>
-    <string name="toast_img_download_wait">Atsiunčiama… Palaukite.</string>
     <string name="toast_img_saved">Paveikslas įrašytas</string>
     <string name="toast_img_notwriteable">Nepavyko įrašyti paveikslo.</string>
     <string name="toast_copied_to_clipboard">Nukopijuota į iškarpinę</string>
@@ -93,7 +91,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Prisijungti</string>
-    <string name="login_progress_signing_in">Prisijungiama...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Šis laukas privalomas</string>
     <string name="error_invalid_url">Neteisingas URL</string>
@@ -107,14 +104,6 @@
         <item quantity="other">Atsiųsta %d senų elementų</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Daugiau elementų nėra</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">Kol kas gautas %d elementas…</item>
-        <item quantity="few">Kol kas gauti %d elementai…</item>
-        <item quantity="many">Kol kas gauta %d elementų…</item>
-        <item quantity="other">Kol kas gauta %d elementų…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nustatymai</string>
     <string name="cache_is_cleared">Podėlis išvalytas!</string>
@@ -131,7 +120,6 @@
 
     <string name="pref_general_search_in_title">Pavadinimas</string>
     <string name="dialog_clearing_cache">Išvalomas podėlis</string>
-    <string name="dialog_clearing_cache_please_wait">Išvalomas podėlis… Prašome palaukti.</string>
     <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakeitimų. Ar vis tiek norite atstatyti podėlį?</string>
     <string name="warning">Įspėjimas</string>
     <string name="pref_title_AutoSyncOnStart">Sinchronizuoti pasileidžiant</string>
@@ -227,5 +215,4 @@
     <string name="switch_account">Perjungti paskyrą</string>
     
     <string name="successfully_exported">Sėkmingai eksportuota į:</string>
-    <string name="please_wait">Palaukite…</string>
     </resources>

@@ -4,7 +4,6 @@
     <string name="auto_sync_string">Ауто-освежавање</string>
     <string name="title_activity_sync_interval_selector">Интервал синхронизације</string>
     <string name="empty_view_content">Нема ставки</string>
-    <string name="toast_GettingMoreItems">Започето скидање још ставки… Сачекајте.</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
     <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе</string>
     <string name="current_version">Користите верзију %s</string>
@@ -95,7 +94,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Пријави се</string>
-    <string name="login_progress_signing_in">Пријављујем се...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ово поље је неопходно</string>
     <string name="error_invalid_url">Неисправна адреса</string>
@@ -108,13 +106,6 @@
         <item quantity="other">Преузето %d старих ставки</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">До сада скинута %d ставка…</item>
-        <item quantity="few">До сада скинуто %d ставке…</item>
-        <item quantity="other">До сада скинуто %d ставки…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Поставке</string>
     <string name="cache_is_cleared">Кеш је очишћен!</string>
@@ -136,7 +127,6 @@
     <string name="pref_general_search_in_body">Тело</string>
 
     <string name="dialog_clearing_cache">Чистим кеш</string>
-    <string name="dialog_clearing_cache_please_wait">Чистим кеш… сачекајте.</string>
     <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
     <string name="warning">Упозорење</string>
     <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>

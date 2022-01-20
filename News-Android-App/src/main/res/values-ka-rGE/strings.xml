@@ -70,7 +70,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">შესვლა</string>
-    <string name="login_progress_signing_in">მიმდინარეობს ავტორიზაცია</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">ეს ველი აუცილებელია</string>
     <!-- Toast Messages -->
@@ -79,12 +78,6 @@
         <item quantity="other">ჩამოტვირთულია %d ძველი ელემენტი</item>
     </plurals>
     <string name="toast_no_more_downloads_available">მეტი ელემენტი არაა</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">ჯერჯერობით ამოღებულია %d ელემენტი...</item>
-        <item quantity="other">ჯერჯერობით ამოღებულია %d ელემენტი...</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">პარამეტრები</string>
     <string name="cache_is_cleared">კეში გასუფთავდა!</string>
@@ -96,7 +89,6 @@
 
     <string name="pref_general_search_in_title">სათაური</string>
     <string name="dialog_clearing_cache">კეშის გასუფთავება</string>
-    <string name="dialog_clearing_cache_please_wait">კეში სუფთავდება... გთხოვთ მოითმინოთ.</string>
     <string name="reset_cache_unsaved_changes">აღმოჩენილია არასინქრონიზირებული ცვილებები. მაინც გსურთ კეშის საწყის მდგომარეობაში დაბრუნება?</string>
     <string name="warning">გაფრთხილება</string>
     <string name="pref_title_AutoSyncOnStart">სინქ. ჩართვისას</string>

@@ -5,7 +5,6 @@
     <string name="title_activity_sync_interval_selector">Интервал на синхронизиране</string>
     <string name="empty_view_content">Няма елементи</string>
     <string name="empty_view_content_action">Издърпване надолу, за опресняване</string>
-    <string name="toast_GettingMoreItems">Започва свалянето на няколко елемента... Моля изчакайте.</string>
     <string name="no_wifi_available">Няма WiFi връзка</string>
     <string name="do_you_want_to_download_without_wifi">Желаете ли изображенията да бъдат свалени при отсъствието на WiFi връзка</string>
     <string name="current_version">Ползвате версия %s</string>
@@ -67,7 +66,6 @@
     <string name="action_link_share">Сподели връзката</string>
     <string name="action_link_open">Отвори връзката в браузъра</string>
     <string name="action_link_copy">Копирай връзката</string>
-    <string name="toast_img_download_wait">Изтегляне ... Моля, изчакайте.</string>
     <string name="toast_img_saved">Изображението е записано</string>
     <string name="toast_img_notwriteable">Записването на изображението се провали.</string>
     <string name="toast_copied_to_clipboard">Копирана</string>
@@ -99,7 +97,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Вписване</string>
-    <string name="login_progress_signing_in">Вписване...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Полето е задължително</string>
     <string name="error_invalid_url">Грешен URL адрес</string>
@@ -111,12 +108,6 @@
         <item quantity="other">Свалени са %d стари елементи</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Няма повече елементи</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">До сега са извлечени %d елемента …</item>
-        <item quantity="other">До сега са извлечени %d елемента …</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="cache_is_cleared">Кеша е изчистен!</string>
@@ -138,7 +129,6 @@
     <string name="pref_general_search_in_body">Съдържанието</string>
 
     <string name="dialog_clearing_cache">Изчистване на кеш</string>
-    <string name="dialog_clearing_cache_please_wait">Изчистване на кеша… Моля изчакайте.</string>
     <string name="reset_cache_unsaved_changes">Има несинхронизирани промени. Наистина ли желаете кеша да бъде изтрит?</string>
     <string name="warning">Предупреждение</string>
     <string name="pref_title_AutoSyncOnStart">Синхронизиране при стартиране</string>
@@ -265,7 +255,6 @@
     <string name="successfully_exported">Успешно изнесен към:</string>
     <string name="opml_export">OPML Експортиране</string>
     <string name="parsing_opml">Анализиране на OPML</string>
-    <string name="please_wait">Моля, изчакайте …</string>
     <string name="interval_sync_title">Интервална синхронизация </string>
 
     </resources>

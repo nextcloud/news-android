@@ -4,7 +4,6 @@
     <string name="auto_sync_string">همگام‌سازی خودکار</string>
     <string name="title_activity_sync_interval_selector">فواصل همگام‌سازی</string>
     <string name="empty_view_content">موردی وجود ندارد</string>
-    <string name="toast_GettingMoreItems">بارگیری موارد بیش‌تر آغاز شد… صبر لطفاً </string>
     <string name="no_wifi_available">وای‌فایی وصل نیست</string>
     <string name="do_you_want_to_download_without_wifi">می‌خواهید تصاویر بدون اتصال وای‌فای بارگیری شوند؟</string>
     <string name="current_version">از نگارش %s استفاده می‌کنید</string>
@@ -92,7 +91,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">ورود</string>
-    <string name="login_progress_signing_in">در حال ورود…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">این زمینه لازم است</string>
     <string name="error_invalid_url">نشانی نادرست</string>
@@ -104,12 +102,6 @@
         <item quantity="other">%d مورد قدیمی بارگیری شدند</item>
     </plurals>
     <string name="toast_no_more_downloads_available">هیچ مورد دیگری موجود نیست</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">تا کنون %d مورد گرفته شد…</item>
-        <item quantity="other">تا کنون %d مورد گرفته شد…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">تنظیمات</string>
     <string name="cache_is_cleared">انباره پاک‌سازی شد!</string>
@@ -128,7 +120,6 @@
     <string name="pref_general_search_in_body">متن</string>
 
     <string name="dialog_clearing_cache">پاک‌سازی انباره</string>
-    <string name="dialog_clearing_cache_please_wait">در حال پاک‌سازی انباره… صبر لطفاً.</string>
     <string name="reset_cache_unsaved_changes">تغییرات ناهمگامی موجودند. به هر روی، انباره بازنشانی شود؟</string>
     <string name="warning">هشدار</string>
     <string name="pref_title_AutoSyncOnStart">همگام‌سازی در شروع</string>

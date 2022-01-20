@@ -4,7 +4,6 @@
     <string name="auto_sync_string">סנכרון אוטומטי</string>
     <string name="title_activity_sync_interval_selector">הפרש בין סנכרונים</string>
     <string name="empty_view_content">אין כאן פריטים</string>
-    <string name="toast_GettingMoreItems">החלה הורדה של פריטים נוספים… נא להמתין.</string>
     <string name="no_wifi_available">אין חיבור WiFi</string>
     <string name="do_you_want_to_download_without_wifi">להוריד תמונות בלי חיבור לרשת אלחוטית</string>
     <string name="current_version">הנך משתמש/ת בגרסה %s</string>
@@ -98,7 +97,6 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">כניסה</string>
-    <string name="login_progress_signing_in">מתבצעת כניסה</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">השדה הזה נחוץ</string>
     <string name="error_invalid_url">כתובת שגויה</string>
@@ -112,14 +110,6 @@
         <item quantity="other">התקבלו %d פריטים ישנים</item>
     </plurals>
     <string name="toast_no_more_downloads_available">אין פריטים נוספים זמינים</string>
-    <plurals name="fetched_items_so_far">
-        <item quantity="one">עד כה התקבל פריט %d…</item>
-        <item quantity="two">עד כה התקבלו %d פריטים…</item>
-        <item quantity="many">עד כה התקבלו %d פריטים…</item>
-        <item quantity="other">עד כה התקבלו %d פריטים…</item>
-    </plurals>
-
-
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">הגדרות</string>
     <string name="cache_is_cleared">המטמון התרוקן!</string>
@@ -138,7 +128,6 @@
     <string name="pref_general_search_in_body">גוף</string>
 
     <string name="dialog_clearing_cache">זכרון המטמון מתפנה</string>
-    <string name="dialog_clearing_cache_please_wait">המטמון מתרוקן… נא להמתין.</string>
     <string name="reset_cache_unsaved_changes">יש שינויים שלא סונכרנו. לאפס את המטמון בכל זאת?</string>
     <string name="warning">אזהרה</string>
     <string name="pref_title_AutoSyncOnStart">סנכרון בהתחלה</string>
