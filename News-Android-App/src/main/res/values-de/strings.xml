@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synchronisierungsintervall</string>
     <string name="empty_view_content">Keine Artikel vorhanden</string>
     <string name="empty_view_content_action">Zum Aktualisieren herunterziehen</string>
+    <string name="toast_GettingMoreItems">Herunterladen weiterer Elemente gestartet. Bitte warten …</string>
     <string name="no_wifi_available">Keine WLAN-Verbindung</string>
     <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
     <string name="current_version">Sie benutzen die Version %s</string>
@@ -66,6 +67,7 @@
     <string name="action_link_share">Link teilen</string>
     <string name="action_link_open">Link im Browser öffnen</string>
     <string name="action_link_copy">Link kopieren</string>
+    <string name="toast_img_download_wait">Lade herunter. Bitte warten …</string>
     <string name="toast_img_saved">Bild gespeichert</string>
     <string name="toast_img_notwriteable">Fehler beim Schreiben des Bildes.</string>
     <string name="toast_copied_to_clipboard">In die Zwischenablage kopiert</string>
@@ -97,6 +99,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Anmelden</string>
+    <string name="login_progress_signing_in">Melde an …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dieses Feld ist erforderlich.</string>
     <string name="error_invalid_url">URL nicht korrekt</string>
@@ -108,6 +111,12 @@
         <item quantity="other">%d alte Artikel heruntergeladen</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Keine weiteren Elemente verfügbar</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Bisher %d Eintrag geladen …</item>
+        <item quantity="other">Bisher %d Einträge geladen …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Einstellungen</string>
     <string name="cache_is_cleared">Zwischenspeicher wurde gelöscht!</string>
@@ -129,6 +138,7 @@
     <string name="pref_general_search_in_body">Artikel</string>
 
     <string name="dialog_clearing_cache">Zwischenspeicher wird geleert</string>
+    <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert. Bitte warten …</string>
     <string name="reset_cache_unsaved_changes">Es gibt nicht synchronisierte Änderungen. Möchten Sie dennoch den Zwischenspeicher leeren?</string>
     <string name="warning">Warnung</string>
     <string name="pref_title_AutoSyncOnStart">Beim Start synchronisieren</string>
@@ -255,6 +265,7 @@
     <string name="successfully_exported">Erfolgreich exportiert nach:</string>
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Analysiere OPML</string>
+    <string name="please_wait">Bitte warten …</string>
     <string name="interval_sync_title">Intervall-Synchronisation</string>
 
     </resources>

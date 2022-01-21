@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">同步時間間隔</string>
     <string name="empty_view_content">無任何項目</string>
     <string name="empty_view_content_action">下拉以更新</string>
+    <string name="toast_GettingMoreItems">已開始下載更多項目。請稍候……</string>
     <string name="no_wifi_available">WiFi 未連線</string>
     <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖片</string>
     <string name="current_version">您在使用版本 %s</string>
@@ -63,6 +64,7 @@
     <string name="action_link_share">分享連結</string>
     <string name="action_link_open">在瀏覽器中打開連結</string>
     <string name="action_link_copy">複製連結</string>
+    <string name="toast_img_download_wait">正在下載。請稍候……</string>
     <string name="toast_img_saved">圖片已儲存</string>
     <string name="toast_img_notwriteable">寫入圖片失敗</string>
     <string name="toast_copied_to_clipboard">複製至剪貼簿</string>
@@ -80,6 +82,11 @@
     <string name="feed_move_list_description">選擇要移動摘要至的資料夾</string>
     <string name="move_feed_root_folder">根目錄</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">接收此 feed 的個別通知</string>
+    <string name="notification_feed_default">所有預設設定的 feed 都會顯示在同一個通知中</string>
+    <string name="notification_feed_none">完全沒有通知</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">手動登入</string>
     <string name="login_sso">使用 Nextcloud Files 應用程式登入</string>
@@ -89,6 +96,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">登入</string>
+    <string name="login_progress_signing_in">正在登入……</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">此欄位為必填</string>
     <string name="error_invalid_url">錯誤的網路連結</string>
@@ -99,6 +107,11 @@
         <item quantity="other">已下載 %d 個舊項目</item>
     </plurals>
     <string name="toast_no_more_downloads_available">已經載入所有項目</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="other">目前已擷取 %d 項……</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">設定</string>
     <string name="cache_is_cleared">快取已清除</string>
@@ -120,6 +133,7 @@
     <string name="pref_general_search_in_body">內文</string>
 
     <string name="dialog_clearing_cache">正在清除快取</string>
+    <string name="dialog_clearing_cache_please_wait">正在清除快取。請稍候……</string>
     <string name="reset_cache_unsaved_changes">有未同步的更動，您仍然要重設快取嗎？</string>
     <string name="warning">警告</string>
     <string name="pref_title_AutoSyncOnStart">啟動時同步</string>
@@ -246,6 +260,7 @@
     <string name="successfully_exported">成功匯出至：</string>
     <string name="opml_export">OPML 匯出</string>
     <string name="parsing_opml">剖析 OPML</string>
+    <string name="please_wait">請稍候……</string>
     <string name="interval_sync_title">間隔同步</string>
 
     </resources>
