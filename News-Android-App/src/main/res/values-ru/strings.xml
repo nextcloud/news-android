@@ -119,6 +119,14 @@
         <item quantity="other">Скачано %d старых элементов</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Доступных объектов больше нет</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Найден %d объект на данный момент ...</item>
+        <item quantity="few">Найдено %d объекта на данный момент ...</item>
+        <item quantity="many">Найдено %d объектов на данный момент ...</item>
+        <item quantity="other">Найдено %d объектов на данный момент ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="cache_is_cleared">Кеш очищен!</string>

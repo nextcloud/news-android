@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Interval synchronizácie</string>
     <string name="empty_view_content">Žiadne položky</string>
     <string name="empty_view_content_action">Pre obnovenie potiahnite nadol</string>
+    <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím ...</string>
     <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Chcete obrázky stiahnuť bez pripojenia Wi-Fi</string>
     <string name="current_version">Používate verziu %s</string>
@@ -72,6 +73,7 @@
     <string name="action_link_share">Sprístupniť odkaz</string>
     <string name="action_link_open">Otvoriť odkaz v prehliadači</string>
     <string name="action_link_copy">Kopírovať odkaz</string>
+    <string name="toast_img_download_wait">Sťahujem. Čakajte prosím ...</string>
     <string name="toast_img_saved">Obrázok uložený</string>
     <string name="toast_img_notwriteable">Obrázok sa nepodarilo zapísať.</string>
     <string name="toast_copied_to_clipboard">Skopírované do schránky</string>
@@ -103,6 +105,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Prihlásenie</string>
+    <string name="login_progress_signing_in">Prihlasovanie ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Toto pole je povinné</string>
     <string name="error_invalid_url">Nesprávna URL</string>
@@ -116,6 +119,14 @@
         <item quantity="other">Stiahnutých %d starých položiek</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Žiadne ďalšie položky k dispozícii</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Stiahnutá %d položka …</item>
+        <item quantity="few">Stiahnutých %d položky …</item>
+        <item quantity="many">Stiahnutých %d položiek …</item>
+        <item quantity="other">Stiahnutých %d položiek …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavenia</string>
     <string name="cache_is_cleared">Vyrovnávacia pamäť je vymazaná!</string>
@@ -137,6 +148,7 @@
     <string name="pref_general_search_in_body">Telo</string>
 
     <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
+    <string name="dialog_clearing_cache_please_wait">Maže sa vyrovnávacia pamäť. Čakajte prosím ...</string>
     <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
     <string name="warning">Varovanie</string>
     <string name="pref_title_AutoSyncOnStart">Synchronizovať pri spustení</string>
@@ -263,6 +275,7 @@
     <string name="successfully_exported">Úspešne exportované do:</string>
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Parsovanie OPML</string>
+    <string name="please_wait">Čakajte prosím ...</string>
     <string name="interval_sync_title">Interval synchronizácie</string>
 
     </resources>
