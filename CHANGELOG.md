@@ -1,3 +1,8 @@
+0.9.9.69 (Beta)
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1055">#1055 App crashes during sync (OutOfMemory Error)</a>
+
+
 0.9.9.68 (Beta)
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1012">#1012 Loadingbar is visible even though page is done loading</a>
