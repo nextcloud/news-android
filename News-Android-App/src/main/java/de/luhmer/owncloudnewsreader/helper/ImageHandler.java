@@ -125,7 +125,12 @@ public class ImageHandler {
 
                 if(!originalLink.equals(link)) {
                     Log.d(TAG, "Fixed link from: " + originalArticleUrl + " and " + originalLink + " -> " + link);
-                    text = text.replaceAll(originalLink, link);
+                    // text = text.replaceAll(originalLink, link); // this causes OutOfMemoryExceptions (https://github.com/nextcloud/news-android/issues/1055)
+
+                    Pattern URL_PATTERN = Pattern.compile(originalLink);
+                    Matcher urlMatcher = URL_PATTERN.matcher(text);
+                    return urlMatcher.replaceAll(link);
+
                 }
             }
         }
