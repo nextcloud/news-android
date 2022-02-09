@@ -66,6 +66,7 @@
     <string name="action_link_share">Dela länk</string>
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
+    <string name="toast_img_download_wait">Laddar ner, vänligen vänta …</string>
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
@@ -97,6 +98,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Logga in</string>
+    <string name="login_progress_signing_in">Loggar in …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Detta fält obligatoriskt</string>
     <string name="error_invalid_url">Felaktig webbadress</string>
@@ -129,6 +131,7 @@
     <string name="pref_general_search_in_body">Textyta</string>
 
     <string name="dialog_clearing_cache">Rensar cachen</string>
+    <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänligen vänta …</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
     <string name="warning">Varning</string>
     <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
