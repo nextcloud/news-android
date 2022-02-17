@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Intervallo di sincronizzazione</string>
     <string name="empty_view_content">Nessun elemento</string>
     <string name="empty_view_content_action">Tira in giù per aggiornare</string>
+    <string name="toast_GettingMoreItems">Iniziato lo scaricamento di altri elementi. Attendi ...</string>
     <string name="no_wifi_available">WiFi non connesso</string>
     <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le immagini senza una connessione WiFi</string>
     <string name="current_version">Stai usando la versione %s</string>
@@ -66,6 +67,7 @@
     <string name="action_link_share">Condividi collegamento</string>
     <string name="action_link_open">Apri collegamento nel browser</string>
     <string name="action_link_copy">Copia collegamento</string>
+    <string name="toast_img_download_wait">Scaricamento. Attendi ...</string>
     <string name="toast_img_saved">Immagine salvata</string>
     <string name="toast_img_notwriteable">Scrittura dell\'immagine non riuscita.</string>
     <string name="toast_copied_to_clipboard">Copiato negli appunti</string>
@@ -97,6 +99,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Accedi</string>
+    <string name="login_progress_signing_in">Accesso in corso ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Questo campo è obbligatorio</string>
     <string name="error_invalid_url">URL non corretto</string>
@@ -108,6 +111,12 @@
         <item quantity="other">Scaricati %d vecchi elementi</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Non ci sono altri elementi disponibili</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Recupera %d elementi ...</item>
+        <item quantity="other">Recupera %d elementi ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Impostazioni</string>
     <string name="cache_is_cleared">La cache è stata svuotata!</string>
@@ -129,6 +138,7 @@
     <string name="pref_general_search_in_body">Corpo</string>
 
     <string name="dialog_clearing_cache">Svuotamento cache</string>
+    <string name="dialog_clearing_cache_please_wait">Cancellazione della cache. Attendi …</string>
     <string name="reset_cache_unsaved_changes">Ci sono modifiche non sincronizzate. Vuoi ripristinare comunque la cache?</string>
     <string name="warning">Avviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizza all\'avvio</string>
@@ -256,6 +266,7 @@ https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="successfully_exported">Esportazione riuscita verso:</string>
     <string name="opml_export">Esportazione OPML</string>
     <string name="parsing_opml">Analisi OMPL</string>
+    <string name="please_wait">Attendere prego …</string>
     <string name="interval_sync_title">Sincronizzazione intervallo</string>
 
     </resources>
