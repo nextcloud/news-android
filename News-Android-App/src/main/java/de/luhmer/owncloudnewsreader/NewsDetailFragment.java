@@ -27,7 +27,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -35,16 +34,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebBackForwardList;
 import android.webkit.WebHistoryItem;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -59,8 +54,6 @@ import org.jsoup.select.Elements;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -85,6 +78,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     private int section_number;
     protected String html;
+    private String title = "";
     // private GestureDetector mGestureDetector;
 
 
@@ -120,6 +114,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     @Override
     public void onDestroy() {
         super.onDestroy();
+        // Log.d(TAG, "onDestroy: " + title);
         binding.webview.destroy();
     }
 
@@ -166,9 +161,10 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         NewsDetailActivity ndActivity = ((NewsDetailActivity)getActivity());
         assert ndActivity != null;
 
+        /*
 		// Do not reload webView if retained
         if (savedInstanceState != null) {
-            // Log.d(TAG, "onCreateView restore webview");
+            Log.d(TAG, "onCreateView restore webview");
             binding.webview.restoreState(savedInstanceState);
             setWebViewBackgroundColor(ndActivity);
             binding.progressBarLoading.setVisibility(View.GONE);
@@ -177,13 +173,18 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             syncIncognitoState();
             this.addBottomPaddingForFastActions(binding.webview);
         } else {
-            // Log.d(TAG, "onCreateView new webview");
+            Log.d(TAG, "onCreateView new webview");
             startLoadRssItemToWebViewTask(ndActivity);
         }
         // setUpGestureDetector();
+        */
 
-		return binding.getRoot();
-	}
+        // the whole process of saving and restoring instances is way too expensive - especially
+        // for huge pages (such as android central has them) - it'll just freeze the webview
+        startLoadRssItemToWebViewTask(ndActivity);
+
+        return binding.getRoot();
+    }
 
 	private void setWebViewBackgroundColor(NewsDetailActivity ndActivity) {
         int backgroundColor = ContextCompat.getColor(ndActivity, R.color.news_detail_background_color);
@@ -198,10 +199,13 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         // binding.webview.getSettings().setBlockNetworkImage(isIncognito);
     }
 
+    /*
 	@Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        binding.webview.saveState(outState);
+        Log.d(TAG, "onSaveInstanceState: " + title);
+        //binding.webview.saveState(outState);
     }
+    */
 
     /**
      * Double tap to star listener (double tap the webview to mark the current item as read)
@@ -248,7 +252,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         init_webView();
         RssItem rssItem = ndActivity.rssItems.get(section_number);
-        Log.d(TAG, "startLoadRssItemToWebViewTask: " + rssItem.getTitle());
+        title = rssItem.getTitle();
+        Log.d(TAG, "startLoadRssItemToWebViewTask: " + title);
         RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this, mPrefs);
         AsyncTaskHelper.StartAsyncTask(task);
     }
