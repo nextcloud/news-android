@@ -1,4 +1,10 @@
-0.9.9.69 (Beta)
+0.9.9.70 (Beta)
+---------------------
+- Fixed - Try to fix more app crashes during sync (reduce number of items per sync)
+- Fixed - Speedup detail view by not storing instance state of webview
+
+
+0.9.9.69
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1055">#1055 App crashes during sync (OutOfMemory Error)</a>
 

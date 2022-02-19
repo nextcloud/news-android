@@ -39,7 +39,7 @@ public class RssItemObservable implements Publisher<Integer> {
     private final NewsAPI mNewsApi;
     private final SharedPreferences mPrefs;
     private static final String TAG = RssItemObservable.class.getCanonicalName();
-    private static final int maxSizePerSync = 300;
+    private static final int maxSizePerSync = 200;
 
     public RssItemObservable(DatabaseConnectionOrm dbConn, NewsAPI newsApi, SharedPreferences prefs) {
         this.mDbConn = dbConn;
@@ -62,9 +62,8 @@ public class RssItemObservable implements Publisher<Integer> {
             try {
                 InputStreamReader isr = new InputStreamReader(source.inputStream());
                 BufferedReader br = new BufferedReader(isr);
-                JsonReader reader = new JsonReader(br);
 
-                try {
+                try (isr; br; JsonReader reader = new JsonReader(br)) {
                     reader.beginObject();
 
                     String currentName;
@@ -83,10 +82,6 @@ public class RssItemObservable implements Publisher<Integer> {
                         e.onNext(item);
                     }
                     reader.endArray();
-                } finally {
-                    reader.close();
-                    br.close();
-                    isr.close();
                 }
             } catch (IOException | NullPointerException err) {
                 err.printStackTrace();
@@ -177,8 +172,8 @@ public class RssItemObservable implements Publisher<Integer> {
                     .flatMap((Function<ResponseBody, ObservableSource<RssItem>>) responseBody -> events(responseBody.source()))
                     .subscribe(new Observer<>() {
                         int totalUpdatedUnreadItemCount = 0;
-                        final int bufferSize = 150;
-                        final List<RssItem> buffer = new ArrayList<>(bufferSize); //Buffer of size X
+                        final int bufferSize = maxSizePerSync / 2;
+                        final List<RssItem> buffer = new ArrayList<>(bufferSize); // Buffer of size X
 
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
