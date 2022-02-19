@@ -1,0 +1,1 @@
+- Fixed - #1055 App crashes during sync (OutOfMemory Error)
