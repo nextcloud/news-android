@@ -20,6 +20,8 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import static java.util.Objects.requireNonNull;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -63,8 +65,6 @@ import de.luhmer.owncloudnewsreader.model.TTSItem;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
-import static java.util.Objects.requireNonNull;
-
 
 public class NewsDetailActivity extends PodcastFragmentActivity {
 
@@ -91,6 +91,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private MenuItem menuItem_PlayPodcast;
 	private MenuItem menuItem_Starred;
 	private MenuItem menuItem_Read;
+	private MenuItem menuItem_Incognito;
 
 	private DatabaseConnectionOrm dbConn;
 	protected ActivityNewsDetailBinding binding;
@@ -423,6 +424,15 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				binding.faDetailBar.faMarkAsRead.setImageResource(darkIcons ? R.drawable.ic_checkbox_outline_black : R.drawable.ic_checkbox_outline_white);
 			}
 		}
+
+		if (menuItem_Incognito != null) {
+			if (isIncognitoEnabled()) {
+				// always show incognito icon if incognito mode is enabled
+				menuItem_Incognito.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+			} else {
+				menuItem_Incognito.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+			}
+		}
 	}
 
 
@@ -443,6 +453,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
 		menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
+		menuItem_Incognito = menu.findItem(R.id.action_incognito_mode);
 
 		if (mShowFastActions) {
 			menuItem_Starred.setVisible(false);
@@ -500,6 +511,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			this.share(currentPosition);
 		} else if (itemId == R.id.action_incognito_mode) {
 			toggleIncognitoMode();
+			updateActionBarIcons();
 		}
 
 		return super.onOptionsItemSelected(item);

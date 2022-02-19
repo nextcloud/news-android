@@ -1,0 +1,3 @@
+- Fixed - Try to fix more app crashes during sync (reduce number of items per sync)
+- Fixed - Speedup detail view by not storing instance state of webview
+- Changed - Always show incognito mode icon if incognito mode is enabled

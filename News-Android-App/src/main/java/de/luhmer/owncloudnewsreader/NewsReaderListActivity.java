@@ -388,9 +388,23 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (!isAccountThere) {
 			//Then add the new account
 			Account account = new Account(getString(R.string.app_name), accountType);
-			mAccountManager.addAccountExplicitly(account, "", new Bundle());
 
-			SettingsFragment.setAccountSyncInterval(this, getResources().getInteger(R.integer.default_sync_minutes));
+			try {
+				mAccountManager.addAccountExplicitly(account, "", new Bundle());
+
+				SettingsFragment.setAccountSyncInterval(this, getResources().getInteger(R.integer.default_sync_minutes));
+			} catch (SecurityException exception) {
+				// not sure if this error can still occur.. it showed up a few versions ago.. so we'll
+				// keep it here just to be safe
+				new AlertDialog.Builder(this)
+						.setTitle("Failed to add account")
+						.setMessage("If you installed this app previously from anywhere else than the Google Play Store (e.g. F-Droid), please make sure to uninstall it first.")
+						.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+							dialog.dismiss();
+						})
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.show();
+			}
 		}
 	}
 

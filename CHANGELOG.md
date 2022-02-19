@@ -1,3 +1,8 @@
+0.9.9.71 (Beta)
+---------------------
+- Added - <a href="https://github.com/nextcloud/news-android/issues/1060">#1060 Always show incognito mode icon if incognito mode is enabled</a>
+
+
 0.9.9.70 (Beta)
 ---------------------
 - Fixed - Try to fix more app crashes during sync (reduce number of items per sync)
