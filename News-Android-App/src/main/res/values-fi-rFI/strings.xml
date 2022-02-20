@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkronointiväli</string>
     <string name="empty_view_content">Ei artikkeleita</string>
     <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
+    <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
     <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä</string>
     <string name="current_version">Käytössäsi on versio %s</string>
@@ -14,7 +15,7 @@
         <item quantity="other">%d uutta artikkelia saatavilla</item>
     </plurals>
     <string name="message_bar_reload">Päivitä</string>
-    <string name="allUnreadFeeds">Kaikki lukemattomat artikkelit</string>
+    <string name="allUnreadFeeds">Lukemattomat artikkelit</string>
     <string name="starredFeeds">Suosikit</string>
     <string name="title_activity_new_feed">Lisää uusi syöte</string>
 
@@ -66,6 +67,7 @@
     <string name="action_link_share">Jaa linkki</string>
     <string name="action_link_open">Avaa linkki selaimessa</string>
     <string name="action_link_copy">Kopioi linkki</string>
+    <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
     <string name="toast_img_saved">Kuva tallennettu</string>
     <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
     <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
@@ -83,6 +85,9 @@
     <string name="feed_move_list_description">Valitse kansio, johon syöte siirretään</string>
     <string name="move_feed_root_folder">Juurikansio</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Vastaanota erillisiä ilmoituksia tälle syötteelle</string>
+    <string name="notification_feed_default">Näytä oletusasetusten mukaisesti yhdessä ilmoituksessa</string>
     <string name="notification_feed_none">Ei ilmoituksia lainkaan</string>
 
     <!-- Strings related to login -->
@@ -94,6 +99,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Kirjaudu</string>
+    <string name="login_progress_signing_in">Kirjaudutaan sisään...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Tämä kenttä vaaditaan</string>
     <string name="error_invalid_url">Virheellinen URL</string>
@@ -105,6 +111,12 @@
         <item quantity="other">Ladattiin %d vanhaa artikkelia</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Ei enempää artikkeleita saatavilla</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Haettu %d artikkeli…</item>
+        <item quantity="other">Haettu %d artikkelia…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Asetukset</string>
     <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
@@ -126,6 +138,7 @@
     <string name="pref_general_search_in_body">Sisältö</string>
 
     <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
+    <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
     <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
     <string name="warning">Varoitus</string>
     <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
@@ -252,4 +265,7 @@
     <string name="successfully_exported">Viety onnistuneesti kohteeseen:</string>
     <string name="opml_export">OPML-vienti</string>
     <string name="parsing_opml">Jäsennetään OPML-tietoja</string>
+    <string name="please_wait">Odota hetki…</string>
+    <string name="interval_sync_title">Synkronoinnin aikaväli</string>
+
     </resources>
