@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">No hay artículos aquí</string>
     <string name="empty_view_content_action">Arrastra hacia abajo para recargar</string>
+    <string name="toast_GettingMoreItems">Ha empezado la descarga de más elementos. Por favor, espera…</string>
     <string name="no_wifi_available">No hay una conexión WiFi</string>
     <string name="do_you_want_to_download_without_wifi">¿Quieres descargar las imágenes sin conexión WiFi?</string>
     <string name="current_version">Está utilizando la versión %s</string>
@@ -98,6 +99,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="login_progress_signing_in">Registrándose…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo es necesario</string>
     <string name="error_invalid_url">URL incorrecta</string>
@@ -109,6 +111,12 @@
         <item quantity="other">Se han descargado %d elementos antiguos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Recuperado %d ítem por ahora…</item>
+        <item quantity="other">Recuperados %d ítems por ahora…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Ajustes</string>
     <string name="cache_is_cleared">¡La caché está vacía!</string>
@@ -130,6 +138,7 @@
     <string name="pref_general_search_in_body">Cuerpo</string>
 
     <string name="dialog_clearing_cache">Vaciando el caché</string>
+    <string name="dialog_clearing_cache_please_wait">Limpiando caché. Por favor, espera…</string>
     <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quiere vaciar la caché igualmente?</string>
     <string name="warning">Precaución</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>
@@ -256,6 +265,7 @@
     <string name="successfully_exported">Exportado con éxito a:</string>
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Procesando OPML</string>
+    <string name="please_wait">Por favor, espera…</string>
     <string name="interval_sync_title">Intervalo Sync</string>
 
     </resources>
