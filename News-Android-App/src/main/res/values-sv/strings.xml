@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="empty_view_content">Inga objekt här</string>
     <string name="empty_view_content_action">Dra nedåt för uppdatera</string>
+    <string name="toast_GettingMoreItems">Nedladdning av ytterligare poster har påbörjats. Vänligen vänta...</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
     <string name="current_version">Du använder Version %s</string>
@@ -258,6 +259,7 @@
     <string name="successfully_exported">Lyckad exportering till:</string>
     <string name="opml_export">OPML-export</string>
     <string name="parsing_opml">Läser OPML</string>
+    <string name="please_wait">Vänlig vänta...</string>
     <string name="interval_sync_title">Synkningsintervall</string>
 
     </resources>
