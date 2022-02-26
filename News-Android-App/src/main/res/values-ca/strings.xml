@@ -104,7 +104,7 @@
     <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Paràmetres</string>
-    <string name="cache_is_cleared">S\'ha netejat la memòria cau</string>
+    <string name="cache_is_cleared">S\'ha esborrat la memòria cau!</string>
 
 
     <!-- General settings -->
@@ -122,7 +122,7 @@
     <string name="pref_general_search_in_title">Títol</string>
     <string name="pref_general_search_in_body">Cos</string>
 
-    <string name="dialog_clearing_cache">S\'està netejant la memòria cau</string>
+    <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
     <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu suprimir la memòria cau igualment?</string>
     <string name="warning">Avís</string>
     <string name="pref_title_AutoSyncOnStart">Sincronitza durant l\'inici</string>
@@ -217,7 +217,7 @@
     <string name="login_dialog_text_security_warning">No esteu fent servir HTTPS, i no és gens recomanable. Un atacant podria interceptar el vostre trafic de dades i guanyar accés a les vostres dades més sensibles (p.ex. la vostra contrasenya).</string>
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
-    <string name="pref_title_clearCache">Neteja la memòria cau</string>
+    <string name="pref_title_clearCache">Esborra la memòria cau</string>
     <string name="pref_title_CacheImagesOffline">Comprimeix imatges fora de línia</string>
     <string name="pref_title_Max_Cache_Size">Memòria cau màxima</string>
 
