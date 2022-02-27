@@ -69,7 +69,7 @@
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
     <string name="error_download_failed">Ha fallat la descàrrega</string>
-    <string name="intent_title_share">Comparteix via</string>
+    <string name="intent_title_share">Comparteix mitjançant</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
