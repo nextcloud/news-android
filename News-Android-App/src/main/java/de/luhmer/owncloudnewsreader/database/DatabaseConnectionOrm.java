@@ -475,6 +475,19 @@ public class DatabaseConnectionOrm {
         return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
     }
 
+    /**
+     * Removes only the folder, without removing feeds inside the folder
+     */
+    public void removeFolderById(final long folderId) {
+        daoSession.getFolderDao().deleteByKey(folderId);
+    }
+
+    public void renameFolderById(long folderId, String newLabel) {
+        Folder folder = daoSession.getFolderDao().queryBuilder().where(FolderDao.Properties.Id.eq(folderId)).unique();
+        folder.setLabel(newLabel);
+        daoSession.getFolderDao().update(folder);
+    }
+
     /*
     public void markAllItemsAsReadForCurrentView()
     {

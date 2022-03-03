@@ -94,6 +94,13 @@
     <string name="feed_move_list_description">Select folder to move feed in</string>
     <string name="move_feed_root_folder">Root folder</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove Folder) -->
+    <string name="action_folder_remove">Remove Folder</string>
+    <string name="action_folder_rename">Rename Folder</string>
+    <string name="folder_remove_button">Remove</string>
+    <string name="folder_rename_button">Rename</string>
+    <string name="confirm_folder_remove">Do you really want to remove this Folder? This cannot be undone!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Receive unique notifications for this feed</string>
     <string name="notification_feed_default">All feeds with the default settings will appear in one notification</string>

@@ -57,6 +57,9 @@ public interface NewsAPI {
     @PUT("feeds/{feedId}/rename")
     Completable renameFeed(@Path("feedId") long feedId, @Body Map<String, String> paramMap);
 
+    @PUT("folders/{folderId}")
+    Completable renameFolder(@Path("folderId") long folderId, @Body Map<String, String> paramMap);
+
 
     @PUT("feeds/{feedId}/move")
     Completable moveFeed(@Path("feedId") long feedId, @Body Map<String,Long> folderIdMap);
@@ -64,6 +67,9 @@ public interface NewsAPI {
 
     @DELETE("feeds/{feedId}")
     Completable deleteFeed(@Path("feedId") long feedId);
+
+    @DELETE("folders/{folderId}")
+    Completable deleteFolder(@Path("folderId") long folderId);
 
 
     /** ITEMS **/
