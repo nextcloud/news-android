@@ -111,7 +111,7 @@ public class FolderOptionsDialogFragment extends DialogFragment {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         binding.renameFolderDialog.setVisibility(show ? View.GONE : View.VISIBLE);
-        binding.renameFolderDialog.setVisibility(show ? View.GONE : View.VISIBLE);
+        binding.removeFolderDialog.setVisibility(show ? View.GONE : View.VISIBLE);
 
         binding.progressView.setVisibility(show ? View.VISIBLE : View.GONE);
         binding.progressView.animate().setDuration(shortAnimTime).alpha(
