@@ -80,7 +80,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
 
         mMenuItems.put(getString(R.string.action_feed_move), () -> showMoveFeedView(mFeedId));
 
-        mMenuItems.put("Notification settings", () -> showNotificationSettingsView(mFeedId));
+        mMenuItems.put(getString(R.string.action_feed_notification_settings), () -> showNotificationSettingsView(mFeedId));
 
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FloatingDialog);
     }
