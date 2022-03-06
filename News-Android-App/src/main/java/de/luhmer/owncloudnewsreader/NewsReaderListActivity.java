@@ -597,6 +597,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 	@Override
+	public void onCreateFolderClicked() {
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		Fragment prev = getSupportFragmentManager().findFragmentByTag("add_folder_dialog");
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+
+		AddFolderDialogFragment fragment = AddFolderDialogFragment.newInstance();
+		fragment.setActivity(this);
+		fragment.show(ft, "add_folder_dialog");
+	}
+
+	@Override
 	public void onChildItemLongClicked(long idFeed) {
 		startDialogFragment(idFeed, false);
 	}

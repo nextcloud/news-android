@@ -38,7 +38,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -130,6 +129,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		void onChildItemLongClicked(long idFeed);
 		void onTopItemLongClicked(long idFeed, boolean isFolder);
 		void onUserInfoUpdated(OcsUser userInfo);
+		void onCreateFolderClicked();
 	}
 
 	/**
@@ -223,16 +223,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                     getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
                     return true;
                 case R.id.action_add_new_folder:
-                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                    Fragment prev = getParentFragmentManager().findFragmentByTag("add_folder_dialog");
-                    if (prev != null) {
-                        ft.remove(prev);
-                    }
-                    ft.addToBackStack(null);
-
-                    AddFolderDialogFragment fragment = AddFolderDialogFragment.newInstance();
-                    fragment.setActivity(getActivity());
-                    fragment.show(ft, "add_folder_dialog");
+                    mCallbacks.onCreateFolderClicked();
                     return true;
                 default:
                     return false;
