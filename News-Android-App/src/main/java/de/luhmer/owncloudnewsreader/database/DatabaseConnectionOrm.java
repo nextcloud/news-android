@@ -97,6 +97,10 @@ public class DatabaseConnectionOrm {
         });
     }
 
+    public void insertNewFolders(final Iterable<Folder> folder) {
+        daoSession.getFolderDao().insertInTx(folder);
+    }
+
     public void insertNewFeed (Iterable<Feed> feeds) {
         daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
@@ -141,6 +145,10 @@ public class DatabaseConnectionOrm {
 
     public Folder getFolderById(long folderId) {
         return daoSession.getFolderDao().queryBuilder().where(FolderDao.Properties.Id.eq(folderId)).unique();
+    }
+
+    public Folder getFolderByLabel(String label) {
+        return daoSession.getFolderDao().queryBuilder().where(FolderDao.Properties.Label.eq(label)).unique();
     }
 
     public Feed getFeedById(long feedId) {
