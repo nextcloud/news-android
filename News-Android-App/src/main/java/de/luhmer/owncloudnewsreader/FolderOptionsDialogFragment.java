@@ -216,7 +216,7 @@ public class FolderOptionsDialogFragment extends DialogFragment {
                             parentActivity.switchToAllUnreadItemsFolder();
                         }
                         parentActivity.getSlidingListFragment().reloadAdapter();
-                        parentActivity.updateCurrentRssView();
+                        parentActivity.startSync();
                         dismiss();
                     }, throwable -> {
                         Context context = getContext();

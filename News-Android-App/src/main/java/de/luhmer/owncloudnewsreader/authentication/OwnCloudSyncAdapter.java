@@ -16,6 +16,8 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.reactivestreams.Publisher;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -128,9 +130,21 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
                 }).subscribeOn(Schedulers.newThread());
 
         // First sync Feeds and Folders and rss item states (in parallel)
-        Observable<List<Folder>> folderObservable = mApi
+        Observable<ArrayList<Folder>> folderObservable = mApi
                 .getNewsAPI()
                 .folders()
+                .map(folders -> {
+                    // If the folders is more than one, returns the most new.
+                    HashMap<String, Folder> uniqueLabelFolders = new HashMap<>();
+                    for (Folder folder : folders) {
+                        String label = folder.getLabel();
+                        Folder uniqueFolder = uniqueLabelFolders.get(label);
+                        if (uniqueFolder == null || uniqueFolder.getId() < folder.getId()) {
+                            uniqueLabelFolders.put(label, folder);
+                        }
+                    }
+                    return new ArrayList<>(uniqueLabelFolders.values());
+                })
                 .subscribeOn(Schedulers.newThread());
 
         Observable<List<Feed>> feedsObservable = mApi
