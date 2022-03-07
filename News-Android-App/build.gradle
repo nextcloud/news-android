@@ -141,7 +141,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     //implementation 'de.mrmaffen:holocircularprogressbar:1.0.1'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
     implementation 'com.sothree.slidinguppanel:library:3.2.1'
