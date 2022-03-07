@@ -97,6 +97,10 @@ public class DatabaseConnectionOrm {
         });
     }
 
+    public void insertNewFolders(final Iterable<Folder> folder) {
+        daoSession.getFolderDao().insertInTx(folder);
+    }
+
     public void insertNewFeed (Iterable<Feed> feeds) {
         daoSession.getFeedDao().insertOrReplaceInTx(feeds);
     }
@@ -141,6 +145,10 @@ public class DatabaseConnectionOrm {
 
     public Folder getFolderById(long folderId) {
         return daoSession.getFolderDao().queryBuilder().where(FolderDao.Properties.Id.eq(folderId)).unique();
+    }
+
+    public Folder getFolderByLabel(String label) {
+        return daoSession.getFolderDao().queryBuilder().where(FolderDao.Properties.Label.eq(label)).unique();
     }
 
     public Feed getFeedById(long feedId) {
@@ -473,6 +481,19 @@ public class DatabaseConnectionOrm {
                 + " ORDER BY C." + CurrentRssItemViewDao.Properties.Id.columnName;
 
         return daoSession.getRssItemDao().queryRawCreate(where_clause).listLazy();
+    }
+
+    /**
+     * Removes only the folder, without removing feeds inside the folder
+     */
+    public void removeFolderById(final long folderId) {
+        daoSession.getFolderDao().deleteByKey(folderId);
+    }
+
+    public void renameFolderById(long folderId, String newLabel) {
+        Folder folder = daoSession.getFolderDao().queryBuilder().where(FolderDao.Properties.Id.eq(folderId)).unique();
+        folder.setLabel(newLabel);
+        daoSession.getFolderDao().update(folder);
     }
 
     /*

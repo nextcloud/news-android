@@ -3,6 +3,8 @@ package de.luhmer.owncloudnewsreader.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import de.luhmer.owncloudnewsreader.AddFolderDialogFragment;
+import de.luhmer.owncloudnewsreader.FolderOptionsDialogFragment;
 import de.luhmer.owncloudnewsreader.LoginDialogActivity;
 import de.luhmer.owncloudnewsreader.NewFeedActivity;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
@@ -39,6 +41,8 @@ public interface AppComponent {
     void injectFragment(SettingsFragment fragment);
     void injectFragment(NewsDetailFragment fragment);
     void injectFragment(NewsReaderDetailFragment fragment);
+    void injectFragment(FolderOptionsDialogFragment fragment);
+    void injectFragment(AddFolderDialogFragment fragment);
 
     void injectService(SyncItemStateService service);
     void injectService(OwnCloudSyncAdapter ownCloudSyncAdapter);

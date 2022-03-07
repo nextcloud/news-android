@@ -129,6 +129,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		void onChildItemLongClicked(long idFeed);
 		void onTopItemLongClicked(long idFeed, boolean isFolder);
 		void onUserInfoUpdated(OcsUser userInfo);
+		void onCreateFolderClicked();
 	}
 
 	/**
@@ -220,6 +221,9 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 case R.id.drawer_settings:
                     Intent intent = new Intent(getContext(), SettingsActivity.class);
                     getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
+                    return true;
+                case R.id.action_add_new_folder:
+                    mCallbacks.onCreateFolderClicked();
                     return true;
                 default:
                     return false;

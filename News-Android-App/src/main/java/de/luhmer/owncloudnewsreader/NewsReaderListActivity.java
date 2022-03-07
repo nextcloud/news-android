@@ -597,6 +597,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 	@Override
+	public void onCreateFolderClicked() {
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		Fragment prev = getSupportFragmentManager().findFragmentByTag("add_folder_dialog");
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+
+		AddFolderDialogFragment fragment = AddFolderDialogFragment.newInstance();
+		fragment.setActivity(this);
+		fragment.show(ft, "add_folder_dialog");
+	}
+
+	@Override
 	public void onChildItemLongClicked(long idFeed) {
 		startDialogFragment(idFeed, false);
 	}
@@ -619,6 +633,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			NewsReaderListDialogFragment fragment = NewsReaderListDialogFragment.newInstance(idFeed, titel, iconurl, feedurl);
 			fragment.setActivity(this);
 			fragment.show(ft, "news_reader_list_dialog");
+		} else {
+			String label = dbConn.getFolderById(idFeed).getLabel();
+
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+			Fragment prev = getSupportFragmentManager().findFragmentByTag("folder_options_dialog");
+			if (prev != null) {
+				ft.remove(prev);
+			}
+			ft.addToBackStack(null);
+
+			FolderOptionsDialogFragment fragment = FolderOptionsDialogFragment.newInstance(idFeed, label);
+			fragment.setActivity(this);
+			fragment.show(ft, "folder_options_dialog");
 		}
 	}
 

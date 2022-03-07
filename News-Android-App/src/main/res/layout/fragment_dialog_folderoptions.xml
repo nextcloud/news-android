@@ -20,41 +20,30 @@
         android:layout_marginBottom="4dp">
 
         <ImageView
-            android:id="@+id/ic_menu_feedicon"
+            android:id="@+id/ic_menu_foldericon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="6dp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_baseline_folder_24"/>
 
         <TextView
             android:id="@+id/tv_menu_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/ic_menu_feedicon"
+            android:layout_toEndOf="@+id/ic_menu_foldericon"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="NameOfFeed"/>
+            tools:text="NameOfFolder" />
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tv_menu_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_wrapper"
-        android:layout_marginTop="2dp"
-        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        tools:text="UrlOfFeed"/>
 
     <View
         android:id="@+id/horizontalDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/tv_menu_text"
+        android:layout_below="@+id/title_wrapper"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginTop="12dp"
@@ -70,7 +59,7 @@
     </ListView>
 
     <RelativeLayout
-        android:id="@+id/remove_feed_dialog"
+        android:id="@+id/remove_folder_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/horizontalDivider"
@@ -86,7 +75,7 @@
             android:layout_marginTop="13dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
-            android:text="@string/confirm_feed_remove"
+            android:text="@string/confirm_folder_remove"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -114,20 +103,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"
                 android:layout_weight="1"
-                android:text="@string/feed_remove_button" />
+                android:text="@string/folder_remove_button" />
         </LinearLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rename_feed_dialog"
+        android:id="@+id/rename_folder_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/horizontalDivider"
         android:visibility="gone">
 
         <EditText
-            android:id="@+id/renamefeed_feedname"
+            android:id="@+id/renamefolder_foldername"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="false"
@@ -146,7 +135,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/renamefeed_feedname"
+            android:layout_below="@+id/renamefolder_foldername"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:orientation="horizontal">
@@ -167,55 +156,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"
                 android:layout_weight="1"
-                android:text="@string/feed_rename_button" />
+                android:text="@string/folder_rename_button" />
 
         </LinearLayout>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/move_feed_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/horizontalDivider"
-        android:visibility="gone">
-
-        <ListView
-            android:id="@+id/folder_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/notification_feed_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/horizontalDivider"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <CheckBox
-            android:id="@+id/notification_setting_none"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@android:drawable/btn_radio"
-            android:text="@string/notification_feed_none" />
-
-        <CheckBox
-            android:id="@+id/notification_setting_default"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@android:drawable/btn_radio"
-            android:text="@string/notification_feed_default" />
-
-        <CheckBox
-            android:id="@+id/notification_setting_unique"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@android:drawable/btn_radio"
-            android:text="@string/notification_feed_unique" />
-
-    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/progressView"
