@@ -114,7 +114,7 @@ final DAGGER_VERSION = '2.33'
 final ESPRESSO_VERSION = '3.4.0'
 final OKHTTP_VERSION = '3.12.13'
 final MOCKITO_VERSION = '3.8.0'
-final RETROFIT_VERSION = '2.6.4'
+final RETROFIT_VERSION = '2.9.0'
 
 dependencies {
     // core android studio module
