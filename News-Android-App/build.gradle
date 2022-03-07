@@ -110,7 +110,7 @@ repositories {
     maven { url 'https://guardian.github.io/maven/repo-releases' } //needed for com.gu:option:1.3 in Android-DirectoryChooser
 }
 
-final DAGGER_VERSION = '2.33'
+final DAGGER_VERSION = '2.41'
 final ESPRESSO_VERSION = '3.4.0'
 final OKHTTP_VERSION = '3.12.13'
 final MOCKITO_VERSION = '3.8.0'
