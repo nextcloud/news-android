@@ -158,7 +158,7 @@ dependencies {
 
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     implementation 'org.jsoup:jsoup:1.13.1'
-    implementation ('net.rdrei.android.dirchooser:library:3.0@aar') {
+    implementation ('net.rdrei.android.dirchooser:library:3.2@aar') {
         exclude group: 'com.google.auto.value', module: 'auto-value'
         transitive = true
     }
