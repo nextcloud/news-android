@@ -59,7 +59,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -111,7 +110,7 @@ public class NewsReaderDetailFragment extends Fragment {
     private int previousFirstVisibleItem = -1;
 
     private Long idFolder;
-    private String titel;
+    private String title;
     private int onResumeCount = 0;
     private RecyclerView.OnItemTouchListener itemTouchListener;
 
@@ -179,8 +178,13 @@ public class NewsReaderDetailFragment extends Fragment {
     /**
      * @return the titel
      */
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
+    }
+
+    protected void setTitle(String title) {
+        this.title = title;
+        requireNonNull(mActivity.getSupportActionBar()).setTitle(title);
     }
 
     protected void setData(Long idFeed, Long idFolder, String title, boolean updateListView) {
@@ -188,8 +192,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         this.idFeed = idFeed;
         this.idFolder = idFolder;
-        this.titel = title;
-        requireNonNull(mActivity.getSupportActionBar()).setTitle(title);
+        setTitle(title);
 
         if (updateListView) {
             updateCurrentRssView();
