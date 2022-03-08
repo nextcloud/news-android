@@ -30,7 +30,7 @@
 
     <!-- Action Bar Items -->
     <string name="action_starred">Oznaczone</string>
-    <string name="action_read">Odczyt</string>
+    <string name="action_read">Przeczytane</string>
     <string name="action_playPodacst">Odtwórz Podcast</string>
     <string name="action_openInBrowser">Otwórz w przeglądarce </string>
     <string name="action_Share">Udostępnij</string>
