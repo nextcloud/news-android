@@ -39,6 +39,7 @@
     <string name="action_settings">Ustawienia</string>
     <string name="action_sync_settings">Ustawienia synchronizacji</string>
     <string name="action_add_new_feed">Dodaj nowy kanał</string>
+    <string name="action_add_new_folder">Dodaj nowy katalog</string>
     <string name="action_textToSpeech">Przeczytane</string>
     <string name="action_search">Szukaj</string>
     <string name="action_download_articles_offline">Pobierz artykuły offline</string>
@@ -85,16 +86,24 @@
     <string name="action_feed_remove">Usuń kanał</string>
     <string name="action_feed_rename">Zmień nazwę kanału</string>
     <string name="action_feed_move">Przenieś kanał</string>
+    <string name="action_feed_notification_settings">Ustawienia powiadomień</string>
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
     <string name="feed_move_list_description">Wybierz katalog, aby przenieść dane</string>
     <string name="move_feed_root_folder">Główny katalog</string>
 
+    <string name="folder_remove_button">Usuń</string>
+    <string name="folder_rename_button">Zmień nazwę</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Otrzymuj unikalne powiadomienia dla tego kanału</string>
     <string name="notification_feed_default">Wszystkie kanały z ustawieniami domyślnymi pojawią się w jednym powiadomieniu</string>
     <string name="notification_feed_none">Brak powiadomień</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Dodaj</string>
+    <string name="hint_folder_name">Nazwa katalogu</string>
+    <string name="folder_already_exists">Katalog już istnieje</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Ręczne logowanie</string>

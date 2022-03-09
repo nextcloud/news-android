@@ -39,6 +39,7 @@
     <string name="action_settings">Параметры</string>
     <string name="action_sync_settings">Настройки синхронизации</string>
     <string name="action_add_new_feed">Добавить новую ленту</string>
+    <string name="action_add_new_folder">Добавить новую папку</string>
     <string name="action_textToSpeech">Зачитать вслух</string>
     <string name="action_search">Искать</string>
     <string name="action_download_articles_offline">Сохранить статьи для автономного доступа</string>
@@ -85,16 +86,24 @@
     <string name="action_feed_remove">Удалить Новостную ленту</string>
     <string name="action_feed_rename">Переименовать Новостную ленту</string>
     <string name="action_feed_move">Перенести Новостную ленту</string>
+    <string name="action_feed_notification_settings">Настройки уведомлений</string>
     <string name="feed_remove_button">Удалить</string>
     <string name="feed_rename_button">Переименовать</string>
     <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
     <string name="feed_move_list_description">Выберите папку для перемещения Новостной ленты</string>
     <string name="move_feed_root_folder">Корневой каталог</string>
 
+    <string name="folder_remove_button">Удалить</string>
+    <string name="folder_rename_button">Переименовать</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Получить индивидуальные уведомления для этой ленты</string>
     <string name="notification_feed_default">Все каналы с настройками по умолчанию будут отображаться в одном уведомлении</string>
     <string name="notification_feed_none">Отсутствуют все уведомления</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Добавить</string>
+    <string name="hint_folder_name">Имя папки</string>
+    <string name="folder_already_exists">Папка уже существует</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Стандартный вход</string>

@@ -37,6 +37,7 @@
     <string name="action_settings">Ayarlar</string>
     <string name="action_sync_settings">Eşitleme ayarları</string>
     <string name="action_add_new_feed">Yeni akış ekle</string>
+    <string name="action_add_new_folder">Yeni klasör ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
     <string name="action_search">Arama</string>
     <string name="action_download_articles_offline">Makaleleri çevrimdış olarak indir</string>
@@ -79,16 +80,24 @@
     <string name="action_feed_remove">Akışı sil</string>
     <string name="action_feed_rename">Akışı yeniden adlandır</string>
     <string name="action_feed_move">Akışı taşı</string>
+    <string name="action_feed_notification_settings">Bildirim ayarları</string>
     <string name="feed_remove_button">Sil</string>
     <string name="feed_rename_button">Yeniden adlandır</string>
     <string name="confirm_feed_remove">Bu akışı gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
     <string name="feed_move_list_description">Akışın içine taşınacağı klasörü seçin</string>
     <string name="move_feed_root_folder">Kök klasör</string>
 
+    <string name="folder_remove_button">Kaldır</string>
+    <string name="folder_rename_button">Yeniden adlandır</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Bu akışın benzersiz bildirimlerini al</string>
     <string name="notification_feed_default">Varsayılan ayarlardaki tüm bildirimler bir bildirim olarak görüntülenecek</string>
     <string name="notification_feed_none">Henüz bir bildirim yok</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Ekle</string>
+    <string name="hint_folder_name">Klasör adı</string>
+    <string name="folder_already_exists">Klasör zaten var</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">El ile oturum açma</string>

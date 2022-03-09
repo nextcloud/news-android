@@ -37,6 +37,7 @@
     <string name="action_settings">Ezarpenak</string>
     <string name="action_sync_settings">Sinkronizazio ezarpenak</string>
     <string name="action_add_new_feed">Gehitu jario berria</string>
+    <string name="action_add_new_folder">Gehitu karpeta berria</string>
     <string name="action_textToSpeech">Irakurri ozenki</string>
     <string name="action_search">Bilatu</string>
     <string name="action_download_articles_offline">Deskargatu artikuluak lineaz kanpo</string>
@@ -79,16 +80,24 @@
     <string name="action_feed_remove">Ezabatu jarioa</string>
     <string name="action_feed_rename">Aldatu izena jarioari</string>
     <string name="action_feed_move">Lekuz aldatu jarioa</string>
+    <string name="action_feed_notification_settings">Jakinarazpen-ezarpenak</string>
     <string name="feed_remove_button">Ezabatu</string>
     <string name="feed_rename_button">Berrizendatu</string>
     <string name="confirm_feed_remove">Ziur zaude jario hau ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
     <string name="feed_move_list_description">Hautatu jarioa ze karpetatara eraman nahi duzun</string>
     <string name="move_feed_root_folder">Erro karpeta</string>
 
+    <string name="folder_remove_button">Kendu</string>
+    <string name="folder_rename_button">Berrizendatu</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Jaso jakinarazpen esklusiboak jario honentzat</string>
     <string name="notification_feed_default">Ezarpen lehenetsiak dituzten jario guztiak jakinarazpen batean agertuko dira</string>
     <string name="notification_feed_none">Ez dago jakinarazpenik</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Gehitu</string>
+    <string name="hint_folder_name">Karpetaren izena</string>
+    <string name="folder_already_exists">Karpeta hori badago dagoeneko</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Eskuzko saio hasiera</string>

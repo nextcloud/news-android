@@ -37,6 +37,7 @@
     <string name="action_settings">Einstellungen</string>
     <string name="action_sync_settings">Einstellungen zur Synchronisierung</string>
     <string name="action_add_new_feed">Einen neuen Feed hinzufügen</string>
+    <string name="action_add_new_folder">Neuen Ordner hinzufügen</string>
     <string name="action_textToSpeech">Vorlesen</string>
     <string name="action_search">Suchen</string>
     <string name="action_download_articles_offline">Artikel zum Offline-Lesen herunterladen</string>
@@ -79,16 +80,24 @@
     <string name="action_feed_remove">Feed entfernen</string>
     <string name="action_feed_rename">Feed umbenennen</string>
     <string name="action_feed_move">Feed verschieben</string>
+    <string name="action_feed_notification_settings">Benachrichtigungseinstellungen</string>
     <string name="feed_remove_button">Entfernen</string>
     <string name="feed_rename_button">Umbenennen</string>
     <string name="confirm_feed_remove">Möchten Sie wirklich dieses Feed löschen? Die Aktion kann nicht rückgängig gemacht werden!</string>
     <string name="feed_move_list_description">Den Zielordner für den Feed auswählen</string>
     <string name="move_feed_root_folder">Quellordner</string>
 
+    <string name="folder_remove_button">Entfernen</string>
+    <string name="folder_rename_button">Umbenennen</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Spezielle Benachrichtigungen für diesen Feed erhalten</string>
     <string name="notification_feed_default">Alle Feeds mit den Standardeinstellungen werden in einer Benachrichtigung angezeigt</string>
     <string name="notification_feed_none">Überhaupt keine Benachrichtigungen</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Hinzufügen</string>
+    <string name="hint_folder_name">Ordnername</string>
+    <string name="folder_already_exists">Der Ordner existiert bereits</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Manuelle Anmeldung</string>
