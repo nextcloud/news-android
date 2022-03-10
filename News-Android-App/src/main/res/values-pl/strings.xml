@@ -93,8 +93,13 @@
     <string name="feed_move_list_description">Wybierz katalog, aby przenieść dane</string>
     <string name="move_feed_root_folder">Główny katalog</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Usuń katalog</string>
+    <string name="action_folder_rename">Zmień nazwę katalogu</string>
     <string name="folder_remove_button">Usuń</string>
     <string name="folder_rename_button">Zmień nazwę</string>
+    <string name="confirm_folder_remove">Czy na pewno chcesz usunąć ten katalog? Tego nie można cofnąć!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Otrzymuj unikalne powiadomienia dla tego kanału</string>
     <string name="notification_feed_default">Wszystkie kanały z ustawieniami domyślnymi pojawią się w jednym powiadomieniu</string>

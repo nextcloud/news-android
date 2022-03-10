@@ -39,6 +39,7 @@
     <string name="action_settings">Nastavení</string>
     <string name="action_sync_settings">Nastavení synchronizace</string>
     <string name="action_add_new_feed">Přidat nový kanál</string>
+    <string name="action_add_new_folder">Přidat novou složku</string>
     <string name="action_textToSpeech">Přečíst</string>
     <string name="action_search">Hledat</string>
     <string name="action_download_articles_offline">Stáhnout články pro čtení bez připojení</string>
@@ -85,16 +86,29 @@
     <string name="action_feed_remove">Odstranit kanál</string>
     <string name="action_feed_rename">Přejmenovat kanál</string>
     <string name="action_feed_move">Přesunout kanál</string>
+    <string name="action_feed_notification_settings">Nastavení upozorňování</string>
     <string name="feed_remove_button">Odstranit</string>
     <string name="feed_rename_button">Přejmenovat</string>
     <string name="confirm_feed_remove">Opravdu chcete odstranit tento kanál? Toto nelze vrátit zpět!</string>
     <string name="feed_move_list_description">Vyberte složku do které zdroj přesunout</string>
     <string name="move_feed_root_folder">Kořenová složka</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Odebrat složku</string>
+    <string name="action_folder_rename">Přejmenovat složku</string>
+    <string name="folder_remove_button">Odebrat</string>
+    <string name="folder_rename_button">Přejmenovat</string>
+    <string name="confirm_folder_remove">Opravdu chcete odstranit tuto složku? Toto nelze vrátit zpět!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Pro tento kanál dostávat samostatná upozornění</string>
     <string name="notification_feed_default">Všechny kanály, které mají výchozí nastavení, se objeví v jednom upozornění</string>
     <string name="notification_feed_none">Vůbec žádná upozornění</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Přidat</string>
+    <string name="hint_folder_name">Název složky</string>
+    <string name="folder_already_exists">Složka už existuje</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Ruční přihlášení</string>
