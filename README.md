@@ -88,3 +88,4 @@ That's all. I hope it works for you! If something is not working, please send me
 * [AnotherDaniel](https://github.com/AnotherDaniel)
 * [Unpublished](https://github.com/Unpublished)
 * [emasty](https://github.com/emasty)
+* [Yaroslav Pronin](https://github.com/proninyaroslav)
