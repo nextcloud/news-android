@@ -856,4 +856,8 @@ public class DatabaseConnectionOrm {
         }
         return sb.toString();
     }
+
+    public void clearSessionCache() {
+        daoSession.clear();
+    }
 }
