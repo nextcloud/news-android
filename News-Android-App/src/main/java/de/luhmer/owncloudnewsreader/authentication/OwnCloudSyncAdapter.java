@@ -164,6 +164,11 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         try {
             NextcloudSyncResult syncResult = combined.blockingFirst();
 
+            // Delete cached entities to keep entity relationships up to date for observers and readers,
+            // for example, relationship of RSS items with feeds that have changed (name changed, etc).
+            // The presence of old data in the cache can affect the obtaining of up-to-date information.
+            dbConn.clearSessionCache();
+
             InsertIntoDatabase.InsertFoldersIntoDatabase(syncResult.folders, dbConn);
             InsertIntoDatabase.InsertFeedsIntoDatabase(syncResult.feeds, dbConn);
             Log.v(TAG, "State sync successful: " + syncResult.stateSyncSuccessful);
