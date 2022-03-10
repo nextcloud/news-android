@@ -101,6 +101,7 @@ import de.luhmer.owncloudnewsreader.adapter.RssItemViewHolder;
 import de.luhmer.owncloudnewsreader.authentication.AccountGeneral;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
+import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
@@ -487,6 +488,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		newsReaderListFragment.reloadAdapter();
 		UpdateItemList();
 		updatePodcastView();
+		updateDetailFragmentTitle();
 
 		if(mApi.getNewsAPI() != null) {
             getSlidingListFragment().startAsyncTaskGetUserInfo();
@@ -681,6 +683,42 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         fragment.setData(feedId, folderId, title, updateListView);
         return fragment;
     }
+
+	private void updateDetailFragmentTitle() {
+		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
+		Long id = fragment.getIdFeed() == null ? fragment.getIdFolder() : fragment.getIdFeed();
+		if (id == null) {
+			return;
+		}
+
+		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
+
+		String title = null;
+		boolean isFolder = fragment.getIdFolder() == null;
+
+		if (isFolder) {
+			int idFolder = id.intValue();
+			if (idFolder >= 0) {
+				Folder folder = dbConn.getFolderById(id);
+				if (folder == null) {
+					return;
+				}
+				title = folder.getLabel();
+			} else if (idFolder == -10) {
+				title = getString(R.string.allUnreadFeeds);
+			} else if (idFolder == -11) {
+				title = getString(R.string.starredFeeds);
+			}
+		} else {
+			Feed feed = dbConn.getFeedById(id);
+			if (feed == null) {
+				return;
+			}
+			title = feed.getFeedTitle();
+		}
+
+		fragment.setTitle(title);
+	}
 
 
     public void UpdateItemList() {
@@ -1090,7 +1128,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
 
 			intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
-			intentNewsDetailAct.putExtra(NewsReaderListActivity.TITLE, getNewsReaderDetailFragment().getTitel());
+			intentNewsDetailAct.putExtra(NewsReaderListActivity.TITLE, getNewsReaderDetailFragment().getTitle());
 			startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
 		}
 	}
