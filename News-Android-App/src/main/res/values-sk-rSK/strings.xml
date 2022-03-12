@@ -93,8 +93,13 @@
     <string name="feed_move_list_description">Vyberte priečinok, do ktorého chcete presunúť informačný kanál</string>
     <string name="move_feed_root_folder">Koreňový priečinok</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Odobrať Priečinok</string>
+    <string name="action_folder_rename">Premenovať priečinok</string>
     <string name="folder_remove_button">Odobrať</string>
     <string name="folder_rename_button">Premenovať</string>
+    <string name="confirm_folder_remove">Naozaj chcete odstrániť tento priečinok? Nie je to možné vrátiť späť!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Dostávajte jedinečné upozornenia na tento informačný kanál</string>
     <string name="notification_feed_default">Všetky kanály s predvolenými nastaveniami sa zobrazia v jednom upozornení</string>
