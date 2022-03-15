@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Hautatu jarioa ze karpetatara eraman nahi duzun</string>
     <string name="move_feed_root_folder">Erro karpeta</string>
 
+    <string name="action_folder_rename">Berrizendatu karpeta</string>
     <string name="folder_remove_button">Kendu</string>
     <string name="folder_rename_button">Berrizendatu</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
