@@ -66,6 +66,7 @@
     <string name="action_link_share">Delen link</string>
     <string name="action_link_open">Openen link in browser</string>
     <string name="action_link_copy">Kopiëren link </string>
+    <string name="toast_img_download_wait">Downloaden... even geduld ...</string>
     <string name="toast_img_saved">Afbeelding opgeslagen</string>
     <string name="toast_img_notwriteable">Opslaan afbeelding mislukt</string>
     <string name="toast_copied_to_clipboard">Gekopieerd naar het klembord</string>
@@ -97,6 +98,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inloggen</string>
+    <string name="login_progress_signing_in">Inloggen...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dit veld is verplicht</string>
     <string name="error_invalid_url">Onjuiste URL</string>
@@ -108,6 +110,12 @@
         <item quantity="other">Downloaden %d oude berichten</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Geen berichten meer beschikbaar</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Tot nu %d onderwerp opgehaald</item>
+        <item quantity="other">Tot nu %d onderwerpen opgehaald</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Instellingen</string>
     <string name="cache_is_cleared">Cache is leeggemaakt!</string>
@@ -129,6 +137,7 @@
     <string name="pref_general_search_in_body">Body</string>
 
     <string name="dialog_clearing_cache">Leegmaken cache</string>
+    <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
     <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wil je de cache toch resetten?</string>
     <string name="warning">Waarschuwing</string>
     <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
