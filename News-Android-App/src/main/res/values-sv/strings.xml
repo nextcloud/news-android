@@ -37,6 +37,7 @@
     <string name="action_settings">Inställningar</string>
     <string name="action_sync_settings">Synkroniseringsinställningar</string>
     <string name="action_add_new_feed">Lägg till flöde</string>
+    <string name="action_add_new_folder">Lägg till ny mapp</string>
     <string name="action_textToSpeech">Läs upp</string>
     <string name="action_search">Sök</string>
     <string name="action_download_articles_offline">Hämta artiklar frånkopplad</string>
@@ -79,16 +80,29 @@
     <string name="action_feed_remove">Ta bort Feed</string>
     <string name="action_feed_rename">Döp om Feed</string>
     <string name="action_feed_move">Flytta flöde</string>
+    <string name="action_feed_notification_settings">Aviseringsinställningar</string>
     <string name="feed_remove_button">Ta bort</string>
     <string name="feed_rename_button">Byt namn</string>
     <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
     <string name="feed_move_list_description">Välj mapp för att flytta flöde till</string>
     <string name="move_feed_root_folder">Topp-mapp</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Ta bort mapp</string>
+    <string name="action_folder_rename">Döp om mapp</string>
+    <string name="folder_remove_button">Ta bort</string>
+    <string name="folder_rename_button">Döp om</string>
+    <string name="confirm_folder_remove">Är du säker på att ta bort den här mappen? Åtgärden kan inte att ångras!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Ta emot aviseringar från det här flödet</string>
     <string name="notification_feed_default">Alla flöden med standardval kommer att synas i en gemensam avisering</string>
     <string name="notification_feed_none">Inga aviseringar alls</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Lägg till</string>
+    <string name="hint_folder_name">Mappnamn</string>
+    <string name="folder_already_exists">Mappen finns redan</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Manuell inloggning</string>
