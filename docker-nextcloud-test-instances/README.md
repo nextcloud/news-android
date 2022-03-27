@@ -14,3 +14,9 @@ Start image with:
 5. Setup News App
 6. Add Nextcloud Account to your phone (in the nextcloud files app)
 7. Use SSO in Nextcloud News App to access test instance
+
+
+# Debug requests
+
+curl -u admin http://localhost/index.php/apps/news/api/v1-2/items
+curl -u admin http://localhost/index.php/apps/news/api/v1-2/items/updated?lastModified=1636295405&type=3&id=0 | jq '. | length'

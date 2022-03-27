@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import android.os.Handler;
-import android.os.RemoteException;
 import android.os.ResultReceiver;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -44,6 +43,7 @@ import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
 import de.luhmer.owncloudnewsreader.databinding.FragmentPodcastBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.CollapsePodcastView;
+import de.luhmer.owncloudnewsreader.events.podcast.ExitPlayback;
 import de.luhmer.owncloudnewsreader.events.podcast.ExpandPodcastView;
 import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
@@ -229,6 +229,8 @@ public class PodcastFragment extends Fragment {
         binding.btnPreviousPodcastSlider.setOnClickListener((v) -> windBack());
         binding.btnPodcastSpeed.setOnClickListener((v) -> openSpeedMenu());
 
+        binding.btnExitPodcast.setOnClickListener((v) -> eventBus.post(new ExitPlayback()));
+
         //View view = inflater.inflate(R.layout.fragment_podcast, container, false);
 
         if(getActivity() instanceof PodcastFragmentActivity) {
@@ -301,15 +303,16 @@ public class PodcastFragment extends Fragment {
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             Log.v(TAG, "onStartTrackingTouch");
-            before = seekBar.getProgress();
             blockSeekbarUpdate = true;
         }
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
-            Log.v(TAG, "onStopTrackingTouch");
-            int diffInSeconds = seekBar.getProgress() - before;
-            eventBus.post(new WindPodcast(diffInSeconds));
+            int after = seekBar.getProgress();
+            long ms = Math.round((after / 100d) * maxPositionInMillis);
+            Log.v(TAG, "onStopTrackingTouch - after (%): " + after + " - ms: " + ms);
+
+            eventBus.post(new WindPodcast(ms));
             blockSeekbarUpdate = false;
         }
     };

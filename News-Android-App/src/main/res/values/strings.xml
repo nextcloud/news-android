@@ -212,6 +212,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No podcast selected</string>
     <string name="no_chapters_available">No chapters available</string>
+    <string name="exit_playback">Exit Player</string>
     <string name="podcast_playback_speed_dialog_title">Playback Speed</string>
     <string name="notification_downloading_podcast_title">Downloading podcast</string>
 

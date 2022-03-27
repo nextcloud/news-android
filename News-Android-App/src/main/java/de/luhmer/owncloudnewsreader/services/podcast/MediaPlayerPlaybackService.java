@@ -101,7 +101,8 @@ public class MediaPlayerPlaybackService extends PlaybackService {
 
     @Override
     public void seekTo(int position) {
-        //double totalDuration = mMediaPlayer.getDuration();
+        double totalDuration = mMediaPlayer.getDuration();
+        Log.d(TAG, "seekTo position: " + position + " totalDuration: " + totalDuration);
         //int position = (int) ((totalDuration / 100d) * percent);
         mMediaPlayer.seekTo(position);
     }

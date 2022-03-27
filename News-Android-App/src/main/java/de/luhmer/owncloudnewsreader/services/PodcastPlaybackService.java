@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -36,15 +37,18 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.events.podcast.ExitPlayback;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
@@ -134,6 +138,9 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         return mPlaybackService != null;
     }
 
+    static final AtomicLong NEXT_ID = new AtomicLong(0);
+    final long id = NEXT_ID.getAndIncrement();
+
     @Nullable
     @Override
     public BrowserRoot onGetRoot(@NonNull String s, int i, @Nullable Bundle bundle) {
@@ -203,23 +210,14 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d(TAG, "onUnbind() called with: intent = [" + intent + "]");
-        if (!isActive()) {
-            Log.v(TAG, "Stopping PodcastPlaybackService because of inactivity");
-            stopSelf();
-
-            if (mSession != null) {
-                mSession.release();
-            }
-        }
+        Log.d(TAG, "onUnbind() called with: intent = [" + intent + "] - ID: " + id);
         return super.onUnbind(intent);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.v(TAG, "onCreate PodcastPlaybackService");
-
+        Log.v(TAG, "onCreate PodcastPlaybackService - ID: " + id);
 
         // pause podcast when phone is ringing
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
@@ -261,7 +259,18 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     @Override
     public void onDestroy() {
-        Log.v(TAG, "onDestroy PodcastPlaybackService");
+        Log.v(TAG, "onDestroy PodcastPlaybackService - ID: " + id);
+
+        if (!isActive()) {
+            Log.v(TAG, "Stopping PodcastPlaybackService/PlaybackService because of inactivity");
+            stopSelf();
+
+            if (mSession != null) {
+                mSession.release();
+            }
+        } else {
+            Log.v(TAG, "Stopping PlaybackService is not active - skip exit");
+        }
 
         try {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
@@ -398,6 +407,10 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         abandonAudioFocus();
     }
 
+    @Subscribe
+    public void onEvent(ExitPlayback event) {
+        this.endCurrentMediaPlayback();
+    }
 
     @Subscribe
     public void onEvent(TogglePlayerStateEvent event) {

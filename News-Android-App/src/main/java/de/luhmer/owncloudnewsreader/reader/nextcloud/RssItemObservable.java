@@ -102,7 +102,7 @@ public class RssItemObservable implements Publisher<Integer> {
     }
 
     public static boolean performDatabaseBatchInsert(DatabaseConnectionOrm dbConn, List<RssItem> buffer) {
-        Log.v(TAG, "performDatabaseBatchInsert() called with: dbConn = [" + dbConn + "], buffer = [" + buffer + "]");
+        Log.v(TAG, "performDatabaseBatchInsert() called with [" + buffer.size() + " rss items]");
         dbConn.insertNewItems(buffer);
         buffer.clear();
         return true;
@@ -183,6 +183,8 @@ public class RssItemObservable implements Publisher<Integer> {
                         @Override
                         public void onNext(@NonNull RssItem rssItem) {
                             long rssLastModified = rssItem.getLastModified().getTime();
+                            // Log.v(TAG, "onNext() rssItem: " + rssItem.getTitle() + " - " + rssItem.getLastModified());
+
                             // If updated item is unread and last modification was different from last sync time
                             if (!rssItem.getRead() && rssLastModified != lastModified) {
                                 totalUpdatedUnreadItemCount++;
@@ -190,6 +192,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
                             buffer.add(rssItem);
                             if (buffer.size() >= bufferSize) {
+                                Log.v(TAG, "onNext() buffer size exceeded - insert items: " + buffer.size());
                                 performDatabaseBatchInsert(mDbConn, buffer);
                             }
                         }
@@ -201,7 +204,7 @@ public class RssItemObservable implements Publisher<Integer> {
 
                         @Override
                         public void onComplete() {
-                            Log.v(TAG, "onComplete() called");
+                            Log.v(TAG, "onComplete() called - items: " + buffer.size());
                             performDatabaseBatchInsert(mDbConn, buffer);
 
                             //If no exception occurs, set the number of updated items

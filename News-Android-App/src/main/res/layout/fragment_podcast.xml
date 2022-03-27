@@ -205,6 +205,18 @@
             android:textSize="18sp"
             android:textColor="@color/divider_row_color"/>
 
+        <Button
+            android:id="@+id/btn_exit_podcast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/exit_playback"
+            android:textSize="18sp"
+            android:textColor="@color/primaryTextColor"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="16dp"
+            android:layout_alignBottom="@id/tv_no_podcasts_available" />
+
         <!--
         <it.gmariotti.cardslib.library.view.CardGridView
             android:layout_width="match_parent"
@@ -257,7 +269,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primaryTextColor"
-                tools:text="00:00"
+                tools:text="000:00"
+                android:minWidth="50dp"
                 android:layout_gravity="center_vertical" />
 
 
@@ -295,7 +308,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primaryTextColor"
-                tools:text="00:00"
+                android:gravity="right"
+                tools:text="000:00"
+                android:minWidth="50dp"
                 android:layout_gravity="center_vertical" />
 
         </LinearLayout>

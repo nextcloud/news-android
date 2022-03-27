@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.util.Log;
 import android.util.TypedValue;
@@ -34,6 +35,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.events.podcast.CollapsePodcastView;
+import de.luhmer.owncloudnewsreader.events.podcast.ExitPlayback;
 import de.luhmer.owncloudnewsreader.events.podcast.ExpandPodcastView;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
@@ -205,17 +207,10 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
         if(mPodcastFragment == null) {
             mPodcastFragment = PodcastFragment.newInstance();
         }
-        /*
-        if(mPodcastFragment != null) {
-            getSupportFragmentManager().beginTransaction().remove(mPodcastFragment).commitAllowingStateLoss();
-        }
-        */
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.podcast_frame, mPodcastFragment)
                 .commitAllowingStateLoss();
-
-        collapsePodcastView();
+        // collapsePodcastView();
     }
 
 
@@ -231,6 +226,12 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
         expandPodcastView();
     }
 
+    @Subscribe
+    public void onEvent(ExitPlayback event) {
+        Log.v(TAG, "onEvent(ExitPlayback) called with: event = [" + event + "]");
+        collapsePodcastView();
+        getPodcastSlidingUpPanelLayout().setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+    }
 
     private void collapsePodcastView() {
         getPodcastSlidingUpPanelLayout().setPanelHeight(0);
