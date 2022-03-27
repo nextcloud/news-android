@@ -1,3 +1,12 @@
+0.9.9.72 (Beta)
+---------------------
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1066">!1066 Support for Folder Management (Rename, Remove, Create) (thanks @proninyaroslav)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1075">#1075 Feed name update not updating in RSS items (thanks @proninyaroslav)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1064">#1064 Add button to exit audio/podcast player once it's open</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1048">#1048 Fix broken podcast time scrolling</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1053">#1053 Podcast player disappears after rotating device</a>
+
+
 0.9.9.71 (Beta)
 ---------------------
 - Added - <a href="https://github.com/nextcloud/news-android/issues/1060">#1060 Always show incognito mode icon if incognito mode is enabled</a>

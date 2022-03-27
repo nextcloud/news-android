@@ -1,0 +1,5 @@
+Added - !1066 Support for Folder Management (Rename, Remove, Create) (thanks @proninyaroslav)
+Fixed - #1075 Feed name update not updating in RSS items (thanks @proninyaroslav)
+Fixed - #1064 Add button to exit audio/podcast player once it's open
+Fixed - #1048 Fix broken podcast time scrolling
+Fixed - #1053 Podcast player disappears after rotating device
