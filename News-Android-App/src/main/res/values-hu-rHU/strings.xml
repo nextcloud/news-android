@@ -37,6 +37,7 @@
     <string name="action_settings">Beállítások</string>
     <string name="action_sync_settings">Szinkronizáálási beállítások</string>
     <string name="action_add_new_feed">Új hírcsatorna hozzáadása</string>
+    <string name="action_add_new_folder">Új mappa hozzáadása</string>
     <string name="action_textToSpeech">Kiolvasás</string>
     <string name="action_search">Keresés</string>
     <string name="action_download_articles_offline">Cikkek letöltése offline használatra</string>
@@ -79,16 +80,29 @@
     <string name="action_feed_remove">Hírfolyam eltávolítása</string>
     <string name="action_feed_rename">Hírfolyam átnevezése</string>
     <string name="action_feed_move">Hírcsatorna áthelyezése</string>
+    <string name="action_feed_notification_settings">Értesítési beállítások</string>
     <string name="feed_remove_button">Eltávolítás</string>
     <string name="feed_rename_button">Átnevezés</string>
     <string name="confirm_feed_remove">Biztos, hogy eltávolítja ezt a hírcsatornát? Ez nem vonható vissza!</string>
     <string name="feed_move_list_description">Válassza ki a mappát, amelybe áthelyezi a hírcsatornát</string>
     <string name="move_feed_root_folder">Gyökérmappa</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Mappa eltávolítása</string>
+    <string name="action_folder_rename">Mappa átnevezése</string>
+    <string name="folder_remove_button">Eltávolít</string>
+    <string name="folder_rename_button">Átnevez</string>
+    <string name="confirm_folder_remove">Biztos, hogy eltávolítja ezt a mappát? Ez nem vonható vissza!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Egyedi értesítések fogadása erről a hírcsatornáról</string>
     <string name="notification_feed_default">Az alapértelmezett beállításokat használó összes hírcsatorna egy értesítésben fog megjelenni</string>
     <string name="notification_feed_none">Egyáltalán nincsenek értesítések</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Hozzáad</string>
+    <string name="hint_folder_name">Mappanév</string>
+    <string name="folder_already_exists">A mappa már létezik</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Kézi bejelentkezés</string>

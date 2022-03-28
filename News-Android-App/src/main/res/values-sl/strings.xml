@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Časovni razmik usklajevanj</string>
     <string name="empty_view_content">Ni novic</string>
     <string name="empty_view_content_action">Povlecite navzdol za osvežitev</string>
+    <string name="toast_GettingMoreItems">Začeto je prejemanje več prispevkov ...</string>
     <string name="no_wifi_available">Ni vzpostavljene povezave Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Ali želite prejeti slike, čeprav ni vzpostavljene povezave Wi-Fi?</string>
     <string name="current_version">V uporabi je različica %s</string>
@@ -38,6 +39,7 @@
     <string name="action_settings">Nastavitve</string>
     <string name="action_sync_settings">Nastavitve usklajevanja</string>
     <string name="action_add_new_feed">Dodaj nov vir</string>
+    <string name="action_add_new_folder">Dodaj novo mapo</string>
     <string name="action_textToSpeech">Preberi</string>
     <string name="action_search">Poišči</string>
     <string name="action_download_articles_offline">Prejmi prispevke</string>
@@ -72,6 +74,7 @@
     <string name="action_link_share">Objavi povezavo</string>
     <string name="action_link_open">Odpri povezavo v brskalniku</string>
     <string name="action_link_copy">Kopiraj povezavo</string>
+    <string name="toast_img_download_wait">Poteka prejemanje. Počakajte …</string>
     <string name="toast_img_saved">Slika je shranjena.</string>
     <string name="toast_img_notwriteable">Zapisovanje slike je spodletelo.</string>
     <string name="toast_copied_to_clipboard">Kopirano v odložišče</string>
@@ -83,16 +86,29 @@
     <string name="action_feed_remove">Odstrani vir</string>
     <string name="action_feed_rename">Preimenuj vir</string>
     <string name="action_feed_move">Premakni vir</string>
+    <string name="action_feed_notification_settings">Nastavitve obveščanja</string>
     <string name="feed_remove_button">Odstrani</string>
     <string name="feed_rename_button">Preimenuj</string>
     <string name="confirm_feed_remove">Ali res želite odstraniti ta vir? Dejanja ni mogoče povrniti!</string>
     <string name="feed_move_list_description">Izbor mape za premikanje vira</string>
     <string name="move_feed_root_folder">Korenska mapa</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Odstrani mapo</string>
+    <string name="action_folder_rename">Preimenuj mapo</string>
+    <string name="folder_remove_button">Odstrani</string>
+    <string name="folder_rename_button">Preimenuj</string>
+    <string name="confirm_folder_remove">Ali res želite odstraniti to mapo? Dejanja ni mogoče povrniti!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Pridobi enoznačna obvestila za ta vir</string>
     <string name="notification_feed_default">Vsi viri s privzetih nastavitev bodo prikazani v enem obvestilu</string>
     <string name="notification_feed_none">Ni še prejetih obvestil.</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Dodaj</string>
+    <string name="hint_folder_name">Ime mape</string>
+    <string name="folder_already_exists">Mapa že obstaja</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Ročna prijava</string>
@@ -103,6 +119,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Prijava</string>
+    <string name="login_progress_signing_in">Poteka prijavljanje ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">To polje mora biti izpolnjeno</string>
     <string name="error_invalid_url">Napačen naslov URL</string>
@@ -116,6 +133,14 @@
         <item quantity="other">Prejetih je %d starih predmetov</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Ni drugih prispevkov</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Do sedaj je prejet %d predmet ...</item>
+        <item quantity="two">Do sedaj sta prejeta %d predmeta ...</item>
+        <item quantity="few">Do sedaj so prejeti %d predmeti ...</item>
+        <item quantity="other">Do sedaj je prejetih %d predmetov ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nastavitve</string>
     <string name="cache_is_cleared">Predpomnilnik je počiščen!</string>
@@ -137,6 +162,7 @@
     <string name="pref_general_search_in_body">besedilu</string>
 
     <string name="dialog_clearing_cache">Poteka čiščenje predpomnilnika</string>
+    <string name="dialog_clearing_cache_please_wait">Poteka čiščenje predpomnilnika ...</string>
     <string name="reset_cache_unsaved_changes">Obstajajo neusklajene spremembe. Ali želite vseeno počistiti predpomnilnik?</string>
     <string name="warning">Opozorilo</string>
     <string name="pref_title_AutoSyncOnStart">Uskladi prispevke ob zagonu</string>
@@ -263,6 +289,7 @@
     <string name="successfully_exported">Uspešno izvoženo v;</string>
     <string name="opml_export">Izvoz OPML</string>
     <string name="parsing_opml">Razčlenjevanje OPML</string>
+    <string name="please_wait">Počakajte ...</string>
     <string name="interval_sync_title">Časovni razmik usklajevanja</string>
 
     </resources>
