@@ -173,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Kein Podcast ausgewählt</string>
     <string name="no_chapters_available">Keine Kapitel verfügbar</string>
+    <string name="exit_playback">Den Player beenden</string>
     <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
     <string name="notification_downloading_podcast_title">Podcast wird herunterladen</string>
 

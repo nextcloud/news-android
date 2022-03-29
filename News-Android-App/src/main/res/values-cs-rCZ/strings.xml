@@ -183,6 +183,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nebyl vybrán žádný podcast</string>
     <string name="no_chapters_available">Žádné dostupné kapitoly</string>
+    <string name="exit_playback">Ukončit přehrávač</string>
     <string name="podcast_playback_speed_dialog_title">Rychlost přehrávání</string>
     <string name="notification_downloading_podcast_title">Stahuje se podcast</string>
 

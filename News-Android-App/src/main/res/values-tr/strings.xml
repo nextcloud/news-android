@@ -173,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Herhangi bir podcast seçilmemiş</string>
     <string name="no_chapters_available">Kullanılabilecek bir bölüm yok</string>
+    <string name="exit_playback">Oynatıcıdan çık</string>
     <string name="podcast_playback_speed_dialog_title">Oynatma hızı</string>
     <string name="notification_downloading_podcast_title">Podcast indiriliyor</string>
 

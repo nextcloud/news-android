@@ -183,6 +183,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Brak wybranego podcastu</string>
     <string name="no_chapters_available">Brak dostępnych rozdziałów</string>
+    <string name="exit_playback">Wyjdź z odtwarzacza</string>
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
     <string name="notification_downloading_podcast_title">Pobieranie podcastu</string>
 
