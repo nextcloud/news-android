@@ -168,6 +168,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">沒有選擇 podcast</string>
     <string name="no_chapters_available">沒有章節</string>
+    <string name="exit_playback">退出播放器</string>
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
     <string name="notification_downloading_podcast_title">正在下載音訊資料</string>
 
