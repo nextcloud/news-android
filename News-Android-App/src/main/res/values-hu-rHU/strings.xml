@@ -90,8 +90,8 @@
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Mappa eltávolítása</string>
     <string name="action_folder_rename">Mappa átnevezése</string>
-    <string name="folder_remove_button">Eltávolít</string>
-    <string name="folder_rename_button">Átnevez</string>
+    <string name="folder_remove_button">Eltávolítás</string>
+    <string name="folder_rename_button">Átnevezés</string>
     <string name="confirm_folder_remove">Biztos, hogy eltávolítja ezt a mappát? Ez nem vonható vissza!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
@@ -100,7 +100,7 @@
     <string name="notification_feed_none">Egyáltalán nincsenek értesítések</string>
 
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
-    <string name="folder_add_button">Hozzáad</string>
+    <string name="folder_add_button">Hozzáadás</string>
     <string name="hint_folder_name">Mappanév</string>
     <string name="folder_already_exists">A mappa már létezik</string>
 
@@ -173,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nincs podcast kiválasztva</string>
     <string name="no_chapters_available">Nincsenek elérhető fejezetek</string>
+    <string name="exit_playback">Kilépés a lejátszóból</string>
     <string name="podcast_playback_speed_dialog_title">Lejátszási sebesség</string>
     <string name="notification_downloading_podcast_title">Podcast letöltése</string>
 
