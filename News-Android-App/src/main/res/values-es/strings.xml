@@ -37,6 +37,7 @@
     <string name="action_settings">Ajustes</string>
     <string name="action_sync_settings">Ajustes de sincronización</string>
     <string name="action_add_new_feed">Añadir nueva fuente</string>
+    <string name="action_add_new_folder">Añadir carpeta nueva</string>
     <string name="action_textToSpeech">Recopilar información</string>
     <string name="action_search">Buscar</string>
     <string name="action_download_articles_offline">Descargar los artículos sin conexión</string>
@@ -79,16 +80,29 @@
     <string name="action_feed_remove">Eliminar fuente</string>
     <string name="action_feed_rename">Renombrar Fuente</string>
     <string name="action_feed_move">Mover fuente</string>
+    <string name="action_feed_notification_settings">Configuraciones de notificación</string>
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente desea eliminar esta Fuente? ¡Esto no se puede deshacer!</string>
     <string name="feed_move_list_description">Selecciona la carpeta a la que mover la fuente</string>
     <string name="move_feed_root_folder">Carpeta raíz</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Eliminar carpeta</string>
+    <string name="action_folder_rename">Renombrar carpeta</string>
+    <string name="folder_remove_button">Eliminar</string>
+    <string name="folder_rename_button">Renombrar</string>
+    <string name="confirm_folder_remove">¿Seguro que quieres eliminar esta carpeta? Esto no se puede deshacer.</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Recibir notificaciones únicas para esta fuente</string>
     <string name="notification_feed_default">Todas las fuentes con los ajustes por defecto aparecerán en una notificación</string>
     <string name="notification_feed_none">Ninguna notificación</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Añadir</string>
+    <string name="hint_folder_name">Nombre de la carpeta</string>
+    <string name="folder_already_exists">La carpeta ya existe</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Inicio de sesión manual</string>
@@ -159,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ningún podcast seleccionado</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <string name="exit_playback">Salir del reproductor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidad de reproducción</string>
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
 
