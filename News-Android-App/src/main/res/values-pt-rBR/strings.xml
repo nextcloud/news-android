@@ -37,6 +37,7 @@
     <string name="action_settings">Configurações</string>
     <string name="action_sync_settings">Configurações de Sincronização</string>
     <string name="action_add_new_feed">Adicionar novo feed</string>
+    <string name="action_add_new_folder">Adicionar nova pasta</string>
     <string name="action_textToSpeech">Leia</string>
     <string name="action_search">Pesquisar</string>
     <string name="action_download_articles_offline">Download de artigos offline</string>
@@ -79,16 +80,29 @@
     <string name="action_feed_remove">Remover alimentação</string>
     <string name="action_feed_rename">Renomear Alimentação</string>
     <string name="action_feed_move">Mover Feed</string>
+    <string name="action_feed_notification_settings">Configurações de notificação</string>
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Você realmente deseja remover esta alimentação? Isso não pode ser desfeito!</string>
     <string name="feed_move_list_description">Selecione a pasta para mover o feed</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Remover pasta</string>
+    <string name="action_folder_rename">Renomear pasta</string>
+    <string name="folder_remove_button">Remover</string>
+    <string name="folder_rename_button">Renomear</string>
+    <string name="confirm_folder_remove">Deseja realmente remover esta pasta? Isto não pode ser desfeito!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Receba notificações exclusivas para este feed</string>
     <string name="notification_feed_default">Todos os feeds com as configurações padrão aparecerão em uma notificação</string>
     <string name="notification_feed_none">Sem notificações</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Adicionar</string>
+    <string name="hint_folder_name">Nome da pasta</string>
+    <string name="folder_already_exists">A pasta já existe</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Login manual</string>
