@@ -173,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nenhum podcast selecionado</string>
     <string name="no_chapters_available">Nenhum capítulo disponível</string>
+    <string name="exit_playback">Sair</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade do Playback</string>
     <string name="notification_downloading_podcast_title">Baixando podcast</string>
 

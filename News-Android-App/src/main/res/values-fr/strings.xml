@@ -37,6 +37,7 @@
     <string name="action_settings">Paramètres</string>
     <string name="action_sync_settings">Paramètres de synchronisation</string>
     <string name="action_add_new_feed">Ajouter un nouveau flux</string>
+    <string name="action_add_new_folder">Créer un nouveau dossier</string>
     <string name="action_textToSpeech">Lire à haute voix</string>
     <string name="action_search">Rechercher</string>
     <string name="action_download_articles_offline">Télécharger les articles hors ligne</string>
@@ -79,16 +80,29 @@
     <string name="action_feed_remove">Supprimer le Flux</string>
     <string name="action_feed_rename">Renommer le Flux</string>
     <string name="action_feed_move">Déplacer le Flux</string>
+    <string name="action_feed_notification_settings">Paramètres de notification</string>
     <string name="feed_remove_button">Supprimer</string>
     <string name="feed_rename_button">Renommer</string>
     <string name="confirm_feed_remove">Voulez-vous vraiment supprimer ce Flux ? Cela ne pourra pas être annulé !</string>
     <string name="feed_move_list_description">Sélectionner le dossier dans lequel déplacer le flux</string>
     <string name="move_feed_root_folder">Dossier racine</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Supprimer le dossier</string>
+    <string name="action_folder_rename">Renommer le dossier</string>
+    <string name="folder_remove_button">Supprimer</string>
+    <string name="folder_rename_button">Renommer</string>
+    <string name="confirm_folder_remove">Voulez-vous vraiment supprimer ce dossier ? Cette action est irréversible !</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Recevez des notifications uniques pour ce flux</string>
     <string name="notification_feed_default">Tous les flux avec les paramètres par défaut apparaîtront dans une notification</string>
     <string name="notification_feed_none">Aucune notification</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Ajouter</string>
+    <string name="hint_folder_name">Nom du dossier</string>
+    <string name="folder_already_exists">Le dossier existe déjà</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Connexion manuelle</string>
@@ -159,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Aucun podcast sélectionné</string>
     <string name="no_chapters_available">Aucun chapitre disponible</string>
+    <string name="exit_playback">Quitter le lecteur</string>
     <string name="podcast_playback_speed_dialog_title">Vitesse de lecture</string>
     <string name="notification_downloading_podcast_title">Téléchargement du podcast</string>
 
