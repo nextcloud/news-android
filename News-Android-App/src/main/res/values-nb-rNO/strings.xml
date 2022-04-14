@@ -201,22 +201,6 @@
     <string name="pref_display_font_size_l">Stor</string>
     <string name="pref_display_font_size_xl">Ekstra stor</string>
 
-    <string name="content_desc_play">spil</string>
-    <string name="content_desc_pause">pause</string>
-    <string name="content_desc_playback_speed">avspillingshastighet</string>
-    <string name="content_desc_rewind">bakover</string>
-    <string name="content_desc_forward">framover</string>
-    <string name="content_desc_expand">utvid</string>
-    <string name="content_desc_collapse">skjul</string>
-    <string name="content_desc_mark_as_read">merk som lest</string>
-    <string name="content_desc_mark_as_unread">merk som ulest</string>
-    <string name="content_desc_tap_to_refresh">trykk for å oppfiske</string>
-    <string name="content_desc_add_to_favorites">legg til i favoritter</string>
-    <string name="content_desc_remove_from_favorites">fjern fra favoritter</string>
-    <string name="content_desc_show_password">vis passord</string>
-    <string name="content_desc_delete">slett</string>
-    <string name="content_desc_download">last ned</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Feil</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Nyhets tillegg er ikke installert eller aktivert på din server. Følge instruksjonene angitt her for å sette opp din server: %1$s</string>

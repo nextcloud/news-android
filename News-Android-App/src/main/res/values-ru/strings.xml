@@ -230,22 +230,6 @@
     <string name="pref_display_font_size_l">Крупный</string>
     <string name="pref_display_font_size_xl">Очень большой</string>
 
-    <string name="content_desc_play">воспроизвести</string>
-    <string name="content_desc_pause">пауза</string>
-    <string name="content_desc_playback_speed">скорость воспроизведения</string>
-    <string name="content_desc_rewind">перемотка назад </string>
-    <string name="content_desc_forward">перемотка в перед</string>
-    <string name="content_desc_expand">развернуть</string>
-    <string name="content_desc_collapse">свернуть</string>
-    <string name="content_desc_mark_as_read">пометить, как прочитанное</string>
-    <string name="content_desc_mark_as_unread">пометить, как непрочитанное</string>
-    <string name="content_desc_tap_to_refresh">коснитесь для обновления</string>
-    <string name="content_desc_add_to_favorites">добавить в избранное</string>
-    <string name="content_desc_remove_from_favorites">удалить из избранного</string>
-    <string name="content_desc_show_password">показать пароль</string>
-    <string name="content_desc_delete">удалить</string>
-    <string name="content_desc_download">загрузить</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Ошибка</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Похоже что новостное приложение не установлено или не активировано на вашем сервере. Следуйте этой инструкции для установки новостного приложения на ваш сервер: %1$s</string>

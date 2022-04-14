@@ -177,22 +177,6 @@
     <string name="pref_display_font_size_l">Didelis</string>
     <string name="pref_display_font_size_xl">Labai didelis</string>
 
-    <string name="content_desc_play">groti</string>
-    <string name="content_desc_pause">pristabdyti</string>
-    <string name="content_desc_playback_speed">atkūrimo greitis</string>
-    <string name="content_desc_rewind">prasukti atgal</string>
-    <string name="content_desc_forward">prasukti pirmyn</string>
-    <string name="content_desc_expand">išskleisti</string>
-    <string name="content_desc_collapse">suskleisti</string>
-    <string name="content_desc_mark_as_read">žymėti kaip skaitytą</string>
-    <string name="content_desc_mark_as_unread">žymėti kaip neskaitytą</string>
-    <string name="content_desc_tap_to_refresh">bakstelėkite, norėdami įkelti iš naujo</string>
-    <string name="content_desc_add_to_favorites">pridėti į mėgstamus</string>
-    <string name="content_desc_remove_from_favorites">šalinti iš mėgstamų</string>
-    <string name="content_desc_show_password">rodyti slaptažodį</string>
-    <string name="content_desc_delete">ištrinti</string>
-    <string name="content_desc_download">atsisiųsti</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Klaida</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Panašu, kad nauja programa nėra įdiegta ar aktyvuota jūsų serveryje. Atlikite instrukcijoje pateiktus veiksmus, kad įdiegtumėte programą savo serveryje:%1$s</string>

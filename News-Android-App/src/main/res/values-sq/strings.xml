@@ -129,21 +129,6 @@
     <string name="pref_display_apptheme_dark">E errët</string>
 
     <string name="pref_display_font_size_d">E paracaktuar</string>
-    <string name="content_desc_play">luaje</string>
-    <string name="content_desc_pause">pushoje</string>
-    <string name="content_desc_rewind">mbrapsht</string>
-    <string name="content_desc_forward">përpara</string>
-    <string name="content_desc_expand">zgjeroje</string>
-    <string name="content_desc_collapse">tkurre</string>
-    <string name="content_desc_mark_as_read">shënoje si të lexuar</string>
-    <string name="content_desc_mark_as_unread">shënoje si të palexuar</string>
-    <string name="content_desc_tap_to_refresh">prekeni që të rifreskohet</string>
-    <string name="content_desc_add_to_favorites">shtojeni te të parapëlqyerat</string>
-    <string name="content_desc_remove_from_favorites">hiqe prej të parapëlqyerave</string>
-    <string name="content_desc_show_password">shfaqe fjalëkalimin</string>
-    <string name="content_desc_delete">fshi</string>
-    <string name="content_desc_download">shkarkoje</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Gabim</string>
     <string name="login_dialog_text_something_went_wrong">Diçka shkoi ters :(</string>

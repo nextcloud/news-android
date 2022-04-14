@@ -179,22 +179,6 @@
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Muito grande</string>
 
-    <string name="content_desc_play">reproduzir</string>
-    <string name="content_desc_pause">pausa</string>
-    <string name="content_desc_playback_speed">velocidade de reprodução</string>
-    <string name="content_desc_rewind">rebobinar</string>
-    <string name="content_desc_forward">avançar</string>
-    <string name="content_desc_expand">expandir</string>
-    <string name="content_desc_collapse">colapsar</string>
-    <string name="content_desc_mark_as_read">marcar como lido</string>
-    <string name="content_desc_mark_as_unread">marcar por lêr</string>
-    <string name="content_desc_tap_to_refresh">Toque para refrescar</string>
-    <string name="content_desc_add_to_favorites">Adicionar aos favoritos</string>
-    <string name="content_desc_remove_from_favorites">Remover dos favoritos</string>
-    <string name="content_desc_show_password">Mostrar senha</string>
-    <string name="content_desc_delete">eliminar</string>
-    <string name="content_desc_download">transferir</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>

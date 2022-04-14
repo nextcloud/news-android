@@ -216,22 +216,6 @@
     <string name="pref_display_font_size_l">Mare</string>
     <string name="pref_display_font_size_xl">Foarte mare</string>
 
-    <string name="content_desc_play">Start</string>
-    <string name="content_desc_pause">Pauză</string>
-    <string name="content_desc_playback_speed">Viteză de redare</string>
-    <string name="content_desc_rewind">derulează înapoi</string>
-    <string name="content_desc_forward">Înainte</string>
-    <string name="content_desc_expand">extinde</string>
-    <string name="content_desc_collapse">Restrănge</string>
-    <string name="content_desc_mark_as_read">marchează ca citit</string>
-    <string name="content_desc_mark_as_unread">marchează ca citit</string>
-    <string name="content_desc_tap_to_refresh">atinge pentru a reîmprospăta lista</string>
-    <string name="content_desc_add_to_favorites">Adaugă la favorite</string>
-    <string name="content_desc_remove_from_favorites">șterge din favorite</string>
-    <string name="content_desc_show_password">Arată parola</string>
-    <string name="content_desc_delete">ștergere</string>
-    <string name="content_desc_download">descarcă</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Eroare</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Se pare că aplicația de știri nu este instalată sau activată pe serverul dumneavoastră. Vă rugăm să urmariți instrucțiunile oferite aici pentru a vă seta corect aplicația dumneavoastră de știri de pe server: %1$s</string>

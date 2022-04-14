@@ -197,22 +197,6 @@
     <string name="pref_display_font_size_l">Велико</string>
     <string name="pref_display_font_size_xl">Јако велико</string>
 
-    <string name="content_desc_play">пусти</string>
-    <string name="content_desc_pause">паузирај</string>
-    <string name="content_desc_playback_speed">брзина пуштања</string>
-    <string name="content_desc_rewind">премотај</string>
-    <string name="content_desc_forward">убрзај</string>
-    <string name="content_desc_expand">прошири</string>
-    <string name="content_desc_collapse">скупи</string>
-    <string name="content_desc_mark_as_read">означи као прочитано</string>
-    <string name="content_desc_mark_as_unread">означи као непрочитано</string>
-    <string name="content_desc_tap_to_refresh">притисните да освежите</string>
-    <string name="content_desc_add_to_favorites">додај у омиљене</string>
-    <string name="content_desc_remove_from_favorites">уклони из омиљених</string>
-    <string name="content_desc_show_password">прикажи лозинку</string>
-    <string name="content_desc_delete">обриши</string>
-    <string name="content_desc_download">преузми</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изгледа да апликација Вести није инсталирана или активирана на серверу. Пратите упутства одавде да прво подесите апликацију Вести на серверу: %1$s</string>

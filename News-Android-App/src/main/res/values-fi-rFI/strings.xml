@@ -226,22 +226,6 @@
     <string name="pref_display_font_size_l">Suuri</string>
     <string name="pref_display_font_size_xl">Erittäin suuri</string>
 
-    <string name="content_desc_play">toista</string>
-    <string name="content_desc_pause">keskeytä</string>
-    <string name="content_desc_playback_speed">toistonopeus</string>
-    <string name="content_desc_rewind">takaisinkelaus</string>
-    <string name="content_desc_forward">eteenpäin</string>
-    <string name="content_desc_expand">laajenna</string>
-    <string name="content_desc_collapse">supista</string>
-    <string name="content_desc_mark_as_read">merkitse luetuksi</string>
-    <string name="content_desc_mark_as_unread">merkitse lukemattomaksi</string>
-    <string name="content_desc_tap_to_refresh">napauta päivittääksesi</string>
-    <string name="content_desc_add_to_favorites">lisää suosikkeihin</string>
-    <string name="content_desc_remove_from_favorites">poista suosikeista</string>
-    <string name="content_desc_show_password">näytä salasana</string>
-    <string name="content_desc_delete">poista</string>
-    <string name="content_desc_download">lataa</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Virhe</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Vaikuttaa siltä, että News-sovellusta ei ole asennettu tai aktivoitu palvelimellesi. Lue tästä ohjeet sovelluksen asentamiseen palvelimelle: %1$s</string>

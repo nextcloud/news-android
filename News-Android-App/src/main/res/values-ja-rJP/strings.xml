@@ -193,22 +193,6 @@
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">巨大</string>
 
-    <string name="content_desc_play">再生</string>
-    <string name="content_desc_pause">一時停止</string>
-    <string name="content_desc_playback_speed">再生速度</string>
-    <string name="content_desc_rewind">巻戻し</string>
-    <string name="content_desc_forward">早送り</string>
-    <string name="content_desc_expand">展開</string>
-    <string name="content_desc_collapse">折りたたみ</string>
-    <string name="content_desc_mark_as_read">既読にする</string>
-    <string name="content_desc_mark_as_unread">未読にする</string>
-    <string name="content_desc_tap_to_refresh">タップして更新</string>
-    <string name="content_desc_add_to_favorites">お気に入りに追加</string>
-    <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
-    <string name="content_desc_show_password">パスワードを表示</string>
-    <string name="content_desc_delete">削除</string>
-    <string name="content_desc_download">ダウンロード</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">エラー</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">あなたのニュースアプリがあなたのサーバーにインストールされていないか、起動されていないようです。 まず、あなたのサーバーにニュースアプリをインストールするには、こちらの指示に従ってください：%1$s</string>

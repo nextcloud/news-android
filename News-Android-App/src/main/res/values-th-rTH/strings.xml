@@ -113,21 +113,6 @@
     <string name="pref_display_apptheme_dark">มืด</string>
 
     <string name="pref_display_font_size_d">ค่าเริ่มต้น</string>
-    <string name="content_desc_play">เล่น</string>
-    <string name="content_desc_pause">หยุดชั่วคราว</string>
-    <string name="content_desc_rewind">กรอกลับ</string>
-    <string name="content_desc_forward">เลื่อนไปข้างหน้า</string>
-    <string name="content_desc_expand">ขยาย</string>
-    <string name="content_desc_collapse">ย่อ</string>
-    <string name="content_desc_mark_as_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
-    <string name="content_desc_mark_as_unread">ทำเครื่องหมายว่ายังไม่ได้อ่าน</string>
-    <string name="content_desc_tap_to_refresh">แตะเพื่อรีเฟรช</string>
-    <string name="content_desc_add_to_favorites">เพิ่มในรายการโปรด</string>
-    <string name="content_desc_remove_from_favorites">ลบออกจากรายการโปรด</string>
-    <string name="content_desc_show_password">แสดงรหัสผ่าน</string>
-    <string name="content_desc_delete">ลบ</string>
-    <string name="content_desc_download">ดาวน์โหลด</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">ข้อผิดพลาด</string>
     <string name="login_dialog_text_something_went_wrong">เกิดข้อผิดพลาดบางอย่าง :(</string>

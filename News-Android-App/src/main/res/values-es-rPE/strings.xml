@@ -119,21 +119,6 @@
     <string name="pref_display_apptheme_dark">Oscuro</string>
 
     <string name="pref_display_font_size_d">Predeterminado</string>
-    <string name="content_desc_play">reproducir</string>
-    <string name="content_desc_pause">pausar</string>
-    <string name="content_desc_rewind">rebobinar</string>
-    <string name="content_desc_forward">adelantar</string>
-    <string name="content_desc_expand">expandir</string>
-    <string name="content_desc_collapse">colapsar</string>
-    <string name="content_desc_mark_as_read">marcar como leído</string>
-    <string name="content_desc_mark_as_unread">marcar como no leído</string>
-    <string name="content_desc_tap_to_refresh">pulsar para actualizar</string>
-    <string name="content_desc_add_to_favorites">agregar a favoritos</string>
-    <string name="content_desc_remove_from_favorites">eliminar de favoritos</string>
-    <string name="content_desc_show_password">mostrar contraseña</string>
-    <string name="content_desc_delete">borrar</string>
-    <string name="content_desc_download">descargar</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>

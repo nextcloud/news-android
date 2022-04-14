@@ -210,22 +210,6 @@
     <string name="pref_display_font_size_l">Groot</string>
     <string name="pref_display_font_size_xl">Extra groot</string>
 
-    <string name="content_desc_play">afspelen</string>
-    <string name="content_desc_pause">pauze</string>
-    <string name="content_desc_playback_speed">afspeelsnelheid</string>
-    <string name="content_desc_rewind">terugspoelen</string>
-    <string name="content_desc_forward">vooruit spoelen</string>
-    <string name="content_desc_expand">uitbreiden</string>
-    <string name="content_desc_collapse">inklappen</string>
-    <string name="content_desc_mark_as_read">markeren als gelezen</string>
-    <string name="content_desc_mark_as_unread">markeren als ongelezen</string>
-    <string name="content_desc_tap_to_refresh">tik om te verversen</string>
-    <string name="content_desc_add_to_favorites">toevoegen aan favorieten</string>
-    <string name="content_desc_remove_from_favorites">verwijderen uit favorieten</string>
-    <string name="content_desc_show_password">tonen wachtwoord</string>
-    <string name="content_desc_delete">verwijderen</string>
-    <string name="content_desc_download">downloaden</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fout</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Het lijkt erop dat je nieuwsapp niet is geïnstalleerd of geactiveerd op je server. Volg eerst de instructies hier om de nieuwsapp op je server te installeren: %1$s</string>

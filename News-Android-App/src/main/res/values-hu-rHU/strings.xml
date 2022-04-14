@@ -226,22 +226,6 @@
     <string name="pref_display_font_size_l">Nagy</string>
     <string name="pref_display_font_size_xl">Extra nagy</string>
 
-    <string name="content_desc_play">lejátszás</string>
-    <string name="content_desc_pause">szünet</string>
-    <string name="content_desc_playback_speed">lejátszási sebesség</string>
-    <string name="content_desc_rewind">visszatekerés</string>
-    <string name="content_desc_forward">előretekerés</string>
-    <string name="content_desc_expand">kibontás</string>
-    <string name="content_desc_collapse">összecsukás</string>
-    <string name="content_desc_mark_as_read">megjelölés olvasottként</string>
-    <string name="content_desc_mark_as_unread">megjelölés olvasatlanként</string>
-    <string name="content_desc_tap_to_refresh">koppintson a frissítéshez</string>
-    <string name="content_desc_add_to_favorites">hozzáadás a kedvencekhez</string>
-    <string name="content_desc_remove_from_favorites">eltávolítás a kedvencekből</string>
-    <string name="content_desc_show_password">jelszó megjelenítése</string>
-    <string name="content_desc_delete">törlés</string>
-    <string name="content_desc_download">letöltés</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hiba</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Úgy tűnik hogy a hírek alkalmazás nincs telepítve vagy aktiválva a kiszolgálóján. Először kövesse az utasításokat, hogy telepítse a hírek alkalmazást a kiszolgálójára: %1$s</string>

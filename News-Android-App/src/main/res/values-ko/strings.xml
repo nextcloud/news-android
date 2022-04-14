@@ -197,22 +197,6 @@
     <string name="pref_display_font_size_l">크게</string>
     <string name="pref_display_font_size_xl">더 크게</string>
 
-    <string name="content_desc_play">재생</string>
-    <string name="content_desc_pause">일시정지</string>
-    <string name="content_desc_playback_speed">재생 속도</string>
-    <string name="content_desc_rewind">되감기</string>
-    <string name="content_desc_forward">앞으로</string>
-    <string name="content_desc_expand">확장</string>
-    <string name="content_desc_collapse">축소</string>
-    <string name="content_desc_mark_as_read">읽은 것으로 표시</string>
-    <string name="content_desc_mark_as_unread">읽지 않은 것으로 표시</string>
-    <string name="content_desc_tap_to_refresh">눌러서 새로 고침</string>
-    <string name="content_desc_add_to_favorites">즐겨찾기에 추가</string>
-    <string name="content_desc_remove_from_favorites">즐겨찾기에서 삭제</string>
-    <string name="content_desc_show_password">암호 표시</string>
-    <string name="content_desc_delete">삭제</string>
-    <string name="content_desc_download">다운로드</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">오류</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">뉴스 앱이 서버에 설치되거나 활성화되지 않은 것 같습니다. 먼저 서버에 뉴스 앱을 설정하려면 %1$s에 제공된 지침을 따라 주십시오.</string>

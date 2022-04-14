@@ -188,22 +188,6 @@
     <string name="pref_display_font_size_l">بزرگ</string>
     <string name="pref_display_font_size_xl">خیلی بزرگ</string>
 
-    <string name="content_desc_play">پخش</string>
-    <string name="content_desc_pause">مکث</string>
-    <string name="content_desc_playback_speed">سرعت پخش</string>
-    <string name="content_desc_rewind">بازگشت به عقب</string>
-    <string name="content_desc_forward">رفتن به جلو</string>
-    <string name="content_desc_expand">گسترش</string>
-    <string name="content_desc_collapse">فروکاهش</string>
-    <string name="content_desc_mark_as_read">علامت به عنوان خوانده‌شده</string>
-    <string name="content_desc_mark_as_unread">علامت به عنوان خوانده‌نشده</string>
-    <string name="content_desc_tap_to_refresh">ضربه برای تازه‌سازی</string>
-    <string name="content_desc_add_to_favorites">افزودن به محبوب‌ها</string>
-    <string name="content_desc_remove_from_favorites">حذف از محبوب‌ها</string>
-    <string name="content_desc_show_password">نمایش گذرواژه</string>
-    <string name="content_desc_delete">حذف</string>
-    <string name="content_desc_download">بارگیری</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">خطا</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">به نظر می‌رسد کارهٔ اخبار روی کارسازتان نصب یا فعّال نشده است. لطفاً برای برپایی کارهٔ اخبار روی کارسازتان، ابتدا روشی که این‌جا گفته شده را دنبال کنید: %1$s</string>

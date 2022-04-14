@@ -197,22 +197,6 @@
     <string name="pref_display_font_size_l">Lớn</string>
     <string name="pref_display_font_size_xl">Rất lớn</string>
 
-    <string name="content_desc_play">phát</string>
-    <string name="content_desc_pause">tạm dừng</string>
-    <string name="content_desc_playback_speed">tốc độ phát</string>
-    <string name="content_desc_rewind">tua lại</string>
-    <string name="content_desc_forward">tua đi</string>
-    <string name="content_desc_expand">mở rộng</string>
-    <string name="content_desc_collapse">thu gọn</string>
-    <string name="content_desc_mark_as_read">đánh dấu là đã đọc</string>
-    <string name="content_desc_mark_as_unread">đánh dấu là chưa đọc</string>
-    <string name="content_desc_tap_to_refresh">nhấn để làm mới</string>
-    <string name="content_desc_add_to_favorites">thêm vào mục yêu thích</string>
-    <string name="content_desc_remove_from_favorites">xoá khỏi mục yêu thích</string>
-    <string name="content_desc_show_password">hiện mật khẩu</string>
-    <string name="content_desc_delete">xóa</string>
-    <string name="content_desc_download">tải xuống</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Lỗi</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Có vẻ như ứng dụng tin tức của bạn không được cài đặt hoặc kích hoạt trên máy chủ của bạn. Vui lòng làm theo hướng dẫn ở đây để thiết lập ứng dụng tin tức trên máy chủ của bạn trước tiên: %1$s</string>

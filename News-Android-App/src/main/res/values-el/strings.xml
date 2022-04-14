@@ -225,22 +225,6 @@
     <string name="pref_display_font_size_l">Μεγάλο</string>
     <string name="pref_display_font_size_xl">Πολύ Μεγάλο</string>
 
-    <string name="content_desc_play">αναπαραγωγή</string>
-    <string name="content_desc_pause">παύση</string>
-    <string name="content_desc_playback_speed">ταχύτητα αναπαραγωγής</string>
-    <string name="content_desc_rewind">επαναφορά</string>
-    <string name="content_desc_forward">προώθηση</string>
-    <string name="content_desc_expand">επέκταση</string>
-    <string name="content_desc_collapse">σύμπτηξη</string>
-    <string name="content_desc_mark_as_read">επισήμανση ως αναγνωσμένο</string>
-    <string name="content_desc_mark_as_unread">επισήμανση ως μή-αναγνωσμένο</string>
-    <string name="content_desc_tap_to_refresh">αγγίξτε για ανανέωση</string>
-    <string name="content_desc_add_to_favorites">προσθήκη στα αγαπημένα</string>
-    <string name="content_desc_remove_from_favorites">αφαίρεση από τα αγαπημένα</string>
-    <string name="content_desc_show_password">εμφάνιση συνθηματικού</string>
-    <string name="content_desc_delete">διαγραφή</string>
-    <string name="content_desc_download">λήψη</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Σφάλμα</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Η εφαρμογή ειδήσεων δεν είναι εγκατεστημένη ή είναι ανενεργή στον διακομιστή. Παρακαλώ ακολουθήστε τις παρακάτω οδηγίες για ενεργοποίησή της %1$s</string>

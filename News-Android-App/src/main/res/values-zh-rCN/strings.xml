@@ -206,22 +206,6 @@
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">超大</string>
 
-    <string name="content_desc_play">播放</string>
-    <string name="content_desc_pause">暂停</string>
-    <string name="content_desc_playback_speed">播放速度</string>
-    <string name="content_desc_rewind">撤回</string>
-    <string name="content_desc_forward">转发</string>
-    <string name="content_desc_expand">扩展</string>
-    <string name="content_desc_collapse">折叠</string>
-    <string name="content_desc_mark_as_read">标记为已读</string>
-    <string name="content_desc_mark_as_unread">标记为未读</string>
-    <string name="content_desc_tap_to_refresh">点击刷新</string>
-    <string name="content_desc_add_to_favorites">添加到收藏夹</string>
-    <string name="content_desc_remove_from_favorites">从收藏夹移除</string>
-    <string name="content_desc_show_password">显示密码</string>
-    <string name="content_desc_delete">删除</string>
-    <string name="content_desc_download">下载</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">错误</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">您的服务器上似乎未安装或激活您的新闻应用。 请按照此处给出的说明在您的服务器上首先设置新闻应用：%1$s</string>

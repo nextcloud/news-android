@@ -188,22 +188,6 @@
     <string name="pref_display_font_size_l">Stor</string>
     <string name="pref_display_font_size_xl">Ekstra stor</string>
 
-    <string name="content_desc_play">afspil</string>
-    <string name="content_desc_pause">pause</string>
-    <string name="content_desc_playback_speed">afspilningshastighed</string>
-    <string name="content_desc_rewind">Spol tilbage</string>
-    <string name="content_desc_forward">Videresend</string>
-    <string name="content_desc_expand">Fold ud</string>
-    <string name="content_desc_collapse">sammenfold</string>
-    <string name="content_desc_mark_as_read">Marker som læst</string>
-    <string name="content_desc_mark_as_unread">Marker som ulæst</string>
-    <string name="content_desc_tap_to_refresh">tryk for at genindlæse</string>
-    <string name="content_desc_add_to_favorites">føj til favoritter</string>
-    <string name="content_desc_remove_from_favorites">fjern fra favoritter</string>
-    <string name="content_desc_show_password">Vis adgangskode</string>
-    <string name="content_desc_delete">slet</string>
-    <string name="content_desc_download">hent</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fejl</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det ser ud til at news app-en ikke er installeret eller aktiveret på din server. Følg venligst instruktionerne her for at installere news app-en på din server først: %1$s</string>

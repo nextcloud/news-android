@@ -112,21 +112,6 @@
     <string name="pref_display_apptheme_dark">Hele</string>
 
     <string name="pref_display_font_size_d">Vaikeväärtus</string>
-    <string name="content_desc_play">esita</string>
-    <string name="content_desc_pause">peata</string>
-    <string name="content_desc_rewind">keri tagasi</string>
-    <string name="content_desc_forward">edasi</string>
-    <string name="content_desc_expand">laienda</string>
-    <string name="content_desc_collapse">sulge</string>
-    <string name="content_desc_mark_as_read">märgi loetuks</string>
-    <string name="content_desc_mark_as_unread">märgi mitteloetuks</string>
-    <string name="content_desc_tap_to_refresh">värskendamiseks vajuta</string>
-    <string name="content_desc_add_to_favorites">lisa lemmikutesse</string>
-    <string name="content_desc_remove_from_favorites">eelamda lemmikutest</string>
-    <string name="content_desc_show_password">näita parooli</string>
-    <string name="content_desc_delete">kustuta</string>
-    <string name="content_desc_download">laadi alla</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Viga</string>
     <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>

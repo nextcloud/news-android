@@ -219,22 +219,6 @@
     <string name="pref_display_font_size_l">Stor</string>
     <string name="pref_display_font_size_xl">Extra stor</string>
 
-    <string name="content_desc_play">spela</string>
-    <string name="content_desc_pause">pausa</string>
-    <string name="content_desc_playback_speed">uppspelningshastighet</string>
-    <string name="content_desc_rewind">spola bakåt</string>
-    <string name="content_desc_forward">spola framåt</string>
-    <string name="content_desc_expand">utöka</string>
-    <string name="content_desc_collapse">dölj</string>
-    <string name="content_desc_mark_as_read">markera som läst</string>
-    <string name="content_desc_mark_as_unread">markera som oläst</string>
-    <string name="content_desc_tap_to_refresh">tryck för att uppdatera</string>
-    <string name="content_desc_add_to_favorites">lägg till i favoriter</string>
-    <string name="content_desc_remove_from_favorites">ta bort från favoriter</string>
-    <string name="content_desc_show_password">visa lösenordet</string>
-    <string name="content_desc_delete">radera</string>
-    <string name="content_desc_download">hämta</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fel</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det verkar som din nyhetsapp inte är installerad eller aktiverad på din server. Följ instruktionerna här för att konfigurera nyhetsapplikationen på din server först: %1$s</string>

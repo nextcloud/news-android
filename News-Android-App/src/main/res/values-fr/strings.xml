@@ -226,22 +226,6 @@
     <string name="pref_display_font_size_l">Grand</string>
     <string name="pref_display_font_size_xl">Très grand</string>
 
-    <string name="content_desc_play">lire</string>
-    <string name="content_desc_pause">pause</string>
-    <string name="content_desc_playback_speed">vitesse de lecture</string>
-    <string name="content_desc_rewind">rembobiner</string>
-    <string name="content_desc_forward">avancer</string>
-    <string name="content_desc_expand">étendre</string>
-    <string name="content_desc_collapse">replier</string>
-    <string name="content_desc_mark_as_read">marquer comme lu</string>
-    <string name="content_desc_mark_as_unread">marquer comme non-lu</string>
-    <string name="content_desc_tap_to_refresh">Tapoter pour rafraîchir</string>
-    <string name="content_desc_add_to_favorites">ajouter aux favoris</string>
-    <string name="content_desc_remove_from_favorites">retirer des favoris</string>
-    <string name="content_desc_show_password">afficher le mot de passe</string>
-    <string name="content_desc_delete">suppression</string>
-    <string name="content_desc_download">télécharger</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erreur</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Il semble que l\'application d\'actualités ne soit pas installée ou ne soit pas activée sur votre serveur. Consultez les instructions pour paramétrer l\'application d\'actualités sur votre serveur : %1$s.</string>

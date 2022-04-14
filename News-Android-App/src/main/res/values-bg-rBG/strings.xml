@@ -201,22 +201,6 @@
     <string name="pref_display_font_size_l">Голям</string>
     <string name="pref_display_font_size_xl">Много голям</string>
 
-    <string name="content_desc_play">Пусни</string>
-    <string name="content_desc_pause">Пауза</string>
-    <string name="content_desc_playback_speed">скорост на възпроизвеждане</string>
-    <string name="content_desc_rewind">пренавиване</string>
-    <string name="content_desc_forward">препращане</string>
-    <string name="content_desc_expand">разгъване</string>
-    <string name="content_desc_collapse">сгъване</string>
-    <string name="content_desc_mark_as_read">означи като прочетена</string>
-    <string name="content_desc_mark_as_unread">означи като непрочетена</string>
-    <string name="content_desc_tap_to_refresh">докосване за опресняване</string>
-    <string name="content_desc_add_to_favorites">добави към любимите</string>
-    <string name="content_desc_remove_from_favorites">премахни от любимите</string>
-    <string name="content_desc_show_password">покажи парола</string>
-    <string name="content_desc_delete">изтриване</string>
-    <string name="content_desc_download">изтегляне</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изглежда, че приложението за новини не е инсталирано/включено на сървъра. Следвайте следните инструкции: %1$s, за да настроите приложението за новини на сървъра.</string>

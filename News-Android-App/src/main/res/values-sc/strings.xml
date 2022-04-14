@@ -196,22 +196,6 @@
     <string name="pref_display_font_size_l">Mannu</string>
     <string name="pref_display_font_size_xl">Mannu mannu</string>
 
-    <string name="content_desc_play">riprodue</string>
-    <string name="content_desc_pause">pàusa</string>
-    <string name="content_desc_playback_speed">velotzidade de riprodutzione</string>
-    <string name="content_desc_rewind">torra in segus</string>
-    <string name="content_desc_forward">avantza</string>
-    <string name="content_desc_expand">ismànnia</string>
-    <string name="content_desc_collapse">mìnima</string>
-    <string name="content_desc_mark_as_read">sinna comente lèghidu</string>
-    <string name="content_desc_mark_as_unread">sinna comente non lèghidu</string>
-    <string name="content_desc_tap_to_refresh">toca pro agiornare</string>
-    <string name="content_desc_add_to_favorites">agiunghe a is preferidos</string>
-    <string name="content_desc_remove_from_favorites">boga dae is preferidos</string>
-    <string name="content_desc_show_password">mustra crae</string>
-    <string name="content_desc_delete">cantzella</string>
-    <string name="content_desc_download">iscàrriga</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errore</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Paret chi is aplicatziones noas non sunt installadas o ativadas in su serbidore tuo. Pro praghere, sighi is istrutziones frunidas inoghe pro cunfigurare is aplicatziones noas in su serbidore: %1$s</string>

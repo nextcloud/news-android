@@ -221,22 +221,6 @@
     <string name="pref_display_font_size_l">Handia</string>
     <string name="pref_display_font_size_xl">Oso handia</string>
 
-    <string name="content_desc_play">erreproduzitu</string>
-    <string name="content_desc_pause">pausatu</string>
-    <string name="content_desc_playback_speed">erreprodukzio abiadura</string>
-    <string name="content_desc_rewind">birbobinatu</string>
-    <string name="content_desc_forward">aurrera</string>
-    <string name="content_desc_expand">zabaldu</string>
-    <string name="content_desc_collapse">tolestu</string>
-    <string name="content_desc_mark_as_read">markatu irakurri gisa</string>
-    <string name="content_desc_mark_as_unread">markatu ez irakurri gisa</string>
-    <string name="content_desc_tap_to_refresh">sakatu freskatzeko</string>
-    <string name="content_desc_add_to_favorites">gehitu gogokoetara</string>
-    <string name="content_desc_remove_from_favorites">kendu gogokoetatik</string>
-    <string name="content_desc_show_password">erakutsi pasahitza</string>
-    <string name="content_desc_delete">ezabatu</string>
-    <string name="content_desc_download">deskargatu</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errorea</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Dirudienez albisteen aplikazioa ez dago instalatua edo aktibatua zure zerbitzarian. Mesedez jarraitu honako argibideak zure zerbitzarian albisteen aplikazioa behar bezala ezartzeko lehenengo: %1$s</string>

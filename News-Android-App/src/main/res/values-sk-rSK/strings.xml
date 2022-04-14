@@ -235,22 +235,6 @@
     <string name="pref_display_font_size_l">Veľká</string>
     <string name="pref_display_font_size_xl">Veľmi veľké</string>
 
-    <string name="content_desc_play">prehrať</string>
-    <string name="content_desc_pause">pozastaviť</string>
-    <string name="content_desc_playback_speed">rýchlosť prehrávania</string>
-    <string name="content_desc_rewind">preskočiť na začiatok/koniec</string>
-    <string name="content_desc_forward">vpred</string>
-    <string name="content_desc_expand">rozbaliť</string>
-    <string name="content_desc_collapse">zbaliť</string>
-    <string name="content_desc_mark_as_read">označiť ako prečítané</string>
-    <string name="content_desc_mark_as_unread">označiť ako neprečítané</string>
-    <string name="content_desc_tap_to_refresh">ťuknite pre znovunačítanie</string>
-    <string name="content_desc_add_to_favorites">pridať k obľúbeným</string>
-    <string name="content_desc_remove_from_favorites">odstrániť z obľúbených</string>
-    <string name="content_desc_show_password">zobraziť heslo</string>
-    <string name="content_desc_delete">vymazať</string>
-    <string name="content_desc_download">stiahnuť</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Chyba</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Zdá sa, že vaša aplikácia Novinky nie je nainštalovaná alebo aktivovaná na vašom serveri. Postupujte podľa pokynov, pre nastavenie aplikácie Novinky na servri:: %1$s</string>

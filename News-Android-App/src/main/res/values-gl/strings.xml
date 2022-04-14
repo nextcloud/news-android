@@ -194,22 +194,6 @@
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Moi grande</string>
 
-    <string name="content_desc_play">reproducir</string>
-    <string name="content_desc_pause">pausa</string>
-    <string name="content_desc_playback_speed">velocidade de reprodución</string>
-    <string name="content_desc_rewind">atrás</string>
-    <string name="content_desc_forward">adiante</string>
-    <string name="content_desc_expand">expandir</string>
-    <string name="content_desc_collapse">contraer</string>
-    <string name="content_desc_mark_as_read">marcar como lido</string>
-    <string name="content_desc_mark_as_unread">marcar como sen ler</string>
-    <string name="content_desc_tap_to_refresh">toque para actualizar</string>
-    <string name="content_desc_add_to_favorites">engadir a favoritos</string>
-    <string name="content_desc_remove_from_favorites">retirar de favoritos</string>
-    <string name="content_desc_show_password">amosar o contrasinal</string>
-    <string name="content_desc_delete">eliminar</string>
-    <string name="content_desc_download">descargar</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Semella que a súa aplicación de novas non está instalada ou activada no seu servidor. Siga as instrucións para configurar a aplicación de novas no seu servidor: %1$s</string>

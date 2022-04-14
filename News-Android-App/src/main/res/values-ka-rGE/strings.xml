@@ -124,21 +124,6 @@
     <string name="pref_display_browser_cct">ჩაშენებული ქრომის-პერსონალიზირებული-ტაბულები</string>
     <string name="pref_display_browser_built_in">ჩაშენებული ბრაუზერი</string>
     <string name="pref_display_font_size_d">საწყისი</string>
-    <string name="content_desc_play">დაკვრა</string>
-    <string name="content_desc_pause">პაუზა</string>
-    <string name="content_desc_rewind">გადახვევა</string>
-    <string name="content_desc_forward">წინ</string>
-    <string name="content_desc_expand">ჩამოშლა</string>
-    <string name="content_desc_collapse">აკეცვა</string>
-    <string name="content_desc_mark_as_read">წაკითხულად მონიშვნა</string>
-    <string name="content_desc_mark_as_unread">წაუკითხავად მონიშვნა</string>
-    <string name="content_desc_tap_to_refresh">განახლებისთვის შეახეთ ხელი</string>
-    <string name="content_desc_add_to_favorites">რჩეულებში დამატება</string>
-    <string name="content_desc_remove_from_favorites">რჩეულებიდან ამოშლა</string>
-    <string name="content_desc_show_password">პაროლის ჩვენება</string>
-    <string name="content_desc_delete">წაშლა</string>
-    <string name="content_desc_download">ჩამოტვირთვა</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">შეცდომა</string>
     <string name="login_dialog_text_something_went_wrong">რაღაც მოხდა :(</string>

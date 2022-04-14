@@ -188,22 +188,6 @@
     <string name="pref_display_font_size_l">Stórt</string>
     <string name="pref_display_font_size_xl">Mjög stórt</string>
 
-    <string name="content_desc_play">afspilun</string>
-    <string name="content_desc_pause">bið</string>
-    <string name="content_desc_playback_speed">hraði afspilunar</string>
-    <string name="content_desc_rewind">fara til baka</string>
-    <string name="content_desc_forward">áfram</string>
-    <string name="content_desc_expand">útvíkka</string>
-    <string name="content_desc_collapse">fella saman</string>
-    <string name="content_desc_mark_as_read">merkja sem lesið</string>
-    <string name="content_desc_mark_as_unread">merkja allt sem ólesið</string>
-    <string name="content_desc_tap_to_refresh">banka til að endurlesa</string>
-    <string name="content_desc_add_to_favorites">bæta í Eftirlæti</string>
-    <string name="content_desc_remove_from_favorites">fjarlægja úr Eftirlæti</string>
-    <string name="content_desc_show_password">sýna lykilorð</string>
-    <string name="content_desc_delete">eyða</string>
-    <string name="content_desc_download">sækja</string>
-
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Villa</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Það lítur út fyrir að fréttaforritið sé ekki sett upp eða virkjað á þjóninum þínum. Farðu eftir leiðbeinungunum hér til að setja fréttaforritið upp fyrst á þjóninum þínum: %1$s</string>
