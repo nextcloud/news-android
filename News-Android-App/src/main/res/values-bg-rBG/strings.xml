@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Интервал на синхронизиране</string>
     <string name="empty_view_content">Няма елементи</string>
     <string name="empty_view_content_action">Издърпване надолу, за опресняване</string>
+    <string name="toast_GettingMoreItems">Започва изтеглянето на няколко елемента. Моля изчакайте....</string>
     <string name="no_wifi_available">Няма WiFi връзка</string>
     <string name="do_you_want_to_download_without_wifi">Желаете ли изображенията да бъдат свалени при отсъствието на WiFi връзка</string>
     <string name="current_version">Ползвате версия %s</string>
@@ -36,6 +37,7 @@
     <string name="action_settings">Настройки</string>
     <string name="action_sync_settings">Настройки на синхронизацията</string>
     <string name="action_add_new_feed">Добави нова емисия</string>
+    <string name="action_add_new_folder">Добавяне на нова папка</string>
     <string name="action_textToSpeech">Прочитане</string>
     <string name="action_search">Търси</string>
     <string name="action_download_articles_offline">Свали статиите</string>
@@ -66,6 +68,7 @@
     <string name="action_link_share">Сподели връзката</string>
     <string name="action_link_open">Отвори връзката в браузъра</string>
     <string name="action_link_copy">Копирай връзката</string>
+    <string name="toast_img_download_wait">Изтегляне. Моля изчакайте …</string>
     <string name="toast_img_saved">Изображението е записано</string>
     <string name="toast_img_notwriteable">Записването на изображението се провали.</string>
     <string name="toast_copied_to_clipboard">Копирана</string>
@@ -77,16 +80,29 @@
     <string name="action_feed_remove">Премахване на емисията</string>
     <string name="action_feed_rename">Преименуване на емисията</string>
     <string name="action_feed_move">Преместване на емисията</string>
+    <string name="action_feed_notification_settings">Настройки на известие</string>
     <string name="feed_remove_button">Премахни</string>
     <string name="feed_rename_button">Преименувай</string>
     <string name="confirm_feed_remove">Наистина ли желаете емисията да бъде премахната? Изтриването е необратима операция!</string>
     <string name="feed_move_list_description">Изберете в коя папка да бъде преместена емисията</string>
     <string name="move_feed_root_folder">Основна папка</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Премахване на папка</string>
+    <string name="action_folder_rename">Преименуване на папка</string>
+    <string name="folder_remove_button">Премахване</string>
+    <string name="folder_rename_button">Преименуване</string>
+    <string name="confirm_folder_remove">Наистина ли искате премахване на тази папка? Това не може да бъде отменено!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Получаване на уникални известия за тази емисия</string>
     <string name="notification_feed_default">Всички емисии с настройките по подразбиране ще се появят в едно известие</string>
     <string name="notification_feed_none">Няма никакви известия</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Добавяне</string>
+    <string name="hint_folder_name">Име на папка</string>
+    <string name="folder_already_exists">Такава папка вече съществува</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Ръчно влизане</string>
@@ -97,6 +113,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Вписване</string>
+    <string name="login_progress_signing_in">Вписване...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Полето е задължително</string>
     <string name="error_invalid_url">Грешен URL адрес</string>
@@ -108,6 +125,12 @@
         <item quantity="other">Свалени са %d стари елементи</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Няма повече елементи</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">До сега са извлечени %d елемента …</item>
+        <item quantity="other">До сега са извлечени %d елемента …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="cache_is_cleared">Кеша е изчистен!</string>
@@ -129,6 +152,7 @@
     <string name="pref_general_search_in_body">Съдържанието</string>
 
     <string name="dialog_clearing_cache">Изчистване на кеш</string>
+    <string name="dialog_clearing_cache_please_wait">Изчистване на кеш. Моля изчакайте ...</string>
     <string name="reset_cache_unsaved_changes">Има несинхронизирани промени. Наистина ли желаете кеша да бъде изтрит?</string>
     <string name="warning">Предупреждение</string>
     <string name="pref_title_AutoSyncOnStart">Синхронизиране при стартиране</string>
@@ -149,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Няма избран podcast</string>
     <string name="no_chapters_available">Няма налични глави</string>
+    <string name="exit_playback">Излизане от плейъра</string>
     <string name="podcast_playback_speed_dialog_title">Скорост на възпроизвеждане</string>
     <string name="notification_downloading_podcast_title">Изтегляне на подкаст</string>
 
@@ -201,6 +226,22 @@
     <string name="pref_display_font_size_l">Голям</string>
     <string name="pref_display_font_size_xl">Много голям</string>
 
+    <string name="content_desc_play">Пускане</string>
+    <string name="content_desc_pause">Пауза</string>
+    <string name="content_desc_playback_speed">Скорост на възпроизвеждане</string>
+    <string name="content_desc_rewind">Превъртане назад</string>
+    <string name="content_desc_forward">Препращане</string>
+    <string name="content_desc_expand">Разгъване</string>
+    <string name="content_desc_collapse">Сгъване</string>
+    <string name="content_desc_mark_as_read">Маркиране като прочетено</string>
+    <string name="content_desc_mark_as_unread">Маркиране като непрочетено</string>
+    <string name="content_desc_tap_to_refresh">Докосване за опресняване</string>
+    <string name="content_desc_add_to_favorites">Добавяне към любими</string>
+    <string name="content_desc_remove_from_favorites">Премахване от любими</string>
+    <string name="content_desc_show_password">Показване на парола</string>
+    <string name="content_desc_delete">Изтриване</string>
+    <string name="content_desc_download">Изтегляне</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Грешка</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Изглежда, че приложението за новини не е инсталирано/включено на сървъра. Следвайте следните инструкции: %1$s, за да настроите приложението за новини на сървъра.</string>
@@ -239,6 +280,7 @@
     <string name="successfully_exported">Успешно изнесен към:</string>
     <string name="opml_export">OPML Експортиране</string>
     <string name="parsing_opml">Анализиране на OPML</string>
+    <string name="please_wait">Моля, изчакайте …</string>
     <string name="interval_sync_title">Интервална синхронизация </string>
 
     </resources>

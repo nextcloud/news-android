@@ -236,6 +236,22 @@
     <string name="pref_display_font_size_l">Duży</string>
     <string name="pref_display_font_size_xl">Bardzo duży</string>
 
+    <string name="content_desc_play">Odtwarzaj</string>
+    <string name="content_desc_pause">Wstrzymaj</string>
+    <string name="content_desc_playback_speed">Prędkość odtwarzania</string>
+    <string name="content_desc_rewind">Przewiń wstecz</string>
+    <string name="content_desc_forward">Przewiń wprzód</string>
+    <string name="content_desc_expand">Rozwiń</string>
+    <string name="content_desc_collapse">Zwiń</string>
+    <string name="content_desc_mark_as_read">Oznacz jako przeczytane</string>
+    <string name="content_desc_mark_as_unread">Oznacz jako nieprzeczytane</string>
+    <string name="content_desc_tap_to_refresh">Dotknij, aby odświeżyć</string>
+    <string name="content_desc_add_to_favorites">Dodaj do ulubionych</string>
+    <string name="content_desc_remove_from_favorites">Usuń z ulubionych</string>
+    <string name="content_desc_show_password">Pokaż hasło</string>
+    <string name="content_desc_delete">Usuń</string>
+    <string name="content_desc_download">Pobierz</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Błąd</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Wygląda na to, że aplikacja obsługująca aktualności nie jest zainstalowana lub aktywowana na twoim serwerze. Aby skonfigurować aplikację na swoim serwerze skorzystaj z tych porad: %1$s</string>

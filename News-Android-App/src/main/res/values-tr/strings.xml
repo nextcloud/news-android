@@ -226,6 +226,22 @@
     <string name="pref_display_font_size_l">Büyük</string>
     <string name="pref_display_font_size_xl">Çok büyük</string>
 
+    <string name="content_desc_play">Oynat</string>
+    <string name="content_desc_pause">Duraklat</string>
+    <string name="content_desc_playback_speed">Oynatma hızı</string>
+    <string name="content_desc_rewind">Geri</string>
+    <string name="content_desc_forward">İleri</string>
+    <string name="content_desc_expand">Genişlet</string>
+    <string name="content_desc_collapse">Daralt</string>
+    <string name="content_desc_mark_as_read">Okunmuş olarak işaretle</string>
+    <string name="content_desc_mark_as_unread">Okunmamış olarak işaretle</string>
+    <string name="content_desc_tap_to_refresh">Yenilemek için dokunun</string>
+    <string name="content_desc_add_to_favorites">Sık kullanılanlara ekle</string>
+    <string name="content_desc_remove_from_favorites">Sık kullanılanlardan çıkar</string>
+    <string name="content_desc_show_password">Parolayı görüntüle</string>
+    <string name="content_desc_delete">Sil</string>
+    <string name="content_desc_download">İndir</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hata</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Haberler uygulamanız sunucu üzerinde kurulmamış ya da etkinleştirilmemiş gibi görünüyor. Lütfen önce sunucu üzerine haberler uygulamasını kurmak için yönergeleri izleyin: %1$s</string>
