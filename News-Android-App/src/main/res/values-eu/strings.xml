@@ -87,9 +87,13 @@
     <string name="feed_move_list_description">Hautatu jarioa ze karpetatara eraman nahi duzun</string>
     <string name="move_feed_root_folder">Erro karpeta</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Kendu karpeta</string>
     <string name="action_folder_rename">Berrizendatu karpeta</string>
     <string name="folder_remove_button">Kendu</string>
     <string name="folder_rename_button">Berrizendatu</string>
+    <string name="confirm_folder_remove">Ziur zaude karpeta hau kendu nahi duzula? Ezingo da atzera egin!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Jaso jakinarazpen esklusiboak jario honentzat</string>
     <string name="notification_feed_default">Ezarpen lehenetsiak dituzten jario guztiak jakinarazpen batean agertuko dira</string>
@@ -169,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ez da podcastik hautatu</string>
     <string name="no_chapters_available">Ez dago kapitulurik eskuragarri</string>
+    <string name="exit_playback">Irten erreproduzigailua</string>
     <string name="podcast_playback_speed_dialog_title">Erreprodukzio abiadura</string>
     <string name="notification_downloading_podcast_title">Podcasta deskargatzen</string>
 
@@ -220,6 +225,22 @@
     <string name="pref_display_font_size_d">Lehenetsia</string>
     <string name="pref_display_font_size_l">Handia</string>
     <string name="pref_display_font_size_xl">Oso handia</string>
+
+    <string name="content_desc_play">Erreproduzitu</string>
+    <string name="content_desc_pause">Gelditu</string>
+    <string name="content_desc_playback_speed">Erreprodukzio abiadura</string>
+    <string name="content_desc_rewind">Atzeratu</string>
+    <string name="content_desc_forward">Aurreratu</string>
+    <string name="content_desc_expand">Zabaldu</string>
+    <string name="content_desc_collapse">Tolestu</string>
+    <string name="content_desc_mark_as_read">Markatu irakurritako gisa</string>
+    <string name="content_desc_mark_as_unread">Markatu irakurri gabeko gisa</string>
+    <string name="content_desc_tap_to_refresh">Sakatu freskatzeko</string>
+    <string name="content_desc_add_to_favorites">Gehitu gogokoetara</string>
+    <string name="content_desc_remove_from_favorites">Kendu gogokoetatik</string>
+    <string name="content_desc_show_password">Erakutsi pasahitza</string>
+    <string name="content_desc_delete">Ezabatu</string>
+    <string name="content_desc_download">Deskargatu</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errorea</string>
