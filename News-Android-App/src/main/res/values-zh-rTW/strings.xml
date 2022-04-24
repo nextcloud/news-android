@@ -76,17 +76,24 @@
     <string name="action_feed_remove">移除 Feed</string>
     <string name="action_feed_rename">重新命名 Feed</string>
     <string name="action_feed_move">移動摘要</string>
+    <string name="action_feed_notification_settings">通知設定</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
     <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
     <string name="feed_move_list_description">選擇要移動摘要至的資料夾</string>
     <string name="move_feed_root_folder">根目錄</string>
 
+    <string name="action_folder_rename">重新命名資料夾</string>
+    <string name="folder_remove_button">移除</string>
+    <string name="folder_rename_button">重新命名</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">接收此 feed 的個別通知</string>
     <string name="notification_feed_default">所有預設設定的 feed 都會顯示在同一個通知中</string>
     <string name="notification_feed_none">完全沒有通知</string>
 
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">新增</string>
+    <string name="hint_folder_name">資料夾名稱</string>
     <!-- Strings related to login -->
     <string name="login_manual">手動登入</string>
     <string name="login_sso">使用 Nextcloud Files 應用程式登入</string>
@@ -205,6 +212,17 @@
     <string name="pref_display_font_size_d">預設</string>
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">特大</string>
+
+    <string name="content_desc_play">播放</string>
+    <string name="content_desc_pause">暫停</string>
+    <string name="content_desc_forward">轉貼</string>
+    <string name="content_desc_collapse">收合</string>
+    <string name="content_desc_mark_as_read">標為已讀</string>
+    <string name="content_desc_add_to_favorites">新增至最愛</string>
+    <string name="content_desc_remove_from_favorites">從最愛中移除</string>
+    <string name="content_desc_show_password">顯示密碼</string>
+    <string name="content_desc_delete">刪除</string>
+    <string name="content_desc_download">下載</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">錯誤</string>

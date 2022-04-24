@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Sincronitza automàticament</string>
     <string name="title_activity_sync_interval_selector">Interval de sincronització</string>
     <string name="empty_view_content">Cap element</string>
+    <string name="empty_view_content_action">Desplegueu per actualitzar</string>
     <string name="no_wifi_available">Sense connexió Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Voleu descarregar les imatges sense una connexió WiFi</string>
     <string name="current_version">Esteu fent servir la versió %s</string>
@@ -76,12 +77,19 @@
     <string name="action_feed_remove">Suprimeix el canal</string>
     <string name="action_feed_rename">Reanomena el canal</string>
     <string name="action_feed_move">Mou el canal</string>
+    <string name="action_feed_notification_settings">Paràmetres de les notificacions</string>
     <string name="feed_remove_button">Suprimeix</string>
     <string name="feed_rename_button">Reanomena</string>
     <string name="confirm_feed_remove">Segur que voleu suprimir aquest Canal? Això no es podrà desfer!</string>
     <string name="feed_move_list_description">Selecciona la carpeta per moure-hi el canal</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
+    <string name="action_folder_rename">Canvia el nom de la carpeta</string>
+    <string name="folder_remove_button">Elimina</string>
+    <string name="folder_rename_button">Anomena</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Afegeix</string>
+    <string name="hint_folder_name">Nom de la carpeta</string>
     <!-- Strings related to login -->
     <string name="login_manual">Inici de sessió manual</string>
     <string name="login_sso">Inici de sessió fent servir l\'Aplicació de Fitxers de Nextcloud</string>
@@ -155,6 +163,7 @@
     <string name="pref_report_issue_summary">Es requereix un compte (gratuït) de GitHub</string>
     <string name="pref_contribute">Contribuïu!</string>
     <string name="pref_contribute_summary">Obteniu el codi font</string>
+    <string name="pref_privacy">Privadesa</string>
     <string name="pref_version">Aplicació Android de notícies de Nextcloud</string>
 
 
@@ -168,6 +177,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Icones d\'acció (vista detallada)</string>
 
+    <string name="pref_display_apptheme_auto">Per defecte del sistema</string>
     <string name="pref_display_apptheme_light">Clar</string>
     <string name="pref_display_apptheme_dark">Fosc</string>
 
@@ -190,6 +200,17 @@
     <string name="pref_display_font_size_d">Per defecte</string>
     <string name="pref_display_font_size_l">Gran</string>
     <string name="pref_display_font_size_xl">Molt gran</string>
+
+    <string name="content_desc_play">Joguina</string>
+    <string name="content_desc_pause">Posa en pausa</string>
+    <string name="content_desc_forward">Reenvia</string>
+    <string name="content_desc_collapse">Replega</string>
+    <string name="content_desc_mark_as_read">Marca com a llegit</string>
+    <string name="content_desc_add_to_favorites">Afegeix a favorits</string>
+    <string name="content_desc_remove_from_favorites">Suprimeix dels preferits</string>
+    <string name="content_desc_show_password">Mostra la contrasenya</string>
+    <string name="content_desc_delete">Eliminar</string>
+    <string name="content_desc_download">Baixa</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
@@ -221,4 +242,7 @@
     <string name="array_sync_interval_hour_6">6 hores</string>
     <string name="array_sync_interval_hour_12">12 hores</string>
     <string name="array_sync_interval_hour_24">24 hores</string>
+    <string name="switch_account">Canvia el compte</string>
+    
+    <string name="please_wait">Espereu...</string>
     </resources>

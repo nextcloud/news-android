@@ -93,6 +93,7 @@
     <string name="feed_move_list_description">Выберите папку для перемещения Новостной ленты</string>
     <string name="move_feed_root_folder">Корневой каталог</string>
 
+    <string name="action_folder_rename">Переименовать папку</string>
     <string name="folder_remove_button">Удалить</string>
     <string name="folder_rename_button">Переименовать</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
@@ -229,6 +230,18 @@
     <string name="pref_display_font_size_d">По умолчанию</string>
     <string name="pref_display_font_size_l">Крупный</string>
     <string name="pref_display_font_size_xl">Очень большой</string>
+
+    <string name="content_desc_play">Играть</string>
+    <string name="content_desc_pause">Пауза</string>
+    <string name="content_desc_forward">Вперёд</string>
+    <string name="content_desc_collapse">Свернуть</string>
+    <string name="content_desc_mark_as_read">Отметить прочитанным</string>
+    <string name="content_desc_mark_as_unread">Отметить не прочитанным</string>
+    <string name="content_desc_add_to_favorites">Добавить в избранное</string>
+    <string name="content_desc_remove_from_favorites">Убрать из избранного</string>
+    <string name="content_desc_show_password">Показать пароль</string>
+    <string name="content_desc_delete">Удалить</string>
+    <string name="content_desc_download">Скачать</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Ошибка</string>

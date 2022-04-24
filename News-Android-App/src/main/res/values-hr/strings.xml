@@ -80,12 +80,19 @@
     <string name="action_feed_remove">Ukloni sažetak</string>
     <string name="action_feed_rename">Preimenuj sažetak</string>
     <string name="action_feed_move">Premjesti sažetak</string>
+    <string name="action_feed_notification_settings">Postavke obavijesti</string>
     <string name="feed_remove_button">Ukloni</string>
     <string name="feed_rename_button">Preimenuj</string>
     <string name="confirm_feed_remove">Želite li zaista ukloniti ovaj sažetak? Ta se radnja ne može poništiti!</string>
     <string name="feed_move_list_description">Odaberite mapu u koju želite premjestiti sažetak</string>
     <string name="move_feed_root_folder">Korijenska mapa</string>
 
+    <string name="action_folder_rename">Preimenuj mapu</string>
+    <string name="folder_remove_button">Ukloni</string>
+    <string name="folder_rename_button">Preimenuj</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Dodaj</string>
+    <string name="hint_folder_name">Naziv mape</string>
     <!-- Strings related to login -->
     <string name="login_manual">Ručna prijava</string>
     <string name="login_sso">Prijavite se putem aplikacije Nextcloud Files</string>
@@ -200,6 +207,18 @@
     <string name="pref_display_font_size_l">Veliki</string>
     <string name="pref_display_font_size_xl">Jako veliki</string>
 
+    <string name="content_desc_play">Zabava</string>
+    <string name="content_desc_pause">Pauza</string>
+    <string name="content_desc_forward">Naprijed</string>
+    <string name="content_desc_collapse">Sakrij</string>
+    <string name="content_desc_mark_as_read">Označi kao pročitano</string>
+    <string name="content_desc_mark_as_unread">Označi kao nepročitano</string>
+    <string name="content_desc_add_to_favorites">Dodaj u favorite</string>
+    <string name="content_desc_remove_from_favorites">Ukloni iz favorita</string>
+    <string name="content_desc_show_password">Pokaži zaporku</string>
+    <string name="content_desc_delete">Izbriši</string>
+    <string name="content_desc_download">Preuzmi</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Pogreška</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Izgleda da aplikacija za vijesti nije instalirana ili aktivirana na vašem poslužitelju. Pratite navedene upute kako biste postavili aplikaciju za vijesti na poslužitelju: %1$s</string>
@@ -208,6 +227,9 @@
     <string name="login_dialog_text_not_compatible">Ova inačica aplikacije nije kompatibilna s aplikacijom Nextcloud News. Nadogradite aplikaciju za vijesti i razvojnu komponentu appframework.</string>
     <string name="login_dialog_title_security_warning">Sigurnosno upozorenje</string>
     <string name="login_dialog_text_security_warning">Ne upotrebljavate HTTPS, što se snažno preporučuje. Napadač može presresti vaš promet i tako pristupiti osjetljivim podacima (npr. vašoj zaporci).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Nešto je pošlo po krivu. Pokušajte ponovno.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Podaci i sinkronizacija</string>
     <string name="pref_title_clearCache">Izbriši predmemoriju</string>
@@ -235,6 +257,7 @@
     <string name="successfully_exported">Uspješno izvezeno u:</string>
     <string name="opml_export">OPML izvoz</string>
     <string name="parsing_opml">Parsiranje OPML-a</string>
+    <string name="please_wait">Pričekajte...</string>
     <string name="interval_sync_title">Sinkronizacija intervala</string>
 
     </resources>

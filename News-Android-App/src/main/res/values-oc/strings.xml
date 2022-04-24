@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Sincronizacion auto.</string>
+    <string name="empty_view_content">Pas cap d\'article</string>
+    <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="no_wifi_available">Pas cap de connexion Wi-Fi</string>
+    <string name="current_version">Utilizatz la Version %s</string>
+    <string name="widget_header">Actualitats ownCloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d article novèl disponible</item>
+        <item quantity="other">%d articles novèls disponibles</item>
+    </plurals>
+    <string name="message_bar_reload">Recargar</string>
+    <string name="allUnreadFeeds">Totes los articles pas legits</string>
+    <string name="starredFeeds">Articles favorits</string>
+    <string name="title_activity_new_feed">Apondre un flux</string>
+
+    <string name="menu_update">Refrescar</string>
+    <string name="menu_markAllAsRead">Marcar totes coma legits</string>
+    <string name="menu_StartImageCaching">Telecargar los imatges</string>
+    <string name="menu_downloadMoreItems">+ d\'articles</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Favorit</string>
+    <string name="action_read">Legit</string>
+    <string name="action_playPodacst">Legir lo Podcast</string>
+    <string name="action_Share">Partejar</string>
+    <string name="action_login">Paramètres del servidor</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_sync_settings">Paramètres de sincronizacion</string>
+    <string name="action_add_new_feed">Apondre un flux novèl</string>
+    <string name="action_textToSpeech">Legir a votz nauta</string>
+    <string name="action_search">Recercar</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">I a %d novèl article pas legit</item>
+        <item quantity="other">I a %d novèls articles pas legits</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d novèl article pas legit</item>
+        <item quantity="other">%d novèls articles pas legits</item>
+    </plurals>
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Telecargar l\'Imatge</string>
+    <string name="action_img_sharelink">Partejar lo Ligam cap a l\'Imatge</string>
+    <string name="action_img_open">Dobrir l\'Imatge dins lo Navigador</string>
+    <string name="action_img_copylink">Copiar lo Ligam cap a l\'Imatge</string>
+    <string name="action_link_share">Partejar per un Ligam</string>
+    <string name="action_link_open">Dobrir lo Ligam dins lo Navigador</string>
+    <string name="action_link_copy">Copiar lo Ligam</string>
+    <string name="toast_img_notwriteable">Error d\'escritura de l\'Imatge.</string>
+    <string name="toast_copied_to_clipboard">Copiat dins lo quichapapièrs</string>
+    <string name="error_download_failed">Lo telecargament a fracassat</string>
+    <string name="intent_title_share">Partejar via</string>
+
+
+    <string name="action_feed_notification_settings">Paramètres de notificacions</string>
+    <string name="feed_remove_button">Suprimir</string>
+    <string name="feed_rename_button">Renomenar</string>
+    <string name="action_folder_rename">Renomenar lo repertòri</string>
+    <string name="folder_remove_button">Suprimir</string>
+    <string name="folder_rename_button">Renomenar</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Apondre</string>
+    <string name="hint_folder_name">Nom del dorsièr</string>
+    <string name="pref_title_username">Nom d\'utilizaire</string>
+    <string name="pref_title_password">Senhal</string>
+    <string name="pref_title_owncloudRootPath">adreça raiç d\'ownCloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">S\'identificar</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Aqueste camp es requesit</string>
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">%d ancian article telecargat</item>
+        <item quantity="other">%d ancians articles telecargats</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Cap d\'article suplementari pas disponible</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="cache_is_cleared">Escondedor netejat !</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Generals</string>
+    <string name="pref_title_general_sort_order">Òrdre de triada</string>
+
+    <string name="pref_general_search_in_title">Títol</string>
+    <string name="pref_general_search_in_body">Còs</string>
+
+    <string name="dialog_clearing_cache">Voidar l\'escondedor</string>
+    <string name="reset_cache_unsaved_changes">Certanas modificacions son pas sincronizadas. Volètz reïnicializar l\'escondedor malgrat tot ?</string>
+    <string name="warning">Atencion</string>
+    <string name="pref_title_AutoSyncOnStart">Sincro. a l\'aviada</string>
+    <string name="pref_title_ShowOnlyUnread">Amagar los articles legits</string>
+    <string name="pref_title_DisableHostnameVerification">Desactivar la verificacion del nom de maquina</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigar amb los botons de volum</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marcar coma legit tot en desfilant</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Acceptar los certificats pas segurs ?</string>
+    <string name="mtm_decision_always">Totjorn</string>
+    <string name="mtm_decision_abort">Anullar</string>
+    <string name="mtm_notification">Verificacion del certificat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Cap de podcast pas seleccionat</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">A prepaus</string>
+    <string name="pref_license">Licéncia</string>
+    <string name="pref_privacy">Confidencialitat</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Afichatge</string>
+    <string name="pref_title_app_theme">Tèma</string>
+    <string name="pref_title_feed_list_layout">Disposicion de la lista dels fluxes</string>
+    <string name="pref_title_font_size">Talha poliça</string>
+    <string name="pref_display_apptheme_light">Clar</string>
+    <string name="pref_display_apptheme_dark">Escur</string>
+
+    <string name="pref_display_font_size_d">Defaut</string>
+    <string name="content_desc_play">Aviar</string>
+    <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_collapse">Replegar</string>
+    <string name="content_desc_mark_as_read">Marcar coma legit</string>
+    <string name="content_desc_mark_as_unread">Marcar coma pas legit</string>
+    <string name="content_desc_add_to_favorites">Add to favorites</string>
+    <string name="content_desc_remove_from_favorites">Remove from favorites</string>
+    <string name="content_desc_show_password">Mostrar lo senhal</string>
+    <string name="content_desc_delete">Suprimir</string>
+    <string name="content_desc_download">Telecargar</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Error</string>
+    <string name="login_dialog_text_something_went_wrong">Un problèma s\'es produsit :-(</string>
+    <string name="login_dialog_title_security_warning">Avertiment de seguretat</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Donadas &amp; sincronizacion</string>
+    <string name="pref_title_clearCache">Voidar l\'escondedor</string>
+    <string name="pref_title_CacheImagesOffline">Mesa en escondedor fòra linha dels imatges</string>
+    <string name="pref_title_Max_Cache_Size">Talha maximala de l\'escondedor</string>
+
+    <string name="pref_data_sync_image_cache_never">Pas jamais</string>
+    <string name="pref_data_sync_image_cache_wifi_only">En WiFi solament</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">En WiFi &amp; Mobil</string>
+    <string name="pref_data_sync_image_cache_ask">Demandar quand pas connectat</string>
+
+    <string name="array_sync_interval_min_0">Pas jamais</string>
+    <string name="array_sync_interval_min_5">5 minutas</string>
+    <string name="array_sync_interval_min_15">15 minutas</string>
+    <string name="array_sync_interval_min_30">30  minutas</string>
+    <string name="array_sync_interval_min_45">45 minutas</string>
+    <string name="array_sync_interval_hour_1">1 ora</string>
+    <string name="array_sync_interval_hour_2">2 oras</string>
+    <string name="array_sync_interval_hour_3">3 oras</string>
+    <string name="array_sync_interval_hour_6">6 oras</string>
+    <string name="array_sync_interval_hour_24">24 oras</string>
+    </resources>

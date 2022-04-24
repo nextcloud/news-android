@@ -3,6 +3,7 @@
 
     <string name="auto_sync_string">Sincronización automática</string>
     <string name="empty_view_content">Aquí no hay elementos</string>
+    <string name="empty_view_content_action">Jala hacia abajo para actualizar</string>
     <string name="no_wifi_available">No estás conectado a una WiFi</string>
     <string name="do_you_want_to_download_without_wifi">¿Deseas descargar imágenes sin conexión a Wi-Fi?</string>
     <string name="current_version">Estás usando la Versión %s</string>
@@ -67,6 +68,11 @@
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente deseas eliminar esta Fuente? ¡Esta operación no se puede deshacer!</string>
+    <string name="folder_remove_button">Eliminar</string>
+    <string name="folder_rename_button">Renombrar</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Agregar</string>
+    <string name="hint_folder_name">Nombre de la carpeta</string>
     <string name="pref_title_username">Nombre de usuario</string>
     <string name="pref_title_password">Contraseña</string>
     <string name="pref_title_owncloudRootPath">Dirección raíz de Nextcloud</string>
@@ -118,6 +124,7 @@
     <!-- Settings for About -->
     <string name="pref_header_about">Acerca de</string>
     <string name="pref_license">Licencia</string>
+    <string name="pref_privacy">Privacidad</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_app_theme">Tema</string>
@@ -135,6 +142,15 @@
     <string name="pref_display_browser_external">Navegador Externo</string>
 
     <string name="pref_display_font_size_d">Predeterminado</string>
+    <string name="content_desc_play">Reproducir</string>
+    <string name="content_desc_pause">Pausar</string>
+    <string name="content_desc_forward">Adelante</string>
+    <string name="content_desc_collapse">Colapsar</string>
+    <string name="content_desc_add_to_favorites">Agregar a tus favoritos</string>
+    <string name="content_desc_remove_from_favorites">Eliminar de favoritos</string>
+    <string name="content_desc_delete">Borrar</string>
+    <string name="content_desc_download">Descargar</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
@@ -154,4 +170,12 @@
     <string name="pref_data_sync_image_cache_ask">Preguntar cuando no esté conectado a WiFi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
     </resources>

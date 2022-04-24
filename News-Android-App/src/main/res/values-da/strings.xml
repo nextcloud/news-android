@@ -77,12 +77,19 @@
     <string name="action_feed_remove">Fjern feed</string>
     <string name="action_feed_rename">Omdøb feed</string>
     <string name="action_feed_move">Flyt feed</string>
+    <string name="action_feed_notification_settings">Meddelelsesindstillinger</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Omdøb</string>
     <string name="confirm_feed_remove">Ønsker du virkelig at slette denne strøm. Det kan ikke fortrydes?</string>
     <string name="feed_move_list_description">Vælg mappe at flytte strøm til </string>
     <string name="move_feed_root_folder">Rodmappe</string>
 
+    <string name="action_folder_rename">Omdøb mappe</string>
+    <string name="folder_remove_button">Fjern</string>
+    <string name="folder_rename_button">Omdøb</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Tilføj</string>
+    <string name="hint_folder_name">Mappenavn</string>
     <!-- Strings related to login -->
     <string name="login_manual">Manuel login</string>
     <string name="login_sso">Login ved hjælp af Nextcloud Files app\'en</string>
@@ -152,6 +159,7 @@
     <string name="pref_report_issue_summary">Kræver en (gratis) GitHub konto</string>
     <string name="pref_contribute">Medvirk!</string>
     <string name="pref_contribute_summary">Hent kildeteksten</string>
+    <string name="pref_privacy">Privatliv</string>
     <string name="pref_version">Nextcloud News Android app</string>
 
 
@@ -165,6 +173,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljeret visning)</string>
 
+    <string name="pref_display_apptheme_auto">System Standard</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
 
@@ -187,6 +196,18 @@
     <string name="pref_display_font_size_d">Standard</string>
     <string name="pref_display_font_size_l">Stor</string>
     <string name="pref_display_font_size_xl">Ekstra stor</string>
+
+    <string name="content_desc_play">Afspil</string>
+    <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_forward">Videresend</string>
+    <string name="content_desc_collapse">Sammenfold</string>
+    <string name="content_desc_mark_as_read">Marker som læst</string>
+    <string name="content_desc_mark_as_unread">Marker som ulæst</string>
+    <string name="content_desc_add_to_favorites">Tilføj til favoritter</string>
+    <string name="content_desc_remove_from_favorites">Fjern fra favoritter</string>
+    <string name="content_desc_show_password">Vis adgangskode</string>
+    <string name="content_desc_delete">Slet</string>
+    <string name="content_desc_download">Download</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fejl</string>
@@ -223,4 +244,5 @@
     <string name="array_sync_interval_hour_24">24 timer</string>
     <string name="switch_account">Skift konto</string>
     
+    <string name="please_wait">Vent venligst …</string>
     </resources>

@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Auto sinchronizavimas</string>
     <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
     <string name="empty_view_content">Nėra elementų</string>
+    <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">Nėra WiFi ryšio</string>
     <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslus be Wi-Fi ryšio</string>
     <string name="current_version">Jūs naudojate versiją %s</string>
@@ -77,12 +78,19 @@
     <string name="action_feed_remove">Šalinti kanalą</string>
     <string name="action_feed_rename">Pervadinti kanalą</string>
     <string name="action_feed_move">Perkelti kanalą</string>
+    <string name="action_feed_notification_settings">Pranešimų nustatymai</string>
     <string name="feed_remove_button">Šalinti</string>
     <string name="feed_rename_button">Pervadinti</string>
     <string name="confirm_feed_remove">Ar tikrai norite pašalinti šį kanalą? Šio veiksmo neįmanoma bus atšaukti!</string>
     <string name="feed_move_list_description">Pasirinkite aplanką į kurį norite perkelti kanalą</string>
     <string name="move_feed_root_folder">Šakninis aplankas</string>
 
+    <string name="action_folder_rename">Pervadinti aplanką</string>
+    <string name="folder_remove_button">Šalinti</string>
+    <string name="folder_rename_button">Pervadinti</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Pridėti</string>
+    <string name="hint_folder_name">Aplanko pavadinimas</string>
     <!-- Strings related to login -->
     <string name="login_manual">Rankinis prisijungimas</string>
     <string name="pref_title_username">Naudotojo vardas</string>
@@ -160,6 +168,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Veiksmų ikonos (Išsamus atvaizdavimas)</string>
 
+    <string name="pref_display_apptheme_auto">Sistemos numatytasis</string>
     <string name="pref_display_apptheme_light">Šviesus</string>
     <string name="pref_display_apptheme_dark">Tamsus</string>
 
@@ -176,6 +185,18 @@
     <string name="pref_display_font_size_d">Numatytoji</string>
     <string name="pref_display_font_size_l">Didelis</string>
     <string name="pref_display_font_size_xl">Labai didelis</string>
+
+    <string name="content_desc_play">Atkurti</string>
+    <string name="content_desc_pause">Pristabdyti</string>
+    <string name="content_desc_forward">Persiųsti</string>
+    <string name="content_desc_collapse">Suskleisti</string>
+    <string name="content_desc_mark_as_read">Žymėti kaip skaitytą</string>
+    <string name="content_desc_mark_as_unread">Žymėti kaip neskaitytą</string>
+    <string name="content_desc_add_to_favorites">Pridėti į mėgstamus</string>
+    <string name="content_desc_remove_from_favorites">Šalinti iš mėgstamų</string>
+    <string name="content_desc_show_password">Rodyti slaptažodį</string>
+    <string name="content_desc_delete">Ištrinti</string>
+    <string name="content_desc_download">Atsisiųsti</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Klaida</string>
@@ -196,7 +217,18 @@
     <string name="pref_data_sync_image_cache_ask">Klausti, kai neprisijungta prie belaidžio (WiFi)</string>
 
     <string name="array_sync_interval_min_0">Niekada</string>
+    <string name="array_sync_interval_min_5">5 minutės</string>
+    <string name="array_sync_interval_min_15">15 minučių</string>
+    <string name="array_sync_interval_min_30">30 minučių</string>
+    <string name="array_sync_interval_min_45">45 minutės</string>
+    <string name="array_sync_interval_hour_1">1 valanda</string>
+    <string name="array_sync_interval_hour_2">2 valandos</string>
+    <string name="array_sync_interval_hour_3">3 valandų</string>
+    <string name="array_sync_interval_hour_6">6 valandos</string>
+    <string name="array_sync_interval_hour_12">12 valandų</string>
+    <string name="array_sync_interval_hour_24">24 valandos</string>
     <string name="switch_account">Perjungti paskyrą</string>
     
     <string name="successfully_exported">Sėkmingai eksportuota į:</string>
+    <string name="please_wait">Palaukite…</string>
     </resources>

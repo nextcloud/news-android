@@ -79,17 +79,24 @@
     <string name="action_feed_remove">Rimuovi fonte</string>
     <string name="action_feed_rename">Rinomina fonte</string>
     <string name="action_feed_move">Sposta fonte</string>
+    <string name="action_feed_notification_settings">Impostazioni di notifica</string>
     <string name="feed_remove_button">Rimuovi</string>
     <string name="feed_rename_button">Rinomina</string>
     <string name="confirm_feed_remove">Vuoi davvero rimuovere questa fonte? Ciò non può essere annullato!</string>
     <string name="feed_move_list_description">Seleziona la cartella in cui spostare la fonte</string>
     <string name="move_feed_root_folder">Cartella radice</string>
 
+    <string name="action_folder_rename">Rinomina cartella</string>
+    <string name="folder_remove_button">Rimuovi</string>
+    <string name="folder_rename_button">Rinomina</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Ricevi una notifica unica per questo feed</string>
     <string name="notification_feed_default">Tutti i feed con le impostazioni di default appariranno in un\'unica notifica</string>
     <string name="notification_feed_none">Nessuna notifica presente</string>
 
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Aggiungi</string>
+    <string name="hint_folder_name">Nome della cartella</string>
     <!-- Strings related to login -->
     <string name="login_manual">Accesso manuale</string>
     <string name="login_sso">Accedi utilizzando l\'applicazione File di Nextcloud</string>
@@ -210,6 +217,18 @@
     <string name="pref_display_font_size_d">Predefinita</string>
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Molto grande</string>
+
+    <string name="content_desc_play">Gioca</string>
+    <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_forward">Inoltra</string>
+    <string name="content_desc_collapse">Contrai</string>
+    <string name="content_desc_mark_as_read">Segna come letto</string>
+    <string name="content_desc_mark_as_unread">Segna come non letto</string>
+    <string name="content_desc_add_to_favorites">Aggiungi ai preferiti</string>
+    <string name="content_desc_remove_from_favorites">Rimuovi dai preferiti</string>
+    <string name="content_desc_show_password">Mostra password</string>
+    <string name="content_desc_delete">Elimina</string>
+    <string name="content_desc_download">Scarica</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Errore</string>

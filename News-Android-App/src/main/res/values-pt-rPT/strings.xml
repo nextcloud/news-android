@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Sincronização Automática</string>
     <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
     <string name="empty_view_content">Sem itens aqui</string>
+    <string name="empty_view_content_action">Puxe para atualizar</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>
     <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi</string>
     <string name="current_version">Está a usar a Versão %s</string>
@@ -73,12 +74,19 @@
     <string name="action_feed_remove">Remover <em>Feed</em></string>
     <string name="action_feed_rename">Renomear <em>Feed</em></string>
     <string name="action_feed_move">Mover Fonte</string>
+    <string name="action_feed_notification_settings">Definições de notificação</string>
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Tem a certeza que pretende remover este <em>Feed</em>? A operação não pode ser revertida!</string>
     <string name="feed_move_list_description">Selecionar a pasta para mover a fonte</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
+    <string name="action_folder_rename">Renomear pasta</string>
+    <string name="folder_remove_button">Remover</string>
+    <string name="folder_rename_button">Renomear</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Adicionar</string>
+    <string name="hint_folder_name">Nome da pasta</string>
     <!-- Strings related to login -->
     <string name="login_manual">Sessão manual</string>
     <string name="login_sso">Inicie a sessão usando a aplicação Nextcloud Files</string>
@@ -143,6 +151,7 @@
     <string name="pref_report_issue_summary">Requer uma conta GitHub (gratuita)</string>
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código fonte</string>
+    <string name="pref_privacy">Privacidade</string>
     <string name="pref_version">Aplicação Nextcloud News Android</string>
 
 
@@ -179,6 +188,16 @@
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Muito grande</string>
 
+    <string name="content_desc_play">Reproduzir</string>
+    <string name="content_desc_pause">Pausar</string>
+    <string name="content_desc_forward">Encaminhar</string>
+    <string name="content_desc_collapse">Expandir</string>
+    <string name="content_desc_add_to_favorites">Adicionar aos favoritos</string>
+    <string name="content_desc_remove_from_favorites">Remover dos favoritos</string>
+    <string name="content_desc_show_password">Mostrar senha</string>
+    <string name="content_desc_delete">Apagar</string>
+    <string name="content_desc_download">Transferir</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>
@@ -195,4 +214,16 @@
     <string name="pref_data_sync_image_cache_ask">Perguntar quando não ligado à Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 horas</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
+    <string name="switch_account">Trocar de conta</string>
+    
+    <string name="please_wait">Aguarde...</string>
     </resources>

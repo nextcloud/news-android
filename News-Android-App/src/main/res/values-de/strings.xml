@@ -235,7 +235,7 @@
     <string name="content_desc_collapse">Zuklappen</string>
     <string name="content_desc_mark_as_read">Als gelesen markieren</string>
     <string name="content_desc_mark_as_unread">Als ungelesen markieren</string>
-    <string name="content_desc_tap_to_refresh">Zum aktualisieren antippen</string>
+    <string name="content_desc_tap_to_refresh">Zum Aktualisieren antippen</string>
     <string name="content_desc_add_to_favorites">Zu Favoriten hinzufügen</string>
     <string name="content_desc_remove_from_favorites">Von Favoriten entfernen</string>
     <string name="content_desc_show_password">Passwort anzeigen</string>

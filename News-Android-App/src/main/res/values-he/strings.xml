@@ -4,6 +4,7 @@
     <string name="auto_sync_string">סנכרון אוטומטי</string>
     <string name="title_activity_sync_interval_selector">הפרש בין סנכרונים</string>
     <string name="empty_view_content">אין כאן פריטים</string>
+    <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">אין חיבור WiFi</string>
     <string name="do_you_want_to_download_without_wifi">להוריד תמונות בלי חיבור לרשת אלחוטית</string>
     <string name="current_version">הנך משתמש/ת בגרסה %s</string>
@@ -82,12 +83,19 @@
     <string name="action_feed_remove">הסרת הזנה</string>
     <string name="action_feed_rename">שינוי שם הזנה</string>
     <string name="action_feed_move">העברת הזנה</string>
+    <string name="action_feed_notification_settings">הגדרות התראה</string>
     <string name="feed_remove_button">הסרה</string>
     <string name="feed_rename_button">שינוי שם</string>
     <string name="confirm_feed_remove">להסיר את ההזנה הזאת? מדובר בהליך בלתי הפיך.</string>
     <string name="feed_move_list_description">לבחור תיקייה אליה להעביר את ההזנה</string>
     <string name="move_feed_root_folder">תיקיית בסיס</string>
 
+    <string name="action_folder_rename">שינוי שם תיקייה</string>
+    <string name="folder_remove_button">הסרה</string>
+    <string name="folder_rename_button">שינוי שם</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">הוספה</string>
+    <string name="hint_folder_name">שם תיקייה</string>
     <!-- Strings related to login -->
     <string name="login_manual">כניסה ידנית</string>
     <string name="login_sso">כניסה דרך יישומון הקבצים של Nextcloud</string>
@@ -160,6 +168,7 @@
     <string name="pref_report_issue_summary">נדרש חשבון ב־GitHub (ללא עלות)</string>
     <string name="pref_contribute">להתנדב!</string>
     <string name="pref_contribute_summary">הורדת קוד המקור</string>
+    <string name="pref_privacy">פרטיות</string>
     <string name="pref_version">יישומון החדשות של Nextcloud ל־Android</string>
 
 
@@ -173,6 +182,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">סמלי פעולה (תצוגה מפורטת)</string>
 
+    <string name="pref_display_apptheme_auto">ברירת מחדל של המערכת</string>
     <string name="pref_display_apptheme_light">בהירה</string>
     <string name="pref_display_apptheme_dark">כהה</string>
 
@@ -195,6 +205,18 @@
     <string name="pref_display_font_size_d">בררת מחדל</string>
     <string name="pref_display_font_size_l">גדול</string>
     <string name="pref_display_font_size_xl">גדול מאוד</string>
+
+    <string name="content_desc_play">נגן</string>
+    <string name="content_desc_pause">השהה</string>
+    <string name="content_desc_forward">העברה</string>
+    <string name="content_desc_collapse">קיווץ</string>
+    <string name="content_desc_mark_as_read">סימון כנקרא</string>
+    <string name="content_desc_mark_as_unread">סימון כלא נקרא</string>
+    <string name="content_desc_add_to_favorites">הוספה למועדפים</string>
+    <string name="content_desc_remove_from_favorites">הסרה מהמועדפים</string>
+    <string name="content_desc_show_password">הצגת ססמה</string>
+    <string name="content_desc_delete">מחיקה</string>
+    <string name="content_desc_download">הורדה</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">שגיאה</string>
@@ -226,4 +248,7 @@
     <string name="array_sync_interval_hour_6">6 שעות</string>
     <string name="array_sync_interval_hour_12">12 שעות</string>
     <string name="array_sync_interval_hour_24">24 שעות</string>
+    <string name="switch_account">החלף חשבון</string>
+    
+    <string name="please_wait">נא להמתין…</string>
     </resources>

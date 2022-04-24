@@ -77,17 +77,24 @@
     <string name="action_feed_remove">Fjern strøm</string>
     <string name="action_feed_rename">Omdøp strøm</string>
     <string name="action_feed_move">Flytt strøm</string>
+    <string name="action_feed_notification_settings">Innstillinger for notifiseringer</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Gi nytt navn</string>
     <string name="confirm_feed_remove">Vil du fjerne denne strømmen? Dette kan ikke angres!</string>
     <string name="feed_move_list_description">Velg katalog å flytte strøm til</string>
     <string name="move_feed_root_folder">Root katalog</string>
 
+    <string name="action_folder_rename">Gi mappen nytt navn</string>
+    <string name="folder_remove_button">Fjern</string>
+    <string name="folder_rename_button">Endre navn</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Motta unike varsler for denne feeden</string>
     <string name="notification_feed_default">Alle feeder med standardinnstillingene vises i ett varsel</string>
     <string name="notification_feed_none">Ingen varsler</string>
 
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Legg til</string>
+    <string name="hint_folder_name">Mappenavn</string>
     <!-- Strings related to login -->
     <string name="login_manual">Manuell innlogging</string>
     <string name="login_sso">Logg inn via Nextcloud filer app</string>
@@ -201,6 +208,18 @@
     <string name="pref_display_font_size_l">Stor</string>
     <string name="pref_display_font_size_xl">Ekstra stor</string>
 
+    <string name="content_desc_play">Spill</string>
+    <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_forward">Fremover</string>
+    <string name="content_desc_collapse">Skjul</string>
+    <string name="content_desc_mark_as_read">Merk som lest</string>
+    <string name="content_desc_mark_as_unread">Merk som ulest</string>
+    <string name="content_desc_add_to_favorites">Legg til i favoritter</string>
+    <string name="content_desc_remove_from_favorites">Fjern fra favoritter</string>
+    <string name="content_desc_show_password">Vis passord</string>
+    <string name="content_desc_delete">Slett</string>
+    <string name="content_desc_download">Last ned</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Feil</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Nyhets tillegg er ikke installert eller aktivert på din server. Følge instruksjonene angitt her for å sette opp din server: %1$s</string>
@@ -239,6 +258,7 @@
     <string name="successfully_exported">Vellykket eksport til:</string>
     <string name="opml_export">OPML eksport</string>
     <string name="parsing_opml">Leser OPML</string>
+    <string name="please_wait">Vennligst vent...</string>
     <string name="interval_sync_title">Ugyldig synkronisering</string>
 
     </resources>

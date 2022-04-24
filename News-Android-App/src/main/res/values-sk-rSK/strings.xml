@@ -235,6 +235,18 @@
     <string name="pref_display_font_size_l">Veľká</string>
     <string name="pref_display_font_size_xl">Veľmi veľké</string>
 
+    <string name="content_desc_play">Hrať</string>
+    <string name="content_desc_pause">Pauza</string>
+    <string name="content_desc_forward">Preposlať</string>
+    <string name="content_desc_collapse">Zvinúť</string>
+    <string name="content_desc_mark_as_read">Označiť ako prečítané</string>
+    <string name="content_desc_mark_as_unread">Označiť ako neprečítané</string>
+    <string name="content_desc_add_to_favorites">Pridať do obľúbených</string>
+    <string name="content_desc_remove_from_favorites">Odstrániť z obľúbených</string>
+    <string name="content_desc_show_password">Zobraziť heslo</string>
+    <string name="content_desc_delete">Vymazať</string>
+    <string name="content_desc_download">Sťahovanie</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Chyba</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Zdá sa, že vaša aplikácia Novinky nie je nainštalovaná alebo aktivovaná na vašom serveri. Postupujte podľa pokynov, pre nastavenie aplikácie Novinky na servri:: %1$s</string>

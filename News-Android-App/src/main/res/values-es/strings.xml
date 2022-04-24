@@ -226,6 +226,18 @@
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Muy grande</string>
 
+    <string name="content_desc_play">Reproducir</string>
+    <string name="content_desc_pause">Pausar</string>
+    <string name="content_desc_forward">Reenviar</string>
+    <string name="content_desc_collapse">Colapsar</string>
+    <string name="content_desc_mark_as_read">Marcar como leído</string>
+    <string name="content_desc_mark_as_unread">Marcar como no leído</string>
+    <string name="content_desc_add_to_favorites">Añadir a favoritos</string>
+    <string name="content_desc_remove_from_favorites">Eliminar de favoritos</string>
+    <string name="content_desc_show_password">Mostrar contraseña</string>
+    <string name="content_desc_delete">Eliminar</string>
+    <string name="content_desc_download">Descargar</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Parece que tu aplicación de noticias no está instalada o activada en tu servidor. Siga las instrucciones para configurar la aplicación de noticias en tu servidor: %1$s</string>

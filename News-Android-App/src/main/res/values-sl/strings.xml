@@ -235,6 +235,18 @@
     <string name="pref_display_font_size_l">Velika</string>
     <string name="pref_display_font_size_xl">Zelo velika</string>
 
+    <string name="content_desc_play">Igrani nastop</string>
+    <string name="content_desc_pause">Premor</string>
+    <string name="content_desc_forward">Posreduj</string>
+    <string name="content_desc_collapse">Skrči</string>
+    <string name="content_desc_mark_as_read">Označi kot prebrano</string>
+    <string name="content_desc_mark_as_unread">Označi kot neprebrano</string>
+    <string name="content_desc_add_to_favorites">Dodaj med priljubljene</string>
+    <string name="content_desc_remove_from_favorites">Odstrani iz priljubljenih</string>
+    <string name="content_desc_show_password">Pokaži geslo</string>
+    <string name="content_desc_delete">Izbriši</string>
+    <string name="content_desc_download">Prejmi</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Napaka</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Kaže, da novičarski program na strežniku ni nameščen oziroma ni zagnan. Oglejte si navodila, kako ga namestiti na strežnik: %1$s</string>

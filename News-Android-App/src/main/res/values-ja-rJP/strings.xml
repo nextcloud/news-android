@@ -4,6 +4,7 @@
     <string name="auto_sync_string">自動同期</string>
     <string name="title_activity_sync_interval_selector">同期間隔</string>
     <string name="empty_view_content">アイテムがありません</string>
+    <string name="empty_view_content_action">下に引っ張ってリフレッシュ</string>
     <string name="no_wifi_available">WiFi接続がありません</string>
     <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか</string>
     <string name="current_version">使用中のバージョンは %s です</string>
@@ -73,14 +74,21 @@
     <string name="action_feed_remove">フィードの削除</string>
     <string name="action_feed_rename">フィードの名前を変更</string>
     <string name="action_feed_move">移動フィード</string>
+    <string name="action_feed_notification_settings">通知設定</string>
     <string name="feed_remove_button">削除</string>
     <string name="feed_rename_button">名前の変更</string>
     <string name="confirm_feed_remove">本当にこのフィードを削除してよろしいですか？この操作は元に戻せません！</string>
     <string name="feed_move_list_description">フィードを移動するフォルダーを選択</string>
     <string name="move_feed_root_folder">ルートフォルダー</string>
 
+    <string name="action_folder_rename">フォルダーの名前を変更</string>
+    <string name="folder_remove_button">削除</string>
+    <string name="folder_rename_button">名前を変更</string>
     <string name="notification_feed_none">通知はありません</string>
 
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">追加</string>
+    <string name="hint_folder_name">フォルダー名</string>
     <!-- Strings related to login -->
     <string name="login_manual">手動ログイン</string>
     <string name="login_sso">Nextcloud ファイル アプリを使用してログイン</string>
@@ -193,6 +201,18 @@
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">巨大</string>
 
+    <string name="content_desc_play">再生</string>
+    <string name="content_desc_pause">一時停止</string>
+    <string name="content_desc_forward">転送</string>
+    <string name="content_desc_collapse">折りたたむ</string>
+    <string name="content_desc_mark_as_read">既読にする</string>
+    <string name="content_desc_mark_as_unread">未読にする</string>
+    <string name="content_desc_add_to_favorites">お気に入りに追加</string>
+    <string name="content_desc_remove_from_favorites">お気に入りから削除</string>
+    <string name="content_desc_show_password">パスワードを表示</string>
+    <string name="content_desc_delete">削除</string>
+    <string name="content_desc_download">ダウンロード</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">エラー</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">あなたのニュースアプリがあなたのサーバーにインストールされていないか、起動されていないようです。 まず、あなたのサーバーにニュースアプリをインストールするには、こちらの指示に従ってください：%1$s</string>
@@ -201,6 +221,9 @@
     <string name="login_dialog_text_not_compatible">このアプリのバージョンは Nextcloud ニュースアプリと互換性がありません。ニュースアプリと appframework をアップデートしてください。</string>
     <string name="login_dialog_title_security_warning">セキュリティ警告</string>
     <string name="login_dialog_text_security_warning">HTTPSを使用していないので、強くお勧めします。 攻撃者はトラフィックを傍受し、機密データ（パスワードなど）にアクセスする可能性があります。</string>
+    <string name="login_dialog_select_account_unknown_error_toast">何か問題が発生しました。もう一度お試しください。</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">データと同期</string>
     <string name="pref_title_clearCache">キャッシュをクリア</string>
@@ -227,4 +250,5 @@
     
     <string name="opml_export">OPMLをエクスポート</string>
     <string name="parsing_opml">OPMLを解析中</string>
+    <string name="please_wait">しばらくお待ちください…</string>
     </resources>

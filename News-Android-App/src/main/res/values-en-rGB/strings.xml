@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Auto sync</string>
     <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="empty_view_content">No items here</string>
+    <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">No WiFi connection</string>
     <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection</string>
     <string name="current_version">You\'re using Version %s</string>
@@ -76,14 +77,21 @@
     <string name="action_feed_remove">Remove Feed</string>
     <string name="action_feed_rename">Rename Feed</string>
     <string name="action_feed_move">Move Feed</string>
+    <string name="action_feed_notification_settings">Notification settings</string>
     <string name="feed_remove_button">Remove</string>
     <string name="feed_rename_button">Rename</string>
     <string name="confirm_feed_remove">Do you really want to remove this Feed? This cannot be undone!</string>
     <string name="feed_move_list_description">Select folder to move feed in</string>
     <string name="move_feed_root_folder">Root folder</string>
 
+    <string name="action_folder_rename">Rename folder</string>
+    <string name="folder_remove_button">Remove</string>
+    <string name="folder_rename_button">Rename</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Receive individual notification for this feed</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Add</string>
+    <string name="hint_folder_name">Folder name</string>
     <!-- Strings related to login -->
     <string name="login_manual">Manual login</string>
     <string name="login_sso">Login using Nextcloud Files App</string>
@@ -157,6 +165,7 @@
     <string name="pref_report_issue_summary">Requires a (free) GitHub account</string>
     <string name="pref_contribute">Contribute!</string>
     <string name="pref_contribute_summary">Get the source code</string>
+    <string name="pref_privacy">Privacy</string>
     <string name="pref_version">Nextcloud News Android app</string>
 
 
@@ -170,6 +179,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Action icons (Detail View)</string>
 
+    <string name="pref_display_apptheme_auto">System Default</string>
     <string name="pref_display_apptheme_light">Light</string>
     <string name="pref_display_apptheme_dark">Dark</string>
 
@@ -193,6 +203,15 @@
     <string name="pref_display_font_size_l">Large</string>
     <string name="pref_display_font_size_xl">Extra Large</string>
 
+    <string name="content_desc_play">Play</string>
+    <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_forward">Forward</string>
+    <string name="content_desc_collapse">Collapse</string>
+    <string name="content_desc_add_to_favorites">Add to favourites</string>
+    <string name="content_desc_remove_from_favorites">Remove from favourites</string>
+    <string name="content_desc_delete">Delete</string>
+    <string name="content_desc_download">Download</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">It looks like your news app is not installed or activated on your server. Please follow the instructions given here to setup the news app on your server first: %1$s</string>
@@ -213,4 +232,14 @@
     <string name="pref_data_sync_image_cache_ask">Ask when not connected to WiFi</string>
 
     <string name="array_sync_interval_min_0">Never</string>
+    <string name="array_sync_interval_min_5">5 minutes</string>
+    <string name="array_sync_interval_min_15">15 minutes</string>
+    <string name="array_sync_interval_min_30">30 minutes</string>
+    <string name="array_sync_interval_hour_1">1 hour</string>
+    <string name="array_sync_interval_hour_3">3 hours</string>
+    <string name="array_sync_interval_hour_6">6 hours</string>
+    <string name="array_sync_interval_hour_12">12 hours</string>
+    <string name="array_sync_interval_hour_24">24 hours</string>
+    <string name="switch_account">Switch account</string>
+    
     </resources>

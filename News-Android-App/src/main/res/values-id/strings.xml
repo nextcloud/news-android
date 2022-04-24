@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Sync otomatis</string>
+    <string name="empty_view_content">Tak ada item disini</string>
+    <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
+    <string name="current_version">Anda menggunakan Versi %s</string>
+    <string name="widget_header">Berita ownCloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="other">%d item baru tersedia</item>
+    </plurals>
+    <string name="message_bar_reload">Muat ulang</string>
+    <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
+    <string name="starredFeeds">Item yang dibintangi</string>
+    <string name="title_activity_new_feed">Tambah feed baru</string>
+
+    <string name="menu_update">Segarkan</string>
+    <string name="menu_markAllAsRead">Tandai semua telah dibaca</string>
+    <string name="menu_StartImageCaching">Unduh gambar</string>
+    <string name="menu_downloadMoreItems">Unduh beberapa item</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Dibintangi</string>
+    <string name="action_read">Baca</string>
+    <string name="action_playPodacst">Putar Siniar</string>
+    <string name="action_Share">Bagikan</string>
+    <string name="action_login">Pengaturan Server</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_settings">Setelan</string>
+    <string name="action_sync_settings">Setelan Sync</string>
+    <string name="action_add_new_feed">Tambah feed baru</string>
+    <string name="action_textToSpeech">Bacalah</string>
+    <string name="action_search">Cari</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="other">Anda memiliki %d item baru yang belum dibaca</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="other">Terdapat %d item baru yang belum dibaca </item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL Feed</string>
+    <string name="action_add_feed">Tambah feed</string>
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Unduh Gambar</string>
+    <string name="action_img_sharelink">Bagikan Tautan Gambar</string>
+    <string name="action_img_open">Buka Gambar di Peramban</string>
+    <string name="action_img_copylink">Salin Tautan Gambar</string>
+    <string name="action_link_share">Bagikan Tautan</string>
+    <string name="action_link_open">Buka Tautan di Peramban</string>
+    <string name="action_link_copy">Salin Tautan</string>
+    <string name="toast_img_notwriteable">Gagal menulis Gambar.</string>
+    <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="error_download_failed">Gagal Mengunduh</string>
+    <string name="intent_title_share">Bagikan via</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Hapus Feed</string>
+    <string name="action_feed_rename">Ubah Nama Feed</string>
+    <string name="feed_remove_button">Hapus</string>
+    <string name="feed_rename_button">Ubah nama</string>
+    <string name="confirm_feed_remove">Apakah Anda yakin ingin menghapus Feed ini? Tindakan ini tidak dapat dibatalkan!</string>
+    <string name="move_feed_root_folder">Folder akar</string>
+
+    <string name="action_folder_rename">Ubah nama folder</string>
+    <string name="folder_remove_button">Buang</string>
+    <string name="folder_rename_button">Ubah nama</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Masukkan</string>
+    <string name="hint_folder_name">Nama Folder</string>
+    <string name="pref_title_username">Nama pengguna</string>
+    <string name="pref_title_password">Kata sandi</string>
+    <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Masuk</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Bidang wajib diisi</string>
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="other">Mengunduh %d item lama</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Tidak ada item lain yang tersedia</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Setelan</string>
+    <string name="cache_is_cleared">Cache dibersihkan!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Umum</string>
+    <string name="pref_title_general_sort_order">Urutan</string>
+
+    <string name="pref_general_search_in_title">Judul</string>
+    <string name="dialog_clearing_cache">Membersihkan cache</string>
+    <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
+    <string name="warning">Peringatan</string>
+    <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
+    <string name="pref_title_ShowOnlyUnread">Tampilkan hanya artikel yang belum dibaca</string>
+    <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Terima Sertifikat yang Tak Dikenal?</string>
+    <string name="mtm_decision_always">Selalu</string>
+    <string name="mtm_decision_abort">Batal</string>
+    <string name="mtm_notification">Verifikasi Sertifikat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Tidak ada siniar yang dipilih</string>
+    <string name="no_chapters_available">Tidak ada bab tersedia</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">Tentang.</string>
+    <string name="pref_license">Lisensi</string>
+    <string name="pref_privacy">Privasi</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Tampilkan</string>
+    <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
+    <string name="pref_display_apptheme_light">Terang</string>
+    <string name="pref_display_apptheme_dark">Gelap</string>
+
+    <string name="pref_display_font_size_d">Bawaan</string>
+    <string name="content_desc_play">Putar</string>
+    <string name="content_desc_pause">Jeda</string>
+    <string name="content_desc_collapse">Tutup</string>
+    <string name="content_desc_add_to_favorites">Tambah ke favorit</string>
+    <string name="content_desc_remove_from_favorites">Remove from favorites</string>
+    <string name="content_desc_show_password">Tampilkan kata sandi</string>
+    <string name="content_desc_delete">Hapus</string>
+    <string name="content_desc_download">Unduh</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Kesalahan</string>
+    <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>
+    <string name="login_dialog_title_security_warning">Peringatan Keamanan</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_clearCache">Bersihkan cache</string>
+    <string name="pref_title_CacheImagesOffline">Cache gambar luring</string>
+    <string name="pref_title_Max_Cache_Size">Ukuran Cache Maks</string>
+
+    <string name="pref_data_sync_image_cache_never">Tidak pernah</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Hanya melalui WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Melalui WiFi &amp; Mobile</string>
+    <string name="pref_data_sync_image_cache_ask">Tanya ketika tidak tersambung ke WiFi</string>
+
+    <string name="array_sync_interval_min_0">Tidak pernah</string>
+    <string name="switch_account">Pindah akun</string>
+    
+    </resources>

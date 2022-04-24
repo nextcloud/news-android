@@ -76,17 +76,24 @@
     <string name="action_feed_remove">移除订阅源</string>
     <string name="action_feed_rename">重命名订阅源</string>
     <string name="action_feed_move">移动订阅源</string>
+    <string name="action_feed_notification_settings">通知设置</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
     <string name="confirm_feed_remove">您真的要删除此订阅源吗？本操作不可恢复！</string>
     <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
     <string name="move_feed_root_folder">根目录</string>
 
+    <string name="action_folder_rename">重命名文件夹</string>
+    <string name="folder_remove_button">删除</string>
+    <string name="folder_rename_button">重命名</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">接收此订阅源的单独通知</string>
     <string name="notification_feed_default">所有默认设置的订阅源的通知将整合成一个</string>
     <string name="notification_feed_none">完全没有通知</string>
 
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">添加</string>
+    <string name="hint_folder_name">文件夹名称</string>
     <!-- Strings related to login -->
     <string name="login_manual">手动登录</string>
     <string name="login_sso">使用Nextcloud文件应用登录</string>
@@ -206,6 +213,18 @@
     <string name="pref_display_font_size_l">大</string>
     <string name="pref_display_font_size_xl">超大</string>
 
+    <string name="content_desc_play">玩</string>
+    <string name="content_desc_pause">暂停</string>
+    <string name="content_desc_forward">转发</string>
+    <string name="content_desc_collapse">折叠</string>
+    <string name="content_desc_mark_as_read">标为已读</string>
+    <string name="content_desc_mark_as_unread">标为未读</string>
+    <string name="content_desc_add_to_favorites">添加到收藏</string>
+    <string name="content_desc_remove_from_favorites">从收藏中移除</string>
+    <string name="content_desc_show_password">显示密码</string>
+    <string name="content_desc_delete">删除</string>
+    <string name="content_desc_download">下载</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">错误</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">您的服务器上似乎未安装或激活您的新闻应用。 请按照此处给出的说明在您的服务器上首先设置新闻应用：%1$s</string>
@@ -244,6 +263,7 @@
     <string name="successfully_exported">已成功导出到：</string>
     <string name="opml_export">OPML 导出</string>
     <string name="parsing_opml">解析 OPML</string>
+    <string name="please_wait">请稍等...</string>
     <string name="interval_sync_title">间隔同步</string>
 
     </resources>

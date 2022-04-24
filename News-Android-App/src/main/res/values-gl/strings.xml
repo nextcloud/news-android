@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Sincronización automática</string>
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">Non hai elementos aquí</string>
+    <string name="empty_view_content_action">Tire cara a abaixo para actualizar</string>
     <string name="no_wifi_available">Non está conectado á wifi</string>
     <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
@@ -76,12 +77,19 @@
     <string name="action_feed_remove">Retirar a fonte</string>
     <string name="action_feed_rename">Renomear a fonte</string>
     <string name="action_feed_move">Mover a fonte</string>
+    <string name="action_feed_notification_settings">Axustes de notificación</string>
     <string name="feed_remove_button">Retirar</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Confirma que quere retirar esta fonte? Isto non pode desfacerse!</string>
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
 
+    <string name="action_folder_rename">Renomear o cartafol</string>
+    <string name="folder_remove_button">Retirar</string>
+    <string name="folder_rename_button">Renomear</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Engadir</string>
+    <string name="hint_folder_name">Nome do cartafol</string>
     <!-- Strings related to login -->
     <string name="login_manual">Acceso manual</string>
     <string name="login_sso">Acceso empregando a aplicación Ficheiros do Nextcloud</string>
@@ -170,6 +178,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Iconas de acción (vista detallada)</string>
 
+    <string name="pref_display_apptheme_auto">Predeterminado do sistema</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 
@@ -194,6 +203,18 @@
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Moi grande</string>
 
+    <string name="content_desc_play">Reproducir</string>
+    <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_forward">Reenviar</string>
+    <string name="content_desc_collapse">Contraer</string>
+    <string name="content_desc_mark_as_read">Marcar como lido</string>
+    <string name="content_desc_mark_as_unread">Marcar como sen ler</string>
+    <string name="content_desc_add_to_favorites">Engadir a favoritos</string>
+    <string name="content_desc_remove_from_favorites">Retirar de favoritos</string>
+    <string name="content_desc_show_password">Amosar o contrasinal</string>
+    <string name="content_desc_delete">Eliminar</string>
+    <string name="content_desc_download">Descargar</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Semella que a súa aplicación de novas non está instalada ou activada no seu servidor. Siga as instrucións para configurar a aplicación de novas no seu servidor: %1$s</string>
@@ -202,6 +223,9 @@
     <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para Nextcloud. Anove a aplicación de novas e o contorno de traballo da aplicación.</string>
     <string name="login_dialog_title_security_warning">Advertencia de seguridade</string>
     <string name="login_dialog_text_security_warning">Non está a empregar HTTPS, o que se recomenda encarecidamente. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Algo foi mal. Ténteo de novo.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Datos e sincronización</string>
     <string name="pref_title_clearCache">Limpar a caché</string>
@@ -214,4 +238,15 @@
     <string name="pref_data_sync_image_cache_ask">Preguntar cando non estea conectado a unha wifi</string>
 
     <string name="array_sync_interval_min_0">Nunca</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_3">3 horas</string>
+    <string name="array_sync_interval_hour_6">6 horas</string>
+    <string name="array_sync_interval_hour_12">12 horas</string>
+    <string name="array_sync_interval_hour_24">24 horas</string>
+    <string name="switch_account">Cambiar de conta</string>
+    
+    <string name="please_wait">Agarde…</string>
     </resources>

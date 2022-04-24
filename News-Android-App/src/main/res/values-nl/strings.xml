@@ -78,17 +78,24 @@
     <string name="action_feed_remove">Verwijder feed</string>
     <string name="action_feed_rename">Hernoem feed</string>
     <string name="action_feed_move">Verplaats feed</string>
+    <string name="action_feed_notification_settings">Meldingsinstellingen</string>
     <string name="feed_remove_button">Verwijder</string>
     <string name="feed_rename_button">Naam wijzigen</string>
     <string name="confirm_feed_remove">Wil je deze feed echt verwijderen? Dit kan niet ongedaan worden gemaakt!</string>
     <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
     <string name="move_feed_root_folder">Hoofdmap</string>
 
+    <string name="action_folder_rename">Hernoem map</string>
+    <string name="folder_remove_button">Verwijderen</string>
+    <string name="folder_rename_button">Hernoemen</string>
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Ontvang unieke meldingen voor deze feed</string>
     <string name="notification_feed_default">Alle feeds met standaard instellingen zullen in één melding verschijnen</string>
     <string name="notification_feed_none">Geen meldingen</string>
 
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Toevoegen</string>
+    <string name="hint_folder_name">Mapnaam</string>
     <!-- Strings related to login -->
     <string name="login_manual">Handmatige inlog</string>
     <string name="login_sso">Login via Nextcloud Bestanden App</string>
@@ -210,6 +217,18 @@
     <string name="pref_display_font_size_l">Groot</string>
     <string name="pref_display_font_size_xl">Extra groot</string>
 
+    <string name="content_desc_play">Spelen</string>
+    <string name="content_desc_pause">Pauze</string>
+    <string name="content_desc_forward">Doorsturen</string>
+    <string name="content_desc_collapse">Inklappen</string>
+    <string name="content_desc_mark_as_read">Markeren als gelezen</string>
+    <string name="content_desc_mark_as_unread">Markeren als ongelezen</string>
+    <string name="content_desc_add_to_favorites">Toevoegen aan favorieten</string>
+    <string name="content_desc_remove_from_favorites">Verwijder uit favorieten</string>
+    <string name="content_desc_show_password">Toon wachtwoord</string>
+    <string name="content_desc_delete">Verwijder</string>
+    <string name="content_desc_download">Download</string>
+
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fout</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Het lijkt erop dat je nieuwsapp niet is geïnstalleerd of geactiveerd op je server. Volg eerst de instructies hier om de nieuwsapp op je server te installeren: %1$s</string>
@@ -248,6 +267,7 @@
     <string name="successfully_exported">Succesvol geëxporteerd naar:</string>
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Interpreteren OPML</string>
+    <string name="please_wait">Even geduld ...</string>
     <string name="interval_sync_title">Interval Sync</string>
 
     </resources>
