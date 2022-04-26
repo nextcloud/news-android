@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Thời gian giữa mỗi lần đồng bộ</string>
     <string name="empty_view_content">Không có mục nào ở đây</string>
     <string name="empty_view_content_action">Kéo xuống để làm mới</string>
+    <string name="toast_GettingMoreItems">Đã bắt đầu tải xuống nhiều mục. Vui lòng đợi ...</string>
     <string name="no_wifi_available">Không có kết nối WiFi</string>
     <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải hình ảnh xuống mà không có kết nối Wi-Fi không</string>
     <string name="current_version">Bạn đang sử dụng phiên bản %s</string>
@@ -35,6 +36,7 @@
     <string name="action_settings">Cài đặt</string>
     <string name="action_sync_settings">Đồng bộ cài đặt</string>
     <string name="action_add_new_feed">Thêm feed mới</string>
+    <string name="action_add_new_folder">Thêm thư mục mới</string>
     <string name="action_textToSpeech">Đọc ra</string>
     <string name="action_search">Tìm</string>
     <string name="action_download_articles_offline">Tải xuống các bài báo để sử dụng ngoại tuyến</string>
@@ -63,6 +65,7 @@
     <string name="action_link_share">Chia sẻ liên kết</string>
     <string name="action_link_open">Mở liên kết trong trình duyệt</string>
     <string name="action_link_copy">Sao chép liên kết</string>
+    <string name="toast_img_download_wait">Đang tải xuống. Vui lòng đợi ...</string>
     <string name="toast_img_saved">Đã lưu hình ảnh</string>
     <string name="toast_img_notwriteable">Ghi hình ảnh thất bại.</string>
     <string name="toast_copied_to_clipboard">Đã sao chép vào bộ nhớ tạm</string>
@@ -81,9 +84,13 @@
     <string name="feed_move_list_description">Chọn thư mục để di chuyển nguồn dữ liệu vào</string>
     <string name="move_feed_root_folder">Thư mục gốc</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Xoá thư mục</string>
     <string name="action_folder_rename">Đổi tên thư mục</string>
     <string name="folder_remove_button">Xoá</string>
     <string name="folder_rename_button">Đổi tên</string>
+    <string name="confirm_folder_remove">Bạn có thực sự muốn xoá thư mục này không? Việc này không thể được hoàn tác!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Nhận thông báo độc nhất cho nguồn dữ liệu này</string>
     <string name="notification_feed_default">Tất cả nguồn dữ liệu có cài đặt mặc định sẽ hiện trong một thông báo</string>
@@ -92,6 +99,8 @@
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Thêm</string>
     <string name="hint_folder_name">Tên thư mục</string>
+    <string name="folder_already_exists">Thư mục đã tồn tại</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Đăng nhập thủ công</string>
     <string name="login_sso">Đăng nhập bằng ứng dụng Nextcloud Files</string>
@@ -101,6 +110,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Đăng nhập</string>
+    <string name="login_progress_signing_in">Đang đăng nhập ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Những mục cần th</string>
     <string name="error_invalid_url">URL không chính xác</string>
@@ -111,6 +121,11 @@
         <item quantity="other">Đã tải xuống %d mục cũ</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Không có thư mục </string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="other">Đến giờ đã lấy được %d mục ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Cài đặt</string>
     <string name="cache_is_cleared">Đã xoá bộ nhớ đệm!</string>
@@ -132,6 +147,7 @@
     <string name="pref_general_search_in_body">Thân</string>
 
     <string name="dialog_clearing_cache">Đang xoá bộ nhớ đệm</string>
+    <string name="dialog_clearing_cache_please_wait">Đang xoá bộ nhớ đệm. Vui lòng đợi ...</string>
     <string name="reset_cache_unsaved_changes">Có sự thay đổi đồng bộ. Bạn muốn thiết lập lại bộ nhớ đệm ?</string>
     <string name="warning">Cảnh báo</string>
     <string name="pref_title_AutoSyncOnStart">Đồng bộ khi khởi </string>
@@ -152,6 +168,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Khôngc có podcast nào được chọn</string>
     <string name="no_chapters_available">Không có chương nào</string>
+    <string name="exit_playback">Thoát trình phát</string>
     <string name="podcast_playback_speed_dialog_title">Tốc độ phát</string>
     <string name="notification_downloading_podcast_title">Đang tải xuống podcast</string>
 
@@ -206,12 +223,17 @@
 
     <string name="content_desc_play">Chơi</string>
     <string name="content_desc_pause">Tạm dừng</string>
+    <string name="content_desc_playback_speed">Tốc độ phát</string>
+    <string name="content_desc_rewind">Tua lại</string>
     <string name="content_desc_forward">Chuyển tiếp</string>
+    <string name="content_desc_expand">Mở rộng</string>
     <string name="content_desc_collapse">Thu gọn</string>
     <string name="content_desc_mark_as_read">Đánh dấu đã đọc</string>
     <string name="content_desc_mark_as_unread">Đánh dấu là chưa đọc</string>
+    <string name="content_desc_tap_to_refresh">Nhấn để làm mới</string>
     <string name="content_desc_add_to_favorites">Thêm vào ưa thích</string>
     <string name="content_desc_remove_from_favorites">Xóa khỏi ưa thích</string>
+    <string name="content_desc_show_password">Hiện mật khẩu</string>
     <string name="content_desc_delete">Xóa</string>
     <string name="content_desc_download">Tải xuống</string>
 
@@ -253,6 +275,7 @@
     <string name="successfully_exported">Đã xuất thành công ra:</string>
     <string name="opml_export">Bản xuất OPML</string>
     <string name="parsing_opml">Đang xử lý OPML</string>
+    <string name="please_wait">Vui lòng đợi ...</string>
     <string name="interval_sync_title">Khoảng thời gian đồng bộ</string>
 
     </resources>
