@@ -228,10 +228,14 @@
 
     <string name="content_desc_play">Esitys</string>
     <string name="content_desc_pause">Keskeytä</string>
+    <string name="content_desc_playback_speed">Toistonopeus</string>
+    <string name="content_desc_rewind">Kelaa takaisin</string>
     <string name="content_desc_forward">Välitä</string>
+    <string name="content_desc_expand">Laajenna</string>
     <string name="content_desc_collapse">Kutista näkymää</string>
     <string name="content_desc_mark_as_read">Merkitse luetuksi</string>
     <string name="content_desc_mark_as_unread">Merkitse lukemattomaksi</string>
+    <string name="content_desc_tap_to_refresh">Napauta päivittääksesi</string>
     <string name="content_desc_add_to_favorites">Lisää suosikkeihin</string>
     <string name="content_desc_remove_from_favorites">Poista suosikeista</string>
     <string name="content_desc_show_password">Näytä salasana</string>
