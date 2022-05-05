@@ -156,7 +156,7 @@
     <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>
     <string name="warning">Uyarı</string>
     <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
-    <string name="pref_title_ShowOnlyUnread">Yalnız okunmamış makaleler görüntülensin</string>
+    <string name="pref_title_ShowOnlyUnread">Yalnızca okunmamış makaleler görüntülensin</string>
     <string name="pref_title_DisableHostnameVerification">Sunucu adı doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
@@ -212,7 +212,7 @@
     <string name="pref_display_browser_built_in">İç tarayıcı</string>
     <string name="pref_display_browser_external">Dış tarayıcı</string>
 
-    <string name="pref_display_feed_list_layout_headline_thumbnails">Küçük görseller (yalnız başlıklar)</string>
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Küçük görseller (yalnızca başlıklar)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Küçük görseller</string>
     <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
     <string name="pref_display_feed_list_layout_headlines">Başlıklar</string>
@@ -260,7 +260,7 @@
     <string name="pref_title_Max_Cache_Size">En büyük ön bellek boyutu</string>
 
     <string name="pref_data_sync_image_cache_never">Asla</string>
-    <string name="pref_data_sync_image_cache_wifi_only">Yalnız Wi-Fi üzerinden</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Yalnızca Wi-Fi üzerinden</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Wi-Fi ve mobil veri üzerinden</string>
     <string name="pref_data_sync_image_cache_ask">Wi-Fi bağlı değilken sorulsun</string>
 
