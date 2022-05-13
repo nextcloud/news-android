@@ -132,6 +132,8 @@
     <string name="content_desc_pause">Пауза</string>
     <string name="content_desc_forward">Переслати</string>
     <string name="content_desc_collapse">Згорнути</string>
+    <string name="content_desc_mark_as_read">Відмітити прочитаним</string>
+    <string name="content_desc_mark_as_unread">Позначити не прочитаним</string>
     <string name="content_desc_add_to_favorites">Додати до улюбленого</string>
     <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
     <string name="content_desc_show_password">Показати пароль</string>
