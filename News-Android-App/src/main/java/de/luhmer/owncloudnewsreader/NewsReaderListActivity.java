@@ -617,13 +617,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		startDialogFragment(idFeed, false);
 	}
 
-	private void startDialogFragment(long idFeed, Boolean isFolder) {
+	private void startDialogFragment(long id, Boolean isFolder) {
 		DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
 
 		if (!isFolder) {
-			String titel = dbConn.getFeedById(idFeed).getFeedTitle();
-			String iconurl = dbConn.getFeedById(idFeed).getFaviconUrl();
-			String feedurl = dbConn.getFeedById(idFeed).getLink();
+			String titel = dbConn.getFeedById(id).getFeedTitle();
+			String iconurl = dbConn.getFeedById(id).getFaviconUrl();
+			String feedurl = dbConn.getFeedById(id).getLink();
 
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			Fragment prev = getSupportFragmentManager().findFragmentByTag("news_reader_list_dialog");
@@ -632,11 +632,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			}
 			ft.addToBackStack(null);
 
-			NewsReaderListDialogFragment fragment = NewsReaderListDialogFragment.newInstance(idFeed, titel, iconurl, feedurl);
+			NewsReaderListDialogFragment fragment = NewsReaderListDialogFragment.newInstance(id, titel, iconurl, feedurl);
 			fragment.setActivity(this);
 			fragment.show(ft, "news_reader_list_dialog");
 		} else {
-			String label = dbConn.getFolderById(idFeed).getLabel();
+			Folder folder = dbConn.getFolderById(id);
+			if (folder == null) {
+				Log.e(TAG, "cannot find folder with id: " + id);
+				return;
+			}
+			String label = folder.getLabel();
 
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			Fragment prev = getSupportFragmentManager().findFragmentByTag("folder_options_dialog");
@@ -645,7 +650,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			}
 			ft.addToBackStack(null);
 
-			FolderOptionsDialogFragment fragment = FolderOptionsDialogFragment.newInstance(idFeed, label);
+			FolderOptionsDialogFragment fragment = FolderOptionsDialogFragment.newInstance(id, label);
 			fragment.setActivity(this);
 			fragment.show(ft, "folder_options_dialog");
 		}
@@ -1091,10 +1096,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void resetUiAndStartSync() {
-        getSlidingListFragment().reloadAdapter();
-		updateCurrentRssView();
-		startSync();
-		getSlidingListFragment().bindUserInfoToUI();
+		NewsReaderListFragment nrlf = getSlidingListFragment();
+		if (nrlf != null) {
+			nrlf.reloadAdapter();
+			updateCurrentRssView();
+			startSync();
+			nrlf.bindUserInfoToUI();
+		} else {
+			Log.e(TAG, "resetUiAndStartSync - NewsReaderListFragment is not available")
+		}
 	}
 
 	private void UpdateListView() {

@@ -1,3 +1,13 @@
+0.9.9.73 (Beta)
+---------------------
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1061">#1061 App sometimes crashes on long tap on detail view</a>
+- Fixed several app crashes
+  - fixed database crashed by reducing the number of loaded items per page
+  - fixed crash when long tapping folders in navigation drawer
+  - fixed app crash when ui updates
+  - fixed crashes caused by swiping on articles in list view
+
+
 0.9.9.72 (Beta)
 ---------------------
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1066">!1066 Support for Folder Management (Rename, Remove, Create) (thanks @proninyaroslav)</a>
