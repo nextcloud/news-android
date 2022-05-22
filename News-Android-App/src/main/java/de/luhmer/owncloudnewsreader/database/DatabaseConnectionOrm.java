@@ -65,7 +65,7 @@ public class DatabaseConnectionOrm {
 
     private final DaoSession daoSession;
 
-    private final static int PageSize = 100;
+    private final static int PageSize = 25;
 
     protected @Inject @Named("databaseFileName") String databasePath;
 
@@ -292,11 +292,13 @@ public class DatabaseConnectionOrm {
         daoSession.getDatabase().execSQL(sql);
         */
 
+        // 100 causes android.database.sqlite.SQLiteBlobTooBigException on some devices
+        final int itemsPerIteration = 25;
+
         WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
                 "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")");
 
         int iterationCount = 0;
-        final int itemsPerIteration = 100;
         List<RssItem> rssItemList;
         do {
             int offset = iterationCount * itemsPerIteration;
@@ -380,7 +382,7 @@ public class DatabaseConnectionOrm {
         daoSession.getDatabase().execSQL(sql);
 
         sw.stop();
-        Log.v(TAG, "Time needed for marking all unread items as read: " + sw.toString());
+        Log.v(TAG, "Time needed for marking all unread items as read: " + sw);
     }
 
     public LazyList<RssItem> getAllUnreadRssItemsForDownloadWebPageService() {
@@ -640,7 +642,7 @@ public class DatabaseConnectionOrm {
         });
 
         sw.stop();
-        Log.v(TAG, "Time needed for insert: " + sw.toString());
+        Log.v(TAG, "Time needed for insert: " + sw);
     }
 
     public String getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS specialFolder) {

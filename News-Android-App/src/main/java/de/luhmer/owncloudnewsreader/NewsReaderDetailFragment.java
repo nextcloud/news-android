@@ -21,6 +21,14 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import static java.util.Objects.requireNonNull;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION_DEFAULT;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION_DEFAULT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -75,14 +83,6 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import io.reactivex.observers.DisposableObserver;
-
-import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
-import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION_DEFAULT;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION_DEFAULT;
-import static java.util.Objects.requireNonNull;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -511,9 +511,7 @@ public class NewsReaderDetailFragment extends Fragment {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(NewsReaderDetailFragment.this.getContext());
             SORT_DIRECTION sortDirection = getSortDirection(mPrefs);
             boolean onlyUnreadItems = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-            boolean onlyStarredItems = false;
-            if (idFolder != null && idFolder == ALL_STARRED_ITEMS.getValue())
-                onlyStarredItems = true;
+            boolean onlyStarredItems = idFolder != null && idFolder == ALL_STARRED_ITEMS.getValue();
 
             String sqlSelectStatement = null;
             if (idFeed != null) {
@@ -541,7 +539,7 @@ public class NewsReaderDetailFragment extends Fragment {
             List<RssItem> items = dbConn.getCurrentRssItemView(0);
 
             sw.stop();
-            Log.v(TAG, "Time needed (init loading): " + sw.toString());
+            Log.v(TAG, "Time needed (init loading): " + sw);
 
             return items;
         }
@@ -579,6 +577,15 @@ public class NewsReaderDetailFragment extends Fragment {
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (minLeftEdgeDistance == -1) { // if not initialized
                 initEdgeDistance();
+            }
+
+            if (e1 == null) {
+                Log.e(TAG, "motion event 1 is null");
+                return false;
+            }
+            if (e2 == null) {
+                Log.e(TAG, "motion event 2 is null");
+                return false;
             }
 
             if (mMarkAsReadWhileScrollingEnabled &&
