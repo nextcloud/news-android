@@ -1,15 +1,15 @@
 package de.luhmer.owncloudnewsreader;
 
+import static android.media.MediaMetadata.METADATA_KEY_MEDIA_ID;
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_MEDIA_TYPE;
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.PLAYBACK_SPEED_FLOAT;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v4.media.MediaBrowserCompat;
@@ -26,6 +26,10 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -38,7 +42,6 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Locale;
 
-import androidx.fragment.app.Fragment;
 import de.luhmer.owncloudnewsreader.ListView.PodcastArrayAdapter;
 import de.luhmer.owncloudnewsreader.ListView.PodcastFeedArrayAdapter;
 import de.luhmer.owncloudnewsreader.databinding.FragmentPodcastBinding;
@@ -55,10 +58,6 @@ import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
-
-import static android.media.MediaMetadata.METADATA_KEY_MEDIA_ID;
-import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_MEDIA_TYPE;
-import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.PLAYBACK_SPEED_FLOAT;
 
 
 /**
@@ -213,6 +212,23 @@ public class PodcastFragment extends Fragment {
         showPlaybackSpeedPicker();
     }
 
+    private final SlidingUpPanelLayout.PanelSlideListener onPanelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
+        @Override
+        public void onPanelSlide(View view, float v) {
+        }
+
+        @Override
+        public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+            if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                sliding_layout.setDragView(binding.llPodcastHeader);
+                binding.viewSwitcherProgress.setDisplayedChild(0);
+            } else if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                sliding_layout.setDragView(binding.viewSwitcherProgress);
+                binding.viewSwitcherProgress.setDisplayedChild(1);
+            }
+        }
+    };
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // create ContextThemeWrapper from the original Activity Context with the custom theme
@@ -242,7 +258,7 @@ public class PodcastFragment extends Fragment {
             sliding_layout.setDragView(binding.llPodcastHeader);
             //sliding_layout.setEnableDragViewTouchEvents(true);
 
-            sliding_layout.setPanelSlideListener(onPanelSlideListener);
+            sliding_layout.addPanelSlideListener(onPanelSlideListener);
         }
 
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
@@ -260,38 +276,10 @@ public class PodcastFragment extends Fragment {
     }
 
 
-
-    private final SlidingUpPanelLayout.PanelSlideListener onPanelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
-        @Override
-        public void onPanelSlide(View view, float v) { }
-
-        @Override
-        public void onPanelCollapsed(View view) {
-            if(sliding_layout != null)
-                sliding_layout.setDragView(binding.llPodcastHeader);
-            binding.viewSwitcherProgress.setDisplayedChild(0);
-        }
-
-        @Override
-        public void onPanelExpanded(View view) {
-            if(sliding_layout != null)
-                sliding_layout.setDragView(binding.viewSwitcherProgress);
-            binding.viewSwitcherProgress.setDisplayedChild(1);
-        }
-
-        @Override public void onPanelAnchored(View view) { }
-
-        @Override public void onPanelHidden(View view) { }
-    };
-
-
     boolean blockSeekbarUpdate = false;
     private final SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-        int before;
-
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
             /*
             if(fromUser) {
                 Log.v(TAG, "onProgressChanged: " + progress + "%");

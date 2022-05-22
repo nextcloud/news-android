@@ -101,6 +101,7 @@ android {
         disable 'MissingTranslation', 'ExtraTranslation', 'MissingQuantity', 'InconsistentArrays', 'TypographyEllipsis'
         ignoreWarnings true
     }
+    namespace 'de.luhmer.owncloudnewsreader'
 
 }
 
