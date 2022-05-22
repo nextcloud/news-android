@@ -1103,7 +1103,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			startSync();
 			nrlf.bindUserInfoToUI();
 		} else {
-			Log.e(TAG, "resetUiAndStartSync - NewsReaderListFragment is not available")
+			Log.e(TAG, "resetUiAndStartSync - NewsReaderListFragment is not available");
 		}
 	}
 
