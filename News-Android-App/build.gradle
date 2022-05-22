@@ -27,8 +27,8 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        versionCode 175
-        versionName "0.9.9.72"
+        versionCode 176
+        versionName "0.9.9.73"
     }
 
     buildFeatures {
@@ -113,7 +113,7 @@ repositories {
 final DAGGER_VERSION = '2.41'
 final ESPRESSO_VERSION = '3.4.0'
 final OKHTTP_VERSION = '3.12.13'
-final MOCKITO_VERSION = '3.8.0'
+final MOCKITO_VERSION = '4.5.1'
 final RETROFIT_VERSION = '2.9.0'
 
 dependencies {
@@ -144,7 +144,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
-    implementation 'com.sothree.slidinguppanel:library:3.2.1'
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'de.greenrobot:greendao:2.1.0'
@@ -211,13 +211,13 @@ dependencies {
     androidTestImplementation 'androidx.test:core:1.3.0'
 
     // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
 
     // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.ext:truth:1.3.0'
-    androidTestImplementation 'com.google.truth:truth:1.1.2'
+    androidTestImplementation 'com.google.truth:truth:1.1.3'
 
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
