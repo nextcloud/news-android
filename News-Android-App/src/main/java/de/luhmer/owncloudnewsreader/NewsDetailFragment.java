@@ -425,9 +425,13 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
 
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View view, ContextMenu.ContextMenuInfo menuInfo) {
-	    if (!(view instanceof WebView)) {
+        if (!(view instanceof WebView)) {
             Log.w(TAG, "onCreateContextMenu - no webview reference found");
             return;
+        }
+
+        if (view != binding.webview) {
+            Log.d(TAG, "onCreateContextMenu - wrong webview - skip creation of context menu");
         }
 
         WebView.HitTestResult result = ((WebView) view).getHitTestResult();
@@ -436,12 +440,13 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
             return;
         }
 
-        int type = result.getType();
-        Document htmlDoc = Jsoup.parse(html);
-        FragmentTransaction ft = requireFragmentManager().beginTransaction();
-        String text;
-        DialogFragment newFragment;
+        if (html == null) {
+            Log.e(TAG, "onCreateContextMenu - html is not set - failed to load RSS item");
+            return;
+        }
 
+        int type = result.getType();
+        DialogFragment newFragment = null;
 
         switch (type) {
             case WebView.HitTestResult.IMAGE_TYPE:
@@ -455,6 +460,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                     String imgsrcval;
 
                     imgsrcval = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+                    Document htmlDoc = Jsoup.parse(html);
                     Elements imgtag = htmlDoc.getElementsByAttributeValueContaining("src", imageUrl);
 
                     try {
@@ -475,18 +481,19 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
                     String title = imgsrcval;
                     int titleIcon = android.R.drawable.ic_menu_gallery;
-                    text = (imgtitle.isEmpty()) ? imgaltval : imgtitle;
+                    String text = (imgtitle.isEmpty()) ? imgaltval : imgtitle;
 
                     // Create and show the dialog.
                     newFragment = NewsDetailImageDialogFragment.newInstanceImage(title, titleIcon, text, mImageUrl);
-                    newFragment.show(ft, "menu_fragment_dialog");
                 }
                 break;
 
             case WebView.HitTestResult.SRC_ANCHOR_TYPE:
                 String url = result.getExtra();
                 URL mUrl;
+                String text;
                 try {
+                    Document htmlDoc = Jsoup.parse(html);
                     Elements urltag = htmlDoc.getElementsByAttributeValueContaining("href", url);
                     text = urltag.text();
                     mUrl = new URL(url);
@@ -496,7 +503,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
                 // Create and show the dialog.
                 newFragment = NewsDetailImageDialogFragment.newInstanceUrl(text, mUrl.toString());
-                newFragment.show(ft, "menu_fragment_dialog");
                 break;
             case WebView.HitTestResult.EMAIL_TYPE:
             case WebView.HitTestResult.GEO_TYPE:
@@ -505,6 +511,11 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                 break;
             default:
                 Log.v(TAG, "Unknown type: " + type + ". Skipping..");
+        }
+
+        if (newFragment != null) {
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            newFragment.show(ft, "menu_fragment_dialog");
         }
     }
 
