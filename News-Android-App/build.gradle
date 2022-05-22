@@ -144,7 +144,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
-    implementation 'com.sothree.slidinguppanel:library:3.2.1'
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'de.greenrobot:greendao:2.1.0'
