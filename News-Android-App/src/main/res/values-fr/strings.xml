@@ -12,6 +12,7 @@
     <string name="widget_header">Actualités ownCloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nouvel article disponible</item>
+        <item quantity="many">%d nouveaux articles disponibles</item>
         <item quantity="other">%d nouveaux articles disponibles</item>
     </plurals>
     <string name="message_bar_reload">Recharger</string>
@@ -46,10 +47,12 @@
     <string name="notification_download_images_offline">Réception des images pour usage hors-ligne</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Il y a %d nouvel article non lu</item>
+        <item quantity="many">Il y a %d nouveaux articles non lus</item>
         <item quantity="other">Il y a %d nouveaux articles non lus</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d nouvel article non lu</item>
+        <item quantity="many">%d nouveaux articles non lus</item>
         <item quantity="other">%d nouveaux articles non lus</item>
     </plurals>
 
@@ -122,11 +125,13 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d ancien article téléchargé</item>
+        <item quantity="many">%d anciens articles téléchargés</item>
         <item quantity="other">%d anciens articles téléchargés</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Aucun article supplémentaire disponible</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">%d article trouvé pour l\'instant</item>
+        <item quantity="many">%d articles trouvés pour l\'instant ...</item>
         <item quantity="other">%d articles trouvés pour l\'instant ...</item>
     </plurals>
 

@@ -11,6 +11,7 @@
     <string name="widget_header">Notícias da ownCloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Disponível %d novo item</item>
+        <item quantity="many">Disponíveis %d novos itens</item>
         <item quantity="other">Disponíveis %d novos itens</item>
     </plurals>
     <string name="message_bar_reload">Recarregar</string>
@@ -41,10 +42,12 @@
     <string name="action_download_articles_offline">Transferir artigos off-line</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tem %d novo item por ler</item>
+        <item quantity="many">Tem %d novos itens por ler</item>
         <item quantity="other">Tem %d novos itens por ler</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">Tem disponível %d novo item por ler</item>
+        <item quantity="many">Tem disponível %d novos itens por ler</item>
         <item quantity="other">Tem disponível %d novos itens por ler</item>
     </plurals>
 
@@ -104,6 +107,7 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Transferidos %d item antigo</item>
+        <item quantity="many">Transferidos %d itens antigos</item>
         <item quantity="other">Transferidos %d itens antigos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Não há mais itens disponíveis</string>

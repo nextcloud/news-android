@@ -112,7 +112,7 @@
     <string name="no_podcast_selected">Tidak ada siniar yang dipilih</string>
     <string name="no_chapters_available">Tidak ada bab tersedia</string>
     <!-- Settings for About -->
-    <string name="pref_header_about">Tentang.</string>
+    <string name="pref_header_about">Tentang</string>
     <string name="pref_license">Lisensi</string>
     <string name="pref_privacy">Privasi</string>
     <!-- Settings for Display -->
@@ -147,6 +147,9 @@
     <string name="pref_data_sync_image_cache_ask">Tanya ketika tidak tersambung ke WiFi</string>
 
     <string name="array_sync_interval_min_0">Tidak pernah</string>
+    <string name="array_sync_interval_hour_1">1 jam</string>
+    <string name="array_sync_interval_hour_3">3 jam</string>
+    <string name="array_sync_interval_hour_12">12 jam</string>
     <string name="switch_account">Pindah akun</string>
     
     </resources>

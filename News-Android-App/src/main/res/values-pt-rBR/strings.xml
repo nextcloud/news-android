@@ -12,6 +12,7 @@
     <string name="widget_header">Notícias Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d novo item disponível</item>
+        <item quantity="many">%d novos itens disponíveis</item>
         <item quantity="other">%d novos itens disponíveis</item>
     </plurals>
     <string name="message_bar_reload">Recarregar</string>
@@ -46,10 +47,12 @@
     <string name="notification_download_images_offline">Download de imagens para uso offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Você tem %d novo item não lido</item>
+        <item quantity="many">Você tem %d novos itens não lidos</item>
         <item quantity="other">Você tem %d novos itens não lidos</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d novo item não lido disponível</item>
+        <item quantity="many">%d novos itens não lidos disponíveis</item>
         <item quantity="other">%d novos itens não lidos disponíveis</item>
     </plurals>
 
@@ -122,11 +125,13 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Transferido %d item antigo</item>
+        <item quantity="many">Transferidos %d itens antigos</item>
         <item quantity="other">Transferidos %d itens antigos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Já foi buscado %d itens até agora...</item>
+        <item quantity="many">Já foram buscados %d itens até agora...</item>
         <item quantity="other">Já foram buscados %d itens até agora...</item>
     </plurals>
 
