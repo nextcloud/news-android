@@ -12,7 +12,7 @@
     <string name="widget_header">Noticias de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nuevo elemento disponible</item>
-        <item quantity="two">%d nuevos elementos disponibles</item>
+        <item quantity="many">%d nuevos elementos disponibles</item>
         <item quantity="other">%d nuevos elementos disponibles</item>
     </plurals>
     <string name="message_bar_reload">Recargar</string>
@@ -47,12 +47,12 @@
     <string name="notification_download_images_offline">Descargar las imágenes para uso sin conexión</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tienes %d elemento nuevo sin leer</item>
-        <item quantity="two">Tienes %d elementos nuevos sin leer</item>
+        <item quantity="many">Tienes %d elementos nuevos sin leer</item>
         <item quantity="other">Tienes %d elementos nuevos sin leer</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d elementos nuevos sin leer</item>
-        <item quantity="two">%d elementos nuevos sin leer</item>
+        <item quantity="many">%d elementos nuevos sin leer</item>
         <item quantity="other">%d elementos nuevos sin leer</item>
     </plurals>
 
@@ -125,13 +125,13 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Se ha descargado %d elemento antiguo</item>
-        <item quantity="two">Se han descargado %d elementos antiguos</item>
+        <item quantity="many">Se han descargado %d elementos antiguos</item>
         <item quantity="other">Se han descargado %d elementos antiguos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Recuperado %d ítem por ahora…</item>
-        <item quantity="two">Recuperados %d ítems por ahora…</item>
+        <item quantity="many">Recuperados %d ítems por ahora…</item>
         <item quantity="other">Recuperados %d ítems por ahora…</item>
     </plurals>
 

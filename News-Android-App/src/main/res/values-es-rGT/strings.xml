@@ -10,7 +10,7 @@
     <string name="widget_header">Noticias de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d elemento nuevo disponible</item>
-        <item quantity="two">%d elementos nuevos disponibles</item>
+        <item quantity="many">%d elementos nuevos disponibles</item>
         <item quantity="other">%d elementos nuevos disponibles</item>
     </plurals>
     <string name="message_bar_reload">Volver a cargar</string>
@@ -38,12 +38,12 @@
     <string name="action_search">Buscar</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tienes %d elemento nuevo sin leer</item>
-        <item quantity="two">Tienes %d elmentos nuevos sin leer</item>
+        <item quantity="many">Tienes %d elmentos nuevos sin leer</item>
         <item quantity="other">Tienes %d elmentos nuevos sin leer</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d elemento nuevo no leído disponible</item>
-        <item quantity="two">%d elementos nuevos no leídos disponibles</item>
+        <item quantity="many">%d elementos nuevos no leídos disponibles</item>
         <item quantity="other">%d elementos nuevos no leídos disponibles</item>
     </plurals>
 
@@ -90,7 +90,7 @@
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d elemento antiguo descargado</item>
-        <item quantity="two">%d elementos antiguos descargados</item>
+        <item quantity="many">%d elementos antiguos descargados</item>
         <item quantity="other">%d elementos antiguos descargados</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hay más elementos disponibles</string>
