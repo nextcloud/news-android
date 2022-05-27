@@ -233,10 +233,14 @@
 
     <string name="content_desc_play">Lire</string>
     <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_playback_speed">Vitesse de lecture</string>
+    <string name="content_desc_rewind">Rembobiner</string>
     <string name="content_desc_forward">Transférer</string>
+    <string name="content_desc_expand">Étendre</string>
     <string name="content_desc_collapse">Replier</string>
     <string name="content_desc_mark_as_read">Marquer comme lu</string>
     <string name="content_desc_mark_as_unread">Marquer comme non lu</string>
+    <string name="content_desc_tap_to_refresh">Tapoter pour rafraîchir</string>
     <string name="content_desc_add_to_favorites">Ajouter aux favoris</string>
     <string name="content_desc_remove_from_favorites">Retirer des favoris</string>
     <string name="content_desc_show_password">Afficher le mot de passe</string>

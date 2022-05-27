@@ -112,6 +112,7 @@
     <string name="no_chapters_available">ไม่มีเรื่องที่สามารถใช้ได้</string>
     <!-- Settings for About -->
     <string name="pref_header_about">เกี่ยวกับเรา</string>
+    <string name="pref_license">สัญญาอนุญาต</string>
     <string name="pref_privacy">ความเป็นส่วนตัว</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">แสดงผล</string>
