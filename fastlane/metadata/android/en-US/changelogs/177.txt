@@ -1,1 +1,1 @@
-Fixed incompatibility issues with Nextcloud News 8.1.0
+Fixed incompatibility issues with Nextcloud News 18.1.0
