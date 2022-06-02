@@ -1,0 +1,6 @@
+- Fixed - #1061 Sometimes app crashes on long tap on detail view
+- Fixed several app crashes
+  - fixed database crashed by reducing the number of loaded items per page
+  - fixed crash when long tapping folders in navigation drawer
+  - fixed app crash when ui updates
+  - fixed crashes caused by swiping on articles in list view
