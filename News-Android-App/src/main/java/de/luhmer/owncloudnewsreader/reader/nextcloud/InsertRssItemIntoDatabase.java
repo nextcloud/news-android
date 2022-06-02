@@ -69,10 +69,10 @@ class InsertRssItemIntoDatabase {
         RssItem rssItem = new RssItem();
         rssItem.setId(e.get("id").getAsLong());
         rssItem.setFeedId(e.get("feedId").getAsLong());
-        rssItem.setGuid(guid);
-        rssItem.setGuidHash(e.get("guidHash").getAsString());
-        rssItem.setFingerprint(getStringOrDefault("fingerprint", null, e));
-        rssItem.setLastModified(new Date(e.get("lastModified").getAsLong()));
+        rssItem.setGuid(guid); // non-null
+        rssItem.setGuidHash(e.get("guidHash").getAsString()); // non-null
+        rssItem.setFingerprint(getStringOrDefault("fingerprint", "", e));
+        rssItem.setLastModified(new Date(Long.parseLong(getStringOrDefault("lastModified", "0", e))));
         rssItem.setRead(!e.get("unread").getAsBoolean());
         rssItem.setRead_temp(rssItem.getRead());
         rssItem.setStarred(e.get("starred").getAsBoolean());
@@ -81,8 +81,8 @@ class InsertRssItemIntoDatabase {
         rssItem.setRtl(rtl);
 
         //Possible XSS fields
-        rssItem.setTitle(e.get("title").getAsString());
-        rssItem.setAuthor(e.get("author").getAsString());
+        rssItem.setTitle(getStringOrDefault("title", "", e));
+        rssItem.setAuthor(getStringOrDefault("author", "", e));
         rssItem.setLink(url);
         rssItem.setEnclosureLink(enclosureLink);
         rssItem.setEnclosureMime(enclosureMime);
