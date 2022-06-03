@@ -1,3 +1,8 @@
+0.9.9.74
+---------------------
+- Fixed incompatibility issues with Nextcloud News 18.1.0
+
+
 0.9.9.73 (Beta)
 ---------------------
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1061">#1061 App sometimes crashes on long tap on detail view</a>
