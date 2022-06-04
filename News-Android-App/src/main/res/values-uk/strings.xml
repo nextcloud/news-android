@@ -38,16 +38,27 @@
     <string name="action_settings">Налаштування</string>
     <string name="action_sync_settings">Налаштування синхронізації</string>
     <string name="action_add_new_feed">Додати нову стрічку</string>
+    <string name="action_add_new_folder">Додати нову папку</string>
     <string name="action_textToSpeech">Читати</string>
     <string name="action_search">Пошук</string>
+    <string name="action_download_articles_offline">Завантажуйте статті в автономному режимі</string>
+    <string name="notification_download_images_offline">Завантаження зображень для використання в автономному режимі</string>
     <!-- Add new feed -->
     <string name="hint_feed_url">Посилання стрічки</string>
     <string name="action_add_feed">Додати стрічку</string>
+    <string name="import_opml">Імпорт OPML</string>
+    <string name="export_opml">Імпорт OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Завантажити зображення</string>
+    <string name="action_img_sharelink">Поділіться посиланням на зображення</string>
+    <string name="action_img_open">Відкрийте зображення у браузері</string>
+    <string name="action_img_copylink">Скопіювати посилання на зображення</string>
     <string name="action_link_share">Поділитися посиланням</string>
     <string name="action_link_open">Відкрити посилання у переглядачі</string>
     <string name="action_link_copy">Копіювати посилання</string>
+    <string name="toast_img_download_wait">Завантаження. Будь ласка, зачекайте…</string>
     <string name="toast_img_saved">Зображення збережено</string>
     <string name="toast_img_notwriteable">Помилка із записом зображення.</string>
     <string name="toast_copied_to_clipboard">Скопійовано в буфер обміну</string>
@@ -62,12 +73,17 @@
     <string name="action_feed_notification_settings">Налаштування сповіщень</string>
     <string name="feed_remove_button">Вилучити</string>
     <string name="feed_rename_button">Перейменувати</string>
+    <string name="confirm_feed_remove">Ви справді хочете видалити цю стрічку? Це неможливо скасувати!</string>
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Видалити папку</string>
     <string name="action_folder_rename">Переіменувати теку</string>
     <string name="folder_remove_button">Вилучити</string>
     <string name="folder_rename_button">Перейменувати</string>
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Додати</string>
     <string name="hint_folder_name">Ім\'я теки</string>
+    <!-- Strings related to login -->
+    <string name="login_manual">Вхід вручну</string>
     <string name="pref_title_username">Ім\'я користувача</string>
     <string name="pref_title_password">Пароль</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
@@ -87,6 +103,8 @@
     <!-- General settings -->
     <string name="pref_header_general">Загалом</string>
     <string name="pref_title_general_sort_order">Порядок сортування</string>
+
+    <string name="pref_title_general_search_in">Шукати в</string>
 
     <string name="pref_general_search_in_title">Назва</string>
     <string name="pref_general_search_in_body">Тіло</string>
@@ -108,6 +126,9 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Жодного подкасту не вибрано</string>
+    <string name="notification_downloading_podcast_title">Завантаження подкасту</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">Про програму</string>
     <string name="pref_license">Ліцензія</string>
@@ -157,11 +178,15 @@
     <string name="array_sync_interval_min_5">5 хвилин</string>
     <string name="array_sync_interval_min_15">15 хвилин</string>
     <string name="array_sync_interval_min_30">30 хвилин</string>
+    <string name="array_sync_interval_min_45">45 хвилин</string>
     <string name="array_sync_interval_hour_1">1 година</string>
+    <string name="array_sync_interval_hour_2">2 години</string>
     <string name="array_sync_interval_hour_3">3 години</string>
     <string name="array_sync_interval_hour_6">6 годин</string>
     <string name="array_sync_interval_hour_12">12 годин</string>
     <string name="array_sync_interval_hour_24">24 години</string>
     <string name="switch_account">Перемкнути обліковий запис</string>
     
+    <string name="opml_export">OPML Експорт</string>
+    <string name="please_wait">Будь ласка, зачекайте…</string>
     </resources>

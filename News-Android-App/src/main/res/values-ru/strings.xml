@@ -93,6 +93,8 @@
     <string name="feed_move_list_description">Выберите папку для перемещения Новостной ленты</string>
     <string name="move_feed_root_folder">Корневой каталог</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Удалить каталог</string>
     <string name="action_folder_rename">Переименовать папку</string>
     <string name="folder_remove_button">Удалить</string>
     <string name="folder_rename_button">Переименовать</string>
@@ -237,6 +239,7 @@
     <string name="content_desc_collapse">Свернуть</string>
     <string name="content_desc_mark_as_read">Отметить прочитанным</string>
     <string name="content_desc_mark_as_unread">Отметить не прочитанным</string>
+    <string name="content_desc_tap_to_refresh">Нажмите, чтобы обновить</string>
     <string name="content_desc_add_to_favorites">Добавить в избранное</string>
     <string name="content_desc_remove_from_favorites">Убрать из избранного</string>
     <string name="content_desc_show_password">Показать пароль</string>
