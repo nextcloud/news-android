@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Sync Interval</string>
     <string name="empty_view_content">Geen items hier</string>
     <string name="empty_view_content_action">Omlaag trekken om te verversen</string>
+    <string name="toast_GettingMoreItems">Downloaden van één of meer zaken gestart. Even geduld ...</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
     <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
     <string name="current_version">U gebruikt versie %s</string>
@@ -36,6 +37,7 @@
     <string name="action_settings">Instellingen</string>
     <string name="action_sync_settings">Sync Settings</string>
     <string name="action_add_new_feed">Voeg nieuwe feed toe</string>
+    <string name="action_add_new_folder">Toevoegen nieuwe map</string>
     <string name="action_textToSpeech">Voorlezen</string>
     <string name="action_search">Zoeken</string>
     <string name="action_download_articles_offline">Download artikelen offline</string>
@@ -85,9 +87,13 @@
     <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
     <string name="move_feed_root_folder">Hoofdmap</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Verwijder map</string>
     <string name="action_folder_rename">Hernoem map</string>
     <string name="folder_remove_button">Verwijderen</string>
     <string name="folder_rename_button">Hernoemen</string>
+    <string name="confirm_folder_remove">Wil je deze map echt verwijderen? Dit kan niet ongedaan worden gemaakt!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Ontvang unieke meldingen voor deze feed</string>
     <string name="notification_feed_default">Alle feeds met standaard instellingen zullen in één melding verschijnen</string>
@@ -96,6 +102,8 @@
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Toevoegen</string>
     <string name="hint_folder_name">Mapnaam</string>
+    <string name="folder_already_exists">Deze map bestaat al</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Handmatige inlog</string>
     <string name="login_sso">Login via Nextcloud Bestanden App</string>
@@ -165,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Geen podcast geselecteerd</string>
     <string name="no_chapters_available">Geen hoofdstukken beschikbaar</string>
+    <string name="exit_playback">Speler verlaten</string>
     <string name="podcast_playback_speed_dialog_title">Afspeelsnelheid</string>
     <string name="notification_downloading_podcast_title">Downloaden podcast</string>
 
@@ -219,10 +228,14 @@
 
     <string name="content_desc_play">Spelen</string>
     <string name="content_desc_pause">Pauze</string>
+    <string name="content_desc_playback_speed">Afspeelsnelheid</string>
+    <string name="content_desc_rewind">Terugspoelen</string>
     <string name="content_desc_forward">Doorsturen</string>
+    <string name="content_desc_expand">Uitbreiden</string>
     <string name="content_desc_collapse">Inklappen</string>
     <string name="content_desc_mark_as_read">Markeren als gelezen</string>
     <string name="content_desc_mark_as_unread">Markeren als ongelezen</string>
+    <string name="content_desc_tap_to_refresh">Tik om te verversen</string>
     <string name="content_desc_add_to_favorites">Toevoegen aan favorieten</string>
     <string name="content_desc_remove_from_favorites">Verwijder uit favorieten</string>
     <string name="content_desc_show_password">Toon wachtwoord</string>
