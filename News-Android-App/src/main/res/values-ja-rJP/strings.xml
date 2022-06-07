@@ -35,6 +35,7 @@
     <string name="action_settings">設定</string>
     <string name="action_sync_settings">同期設定</string>
     <string name="action_add_new_feed">新しいフィードを追加</string>
+    <string name="action_add_new_folder">新しいフォルダーを追加</string>
     <string name="action_textToSpeech">音声読み上げ</string>
     <string name="action_search">検索</string>
     <string name="action_download_articles_offline">オフラインで記事をダウンロード</string>
@@ -63,6 +64,7 @@
     <string name="action_link_share">共有リンク</string>
     <string name="action_link_open">リンクをブラウザーで開く</string>
     <string name="action_link_copy">リンクをコピー</string>
+    <string name="toast_img_download_wait">ダウンロード中。しばらくお待ちください…</string>
     <string name="toast_img_saved">画像を保存しました</string>
     <string name="toast_img_notwriteable">画像の書き込みに失敗しました。</string>
     <string name="toast_copied_to_clipboard">クリップボードにコピー</string>
@@ -81,6 +83,8 @@
     <string name="feed_move_list_description">フィードを移動するフォルダーを選択</string>
     <string name="move_feed_root_folder">ルートフォルダー</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">フォルダーを削除</string>
     <string name="action_folder_rename">フォルダーの名前を変更</string>
     <string name="folder_remove_button">削除</string>
     <string name="folder_rename_button">名前を変更</string>
@@ -149,13 +153,14 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Podcast が選択されていません</string>
     <string name="no_chapters_available">チャプターがありません</string>
+    <string name="exit_playback">プレイヤーを終了</string>
     <string name="podcast_playback_speed_dialog_title">再生速度</string>
     <string name="notification_downloading_podcast_title">ポッドキャストのダウンロード</string>
 
 
     <!-- Settings for About -->
     <string name="pref_header_about">アプリについて</string>
-    <string name="pref_license">ライセンス</string>
+    <string name="pref_license">利用許諾</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
     <string name="pref_report_issue">問題を報告する</string>
     <string name="pref_report_issue_summary">(無料の) GitHub アカウントが必要です</string>
@@ -203,6 +208,7 @@
 
     <string name="content_desc_play">再生</string>
     <string name="content_desc_pause">一時停止</string>
+    <string name="content_desc_playback_speed">再生速度</string>
     <string name="content_desc_forward">転送</string>
     <string name="content_desc_collapse">折りたたむ</string>
     <string name="content_desc_mark_as_read">既読にする</string>
