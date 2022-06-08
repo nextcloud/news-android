@@ -237,10 +237,13 @@
 
     <string name="content_desc_play">Igrani nastop</string>
     <string name="content_desc_pause">Premor</string>
+    <string name="content_desc_playback_speed">Hitrost predvajanja</string>
     <string name="content_desc_forward">Posreduj</string>
+    <string name="content_desc_expand">Razširi</string>
     <string name="content_desc_collapse">Skrči</string>
     <string name="content_desc_mark_as_read">Označi kot prebrano</string>
     <string name="content_desc_mark_as_unread">Označi kot neprebrano</string>
+    <string name="content_desc_tap_to_refresh">Pritisni za osvežitev</string>
     <string name="content_desc_add_to_favorites">Dodaj med priljubljene</string>
     <string name="content_desc_remove_from_favorites">Odstrani iz priljubljenih</string>
     <string name="content_desc_show_password">Pokaži geslo</string>
