@@ -171,6 +171,7 @@
     <string name="array_sync_interval_min_15">15 minutes</string>
     <string name="array_sync_interval_min_30">30 minutes</string>
     <string name="array_sync_interval_hour_1">1 Orë</string>
+    <string name="array_sync_interval_hour_2">2 orë </string>
     <string name="array_sync_interval_hour_3">3 orë</string>
     <string name="array_sync_interval_hour_6">6 orë</string>
     <string name="array_sync_interval_hour_12">12 orë</string>
