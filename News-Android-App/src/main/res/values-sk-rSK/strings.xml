@@ -183,6 +183,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nebol vybraný žiaden podcast</string>
     <string name="no_chapters_available">Žiadne dostupné kapitoly</string>
+    <string name="exit_playback">Ukončiť Prehrávač</string>
     <string name="podcast_playback_speed_dialog_title">Rýchlosť prehrávania</string>
     <string name="notification_downloading_podcast_title">Sťahovanie podcastu</string>
 
@@ -237,10 +238,14 @@
 
     <string name="content_desc_play">Hrať</string>
     <string name="content_desc_pause">Pauza</string>
+    <string name="content_desc_playback_speed">Rýchlosť prehrávania</string>
+    <string name="content_desc_rewind">Pretočiť</string>
     <string name="content_desc_forward">Preposlať</string>
+    <string name="content_desc_expand">Rozbaliť</string>
     <string name="content_desc_collapse">Zvinúť</string>
     <string name="content_desc_mark_as_read">Označiť ako prečítané</string>
     <string name="content_desc_mark_as_unread">Označiť ako neprečítané</string>
+    <string name="content_desc_tap_to_refresh">Ťuknite pre obnovenie</string>
     <string name="content_desc_add_to_favorites">Pridať do obľúbených</string>
     <string name="content_desc_remove_from_favorites">Odstrániť z obľúbených</string>
     <string name="content_desc_show_password">Zobraziť heslo</string>
