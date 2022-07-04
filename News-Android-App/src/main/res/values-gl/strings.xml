@@ -36,6 +36,7 @@
     <string name="action_settings">Axustes</string>
     <string name="action_sync_settings">Axustes da sincronización</string>
     <string name="action_add_new_feed">Engadir unha nova fonte</string>
+    <string name="action_add_new_folder">Engadir un cartafol novo</string>
     <string name="action_textToSpeech">Ler</string>
     <string name="action_search">Buscar</string>
     <string name="action_download_articles_offline">Descargar os artigos sen conexión</string>
