@@ -98,6 +98,8 @@
     <string name="action_folder_rename">Переименовать папку</string>
     <string name="folder_remove_button">Удалить</string>
     <string name="folder_rename_button">Переименовать</string>
+    <string name="confirm_folder_remove">Вы действительно хотите удалить эту папку? Это действие невозможно отменить!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Получить индивидуальные уведомления для этой ленты</string>
     <string name="notification_feed_default">Все каналы с настройками по умолчанию будут отображаться в одном уведомлении</string>
@@ -181,6 +183,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Нет выбранных подкастов</string>
     <string name="no_chapters_available">Нет доступных глав</string>
+    <string name="exit_playback">Выйти из проигрывателя</string>
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
     <string name="notification_downloading_podcast_title">Загрузка подкастов</string>
 
@@ -235,7 +238,10 @@
 
     <string name="content_desc_play">Играть</string>
     <string name="content_desc_pause">Пауза</string>
+    <string name="content_desc_playback_speed">Скорость воспроизведения</string>
+    <string name="content_desc_rewind">Перемотка</string>
     <string name="content_desc_forward">Вперёд</string>
+    <string name="content_desc_expand">Развернуть</string>
     <string name="content_desc_collapse">Свернуть</string>
     <string name="content_desc_mark_as_read">Отметить прочитанным</string>
     <string name="content_desc_mark_as_unread">Отметить не прочитанным</string>
