@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: nextcloud
+    image: nextcloud:24.0.2-apache
     volumes:
       - ./nextcloud-data/:/var/www/html
     #restart: no

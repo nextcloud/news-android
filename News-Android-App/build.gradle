@@ -27,8 +27,8 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        versionCode 177
-        versionName "0.9.9.74"
+        versionCode 178
+        versionName "0.9.9.75"
     }
 
     buildFeatures {
@@ -37,6 +37,7 @@ android {
 
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        unitTests.returnDefaultValues = true
     }
 
     compileOptions {

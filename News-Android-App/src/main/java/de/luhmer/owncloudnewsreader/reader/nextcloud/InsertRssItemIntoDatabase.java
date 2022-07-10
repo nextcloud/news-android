@@ -112,6 +112,9 @@ class InsertRssItemIntoDatabase {
         try {
             // try fixing relative image links
             content = ImageHandler.fixBrokenImageLinksInArticle(url, content);
+
+            // try fixing relative href links
+            content = ImageHandler.fixBrokenHrefInArticle(url, content);
         } catch (Exception ex) {
             ex.printStackTrace();
             Log.e(TAG, "Error while fixing broken image links in article" + ex);
