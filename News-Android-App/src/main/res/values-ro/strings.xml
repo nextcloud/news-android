@@ -38,6 +38,7 @@
     <string name="action_settings">Setări</string>
     <string name="action_sync_settings">Setări Sincronizare</string>
     <string name="action_add_new_feed">Adaugă flux nou</string>
+    <string name="action_add_new_folder">Adaugă dosar nou</string>
     <string name="action_textToSpeech">Citit</string>
     <string name="action_search">Caută</string>
     <string name="action_download_articles_offline">Descarcă articole offline</string>
@@ -82,15 +83,20 @@
     <string name="action_feed_remove">Elimină feed-ul</string>
     <string name="action_feed_rename">Redenumește feed-ul</string>
     <string name="action_feed_move">Muta feed-ul</string>
+    <string name="action_feed_notification_settings">Setări notificări</string>
     <string name="feed_remove_button">Șterge</string>
     <string name="feed_rename_button">Redenumește</string>
     <string name="confirm_feed_remove">Ești sigur că dorești să elimini acest feed ? Această acțiune nu poate fi anulată!</string>
     <string name="feed_move_list_description">Seleactează dosarul în care dorești să muți feed-ul</string>
     <string name="move_feed_root_folder">Folder principal</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Șterge dosarul</string>
     <string name="action_folder_rename">Redenumește dosar</string>
     <string name="folder_remove_button">Elimină</string>
     <string name="folder_rename_button">Redenumire</string>
+    <string name="confirm_folder_remove">Dorești să ștergi acest dosar ?</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Primește notificări unice pentru acest feed</string>
     <string name="notification_feed_default">Toate feed-urile cu setări implicite vor apărea intr-o singură notificare</string>
@@ -99,6 +105,8 @@
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Adaugă</string>
     <string name="hint_folder_name">Denumire director</string>
+    <string name="folder_already_exists">Dosarul exista deja</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Autentificare manuală</string>
     <string name="login_sso">Autentificare folosind aplicația Fișiere Nextcloud</string>
@@ -170,6 +178,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nu a fost selectat podcastul</string>
     <string name="no_chapters_available">Nici-un articol disponibil</string>
+    <string name="exit_playback">Ieși din player</string>
     <string name="podcast_playback_speed_dialog_title">Viteză de redare</string>
     <string name="notification_downloading_podcast_title">Se descarcă podcast-ul</string>
 
@@ -224,10 +233,17 @@
 
     <string name="content_desc_play">Start Joc</string>
     <string name="content_desc_pause">Pauză</string>
+    <string name="content_desc_playback_speed">Viteză de redare</string>
+    <string name="content_desc_rewind">Derulează înapoi</string>
     <string name="content_desc_forward">Înainte</string>
+    <string name="content_desc_expand">Extinde</string>
     <string name="content_desc_collapse">Restrânge</string>
+    <string name="content_desc_mark_as_read">Marchează ca citit</string>
+    <string name="content_desc_mark_as_unread">Marchează ca necitit</string>
+    <string name="content_desc_tap_to_refresh">Apasă pentru a reîncărca</string>
     <string name="content_desc_add_to_favorites">Adăugați la favorite</string>
     <string name="content_desc_remove_from_favorites">Șterge din favorite</string>
+    <string name="content_desc_show_password">Arată parola</string>
     <string name="content_desc_delete">Șterge</string>
     <string name="content_desc_download">Descărcare</string>
 
