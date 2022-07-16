@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Интервал синхронизације</string>
     <string name="empty_view_content">Нема ставки</string>
     <string name="empty_view_content_action">Повуците да освежите</string>
+    <string name="toast_GettingMoreItems">Preuzimanje više stavki je u toku. Molim sačekajte ...</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
     <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе</string>
     <string name="current_version">Користите верзију %s</string>
@@ -69,6 +70,7 @@
     <string name="action_link_share">Подели везу</string>
     <string name="action_link_open">Отвори везу у прегледачу</string>
     <string name="action_link_copy">Копирај везу</string>
+    <string name="toast_img_download_wait">Preuzimam. Molim sačekajte ...</string>
     <string name="toast_img_saved">Слика сачувана.</string>
     <string name="toast_img_notwriteable">Грешка при чувању слике.</string>
     <string name="toast_copied_to_clipboard">Копирано у клипборд</string>
@@ -102,6 +104,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Пријави се</string>
+    <string name="login_progress_signing_in">Prijavljujem se ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Ово поље је неопходно</string>
     <string name="error_invalid_url">Неисправна адреса</string>
@@ -135,6 +138,7 @@
     <string name="pref_general_search_in_body">Тело</string>
 
     <string name="dialog_clearing_cache">Чистим кеш</string>
+    <string name="dialog_clearing_cache_please_wait">Brišem keš. Molim vas sačekajte...</string>
     <string name="reset_cache_unsaved_changes">Постоје несинхронизоване измене. Да ипак обришем кеш?</string>
     <string name="warning">Упозорење</string>
     <string name="pref_title_AutoSyncOnStart">Освежи при покретању</string>
@@ -208,10 +212,13 @@
 
     <string name="content_desc_play">Пусти</string>
     <string name="content_desc_pause">Паузирај</string>
+    <string name="content_desc_rewind">Premotavanje</string>
     <string name="content_desc_forward">Проследи</string>
+    <string name="content_desc_expand">Proširi</string>
     <string name="content_desc_collapse">Скупи</string>
     <string name="content_desc_mark_as_read">Означи као прочитано</string>
     <string name="content_desc_mark_as_unread">Означи као непрочитано</string>
+    <string name="content_desc_tap_to_refresh">Pritisnite da osvežite</string>
     <string name="content_desc_add_to_favorites">Додај у омиљене</string>
     <string name="content_desc_remove_from_favorites">Уклони из омиљених</string>
     <string name="content_desc_show_password">Прикажи лозинку</string>
