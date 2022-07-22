@@ -183,6 +183,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ni izbranega podkasta</string>
     <string name="no_chapters_available">V prispevku ni poglavij</string>
+    <string name="exit_playback">Končaj predvajalnik</string>
     <string name="podcast_playback_speed_dialog_title">Hitrost predvajanja</string>
     <string name="notification_downloading_podcast_title">Potekanje prejemanje podkasta ...</string>
 
@@ -238,6 +239,7 @@
     <string name="content_desc_play">Igrani nastop</string>
     <string name="content_desc_pause">Premor</string>
     <string name="content_desc_playback_speed">Hitrost predvajanja</string>
+    <string name="content_desc_rewind">Prevrti nazaj</string>
     <string name="content_desc_forward">Posreduj</string>
     <string name="content_desc_expand">Razširi</string>
     <string name="content_desc_collapse">Skrči</string>
