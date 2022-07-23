@@ -225,10 +225,12 @@
 
     <string name="content_desc_play">Gioca</string>
     <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_playback_speed">Velocità di riproduzione</string>
     <string name="content_desc_forward">Inoltra</string>
     <string name="content_desc_collapse">Contrai</string>
     <string name="content_desc_mark_as_read">Segna come letto</string>
     <string name="content_desc_mark_as_unread">Segna come non letto</string>
+    <string name="content_desc_tap_to_refresh">Tocca per aggiornare</string>
     <string name="content_desc_add_to_favorites">Aggiungi ai preferiti</string>
     <string name="content_desc_remove_from_favorites">Rimuovi dai preferiti</string>
     <string name="content_desc_show_password">Mostra password</string>
