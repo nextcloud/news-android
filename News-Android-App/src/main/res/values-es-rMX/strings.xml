@@ -153,6 +153,7 @@
     <string name="content_desc_collapse">Colapsar</string>
     <string name="content_desc_add_to_favorites">Agregar a favoritos</string>
     <string name="content_desc_remove_from_favorites">Eliminar de favoritos</string>
+    <string name="content_desc_show_password">Mostrar contraseña</string>
     <string name="content_desc_delete">Eliminar</string>
     <string name="content_desc_download">Descargar</string>
 
