@@ -1,5 +1,8 @@
 package de.luhmer.owncloudnewsreader.async_tasks;
 
+import static de.luhmer.owncloudnewsreader.NewsDetailActivity.INCOGNITO_MODE_ENABLED;
+import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -23,9 +26,6 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
-
-import static de.luhmer.owncloudnewsreader.NewsDetailActivity.INCOGNITO_MODE_ENABLED;
-import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
 
 
 public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
@@ -211,7 +211,9 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private static String getCachedFavIcon(String favIconUrl) {
         DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
         File file = diskCache.get(favIconUrl);
-        if(file != null) {
+        // note that the universalimageloader does NOT support svg icons.
+        // Therefore we don't want to use any cached items (the webview can render svg's just fine)
+        if (file != null && !favIconUrl.endsWith(".svg")) {
             return "file://" + file.getAbsolutePath();
         } else {
             return favIconUrl; // Return favicon url if not cached
