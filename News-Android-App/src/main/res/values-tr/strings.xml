@@ -83,7 +83,7 @@
     <string name="action_feed_notification_settings">Bildirim ayarları</string>
     <string name="feed_remove_button">Sil</string>
     <string name="feed_rename_button">Yeniden adlandır</string>
-    <string name="confirm_feed_remove">Bu akışı gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
+    <string name="confirm_feed_remove">Bu akışı silmek istediğinize emin misiniz? Bu işlem geri alınamaz!</string>
     <string name="feed_move_list_description">Akışın içine taşınacağı klasörü seçin</string>
     <string name="move_feed_root_folder">Kök klasör</string>
 
@@ -92,7 +92,7 @@
     <string name="action_folder_rename">Klasörü yeniden adlandır</string>
     <string name="folder_remove_button">Kaldır</string>
     <string name="folder_rename_button">Yeniden adlandır</string>
-    <string name="confirm_folder_remove">Bu klasörü gerçekten silmek istiyor musunuz? Bu işlem geri alınamaz!</string>
+    <string name="confirm_folder_remove">Bu klasörü silmek istediğinize emin misiniz? Bu işlem geri alınamaz!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Bu akışın benzersiz bildirimlerini al</string>
