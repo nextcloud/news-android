@@ -66,6 +66,7 @@
     <string name="action_link_share">Del lenke</string>
     <string name="action_link_open">Åpne lenke i nettleser</string>
     <string name="action_link_copy">Kopier lenke</string>
+    <string name="toast_img_download_wait">Laster ned. Vennligst vent ...</string>
     <string name="toast_img_saved">Bilde er lagret</string>
     <string name="toast_img_notwriteable">Klarte ikke å skrive bilde.</string>
     <string name="toast_copied_to_clipboard">Kopiert til utklippstavlen</string>
@@ -104,6 +105,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Logg inn</string>
+    <string name="login_progress_signing_in">Logger inn ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette feltet er påkrevd</string>
     <string name="error_invalid_url">Ugyldig URL</string>
@@ -136,6 +138,7 @@
     <string name="pref_general_search_in_body">Kropp</string>
 
     <string name="dialog_clearing_cache">Tømmer hurtiglager</string>
+    <string name="dialog_clearing_cache_please_wait">Tømmer cache. Vennligst vent …</string>
     <string name="reset_cache_unsaved_changes">Det er usynkroniserte endringer i hurtiglagret, skal det nullstilles likevel?</string>
     <string name="warning">Advarsel</string>
     <string name="pref_title_AutoSyncOnStart">Synkroniser under oppstart</string>
@@ -210,10 +213,13 @@
 
     <string name="content_desc_play">Spill</string>
     <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_rewind">Spole</string>
     <string name="content_desc_forward">Fremover</string>
+    <string name="content_desc_expand">Ekspander</string>
     <string name="content_desc_collapse">Skjul</string>
     <string name="content_desc_mark_as_read">Merk som lest</string>
     <string name="content_desc_mark_as_unread">Merk som ulest</string>
+    <string name="content_desc_tap_to_refresh">Trykk for å oppdatere</string>
     <string name="content_desc_add_to_favorites">Legg til i favoritter</string>
     <string name="content_desc_remove_from_favorites">Fjern fra favoritter</string>
     <string name="content_desc_show_password">Vis passord</string>
