@@ -4,6 +4,7 @@
     <string name="auto_sync_string">Sync otomatis</string>
     <string name="empty_view_content">Tak ada item disini</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="toast_GettingMoreItems">Unduh item lainnya dimulai. Mohon tunggu ...</string>
     <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
     <string name="current_version">Anda menggunakan Versi %s</string>
     <string name="widget_header">Berita ownCloud</string>
@@ -50,6 +51,7 @@
     <string name="action_link_share">Bagikan Tautan</string>
     <string name="action_link_open">Buka Tautan di Peramban</string>
     <string name="action_link_copy">Salin Tautan</string>
+    <string name="toast_img_saved">Gambar disimpan</string>
     <string name="toast_img_notwriteable">Gagal menulis Gambar.</string>
     <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
     <string name="error_download_failed">Gagal Mengunduh</string>
@@ -76,6 +78,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Masuk</string>
+    <string name="login_progress_signing_in">Sedang masuk...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bidang wajib diisi</string>
     <!-- Toast Messages -->
@@ -94,6 +97,7 @@
 
     <string name="pref_general_search_in_title">Judul</string>
     <string name="dialog_clearing_cache">Membersihkan cache</string>
+    <string name="dialog_clearing_cache_please_wait">Membersihkan cache. Mohon tunggu...</string>
     <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
     <string name="warning">Peringatan</string>
     <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
@@ -124,7 +128,10 @@
     <string name="pref_display_font_size_d">Bawaan</string>
     <string name="content_desc_play">Putar</string>
     <string name="content_desc_pause">Jeda</string>
+    <string name="content_desc_rewind">mundur</string>
+    <string name="content_desc_forward">Teruskan</string>
     <string name="content_desc_collapse">Tutup</string>
+    <string name="content_desc_mark_as_read">tandai sudah dibaca</string>
     <string name="content_desc_add_to_favorites">Tambah ke favorit</string>
     <string name="content_desc_remove_from_favorites">Remove from favorites</string>
     <string name="content_desc_show_password">Tampilkan kata sandi</string>
