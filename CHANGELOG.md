@@ -1,3 +1,13 @@
+0.9.9.76
+---------------------
+- Security related fixes (only F-Droid users affected): [#1109](https://github.com/nextcloud/news-android/issues/1109) / [fdroid/fdroiddata#2753](https://gitlab.com/fdroid/fdroiddata/-/issues/2753)
+
+
+0.9.9.75
+---------------------
+- Fixed crash when relative links in articles are clicked
+
+
 0.9.9.74
 ---------------------
 - Fixed incompatibility issues with Nextcloud News 18.1.0
