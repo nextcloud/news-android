@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
     <string name="empty_view_content">Sem itens aqui</string>
     <string name="empty_view_content_action">Puxe para atualizar</string>
+    <string name="toast_GettingMoreItems">Download de mais itens iniciou. Por favor aguarde ...</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>
     <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi</string>
     <string name="current_version">Está a usar a Versão %s</string>
@@ -37,9 +38,13 @@
     <string name="action_settings">Definições</string>
     <string name="action_sync_settings">Definições da Sincronização </string>
     <string name="action_add_new_feed">Adicionar novo feed</string>
+    <string name="action_add_new_folder">Adicionar nova pasta</string>
     <string name="action_textToSpeech">Leitura automática</string>
     <string name="action_search">Pesquisar</string>
     <string name="action_download_articles_offline">Transferir artigos off-line</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Download de artigos para uso offline</string>
+    <string name="notification_download_images_offline">Download de imagens para uso offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tem %d novo item por ler</item>
         <item quantity="many">Tem %d novos itens por ler</item>
@@ -66,6 +71,7 @@
     <string name="action_link_share">Partilhar hiperligação</string>
     <string name="action_link_open">Abrir ligação num explorador</string>
     <string name="action_link_copy">Copiar hiperligação</string>
+    <string name="toast_img_download_wait">Fazendo download. Por favor aguarde ...</string>
     <string name="toast_img_saved">Imagem guardada</string>
     <string name="toast_img_notwriteable">Falhou ao guardar a imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
@@ -84,12 +90,18 @@
     <string name="feed_move_list_description">Selecionar a pasta para mover a fonte</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Remover pasta</string>
     <string name="action_folder_rename">Renomear pasta</string>
     <string name="folder_remove_button">Remover</string>
     <string name="folder_rename_button">Renomear</string>
+    <string name="confirm_folder_remove">Deseja realmente remover esta pasta? Isto não pode ser desfeito!</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Adicionar</string>
     <string name="hint_folder_name">Nome da pasta</string>
+    <string name="folder_already_exists">A pasta já existe</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Sessão manual</string>
     <string name="login_sso">Inicie a sessão usando a aplicação Nextcloud Files</string>
