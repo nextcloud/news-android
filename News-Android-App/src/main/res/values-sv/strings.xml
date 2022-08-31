@@ -125,6 +125,12 @@
         <item quantity="other">Hämtade %d gamla artiklar</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hämtat %d artikel än så länge...</item>
+        <item quantity="other">Hämtat %d artiklar än så länge...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Inställningar</string>
     <string name="cache_is_cleared">Cacheminne rensat!</string>
@@ -221,10 +227,14 @@
 
     <string name="content_desc_play">Spela</string>
     <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_playback_speed">Uppspelningshastighet</string>
+    <string name="content_desc_rewind">Spola bakåt</string>
     <string name="content_desc_forward">Vidarebefordra</string>
+    <string name="content_desc_expand">Utöka</string>
     <string name="content_desc_collapse">Dölj</string>
     <string name="content_desc_mark_as_read">Markera som läst</string>
     <string name="content_desc_mark_as_unread">Markera som oläst</string>
+    <string name="content_desc_tap_to_refresh">Tryck för att uppdatera</string>
     <string name="content_desc_add_to_favorites">Lägg till i favoriter</string>
     <string name="content_desc_remove_from_favorites">Ta bort från favoriter</string>
     <string name="content_desc_show_password">Visa lösenord</string>
