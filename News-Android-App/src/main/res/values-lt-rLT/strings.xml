@@ -67,6 +67,7 @@
     <string name="action_link_share">Bendrinimo nuoroda</string>
     <string name="action_link_open">Atverti nuorodą naršyklėje</string>
     <string name="action_link_copy">Kopijuoti nuorodą</string>
+    <string name="toast_img_download_wait">Atsisiunčiama. Palaukite…</string>
     <string name="toast_img_saved">Paveikslas įrašytas</string>
     <string name="toast_img_notwriteable">Nepavyko įrašyti paveikslo.</string>
     <string name="toast_copied_to_clipboard">Nukopijuota į iškarpinę</string>
@@ -112,6 +113,14 @@
         <item quantity="other">Atsiųsta %d senų elementų</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Daugiau elementų nėra</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Jau gautas %d elementas…</item>
+        <item quantity="few">Jau gauti %d elementai…</item>
+        <item quantity="many">Jau gauta %d elementų…</item>
+        <item quantity="other">Jau gautas %d elementas…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Nustatymai</string>
     <string name="cache_is_cleared">Podėlis išvalytas!</string>
@@ -128,6 +137,7 @@
 
     <string name="pref_general_search_in_title">Pavadinimas</string>
     <string name="dialog_clearing_cache">Išvalomas podėlis</string>
+    <string name="dialog_clearing_cache_please_wait">Išvalomas podėlis. Palaukite…</string>
     <string name="reset_cache_unsaved_changes">Yra nesinchronizuotų pakeitimų. Ar vis tiek norite atstatyti podėlį?</string>
     <string name="warning">Įspėjimas</string>
     <string name="pref_title_AutoSyncOnStart">Sinchronizuoti pasileidžiant</string>
