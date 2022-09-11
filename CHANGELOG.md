@@ -6,6 +6,7 @@
 0.9.9.75
 ---------------------
 - Fixed crash when relative links in articles are clicked
+- Support Material You Theming with App Icon (thanks to @salixor)
 
 
 0.9.9.74

@@ -1,1 +1,2 @@
 Fixed crash when relative links in articles are clicked
+Added Support Material You Theming with App Icon (thanks to @salixor)
