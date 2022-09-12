@@ -39,6 +39,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -525,18 +526,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private void openInBrowser(int currentPosition) {
 		RssItem rssItem = rssItems.get(currentPosition);
 		NewsDetailFragment newsDetailFragment = getNewsDetailFragmentAtPosition(currentPosition);
-		String link = "about:blank";
+		String link;
 
 		if (newsDetailFragment != null) {
 			link = newsDetailFragment.binding.webview.getUrl();
-		}
 
-		if ("about:blank".equals(link)) {
-			link = rssItem.getLink();
-		}
+			if ("about:blank".equals(link)) {
+				link = rssItem.getLink();
+			}
 
-		if (link.length() > 0) {
-			requireNonNull(newsDetailFragment).loadURL(link);
+			if (link.length() > 0) {
+				newsDetailFragment.loadURL(link);
+			}
+		} else {
+			Toast.makeText(NewsDetailActivity.this, "NewsDetailFragment is not initialized - please try again and report this error", Toast.LENGTH_LONG).show();
 		}
 	}
 
