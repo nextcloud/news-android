@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/list_item_header"
     android:layout_width="match_parent"
-    android:layout_height="116dp"
+    android:layout_height="124dp"
     android:paddingTop="@dimen/listview_row_margin_top"
     android:paddingBottom="@dimen/listview_row_margin_bottom"
     android:descendantFocusability="blocksDescendants"
