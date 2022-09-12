@@ -59,7 +59,6 @@ public class DownloadImageHandler {
 			e.printStackTrace();
 		}
 		NotifyDownloadFinished(null);
-		//ImageLoader.getInstance().loadImageSync(mImageUrl.toString(), displayImageOptions);
 	}
 
 	private void NotifyDownloadFinished(Bitmap bitmap) {

@@ -53,7 +53,6 @@ public class FavIconHandler {
 
     public FavIconHandler(Context context) {
         mPlaceHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
-        //int widthFavIcon = Math.round(20f * context.getResources().getDisplayMetrics().density);
         mContext = context;
         mGlide = GlideApp.with(context);
     }
@@ -76,10 +75,7 @@ public class FavIconHandler {
                 .apply(requestOptions)
                 .onlyRetrieveFromCache(true) // disable loading of favicons from network (usually those favicons are broken)
                 .into(imgView);
-            //ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
         }
-
-
     }
 
     /**

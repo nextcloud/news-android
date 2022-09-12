@@ -59,7 +59,6 @@ public class NextcloudNotificationManager {
         String channelDownloadImage = context.getString(R.string.action_img_download);
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelDownloadImage);
 
-        //Bitmap bitmap = ImageLoader.getInstance().loadImageSync("file://" + imagePath.getAbsolutePath(), targetSize);
         GlideApp.with(context).asBitmap().load("file://" + imagePath.getAbsolutePath()).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>(1024, 512) {
             @Override
             public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {

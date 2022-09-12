@@ -25,14 +25,11 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemThumbnailBinding;
 
 public class RssItemThumbnailViewHolder extends RssItemViewHolder<SubscriptionDetailListItemThumbnailBinding> {
-    //private final DisplayImageOptions displayImageOptionsThumbnail;
 
     Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
 
     RssItemThumbnailViewHolder(@NonNull SubscriptionDetailListItemThumbnailBinding binding, SharedPreferences sharedPreferences) {
         super(binding, sharedPreferences);
-
-        //int width = Math.round(88f * binding.imgViewThumbnail.getContext().getResources().getDisplayMetrics().density);
     }
 
     @Override
@@ -93,8 +90,6 @@ public class RssItemThumbnailViewHolder extends RssItemViewHolder<SubscriptionDe
         String mediaThumbnail = rssItem.getMediaThumbnail();
         if (mediaThumbnail != null && !mediaThumbnail.isEmpty()) {
             binding.imgViewThumbnail.setVisibility(View.VISIBLE);
-            //ImageLoader.getInstance().displayImage(mediaThumbnail, binding.imgViewThumbnail, displayImageOptionsThumbnail);
-            // ImageLoader.getInstance().displayImage(mediaThumbnail, binding.imgViewThumbnail, displayImageOptionsThumbnail);
 
             mGlide
                     .load(mediaThumbnail)

@@ -65,7 +65,7 @@ public class ApiProvider {
         boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         if(useSSO) {
             // OkHttpClient client = new OkHttpClient.Builder().build();
-            //initImageLoader(mPrefs, client, context);
+            // initImageLoader(mPrefs, client, context);
             initSsoApi(apiConnectedListener);
         } else {
             if(mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {

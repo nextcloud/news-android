@@ -24,15 +24,10 @@ import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadli
 
 public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<SubscriptionDetailListItemHeadlineThumbnailBinding> {
 
-    //private final DisplayImageOptions displayImageOptionsThumbnail;
     Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
-
-
 
     RssItemHeadlineThumbnailViewHolder(@NonNull SubscriptionDetailListItemHeadlineThumbnailBinding binding, SharedPreferences sharedPreferences) {
         super(binding, sharedPreferences);
-
-        //int widthThumbnail = Math.round(88f * binding.imgViewThumbnail.getContext().getResources().getDisplayMetrics().density);
     }
 
     @Override
@@ -96,7 +91,6 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<Subscr
         String mediaThumbnail = rssItem.getMediaThumbnail();
         if (mediaThumbnail != null && !mediaThumbnail.isEmpty()) {
             binding.imgViewThumbnail.setVisibility(View.VISIBLE);
-            //ImageLoader.getInstance().displayImage(mediaThumbnail, binding.imgViewThumbnail, displayImageOptionsThumbnail);
 
             mGlide
                     .load(mediaThumbnail)
