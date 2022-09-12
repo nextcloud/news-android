@@ -9,7 +9,7 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.module.AppGlideModule;
-import com.github.technoir42.glide.debug.indicator.DebugIndicatorTransitionFactory;
+// import com.github.technoir42.glide.debug.indicator.DebugIndicatorTransitionFactory;
 
 import javax.inject.Inject;
 
@@ -26,12 +26,6 @@ public class NextcloudGlideModule extends AppGlideModule {
 
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
-        // #00ff00 Memory Cache (Green)
-        // #0066ff Disk Cache (Blue)
-        // #ff0000 Remote (Red)
-        // #ffff00 Local (Yellow)
-        builder.setDefaultTransitionOptions(Drawable.class, DrawableTransitionOptions.with(DebugIndicatorTransitionFactory.DEFAULT));
-
         ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectGlideModule(this);
 
         String cacheSize = mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500");
@@ -43,5 +37,14 @@ public class NextcloudGlideModule extends AppGlideModule {
 
         builder.setDiskCache(new InternalCacheDiskCacheFactory(context, diskCacheSizeBytes));
         // builder.setDiskCache(new ExternalCacheDiskCacheFactory(context));
+
+
+        // #00ff00 Memory Cache (Green)
+        // #0066ff Disk Cache (Blue)
+        // #ff0000 Remote (Red)
+        // #ffff00 Local (Yellow)
+
+        // enable caching indicators for Glide
+        // builder.setDefaultTransitionOptions(Drawable.class, DrawableTransitionOptions.with(DebugIndicatorTransitionFactory.DEFAULT));
     }
 }
