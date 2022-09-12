@@ -1,0 +1,3 @@
+Fix incorrect height of listview rows (#1111)
+Switched from Universal-Image-Loader to Glide as image loading library
+Added support for SVG favicons

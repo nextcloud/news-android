@@ -1,3 +1,10 @@
+0.9.9.77
+---------------------
+- Fix incorrect height of listview rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
+- Switched from Universal-Image-Loader to Glide as image loading library [!1115](https://github.com/nextcloud/news-android/pull/1115)
+- Added support for SVG favicons
+
+
 0.9.9.76
 ---------------------
 - Security related fixes (only F-Droid users affected): [#1109](https://github.com/nextcloud/news-android/issues/1109) / [fdroid/fdroiddata#2753](https://gitlab.com/fdroid/fdroiddata/-/issues/2753)
