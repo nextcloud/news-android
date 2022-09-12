@@ -11,14 +11,9 @@ import com.nextcloud.android.sso.api.NextcloudAPI;
 import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.model.SingleSignOnAccount;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
-import de.luhmer.owncloudnewsreader.reader.OkHttpImageDownloader;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.NewsAPI;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.OcsAPI;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
@@ -69,8 +64,8 @@ public class ApiProvider {
 
         boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         if(useSSO) {
-            OkHttpClient client = new OkHttpClient.Builder().build();
-            initImageLoader(mPrefs, client, context);
+            // OkHttpClient client = new OkHttpClient.Builder().build();
+            //initImageLoader(mPrefs, client, context);
             initSsoApi(apiConnectedListener);
         } else {
             if(mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {
@@ -82,7 +77,7 @@ public class ApiProvider {
                         .build();
                 Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
                 OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
-                initImageLoader(mPrefs, client, context);
+                // initImageLoader(mPrefs, client, context);
                 initRetrofitApi(baseUrl, client);
                 apiConnectedListener.onConnected();
             } else {
@@ -112,30 +107,6 @@ public class ApiProvider {
         } catch (SSOException e) {
             callback.onError(e);
         }
-    }
-
-
-
-    private void initImageLoader(SharedPreferences mPrefs, OkHttpClient okHttpClient, Context context) {
-        String cacheSize = mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE,"500");
-        int diskCacheSize = Integer.parseInt(cacheSize)*1024*1024;
-        if(ImageLoader.getInstance().isInited()) {
-            ImageLoader.getInstance().destroy();
-        }
-        DisplayImageOptions imageOptions = new DisplayImageOptions.Builder()
-                .cacheOnDisk(true)
-                .cacheInMemory(true)
-                .build();
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
-                .diskCacheSize(diskCacheSize)
-                .memoryCacheSize(10 * 1024 * 1024)
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .defaultDisplayImageOptions(imageOptions)
-                .imageDownloader(new OkHttpImageDownloader(context, okHttpClient))
-                .build();
-
-        ImageLoader.getInstance().init(config);
     }
 
     public NewsAPI getNewsAPI() {

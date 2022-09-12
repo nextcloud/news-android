@@ -23,18 +23,22 @@ package de.luhmer.owncloudnewsreader.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.view.Display;
-import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.palette.graphics.Palette;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -42,28 +46,40 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 
 public class FavIconHandler {
     private static final String TAG = FavIconHandler.class.getCanonicalName();
-    private final DisplayImageOptions displayImageOptions;
+
+    private RequestManager mGlide;
+    private Context mContext;
+    private int mPlaceHolder;
 
     public FavIconHandler(Context context) {
-        int placeHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
-
-        int widthFavIcon = Math.round(20f * context.getResources().getDisplayMetrics().density);
-        displayImageOptions = new DisplayImageOptions.Builder()
-                .preProcessor(new SquareRoundedBitmapDisplayer(6, 0, widthFavIcon))
-                .showImageOnLoading(placeHolder)
-                .showImageForEmptyUri(placeHolder)
-                .showImageOnFail(placeHolder)
-                .cacheOnDisk(true)
-                .cacheInMemory(true)
-                .build();
+        mPlaceHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
+        //int widthFavIcon = Math.round(20f * context.getResources().getDisplayMetrics().density);
+        mContext = context;
+        mGlide = GlideApp.with(context);
     }
 
-    public void loadFavIconForFeed(String favIconUrl, ImageView imgView) {
-        ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
-    }
+    public void loadFavIconForFeed(@Nullable String favIconUrl, ImageView imgView) {
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions = requestOptions.transforms(new RoundedCorners(6));
 
-    public void loadFavIconForFeed(String favIconUrl, ImageView imgView, DisplayImageOptions displayImageOptions) {
-        ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
+        if(favIconUrl == null) {
+            mGlide
+                .load(mPlaceHolder)
+                .apply(requestOptions)
+                .into(imgView);
+        } else {
+            mGlide
+                .load(favIconUrl)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .placeholder(mPlaceHolder)
+                .error(mPlaceHolder)
+                .apply(requestOptions)
+                .onlyRetrieveFromCache(true) // disable loading of favicons from network (usually those favicons are broken)
+                .into(imgView);
+            //ImageLoader.getInstance().displayImage(favIconUrl, imgView, displayImageOptions);
+        }
+
+
     }
 
     /**
@@ -88,37 +104,35 @@ public class FavIconHandler {
 
     }
 
-    public void preCacheFavIcon(final Feed feed, Context context) throws IllegalStateException {
+    public void preCacheFavIcon(final Feed feed) throws IllegalStateException {
         if (feed.getFaviconUrl() == null) {
             Log.v(TAG, "No favicon for " + feed.getFeedTitle());
             return;
         }
 
-        Log.v(TAG, "Loading image: " + feed.getFaviconUrl());
-        ImageLoader.getInstance().loadImage(feed.getFaviconUrl(), displayImageOptions, new ImageLoadingListener() {
+        String favIconUrl = feed.getFaviconUrl();
+        Log.v(TAG, "Loading image: " + favIconUrl);
+        mGlide
+                .asBitmap()
+                .load(favIconUrl)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .apply(RequestOptions.overrideOf(Target.SIZE_ORIGINAL))
+                .into(new SimpleTarget<Bitmap>() {
             @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                UpdateAvgColorOfFeed(feed.getId(), resource, mContext);
+                Log.d(TAG, "Successfully downloaded image for url: " + favIconUrl);
             }
 
             @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                DownloadFinished(feed.getId(), loadedImage, context);
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                super.onLoadFailed(errorDrawable);
+                Log.d(TAG, "Failed to download image for url: " + favIconUrl);
             }
         });
     }
 
-    private void DownloadFinished(long feedId, Bitmap bitmap, Context context) {
+    private void UpdateAvgColorOfFeed(long feedId, Bitmap bitmap, Context context) {
         if (bitmap != null) {
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             Feed feed = dbConn.getFeedById(feedId);
@@ -129,7 +143,7 @@ public class FavIconHandler {
             feed.setAvgColour(avg);
             dbConn.updateFeed(feed);
 
-            Log.v(TAG, "Updating AVG color of feed: " + feed.getFeedTitle() + " - Color: " + avg);
+            // Log.v(TAG, "Updating AVG color of feed: " + feed.getFeedTitle() + " - Color: " + avg);
         } else {
             Log.v(TAG, "Failed to update AVG color of feed: " + feedId);
         }

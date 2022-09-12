@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.adapter;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -23,6 +24,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.bumptech.glide.RequestManager;
+
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.regex.Pattern;
@@ -33,6 +36,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.DateTimeFormatter;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -51,6 +55,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
     private boolean playing;
     private int starColor;
     private int inactiveStarColor;
+    protected RequestManager mGlide;
 
     private final SparseIntArray initalFontSizes = new SparseIntArray();
 
@@ -59,10 +64,13 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
         this.binding = (T) binding;
         this.mPrefs = sharedPreferences;
 
-        bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(itemView.getContext(), android.R.color.secondary_text_dark));
+        Context context = itemView.getContext();
+        bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(context, android.R.color.secondary_text_dark));
+
+        mGlide = GlideApp.with(context);
 
         if (favIconHandler == null) {
-            favIconHandler = new FavIconHandler(itemView.getContext());
+            favIconHandler = new FavIconHandler(context);
         }
 
         itemView.setOnClickListener(this);

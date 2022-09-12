@@ -1,8 +1,34 @@
 package de.luhmer.owncloudnewsreader;
 
+import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_REPORT_ISSUE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOWONLYUNREAD_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_FAST_ACTIONS;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNCONSTARTUP_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_VERSION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_CLEAR_CACHE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_PASSWORD_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_USERNAME_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SYNC_SETTINGS;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_DISPLAY_BROWSER;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_FEED_LIST_LAYOUT;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_FONT_SIZE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_MAX_CACHE_SIZE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SEARCH_IN;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -40,34 +66,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
-
-import static android.app.Activity.RESULT_OK;
-import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_REPORT_ISSUE;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOWONLYUNREAD_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_FAST_ACTIONS;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNCONSTARTUP_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_VERSION;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_CLEAR_CACHE;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_PASSWORD_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_USERNAME_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SYNC_SETTINGS;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_DISPLAY_BROWSER;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_FEED_LIST_LAYOUT;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_FONT_SIZE;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_MAX_CACHE_SIZE;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SEARCH_IN;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -442,7 +440,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
-            ImageHandler.clearCache();
+            ImageHandler.clearCache(context);
             NewsFileUtils.clearWebArchiveCache(context);
             NewsFileUtils.clearPodcastCache(context);
             return null;

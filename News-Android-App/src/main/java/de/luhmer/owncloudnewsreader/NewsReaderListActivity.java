@@ -63,6 +63,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -76,9 +77,6 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -106,6 +104,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
@@ -579,19 +578,19 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onUserInfoUpdated(OcsUser userInfo) {
 		final Drawable placeHolder = getDrawable(R.drawable.ic_baseline_account_circle_24);
-		DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
-				.displayer(new CircleBitmapDisplayer())
-				.showImageOnLoading(placeHolder)
-				.showImageForEmptyUri(placeHolder)
-				.showImageOnFail(placeHolder)
-				.cacheOnDisk(true)
-				.cacheInMemory(true)
-				.build();
 
 		if (userInfo.getId() != null) {
 			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
 			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
-			ImageLoader.getInstance().displayImage(avatarUrl, binding.toolbarLayout.avatar, displayImageOptions);
+
+			GlideApp.with(this)
+					.load(avatarUrl)
+					.diskCacheStrategy(DiskCacheStrategy.DATA)
+					.placeholder(placeHolder)
+					.error(placeHolder)
+					.circleCrop()
+					.into(binding.toolbarLayout.avatar);
+
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				binding.toolbarLayout.avatar.setTooltipText(userInfo.getDisplayName());
 			}

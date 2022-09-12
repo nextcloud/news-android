@@ -75,7 +75,7 @@ public class RssItemWebViewHolder extends RssItemViewHolder<SubscriptionDetailLi
     public void bind(@NonNull RssItem rssItem) {
         super.bind(rssItem);
 
-        String htmlPage = RssItemToHtmlTask.getHtmlPage(rssItem, false, mPrefs, itemView.getContext());
+        String htmlPage = RssItemToHtmlTask.getHtmlPage(this.mGlide, rssItem, false, mPrefs, itemView.getContext());
         binding.webViewBody.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
 
     }

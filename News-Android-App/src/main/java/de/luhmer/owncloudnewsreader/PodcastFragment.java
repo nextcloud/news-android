@@ -30,8 +30,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,6 +54,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
+import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -390,12 +393,15 @@ public class PodcastFragment extends Fragment {
         String favIconUrl = metadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI);
         if(favIconUrl != null) {
             Log.d(TAG, "currentPlayingPodcastReceived: " + favIconUrl);
-            DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().
-                    showImageOnLoading(R.drawable.default_feed_icon_light).
-                    showImageForEmptyUri(R.drawable.default_feed_icon_light).
-                    showImageOnFail(R.drawable.default_feed_icon_light).
-                    build();
-            ImageLoader.getInstance().displayImage(favIconUrl, binding.imgFeedFavicon, displayImageOptions);
+
+            int placeholder = R.drawable.default_feed_icon_light;
+            GlideApp.with(this.mActivity)
+                    .load(favIconUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .placeholder(placeholder)
+                    .error(placeholder)
+                    .transform(new MultiTransformation<>(new CenterCrop(), new RoundedCorners(10)))
+                    .into(binding.imgFeedFavicon);
         }
 
         PlaybackService.VideoType mediaType = PlaybackService.VideoType.valueOf(metadata.getString(CURRENT_PODCAST_MEDIA_TYPE));

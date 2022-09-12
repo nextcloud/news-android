@@ -30,7 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.RequestManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,7 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
+import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
@@ -118,7 +119,7 @@ public class DownloadImagesService extends JobIntentService {
             FavIconHandler favIconHandler = new FavIconHandler(getApplicationContext());
             for(Feed feed : feedList) {
                 try {
-                    favIconHandler.preCacheFavIcon(feed, getApplicationContext());
+                    favIconHandler.preCacheFavIcon(feed);
                 } catch(IllegalStateException ex) {
                     Log.e(TAG, ex.getMessage());
                 }
@@ -150,9 +151,11 @@ public class DownloadImagesService extends JobIntentService {
 
     private void downloadImages(List<String> linksToImages) {
         try {
+            RequestManager glide = GlideApp.with(this.getApplicationContext());
+
             while(linksToImages.size() > 0) {
                 String link = linksToImages.remove(0);
-                new DownloadImageHandler(link).downloadSync();
+                new DownloadImageHandler(link).preloadSync(glide);
 
                 updateNotificationProgress(linksToImages.size());
             }
@@ -170,7 +173,6 @@ public class DownloadImagesService extends JobIntentService {
         int count = maxCount - remainingImagesCount;
         if(maxCount == count) {
             mNotificationManager.cancel(NOTIFICATION_ID);
-            //RemoveOldImages();
         } else {
             mNotificationDownloadImages
                     .setContentText((count + 1) + "/" + maxCount + " - " + getString(R.string.notification_download_images_offline))
@@ -179,9 +181,4 @@ public class DownloadImagesService extends JobIntentService {
             mNotificationManager.notify(NOTIFICATION_ID, mNotificationDownloadImages.build());
         }
     }
-
-    private void RemoveOldImages() {
-        ImageLoader.getInstance().clearDiskCache();
-    }
-
 }

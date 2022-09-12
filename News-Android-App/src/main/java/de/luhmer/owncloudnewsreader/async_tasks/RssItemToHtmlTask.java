@@ -10,8 +10,14 @@ import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
 
-import com.nostra13.universalimageloader.cache.disc.DiskCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -24,6 +30,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
@@ -45,7 +52,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private final Listener mListener;
     private final SharedPreferences mPrefs;
     private final boolean isRightToLeft;
-
+    private final RequestManager mGlide;
 
     public interface Listener {
         /**
@@ -60,13 +67,14 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         this.mRssItem = rssItem;
         this.mListener = listener;
         this.mPrefs = prefs;
+        this.mGlide = GlideApp.with(context);
 
         this.isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
     }
 
     @Override
     protected String doInBackground(Void... params) {
-        return getHtmlPage(mRssItem, true, mPrefs, isRightToLeft);
+        return getHtmlPage(this.mGlide, mRssItem, true, mPrefs, isRightToLeft);
     }
 
     @Override
@@ -75,8 +83,8 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         super.onPostExecute(htmlPage);
     }
 
-    public static String getHtmlPage(RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, Context context) {
-        return getHtmlPage(rssItem, showHeader, mPrefs, context.getResources().getBoolean(R.bool.is_right_to_left));
+    public static String getHtmlPage(RequestManager glide, RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, Context context) {
+        return getHtmlPage(glide, rssItem, showHeader, mPrefs, context.getResources().getBoolean(R.bool.is_right_to_left));
     }
 
     /**
@@ -84,7 +92,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
      * @param showHeader    true if a header with item title, feed title, etc. should be included
      * @return given RSS item as full HTML page
      */
-    public static String getHtmlPage(RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, boolean isRightToLeft) {
+    public static String getHtmlPage(RequestManager glide, RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, boolean isRightToLeft) {
         boolean incognitoMode = mPrefs.getBoolean(INCOGNITO_MODE_ENABLED, false);
 
         String favIconUrl = null;
@@ -97,7 +105,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
 
         if (favIconUrl != null) {
-            favIconUrl = getCachedFavIcon(favIconUrl);
+            favIconUrl = getCachedFavIcon(glide, favIconUrl);
         } else {
             favIconUrl = "file:///android_res/drawable/default_feed_icon_light.png";
         }
@@ -133,7 +141,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         if(!incognitoMode) {
             // If incognito mode is disabled, try getting images from cache
-            description = getDescriptionWithCachedImages(rssItem.getLink(), description).trim();
+            description = getDescriptionWithCachedImages(glide, rssItem.getLink(), description).trim();
         } else {
             // When incognito is on, we need to provide some error handling
             //description = description.replaceAll("<img", "<img onerror=\"this.style='width: 40px !important; height: 40px !important'\" ");
@@ -208,12 +216,22 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         return builder.toString();
     }
 
-    private static String getCachedFavIcon(String favIconUrl) {
-        DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
-        File file = diskCache.get(favIconUrl);
-        // note that the universalimageloader does NOT support svg icons.
-        // Therefore we don't want to use any cached items (the webview can render svg's just fine)
-        if (file != null && !favIconUrl.endsWith(".svg")) {
+    private static String getCachedFavIcon(RequestManager glide, String favIconUrl) {
+        File file = null;
+        try {
+            file = glide
+                    .asFile()
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .onlyRetrieveFromCache(true)
+                    .load(favIconUrl)
+                    .submit()
+                    .get();
+        } catch (Exception e) {
+            Log.w(TAG, "favicon is not cached");
+        }
+
+        if (file != null) {
+            Log.d(TAG, "favicon is cached!");
             return "file://" + file.getAbsolutePath();
         } else {
             return favIconUrl; // Return favicon url if not cached
@@ -236,14 +254,26 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         );
     }
 
-    private static String getDescriptionWithCachedImages(String articleUrl, String text) {
+    private static String getDescriptionWithCachedImages(RequestManager glide, String articleUrl, String text) {
         List<String> links = ImageHandler.getImageLinksFromText(articleUrl, text);
-        DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
 
         for(String link : links) {
             link = link.trim();
             try {
-                File file = diskCache.get(link);
+                File file = null;
+                try {
+                    file = glide
+                            .asFile()
+                            .diskCacheStrategy(DiskCacheStrategy.DATA)
+                            .onlyRetrieveFromCache(true)
+                            // .listener(rl)
+                            .load(link)
+                            .submit()
+                            .get();
+                    Log.d(TAG, "image is cached");
+                } catch (Exception e) {
+                    Log.w(TAG, "image is not cached");
+                }
                 if(file != null) {
                     text = text.replace(link, "file://" + file.getAbsolutePath());
                 }
@@ -254,6 +284,30 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         return text;
     }
+
+    private static RequestListener<File> rl = new RequestListener<>() {
+        @Override
+        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+            // Log the GlideException here (locally or with a remote logging framework):
+            Log.e(TAG, "Load failed", e);
+
+            // You can also log the individual causes:
+            for (Throwable t : e.getRootCauses()) {
+                Log.e(TAG, "Caused by", t);
+            }
+            // Or, to log all root causes locally, you can use the built in helper method:
+            e.logRootCauses(TAG);
+
+            return false; // Allow calling onLoadFailed on the Target.
+        }
+
+        @Override
+        public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
+            // Log successes here or use DataSource to keep track of cache hits and misses.
+            return false; // Allow calling onResourceReady on the Target.
+        }
+
+    };
 
     private static String replacePatternInText(Pattern pattern, String text, String replacement) {
         Matcher m = pattern.matcher(text);
