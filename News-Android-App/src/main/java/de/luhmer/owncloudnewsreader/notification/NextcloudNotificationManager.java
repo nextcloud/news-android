@@ -31,7 +31,6 @@ import androidx.core.content.FileProvider;
 import androidx.media.app.NotificationCompat.MediaStyle;
 import androidx.media.session.MediaButtonReceiver;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -48,6 +47,7 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.NotificationActionReceiver;
 
 public class NextcloudNotificationManager {
@@ -60,7 +60,7 @@ public class NextcloudNotificationManager {
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelDownloadImage);
 
         //Bitmap bitmap = ImageLoader.getInstance().loadImageSync("file://" + imagePath.getAbsolutePath(), targetSize);
-        Glide.with(context).asBitmap().load("file://" + imagePath.getAbsolutePath()).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>(1024, 512) {
+        GlideApp.with(context).asBitmap().load("file://" + imagePath.getAbsolutePath()).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>(1024, 512) {
             @Override
             public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
                 // Uri imageUri = Uri.parse(imagePath);
