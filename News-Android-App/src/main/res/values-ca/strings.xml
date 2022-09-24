@@ -206,6 +206,7 @@
     <string name="content_desc_forward">Reenvia</string>
     <string name="content_desc_collapse">Replega</string>
     <string name="content_desc_mark_as_read">Marca com a llegit</string>
+    <string name="content_desc_mark_as_unread">Marca com a sense llegir</string>
     <string name="content_desc_add_to_favorites">Afegeix a favorits</string>
     <string name="content_desc_remove_from_favorites">Suprimeix dels preferits</string>
     <string name="content_desc_show_password">Mostra la contrasenya</string>

@@ -280,7 +280,7 @@
     <string name="array_sync_interval_hour_6">6 heures</string>
     <string name="array_sync_interval_hour_12">12 heures</string>
     <string name="array_sync_interval_hour_24">24 heures</string>
-    <string name="switch_account">Basculer de compte</string>
+    <string name="switch_account">Changer de compte</string>
     
     <string name="successfully_exported">Export effectué vers:</string>
     <string name="opml_export">Exporter au format OPML</string>
