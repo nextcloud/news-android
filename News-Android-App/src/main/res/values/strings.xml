@@ -11,7 +11,7 @@
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="toast_GettingMoreItems">Download of more items started. Please wait …</string>
     <string name="no_wifi_available">No WiFi connected</string>
-    <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection</string>
+    <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection?</string>
     <string name="current_version">You\'re using Version %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
