@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Zum Aktualisieren herunterziehen</string>
     <string name="toast_GettingMoreItems">Herunterladen weiterer Elemente gestartet. Bitte warten …</string>
     <string name="no_wifi_available">Keine WLAN-Verbindung</string>
-    <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen</string>
+    <string name="do_you_want_to_download_without_wifi">Wollen Sie die Bilder ohne WLAN-Verbindung herunterladen?</string>
     <string name="current_version">Sie benutzen die Version %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
