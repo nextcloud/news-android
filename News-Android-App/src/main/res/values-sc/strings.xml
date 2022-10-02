@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Auto sincronizatzione</string>
+    <string name="title_activity_sync_interval_selector">Intervallu de sincronizatzione</string>
+    <string name="empty_view_content">Perunu elementu inoghe</string>
+    <string name="empty_view_content_action">Tira a bàsciu pro agiornare</string>
+    <string name="no_wifi_available">WiFi disconnètidu</string>
+    <string name="do_you_want_to_download_without_wifi">Nche cheres iscarrigare is immàgines sena connessione Wi-Fi </string>
+    <string name="current_version">Ses impreende sa Versione %s</string>
+    <string name="widget_header">Noas de Nextcloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d elementos noos a disponimentu</item>
+        <item quantity="other">%d elementos noos a disponimentu</item>
+    </plurals>
+    <string name="message_bar_reload">Torra a carrigare</string>
+    <string name="allUnreadFeeds">Totu is segmentos non lèghidos</string>
+    <string name="starredFeeds">Elementos preferidos</string>
+    <string name="title_activity_new_feed">Agiunghe fonte noa</string>
+
+    <string name="menu_update">Agiorna</string>
+    <string name="menu_markAllAsRead">Marca totu comente lèghidu</string>
+    <string name="menu_StartImageCaching">Iscarriga imàgines</string>
+    <string name="menu_downloadMoreItems">Iscarriga àteros elementos</string>
+
+    <string name="tv_showing_cached_version">Mustra sa versione in sa memòria temporànea</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Preferidos</string>
+    <string name="action_read">Letura</string>
+    <string name="action_playPodacst">Riprodue Podcast</string>
+    <string name="action_openInBrowser">Aberi in su navigadore Web</string>
+    <string name="action_Share">Cumpartzi</string>
+    <string name="action_login">Impostatzione Serbidore</string>
+    <string name="action_save">Sarva</string>
+    <string name="action_settings">Impostatziones</string>
+    <string name="action_sync_settings">Sincroniza impostatziones</string>
+    <string name="action_add_new_feed">Agiunghe fonte noa</string>
+    <string name="action_textToSpeech">Letura vocale</string>
+    <string name="action_search">Chirca</string>
+    <string name="action_download_articles_offline">Iscàrriga artìculos fora de lìnia</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Iscarrigamentu de artìculos pro ddos impreare fora de lìnia </string>
+    <string name="notification_download_images_offline">Iscarrigamentu de immàgines pro ddas impreare fora de lìnia</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Tenes %d elementos noos non lèghidos</item>
+        <item quantity="other">Tenes %d de elementos non lèghidos </item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d elementu non lèghidu nou a disponimentu</item>
+        <item quantity="other">%d elementu non lèghidu nou a disponimentu</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Fonte URL</string>
+    <string name="action_add_feed">Agiunghe fonte</string>
+    <string name="import_opml">Importa OPML</string>
+    <string name="export_opml">Esporta OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Iscàrriga imàgine</string>
+    <string name="action_img_sharelink">Cumpartzi ligòngiu imàgine</string>
+    <string name="action_img_open">Aberi imàgine in su Navigadore</string>
+    <string name="action_img_copylink">Còpia ligòngiu imàgine</string>
+    <string name="action_link_share">Cumpartzi Lingòngiu</string>
+    <string name="action_link_open">Aberi Ligòngiu in su Navigadore</string>
+    <string name="action_link_copy">Còpia Ligòngiu</string>
+    <string name="toast_img_saved">Imàgines sarvadas</string>
+    <string name="toast_img_notwriteable">Iscritura imàgine faddida.</string>
+    <string name="toast_copied_to_clipboard">Copiadu in is apuntos</string>
+    <string name="error_download_failed">Iscarrigamentu faddidu</string>
+    <string name="intent_title_share">Cumpartzi tràmite</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Boga Fonte</string>
+    <string name="action_feed_rename">Torra a numenare Fonte</string>
+    <string name="action_feed_move">Tràmuda Fonte</string>
+    <string name="action_feed_notification_settings">Impostatziones de notìfica</string>
+    <string name="feed_remove_button">Boga</string>
+    <string name="feed_rename_button">Torra a numenare</string>
+    <string name="confirm_feed_remove">A beru nche cheres bogare custa Fonte? Custu non si podet annullare!</string>
+    <string name="feed_move_list_description">Sèbera sa cartella a ue nche cheres tramudare sa fonte</string>
+    <string name="move_feed_root_folder">Cartella raighina</string>
+
+    <string name="action_folder_rename">Torra a numenare sa cartella</string>
+    <string name="folder_remove_button">Boga</string>
+    <string name="folder_rename_button">Torra a numenare</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Agiunghe</string>
+    <string name="hint_folder_name">Nùmene de sa cartella</string>
+    <!-- Strings related to login -->
+    <string name="login_manual">Atzessu manuale</string>
+    <string name="login_sso">Atzede impreende s\'Aplicatzione Nextcloud Files </string>
+    <string name="pref_title_username">Nùmene Utente</string>
+    <string name="pref_title_password">Crae</string>
+    <string name="pref_title_owncloudRootPath">Indiritzu raighina Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Identìfica·ti</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Custu campu est rechertu</string>
+    <string name="error_invalid_url">URL isballiadu</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Elementos betzos %d iscarrigados</item>
+        <item quantity="other">Elementos betzos %d iscarrigados</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Non ddoe at àteros elementos a disponimentu</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Impostatziones</string>
+    <string name="cache_is_cleared">Memòria Temporànea lìmpia!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Generale</string>
+    <string name="pref_title_general_sort_order">Ordinamentu</string>
+
+    <string name="pref_general_sort_order_new_old">Nou → Betzu</string>
+    <string name="pref_general_sort_order_old_new">Betzu → Nou</string>
+
+    <string name="pref_rename_action_swipe_right">Atzione cando s\'iscurret a dereta</string>
+    <string name="pref_rename_action_swipe_left">Atzione cando s\'iscurret a manca</string>
+
+    <string name="pref_title_general_search_in">Chirca in</string>
+
+    <string name="pref_general_search_in_title">Tìtulu</string>
+    <string name="pref_general_search_in_body">Corpus</string>
+
+    <string name="dialog_clearing_cache">Lìmpia memòria temporànea</string>
+    <string name="reset_cache_unsaved_changes">Ddoe at càmbios non sincronizados. Cheres azerare sa memòria temporànea gasi etotu?</string>
+    <string name="warning">Avisu</string>
+    <string name="pref_title_AutoSyncOnStart">Sincroniza a s\'aviu</string>
+    <string name="pref_title_ShowOnlyUnread">Mustra isceti artìculos non lèghidos</string>
+    <string name="pref_title_DisableHostnameVerification">Disabìlita sa verìfica de su nùmene Host</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Naviga cun is butones de su volume</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marca comente lèghidu cando ses iscurrende</string>
+    <string name="pref_title_ShowFastActions">Ativa funtziones de atzessu lestru</string>
+    <string name="pref_title_OpenInBrowserDirectly">Brinca sa vista a sa minuda e aberi s\'artìculu in su navigadore</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Cheres atzetare unu tzertificadu disconnotu?</string>
+    <string name="mtm_decision_always">Semper</string>
+    <string name="mtm_decision_abort">Firma</string>
+    <string name="mtm_notification">Verìfica Tzertificadu</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Perunu podcast seletzionadu</string>
+    <string name="no_chapters_available">Perunu capìtulu a disponimentu</string>
+    <string name="podcast_playback_speed_dialog_title">Velotzidade de riprodutzione</string>
+    <string name="notification_downloading_podcast_title">Iscarrigamentu podcast</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">In contu de</string>
+    <string name="pref_license">Lissèntzia</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versione 3</string>
+    <string name="pref_report_issue">Sinnala unu problema</string>
+    <string name="pref_report_issue_summary">Rechedet unu contu GitHub (lìberu)</string>
+    <string name="pref_contribute">Dona su contributu tuo!</string>
+    <string name="pref_contribute_summary">Otene su còdighe fonte</string>
+    <string name="pref_privacy">Riservadesa</string>
+    <string name="pref_privacy_summary">Critèriu de riservadesa de Noas de Nextcloud pro Android</string>
+    <string name="pref_version">Aplicatzione de Noas de Nextcloud pro Android </string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Ischermu</string>
+    <string name="pref_title_app_theme">Tema</string>
+    <string name="pref_title_feed_list_layout">Istrutura elencu fontes</string>
+    <string name="pref_title_font_size">Dimensione caràtere</string>
+    <string name="pref_display_browser">Navigadore</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Atziones de is iconas (bista a minudu)</string>
+
+    <string name="pref_display_apptheme_auto">Predefinidu de sistema</string>
+    <string name="pref_display_apptheme_light">Craru</string>
+    <string name="pref_display_apptheme_dark">Iscuru</string>
+
+    <string name="pref_oled_mode">Isfundu iscuru</string>
+    <string name="pref_oled_mode_summary">Pro temas iscuros in ischermos OLED</string>
+
+    <string name="pref_display_browser_cct"> Ischedas personalizadas de Chrome integradas</string>
+    <string name="pref_display_browser_built_in">Navigadore integradu</string>
+    <string name="pref_display_browser_external">Navigadore de foras</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturas (tìtulos ebbia)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
+    <string name="pref_display_feed_list_layout_simple_text">Testu simpre</string>
+    <string name="pref_display_feed_list_layout_headlines">Tìtulos</string>
+    <string name="pref_display_feed_list_layout_full_text">Testu integrale</string>
+    <string name="pref_display_feed_list_layout_web_layout">Istrutura Web</string>
+    <string name="pref_display_feed_list_layout_card_view">Bista de is ischedas</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Pitica</string>
+    <string name="pref_display_font_size_d">Predefinida</string>
+    <string name="pref_display_font_size_l">Mannu</string>
+    <string name="pref_display_font_size_xl">Mannu mannu</string>
+
+    <string name="content_desc_pause">Pàusa</string>
+    <string name="content_desc_forward">Torra a imbiare</string>
+    <string name="content_desc_collapse">Cuntrae</string>
+    <string name="content_desc_mark_as_read">Marca comente lèghidu</string>
+    <string name="content_desc_mark_as_unread">Marca comente non lèghidu</string>
+    <string name="content_desc_add_to_favorites">Agiunghe a is preferidos</string>
+    <string name="content_desc_remove_from_favorites">Boga·nche dae preferidos</string>
+    <string name="content_desc_show_password">Mustra crae</string>
+    <string name="content_desc_delete">Cantzella</string>
+    <string name="content_desc_download">Iscàrriga</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Errore</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Paret chi is aplicatziones noas non sunt installadas o ativadas in su serbidore tuo. Pro praghere, sighi is istrutziones frunidas inoghe pro cunfigurare is aplicatziones noas in su serbidore: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Ddoe at àpidu un\'errore :(</string>
+    <string name="login_dialog_text_zero_version_code">S\'aplicatzione Web News at torradu sa Version \"0\". Càstias a sa sinnalatzione de bug inoghe in fatu:https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Sa versione de custa aplicatzione no est cumpatìbile cun s\'aplicatzione News de Nextcloud. Agiorna s\'aplicatzione e su framework.</string>
+    <string name="login_dialog_title_security_warning">Avisu de Seguresa</string>
+    <string name="login_dialog_text_security_warning">Non ses impreende HTTPS, chi est cussigiadu forte. Unu malintentzionadu diat pòdere intertzetare su tràficu tuo e otènnere s\'atzessu a datos sensìbiles (pro nàrrere, sa crae).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Ddoe at àpidu un\'errore. Torra a proare.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Datos &amp; e sincronizzazione</string>
+    <string name="pref_title_clearCache">Lìmpia memòria temporànea</string>
+    <string name="pref_title_CacheImagesOffline">Immàgines de memòria temporànea foras de lìnia</string>
+    <string name="pref_title_Max_Cache_Size">Mannària Màssima de sa Memòria Temporànea</string>
+
+    <string name="pref_data_sync_image_cache_never">Mai</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Cun su WiFi ebbia</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Cun su WiFi &amp; e Mòbile</string>
+    <string name="pref_data_sync_image_cache_ask">Pregonta si no ses connètidu a su WiFi</string>
+
+    <string name="array_sync_interval_min_0">Mai</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 ora</string>
+    <string name="array_sync_interval_hour_2">2 oras</string>
+    <string name="array_sync_interval_hour_3">3 oras</string>
+    <string name="array_sync_interval_hour_6">6 oras</string>
+    <string name="array_sync_interval_hour_12">12 oras</string>
+    <string name="array_sync_interval_hour_24">24 oras</string>
+    <string name="switch_account">Passa a àteru contu</string>
+    
+    <string name="successfully_exported">Esportadu a:</string>
+    <string name="opml_export">Esporta OPML</string>
+    <string name="parsing_opml">Anàlisi de OPML</string>
+    <string name="please_wait">Abeta ...</string>
+    <string name="interval_sync_title">Sincronizatzione in tretu</string>
+
+    </resources>

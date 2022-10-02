@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Autosynk</string>
+    <string name="title_activity_sync_interval_selector">Synkintervall </string>
+    <string name="empty_view_content">Inga objekt här</string>
+    <string name="empty_view_content_action">Dra nedåt för uppdatera</string>
+    <string name="toast_GettingMoreItems">Nedladdning av ytterligare poster har påbörjats. Vänligen vänta...</string>
+    <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
+    <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
+    <string name="current_version">Du använder Version %s</string>
+    <string name="widget_header">Nextcloud nyheter</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d ny artikel tillgänglig</item>
+        <item quantity="other">%d nya artiklar tillgängliga</item>
+    </plurals>
+    <string name="message_bar_reload">Uppdatera</string>
+    <string name="allUnreadFeeds">Alla olästa objekt</string>
+    <string name="starredFeeds">Stjärnmärkta objekt</string>
+    <string name="title_activity_new_feed">Lägg till flöde</string>
+
+    <string name="menu_update">Uppdatera</string>
+    <string name="menu_markAllAsRead">Markera alla som lästa</string>
+    <string name="menu_StartImageCaching">Hämta bilder</string>
+    <string name="menu_downloadMoreItems">Hämta fler objekt</string>
+
+    <string name="tv_showing_cached_version">Visar cachad version</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Stjärnmärkt</string>
+    <string name="action_read">Läsa</string>
+    <string name="action_playPodacst">Spela Podcast</string>
+    <string name="action_openInBrowser">Öppna i webbläsare</string>
+    <string name="action_Share">Dela</string>
+    <string name="action_login">Serverinställningar</string>
+    <string name="action_save">Spara</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="action_sync_settings">Synkroniseringsinställningar</string>
+    <string name="action_add_new_feed">Lägg till flöde</string>
+    <string name="action_add_new_folder">Lägg till ny mapp</string>
+    <string name="action_textToSpeech">Läs upp</string>
+    <string name="action_search">Sök</string>
+    <string name="action_download_articles_offline">Hämta artiklar frånkopplad</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Hämtar artiklar som kan användas frånkopplad</string>
+    <string name="notification_download_images_offline">Hämtar bilder som kan användas frånkopplad</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Du har %d oläst sak</item>
+        <item quantity="other">Du har %d olästa saker</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d ny oläst artikel tillgänglig</item>
+        <item quantity="other">%d nya olästa artiklar tillgängliga</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Flödeswebbadress</string>
+    <string name="action_add_feed">Lägg till flöde</string>
+    <string name="import_opml">Importera OPML</string>
+    <string name="export_opml">Exportera OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Hämta bild</string>
+    <string name="action_img_sharelink">Dela bildlänk</string>
+    <string name="action_img_open">Öppna bilden i webbläsaren</string>
+    <string name="action_img_copylink">Kopiera bildlänk</string>
+    <string name="action_link_share">Dela länk</string>
+    <string name="action_link_open">Öppna länk i webbläsaren</string>
+    <string name="action_link_copy">Kopiera länk</string>
+    <string name="toast_img_download_wait">Laddar ner, vänligen vänta …</string>
+    <string name="toast_img_saved">Bild sparad</string>
+    <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
+    <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
+    <string name="error_download_failed">Hämtning misslyckades</string>
+    <string name="intent_title_share">Dela via</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Ta bort Feed</string>
+    <string name="action_feed_rename">Döp om Feed</string>
+    <string name="action_feed_move">Flytta flöde</string>
+    <string name="action_feed_notification_settings">Aviseringsinställningar</string>
+    <string name="feed_remove_button">Ta bort</string>
+    <string name="feed_rename_button">Byt namn</string>
+    <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>
+    <string name="feed_move_list_description">Välj mapp för att flytta flöde till</string>
+    <string name="move_feed_root_folder">Topp-mapp</string>
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Ta bort mapp</string>
+    <string name="action_folder_rename">Döp om mapp</string>
+    <string name="folder_remove_button">Ta bort</string>
+    <string name="folder_rename_button">Döp om</string>
+    <string name="confirm_folder_remove">Är du säker på att ta bort den här mappen? Åtgärden kan inte att ångras!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Ta emot aviseringar från det här flödet</string>
+    <string name="notification_feed_default">Alla flöden med standardval kommer att synas i en gemensam avisering</string>
+    <string name="notification_feed_none">Inga aviseringar alls</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Lägg till</string>
+    <string name="hint_folder_name">Mappnamn</string>
+    <string name="folder_already_exists">Mappen finns redan</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Manuell inloggning</string>
+    <string name="login_sso">Logga in med Nextcloud filer-app</string>
+    <string name="pref_title_username">Användarnamn</string>
+    <string name="pref_title_password">Lösenord</string>
+    <string name="pref_title_owncloudRootPath">ownCloud rotadress</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">Logga in</string>
+    <string name="login_progress_signing_in">Loggar in …</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Detta fält obligatoriskt</string>
+    <string name="error_invalid_url">Felaktig webbadress</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Laddade ner %d gamla artiklar</item>
+        <item quantity="other">Hämtade %d gamla artiklar</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Inga fler föremål är tillgängliga</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hämtat %d artikel än så länge...</item>
+        <item quantity="other">Hämtat %d artiklar än så länge...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Inställningar</string>
+    <string name="cache_is_cleared">Cacheminne rensat!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Allmänt</string>
+    <string name="pref_title_general_sort_order">Sorteringsordning</string>
+
+    <string name="pref_general_sort_order_new_old">Ny → Gammal</string>
+    <string name="pref_general_sort_order_old_new">Gammal → Ny</string>
+
+    <string name="pref_rename_action_swipe_right">Åtgärd när du sveper åt höger</string>
+    <string name="pref_rename_action_swipe_left">Åtgärd när du sveper åt vänster</string>
+
+    <string name="pref_title_general_search_in">Sök i</string>
+
+    <string name="pref_general_search_in_title">Rubrik</string>
+    <string name="pref_general_search_in_body">Textyta</string>
+
+    <string name="dialog_clearing_cache">Rensar cachen</string>
+    <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänligen vänta …</string>
+    <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
+    <string name="warning">Varning</string>
+    <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
+    <string name="pref_title_ShowOnlyUnread">Visa endast olästa artiklar</string>
+    <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+    <string name="pref_title_ShowFastActions">Aktivera snabbåtkomstsfunktioner</string>
+    <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
+    <string name="mtm_decision_always">Alltid</string>
+    <string name="mtm_decision_abort">Avbryt</string>
+    <string name="mtm_notification">Verifikation av certifikat</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Ingen podcast vald</string>
+    <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
+    <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
+    <string name="notification_downloading_podcast_title">Hämtar podcast</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Om</string>
+    <string name="pref_license">Licens</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
+    <string name="pref_report_issue">Rapportera ett problem</string>
+    <string name="pref_report_issue_summary">Kräver ett (gratis) GitHub-konto</string>
+    <string name="pref_contribute">Bidra!</string>
+    <string name="pref_contribute_summary">Hämta källkoden</string>
+    <string name="pref_privacy">Integritet</string>
+    <string name="pref_privacy_summary">Nextcloud Nyheter Android Integritetspolicy</string>
+    <string name="pref_version">Nextcloud Nyheter Android-app</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Visa</string>
+    <string name="pref_title_app_theme">Tema</string>
+    <string name="pref_title_feed_list_layout">Utseende nyhetsflöde</string>
+    <string name="pref_title_font_size">Teckenstorlek</string>
+    <string name="pref_display_browser">Webbläsare</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Händelseikoner (Detaljvy)</string>
+
+    <string name="pref_display_apptheme_auto">Systemstandard</string>
+    <string name="pref_display_apptheme_light">Ljus</string>
+    <string name="pref_display_apptheme_dark">Mörk</string>
+
+    <string name="pref_oled_mode">Svart bakgrund</string>
+    <string name="pref_oled_mode_summary">För mörkt tema på OLED-skärmar</string>
+
+    <string name="pref_display_browser_cct">Inbyggd Chrome-anpassade flikar</string>
+    <string name="pref_display_browser_built_in">Inbyggd webbläsare</string>
+    <string name="pref_display_browser_external">Extern webbläsare</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniatyrer (endast rubriker)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Miniatyrbilder</string>
+    <string name="pref_display_feed_list_layout_simple_text">Enkel text</string>
+    <string name="pref_display_feed_list_layout_headlines">Rubriker</string>
+    <string name="pref_display_feed_list_layout_full_text">All text</string>
+    <string name="pref_display_feed_list_layout_web_layout">Webblayout</string>
+    <string name="pref_display_feed_list_layout_card_view">Kortvy</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Liten</string>
+    <string name="pref_display_font_size_d">Standard</string>
+    <string name="pref_display_font_size_l">Stor</string>
+    <string name="pref_display_font_size_xl">Extra stor</string>
+
+    <string name="content_desc_play">Spela</string>
+    <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_playback_speed">Uppspelningshastighet</string>
+    <string name="content_desc_rewind">Spola bakåt</string>
+    <string name="content_desc_forward">Vidarebefordra</string>
+    <string name="content_desc_expand">Utöka</string>
+    <string name="content_desc_collapse">Dölj</string>
+    <string name="content_desc_mark_as_read">Markera som läst</string>
+    <string name="content_desc_mark_as_unread">Markera som oläst</string>
+    <string name="content_desc_tap_to_refresh">Tryck för att uppdatera</string>
+    <string name="content_desc_add_to_favorites">Lägg till i favoriter</string>
+    <string name="content_desc_remove_from_favorites">Ta bort från favoriter</string>
+    <string name="content_desc_show_password">Visa lösenord</string>
+    <string name="content_desc_delete">Radera</string>
+    <string name="content_desc_download">Ladda ner</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Fel</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det verkar som din nyhetsapp inte är installerad eller aktiverad på din server. Följ instruktionerna här för att konfigurera nyhetsapplikationen på din server först: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Något gick fel :(</string>
+    <string name="login_dialog_text_zero_version_code">Webbnyhetsappen returnerade Version \"0\". Ta en titt på följande felrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Den här appversionen är inte kompatibel med din Nextcloud nyheter-app. Vänligen uppgradera nyhetsappen och appframework.</string>
+    <string name="login_dialog_title_security_warning">Säkerhetsvarning</string>
+    <string name="login_dialog_text_security_warning">Du använder inte HTTPS, vilket uppmuntras starkt. En angripare kan fånga upp din trafik och få åtkomst till vissa känsliga data (t.ex. ditt lösenord).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Något gick fel. Vänligen försök igen.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synkronisering</string>
+    <string name="pref_title_clearCache">Rensa cachen</string>
+    <string name="pref_title_CacheImagesOffline">Cacha bilder frånkopplad</string>
+    <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
+
+    <string name="pref_data_sync_image_cache_never">Aldrig</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Endast över Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Över Wi-Fi &amp; mobildata</string>
+    <string name="pref_data_sync_image_cache_ask">Fråga när du inte är ansluten till Wi-Fi</string>
+
+    <string name="array_sync_interval_min_0">Aldrig</string>
+    <string name="array_sync_interval_min_5">5 minuter</string>
+    <string name="array_sync_interval_min_15">15 minuter</string>
+    <string name="array_sync_interval_min_30">30 minuter</string>
+    <string name="array_sync_interval_min_45">45 minuter</string>
+    <string name="array_sync_interval_hour_1">1 timme</string>
+    <string name="array_sync_interval_hour_2">2 timmar</string>
+    <string name="array_sync_interval_hour_3">3 timmar</string>
+    <string name="array_sync_interval_hour_6">6 timmar</string>
+    <string name="array_sync_interval_hour_12">12 timmar</string>
+    <string name="array_sync_interval_hour_24">24 timmar</string>
+    <string name="switch_account">Växla konto</string>
+    
+    <string name="successfully_exported">Lyckad exportering till:</string>
+    <string name="opml_export">OPML-export</string>
+    <string name="parsing_opml">Läser OPML</string>
+    <string name="please_wait">Vänlig vänta...</string>
+    <string name="interval_sync_title">Synkningsintervall</string>
+
+    </resources>
