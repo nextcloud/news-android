@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Automaattinen synkronointi</string>
+    <string name="title_activity_sync_interval_selector">Synkronointiväli</string>
+    <string name="empty_view_content">Ei artikkeleita</string>
+    <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
+    <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>
+    <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
+    <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä</string>
+    <string name="current_version">Käytössäsi on versio %s</string>
+    <string name="widget_header">Nextcloud News</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d uusi artikkeli saatavilla</item>
+        <item quantity="other">%d uutta artikkelia saatavilla</item>
+    </plurals>
+    <string name="message_bar_reload">Päivitä</string>
+    <string name="allUnreadFeeds">Lukemattomat artikkelit</string>
+    <string name="starredFeeds">Suosikit</string>
+    <string name="title_activity_new_feed">Lisää uusi syöte</string>
+
+    <string name="menu_update">Päivitä</string>
+    <string name="menu_markAllAsRead">Merkitse kaikki luetuiksi</string>
+    <string name="menu_StartImageCaching">Lataa kuvat</string>
+    <string name="menu_downloadMoreItems">Lataa lisää artikkeleita</string>
+
+    <string name="tv_showing_cached_version">Näytetään välimuistissa oleva versio</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Suosikkimerkintä päälle/pois</string>
+    <string name="action_read">Merkkaa luetuksi</string>
+    <string name="action_playPodacst">Toista podcast</string>
+    <string name="action_openInBrowser">Avaa selaimessa</string>
+    <string name="action_Share">Jaa</string>
+    <string name="action_login">Palvelinasetukset</string>
+    <string name="action_save">Tallenna</string>
+    <string name="action_settings">Asetukset</string>
+    <string name="action_sync_settings">Synkronointiasetukset</string>
+    <string name="action_add_new_feed">Lisää uusi syöte</string>
+    <string name="action_add_new_folder">Lisää uusi kansio</string>
+    <string name="action_textToSpeech">Lue ääneen</string>
+    <string name="action_search">Etsi</string>
+    <string name="action_download_articles_offline">Lataa artikkelit käytettäväksi offline-tilassa</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Ladataaan artikkeleita offline-käyttöä varten</string>
+    <string name="notification_download_images_offline">Lataa kuvat kaytettäväksi ilman nettiyhteyttä</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">%d uusi lukematon artikkeli</item>
+        <item quantity="other">%d uutta lukematonta artikkelia</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d uusi lukematon artikkeli saatavilla</item>
+        <item quantity="other">%d uutta lukematonta artikkelia saatavilla</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">Syötteen osoite</string>
+    <string name="action_add_feed">Lisää syöte</string>
+    <string name="import_opml">Tuo OPML</string>
+    <string name="export_opml">Vie OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Lataa kuva</string>
+    <string name="action_img_sharelink">Jaa kuvan linkki</string>
+    <string name="action_img_open">Avaa kuva selaimessa</string>
+    <string name="action_img_copylink">Kopioi kuvan linkki</string>
+    <string name="action_link_share">Jaa linkki</string>
+    <string name="action_link_open">Avaa linkki selaimessa</string>
+    <string name="action_link_copy">Kopioi linkki</string>
+    <string name="toast_img_download_wait">Ladataan, odota hetki…</string>
+    <string name="toast_img_saved">Kuva tallennettu</string>
+    <string name="toast_img_notwriteable">Kuvan tallennus epäonnistui.</string>
+    <string name="toast_copied_to_clipboard">Kopioitu leikepöydälle</string>
+    <string name="error_download_failed">Lataus epäonnistui</string>
+    <string name="intent_title_share">Jaa käyttäen</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Poista syöte</string>
+    <string name="action_feed_rename">Nimeä syöte uudelleen</string>
+    <string name="action_feed_move">Siirrä syöte</string>
+    <string name="action_feed_notification_settings">Ilmoitusasetukset</string>
+    <string name="feed_remove_button">Poista</string>
+    <string name="feed_rename_button">Nimeä uudelleen</string>
+    <string name="confirm_feed_remove">Haluatko varmasti poistaa tämän syötteen? Toimintoa ei voi perua!</string>
+    <string name="feed_move_list_description">Valitse kansio, johon syöte siirretään</string>
+    <string name="move_feed_root_folder">Juurikansio</string>
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Poista kansio</string>
+    <string name="action_folder_rename">Nimeä kansio uudelleen</string>
+    <string name="folder_remove_button">Poista</string>
+    <string name="folder_rename_button">Nimeä uudelleen</string>
+    <string name="confirm_folder_remove">Haluatko varmasti poistaa tämän kansion? Tätä ei voi perua!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Vastaanota erillisiä ilmoituksia tälle syötteelle</string>
+    <string name="notification_feed_default">Näytä oletusasetusten mukaisesti yhdessä ilmoituksessa</string>
+    <string name="notification_feed_none">Ei ilmoituksia lainkaan</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Lisä</string>
+    <string name="hint_folder_name">Kansion nimi</string>
+    <string name="folder_already_exists">Kansio on jo olemassa</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Manuaalinen kirjautuminen</string>
+    <string name="login_sso">Kirjaudu sisään käyttäen Nextcloud tiedostosovellusta</string>
+    <string name="pref_title_username">Käyttäjätunnus</string>
+    <string name="pref_title_password">Salasana</string>
+    <string name="pref_title_owncloudRootPath">Nextcloudin osoite</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Kirjaudu</string>
+    <string name="login_progress_signing_in">Kirjaudutaan sisään...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Tämä kenttä vaaditaan</string>
+    <string name="error_invalid_url">Virheellinen URL</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Ladattiin %d vanha artikkeli</item>
+        <item quantity="other">Ladattiin %d vanhaa artikkelia</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Ei enempää artikkeleita saatavilla</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Haettu %d artikkeli…</item>
+        <item quantity="other">Haettu %d artikkelia…</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Asetukset</string>
+    <string name="cache_is_cleared">Välimuisti on tyhjennetty!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Yleiset</string>
+    <string name="pref_title_general_sort_order">Lajittelujärjestys</string>
+
+    <string name="pref_general_sort_order_new_old">Uusi → Vanha</string>
+    <string name="pref_general_sort_order_old_new">Vanha → Uusi</string>
+
+    <string name="pref_rename_action_swipe_right">Toiminto oikealle pyyhkäistäessä</string>
+    <string name="pref_rename_action_swipe_left">Toiminto vasemmalle pyyhkäistäessä</string>
+
+    <string name="pref_title_general_search_in">Etsi kohteesta</string>
+
+    <string name="pref_general_search_in_title">Otsikko</string>
+    <string name="pref_general_search_in_body">Sisältö</string>
+
+    <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
+    <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>
+    <string name="reset_cache_unsaved_changes">Havaittiin synkronoimattomia muutoksia. Haluatko silti tyhjentää välimuistin?</string>
+    <string name="warning">Varoitus</string>
+    <string name="pref_title_AutoSyncOnStart">Synkronoi käynnistäessä</string>
+    <string name="pref_title_ShowOnlyUnread">Näytä vain lukemattomat kohteet</string>
+    <string name="pref_title_DisableHostnameVerification">Poista koneen nimen (hostname) varmistus</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Liiku äänipainikkeilla</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
+    <string name="pref_title_ShowFastActions">Ota käyttöön pikatoiminnot</string>
+    <string name="pref_title_OpenInBrowserDirectly">Ohita artikkelinäkymä ja avaa se suoraan selaimessa</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
+    <string name="mtm_decision_always">Aina</string>
+    <string name="mtm_decision_abort">Keskeytä</string>
+    <string name="mtm_notification">Varmennevahvistus</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Podcastia ei ole valittu</string>
+    <string name="no_chapters_available">Ei kappaleita saatavilla</string>
+    <string name="exit_playback">Sulje toistin</string>
+    <string name="podcast_playback_speed_dialog_title">Toistonopeus</string>
+    <string name="notification_downloading_podcast_title">Ladataan podcast</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Tietoja</string>
+    <string name="pref_license">Lisenssi</string>
+    <string name="pref_license_summary">GNU Affero General Public License (AGPL) versio 3</string>
+    <string name="pref_report_issue">Ilmoita ongelmasta</string>
+    <string name="pref_report_issue_summary">Vaatii (ilmaisen) GitHub-tilin</string>
+    <string name="pref_contribute">Osallistu!</string>
+    <string name="pref_contribute_summary">Hanki lähdekoodi</string>
+    <string name="pref_privacy">Yksityisyys</string>
+    <string name="pref_privacy_summary">Nextcloud News Android - tietosuojakäytäntö</string>
+    <string name="pref_version">Nextcloud News Android-sovellus</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Näyttö</string>
+    <string name="pref_title_app_theme">Teema</string>
+    <string name="pref_title_feed_list_layout">Syöteluettelon näkymä</string>
+    <string name="pref_title_font_size">Fontin koko</string>
+    <string name="pref_display_browser">Selain</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Artikkelinäkymän toimintopainikkeet</string>
+
+    <string name="pref_display_apptheme_auto">Järjestelmäoletus</string>
+    <string name="pref_display_apptheme_light">Vaalea</string>
+    <string name="pref_display_apptheme_dark">Tumma</string>
+
+    <string name="pref_oled_mode">Musta tausta</string>
+    <string name="pref_oled_mode_summary">Tumma teema OLED-näytöille</string>
+
+    <string name="pref_display_browser_cct">Sisäänrakennettu selain (Chrome Custom Tabs)</string>
+    <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
+    <string name="pref_display_browser_external">Ulkoinen selain</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Pienoiskuvat (otsikoissa)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Esikatselukuvat</string>
+    <string name="pref_display_feed_list_layout_simple_text">Yksinkertainen teksti</string>
+    <string name="pref_display_feed_list_layout_headlines">Otsikot</string>
+    <string name="pref_display_feed_list_layout_full_text">Koko teksti</string>
+    <string name="pref_display_feed_list_layout_web_layout">Web-asettelu</string>
+    <string name="pref_display_feed_list_layout_card_view">Korttinäkymä</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Pieni</string>
+    <string name="pref_display_font_size_d">Oletus</string>
+    <string name="pref_display_font_size_l">Suuri</string>
+    <string name="pref_display_font_size_xl">Erittäin suuri</string>
+
+    <string name="content_desc_play">Esitys</string>
+    <string name="content_desc_pause">Keskeytä</string>
+    <string name="content_desc_playback_speed">Toistonopeus</string>
+    <string name="content_desc_rewind">Kelaa takaisin</string>
+    <string name="content_desc_forward">Välitä</string>
+    <string name="content_desc_expand">Laajenna</string>
+    <string name="content_desc_collapse">Kutista näkymää</string>
+    <string name="content_desc_mark_as_read">Merkitse luetuksi</string>
+    <string name="content_desc_mark_as_unread">Merkitse lukemattomaksi</string>
+    <string name="content_desc_tap_to_refresh">Napauta päivittääksesi</string>
+    <string name="content_desc_add_to_favorites">Lisää suosikkeihin</string>
+    <string name="content_desc_remove_from_favorites">Poista suosikeista</string>
+    <string name="content_desc_show_password">Näytä salasana</string>
+    <string name="content_desc_delete">Poista</string>
+    <string name="content_desc_download">Lataa</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Virhe</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Vaikuttaa siltä, että News-sovellusta ei ole asennettu tai aktivoitu palvelimellesi. Lue tästä ohjeet sovelluksen asentamiseen palvelimelle: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
+    <string name="login_dialog_text_zero_version_code">News-verkkosovelluksen version paluuarvo on \"0\":. Katso seuraavaa virheraporttia: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Tämä sovellus versio ei ole yhteensopiva käyttämäsi Nextcloud uutis sovelluksen kanssa. Päivitä uutissovellus ja sovelluskehikko.</string>
+    <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
+    <string name="login_dialog_text_security_warning">Et käytä HTTPS protokollaa, jota vahvasti suositellaan. Hyökkääjä voi siepata viestit ja saada pääsyn joihinkin arkaluontoisiin tietoihin, kuten salasana tms..</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Jokin meni pieleen. Yritä uudelleen.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; synkronointi</string>
+    <string name="pref_title_clearCache">Tyhjennä välimuisti</string>
+    <string name="pref_title_CacheImagesOffline">Lataa kuvat välimuistiin offline-tilaa varten</string>
+    <string name="pref_title_Max_Cache_Size">Välimuistin enimmäiskoko</string>
+
+    <string name="pref_data_sync_image_cache_never">Ei koskaan</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Vain WiFi-yhteydellä</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi- ja mobiilidatayhteydellä</string>
+    <string name="pref_data_sync_image_cache_ask">Kysy, kun ei ole WiFi-yhteyttä</string>
+
+    <string name="array_sync_interval_min_0">Ei koskaan</string>
+    <string name="array_sync_interval_min_5">5 minuuttia</string>
+    <string name="array_sync_interval_min_15">15 minuuttia</string>
+    <string name="array_sync_interval_min_30">30 minuuttia</string>
+    <string name="array_sync_interval_min_45">45 minuuttia</string>
+    <string name="array_sync_interval_hour_1">1 tunti</string>
+    <string name="array_sync_interval_hour_2">1 tuntia</string>
+    <string name="array_sync_interval_hour_3">2 tuntia</string>
+    <string name="array_sync_interval_hour_6">6 tuntia</string>
+    <string name="array_sync_interval_hour_12">12 tuntia</string>
+    <string name="array_sync_interval_hour_24">24 tuntia</string>
+    <string name="switch_account">Vaihda tiliä</string>
+    
+    <string name="successfully_exported">Viety onnistuneesti kohteeseen:</string>
+    <string name="opml_export">OPML-vienti</string>
+    <string name="parsing_opml">Jäsennetään OPML-tietoja</string>
+    <string name="please_wait">Odota hetki…</string>
+    <string name="interval_sync_title">Synkronoinnin aikaväli</string>
+
+    </resources>
