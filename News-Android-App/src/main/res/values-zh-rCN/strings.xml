@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">自动同步</string>
+    <string name="title_activity_sync_interval_selector">同步间隔</string>
+    <string name="empty_view_content">无内容</string>
+    <string name="empty_view_content_action">下拉刷新</string>
+    <string name="toast_GettingMoreItems">已开始下载更多项目。请稍候 ...</string>
+    <string name="no_wifi_available">没有连接到 WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">确定要通过非 Wi-Fi 连接下载图片？</string>
+    <string name="current_version">您正在使用的版本号为：%s</string>
+    <string name="widget_header">ownCloud 新闻</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="other">%d 条新内容</item>
+    </plurals>
+    <string name="message_bar_reload">刷新</string>
+    <string name="allUnreadFeeds">所有未读内容</string>
+    <string name="starredFeeds">标星内容</string>
+    <string name="title_activity_new_feed">添加新订阅源</string>
+
+    <string name="menu_update">刷新</string>
+    <string name="menu_markAllAsRead">标记所有为已读</string>
+    <string name="menu_StartImageCaching">下载图片</string>
+    <string name="menu_downloadMoreItems">下载更多内容</string>
+
+    <string name="tv_showing_cached_version">显示缓存的版本</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">已加星标</string>
+    <string name="action_read">阅读</string>
+    <string name="action_playPodacst">播放 Podcast</string>
+    <string name="action_openInBrowser">在浏览器中打开网页</string>
+    <string name="action_Share">共享</string>
+    <string name="action_login">服务器配置</string>
+    <string name="action_save">保存</string>
+    <string name="action_settings">设置</string>
+    <string name="action_sync_settings">同步设置</string>
+    <string name="action_add_new_feed">添加新订阅源</string>
+    <string name="action_textToSpeech">朗读</string>
+    <string name="action_search">搜索</string>
+    <string name="action_download_articles_offline">离线下载文章</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">下载文章供离线使用</string>
+    <string name="notification_download_images_offline">下载图片供离线使用</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="other">您还有 %d 条未读内容</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="other">%d 条新内容</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">订阅源地址</string>
+    <string name="action_add_feed">添加订阅源</string>
+    <string name="import_opml">导入OPML</string>
+    <string name="export_opml">导出OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">下载图片</string>
+    <string name="action_img_sharelink">共享图片链接</string>
+    <string name="action_img_open">在浏览器中打开图片</string>
+    <string name="action_img_copylink">共享图片链接</string>
+    <string name="action_link_share">共享图片链接</string>
+    <string name="action_link_open">在浏览器中打开链接</string>
+    <string name="action_link_copy">复制链接</string>
+    <string name="toast_img_download_wait">正在下载。请稍候 ...</string>
+    <string name="toast_img_saved">图片已保存</string>
+    <string name="toast_img_notwriteable">未能写入图片。</string>
+    <string name="toast_copied_to_clipboard">复制到剪贴板</string>
+    <string name="error_download_failed">下载失败</string>
+    <string name="intent_title_share">共享途径</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">移除订阅源</string>
+    <string name="action_feed_rename">重命名订阅源</string>
+    <string name="action_feed_move">移动订阅源</string>
+    <string name="action_feed_notification_settings">通知设置</string>
+    <string name="feed_remove_button">移除</string>
+    <string name="feed_rename_button">重命名</string>
+    <string name="confirm_feed_remove">您真的要删除此订阅源吗？本操作不可恢复！</string>
+    <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
+    <string name="move_feed_root_folder">根目录</string>
+
+    <string name="action_folder_rename">重命名文件夹</string>
+    <string name="folder_remove_button">删除</string>
+    <string name="folder_rename_button">重命名</string>
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">接收此订阅源的单独通知</string>
+    <string name="notification_feed_default">所有默认设置的订阅源的通知将整合成一个</string>
+    <string name="notification_feed_none">完全没有通知</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">添加</string>
+    <string name="hint_folder_name">文件夹名称</string>
+    <!-- Strings related to login -->
+    <string name="login_manual">手动登录</string>
+    <string name="login_sso">使用Nextcloud文件应用登录</string>
+    <string name="pref_title_username">用户名</string>
+    <string name="pref_title_password">密码</string>
+    <string name="pref_title_owncloudRootPath">ownCloud 根目录地址</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">登录</string>
+    <string name="login_progress_signing_in">正在登录 ...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">这个字段是必填的</string>
+    <string name="error_invalid_url">网络地址不正确</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="other">已下载 %d 条旧内容</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">没有更多的选项了</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="other">目前已获取 %d 项 ...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">设置</string>
+    <string name="cache_is_cleared">缓存已清空！</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">常规</string>
+    <string name="pref_title_general_sort_order">排序</string>
+
+    <string name="pref_general_sort_order_new_old">新 → 旧</string>
+    <string name="pref_general_sort_order_old_new">旧 → 新</string>
+
+    <string name="pref_rename_action_swipe_right">向右滑动时的操作</string>
+    <string name="pref_rename_action_swipe_left">向左滑动时的操作</string>
+
+    <string name="pref_title_general_search_in">搜索</string>
+
+    <string name="pref_general_search_in_title">标题</string>
+    <string name="pref_general_search_in_body">主体</string>
+
+    <string name="dialog_clearing_cache">清除缓存</string>
+    <string name="dialog_clearing_cache_please_wait">正在清理缓存。请稍候 ...</string>
+    <string name="reset_cache_unsaved_changes">有一部分文件未同步，您确定仍然清空缓存吗？</string>
+    <string name="warning">警告</string>
+    <string name="pref_title_AutoSyncOnStart">启动后就同步</string>
+    <string name="pref_title_ShowOnlyUnread">仅显示未读文章</string>
+    <string name="pref_title_DisableHostnameVerification">禁用主机名校验</string>
+    <string name="pref_title_NavigateWithVolumeButtons">用音量键导航</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
+    <string name="pref_title_ShowFastActions">激活快速访问功能</string>
+    <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">允许未知证书？</string>
+    <string name="mtm_decision_always">总是</string>
+    <string name="mtm_decision_abort">终止</string>
+    <string name="mtm_notification">校验证书</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">无 Podcast 被选中</string>
+    <string name="no_chapters_available">无可用章节</string>
+    <string name="podcast_playback_speed_dialog_title">播放速度</string>
+    <string name="notification_downloading_podcast_title">正在下载播客</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">关于</string>
+    <string name="pref_license">许可证</string>
+    <string name="pref_license_summary">GNU Affero 通用公共许可证 (AGPL) 版本3</string>
+    <string name="pref_report_issue">报告问题</string>
+    <string name="pref_report_issue_summary">请求一个(免费) GitHub 账号</string>
+    <string name="pref_contribute">贡献！</string>
+    <string name="pref_contribute_summary">获取源代码</string>
+    <string name="pref_privacy">隐私</string>
+    <string name="pref_privacy_summary">Nextcloud News 安卓版隐私政策</string>
+    <string name="pref_version">Nextcloud News 安卓应用</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">显示</string>
+    <string name="pref_title_app_theme">主题</string>
+    <string name="pref_title_feed_list_layout">订阅源清单布局</string>
+    <string name="pref_title_font_size">字号</string>
+    <string name="pref_display_browser">浏览器</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">动作图标（详情页）</string>
+
+    <string name="pref_display_apptheme_auto">系统默认</string>
+    <string name="pref_display_apptheme_light">浅色</string>
+    <string name="pref_display_apptheme_dark">深色</string>
+
+    <string name="pref_oled_mode">黑色背景</string>
+    <string name="pref_oled_mode_summary">用于 OLED 屏幕的深色主题</string>
+
+    <string name="pref_display_browser_cct">内置 Chrome 自定义分页</string>
+    <string name="pref_display_browser_built_in">内置浏览器</string>
+    <string name="pref_display_browser_external">外部浏览器</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">缩略图 （仅标题）</string>
+    <string name="pref_display_feed_list_layout_thumbnails">缩略图</string>
+    <string name="pref_display_feed_list_layout_simple_text">简述文本</string>
+    <string name="pref_display_feed_list_layout_headlines">头条新闻</string>
+    <string name="pref_display_feed_list_layout_full_text">完整文本</string>
+    <string name="pref_display_feed_list_layout_web_layout">页面布局</string>
+    <string name="pref_display_feed_list_layout_card_view">卡片视图</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">小</string>
+    <string name="pref_display_font_size_d">默认</string>
+    <string name="pref_display_font_size_l">大</string>
+    <string name="pref_display_font_size_xl">超大</string>
+
+    <string name="content_desc_play">玩</string>
+    <string name="content_desc_pause">暂停</string>
+    <string name="content_desc_forward">转发</string>
+    <string name="content_desc_collapse">折叠</string>
+    <string name="content_desc_mark_as_read">标为已读</string>
+    <string name="content_desc_mark_as_unread">标为未读</string>
+    <string name="content_desc_add_to_favorites">添加到收藏</string>
+    <string name="content_desc_remove_from_favorites">从收藏中移除</string>
+    <string name="content_desc_show_password">显示密码</string>
+    <string name="content_desc_delete">删除</string>
+    <string name="content_desc_download">下载</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">错误</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">您的服务器上似乎未安装或激活您的新闻应用。 请按照此处给出的说明在您的服务器上首先设置新闻应用：%1$s</string>
+    <string name="login_dialog_text_something_went_wrong">有地方出错了 :(</string>
+    <string name="login_dialog_text_zero_version_code">网页新闻应用返回的版本号为 “0”。请查阅以下 bug 报告：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">此 App 版本与您的 Nextcloud 新闻应用版本不兼容。请更新新闻 app 和 appframework。</string>
+    <string name="login_dialog_title_security_warning">安全警告</string>
+    <string name="login_dialog_text_security_warning">您没有使用 HTTPS，该方法我们强烈推荐使用。攻击者可能会截获您的流量并获得某些敏感信息（例如您的密码）</string>
+    <string name="login_dialog_select_account_unknown_error_toast">出错了。请再试一次。</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">数据与同步</string>
+    <string name="pref_title_clearCache">清除缓存</string>
+    <string name="pref_title_CacheImagesOffline">离线缓存图片</string>
+    <string name="pref_title_Max_Cache_Size">最大缓存大小</string>
+
+    <string name="pref_data_sync_image_cache_never">从不</string>
+    <string name="pref_data_sync_image_cache_wifi_only">仅限WiFi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">仅在 WiFi 和移动网络</string>
+    <string name="pref_data_sync_image_cache_ask">未连接到 WiFi 时询问</string>
+
+    <string name="array_sync_interval_min_0">永不</string>
+    <string name="array_sync_interval_min_5">5 分钟 </string>
+    <string name="array_sync_interval_min_15">15 分钟 </string>
+    <string name="array_sync_interval_min_30">30 分钟 </string>
+    <string name="array_sync_interval_min_45">45 分钟</string>
+    <string name="array_sync_interval_hour_1">1 小时 </string>
+    <string name="array_sync_interval_hour_2">2 小时 </string>
+    <string name="array_sync_interval_hour_3">3 小时 </string>
+    <string name="array_sync_interval_hour_6">6 小时 </string>
+    <string name="array_sync_interval_hour_12">12 小时 </string>
+    <string name="array_sync_interval_hour_24">24 小时 </string>
+    <string name="switch_account">切换账户</string>
+    
+    <string name="successfully_exported">已成功导出到：</string>
+    <string name="opml_export">OPML 导出</string>
+    <string name="parsing_opml">解析 OPML</string>
+    <string name="please_wait">请稍等...</string>
+    <string name="interval_sync_title">间隔同步</string>
+
+    </resources>
