@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">ავტო სინქ.</string>
+    <string name="empty_view_content">აქ ელემენტები არაა</string>
+    <string name="empty_view_content_action">ჩამოწიეთ განახლებისთვის</string>
+    <string name="no_wifi_available">WiFi არაა დაკავშირებული</string>
+    <string name="current_version">თქვენ სარგებლობთ ვერსიით %s</string>
+    <string name="widget_header">Nextcloud სიახლეები</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">ხელმისაწვდომია %d ახალი ელემენტი</item>
+        <item quantity="other">ხელმისაწვდომია %d ახალი ელემენტი</item>
+    </plurals>
+    <string name="message_bar_reload">გადატვირთვა</string>
+    <string name="allUnreadFeeds">ყველა წაუკითხავი ელემენტი</string>
+    <string name="starredFeeds">ვარსკლავიანი ელემენტები</string>
+    <string name="title_activity_new_feed">სიახლეების ლენტის დამატება</string>
+
+    <string name="menu_update">განახლება</string>
+    <string name="menu_markAllAsRead">ყველას წაკითხულად მონიშვნა</string>
+    <string name="menu_StartImageCaching">სურათების ჩამოტვირთვა</string>
+    <string name="menu_downloadMoreItems">მეტი ელემენტის ჩამოტვირთვა</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">ვარსკვლავმინიჭებული</string>
+    <string name="action_read">წაკითხვა</string>
+    <string name="action_playPodacst">პოდკასტის დაკვრა</string>
+    <string name="action_Share">გაზიარება</string>
+    <string name="action_login">სერვერის პარამეტრები</string>
+    <string name="action_save">შენახვა</string>
+    <string name="action_settings">პარამეტრები</string>
+    <string name="action_sync_settings">სინქ. პარამეტრები</string>
+    <string name="action_add_new_feed">სიახლეების ლენტის დამატება</string>
+    <string name="action_textToSpeech">წაკითხვა</string>
+    <string name="action_search">ძიება</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">გაქვთ %d ახალი წაუკითხავი ელემენტი</item>
+        <item quantity="other">გაქვთ %d ახალი წაუკითხავი ელემენტი</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">ხელმისაწვდომია %d ახალი წაუკითხავი ელემენტი</item>
+        <item quantity="other">ხელმისაწვდომია %d ახალი წაუკითხავი ელემენტი</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">ლენტის მისამართი</string>
+    <string name="action_add_feed">ლენტის დამატება</string>
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">სურათის ჩამოტვირთვა</string>
+    <string name="action_img_sharelink">სურათის ბმულით გაზიარება</string>
+    <string name="action_img_open">სურათის გახსნა ბრაუზერით</string>
+    <string name="action_img_copylink">სურათის ბმულის კოპირება</string>
+    <string name="action_link_share">ბმულის გაზიარება</string>
+    <string name="action_link_open">ბმულის ბრაუზერში გახსნა</string>
+    <string name="action_link_copy">ბმულის კოპირება</string>
+    <string name="toast_img_notwriteable">სურათის ჩაწერა ვერ მოხერხდა.</string>
+    <string name="toast_copied_to_clipboard">კოპირებულია კლიპბორდში</string>
+    <string name="error_download_failed">ჩამოტვირთვა ვერ განხორციელდა</string>
+    <string name="intent_title_share">გაზიარება</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">ლენტის გაუქმება</string>
+    <string name="action_feed_rename">ლენტის სახელის ცვლილება</string>
+    <string name="feed_remove_button">წაშლა</string>
+    <string name="feed_rename_button">გადარქმევა</string>
+    <string name="confirm_feed_remove">ნამდვილად გსურთ ამ ლენტის გაუქმება? ეს ვერ იქნება უკუქცეული.</string>
+    <string name="action_folder_rename">ფოლდერის სახელის გადარქმევა</string>
+    <string name="folder_remove_button">წაშლა</string>
+    <string name="folder_rename_button">სახელის შეცვლა</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">დამატება</string>
+    <string name="hint_folder_name">დირექტორიის სახელი</string>
+    <string name="pref_title_username">მომხმარებლის სახელი</string>
+    <string name="pref_title_password">პაროლი</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud საწყისი მისამართი</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">შესვლა</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">ეს ველი აუცილებელია</string>
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">ჩამოტვირთულია %d ძველი ელემენტი</item>
+        <item quantity="other">ჩამოტვირთულია %d ძველი ელემენტი</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">მეტი ელემენტი არაა</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">პარამეტრები</string>
+    <string name="cache_is_cleared">კეში გასუფთავდა!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">ზოგადი</string>
+    <string name="pref_title_general_sort_order">განლაგების თანმიმდევრობა</string>
+
+    <string name="pref_general_search_in_title">სათაური</string>
+    <string name="dialog_clearing_cache">კეშის გასუფთავება</string>
+    <string name="reset_cache_unsaved_changes">აღმოჩენილია არასინქრონიზირებული ცვილებები. მაინც გსურთ კეშის საწყის მდგომარეობაში დაბრუნება?</string>
+    <string name="warning">გაფრთხილება</string>
+    <string name="pref_title_AutoSyncOnStart">სინქ. ჩართვისას</string>
+    <string name="pref_title_ShowOnlyUnread">მხოლოდ წაუკითხავი არტიკლების ჩვენება</string>
+    <string name="pref_title_DisableHostnameVerification">ჰოსტის სახელის ვერიფიკაციის გათიშვა</string>
+    <string name="pref_title_NavigateWithVolumeButtons">აწარმოეთ ნაციგაცია ხმის ღილაკებით</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">წაკითხულად მონიშვნა გადახვევისას</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">მივიღოთ ამოუცნობი სერტიფიკატი?</string>
+    <string name="mtm_decision_always">ყოველთვის</string>
+    <string name="mtm_decision_abort">შეჩერება</string>
+    <string name="mtm_notification">სერტიფიკატის ვერიფიკაცია</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">პოდკასტი არაა არჩეული</string>
+    <string name="no_chapters_available">არც ერთი თავი არაა ხელმისაწვდომი</string>
+    <!-- Settings for About -->
+    <string name="pref_header_about">შესახებ</string>
+    <string name="pref_license">ლიცენზია</string>
+    <string name="pref_privacy">კონფიდენციალურობა</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">დისპლეი</string>
+    <string name="pref_title_app_theme">ვიზუალური თემა</string>
+    <string name="pref_title_feed_list_layout">ლენტის სიის მაკეტი</string>
+    <string name="pref_display_browser">ბრაუზერი</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">მოქმედების პიქტოგრამები (დეტალების ხედი)</string>
+
+    <string name="pref_display_apptheme_light">ღია</string>
+    <string name="pref_display_apptheme_dark">მუქი</string>
+
+    <string name="pref_display_browser_cct">ჩაშენებული ქრომის-პერსონალიზირებული-ტაბულები</string>
+    <string name="pref_display_browser_built_in">ჩაშენებული ბრაუზერი</string>
+    <string name="pref_display_font_size_d">საწყისი</string>
+    <string name="content_desc_play">დაკვრა</string>
+    <string name="content_desc_pause">პაუზა</string>
+    <string name="content_desc_forward">წინ</string>
+    <string name="content_desc_collapse">აკეცვა</string>
+    <string name="content_desc_mark_as_read">წაკითხულად მონიშვნა</string>
+    <string name="content_desc_mark_as_unread">წაუკითხავად მონიშვნა</string>
+    <string name="content_desc_add_to_favorites">რჩეულებში დამატება</string>
+    <string name="content_desc_remove_from_favorites">რჩეულებიდან ამოშლა</string>
+    <string name="content_desc_delete">წაშლა</string>
+    <string name="content_desc_download">ჩამოტვირთვა</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">შეცდომა</string>
+    <string name="login_dialog_text_something_went_wrong">რაღაც მოხდა :(</string>
+    <string name="login_dialog_text_zero_version_code">Web News App-მა დააბრუნა ვერსია \"0\". გთხოვთ იხილოთ შემდეგი შეცდომის რეპორტი: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_title_security_warning">უსაფრთხოების გაფრთხილება</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">მონაცემები და სინქ.</string>
+    <string name="pref_title_clearCache">კეშის გასუფთავება</string>
+    <string name="pref_title_CacheImagesOffline">სურათების ოფლაინ კეშირება</string>
+    <string name="pref_title_Max_Cache_Size">მაქს. კეშის ზომა</string>
+
+    <string name="pref_data_sync_image_cache_never">არასდროს</string>
+    <string name="pref_data_sync_image_cache_wifi_only">მხოლოდ WiFi-ზე</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Wi-Fi-ზე და მობილურზე</string>
+    <string name="pref_data_sync_image_cache_ask">შეკითხვა როდესაც არაა კავშირი WiFi-სთან</string>
+
+    <string name="array_sync_interval_min_0">არასდროს</string>
+    <string name="array_sync_interval_min_5">5 წუთი</string>
+    <string name="array_sync_interval_min_15">15 წუთი</string>
+    <string name="array_sync_interval_min_30">30 წუთი</string>
+    <string name="array_sync_interval_hour_1">1 საათი</string>
+    <string name="array_sync_interval_hour_3">3 საათი</string>
+    <string name="array_sync_interval_hour_6">6 საათი</string>
+    <string name="array_sync_interval_hour_12">12 საათი</string>
+    <string name="array_sync_interval_hour_24">24 საათი</string>
+    </resources>
