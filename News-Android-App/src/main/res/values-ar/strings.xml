@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">مزامنة تلقائية</string>
+    <string name="empty_view_content">لا يوجد عناصر هنا</string>
+    <string name="empty_view_content_action">اسحب للاسفل للتحديث</string>
+    <string name="no_wifi_available">لم يتم الاتصال بشبكة الواي فاي</string>
+    <string name="widget_header">أخبار ownCloud</string>
+    <string name="message_bar_reload">إعادة تحميل</string>
+    <string name="allUnreadFeeds">كل العناصر غير المقروءه</string>
+    <string name="starredFeeds">العناصر المعلّمة بنجمة</string>
+    <string name="menu_update">تحديث</string>
+    <string name="menu_markAllAsRead">تحديد الكل كمقروء</string>
+    <string name="menu_StartImageCaching">تحميل الصور</string>
+    <string name="menu_downloadMoreItems">تحميل المزيد من العناصر</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">معلّم بنجمة.</string>
+    <string name="action_read">قراءة</string>
+    <string name="action_Share">شارك</string>
+    <string name="action_login">إعدادات الخادم.</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_settings">إعدادات</string>
+    <string name="action_sync_settings">مزامنة الإعدادات</string>
+    <string name="action_search">بحث</string>
+    <string name="action_img_sharelink">شارك رابط الصورة</string>
+    <string name="action_link_share">شارك الرابط</string>
+    <string name="action_link_copy">انسخ الرابط</string>
+    <string name="toast_copied_to_clipboard">تم النسخ للحافظة</string>
+    <string name="error_download_failed">فشل التحميل</string>
+    <string name="intent_title_share">شارك عبر</string>
+
+
+    <string name="action_feed_notification_settings">إعدادات الإشعار</string>
+    <string name="feed_remove_button">حذف</string>
+    <string name="feed_rename_button">إعادة التسمية</string>
+    <string name="action_folder_rename">اعادة تسمية المجلد</string>
+    <string name="folder_remove_button">حذف</string>
+    <string name="folder_rename_button">إعادة تسمية</string>
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">إضافة</string>
+    <string name="hint_folder_name">اسم المجلد</string>
+    <string name="pref_title_username">إسم المستخدم</string>
+    <string name="pref_title_password">كلمة المرور</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+
+    <string name="action_sign_in_short">تسجيل الدخول</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">هذا الحقل مطلوب</string>
+    <string name="toast_no_more_downloads_available">لا يوجد عناصر أخرى متوفرة</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">إعدادات</string>
+    <!-- General settings -->
+    <string name="pref_header_general">عام</string>
+    <string name="pref_title_general_sort_order">ترتيب</string>
+
+    <string name="pref_general_search_in_title">العنوان</string>
+    <string name="pref_general_search_in_body">المحتوى</string>
+
+    <string name="warning">تحذير</string>
+    <string name="pref_title_AutoSyncOnStart">بدء المزامنة عند التشغيل</string>
+    <string name="pref_title_ShowOnlyUnread">أظهر فقط المقالات غير المقروءة</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">حدد كمقروء أثناء التنقل</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">هل ترغب بقبول شهادة غير معروفه؟</string>
+    <string name="mtm_decision_always">دائماً</string>
+    <string name="mtm_decision_abort">إلغاء.</string>
+    <string name="mtm_notification">التحقق من الشهادة</string>
+
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">عن</string>
+    <string name="pref_license">الرخصة</string>
+    <string name="pref_report_issue">الإبلاغ عن خطأ</string>
+    <string name="pref_contribute">ساهم!</string>
+    <string name="pref_contribute_summary">الحصول على الشفرة المصدرية</string>
+    <string name="pref_privacy">الخصوصية</string>
+    <!-- Settings for Display -->
+    <string name="pref_header_display">عرض</string>
+    <string name="pref_title_app_theme">المظهر</string>
+    <string name="pref_title_font_size">حجم الخط</string>
+    <string name="pref_display_browser">المتصفح</string>
+
+
+    <string name="pref_display_apptheme_auto">النظام الإفتراضي </string>
+    <string name="pref_display_apptheme_light">فاتح</string>
+    <string name="pref_display_apptheme_dark">ليلي</string>
+
+    <string name="pref_oled_mode">خلفية سوداء</string>
+    <string name="pref_display_browser_built_in">متصفح مدمج</string>
+    <string name="pref_display_browser_external">متصفح خارجي</string>
+
+    <string name="pref_display_feed_list_layout_headlines">العناوين</string>
+    <string name="pref_display_feed_list_layout_full_text">نص كامل</string>
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">صغير</string>
+    <string name="pref_display_font_size_d">افتراضي</string>
+    <string name="pref_display_font_size_l">كبير</string>
+    <string name="content_desc_play">تشغيل</string>
+    <string name="content_desc_pause">إيقاف</string>
+    <string name="content_desc_forward">إعادة توجيه</string>
+    <string name="content_desc_collapse">طوي</string>
+    <string name="content_desc_mark_as_read">تمييز كمقروء</string>
+    <string name="content_desc_mark_as_unread">تمييز كغير مقروء</string>
+    <string name="content_desc_add_to_favorites">إضافة إلى المفضلة</string>
+    <string name="content_desc_remove_from_favorites">إزالتها مِن المفضلة</string>
+    <string name="content_desc_show_password">اظهر كلمة المرور</string>
+    <string name="content_desc_delete">إزالة</string>
+    <string name="content_desc_download">تنزيل</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">خطأ</string>
+    <string name="login_dialog_text_something_went_wrong">حدث خطأ ما: (</string>
+    <string name="login_dialog_title_security_warning">تحذير أمان</string>
+    <string name="pref_title_clearCache">مسح ذاكرة التخزين المؤقتة</string>
+    <string name="pref_title_Max_Cache_Size">أقصى حجم لذاكرة التخزين المؤقتة</string>
+
+    <string name="pref_data_sync_image_cache_never">أبدا</string>
+    <string name="pref_data_sync_image_cache_wifi_only">عبر الواي فاي فقط</string>
+    <string name="array_sync_interval_min_0">أبدا</string>
+    <string name="array_sync_interval_min_5">5 دقائق</string>
+    <string name="array_sync_interval_min_15">15 دقيقة</string>
+    <string name="array_sync_interval_min_30">30 دقيقة</string>
+    <string name="array_sync_interval_hour_1">ساعة واحدة</string>
+    <string name="array_sync_interval_hour_3">3 ساعات</string>
+    <string name="array_sync_interval_hour_6">6 ساعات</string>
+    <string name="array_sync_interval_hour_12">12 ساعة</string>
+    <string name="array_sync_interval_hour_24">24 ساعة</string>
+    <string name="switch_account">تبديل الحساب</string>
+    
+    <string name="please_wait">الرجاء الانتظار...</string>
+    </resources>
