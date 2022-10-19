@@ -5,7 +5,6 @@
     <string name="empty_view_content">S’ka gjë këtu</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">Pa lidhje WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Doni të shkarkoni imazhet pa lidhje me Wi-Fi</string>
     <string name="current_version">Po përdorni Versionin %s</string>
     <string name="widget_header">Lajme Nextcloud</string>
     <plurals name="message_bar_new_articles_available">

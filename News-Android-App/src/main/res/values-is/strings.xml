@@ -6,7 +6,6 @@
     <string name="empty_view_content">Engin atriði hér</string>
     <string name="empty_view_content_action">Draga niður til að endurlesa</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
-    <string name="do_you_want_to_download_without_wifi">Viltu sækja myndirnar án Wi-Fi-tengingar</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
     <plurals name="message_bar_new_articles_available">

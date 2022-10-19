@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Desplegueu per actualitzar</string>
     <string name="toast_GettingMoreItems">S\'ha iniciat la baixada de més elements. Per favor, espereu …</string>
     <string name="no_wifi_available">Sense connexió Wi-Fi</string>
-    <string name="do_you_want_to_download_without_wifi">Voleu baixar les imatges sense una connexió WiFi</string>
     <string name="current_version">Esteu fent servir la versió %s</string>
     <string name="widget_header">Notícies Nextcloud</string>
     <plurals name="message_bar_new_articles_available">

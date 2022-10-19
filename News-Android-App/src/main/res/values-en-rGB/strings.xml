@@ -6,7 +6,6 @@
     <string name="empty_view_content">No items here</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">No WiFi connection</string>
-    <string name="do_you_want_to_download_without_wifi">Do you want to download the images without a Wi-Fi connection</string>
     <string name="current_version">You\'re using Version %s</string>
     <string name="widget_header">ownCloud News</string>
     <plurals name="message_bar_new_articles_available">

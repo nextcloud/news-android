@@ -6,7 +6,6 @@
     <string name="empty_view_content">Her er ingen artikler</string>
     <string name="empty_view_content_action">Træk ned for at genindlæse</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
-    <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden WiFi-forbindelse</string>
     <string name="current_version">Du bruger version %s</string>
     <string name="widget_header">ownCloud Nyheder</string>
     <plurals name="message_bar_new_articles_available">

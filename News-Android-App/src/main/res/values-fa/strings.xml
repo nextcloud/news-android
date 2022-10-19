@@ -6,7 +6,6 @@
     <string name="empty_view_content">موردی وجود ندارد</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">وای‌فایی وصل نیست</string>
-    <string name="do_you_want_to_download_without_wifi">می‌خواهید تصاویر بدون اتصال وای‌فای بارگیری شوند؟</string>
     <string name="current_version">از نگارش %s استفاده می‌کنید</string>
     <string name="widget_header">اخبار نکست‌کلود</string>
     <plurals name="message_bar_new_articles_available">

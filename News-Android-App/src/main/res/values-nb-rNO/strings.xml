@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Dra ned for å oppdatere</string>
     <string name="toast_GettingMoreItems">Nedlasting av flere elementer startet. Vennligst vent...</string>
     <string name="no_wifi_available">Ingen WiFI tilkoblet</string>
-    <string name="do_you_want_to_download_without_wifi">Vil du laste ned bilder uten en WiFi-tilkobling</string>
     <string name="current_version">Du bruker versjon %s</string>
     <string name="widget_header">Nextcloud nyheter</string>
     <plurals name="message_bar_new_articles_available">

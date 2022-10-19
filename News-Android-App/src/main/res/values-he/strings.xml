@@ -6,7 +6,6 @@
     <string name="empty_view_content">אין כאן פריטים</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">אין חיבור WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">להוריד תמונות בלי חיבור לרשת אלחוטית</string>
     <string name="current_version">הנך משתמש/ת בגרסה %s</string>
     <string name="widget_header">חדשות ownCloud</string>
     <plurals name="message_bar_new_articles_available">

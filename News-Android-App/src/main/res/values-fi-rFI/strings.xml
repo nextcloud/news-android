@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
     <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
-    <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä</string>
     <string name="current_version">Käytössäsi on versio %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">

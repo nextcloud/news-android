@@ -6,7 +6,6 @@
     <string name="empty_view_content">Non hai elementos aquí</string>
     <string name="empty_view_content_action">Tire cara a abaixo para actualizar</string>
     <string name="no_wifi_available">Non está conectado á wifi</string>
-    <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
     <string name="widget_header">Novas do Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
