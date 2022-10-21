@@ -109,7 +109,7 @@
     <string name="login_sso">Logga in med Nextcloud filer-app</string>
     <string name="pref_title_username">Användarnamn</string>
     <string name="pref_title_password">Lösenord</string>
-    <string name="pref_title_owncloudRootPath">ownCloud rotadress</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud root adress</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Logga in</string>
