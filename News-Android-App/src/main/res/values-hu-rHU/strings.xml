@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Húzza lefelé a frissítéshez</string>
     <string name="toast_GettingMoreItems">A további elemek letöltése elkezdődött. Kis türelmet…</string>
     <string name="no_wifi_available">Nincs csatlakoztatott WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Letölti a képeket Wi-Fi kapcsolat nélkül?</string>
     <string name="current_version">A(z) %s verziót használja</string>
     <string name="widget_header">Nextcloud hírek</string>
     <plurals name="message_bar_new_articles_available">
