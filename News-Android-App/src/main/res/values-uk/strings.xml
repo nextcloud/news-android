@@ -140,7 +140,7 @@
     <string name="pref_display_browser">Переглядач</string>
 
 
-    <string name="pref_display_apptheme_auto">Згідно з системною</string>
+    <string name="pref_display_apptheme_auto">Системна</string>
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 
@@ -155,7 +155,7 @@
     <string name="content_desc_collapse">Згорнути</string>
     <string name="content_desc_mark_as_read">Відмітити прочитаним</string>
     <string name="content_desc_mark_as_unread">Позначити не прочитаним</string>
-    <string name="content_desc_add_to_favorites">Додати до улюбленого</string>
+    <string name="content_desc_add_to_favorites">Вподобати</string>
     <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
     <string name="content_desc_show_password">Показати пароль</string>
     <string name="content_desc_delete">Вилучити</string>
