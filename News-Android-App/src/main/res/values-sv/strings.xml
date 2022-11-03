@@ -173,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ingen podcast vald</string>
     <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
+    <string name="exit_playback">Stäng mediaspelaren</string>
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
     <string name="notification_downloading_podcast_title">Hämtar podcast</string>
 
