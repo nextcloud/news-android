@@ -31,7 +31,7 @@
     <string name="action_read">Читати</string>
     <string name="action_playPodacst">Відтворити подкаст</string>
     <string name="action_openInBrowser">Відкрити у браузері</string>
-    <string name="action_Share">Поділитися</string>
+    <string name="action_Share">Спільний доступ</string>
     <string name="action_login">Налаштування сервера</string>
     <string name="action_save">Зберегти</string>
     <string name="action_settings">Налаштування</string>
