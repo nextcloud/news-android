@@ -307,9 +307,6 @@ public class LoginDialogActivity extends AppCompatActivity {
         } else {
             try {
                 URL url = new URL(mOc_root_path);
-                if(!Patterns.WEB_URL.matcher(mOc_root_path).matches()) {
-                    throw new MalformedURLException();
-                }
                 if (!url.getProtocol().equals("https")) {
                     ShowAlertDialog(getString(R.string.login_dialog_title_security_warning),
                             getString(R.string.login_dialog_text_security_warning), this);
