@@ -2,10 +2,12 @@
 <resources>
 
     <string name="auto_sync_string">Sync otomatis</string>
+    <string name="title_activity_sync_interval_selector">Interval sinkronisasi</string>
     <string name="empty_view_content">Tak ada item disini</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="toast_GettingMoreItems">Unduh item lainnya dimulai. Mohon tunggu ...</string>
     <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
+    <string name="do_you_want_to_download_without_wifi">Apakah Anda ingin mengunduh gambar tanpa koneksi Wi-Fi?</string>
     <string name="current_version">Anda menggunakan Versi %s</string>
     <string name="widget_header">Berita ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -25,14 +27,20 @@
     <string name="action_starred">Dibintangi</string>
     <string name="action_read">Baca</string>
     <string name="action_playPodacst">Putar Siniar</string>
+    <string name="action_openInBrowser">Buka di browser</string>
     <string name="action_Share">Bagikan</string>
     <string name="action_login">Pengaturan Server</string>
     <string name="action_save">Simpan</string>
     <string name="action_settings">Setelan</string>
     <string name="action_sync_settings">Setelan Sync</string>
     <string name="action_add_new_feed">Tambah feed baru</string>
+    <string name="action_add_new_folder">Tambah folder baru</string>
     <string name="action_textToSpeech">Bacalah</string>
     <string name="action_search">Cari</string>
+    <string name="action_download_articles_offline">Unduh artikel secara offline</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Mengunduh artikel untuk penggunaan offline</string>
+    <string name="notification_download_images_offline">Mengunduh gambar untuk penggunaan offline</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">Anda memiliki %d item baru yang belum dibaca</item>
     </plurals>
@@ -43,6 +51,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL Feed</string>
     <string name="action_add_feed">Tambah feed</string>
+    <string name="import_opml">Impor OPML</string>
+    <string name="export_opml">Ekspor OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Unduh Gambar</string>
     <string name="action_img_sharelink">Bagikan Tautan Gambar</string>
@@ -51,6 +63,7 @@
     <string name="action_link_share">Bagikan Tautan</string>
     <string name="action_link_open">Buka Tautan di Peramban</string>
     <string name="action_link_copy">Salin Tautan</string>
+    <string name="toast_img_download_wait">Mengunduh. Mohon tunggu ...</string>
     <string name="toast_img_saved">Gambar disimpan</string>
     <string name="toast_img_notwriteable">Gagal menulis Gambar.</string>
     <string name="toast_copied_to_clipboard">Disalin ke papan klip</string>
@@ -61,17 +74,23 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Hapus Feed</string>
     <string name="action_feed_rename">Ubah Nama Feed</string>
+    <string name="action_feed_move">Pindahkan Feed</string>
+    <string name="action_feed_notification_settings">Pengaturan notifikasi</string>
     <string name="feed_remove_button">Hapus</string>
     <string name="feed_rename_button">Ubah nama</string>
     <string name="confirm_feed_remove">Apakah Anda yakin ingin menghapus Feed ini? Tindakan ini tidak dapat dibatalkan!</string>
     <string name="move_feed_root_folder">Folder akar</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Hapus folder</string>
     <string name="action_folder_rename">Ubah nama folder</string>
     <string name="folder_remove_button">Buang</string>
     <string name="folder_rename_button">Ubah nama</string>
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Masukkan</string>
     <string name="hint_folder_name">Nama Folder</string>
+    <!-- Strings related to login -->
+    <string name="login_manual">Login manual</string>
     <string name="pref_title_username">Nama pengguna</string>
     <string name="pref_title_password">Kata sandi</string>
     <string name="pref_title_owncloudRootPath">Alamat root ownCloud</string>
@@ -81,6 +100,9 @@
     <string name="login_progress_signing_in">Sedang masuk...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Bidang wajib diisi</string>
+    <string name="error_invalid_url">URL salah</string>
+
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">Mengunduh %d item lama</item>
@@ -94,6 +116,9 @@
     <!-- General settings -->
     <string name="pref_header_general">Umum</string>
     <string name="pref_title_general_sort_order">Urutan</string>
+
+    <string name="pref_general_sort_order_new_old">Baru → Lama</string>
+    <string name="pref_general_sort_order_old_new">Lama → Baru</string>
 
     <string name="pref_general_search_in_title">Judul</string>
     <string name="dialog_clearing_cache">Membersihkan cache</string>
