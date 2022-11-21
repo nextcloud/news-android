@@ -21,8 +21,8 @@
 
     <string name="menu_update">Оновити</string>
     <string name="menu_markAllAsRead">Позначити все як прочитане</string>
-    <string name="menu_StartImageCaching">Завантажити зображення</string>
-    <string name="menu_downloadMoreItems">Завантажити більше елементів</string>
+    <string name="menu_StartImageCaching">Звантажити зображення</string>
+    <string name="menu_downloadMoreItems">Звантажити більше елементів</string>
 
     <string name="tv_showing_cached_version">Відображається кешована версія</string>
 
@@ -50,7 +50,7 @@
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Завантажити зображення</string>
+    <string name="action_img_download">Звантажити зображення</string>
     <string name="action_img_sharelink">Поділіться посиланням на зображення</string>
     <string name="action_img_open">Відкрийте зображення у браузері</string>
     <string name="action_img_copylink">Скопіювати посилання на зображення</string>
@@ -159,7 +159,7 @@
     <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
     <string name="content_desc_show_password">Показати пароль</string>
     <string name="content_desc_delete">Вилучити</string>
-    <string name="content_desc_download">Завантажити</string>
+    <string name="content_desc_download">Звантажити</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Помилка</string>
