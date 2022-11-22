@@ -216,10 +216,13 @@
     <string name="content_desc_play">玩</string>
     <string name="content_desc_pause">暂停</string>
     <string name="content_desc_playback_speed">播放速度</string>
+    <string name="content_desc_rewind">撤回</string>
     <string name="content_desc_forward">转发</string>
+    <string name="content_desc_expand">展开</string>
     <string name="content_desc_collapse">折叠</string>
     <string name="content_desc_mark_as_read">标为已读</string>
     <string name="content_desc_mark_as_unread">标为未读</string>
+    <string name="content_desc_tap_to_refresh">点击此处刷新</string>
     <string name="content_desc_add_to_favorites">添加到收藏</string>
     <string name="content_desc_remove_from_favorites">从收藏中移除</string>
     <string name="content_desc_show_password">显示密码</string>
