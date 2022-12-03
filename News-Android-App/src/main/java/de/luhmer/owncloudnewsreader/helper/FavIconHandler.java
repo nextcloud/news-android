@@ -47,9 +47,9 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 public class FavIconHandler {
     private static final String TAG = FavIconHandler.class.getCanonicalName();
 
-    private RequestManager mGlide;
-    private Context mContext;
-    private int mPlaceHolder;
+    private final RequestManager mGlide;
+    private final Context mContext;
+    private final int mPlaceHolder;
 
     public FavIconHandler(Context context) {
         mPlaceHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
@@ -57,34 +57,38 @@ public class FavIconHandler {
         mGlide = GlideApp.with(context);
     }
 
-    public void loadFavIconForFeed(@Nullable String favIconUrl, ImageView imgView) {
+    public <T extends Drawable> void loadFavIconForFeed(@Nullable String favIconUrl, ImageView imgView) {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new RoundedCorners(6));
 
-        if(favIconUrl == null) {
+        if (favIconUrl == null) {
             mGlide
-                .load(mPlaceHolder)
-                .apply(requestOptions)
-                .into(imgView);
+                    .load(mPlaceHolder)
+                    .apply(requestOptions)
+                    .into(imgView);
         } else {
             mGlide
-                .load(favIconUrl)
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .placeholder(mPlaceHolder)
-                .error(mPlaceHolder)
-                .apply(requestOptions)
-                .onlyRetrieveFromCache(true) // disable loading of favicons from network (usually those favicons are broken)
-                .into(imgView);
+                    .load(favIconUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .placeholder(mPlaceHolder)
+                    .error(mPlaceHolder)
+                    .apply(requestOptions)
+                    .onlyRetrieveFromCache(true) // disable loading of favicons from network (usually those favicons are broken)
+                    .into(imgView);
         }
+    }
+
+    boolean isSVG(String url) {
+        return url.contains("svg");
     }
 
     /**
      * Version of loadFacIconForFeed that applies a vertical offset to the icon ImageView,
      * to compensate for font size scaling alignment issue
      *
-     * @param favIconUrl    URL of icon to load/display
-     * @param imgView       ImageView object to use for icon display
-     * @param offset        Y translation to apply to ImageView
+     * @param favIconUrl URL of icon to load/display
+     * @param imgView    ImageView object to use for icon display
+     * @param offset     Y translation to apply to ImageView
      */
     public void loadFavIconForFeed(String favIconUrl, ImageView imgView, int offset) {
         loadFavIconForFeed(favIconUrl, imgView);
@@ -97,7 +101,6 @@ public class FavIconHandler {
         } else {
             return R.drawable.default_feed_icon_light;
         }
-
     }
 
     public void preCacheFavIcon(final Feed feed) throws IllegalStateException {
@@ -107,17 +110,24 @@ public class FavIconHandler {
         }
 
         String favIconUrl = feed.getFaviconUrl();
-        Log.v(TAG, "Loading image: " + favIconUrl);
+
+        // pre caching doesn't work for SVG icons
+        if (isSVG(favIconUrl)) {
+            return;
+        }
+
+        // Log.v(TAG, "Pre caching favicon: " + favIconUrl);
+
         mGlide
                 .asBitmap()
                 .load(favIconUrl)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .apply(RequestOptions.overrideOf(Target.SIZE_ORIGINAL))
                 .into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                UpdateAvgColorOfFeed(feed.getId(), resource, mContext);
-                Log.d(TAG, "Successfully downloaded image for url: " + favIconUrl);
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        UpdateAvgColorOfFeed(feed.getId(), resource, mContext);
+                        Log.d(TAG, "Successfully downloaded image for url: " + favIconUrl);
             }
 
             @Override

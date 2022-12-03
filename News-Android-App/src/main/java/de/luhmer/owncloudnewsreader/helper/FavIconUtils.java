@@ -1,26 +1,32 @@
 package de.luhmer.owncloudnewsreader.helper;
 
-import android.util.Log;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 public class FavIconUtils {
 
-    private static String TAG = FavIconUtils.class.getCanonicalName();
+    private static final String TAG = FavIconUtils.class.getCanonicalName();
 
     public static String fixFavIconUrl(String favIconUrl) {
-        if(favIconUrl == null) {
+        if (favIconUrl == null) {
             return null;
         }
 
+        if (favIconUrl.startsWith("https://i2.wp.com/stadt-bremerhaven.de/wp-content/uploads/2014/12/logo")) {
+            // Fix favicon for cachys blog...
+            return "https://stadt-bremerhaven.de/wp-content/uploads/2018/08/sblogo-150x150.jpg";
+        }
+        return favIconUrl;
+
+        /*
         try {
             favIconUrl = decodeSpecialChars(favIconUrl);
         }catch(Exception ex) {
             Log.e(TAG, ex.toString());
         }
         return fixSvgIcons(favIconUrl);
+        */
     }
 
     protected static String decodeSpecialChars(String favIconUrl) throws UnsupportedEncodingException {
