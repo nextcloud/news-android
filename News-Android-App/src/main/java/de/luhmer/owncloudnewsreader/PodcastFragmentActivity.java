@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -258,19 +259,29 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     @VisibleForTesting
     public void openMediaItem(final MediaItem mediaItem) {
-        Intent intent = new Intent(this, PodcastPlaybackService.class);
-        intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
-        startService(intent);
+        if (mPrefs.getBoolean(SettingsActivity.CB_EXTERNAL_PLAYER, false)) {
+            Uri uri = mediaItem.link.startsWith("/")
+                    ? FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", new File(mediaItem.link))
+                    : Uri.parse(mediaItem.link);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            if (mediaItem instanceof PodcastItem) intent.setDataAndType(uri, ((PodcastItem) mediaItem).mimeType);
+            else intent.setDataAndType(uri, "audio/*");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, PodcastPlaybackService.class);
+            intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
+            startService(intent);
 
-        /*
-        if(!mMediaBrowser.isConnected()) {
-            mMediaBrowser.connect();
+            /*
+            if(!mMediaBrowser.isConnected()) {
+                mMediaBrowser.connect();
+            }
+            */
+
+
+            //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
-        */
-
-
-        //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-
     }
 
     @Override

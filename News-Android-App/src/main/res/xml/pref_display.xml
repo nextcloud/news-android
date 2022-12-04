@@ -53,6 +53,13 @@
             android:title="@string/pref_display_browser"
             app:iconSpaceReserved="false"/>
 
+        <SwitchPreference
+            android:key="cb_external_player"
+            android:title="@string/pref_external_player"
+            android:summary="@string/pref_external_player_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false"/>
+
         <MultiSelectListPreference
             android:entries="@array/pref_display_news_detail_actionbar_icons"
             android:entryValues="@array/pref_display_news_detail_actionbar_icons_values"
