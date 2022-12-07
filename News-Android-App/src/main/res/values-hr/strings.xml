@@ -6,7 +6,6 @@
     <string name="empty_view_content">Ovdje nema stavki</string>
     <string name="empty_view_content_action">Povuci prema dolje za osvježavanje</string>
     <string name="no_wifi_available">Nije povezana bežična (Wi-Fi) mreža</string>
-    <string name="do_you_want_to_download_without_wifi">Želite li preuzeti slike van bežične (Wi-Fi) veze</string>
     <string name="current_version">Koristite se inačicom %s</string>
     <string name="widget_header">Newscloud vijesti</string>
     <plurals name="message_bar_new_articles_available">

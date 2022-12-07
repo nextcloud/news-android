@@ -6,7 +6,6 @@
     <string name="empty_view_content">Нічого нема</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
-    <string name="do_you_want_to_download_without_wifi">Чи хочете ви завантажити зображення без з\'єднання Wi-Fi</string>
     <string name="current_version">Ви використовуєте версію %s</string>
     <string name="widget_header">Новини Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -22,8 +21,8 @@
 
     <string name="menu_update">Оновити</string>
     <string name="menu_markAllAsRead">Позначити все як прочитане</string>
-    <string name="menu_StartImageCaching">Завантажити зображення</string>
-    <string name="menu_downloadMoreItems">Завантажити більше елементів</string>
+    <string name="menu_StartImageCaching">Звантажити зображення</string>
+    <string name="menu_downloadMoreItems">Звантажити більше елементів</string>
 
     <string name="tv_showing_cached_version">Відображається кешована версія</string>
 
@@ -32,13 +31,13 @@
     <string name="action_read">Читати</string>
     <string name="action_playPodacst">Відтворити подкаст</string>
     <string name="action_openInBrowser">Відкрити у браузері</string>
-    <string name="action_Share">Поділитися</string>
+    <string name="action_Share">Спільний доступ</string>
     <string name="action_login">Налаштування сервера</string>
     <string name="action_save">Зберегти</string>
     <string name="action_settings">Налаштування</string>
     <string name="action_sync_settings">Налаштування синхронізації</string>
     <string name="action_add_new_feed">Додати нову стрічку</string>
-    <string name="action_add_new_folder">Додати нову папку</string>
+    <string name="action_add_new_folder">Додати новий каталог</string>
     <string name="action_textToSpeech">Читати</string>
     <string name="action_search">Пошук</string>
     <string name="action_download_articles_offline">Завантажуйте статті в автономному режимі</string>
@@ -51,7 +50,7 @@
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Завантажити зображення</string>
+    <string name="action_img_download">Звантажити зображення</string>
     <string name="action_img_sharelink">Поділіться посиланням на зображення</string>
     <string name="action_img_open">Відкрийте зображення у браузері</string>
     <string name="action_img_copylink">Скопіювати посилання на зображення</string>
@@ -73,15 +72,15 @@
     <string name="action_feed_notification_settings">Налаштування сповіщень</string>
     <string name="feed_remove_button">Вилучити</string>
     <string name="feed_rename_button">Перейменувати</string>
-    <string name="confirm_feed_remove">Ви справді хочете видалити цю стрічку? Це неможливо скасувати!</string>
+    <string name="confirm_feed_remove">Дійсно вилучити цю стрічку? Цю дію неможливо буде скасувати!</string>
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
-    <string name="action_folder_remove">Видалити папку</string>
-    <string name="action_folder_rename">Переіменувати теку</string>
+    <string name="action_folder_remove">Вилучити каталог</string>
+    <string name="action_folder_rename">Перейменувати каталог</string>
     <string name="folder_remove_button">Вилучити</string>
     <string name="folder_rename_button">Перейменувати</string>
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Додати</string>
-    <string name="hint_folder_name">Ім\'я теки</string>
+    <string name="hint_folder_name">Назва каталогу</string>
     <!-- Strings related to login -->
     <string name="login_manual">Вхід вручну</string>
     <string name="pref_title_username">Ім\'я користувача</string>
@@ -141,10 +140,11 @@
     <string name="pref_display_browser">Переглядач</string>
 
 
-    <string name="pref_display_apptheme_auto">Згідно з системною</string>
+    <string name="pref_display_apptheme_auto">Системна</string>
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 
+    <string name="pref_display_feed_list_layout_full_text">Повнотекстовий</string>
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Малий</string>
     <string name="pref_display_font_size_d">За замовчуванням</string>
@@ -155,11 +155,11 @@
     <string name="content_desc_collapse">Згорнути</string>
     <string name="content_desc_mark_as_read">Відмітити прочитаним</string>
     <string name="content_desc_mark_as_unread">Позначити не прочитаним</string>
-    <string name="content_desc_add_to_favorites">Додати до улюбленого</string>
+    <string name="content_desc_add_to_favorites">Вподобати</string>
     <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
     <string name="content_desc_show_password">Показати пароль</string>
     <string name="content_desc_delete">Вилучити</string>
-    <string name="content_desc_download">Завантажити</string>
+    <string name="content_desc_download">Звантажити</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Помилка</string>

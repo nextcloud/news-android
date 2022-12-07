@@ -5,7 +5,6 @@
     <string name="empty_view_content">Nema stavki</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">Nema bežične veze</string>
-    <string name="do_you_want_to_download_without_wifi">Želite li da preuzmete slike bez bežične veze</string>
     <string name="current_version">Koristite verziju %s</string>
     <string name="widget_header">Nekstklaud Vesti</string>
     <plurals name="message_bar_new_articles_available">

@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Издърпване надолу, за опресняване</string>
     <string name="toast_GettingMoreItems">Започва изтеглянето на няколко елемента. Моля изчакайте....</string>
     <string name="no_wifi_available">Няма WiFi връзка</string>
-    <string name="do_you_want_to_download_without_wifi">Желаете ли изображенията да бъдат свалени при отсъствието на WiFi връзка</string>
+    <string name="do_you_want_to_download_without_wifi">Желаете ли да изтеглите изображенията без Wi-Fi връзка?</string>
     <string name="current_version">Ползвате версия %s</string>
     <string name="widget_header">Nextcloud Новини</string>
     <plurals name="message_bar_new_articles_available">

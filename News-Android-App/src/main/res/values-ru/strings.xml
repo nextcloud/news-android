@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Потяните вниз, чтобы обновить</string>
     <string name="toast_GettingMoreItems">Началась загрузка дополнительных элементов. Пожалуйста, подождите ...</string>
     <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
-    <string name="do_you_want_to_download_without_wifi">Вы хотите загружать изображения без Wi-Fi соединения</string>
+    <string name="do_you_want_to_download_without_wifi">Вы хотите скачать изображения без Wi-Fi соединения?</string>
     <string name="current_version">Вы используете версию %s</string>
     <string name="widget_header">Новости ownCloud</string>
     <plurals name="message_bar_new_articles_available">

@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Tira in giù per aggiornare</string>
     <string name="toast_GettingMoreItems">Iniziato lo scaricamento di altri elementi. Attendi ...</string>
     <string name="no_wifi_available">WiFi non connesso</string>
-    <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le immagini senza una connessione WiFi</string>
     <string name="current_version">Stai usando la versione %s</string>
     <string name="widget_header">Notizie di NextCloud</string>
     <plurals name="message_bar_new_articles_available">

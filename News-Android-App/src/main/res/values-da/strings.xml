@@ -6,7 +6,6 @@
     <string name="empty_view_content">Her er ingen artikler</string>
     <string name="empty_view_content_action">Træk ned for at genindlæse</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
-    <string name="do_you_want_to_download_without_wifi">Ønsker du at hente billeder uden WiFi-forbindelse</string>
     <string name="current_version">Du bruger version %s</string>
     <string name="widget_header">ownCloud Nyheder</string>
     <plurals name="message_bar_new_articles_available">
@@ -66,6 +65,7 @@
     <string name="action_link_share">Del Link</string>
     <string name="action_link_open">Åbn Link i Browser</string>
     <string name="action_link_copy">Kopier link</string>
+    <string name="toast_img_download_wait">Henter. Vent venligst ...</string>
     <string name="toast_img_saved">Billede gemp</string>
     <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -118,6 +118,9 @@
     <!-- General settings -->
     <string name="pref_header_general">Generelt</string>
     <string name="pref_title_general_sort_order">Rækkefølge for sortering</string>
+
+    <string name="pref_general_sort_order_new_old">Ny → Gammel</string>
+    <string name="pref_general_sort_order_old_new">Gammel → Ny</string>
 
     <string name="pref_rename_action_swipe_right">Aktion når der skydes til højre</string>
     <string name="pref_rename_action_swipe_left">Aktion når skydes til venstre</string>
@@ -200,9 +203,11 @@
     <string name="content_desc_play">Afspil</string>
     <string name="content_desc_pause">Pause</string>
     <string name="content_desc_forward">Videresend</string>
+    <string name="content_desc_expand">Udvid</string>
     <string name="content_desc_collapse">Sammenfold</string>
     <string name="content_desc_mark_as_read">Marker som læst</string>
     <string name="content_desc_mark_as_unread">Marker som ulæst</string>
+    <string name="content_desc_tap_to_refresh">Tryk for at genopfriske</string>
     <string name="content_desc_add_to_favorites">Tilføj til favoritter</string>
     <string name="content_desc_remove_from_favorites">Fjern fra favoritter</string>
     <string name="content_desc_show_password">Vis adgangskode</string>

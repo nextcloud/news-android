@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">下拉以更新</string>
     <string name="toast_GettingMoreItems">正在開始下載更多項目。請稍後 ...</string>
     <string name="no_wifi_available">WiFi 未連線</string>
-    <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖像</string>
+    <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖像?</string>
     <string name="current_version">您在使用版本 %s</string>
     <string name="widget_header">Nextcloud 新聞</string>
     <plurals name="message_bar_new_articles_available">

@@ -6,7 +6,6 @@
     <string name="empty_view_content">Engin atriði hér</string>
     <string name="empty_view_content_action">Draga niður til að endurlesa</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
-    <string name="do_you_want_to_download_without_wifi">Viltu sækja myndirnar án Wi-Fi-tengingar</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
     <plurals name="message_bar_new_articles_available">
@@ -200,6 +199,7 @@
 
     <string name="content_desc_play">Spila</string>
     <string name="content_desc_pause">Í bið</string>
+    <string name="content_desc_playback_speed">Hraði afspilunar</string>
     <string name="content_desc_forward">Áframsenda</string>
     <string name="content_desc_collapse">Fella saman</string>
     <string name="content_desc_mark_as_read">Merkja sem lesið</string>
@@ -233,7 +233,9 @@
     <string name="array_sync_interval_min_5">5 mínútur</string>
     <string name="array_sync_interval_min_15">15 mínútur</string>
     <string name="array_sync_interval_min_30">30 mínútur</string>
+    <string name="array_sync_interval_min_45">45 mínútur</string>
     <string name="array_sync_interval_hour_1">1 klukkustund</string>
+    <string name="array_sync_interval_hour_2">2 klukkustundir</string>
     <string name="array_sync_interval_hour_3">3 klukkustundir</string>
     <string name="array_sync_interval_hour_6">6 klukkustundir</string>
     <string name="array_sync_interval_hour_12">12 klukkustundir</string>

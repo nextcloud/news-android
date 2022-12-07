@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Przeciągnij w dół, aby odświeżyć</string>
     <string name="toast_GettingMoreItems">Rozpoczęto pobieranie kolejnych pozycji. Proszę czekać…</string>
     <string name="no_wifi_available">Brak połączenia WIFI</string>
-    <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi</string>
+    <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi?</string>
     <string name="current_version">Używasz wersji %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">

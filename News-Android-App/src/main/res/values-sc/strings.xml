@@ -6,7 +6,6 @@
     <string name="empty_view_content">Perunu elementu inoghe</string>
     <string name="empty_view_content_action">Tira a bàsciu pro agiornare</string>
     <string name="no_wifi_available">WiFi disconnètidu</string>
-    <string name="do_you_want_to_download_without_wifi">Nche cheres iscarrigare is immàgines sena connessione Wi-Fi </string>
     <string name="current_version">Ses impreende sa Versione %s</string>
     <string name="widget_header">Noas de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">

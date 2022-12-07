@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Kéo xuống để làm mới</string>
     <string name="toast_GettingMoreItems">Đã bắt đầu tải xuống nhiều mục. Vui lòng đợi ...</string>
     <string name="no_wifi_available">Không có kết nối WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải hình ảnh xuống mà không có kết nối Wi-Fi không</string>
     <string name="current_version">Bạn đang sử dụng phiên bản %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">

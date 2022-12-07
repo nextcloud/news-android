@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Omlaag trekken om te verversen</string>
     <string name="toast_GettingMoreItems">Downloaden van één of meer zaken gestart. Even geduld ...</string>
     <string name="no_wifi_available">Geen wifi verbinding</string>
-    <string name="do_you_want_to_download_without_wifi">Wilt u de afbeeldingen downloaden zonder een wifi verbinding</string>
+    <string name="do_you_want_to_download_without_wifi">Wil je de afbeeldingen downloaden zonder Wi-Fi verbinding?</string>
     <string name="current_version">U gebruikt versie %s</string>
     <string name="widget_header">Nextcloud nieuws</string>
     <plurals name="message_bar_new_articles_available">

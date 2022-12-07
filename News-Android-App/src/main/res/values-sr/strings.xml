@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Повуците да освежите</string>
     <string name="toast_GettingMoreItems">Preuzimanje više stavki je u toku. Molim sačekajte ...</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
-    <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без бежичне везе</string>
     <string name="current_version">Користите верзију %s</string>
     <string name="widget_header">Некстклауд Вести</string>
     <plurals name="message_bar_new_articles_available">
