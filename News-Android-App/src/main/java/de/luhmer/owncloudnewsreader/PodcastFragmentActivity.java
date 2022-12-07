@@ -259,28 +259,27 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     @VisibleForTesting
     public void openMediaItem(final MediaItem mediaItem) {
-        if (mPrefs.getBoolean(SettingsActivity.CB_EXTERNAL_PLAYER, false)) {
-            Uri uri = mediaItem.link.startsWith("/")
+        if (mPrefs.getBoolean(SettingsActivity.CB_EXTERNAL_PLAYER, false) && mediaItem instanceof PodcastItem) {
+            // PodcastItems can be audio or video
+            Uri uri = ((PodcastItem) mediaItem).offlineCached // in case it's locally cached (offline)
                     ? FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", new File(mediaItem.link))
                     : Uri.parse(mediaItem.link);
+
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            if (mediaItem instanceof PodcastItem) intent.setDataAndType(uri, ((PodcastItem) mediaItem).mimeType);
-            else intent.setDataAndType(uri, "audio/*");
+            intent.setDataAndType(uri, ((PodcastItem) mediaItem).mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
         } else {
+            // in case the user wants to use the internal player or we have a TTS item (text to speech)
             Intent intent = new Intent(this, PodcastPlaybackService.class);
             intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
             startService(intent);
 
-            /*
-            if(!mMediaBrowser.isConnected()) {
-                mMediaBrowser.connect();
-            }
-            */
 
-
-            //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+            // if(!mMediaBrowser.isConnected()) {
+            //    mMediaBrowser.connect();
+            // }
+            // bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
     }
 

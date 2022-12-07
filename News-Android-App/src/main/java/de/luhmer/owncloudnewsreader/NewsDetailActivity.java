@@ -575,7 +575,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 */
 	private void startTTS(int currentPosition) {
 		RssItem rssItem = rssItems.get(currentPosition);
-		String text = rssItem.getTitle() + "\n\n " + Html.fromHtml(rssItem.getBody()).toString();
+		String text = rssItem.getTitle() + ". " + Html.fromHtml(rssItem.getBody()).toString();
 		// Log.d(TAG, text);
 		TTSItem ttsItem = new TTSItem(rssItem.getId(), rssItem.getAuthor(), rssItem.getTitle(), text, rssItem.getFeed().getFaviconUrl());
 		openMediaItem(ttsItem);
