@@ -146,6 +146,7 @@
     <string name="pref_privacy">Privasi</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Tampilkan</string>
+    <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
     <string name="pref_display_apptheme_light">Terang</string>
     <string name="pref_display_apptheme_dark">Gelap</string>
