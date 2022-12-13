@@ -115,7 +115,9 @@
     <string name="pref_privacy">Privaatsus</string>
     <!-- Settings for Display -->
     <string name="pref_header_display">Vaade</string>
+    <string name="pref_title_app_theme">Teema</string>
     <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
+    <string name="pref_title_font_size">Kirjasuurus</string>
     <string name="pref_display_apptheme_light">Tume</string>
     <string name="pref_display_apptheme_dark">Hele</string>
 
