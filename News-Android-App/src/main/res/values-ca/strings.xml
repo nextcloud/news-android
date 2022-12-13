@@ -5,8 +5,8 @@
     <string name="title_activity_sync_interval_selector">Interval de sincronització</string>
     <string name="empty_view_content">Cap element</string>
     <string name="empty_view_content_action">Desplegueu per actualitzar</string>
+    <string name="toast_GettingMoreItems">S\'ha iniciat la baixada de més elements. Per favor, espereu …</string>
     <string name="no_wifi_available">Sense connexió Wi-Fi</string>
-    <string name="do_you_want_to_download_without_wifi">Voleu descarregar les imatges sense una connexió WiFi</string>
     <string name="current_version">Esteu fent servir la versió %s</string>
     <string name="widget_header">Notícies Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -36,6 +36,7 @@
     <string name="action_settings">Paràmetres</string>
     <string name="action_sync_settings">Opcions de sincronització</string>
     <string name="action_add_new_feed">Afegeix un nou canal</string>
+    <string name="action_add_new_folder">Afegeix una carpeta nova</string>
     <string name="action_textToSpeech">De lectura</string>
     <string name="action_search">Cerca</string>
     <string name="action_download_articles_offline">Descarrega els articles fora de línia</string>
@@ -66,6 +67,7 @@
     <string name="action_link_share">Comparteix l\'enllaç</string>
     <string name="action_link_open">Obre l\'enllaç al navegador</string>
     <string name="action_link_copy">Copia l\'enllaç</string>
+    <string name="toast_img_download_wait">S\'està baixant. Espereu...</string>
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
@@ -84,12 +86,23 @@
     <string name="feed_move_list_description">Selecciona la carpeta per moure-hi el canal</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Suprimeix la carpeta</string>
     <string name="action_folder_rename">Canvia el nom de la carpeta</string>
     <string name="folder_remove_button">Elimina</string>
     <string name="folder_rename_button">Anomena</string>
+    <string name="confirm_folder_remove">Segur que voleu suprimir aquesta carpeta? Això no es podrà desfer!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Rebeu notificacions úniques per a aquest canal</string>
+    <string name="notification_feed_default">Tots els canals amb els paràmetres predeterminats es mostraran en una notificació</string>
+    <string name="notification_feed_none">Cap notificació</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Afegeix</string>
     <string name="hint_folder_name">Nom de la carpeta</string>
+    <string name="folder_already_exists">La carpeta ja existeix</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Inici de sessió manual</string>
     <string name="login_sso">Inici de sessió fent servir l\'Aplicació de Fitxers de Nextcloud</string>
@@ -99,6 +112,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inicia la sessió</string>
+    <string name="login_progress_signing_in">S\'està iniciant la sessió...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Aquest camp és obligatori</string>
     <string name="error_invalid_url">L\'URL és incorrecte</string>
@@ -110,6 +124,12 @@
         <item quantity="other">Descarregats %d elements antics</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">S\'ha recuperat %d element fins ara ...</item>
+        <item quantity="other">S\'han recuperat %d elements fins ara ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Paràmetres</string>
     <string name="cache_is_cleared">S\'ha esborrat la memòria cau!</string>
@@ -131,6 +151,7 @@
     <string name="pref_general_search_in_body">Cos</string>
 
     <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
+    <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau. Espereu si us plau ... </string>
     <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu suprimir la memòria cau igualment?</string>
     <string name="warning">Avís</string>
     <string name="pref_title_AutoSyncOnStart">Sincronitza durant l\'inici</string>
@@ -151,6 +172,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No heu seleccionat cap podcast</string>
     <string name="no_chapters_available">No hi ha capítols disponibles</string>
+    <string name="exit_playback">Surt del reproductor</string>
     <string name="podcast_playback_speed_dialog_title">Velocitat de reproducció</string>
     <string name="notification_downloading_podcast_title">S\'està descarregant el podcast</string>
 
@@ -164,6 +186,7 @@
     <string name="pref_contribute">Contribuïu!</string>
     <string name="pref_contribute_summary">Obteniu el codi font</string>
     <string name="pref_privacy">Privadesa</string>
+    <string name="pref_privacy_summary">Política de privadesa d\'Android de notícies de Nextcloud</string>
     <string name="pref_version">Aplicació Android de notícies de Nextcloud</string>
 
 
@@ -188,6 +211,7 @@
     <string name="pref_display_browser_built_in">Navegador integrat</string>
     <string name="pref_display_browser_external">Navegador extern</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniatures (només capçaleres)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniatures</string>
     <string name="pref_display_feed_list_layout_simple_text">Text simple</string>
     <string name="pref_display_feed_list_layout_headlines">Capçaleres</string>
@@ -203,9 +227,14 @@
 
     <string name="content_desc_play">Joguina</string>
     <string name="content_desc_pause">Posa en pausa</string>
+    <string name="content_desc_playback_speed">Velocitat de reproducció</string>
+    <string name="content_desc_rewind">Rebobina</string>
     <string name="content_desc_forward">Reenvia</string>
+    <string name="content_desc_expand">Expandeix</string>
     <string name="content_desc_collapse">Replega</string>
     <string name="content_desc_mark_as_read">Marca com a llegit</string>
+    <string name="content_desc_mark_as_unread">Marca com a sense llegir</string>
+    <string name="content_desc_tap_to_refresh">Toca per actualitzar</string>
     <string name="content_desc_add_to_favorites">Afegeix a favorits</string>
     <string name="content_desc_remove_from_favorites">Suprimeix dels preferits</string>
     <string name="content_desc_show_password">Mostra la contrasenya</string>
@@ -220,6 +249,9 @@
     <string name="login_dialog_text_not_compatible">Aquesta versió d\'aplicació no és compatible amb la vostra aplicació de notícies de Nextcloud. Si us plau, actualitzeu l\'aplicació de notícies i el seu marc de treball.</string>
     <string name="login_dialog_title_security_warning">Avís de seguretat</string>
     <string name="login_dialog_text_security_warning">No esteu fent servir HTTPS, i no és gens recomanable. Un atacant podria interceptar el vostre trafic de dades i guanyar accés a les vostres dades més sensibles (p.ex. la vostra contrasenya).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">S\'ha produït un error. Torneu-ho a provar.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Sincronització &amp; de dades </string>
     <string name="pref_title_clearCache">Esborra la memòria cau</string>
@@ -244,5 +276,10 @@
     <string name="array_sync_interval_hour_24">24 hores</string>
     <string name="switch_account">Canvia el compte</string>
     
+    <string name="successfully_exported">S\'ha importat correctament a:</string>
+    <string name="opml_export">Exportació OPML</string>
+    <string name="parsing_opml">S\'està analitzant OPML</string>
     <string name="please_wait">Espereu...</string>
+    <string name="interval_sync_title">Sincronització de l\'interval</string>
+
     </resources>

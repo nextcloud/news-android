@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Dra nedåt för uppdatera</string>
     <string name="toast_GettingMoreItems">Nedladdning av ytterligare poster har påbörjats. Vänligen vänta...</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
-    <string name="do_you_want_to_download_without_wifi">Vill du hämta bilderna utan en Wi-Fi-anslutning</string>
+    <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilder utan wifi-anslutning?</string>
     <string name="current_version">Du använder Version %s</string>
     <string name="widget_header">Nextcloud nyheter</string>
     <plurals name="message_bar_new_articles_available">
@@ -109,7 +109,7 @@
     <string name="login_sso">Logga in med Nextcloud filer-app</string>
     <string name="pref_title_username">Användarnamn</string>
     <string name="pref_title_password">Lösenord</string>
-    <string name="pref_title_owncloudRootPath">ownCloud rotadress</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud root adress</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Logga in</string>
@@ -173,6 +173,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ingen podcast vald</string>
     <string name="no_chapters_available">Inga kapitel tillgängliga.</string>
+    <string name="exit_playback">Stäng mediaspelaren</string>
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
     <string name="notification_downloading_podcast_title">Hämtar podcast</string>
 

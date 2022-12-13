@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">下拉刷新</string>
     <string name="toast_GettingMoreItems">已开始下载更多项目。请稍候 ...</string>
     <string name="no_wifi_available">没有连接到 WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">确定要通过非 Wi-Fi 连接下载图片？</string>
+    <string name="do_you_want_to_download_without_wifi">是否要在没有 WiFi 的状况下下载图像？</string>
     <string name="current_version">您正在使用的版本号为：%s</string>
     <string name="widget_header">ownCloud 新闻</string>
     <plurals name="message_bar_new_articles_available">
@@ -36,6 +36,7 @@
     <string name="action_settings">设置</string>
     <string name="action_sync_settings">同步设置</string>
     <string name="action_add_new_feed">添加新订阅源</string>
+    <string name="action_add_new_folder">添加新文件夹</string>
     <string name="action_textToSpeech">朗读</string>
     <string name="action_search">搜索</string>
     <string name="action_download_articles_offline">离线下载文章</string>
@@ -83,9 +84,13 @@
     <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
     <string name="move_feed_root_folder">根目录</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">移除文件夹</string>
     <string name="action_folder_rename">重命名文件夹</string>
     <string name="folder_remove_button">删除</string>
     <string name="folder_rename_button">重命名</string>
+    <string name="confirm_folder_remove">你确定要移除此文件夹吗？此操作无法恢复！</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">接收此订阅源的单独通知</string>
     <string name="notification_feed_default">所有默认设置的订阅源的通知将整合成一个</string>
@@ -94,6 +99,8 @@
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">添加</string>
     <string name="hint_folder_name">文件夹名称</string>
+    <string name="folder_already_exists">文件夹已存在</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">手动登录</string>
     <string name="login_sso">使用Nextcloud文件应用登录</string>
@@ -161,6 +168,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">无 Podcast 被选中</string>
     <string name="no_chapters_available">无可用章节</string>
+    <string name="exit_playback">退出播放器</string>
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
     <string name="notification_downloading_podcast_title">正在下载播客</string>
 
@@ -215,10 +223,14 @@
 
     <string name="content_desc_play">玩</string>
     <string name="content_desc_pause">暂停</string>
+    <string name="content_desc_playback_speed">播放速度</string>
+    <string name="content_desc_rewind">撤回</string>
     <string name="content_desc_forward">转发</string>
+    <string name="content_desc_expand">展开</string>
     <string name="content_desc_collapse">折叠</string>
     <string name="content_desc_mark_as_read">标为已读</string>
     <string name="content_desc_mark_as_unread">标为未读</string>
+    <string name="content_desc_tap_to_refresh">点击此处刷新</string>
     <string name="content_desc_add_to_favorites">添加到收藏</string>
     <string name="content_desc_remove_from_favorites">从收藏中移除</string>
     <string name="content_desc_show_password">显示密码</string>

@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Σύρετε προς τα κάτω για ανανέωση</string>
     <string name="toast_GettingMoreItems">Η λήψη περισσότερων στοιχείων ξεκίνησε. Παρακαλώ περιμένετε …</string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
-    <string name="do_you_want_to_download_without_wifi"> Θα θέλατε τη λήψη εικόνων χωρίς σύνδεση Wi-Fi </string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
     <string name="widget_header">Νέα Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -173,6 +172,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Δεν επιλέχθηκε Podcast</string>
     <string name="no_chapters_available">Δεν υπάρχουν διαθέσιμα κεφάλαια</string>
+    <string name="exit_playback">Έξοδος από τον αναπαραγωγέα</string>
     <string name="podcast_playback_speed_dialog_title">Ταχύτητα Αναπαραγωγής</string>
     <string name="notification_downloading_podcast_title">Γίνεται λήψη podcast</string>
 
@@ -227,10 +227,13 @@
 
     <string name="content_desc_play">Αναπαραγωγή</string>
     <string name="content_desc_pause">Παύση</string>
+    <string name="content_desc_playback_speed">Ταχύτητα αναπαραγωγής</string>
     <string name="content_desc_forward">Προώθηση</string>
+    <string name="content_desc_expand">Επεκτείνω</string>
     <string name="content_desc_collapse">Σύμπτυξη</string>
     <string name="content_desc_mark_as_read">Σήμανση ως αναγνωσμένο</string>
     <string name="content_desc_mark_as_unread">επισήμανση ως μή-αναγνωσμένο</string>
+    <string name="content_desc_tap_to_refresh">Πατήστε για ανανέωση</string>
     <string name="content_desc_add_to_favorites">Προσθήκη στα αγαπημένα </string>
     <string name="content_desc_remove_from_favorites">Αφαίρεση από τα αγαπημένα</string>
     <string name="content_desc_show_password">Εμφάνιση κωδικού</string>

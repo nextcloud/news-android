@@ -7,7 +7,6 @@
     <string name="empty_view_content_action">Trage în jos pentru a reîmprospăta</string>
     <string name="toast_GettingMoreItems">Descărcarea de articole noi a început. Vă rugăm să așteptați ...</string>
     <string name="no_wifi_available">Nu exista conexiune WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Doriți să descărcați imaginile fără o conexiune Wi-Fi?</string>
     <string name="current_version">Folosiți versiunea %s</string>
     <string name="widget_header">Știri Nextcloud</string>
     <plurals name="message_bar_new_articles_available">

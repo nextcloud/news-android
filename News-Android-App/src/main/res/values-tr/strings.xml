@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Yenilemek için aşağı çekin</string>
     <string name="toast_GettingMoreItems">Diğer ögelerin indirilmesine başlandı. Lütfen bekleyin…</string>
     <string name="no_wifi_available">Wi-Fi bağlantısı kurulmamış</string>
-    <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz</string>
+    <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz?</string>
     <string name="current_version">%s sürümünü kullanıyorsunuz</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">

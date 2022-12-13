@@ -6,7 +6,6 @@
     <string name="empty_view_content">Nėra elementų</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">Nėra WiFi ryšio</string>
-    <string name="do_you_want_to_download_without_wifi">Ar norite atsisiųsti paveikslus be Wi-Fi ryšio</string>
     <string name="current_version">Jūs naudojate versiją %s</string>
     <string name="widget_header">Nextcloud naujienos</string>
     <plurals name="message_bar_new_articles_available">
@@ -198,6 +197,7 @@
 
     <string name="content_desc_play">Atkurti</string>
     <string name="content_desc_pause">Pristabdyti</string>
+    <string name="content_desc_playback_speed">Atkūrimo greitis</string>
     <string name="content_desc_forward">Persiųsti</string>
     <string name="content_desc_collapse">Suskleisti</string>
     <string name="content_desc_mark_as_read">Žymėti kaip skaitytą</string>

@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Pre obnovenie potiahnite nadol</string>
     <string name="toast_GettingMoreItems">Sťahovanie ďalších položiek začalo ... Čakajte prosím ...</string>
     <string name="no_wifi_available">Nie je pripojenie k WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">Chcete obrázky stiahnuť bez pripojenia Wi-Fi</string>
+    <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez Wi-Fi pripojenia?</string>
     <string name="current_version">Používate verziu %s</string>
     <string name="widget_header">ownCloud Novinky</string>
     <plurals name="message_bar_new_articles_available">

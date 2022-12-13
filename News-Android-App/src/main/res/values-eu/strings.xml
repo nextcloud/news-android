@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Tiratu behera freskatzeko</string>
     <string name="toast_GettingMoreItems">Elementu gehiagoren deskarga hasita. Itxaron mesedez ...</string>
     <string name="no_wifi_available">Ez dago WiFira konektatuta</string>
-    <string name="do_you_want_to_download_without_wifi">Irudiak Wi-Fi konexiorik gabe deskargatu nahi dituzu</string>
+    <string name="do_you_want_to_download_without_wifi">Irudiak Wi-Fi konexiorik gabe deskargatu nahi dituzu?</string>
     <string name="current_version">%s bertsioa erabiltzen ari zara</string>
     <string name="widget_header">Nextcloud Berriak</string>
     <plurals name="message_bar_new_articles_available">

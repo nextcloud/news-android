@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Vedä alas päivittääksesi</string>
     <string name="toast_GettingMoreItems">Ladataan lisää artikkeleita... Odota.</string>
     <string name="no_wifi_available">Ei WiFi-yhteyttä</string>
-    <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä</string>
+    <string name="do_you_want_to_download_without_wifi">Haluatko ladata kuvat ilman WiFi-yhteyttä?</string>
     <string name="current_version">Käytössäsi on versio %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
@@ -247,9 +247,9 @@
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Vaikuttaa siltä, että News-sovellusta ei ole asennettu tai aktivoitu palvelimellesi. Lue tästä ohjeet sovelluksen asentamiseen palvelimelle: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Jokin meni pieleen :(</string>
     <string name="login_dialog_text_zero_version_code">News-verkkosovelluksen version paluuarvo on \"0\":. Katso seuraavaa virheraporttia: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Tämä sovellus versio ei ole yhteensopiva käyttämäsi Nextcloud uutis sovelluksen kanssa. Päivitä uutissovellus ja sovelluskehikko.</string>
+    <string name="login_dialog_text_not_compatible">Tämä sovellus versio ei ole yhteensopiva käyttämäsi Nextcloud-uutissovelluksen kanssa. Päivitä uutissovellus ja sovelluskehikko.</string>
     <string name="login_dialog_title_security_warning">Turvallisuusvaroitus</string>
-    <string name="login_dialog_text_security_warning">Et käytä HTTPS protokollaa, jota vahvasti suositellaan. Hyökkääjä voi siepata viestit ja saada pääsyn joihinkin arkaluontoisiin tietoihin, kuten salasana tms..</string>
+    <string name="login_dialog_text_security_warning">Et käytä HTTPS-protokollaa, jota vahvasti suositellaan. Hyökkääjä voi siepata viestit ja saada pääsyn joihinkin arkaluontoisiin tietoihin, kuten salasana tms.</string>
     <string name="login_dialog_select_account_unknown_error_toast">Jokin meni pieleen. Yritä uudelleen.</string>
 
 

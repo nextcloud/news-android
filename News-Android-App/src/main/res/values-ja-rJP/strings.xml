@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">下に引っ張ってリフレッシュ</string>
     <string name="toast_GettingMoreItems">さらに他のアイテムのダウンロードが開始されました。しばらくお待ちください...</string>
     <string name="no_wifi_available">WiFi接続がありません</string>
-    <string name="do_you_want_to_download_without_wifi">WiFi接続がない場合、画像をダウンロードしますか</string>
+    <string name="do_you_want_to_download_without_wifi">Wi-Fi接続がなくても画像をダウンロードしたいですか？</string>
     <string name="current_version">使用中のバージョンは %s です</string>
     <string name="widget_header">Nextcloud ニュース</string>
     <plurals name="message_bar_new_articles_available">

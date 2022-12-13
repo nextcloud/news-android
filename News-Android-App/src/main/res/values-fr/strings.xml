@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Faites glisser vers le bas pour rafraîchir</string>
     <string name="toast_GettingMoreItems">Téléchargement d\'autres objets en cours. Veuillez patienter  ...</string>
     <string name="no_wifi_available">Aucune connexion Wi-Fi</string>
-    <string name="do_you_want_to_download_without_wifi">Télécharger les images sans connexion Wi-Fi ?</string>
+    <string name="do_you_want_to_download_without_wifi">Voulez-vous télécharger les images sans connexion Wi-Fi ?</string>
     <string name="current_version">Vous utilisez la version %s</string>
     <string name="widget_header">Actualités ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -280,7 +280,7 @@
     <string name="array_sync_interval_hour_6">6 heures</string>
     <string name="array_sync_interval_hour_12">12 heures</string>
     <string name="array_sync_interval_hour_24">24 heures</string>
-    <string name="switch_account">Basculer de compte</string>
+    <string name="switch_account">Changer de compte</string>
     
     <string name="successfully_exported">Export effectué vers:</string>
     <string name="opml_export">Exporter au format OPML</string>

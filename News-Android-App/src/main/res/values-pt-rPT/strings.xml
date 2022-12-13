@@ -5,9 +5,8 @@
     <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
     <string name="empty_view_content">Sem itens aqui</string>
     <string name="empty_view_content_action">Puxe para atualizar</string>
-    <string name="toast_GettingMoreItems">Download de mais itens iniciou. Por favor aguarde ...</string>
+    <string name="toast_GettingMoreItems">Iniciada a transferência de mais itens. Por favor, aguarde...</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>
-    <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi</string>
     <string name="current_version">Está a usar a Versão %s</string>
     <string name="widget_header">Notícias da ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -41,10 +40,10 @@
     <string name="action_add_new_folder">Adicionar nova pasta</string>
     <string name="action_textToSpeech">Leitura automática</string>
     <string name="action_search">Pesquisar</string>
-    <string name="action_download_articles_offline">Transferir artigos off-line</string>
+    <string name="action_download_articles_offline">Transferir artigos \'\'off-line\'\'</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Download de artigos para uso offline</string>
-    <string name="notification_download_images_offline">Download de imagens para uso offline</string>
+    <string name="notification_download_articles_offline">A transferir os artigos para utilização \'\'off-line\'\'</string>
+    <string name="notification_download_images_offline">A transferir as imagens para utilização \'\'off-line\'\'</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tem %d novo item por ler</item>
         <item quantity="many">Tem %d novos itens por ler</item>
@@ -71,7 +70,7 @@
     <string name="action_link_share">Partilhar hiperligação</string>
     <string name="action_link_open">Abrir ligação num explorador</string>
     <string name="action_link_copy">Copiar hiperligação</string>
-    <string name="toast_img_download_wait">Fazendo download. Por favor aguarde ...</string>
+    <string name="toast_img_download_wait">A transferir. Por favor, aguarde...</string>
     <string name="toast_img_saved">Imagem guardada</string>
     <string name="toast_img_notwriteable">Falhou ao guardar a imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para a área de transferência</string>
