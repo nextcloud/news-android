@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -258,19 +259,28 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     @VisibleForTesting
     public void openMediaItem(final MediaItem mediaItem) {
-        Intent intent = new Intent(this, PodcastPlaybackService.class);
-        intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
-        startService(intent);
+        if (mPrefs.getBoolean(SettingsActivity.CB_EXTERNAL_PLAYER, false) && mediaItem instanceof PodcastItem) {
+            // PodcastItems can be audio or video
+            Uri uri = ((PodcastItem) mediaItem).offlineCached // in case it's locally cached (offline)
+                    ? FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", new File(mediaItem.link))
+                    : Uri.parse(mediaItem.link);
 
-        /*
-        if(!mMediaBrowser.isConnected()) {
-            mMediaBrowser.connect();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, ((PodcastItem) mediaItem).mimeType);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
+        } else {
+            // in case the user wants to use the internal player or we have a TTS item (text to speech)
+            Intent intent = new Intent(this, PodcastPlaybackService.class);
+            intent.putExtra(PodcastPlaybackService.MEDIA_ITEM, mediaItem);
+            startService(intent);
+
+
+            // if(!mMediaBrowser.isConnected()) {
+            //    mMediaBrowser.connect();
+            // }
+            // bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         }
-        */
-
-
-        //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-
     }
 
     @Override

@@ -82,6 +82,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String CB_OLED_MODE = "cb_oled_mode";
 
+    public static final String CB_EXTERNAL_PLAYER = "cb_external_player";
+
     public static final String SP_FEED_LIST_LAYOUT = "sp_feed_list_layout"; // used for shared prefs
     public static final String RI_FEED_LIST_LAYOUT = "ai_feed_list_layout"; // used for result intents
     public static final String SP_FONT_SIZE = "sp_font_size";
