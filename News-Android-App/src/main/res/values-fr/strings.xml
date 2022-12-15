@@ -213,6 +213,9 @@
     <string name="pref_oled_mode">Arrière-plan sombre</string>
     <string name="pref_oled_mode_summary">Pour le thème sombre sur les écrans OLED</string>
 
+    <string name="pref_external_player">Lecteur externe</string>
+    <string name="pref_external_player_summary">Lire les podcasts dans votre application multimédia par défaut</string>
+
     <string name="pref_display_browser_cct">Onglets de navigation Chrome intégré</string>
     <string name="pref_display_browser_built_in">Navigateur intégré</string>
     <string name="pref_display_browser_external">Navigateur externe</string>

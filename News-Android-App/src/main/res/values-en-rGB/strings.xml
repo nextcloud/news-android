@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Black background</string>
     <string name="pref_oled_mode_summary">For dark theme on OLED screens</string>
 
+    <string name="pref_external_player">External Player</string>
+    <string name="pref_external_player_summary">Play podcasts in your default media app</string>
+
     <string name="pref_display_browser_cct">Built-in Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Built-in Browser</string>
     <string name="pref_display_browser_external">External Browser</string>

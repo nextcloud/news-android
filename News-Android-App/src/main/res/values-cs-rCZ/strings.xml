@@ -218,6 +218,9 @@
     <string name="pref_oled_mode">Černé pozadí</string>
     <string name="pref_oled_mode_summary">Pro tmavý motiv vzhledu na OLED obrazovkách</string>
 
+    <string name="pref_external_player">Externí přehrávač</string>
+    <string name="pref_external_player_summary">Přehrávat podcasty ve výchozí aplikaci pro média</string>
+
     <string name="pref_display_browser_cct">Vestavěné Chrome vlastní karty</string>
     <string name="pref_display_browser_built_in">Vestavěný prohlížeč</string>
     <string name="pref_display_browser_external">Externí prohlížeč</string>
