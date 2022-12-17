@@ -213,6 +213,9 @@
     <string name="pref_oled_mode">Fondo oscuro</string>
     <string name="pref_oled_mode_summary">Para el tema oscuro en las pantallas OLED</string>
 
+    <string name="pref_external_player">Reproductor Externo</string>
+    <string name="pref_external_player_summary">Reproducir Podcasts en su app de medios por defecto</string>
+
     <string name="pref_display_browser_cct">Pestañas integradas de Chrome</string>
     <string name="pref_display_browser_built_in">Navegador integrado</string>
     <string name="pref_display_browser_external">Navegador externo</string>
