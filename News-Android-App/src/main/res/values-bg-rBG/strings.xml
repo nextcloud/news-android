@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Черен фон</string>
     <string name="pref_oled_mode_summary">За черни теми на OLED екрани</string>
 
+    <string name="pref_external_player">Външен плейър</string>
+    <string name="pref_external_player_summary">Възпроизвеждане на подкасти в медийното ви приложение по подразбиране</string>
+
     <string name="pref_display_browser_cct">Вградени персонализирани Chrome-раздели</string>
     <string name="pref_display_browser_built_in">Вградения браузър</string>
     <string name="pref_display_browser_external">Външен браузър</string>

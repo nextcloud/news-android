@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Siyah arka plan</string>
     <string name="pref_oled_mode_summary">OLED ekranlarda koyu tema için</string>
 
+    <string name="pref_external_player">Dış oynatıcı</string>
+    <string name="pref_external_player_summary">Podcast yayınlarını varsayılan ortam uygulamanızda dinleyin</string>
+
     <string name="pref_display_browser_cct">Özel iç Chrome sekmeleri</string>
     <string name="pref_display_browser_built_in">İç tarayıcı</string>
     <string name="pref_display_browser_external">Dış tarayıcı</string>
