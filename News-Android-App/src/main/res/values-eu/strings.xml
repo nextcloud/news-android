@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Atzeko plano beltza</string>
     <string name="pref_oled_mode_summary">Gai ilunarentzat OLED pantailetan</string>
 
+    <string name="pref_external_player">Kanpoko erreproduzitzailea</string>
+    <string name="pref_external_player_summary">Erreproduzitu podcastak zure multimedia aplikazio lehenetsian</string>
+
     <string name="pref_display_browser_cct">Chromeren fitxa integratuak</string>
     <string name="pref_display_browser_built_in">Nabigatzaile integratua</string>
     <string name="pref_display_browser_external">Kanpoko nabigatzailea</string>
