@@ -218,6 +218,9 @@
     <string name="pref_oled_mode">Czarne tło</string>
     <string name="pref_oled_mode_summary">Motyw ciemny dla ekranów OLED</string>
 
+    <string name="pref_external_player">Odtwarzacz zewnętrzny</string>
+    <string name="pref_external_player_summary">Odtwarzaj podcasty w domyślnej aplikacji multimedialnej</string>
+
     <string name="pref_display_browser_cct">Wbudowany Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Wbudowana przeglądarka</string>
     <string name="pref_display_browser_external">Zewnętrzna przeglądarka</string>
