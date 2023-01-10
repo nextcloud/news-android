@@ -27,7 +27,7 @@
     <string name="tv_showing_cached_version">Se arată versiunea din cache</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Marcat</string>
+    <string name="action_starred">Articole selectate</string>
     <string name="action_read">Citeşte</string>
     <string name="action_playPodacst">Inițiază Podcast</string>
     <string name="action_openInBrowser">Deschideți în browserul Web</string>
