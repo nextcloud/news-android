@@ -213,6 +213,9 @@
     <string name="pref_oled_mode">Fundo escuro</string>
     <string name="pref_oled_mode_summary">Para temas escuros em telas OLED</string>
 
+    <string name="pref_external_player">Leitor Externo</string>
+    <string name="pref_external_player_summary">Reproduza podcasts em seu aplicativo de mídia padrão</string>
+
     <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
