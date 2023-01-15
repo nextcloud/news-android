@@ -3,6 +3,8 @@
 - Fix incorrect height of listview rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
 - Switched from Universal-Image-Loader to Glide as image loading library [!1115](https://github.com/nextcloud/news-android/pull/1115)
 - Added support for SVG favicons
+- Added support for external media
+  players [!1130](https://github.com/nextcloud/news-android/pull/1130) (thanks to @JFronny)
 
 
 0.9.9.76
