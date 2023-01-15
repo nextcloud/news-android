@@ -67,12 +67,15 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
 
     @Override
     public void onPictureInPictureModeChanged (boolean isInPictureInPictureMode, Configuration newConfig) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
+        }
         Log.d(TAG, "onPictureInPictureModeChanged() called with: isInPictureInPictureMode = [" + isInPictureInPictureMode + "], newConfig = [" + newConfig + "]");
 
         RelativeLayout surfaceViewWrapper = findViewById(R.id.layout_activity_pip);
         SurfaceView surfaceView = (SurfaceView) surfaceViewWrapper.getChildAt(0);
 
-        if(surfaceView != null) {
+        if (surfaceView != null) {
             if (isInPictureInPictureMode) {
                 surfaceView.setLayoutParams(new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT,
