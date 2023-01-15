@@ -28,6 +28,7 @@ import java.util.List;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
+import de.luhmer.owncloudnewsreader.helper.FavIconUtils;
 
 public class InsertIntoDatabase {
     private static final String TAG = "InsertRssItemIntoDb";
@@ -84,10 +85,13 @@ public class InsertIntoDatabase {
                         newFeed.setAvgColour(oldFeed.getAvgColour());
                         // Set the notification channel after sync again
                         newFeed.setNotificationChannel(oldFeed.getNotificationChannel());
+
+                        // fix favicon url
+                        newFeed.setFaviconUrl(FavIconUtils.fixFavIconUrl(newFeed.getFaviconUrl()));
+
                         dbConn.updateFeed(newFeed);
                         break;
                     }
-
                 }
                 if(!found)
                 {

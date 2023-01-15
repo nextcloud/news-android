@@ -18,6 +18,7 @@ import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.SettingsFragment;
 import de.luhmer.owncloudnewsreader.authentication.OwnCloudSyncAdapter;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
+import de.luhmer.owncloudnewsreader.helper.NextcloudGlideModule;
 import de.luhmer.owncloudnewsreader.services.SyncItemStateService;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
@@ -48,6 +49,8 @@ public interface AppComponent {
     void injectService(OwnCloudSyncAdapter ownCloudSyncAdapter);
 
     void injectWidget(WidgetProvider widgetProvider);
+
+    void injectGlideModule(NextcloudGlideModule glideModule);
 
     void injectDatabaseConnection(DatabaseConnectionOrm databaseConnectionOrm);
 }

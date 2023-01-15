@@ -21,13 +21,10 @@
 
 package de.luhmer.owncloudnewsreader.helper;
 
+import android.content.Context;
 import android.util.Log;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -202,11 +199,11 @@ public class ImageHandler {
         }
     }
 
-    public static void clearCache()
+    public static void clearCache(Context context)
     {
-        if(ImageLoader.getInstance().isInited()) {
-            ImageLoader.getInstance().clearDiskCache();
-            ImageLoader.getInstance().clearMemoryCache();
-        }
+        new Thread(() -> {
+            GlideApp.get(context).clearMemory();
+            GlideApp.get(context).clearDiskCache();
+        }).start();
     }
 }

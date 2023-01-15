@@ -12,33 +12,22 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding;
-import de.luhmer.owncloudnewsreader.helper.SquareRoundedBitmapDisplayer;
 
 public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<SubscriptionDetailListItemHeadlineThumbnailBinding> {
-    private final DisplayImageOptions displayImageOptionsThumbnail;
 
+    Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
 
     RssItemHeadlineThumbnailViewHolder(@NonNull SubscriptionDetailListItemHeadlineThumbnailBinding binding, SharedPreferences sharedPreferences) {
         super(binding, sharedPreferences);
-
-        Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
-        int widthThumbnail = Math.round(88f * binding.imgViewThumbnail.getContext().getResources().getDisplayMetrics().density);
-        displayImageOptionsThumbnail = new DisplayImageOptions.Builder()
-                .resetViewBeforeLoading(true)
-                .preProcessor(new SquareRoundedBitmapDisplayer(30, 0, widthThumbnail))
-                .showImageOnLoading(feedIcon)
-                .showImageForEmptyUri(feedIcon)
-                .showImageOnFail(feedIcon)
-                .cacheOnDisk(true)
-                .cacheInMemory(true)
-                .build();
     }
 
     @Override
@@ -102,7 +91,14 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<Subscr
         String mediaThumbnail = rssItem.getMediaThumbnail();
         if (mediaThumbnail != null && !mediaThumbnail.isEmpty()) {
             binding.imgViewThumbnail.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(mediaThumbnail, binding.imgViewThumbnail, displayImageOptionsThumbnail);
+
+            mGlide
+                    .load(mediaThumbnail)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .placeholder(feedIcon)
+                    .error(feedIcon)
+                    .transform(new MultiTransformation<>(new CenterCrop(), new RoundedCorners(60)))
+                    .into(binding.imgViewThumbnail);
         } else {
             // Show Podcast Icon if no thumbnail is available but it is a podcast (otherwise the podcast button will go missing)
             if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {

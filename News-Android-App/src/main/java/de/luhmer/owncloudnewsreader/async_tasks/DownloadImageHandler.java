@@ -23,27 +23,20 @@ package de.luhmer.owncloudnewsreader.async_tasks;
 
 import android.graphics.Bitmap;
 import android.util.Log;
-import android.view.View;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import de.luhmer.owncloudnewsreader.helper.ImageDownloadFinished;
 
-public class DownloadImageHandler implements ImageLoadingListener
-{
-	private static final String TAG = "GetImageAsyncTask";
+public class DownloadImageHandler {
+	private static final String TAG = DownloadImageHandler.class.getCanonicalName();
 
 	private URL mImageUrl;
 	private ImageDownloadFinished imageDownloadFinished;
-
-	private static final DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
-			.cacheOnDisk(true)
-			.build();
 
 	public DownloadImageHandler(String imageUrl) {
 		try {
@@ -51,39 +44,21 @@ public class DownloadImageHandler implements ImageLoadingListener
 		} catch(Exception ex) {
             Log.d(TAG, "Invalid URL: " + imageUrl, ex);
 		}
-
-
 	}
 
-	public void downloadSync() {
-		ImageLoader.getInstance().loadImageSync(mImageUrl.toString(), displayImageOptions);
-	}
-
-    public void downloadAsync(ImageDownloadFinished imgDownloadFinished) {
-		this.imageDownloadFinished = imgDownloadFinished;
-        ImageLoader.getInstance().loadImage(mImageUrl.toString(), displayImageOptions, this);
-    }
-
-	@Override
-	public void onLoadingStarted(String imageUri, View view) {
-
-	}
-
-	@Override
-	public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+	public void preloadSync(RequestManager glide) {
+		try {
+			Bitmap bm = glide
+					.asBitmap()
+					.load(mImageUrl.toString())
+					.diskCacheStrategy(DiskCacheStrategy.DATA)
+					.submit()
+					.get();
+			NotifyDownloadFinished(bm);
+		} catch (ExecutionException | InterruptedException e) {
+			e.printStackTrace();
+		}
 		NotifyDownloadFinished(null);
-		Log.d(TAG, "Failed to load file: " + imageUri);
-	}
-
-	@Override
-	public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-		NotifyDownloadFinished(loadedImage);
-	}
-
-	@Override
-	public void onLoadingCancelled(String imageUri, View view) {
-		NotifyDownloadFinished(null);
-		Log.d(TAG, "Cancelled: " + imageUri);
 	}
 
 	private void NotifyDownloadFinished(Bitmap bitmap) {

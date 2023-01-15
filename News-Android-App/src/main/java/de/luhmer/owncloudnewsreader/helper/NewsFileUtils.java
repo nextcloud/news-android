@@ -25,8 +25,6 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-import com.nostra13.universalimageloader.utils.StorageUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -115,9 +113,9 @@ public class NewsFileUtils {
     }
 
     public static String getCacheDirPath(Context context) {
-        return StorageUtils.getCacheDirectory(context).getPath();
+        //return context.getCacheDir().getAbsolutePath();
+        return context.getExternalCacheDir().getAbsolutePath();
     }
-
 
     public static String getPathPodcasts(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath()+ "/podcasts";
@@ -131,11 +129,6 @@ public class NewsFileUtils {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
-
-
-
-
-
 
 
     /*

@@ -327,7 +327,6 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     }
 
     private void storeCachedImage(String path) {
-        final String CHANNEL_ID = "Store cached Image";
         if(isExternalStorageWritable()) {
             String filename = getFileNameFromPath(path, false);
 
@@ -338,7 +337,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 Toast.makeText(requireContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
-            NextcloudNotificationManager.showNotificationSaveSingleCachedImageService(requireContext().getApplicationContext(), CHANNEL_ID, dstPath);
+            NextcloudNotificationManager.showNotificationDownloadSingleImageComplete(requireContext().getApplicationContext(), dstPath);
             requireDialog().hide();
         } else {
             Toast.makeText(requireContext().getApplicationContext(), getString(R.string.toast_img_notwriteable), Toast.LENGTH_LONG).show();
