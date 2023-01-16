@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Fekete háttér</string>
     <string name="pref_oled_mode_summary">Sötét témához OLED kijelzőkön</string>
 
+    <string name="pref_external_player">Külső lejátszó</string>
+    <string name="pref_external_player_summary">Podcastok lejátszása az alapértelmezett médiaalkalmazásában</string>
+
     <string name="pref_display_browser_cct">Beépített egyedi Chrome fülek</string>
     <string name="pref_display_browser_built_in">Beépített böngésző</string>
     <string name="pref_display_browser_external">Külső böngésző</string>
