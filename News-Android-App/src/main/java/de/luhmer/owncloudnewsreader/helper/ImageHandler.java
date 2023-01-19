@@ -162,15 +162,13 @@ public class ImageHandler {
                 }
 
                 if(!originalLink.equals(link)) {
-                    String l = "Fixed link in article: " + originalArticleUrl + ": " + originalLink + " -> " + link;
-                    // System.out.println(l);
-                    Log.d(TAG, l);
+                    // String l = "Fixed link in article: " + originalArticleUrl + ": " + originalLink + " -> " + link;
+                    // Log.d(TAG, l);
                     // text = text.replaceAll(originalLink, link); // this causes OutOfMemoryExceptions (https://github.com/nextcloud/news-android/issues/1055)
 
                     Pattern URL_PATTERN = Pattern.compile(String.format("%s=\"%s\"", htmlAttribut, originalLink));
                     Matcher urlMatcher = URL_PATTERN.matcher(text);
                     text = urlMatcher.replaceAll(String.format("%s=\"%s\"", htmlAttribut, link));
-
                 }
             }
         }
