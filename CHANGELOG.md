@@ -1,12 +1,10 @@
 0.9.9.78
 ---------------------
-
 - Fix broken Notifications on Android
   13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
 
 0.9.9.77
 ---------------------
-
 - Fix incorrect height of listview
   rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
 - Switched from Universal-Image-Loader to Glide as image loading
