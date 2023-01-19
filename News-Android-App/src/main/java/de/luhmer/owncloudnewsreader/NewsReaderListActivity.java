@@ -157,6 +157,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private PublishSubject<String> searchPublishSubject;
 	private static final int REQUEST_CODE_PERMISSION_DOWNLOAD_WEB_ARCHIVE = 1;
+	private static final int REQUEST_CODE_PERMISSION_NOTIFICATIONS = 2;
 
 	private static final String ID_FEED_STRING = "ID_FEED_STRING";
 	private static final String IS_FOLDER_BOOLEAN = "IS_FOLDER_BOOLEAN";
@@ -214,6 +215,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		setSupportActionBar(binding.toolbarLayout.toolbar);
 
 		initAccountManager();
+
+		checkNotificationPermissions();
 
 		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
 		binding.toolbarLayout.avatar.setOnClickListener((v) -> startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN));
@@ -408,6 +411,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	}
 
+	public void checkNotificationPermissions() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+			requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE_PERMISSION_NOTIFICATIONS);
+		}
+	}
 
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
 		NewsReaderListFragment nlf = getSlidingListFragment();

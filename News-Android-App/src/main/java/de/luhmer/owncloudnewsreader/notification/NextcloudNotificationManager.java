@@ -59,6 +59,10 @@ public class NextcloudNotificationManager {
         String channelDownloadImage = context.getString(R.string.action_img_download);
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelDownloadImage);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !notificationManager.areNotificationsEnabled()) {
+            return;
+        }
+
         GlideApp.with(context).asBitmap().load("file://" + imagePath.getAbsolutePath()).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>(1024, 512) {
             @Override
             public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
@@ -129,6 +133,10 @@ public class NextcloudNotificationManager {
 
     public static void showNotificationImageDownloadLimitReached(Context context, String channelId, int limit) {
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !notificationManager.areNotificationsEnabled()) {
+            return;
+        }
 
         Intent intentNewsReader = new Intent(context, NewsReaderListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intentNewsReader, PendingIntent.FLAG_IMMUTABLE);
@@ -254,9 +262,12 @@ public class NextcloudNotificationManager {
 
     public static void showUnreadRssItemsNotification(Context context, SharedPreferences mPrefs, Boolean updateExistingNotificationsOnly) {
         Resources res = context.getResources();
-
         String channelId = context.getString(R.string.app_name);
         NotificationManager notificationManager = getNotificationManagerAndCreateChannel(context, channelId);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !notificationManager.areNotificationsEnabled()) {
+            return;
+        }
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
         DatabaseConnectionOrm.SORT_DIRECTION sortDirection = DatabaseUtils.getSortDirectionFromSettings(mPrefs);
