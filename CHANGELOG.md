@@ -1,7 +1,6 @@
 0.9.9.78
 ---------------------
-- Fix broken Notifications on Android
-  13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
+- Fix broken Notifications on Android 13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
 
 0.9.9.77
 ---------------------
