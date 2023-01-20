@@ -63,9 +63,9 @@ This is a list of permissions required and asked by the App in order to properly
 
 ## Contact
 
-David Luhmer
-E-Mail: david-dev(at)live.de
-Phone: 02222 9770191
+- **David Luhmer**
+- **E-Mail:** david-dev(at)live.de
+- **Phone:** +49 2222 9770191
 
 
 ## Nextcloud privacy policy
