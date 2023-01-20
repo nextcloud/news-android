@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Tira in giù per aggiornare</string>
     <string name="toast_GettingMoreItems">Iniziato lo scaricamento di altri elementi. Attendi ...</string>
     <string name="no_wifi_available">WiFi non connesso</string>
+    <string name="do_you_want_to_download_without_wifi">Vuoi scaricare le foto senza una connessione Wi-Fi?</string>
     <string name="current_version">Stai usando la versione %s</string>
     <string name="widget_header">Notizie di NextCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -89,9 +90,13 @@
     <string name="feed_move_list_description">Seleziona la cartella in cui spostare la fonte</string>
     <string name="move_feed_root_folder">Cartella radice</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Rimuovi cartella</string>
     <string name="action_folder_rename">Rinomina cartella</string>
     <string name="folder_remove_button">Rimuovi</string>
     <string name="folder_rename_button">Rinomina</string>
+    <string name="confirm_folder_remove">Vuoi veramente cancellare questa cartella? Questa operazione non può essere annullata!</string>
+
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Ricevi una notifica unica per questo feed</string>
     <string name="notification_feed_default">Tutti i feed con le impostazioni di default appariranno in un\'unica notifica</string>
@@ -100,6 +105,8 @@
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Aggiungi</string>
     <string name="hint_folder_name">Nome della cartella</string>
+    <string name="folder_already_exists">Questa cartella già esiste</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Accesso manuale</string>
     <string name="login_sso">Accedi utilizzando l\'applicazione File di Nextcloud</string>
@@ -226,7 +233,9 @@
     <string name="content_desc_play">Gioca</string>
     <string name="content_desc_pause">Pausa</string>
     <string name="content_desc_playback_speed">Velocità di riproduzione</string>
+    <string name="content_desc_rewind">Rivedi</string>
     <string name="content_desc_forward">Inoltra</string>
+    <string name="content_desc_expand">Espandi</string>
     <string name="content_desc_collapse">Contrai</string>
     <string name="content_desc_mark_as_read">Segna come letto</string>
     <string name="content_desc_mark_as_unread">Segna come non letto</string>
