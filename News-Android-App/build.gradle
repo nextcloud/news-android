@@ -111,7 +111,7 @@ repositories {
 
 final DAGGER_VERSION = '2.42'
 final ESPRESSO_VERSION = '3.4.0'
-final OKHTTP_VERSION = '3.12.13'
+final OKHTTP_VERSION = '4.10.0'
 final MOCKITO_VERSION = '5.0.0'
 final RETROFIT_VERSION = '2.9.0'
 
