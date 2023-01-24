@@ -150,7 +150,7 @@ dependencies {
 
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
     implementation 'de.greenrobot:greendao:2.1.0'
     implementation ('de.greenrobot:greendao-generator:2.1.0') {
         exclude group: 'org.freemarker'
