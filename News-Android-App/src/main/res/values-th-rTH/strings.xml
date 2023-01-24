@@ -32,7 +32,7 @@
     <string name="action_sync_settings">การตั้งค่าการซิงค์</string>
     <string name="action_add_new_feed">เพิ่มฟีดใหม่</string>
     <string name="action_textToSpeech">อ่านออก</string>
-    <string name="action_search">Search</string>
+    <string name="action_search">ค้นหา</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="other">คุณมี %d รายการใหม่ที่ยังไม่ได้อ่าน</item>
     </plurals>
@@ -111,7 +111,7 @@
     <string name="no_podcast_selected">ไม่ได้เลือกพอดคาสต์</string>
     <string name="no_chapters_available">ไม่มีบทที่สามารถใช้ได้</string>
     <!-- Settings for About -->
-    <string name="pref_header_about">เกี่ยวกับเรา</string>
+    <string name="pref_header_about">เกี่ยวกับ</string>
     <string name="pref_license">สัญญาอนุญาต</string>
     <string name="pref_privacy">ความเป็นส่วนตัว</string>
     <!-- Settings for Display -->
