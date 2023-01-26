@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Trage în jos pentru a reîmprospăta</string>
     <string name="toast_GettingMoreItems">Descărcarea de articole noi a început. Vă rugăm să așteptați ...</string>
     <string name="no_wifi_available">Nu exista conexiune WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Doriți să descărcați imaginile fără o conexiune Wi-Fi?</string>
     <string name="current_version">Folosiți versiunea %s</string>
     <string name="widget_header">Știri Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -211,6 +212,9 @@
 
     <string name="pref_oled_mode">Fundal negru</string>
     <string name="pref_oled_mode_summary">Pentru teme întunecate pentru ecrane OLED</string>
+
+    <string name="pref_external_player">Player extern</string>
+    <string name="pref_external_player_summary">Redați podcast-uri în aplicația media implicită</string>
 
     <string name="pref_display_browser_cct">Tab-Personalizat-Chrome-Încorporat</string>
     <string name="pref_display_browser_built_in">Browser încorporat</string>
