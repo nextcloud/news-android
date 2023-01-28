@@ -129,6 +129,7 @@
     <string name="pref_display_font_size_l">ใหญ่</string>
     <string name="content_desc_play">เล่น</string>
     <string name="content_desc_pause">หยุดชั่วคราว</string>
+    <string name="content_desc_forward">ส่งต่อ</string>
     <string name="content_desc_collapse">ย่อ</string>
     <string name="content_desc_add_to_favorites">เพิ่มในรายการโปรด</string>
     <string name="content_desc_remove_from_favorites">เอาออกจากรายการโปรด</string>
