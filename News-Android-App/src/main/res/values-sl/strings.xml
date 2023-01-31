@@ -218,6 +218,9 @@
     <string name="pref_oled_mode">Črno ozadje</string>
     <string name="pref_oled_mode_summary">Za temno temo na zaslonih OLED</string>
 
+    <string name="pref_external_player">Zunanji predvajalnik</string>
+    <string name="pref_external_player_summary">Predvajanje podkastov v privzetem programu</string>
+
     <string name="pref_display_browser_cct">Vgrajen Chrome z zavihki</string>
     <string name="pref_display_browser_built_in">Vgrajen brskalnik</string>
     <string name="pref_display_browser_external">Zunanji brskalnik</string>
@@ -236,10 +239,10 @@
     <string name="pref_display_font_size_l">Velika</string>
     <string name="pref_display_font_size_xl">Zelo velika</string>
 
-    <string name="content_desc_play">Igrani nastop</string>
+    <string name="content_desc_play">Predvajaj</string>
     <string name="content_desc_pause">Premor</string>
     <string name="content_desc_playback_speed">Hitrost predvajanja</string>
-    <string name="content_desc_rewind">Prevrti nazaj</string>
+    <string name="content_desc_rewind">Skoči nazaj</string>
     <string name="content_desc_forward">Posreduj</string>
     <string name="content_desc_expand">Razširi</string>
     <string name="content_desc_collapse">Skrči</string>
