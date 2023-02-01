@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Musta tausta</string>
     <string name="pref_oled_mode_summary">Tumma teema OLED-näytöille</string>
 
+    <string name="pref_external_player">Ulkoinen soitin</string>
+    <string name="pref_external_player_summary">Toista podcastit oletusarvoisessa mediasovelluksessasi</string>
+
     <string name="pref_display_browser_cct">Sisäänrakennettu selain (Chrome Custom Tabs)</string>
     <string name="pref_display_browser_built_in">Sisäänrakennettu selain</string>
     <string name="pref_display_browser_external">Ulkoinen selain</string>
