@@ -155,6 +155,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">לא נבחרו פודקאסטים</string>
     <string name="no_chapters_available">אין פרקים זמינים</string>
+    <string name="exit_playback">צא.י מנגן</string>
     <string name="podcast_playback_speed_dialog_title">מהירות נגינה</string>
     <string name="notification_downloading_podcast_title">הפודקאסט מתקבל</string>
 
