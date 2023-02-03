@@ -5,6 +5,7 @@
     <string name="title_activity_sync_interval_selector">Інтервал синхронізації</string>
     <string name="empty_view_content">Нічого нема</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="toast_GettingMoreItems">Розпочато звантаження декількох об\'єктів. Будь ласка, зачекайте...</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
     <string name="current_version">Ви використовуєте версію %s</string>
     <string name="widget_header">Новини Nextcloud</string>
