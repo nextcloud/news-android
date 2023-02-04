@@ -110,6 +110,7 @@ repositories {
 }
 
 final DAGGER_VERSION = '2.42'
+final GLIDE_VERSION = '4.14.2'
 final ESPRESSO_VERSION = '3.5.1'
 final OKHTTP_VERSION = '4.10.0'
 final MOCKITO_VERSION = '5.0.0'
@@ -143,8 +144,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
     debugImplementation "com.github.technoir42:glide-debug-indicator:0.9.1"
     implementation 'com.caverock:androidsvg-aar:1.4'
 
