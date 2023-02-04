@@ -98,7 +98,7 @@
     <string name="pref_title_ShowOnlyUnread">Amagar los articles legits</string>
     <string name="pref_title_DisableHostnameVerification">Desactivar la verificacion del nom de maquina</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigar amb los botons de volum</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">Marcar coma legit tot en desfilant</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marcar coma legit tot en defilant</string>
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptar los certificats pas segurs ?</string>
     <string name="mtm_decision_always">Totjorn</string>
