@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Повуците да освежите</string>
     <string name="toast_GettingMoreItems">Preuzimanje više stavki je u toku. Molim sačekajte ...</string>
     <string name="no_wifi_available">Нема бежичне везе</string>
+    <string name="do_you_want_to_download_without_wifi">Желите ли да преузмете слике без WiFi конекције</string>
     <string name="current_version">Користите верзију %s</string>
     <string name="widget_header">Некстклауд Вести</string>
     <plurals name="message_bar_new_articles_available">
@@ -247,7 +248,9 @@
     <string name="array_sync_interval_min_5">5 минута</string>
     <string name="array_sync_interval_min_15">15 минута</string>
     <string name="array_sync_interval_min_30">30 минута</string>
+    <string name="array_sync_interval_min_45">45 минута</string>
     <string name="array_sync_interval_hour_1">1 сат</string>
+    <string name="array_sync_interval_hour_2">2 сата</string>
     <string name="array_sync_interval_hour_3">3 сата</string>
     <string name="array_sync_interval_hour_6">6 сати</string>
     <string name="array_sync_interval_hour_12">12 сати</string>
