@@ -145,7 +145,7 @@
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 
-    <string name="pref_display_feed_list_layout_full_text">Повнотекстовий</string>
+    <string name="pref_display_feed_list_layout_full_text">Контекстний</string>
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Малий</string>
     <string name="pref_display_font_size_d">За замовчуванням</string>
