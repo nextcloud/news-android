@@ -218,7 +218,7 @@
     <string name="pref_display_feed_list_layout_headline_thumbnails">Bélyegképek (csak szalagcímek)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Előnézetek</string>
     <string name="pref_display_feed_list_layout_simple_text">Egyszerű szöveg</string>
-    <string name="pref_display_feed_list_layout_headlines">Főcímek</string>
+    <string name="pref_display_feed_list_layout_headlines">Szalagcímek</string>
     <string name="pref_display_feed_list_layout_full_text">Teljes szöveg</string>
     <string name="pref_display_feed_list_layout_web_layout">Webes elrendezés</string>
     <string name="pref_display_feed_list_layout_card_view">Kártyanézet</string>
