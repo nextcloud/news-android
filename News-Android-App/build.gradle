@@ -199,7 +199,7 @@ dependencies {
     //androidTestImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_VERSION}"
 
 
-    androidTestImplementation 'tools.fastlane:screengrab:2.1.0'
+    androidTestImplementation 'tools.fastlane:screengrab:2.1.1'
     // Add falcon:2.2.0 explicitly, because screengrab:2.1.0 relies on falcon:2.1.1 which is not available on mavenCentral
     // See https://github.com/fastlane/fastlane/issues/12651#issuecomment-849653404
     androidTestImplementation 'com.jraska:falcon:2.2.0'
