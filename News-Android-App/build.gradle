@@ -233,7 +233,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$ESPRESSO_VERSION"
 
     // https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator
-    androidTestUtil 'androidx.test:orchestrator:1.4.1'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
 
     // The following Espresso dependency can be either "implementation"
     // or "androidTestImplementation", depending on whether you want the
