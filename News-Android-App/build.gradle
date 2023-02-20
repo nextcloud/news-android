@@ -130,7 +130,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.3.0'
     implementation "androidx.appcompat:appcompat:1.6.1"
     implementation "androidx.preference:preference:1.1.1"
-    implementation "androidx.media:media:1.5.0"
+    implementation "androidx.media:media:1.6.0"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
     implementation "com.google.android.material:material:1.4.0"
