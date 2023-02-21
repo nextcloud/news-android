@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Svart bakgrunn</string>
     <string name="pref_oled_mode_summary">For mørkt tema på OLED skjermer</string>
 
+    <string name="pref_external_player">Ekstern spiller</string>
+    <string name="pref_external_player_summary">Spill av podkaster i din standard medieapp</string>
+
     <string name="pref_display_browser_cct">Innebygde tilpassede Chrome-faner</string>
     <string name="pref_display_browser_built_in">Innebygd nettleser</string>
     <string name="pref_display_browser_external">Ekstern nettleser</string>
