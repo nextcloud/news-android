@@ -38,6 +38,7 @@
     <string name="action_settings">Поставке</string>
     <string name="action_sync_settings">Поставке освежавања</string>
     <string name="action_add_new_feed">Додај довод</string>
+    <string name="action_add_new_folder">Додај нови фолдер</string>
     <string name="action_textToSpeech">Ишчитај</string>
     <string name="action_search">Претрага</string>
     <string name="action_download_articles_offline">Скини чланке за приступ и без интернета</string>
@@ -89,12 +90,23 @@
     <string name="feed_move_list_description">Изаберите фасциклу да преместите довод</string>
     <string name="move_feed_root_folder">Корена фасцикла</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Уклони фолдер</string>
     <string name="action_folder_rename">Преименуј фасциклу</string>
     <string name="folder_remove_button">Уклони</string>
     <string name="folder_rename_button">Преименуј</string>
+    <string name="confirm_folder_remove">Да ли заиста желите да уклоните овај фолдер? Ово не може да се поништи!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Примај јединствена обавештења за ове вести</string>
+    <string name="notification_feed_default">Све вести са подразумеваним подешавањеима ће се појавити у једном обавештењу</string>
+    <string name="notification_feed_none">Уопште нема обавештења</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Додај</string>
     <string name="hint_folder_name">Назив фасцикле</string>
+    <string name="folder_already_exists">Фолдер већ постоји</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Ручна пријава</string>
     <string name="login_sso">Пријава преко Некстклауд апликације</string>
@@ -117,6 +129,13 @@
         <item quantity="other">Преузето %d старих ставки</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Нема више доступних ставки</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">До сада је преузета %d ставка …</item>
+        <item quantity="few">До сада су преузете %d ставке …</item>
+        <item quantity="other">До сада је преузето %d ставки ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Поставке</string>
     <string name="cache_is_cleared">Кеш је очишћен!</string>
@@ -159,6 +178,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Није изабрана подемисија</string>
     <string name="no_chapters_available">Нема доступних поглавља</string>
+    <string name="exit_playback">Напусти Плејер</string>
     <string name="podcast_playback_speed_dialog_title">Брзина пуштања</string>
     <string name="notification_downloading_podcast_title">Преузимам подкаст</string>
 
@@ -193,10 +213,14 @@
     <string name="pref_oled_mode">Црна позадина</string>
     <string name="pref_oled_mode_summary">За тамне теме на ОЛЕД екранима</string>
 
+    <string name="pref_external_player">Спољни Плејер</string>
+    <string name="pref_external_player_summary">Пуштајте подкасте у својој подразумеваној апликацији за медије</string>
+
     <string name="pref_display_browser_cct">Уграђени Хром посебни језичци</string>
     <string name="pref_display_browser_built_in">Уграђени прегледач</string>
     <string name="pref_display_browser_external">Спољни прегледач</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Сличице (само насловне линије)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Сличице</string>
     <string name="pref_display_feed_list_layout_simple_text">Обичан текст</string>
     <string name="pref_display_feed_list_layout_headlines">Наслови</string>
@@ -212,6 +236,7 @@
 
     <string name="content_desc_play">Пусти</string>
     <string name="content_desc_pause">Паузирај</string>
+    <string name="content_desc_playback_speed">Брзина репродукције</string>
     <string name="content_desc_rewind">Premotavanje</string>
     <string name="content_desc_forward">Проследи</string>
     <string name="content_desc_expand">Proširi</string>
@@ -233,6 +258,9 @@
     <string name="login_dialog_text_not_compatible">Верзија ове апликације није усклађена са апликацијом Некстклауд Вести. Ажурирајте апликацију и њен радни оквир.</string>
     <string name="login_dialog_title_security_warning">Сигурносно упозорење</string>
     <string name="login_dialog_text_security_warning">Не користите препоручени ХТТПС протокол. Нападач може пресрести ваш саобраћај и имати приступ осетљивим подацима (нпр. вашој лозинки).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Нешто није у реду. Молимо вас покушајте поново.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Подаци и синхронизација</string>
     <string name="pref_title_clearCache">Очисти кеш</string>
@@ -257,5 +285,10 @@
     <string name="array_sync_interval_hour_24">24 сата</string>
     <string name="switch_account">Пребаци налог</string>
     
+    <string name="successfully_exported">Успешно извезено у:</string>
+    <string name="opml_export">OPML извоз</string>
+    <string name="parsing_opml">OPML се парсира</string>
     <string name="please_wait">Молимо сачекајте…</string>
+    <string name="interval_sync_title">Интервал синхронизације</string>
+
     </resources>
