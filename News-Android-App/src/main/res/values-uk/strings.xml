@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="toast_GettingMoreItems">Розпочато звантаження декількох об\'єктів. Будь ласка, зачекайте...</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
+    <string name="do_you_want_to_download_without_wifi">Бажаєте завантажити зображення без підключення до Wi-Fi?</string>
     <string name="current_version">Ви використовуєте версію %s</string>
     <string name="widget_header">Новини Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -42,6 +43,8 @@
     <string name="action_textToSpeech">Читати</string>
     <string name="action_search">Пошук</string>
     <string name="action_download_articles_offline">Завантажуйте статті в автономному режимі</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Завантаження статей для доступу в автономному режимі.</string>
     <string name="notification_download_images_offline">Завантаження зображень для використання в автономному режимі</string>
     <!-- Add new feed -->
     <string name="hint_feed_url">Посилання стрічки</string>
@@ -54,7 +57,7 @@
     <string name="action_img_download">Звантажити зображення</string>
     <string name="action_img_sharelink">Поділіться посиланням на зображення</string>
     <string name="action_img_open">Відкрийте зображення у браузері</string>
-    <string name="action_img_copylink">Скопіювати посилання на зображення</string>
+    <string name="action_img_copylink">Копіювати посилання на зображення</string>
     <string name="action_link_share">Поділитися посиланням</string>
     <string name="action_link_open">Відкрити посилання у переглядачі</string>
     <string name="action_link_copy">Копіювати посилання</string>
