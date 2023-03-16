@@ -3,7 +3,7 @@
 
     <string name="auto_sync_string">Sync otomatis</string>
     <string name="title_activity_sync_interval_selector">Interval sinkronisasi</string>
-    <string name="empty_view_content">Tak ada item disini</string>
+    <string name="empty_view_content">Tak ada item di sini</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="toast_GettingMoreItems">Unduh item lainnya dimulai. Mohon tunggu ...</string>
     <string name="no_wifi_available">Tidak ada WiFi yang terhubung</string>
@@ -123,7 +123,7 @@
     <string name="pref_general_search_in_title">Judul</string>
     <string name="dialog_clearing_cache">Membersihkan cache</string>
     <string name="dialog_clearing_cache_please_wait">Membersihkan cache. Mohon tunggu...</string>
-    <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah anda tetap ingin mengatur ulang cache?</string>
+    <string name="reset_cache_unsaved_changes">Ada perubahan yang belum disinkronkan. Apakah Anda tetap ingin mengatur ulang cache?</string>
     <string name="warning">Peringatan</string>
     <string name="pref_title_AutoSyncOnStart">Sinkronisasi pada saat mulai</string>
     <string name="pref_title_ShowOnlyUnread">Tampilkan hanya artikel yang belum dibaca</string>
@@ -148,6 +148,7 @@
     <string name="pref_header_display">Tampilkan</string>
     <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Tata letak daftar umpan</string>
+    <string name="pref_display_apptheme_auto">Bawaan Sistem</string>
     <string name="pref_display_apptheme_light">Terang</string>
     <string name="pref_display_apptheme_dark">Gelap</string>
 
@@ -180,9 +181,11 @@
     <string name="pref_data_sync_image_cache_ask">Tanya ketika tidak tersambung ke WiFi</string>
 
     <string name="array_sync_interval_min_0">Tidak pernah</string>
+    <string name="array_sync_interval_min_15">15 menit</string>
     <string name="array_sync_interval_min_30">30 Menit</string>
     <string name="array_sync_interval_hour_1">1 jam</string>
     <string name="array_sync_interval_hour_3">3 jam</string>
+    <string name="array_sync_interval_hour_6">6 jam</string>
     <string name="array_sync_interval_hour_12">12 jam</string>
     <string name="switch_account">Pindah akun</string>
     
