@@ -48,6 +48,7 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:textSize="14sp"
         android:textStyle="normal"
+        android:textIsSelectable="true"
         tools:text="UrlOfFeed"/>
 
     <View
