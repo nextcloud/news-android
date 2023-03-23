@@ -16,6 +16,7 @@
 #   public *;
 #}
 
+-dontobfuscate
 
 # Required for Test execution
 -dontwarn org.xmlpull.v1.**
@@ -46,15 +47,6 @@
 # https://github.com/umano/AndroidSlidingUpPanel/issues/921
 -dontwarn com.sothree.slidinguppanel.SlidingUpPanelLayout
 
-
-
-# okhttp
--dontwarn okio.**
--dontwarn javax.annotation.Nullable
--dontwarn javax.annotation.ParametersAreNonnullByDefault
-
-
-
 # Retrofit
 # Platform calls Class.forName on types which do not exist on Android to determine platform.
 -dontnote retrofit2.Platform
@@ -76,7 +68,6 @@
 
 -keep class de.luhmer.** { *; }
 -keepclassmembers class de.luhmer.** { *; }
--keepnames class de.luhmer.** { *; }
 
 -printmapping out.map
 -keepattributes SourceFile,LineNumberTable
@@ -87,12 +78,6 @@
 
 ###############
 # GreenDAO
-# I use proguard only to remove unused stuff and to keep the app small.
-# I donot want to obfuscate (rename packages, classes, methods, ...) since this is open source
--keepnames class ** { *; }
--keepnames interface ** { *; }
--keepnames enum ** { *; }
-
 -keep class de.greenrobot.** { *; }
 -dontwarn de.greenrobot.daogenerator.DaoGenerator
 
@@ -117,33 +102,6 @@
 # Added for guava 23.5-android
 -dontwarn afu.org.checkerframework.**
 -dontwarn org.checkerframework.**
-
-
-
-
-#-ignorewarnings
-#-keep class * {
-#    public private *;
-#}
-
-
-### OkHttp
-# https://github.com/square/okhttp/blob/master/README.md
--dontwarn okhttp3.**
--dontwarn okio.**
--dontwarn javax.annotation.**
--dontwarn org.conscrypt.**
-# A resource is loaded with a relative path so the package of this class must be preserved.
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
-
-# JSR 305 annotations are for embedding nullability information.
--dontwarn javax.annotation.**
-
-# OkHttp platform used only on JVM and when Conscrypt dependency is available.
--dontwarn okhttp3.internal.platform.ConscryptPlatform
-
--keep interface org.conscrypt.Conscrypt { *; }
--keep class org.conscrypt.Conscrypt { *; }
 
 
 # Required for unit tests
