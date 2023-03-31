@@ -30,7 +30,7 @@
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
     <string name="action_playPodacst">Podcast oynat</string>
-    <string name="action_openInBrowser">Web tarayıcıda aç</string>
+    <string name="action_openInBrowser">Tarayıcıda aç</string>
     <string name="action_Share">Paylaş</string>
     <string name="action_login">Sunucu ayarları</string>
     <string name="action_save">Kaydet</string>
@@ -220,7 +220,7 @@
     <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
     <string name="pref_display_feed_list_layout_headlines">Başlıklar</string>
     <string name="pref_display_feed_list_layout_full_text">Tam metin</string>
-    <string name="pref_display_feed_list_layout_web_layout">Web görünümü</string>
+    <string name="pref_display_feed_list_layout_web_layout">Site görünümü</string>
     <string name="pref_display_feed_list_layout_card_view">Kart görünümü</string>
 
     <!-- font size scaling definitions -->
@@ -249,7 +249,7 @@
     <string name="login_dialog_title_error">Hata</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Haberler uygulamanız sunucu üzerinde kurulmamış ya da etkinleştirilmemiş gibi görünüyor. Lütfen önce sunucu üzerine haberler uygulamasını kurmak için yönergeleri izleyin: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
-    <string name="login_dialog_text_zero_version_code">Web Haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">Site haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Bu uygulama sürümü kullandığınız Nextcloud Haberler uygulaması ile uyumlu değil. Lütfen Haberler uygulaması ve uygulama çatısını güncelleyin.</string>
     <string name="login_dialog_title_security_warning">Güvenlik uyarısı</string>
     <string name="login_dialog_text_security_warning">Kullanılması önemle önerilen HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinizi izleyip önemli verilere erişebilir (parolanız gibi).</string>
