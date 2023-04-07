@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Σύρετε προς τα κάτω για ανανέωση</string>
     <string name="toast_GettingMoreItems">Η λήψη περισσότερων στοιχείων ξεκίνησε. Παρακαλώ περιμένετε …</string>
     <string name="no_wifi_available">Δεν υπάρχει ασύρματη σύνδεση</string>
+    <string name="do_you_want_to_download_without_wifi">Θέλετε να κάνετε λήψη των εικόνων χωρίς σύνδεση Wi-Fi;</string>
     <string name="current_version">Χρησιμοποιείτε την έκδοση %s</string>
     <string name="widget_header">Νέα Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
