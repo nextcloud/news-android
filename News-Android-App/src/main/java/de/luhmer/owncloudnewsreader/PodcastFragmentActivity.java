@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.Toast;
@@ -212,7 +213,13 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.podcast_frame, mPodcastFragment)
                 .commitAllowingStateLoss();
-        // collapsePodcastView();
+        MediaControllerCompat mediaController = MediaControllerCompat.getMediaController(this);
+        boolean isNotInit = mediaController == null ||
+                mediaController.getPlaybackState() == null ||
+                mediaController.getPlaybackState().getState() == PlaybackStateCompat.STATE_NONE;
+        if (isNotInit) {
+            collapsePodcastView();
+        }
     }
 
 
