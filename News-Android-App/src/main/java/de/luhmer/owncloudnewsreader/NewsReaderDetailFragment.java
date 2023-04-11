@@ -102,7 +102,6 @@ public class NewsReaderDetailFragment extends Fragment {
     private Drawable rightSwipeDrawable;
     private String prevLeftAction = "";
     private String prevRightAction = "";
-    private int accentColor;
     private Parcelable layoutManagerSavedState;
 
     // Variables related to mark as read when scrolling
@@ -342,7 +341,6 @@ public class NewsReaderDetailFragment extends Fragment {
         });
         */
 
-        binding.swipeRefresh.setColorSchemeColors(accentColor);
         binding.swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) mActivity);
 
         binding.list.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -437,11 +435,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
 
-        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, new int[]{R.attr.colorAccent});
         updateSwipeDrawables(true);
-        int color = Constants.isNextCloud(mPrefs) ? R.color.nextcloudBlue : R.color.owncloudBlue;
-        accentColor = styledAttributes.getColor(2, ContextCompat.getColor(context, color));
-        styledAttributes.recycle();
     }
 
     /**

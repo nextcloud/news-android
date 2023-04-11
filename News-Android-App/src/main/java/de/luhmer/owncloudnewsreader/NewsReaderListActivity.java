@@ -1129,7 +1129,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
 			if (selectedBrowser == 0) { // Custom Tabs
 				CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
-						.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
 						.setShowTitle(true)
 						.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left)
 						.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right)

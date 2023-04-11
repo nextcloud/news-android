@@ -19,12 +19,47 @@
     </style>
 
 
-    <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight">
+    <style name="AppTheme.Base" parent="Theme.Material3.DayNight">
         <item name="android:windowBackground">@color/rss_item_list_background</item>
 
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="colorBackground">@color/background</item>-->
+        <item name="colorError">@color/error</item>
+        <item name="colorErrorContainer">@color/errorContainer</item>
+<!--        <item name="colorInverseOnSurface">@color/inverseOnSurface</item>-->
+<!--        <item name="colorInversePrimary">@color/inversePrimary</item>-->
+<!--        <item name="colorInverseSurface">@color/inverseSurface</item>-->
+        <item name="colorOnBackground">@color/onBackground</item>
+        <item name="colorOnError">@color/onError</item>
+        <item name="colorOnErrorContainer">@color/onErrorContainer</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorOnPrimaryContainer">@color/onPrimaryContainer</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorOnSecondaryContainer">@color/onSecondaryContainer</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorOnSurfaceVariant">@color/onSurfaceVariant</item>
+        <item name="colorOnTertiary">@color/onTertiary</item>
+        <item name="colorOnTertiaryContainer">@color/onTertiaryContainer</item>
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outlineVariant</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryContainer">@color/primaryContainer</item>
+<!--        <item name="colorScrim">@color/scrim</item>-->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
+<!--        <item name="colorShadow">@color/shadow</item>-->
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/surfaceVariant</item>
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorTertiaryContainer">@color/tertiaryContainer</item>
+
+
+
+
+
+<!--        <item name="colorPrimaryDark">@color/primary</item>-->
+        <item name="android:statusBarColor">@color/surface</item>
+
+
 
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -46,24 +81,18 @@
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
-    <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.MaterialComponents.DayNight">
+    <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.Material3.DayNight">
         <item name="android:background">@color/rss_item_list_background</item>
         <item name="android:itemBackground">@color/rss_item_list_background</item>
     </style>
 
-    <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+    <style name="MaterialButtonStyle" parent="Widget.Material3.Button.TextButton">
         <item name="rippleColor">@color/button_ripple</item>
         <item name="android:textColor">@color/material_button_text_color</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColor">@color/options_menu_item_text</item>
-    </style>
 
-
-
-    <style name="TextInputEditTextLogin" parent="ThemeOverlay.MaterialComponents.TextInputEditText">
+    <style name="TextInputEditTextLogin" parent="ThemeOverlay.Material3.TextInputEditText">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:textColor">@android:color/white</item>
 
@@ -107,11 +136,11 @@
 
 
     <!-- https://stackoverflow.com/a/54751236 -->
-    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+    <style name="AlertDialogTheme" parent="ThemeOverlay.Material3.Dialog.Alert">
         <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
     </style>
 
-    <style name="ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
+    <style name="ButtonBarButtonStyle" parent="Widget.Material3.Button.TextButton.Dialog.Flush">
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 

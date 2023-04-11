@@ -404,7 +404,6 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
                 case 0: // Custom Tabs
                     final FragmentActivity activity = requireActivity();
                     CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
-                            .setToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimary))
                             .setShowTitle(true)
                             .setStartAnimations(activity, R.anim.slide_in_right, R.anim.slide_out_left)
                             .setExitAnimations(activity, R.anim.slide_in_left, R.anim.slide_out_right)

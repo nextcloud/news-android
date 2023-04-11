@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,24 +25,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/title">
 
-        <EditText
-            android:id="@+id/folder_name_input"
-            android:visibility="visible"
-            android:layout_width="fill_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="false"
-            android:layout_gravity="center"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="13dp"
-            android:imeOptions="actionDone"
-            android:inputType="textVisiblePassword"
-            android:lines="1"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:singleLine="true"
-            android:textSize="18sp"
-            android:hint="@string/hint_folder_name"/>
+            android:hint="@string/hint_folder_name">
+            <EditText
+                android:id="@+id/folder_name_input"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="false"
+                android:layout_gravity="center"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
+                android:imeOptions="actionDone"
+                android:inputType="textVisiblePassword"
+                android:lines="1"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:singleLine="true"
+                android:textSize="18sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
             android:id="@+id/progressView"
@@ -73,7 +76,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_add_cancel"
-            style="@style/MaterialButtonStyle"
+            style="@style/Widget.Material3.Button.TextButton.Dialog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
@@ -82,7 +85,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_add_confirm"
-            style="@style/MaterialButtonStyle"
+            style="@style/Widget.Material3.Button.TextButton.Dialog.Flush"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"

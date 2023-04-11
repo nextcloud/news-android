@@ -642,24 +642,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	}
 
 	public void initIncognitoMode() {
-		boolean isLightTheme = !ThemeChooser.isDarkTheme(this);
+        if (isIncognitoEnabled()) {
+            boolean isLightTheme = !ThemeChooser.isDarkTheme(this);
+            if (isLightTheme) {
 
-		int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
-		ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
-		if (isLightTheme) {
-			// the first three menu items are from the fast actions (if enabled)
-			int skipItems = mShowFastActions ? 3 : 0;
-			if (isIncognitoEnabled()) {
-				int white = getResources().getColor(android.R.color.white);
-				ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
-				clearLightStatusBar(getWindow().getDecorView());
-			} else {
-				int primaryTextColor = getResources().getColor(R.color.primaryTextColor);
-				ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, primaryTextColor, skipItems);
-				setLightStatusBar(getWindow().getDecorView());
-			}
-		}
-		getWindow().setStatusBarColor(color);
+                int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
+                ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
+                // the first three menu items are from the fast actions (if enabled)
+                int skipItems = mShowFastActions ? 3 : 0;
+                int white = getResources().getColor(android.R.color.white);
+                ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
+                clearLightStatusBar(getWindow().getDecorView());
+                getWindow().setStatusBarColor(color);
+            }
+        }
 
 
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);
