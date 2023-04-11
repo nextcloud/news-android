@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/SplashTheme"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:label, android:theme, android:name">
 
@@ -36,6 +36,7 @@
         <activity
             android:name=".NewsReaderListActivity"
             android:exported="true"
+            android:theme="@style/SplashTheme"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
