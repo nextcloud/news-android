@@ -41,11 +41,6 @@
     <color name="divider_row_color">#292929</color>
 
     <color name="options_menu_item_text">@color/options_menu_item_night</color>
-    <color name="empty_content_view_logo">#666</color>
-
-    <!-- Color of slide up panel -->
-    <color name="slide_up_panel_background_color">#ff343434</color>
-
 
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#121212</color>
@@ -54,8 +49,6 @@
     <color name="text_medium_emphasis">#a0ffffff</color>
 
     <color name="rss_item_list_background">#121212</color>
-
-    <color name="tintColor">@android:color/white</color>
 
     <color name="button_ripple">@color/material_grey_800</color>
 

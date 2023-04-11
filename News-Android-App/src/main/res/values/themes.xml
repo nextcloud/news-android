@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="AppTheme.Base"/>
+
+    <style name="AppTheme" parent="AppTheme.Base" />
 
     <style name="SplashTheme" parent="AppTheme.Base">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/nextcloudBlue</item>
     </style>
 
     <style name="AppThemeOLED" parent="AppTheme.Base">
@@ -22,12 +24,8 @@
     <style name="AppTheme.Base" parent="Theme.Material3.DayNight">
         <item name="android:windowBackground">@color/rss_item_list_background</item>
 
-<!--        <item name="colorBackground">@color/background</item>-->
         <item name="colorError">@color/error</item>
         <item name="colorErrorContainer">@color/errorContainer</item>
-<!--        <item name="colorInverseOnSurface">@color/inverseOnSurface</item>-->
-<!--        <item name="colorInversePrimary">@color/inversePrimary</item>-->
-<!--        <item name="colorInverseSurface">@color/inverseSurface</item>-->
         <item name="colorOnBackground">@color/onBackground</item>
         <item name="colorOnError">@color/onError</item>
         <item name="colorOnErrorContainer">@color/onErrorContainer</item>
@@ -43,28 +41,17 @@
         <item name="colorOutlineVariant">@color/outlineVariant</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryContainer">@color/primaryContainer</item>
-<!--        <item name="colorScrim">@color/scrim</item>-->
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorSecondaryContainer">@color/secondaryContainer</item>
-<!--        <item name="colorShadow">@color/shadow</item>-->
         <item name="colorSurface">@color/surface</item>
         <item name="colorSurfaceVariant">@color/surfaceVariant</item>
         <item name="colorTertiary">@color/tertiary</item>
         <item name="colorTertiaryContainer">@color/tertiaryContainer</item>
 
-
-
-
-
-<!--        <item name="colorPrimaryDark">@color/primary</item>-->
         <item name="android:statusBarColor">@color/surface</item>
-
-
 
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-
-        <item name="tintColor">@color/tintColor</item>
 
         <item name="dividerLineColor">#1effffff</item>
 
@@ -78,7 +65,11 @@
 
         <item name="news_detail_background_color">@color/news_detail_background_color</item>
 
-        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
     <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.Material3.DayNight">
@@ -123,9 +114,8 @@
         <item name="colorControlHighlight">@android:color/white</item>
     </style>
 
-
     <style name="ErrorText" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/material_red_600</item>
+        <item name="android:textColor">?attr/colorError</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -133,16 +123,5 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">14sp</item>
     </style>
-
-
-    <!-- https://stackoverflow.com/a/54751236 -->
-    <style name="AlertDialogTheme" parent="ThemeOverlay.Material3.Dialog.Alert">
-        <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
-    </style>
-
-    <style name="ButtonBarButtonStyle" parent="Widget.Material3.Button.TextButton.Dialog.Flush">
-        <item name="android:textColor">@color/primaryTextColor</item>
-    </style>
-
 
 </resources>

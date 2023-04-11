@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:background="@color/slide_up_panel_background_color">
+            android:background="?attr/colorSecondaryContainer">
 
             <ImageView
                 android:id="@+id/img_feed_favicon"
@@ -105,7 +105,7 @@
                     android:focusable="false"
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_play_arrow_24"
-                    app:tint="@color/tintColor"
+                    app:tint="?attr/colorOnSecondaryContainer"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:scaleType="fitXY"
                     android:contentDescription="@string/content_desc_none"/>
@@ -119,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/slide_up_panel_background_color">
+            android:background="?attr/colorSecondaryContainer">
 
             <TextView
                 android:id="@+id/tv_titleSlider"
@@ -211,8 +211,6 @@
             android:gravity="center"
             android:text="@string/exit_playback"
             android:textSize="18sp"
-            android:textColor="@color/primaryTextColor"
-            android:background="@color/colorPrimary"
             android:layout_marginBottom="16dp"
             android:layout_alignBottom="@id/tv_no_podcasts_available" />
 
@@ -254,7 +252,7 @@
         android:layout_height="@dimen/podcast_media_control_height"
         android:paddingStart="@dimen/podcast_horizontal_margin"
         android:paddingEnd="@dimen/podcast_horizontal_margin"
-        android:background="@color/slide_up_panel_background_color"
+        android:background="?attr/colorSecondaryContainer"
         android:orientation="vertical"
         android:layoutDirection="ltr">
 
@@ -326,7 +324,7 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_action_replay_10"
-                app:tint="@color/tintColor"
+                app:tint="?attr/colorOnSecondaryContainer"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="false"
                 android:scaleType="fitXY"
@@ -339,7 +337,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="20dp"
                 app:srcCompat="@drawable/ic_baseline_play_arrow_24"
-                app:tint="@color/tintColor"
+                app:tint="?attr/colorOnSecondaryContainer"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"
                 android:contentDescription="@string/content_desc_play"/>
@@ -350,7 +348,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_action_forward_30"
-                app:tint="@color/tintColor"
+                app:tint="?attr/colorOnSecondaryContainer"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"
                 android:contentDescription="@string/content_desc_forward"/>
@@ -361,7 +359,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_slow_motion_video"
-                app:tint="@color/tintColor"
+                app:tint="?attr/colorOnSecondaryContainer"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"
                 android:layout_marginStart="36dp"
