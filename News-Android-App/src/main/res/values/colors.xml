@@ -32,15 +32,6 @@
     <color name="tertiaryContainer">#EEDBFF</color>
 
 
-
-
-
-
-
-
-
-
-
     <color name="app_drawer_feed_list_background_color">@color/colorPrimary</color>
 
     <color name="primaryTextColor">@android:color/black</color>

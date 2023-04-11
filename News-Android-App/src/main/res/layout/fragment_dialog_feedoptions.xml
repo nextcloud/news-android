@@ -101,7 +101,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_remove_cancel"
-                style="@style/MaterialButtonStyle"
+                style="@style/Widget.Material3.Button.TextButton.Dialog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
@@ -110,7 +110,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_remove_confirm"
-                style="@style/MaterialButtonStyle"
+                style="@style/Widget.Material3.Button.TextButton.Dialog.Flush"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"
@@ -127,34 +127,39 @@
         android:layout_below="@id/horizontalDivider"
         android:visibility="gone">
 
-        <EditText
-            android:id="@+id/renamefeed_feedname"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="13dp"
-            android:layout_marginTop="13dp"
-            android:imeOptions="actionDone"
-            android:inputType="textVisiblePassword"
-            android:lines="1"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:singleLine="true"
-            android:textSize="18sp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/renamefeed_feedname_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/renamefeed_feedname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:imeOptions="actionDone"
+                android:inputType="textVisiblePassword"
+                android:lines="1"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:singleLine="true"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/renamefeed_feedname"
+            android:layout_below="@+id/renamefeed_feedname_wrapper"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_rename_cancel"
-                style="@style/MaterialButtonStyle"
+                style="@style/Widget.Material3.Button.TextButton.Dialog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
@@ -163,7 +168,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_rename_confirm"
-                style="@style/MaterialButtonStyle"
+                style="@style/Widget.Material3.Button.TextButton.Dialog.Flush"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"

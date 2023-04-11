@@ -11,6 +11,6 @@
         android:id="@+id/listfooterMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_drawer_feed_list_background_color"
+        android:background="?attr/colorSurface"
         app:menu="@menu/list_footer_menu" />
 </LinearLayout>
