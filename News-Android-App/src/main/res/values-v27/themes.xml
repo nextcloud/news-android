@@ -6,7 +6,6 @@
     </style>
 
     <style name="SplashTheme" parent="AppTheme.Base">
-        <item name="android:navigationBarColor">@color/nextcloudBlue</item>
         <item name="android:windowLightNavigationBar">false</item>
 
         <!-- Inherited -->

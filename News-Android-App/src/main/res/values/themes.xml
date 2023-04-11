@@ -5,7 +5,6 @@
 
     <style name="SplashTheme" parent="AppTheme.Base">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="android:statusBarColor">@color/nextcloudBlue</item>
     </style>
 
     <style name="AppThemeOLED" parent="AppTheme.Base">
