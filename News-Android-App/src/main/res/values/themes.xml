@@ -52,15 +52,16 @@
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
-    <style name="AppTheme" parent="BaseTheme" />
-
-    <style name="AppThemeOLED" parent="BaseTheme">
+    <style name="BaseTheme.OLED" parent="BaseTheme">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorSecondary">@color/material_grey_500</item>
         <item name="news_detail_background_color">@color/news_detail_background_color_oled</item>
-        <item name="primaryTextColor">@android:color/white</item>
     </style>
+
+    <style name="AppTheme" parent="BaseTheme" />
+
+    <style name="AppTheme.OLED" parent="BaseTheme" />
 
     <style name="SplashTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/nextcloudBlue</item>

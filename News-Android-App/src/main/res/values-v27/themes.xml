@@ -5,4 +5,10 @@
         <item name="android:windowLightStatusBar">@bool/isDayMode</item>
         <item name="android:windowLightNavigationBar">@bool/isDayMode</item>
     </style>
+
+    <style name="AppTheme.OLED" parent="BaseTheme.OLED">
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">@bool/isDayMode</item>
+        <item name="android:windowLightNavigationBar">@bool/isDayMode</item>
+    </style>
 </resources>

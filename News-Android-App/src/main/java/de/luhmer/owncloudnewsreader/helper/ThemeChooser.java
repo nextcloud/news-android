@@ -92,7 +92,7 @@ public class ThemeChooser {
             mSelectedTheme = THEME.DARK; // this is required for auto mode at night
 
             if (isOledMode(false) && isDarkTheme(act)) {
-                act.setTheme(R.style.AppThemeOLED);
+                act.setTheme(R.style.AppTheme_OLED);
                 Log.v(TAG, "activate OLED mode");
                 //uiNightMode = Configuration.UI_MODE_NIGHT_YES;
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
