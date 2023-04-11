@@ -11,7 +11,7 @@ public class DirectoryChooserActivity extends net.rdrei.android.dirchooser.Direc
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int theme = R.style.DirectoryChooserTheme;
+        int theme = R.style.AppTheme;
         setTheme(theme);
     }
 }
