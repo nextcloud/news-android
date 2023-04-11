@@ -242,7 +242,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         binding.tvMenuText.setText(getString(R.string.feed_move_list_description));
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
-        final List<Folder> folders = dbConn.getListOfFolders();
+        final List<Folder> folders = new ArrayList<>(dbConn.getListOfFolders());
         folders.add(new Folder(0, getString(R.string.move_feed_root_folder))); // root folder (fake insert it here since this folder is not synced)
         List<String> folderNames = new ArrayList<>();
 
