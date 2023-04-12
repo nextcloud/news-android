@@ -116,11 +116,11 @@ import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
-import io.reactivex.Completable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -1174,15 +1174,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public boolean onQueryTextChange(String newText) {
         if (searchPublishSubject == null) {
-            searchPublishSubject = PublishSubject.create();
-            searchPublishSubject
-                    .debounce(400, TimeUnit.MILLISECONDS)
-                    .distinctUntilChanged()
-                    .map(s -> getNewsReaderDetailFragment().performSearch(s))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(getNewsReaderDetailFragment().searchResultObserver)
-                    .isDisposed();
+			searchPublishSubject = PublishSubject.create();
+			searchPublishSubject
+					.debounce(400, TimeUnit.MILLISECONDS)
+					.distinctUntilChanged()
+					.map(s -> getNewsReaderDetailFragment().performSearch(s))
+					.subscribeOn(Schedulers.io())
+					.observeOn(AndroidSchedulers.mainThread())
+					.subscribeWith(getNewsReaderDetailFragment().searchResultObserver);
 
         }
         searchPublishSubject.onNext(newText);

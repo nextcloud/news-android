@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.databinding.FragmentDialogOpmlImportBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
-import io.reactivex.annotations.NonNull;
+import io.reactivex.rxjava3.annotations.NonNull;
 
 
 public class NewsReaderOPMLImportDialogFragment extends DialogFragment {

@@ -22,7 +22,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -75,7 +75,7 @@ public class ApiProvider {
                 HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
                         .addPathSegments("index.php/apps/news/api/v1-2/")
                         .build();
-                Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
+                Log.d("ApiModule", "HttpUrl: " + baseUrl);
                 OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
                 // initImageLoader(mPrefs, client, context);
                 initRetrofitApi(baseUrl, client);
@@ -89,7 +89,7 @@ public class ApiProvider {
     private void initRetrofitApi(HttpUrl baseUrl, OkHttpClient client) {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(GsonConfig.GetGson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .baseUrl(baseUrl)
                 .client(client)
                 .build();

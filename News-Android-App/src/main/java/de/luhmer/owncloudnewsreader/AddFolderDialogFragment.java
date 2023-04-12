@@ -22,8 +22,8 @@ import javax.inject.Inject;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.databinding.FragmentDialogAddFolderBinding;
 import de.luhmer.owncloudnewsreader.di.ApiProvider;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 public class AddFolderDialogFragment extends DialogFragment {
