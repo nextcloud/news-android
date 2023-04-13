@@ -46,7 +46,7 @@ import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
 import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.NotificationActionReceiver;
 
@@ -270,7 +270,7 @@ public class NextcloudNotificationManager {
         }
 
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = DatabaseUtils.getSortDirectionFromSettings(mPrefs);
+        DatabaseConnectionOrm.SORT_DIRECTION sortDirection = DatabaseUtilsKt.getSortDirectionFromSettings(mPrefs);
 
         Set<String> notificationGroups = dbConn.getNotificationGroups();
         for (String notificationGroup : notificationGroups) {

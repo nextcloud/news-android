@@ -78,7 +78,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.databinding.FragmentNewsreaderDetailBinding;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
-import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
@@ -158,7 +158,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
 
     public static SORT_DIRECTION getSortDirection(SharedPreferences prefs) {
-        return DatabaseUtils.getSortDirectionFromSettings(prefs);
+        return DatabaseUtilsKt.getSortDirectionFromSettings(prefs);
     }
 
     /**

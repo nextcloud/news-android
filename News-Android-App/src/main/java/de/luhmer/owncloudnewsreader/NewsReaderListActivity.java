@@ -103,7 +103,7 @@ import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
-import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
 import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
@@ -879,10 +879,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
 			DownloadImagesService.enqueueWork(this, data);
 		} else if (itemId == R.id.menu_CreateDatabaseDump) {
-			DatabaseUtils.CopyDatabaseToSdCard(this);
+			DatabaseUtilsKt.copyDatabaseToSdCard(this);
 
 			new AlertDialog.Builder(this)
-					.setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
+					.setMessage("Created dump at: " + DatabaseUtilsKt.getPath(this))
 					.setNeutralButton(getString(android.R.string.ok), null)
 					.show();
 		} else if (itemId == R.id.menu_markAllAsRead) {
