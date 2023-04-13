@@ -82,7 +82,7 @@ import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.rxjava3.observers.DisposableObserver;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is

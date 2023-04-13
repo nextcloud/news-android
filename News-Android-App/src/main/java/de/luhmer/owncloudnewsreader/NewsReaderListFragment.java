@@ -21,6 +21,9 @@
 
 package de.luhmer.owncloudnewsreader;
 
+import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
+import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,14 +62,10 @@ import de.luhmer.owncloudnewsreader.model.AbstractItem;
 import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.OcsAPI;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-
-
-import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
-import static de.luhmer.owncloudnewsreader.LoginDialogActivity.RESULT_LOGIN;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * A list fragment representing a list of NewsReader. This fragment also
