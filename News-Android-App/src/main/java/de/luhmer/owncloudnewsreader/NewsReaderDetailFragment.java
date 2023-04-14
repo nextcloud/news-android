@@ -437,7 +437,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
         ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
 
-        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, new int[]{R.attr.colorAccent});
+        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, new int[]{androidx.appcompat.R.attr.colorAccent});
         updateSwipeDrawables(true);
         int color = Constants.isNextCloud(mPrefs) ? R.color.nextcloudBlue : R.color.owncloudBlue;
         accentColor = styledAttributes.getColor(2, ContextCompat.getColor(context, color));

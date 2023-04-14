@@ -144,7 +144,7 @@ public class FavIconHandler {
             Feed feed = dbConn.getFeedById(feedId);
             Palette palette = Palette.from(bitmap).generate();
             String avg = String.valueOf(
-                    palette.getVibrantColor(ContextCompat.getColor(context, R.color.material_blue_grey_800))
+                    palette.getVibrantColor(ContextCompat.getColor(context, androidx.appcompat.R.color.material_blue_grey_800))
             );
             feed.setAvgColour(avg);
             dbConn.updateFeed(feed);
