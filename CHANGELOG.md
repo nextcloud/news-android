@@ -1,11 +1,27 @@
+0.9.9.79
+---------------------
+
+- Internal dependency updates
+- Fix crash related when trying to move a feed (thanks to
+  @Unpublished) [!1187](https://github.com/nextcloud/news-android/pull/1187)
+- Prevent podcast view from showing up on every app start (thanks to
+  @Unpublished) [!1184](https://github.com/nextcloud/news-android/pull/1184)
+- Allow selecting feed URL in options dialog (thanks to
+  @Unpublished) [!1171](https://github.com/nextcloud/news-android/pull/1171/)
+
 0.9.9.78
 ---------------------
-- Fix broken Notifications on Android 13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
+
+- Fix broken Notifications on Android
+  13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
 
 0.9.9.77
 ---------------------
-- Fix incorrect height of listview rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
-- Switched from Universal-Image-Loader to Glide as image loading library [!1115](https://github.com/nextcloud/news-android/pull/1115)
+
+- Fix incorrect height of listview
+  rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
+- Switched from Universal-Image-Loader to Glide as image loading
+  library [!1115](https://github.com/nextcloud/news-android/pull/1115)
 - Added support for SVG favicons
 - Added support for external media players [!1130](https://github.com/nextcloud/news-android/pull/1130) (thanks to @JFronny)
 
