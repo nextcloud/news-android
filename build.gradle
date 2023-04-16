@@ -14,3 +14,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+
+plugins {
+    id 'com.google.devtools.ksp' version '1.8.20-1.0.11' apply false
+}

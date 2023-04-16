@@ -63,6 +63,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
@@ -104,7 +105,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
@@ -591,7 +591,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
 			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
 
-			GlideApp.with(this)
+			Glide.with(this)
 					.load(avatarUrl)
 					.diskCacheStrategy(DiskCacheStrategy.DATA)
 					.placeholder(placeHolder)

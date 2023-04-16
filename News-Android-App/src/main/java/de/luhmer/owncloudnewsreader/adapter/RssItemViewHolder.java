@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -36,7 +37,6 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
 import de.luhmer.owncloudnewsreader.helper.DateTimeFormatter;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 
 public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -67,7 +67,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
         Context context = itemView.getContext();
         bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(context, android.R.color.secondary_text_dark));
 
-        mGlide = GlideApp.with(context);
+        mGlide = Glide.with(context);
 
         if (favIconHandler == null) {
             favIconHandler = new FavIconHandler(context);

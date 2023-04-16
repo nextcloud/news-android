@@ -30,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.notification.NextcloudNotificationManager;
 
@@ -151,7 +151,7 @@ public class DownloadImagesService extends JobIntentService {
 
     private void downloadImages(List<String> linksToImages) {
         try {
-            RequestManager glide = GlideApp.with(this.getApplicationContext());
+            RequestManager glide = Glide.with(this.getApplicationContext());
 
             while(linksToImages.size() > 0) {
                 String link = linksToImages.remove(0);
