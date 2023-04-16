@@ -1,20 +1,20 @@
 0.9.9.79
 ---------------------
-- Internal dependency updates
-- Fix crash related when trying to move a feed (thanks to @Unpublished) [!1187](https://github.com/nextcloud/news-android/pull/1187)
-- Prevent podcast view from showing up on every app start (thanks to @Unpublished) [!1184](https://github.com/nextcloud/news-android/pull/1184)
-- Allow selecting feed URL in options dialog (thanks to @Unpublished) [!1171](https://github.com/nextcloud/news-android/pull/1171/)
+- Changed - Internal dependency updates
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1171">!1171 - Allow selecting feed URL in options dialog (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1187">!1187 - Fix crash related when trying to move a feed (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1184">!1184 - Prevent podcast view from showing up on every app start (thanks to @Unpublished)</a>
 
 0.9.9.78
 ---------------------
-- Fix broken Notifications on Android 13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1134">!1134 - Fix broken Notifications on Android 13 (thanks to @Unpublished)</a>
 
 0.9.9.77
 ---------------------
-- Fix incorrect height of listview rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
-- Switched from Universal-Image-Loader to Glide as image loading library [!1115](https://github.com/nextcloud/news-android/pull/1115)
-- Added support for SVG favicons
-- Added support for external media players [!1130](https://github.com/nextcloud/news-android/pull/1130) (thanks to @JFronny)
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1111">#1111 - Fix incorrect height of listview rows</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1115">!1115 - Switched from Universal-Image-Loader to Glide as image loading library</a>
+- Added - Added support for SVG favicons
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1130">!1130 - Added support for external media players (thanks to @JFronny)</a>
 
 0.9.9.76
 ---------------------
