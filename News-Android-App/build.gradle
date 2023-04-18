@@ -32,6 +32,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig true
         viewBinding true
     }
 
@@ -74,12 +75,6 @@ android {
         dev {
             dimension "default"
             applicationIdSuffix ".dev"
-        }
-    }
-
-    sourceSets {
-        main {
-            aidl.srcDirs = ['src/main/java']
         }
     }
 

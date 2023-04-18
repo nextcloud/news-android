@@ -156,7 +156,7 @@ public class NightModeTest {
     }
 
     private void navigateUp() {
-        onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());
+        onView(withContentDescription(androidx.appcompat.R.string.abc_action_bar_up_description)).perform(click());
     }
 
     private void openSettings() {

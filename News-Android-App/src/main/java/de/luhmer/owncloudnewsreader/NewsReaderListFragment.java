@@ -207,26 +207,25 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         NavigationView footerNavigation = footerView.findViewById(R.id.listfooterMenu);
         footerNavigation.setNavigationItemSelectedListener(item -> {
-            switch(item.getItemId()) {
-                case R.id.action_add_new_feed:
-                    if(mApi.getNewsAPI() != null) {
-                        Intent newFeedIntent = new Intent(getContext(), NewFeedActivity.class);
-                        requireActivity().startActivityForResult(newFeedIntent, NewsReaderListActivity.RESULT_ADD_NEW_FEED);
-                    } else {
-                        Intent loginIntent = new Intent(getContext(), LoginDialogActivity.class);
-                        requireActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
-                    }
-                    return true;
-                case R.id.drawer_settings:
-                    Intent intent = new Intent(getContext(), SettingsActivity.class);
-                    getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
-                    return true;
-                case R.id.action_add_new_folder:
-                    mCallbacks.onCreateFolderClicked();
-                    return true;
-                default:
-                    return false;
+            int itemId = item.getItemId();
+            if (itemId == R.id.action_add_new_feed) {
+                if (mApi.getNewsAPI() != null) {
+                    Intent newFeedIntent = new Intent(getContext(), NewFeedActivity.class);
+                    requireActivity().startActivityForResult(newFeedIntent, NewsReaderListActivity.RESULT_ADD_NEW_FEED);
+                } else {
+                    Intent loginIntent = new Intent(getContext(), LoginDialogActivity.class);
+                    requireActivity().startActivityForResult(loginIntent, RESULT_LOGIN);
+                }
+                return true;
+            } else if (itemId == R.id.drawer_settings) {
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
+                return true;
+            } else if (itemId == R.id.action_add_new_folder) {
+                mCallbacks.onCreateFolderClicked();
+                return true;
             }
+            return false;
         });
         list.addFooterView(footerView);
     }
