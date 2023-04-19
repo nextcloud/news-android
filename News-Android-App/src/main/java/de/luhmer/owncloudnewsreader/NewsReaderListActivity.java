@@ -63,6 +63,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
@@ -103,8 +104,7 @@ import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
 import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
-import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
@@ -591,7 +591,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
 			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
 
-			GlideApp.with(this)
+			Glide.with(this)
 					.load(avatarUrl)
 					.diskCacheStrategy(DiskCacheStrategy.DATA)
 					.placeholder(placeHolder)
@@ -879,10 +879,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
 			DownloadImagesService.enqueueWork(this, data);
 		} else if (itemId == R.id.menu_CreateDatabaseDump) {
-			DatabaseUtils.CopyDatabaseToSdCard(this);
+			DatabaseUtilsKt.copyDatabaseToSdCard(this);
 
 			new AlertDialog.Builder(this)
-					.setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
+					.setMessage("Created dump at: " + DatabaseUtilsKt.getPath(this))
 					.setNeutralButton(getString(android.R.string.ok), null)
 					.show();
 		} else if (itemId == R.id.menu_markAllAsRead) {

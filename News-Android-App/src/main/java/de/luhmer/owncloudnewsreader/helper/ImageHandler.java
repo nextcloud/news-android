@@ -24,6 +24,8 @@ package de.luhmer.owncloudnewsreader.helper;
 import android.content.Context;
 import android.util.Log;
 
+import com.bumptech.glide.Glide;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -200,8 +202,8 @@ public class ImageHandler {
     public static void clearCache(Context context)
     {
         new Thread(() -> {
-            GlideApp.get(context).clearMemory();
-            GlideApp.get(context).clearDiskCache();
+            Glide.get(context).clearMemory();
+            Glide.get(context).clearDiskCache();
         }).start();
     }
 }
