@@ -174,7 +174,7 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
     implementation "com.squareup.retrofit2:adapter-rxjava3:$RETROFIT_VERSION"
 
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
