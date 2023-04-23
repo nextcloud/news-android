@@ -223,9 +223,9 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         Log.e(TAG, "throwException() called [" + Thread.currentThread().getName() + "]", ex);
         syncRunning = false;
         if(ex instanceof Exception) {
-            EventBus.getDefault().post(SyncFailedEvent.create(OkHttpSSLClient.HandleExceptions((Exception) ex)));
+            EventBus.getDefault().post(new SyncFailedEvent(OkHttpSSLClient.HandleExceptions((Exception) ex)));
         } else {
-            EventBus.getDefault().post(SyncFailedEvent.create(ex));
+            EventBus.getDefault().post(new SyncFailedEvent(ex));
         }
     }
 
