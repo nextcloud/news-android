@@ -159,19 +159,6 @@
 -dontwarn org.checkerframework.**
 
 
-# OkHttp
-# following are additions not released stable yet (as of 4.10.0)
-# https://github.com/square/okhttp/blob/afcc2df23aa855220f0d532b404ec393d927520c/okhttp/src/jvmMain/resources/META-INF/proguard/okhttp3.pro
-# A resource is loaded with a relative path so the package of this class must be preserved.
--adaptresourcefilenames okhttp3/internal/publicsuffix/PublicSuffixDatabase.gz
-
-# OkHttp platform used only on JVM and when Conscrypt and other security providers are available.
--dontwarn okhttp3.internal.platform.**
--dontwarn org.conscrypt.**
--dontwarn org.bouncycastle.**
--dontwarn org.openjsse.**
-
-
 # Required for unit tests
 
 # https://stackoverflow.com/a/39777485
