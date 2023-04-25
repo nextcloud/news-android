@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
-import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
+import de.luhmer.owncloudnewsreader.databinding.ProgressbarItemBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemCardViewBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding;
@@ -160,9 +160,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_PROG) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.progressbar_item, parent, false);
-            return new ProgressViewHolder(v);
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            ProgressbarItemBinding binding = ProgressbarItemBinding.inflate(layoutInflater, parent, false);
+            return new ProgressViewHolder(binding);
         } else {
             Context context = parent.getContext();
             RssItemViewHolder viewHolder = null;
@@ -226,7 +226,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof ProgressViewHolder) {
-            ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
+            ((ProgressViewHolder) viewHolder).getBinding().progressBar.setIndeterminate(true);
         } else {
             final RssItemViewHolder holder = (RssItemViewHolder) viewHolder;
             RssItem item = lazyList.get(position);

@@ -438,7 +438,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(SyncFailedEvent event) {
-        Throwable exception = event.exception();
+        Throwable exception = event.getCause();
 
         // If SSOException is wrapped inside another exception, we extract that SSOException
         if(exception.getCause() != null && exception.getCause() instanceof SSOException) {
