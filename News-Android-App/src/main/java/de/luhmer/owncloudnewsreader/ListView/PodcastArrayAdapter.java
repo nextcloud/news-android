@@ -14,7 +14,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.databinding.PodcastRowBinding;
-import de.luhmer.owncloudnewsreader.events.podcast.AudioPodcastClicked;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -28,7 +27,6 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         super(context, R.layout.podcast_row, values);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         eventBus = EventBus.getDefault();
-        //eventBus.register(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -49,13 +47,6 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         holder.binding.tvTitle.setText(podcastItem.title);
         holder.binding.tvBody.setText(podcastItem.mimeType);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playPodcast(position);
-            }
-        });
-
 
         holder.binding.flDownloadPodcastWrapper.setOnClickListener(view1 -> {
             holder.binding.flDownloadPodcastWrapper.setVisibility(View.GONE);
@@ -64,8 +55,6 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
 
             eventBus.post(new StartDownloadPodcast() {{ podcast = podcastItem; }});
         });
-
-        holder.binding.flPlayPodcastWrapper.setOnClickListener(view12 -> playPodcast(position));
 
         holder.binding.flDeletePodcastWrapper.setOnClickListener(view13 -> {
             if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.link)) {
@@ -113,10 +102,7 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
     }
 
 
-    private void playPodcast(int position) {
-        AudioPodcastClicked audioPodcastClicked = new AudioPodcastClicked();
-        audioPodcastClicked.position = position;
-        eventBus.post(audioPodcastClicked);
+    private void playPodcast() {
     }
 
 
