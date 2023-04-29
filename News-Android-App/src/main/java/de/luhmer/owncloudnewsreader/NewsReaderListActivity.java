@@ -79,7 +79,6 @@ import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -103,7 +102,6 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
-import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
 import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
@@ -246,7 +244,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					super.onDrawerClosed(drawerView);
 
 					syncState();
-					EventBus.getDefault().post(new FeedPanelSlideEvent(false));
 				}
 
 				@Override
