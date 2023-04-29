@@ -277,6 +277,11 @@ public class NextcloudNotificationManager {
             // use hashcode for notification group as identifier for the notification
             Integer notificationId = notificationGroup.hashCode();
 
+            // if the user exists the app we need to update the notifications - but only if the notification is already visible
+            if (updateExistingNotificationsOnly && !isUnreadRssCountNotificationVisible(context, notificationId)) {
+                continue;
+            }
+
             QueryBuilder<RssItem> qbItemsForNotificationGroup = dbConn.getAllUnreadRssItemsForNotificationGroup(sortDirection, notificationGroup);
 
             Integer newItemsCount = Math.toIntExact(qbItemsForNotificationGroup.count());
@@ -315,11 +320,6 @@ public class NextcloudNotificationManager {
             Intent notificationIntent = new Intent(context, NewsReaderListActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(context, notificationId, notificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(contentIntent);
-
-            // if the user exists the app we need to update the notifications - but only if the notification is already visible
-            if (updateExistingNotificationsOnly && !isUnreadRssCountNotificationVisible(context, notificationId)) {
-                continue;
-            }
 
             if (newItemsCount > 0) {
                 notificationManager.notify(notificationId, builder.build());
