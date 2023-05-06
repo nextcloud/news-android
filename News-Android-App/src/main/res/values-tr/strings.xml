@@ -20,7 +20,7 @@
     <string name="title_activity_new_feed">Yeni akış ekle</string>
 
     <string name="menu_update">Yenile</string>
-    <string name="menu_markAllAsRead">Tümünü okunmuş olarak işaretle</string>
+    <string name="menu_markAllAsRead">Tümünü okunmuş işaretle</string>
     <string name="menu_StartImageCaching">Görselleri indir</string>
     <string name="menu_downloadMoreItems">Diğer ögeleri indir</string>
 
