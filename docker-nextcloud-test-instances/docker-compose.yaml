@@ -2,14 +2,15 @@ version: '3'
 
 services:
   app:
-    image: nextcloud:24.0.3-apache
+    # https://hub.docker.com/_/nextcloud/tags
+    image: nextcloud:26.0.1-apache
     volumes:
       - ./nextcloud-data/:/var/www/html
     #restart: no
     environment:
-     - SQLITE_DATABASE=testdatabase.sqlite
-     - NEXTCLOUD_ADMIN_USER=admin
-     - NEXTCLOUD_ADMIN_PASSWORD=admin123
+      - SQLITE_DATABASE=testdatabase.sqlite
+      - NEXTCLOUD_ADMIN_USER=admin
+      - NEXTCLOUD_ADMIN_PASSWORD=admin123
     ports:
       - "80:80"
     # - "443:443"
