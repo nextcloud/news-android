@@ -101,11 +101,6 @@ public class NewFeedActivity extends AppCompatActivity {
     }
 
     public static String getStringFromFile(String filePath) throws Exception {
-        if (filePath.contains("..")) {
-            // Prevent java/path-injection
-            // https://github.com/nextcloud/news-android/security/code-scanning/5
-            throw new IllegalStateException("Input File path may not contain ..");
-        }
         File fl = new File(filePath);
         FileInputStream fin = new FileInputStream(fl);
         String ret = convertStreamToString(fin);
@@ -161,16 +156,43 @@ public class NewFeedActivity extends AppCompatActivity {
                 url = intent.getStringExtra(Intent.EXTRA_TEXT);
             }
 
-            if (url != null && url.endsWith(".opml")) {
-                AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(url, NewFeedActivity.this));
+            try {
+                validatePathOrThrowException(url);
+
+                if (url.endsWith(".opml")) {
+                    AsyncTaskHelper.StartAsyncTask(new ImportOpmlSubscriptionsTask(url, NewFeedActivity.this));
+                }
+
+                // String scheme = intent.getScheme();
+                // ContentResolver resolver = getContentResolver();
+
+                // Uri uri = intent.getData();
+                Log.v("tag", "Content intent detected: " + action + " : " + url);
+                binding.etFeedUrl.setText(url);
+            } catch (IllegalStateException e) {
+                Log.e(TAG, e.getMessage());
+                showAlertDialog(e.getMessage());
             }
+        }
+    }
 
-            //String scheme = intent.getScheme();
-            //ContentResolver resolver = getContentResolver();
+    private void showAlertDialog(String text) {
+        new AlertDialog.Builder(this)
+                .setMessage(text)
+                .setTitle(getString(R.string.opml_export))
+                .setNeutralButton(getString(android.R.string.ok), null)
+                .create()
+                .show();
+    }
 
-            //Uri uri = intent.getData();
-            Log.v("tag", "Content intent detected: " + action + " : " + url);
-            binding.etFeedUrl.setText(url);
+    private void validatePathOrThrowException(String path) {
+        // Prevent java/path-injection
+        // https://github.com/nextcloud/news-android/security/code-scanning/5
+
+        if (path == null) {
+            throw new IllegalStateException("Path is empty");
+        } else if (path.contains("..")) {
+            throw new IllegalStateException("Path contains forbidden character");
         }
     }
 
@@ -284,20 +306,10 @@ public class NewFeedActivity extends AppCompatActivity {
                 fos.close();
             }
 
-            new AlertDialog.Builder(this)
-                    .setMessage(getString(R.string.successfully_exported) + " " + path)
-                    .setTitle(getString(R.string.opml_export))
-                    .setNeutralButton(getString(android.R.string.ok), null)
-                    .create()
-                    .show();
+            showAlertDialog(getString(R.string.successfully_exported) + " " + path);
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e);
-            new AlertDialog.Builder(this)
-                    .setMessage("Failed to export OPML - please report this issue - " + e.getMessage())
-                    .setTitle(getString(R.string.opml_export))
-                    .setNeutralButton(getString(android.R.string.ok), null)
-                    .create()
-                    .show();
+            showAlertDialog("Failed to export OPML - please report this issue - " + e.getMessage());
         }
     }
 
