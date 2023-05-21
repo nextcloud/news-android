@@ -58,14 +58,12 @@ public class ApiProvider {
     public void initApi(@NonNull NextcloudAPI.ApiConnectedListener apiConnectedListener) {
         if(mNextcloudSsoApi != null) {
             // Destroy previous Service Connection if we need to reconnect (e.g. login again)
-            mNextcloudSsoApi.stop();
+            mNextcloudSsoApi.close();
             mNextcloudSsoApi = null;
         }
 
         boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         if(useSSO) {
-            // OkHttpClient client = new OkHttpClient.Builder().build();
-            // initImageLoader(mPrefs, client, context);
             initSsoApi(apiConnectedListener);
         } else {
             if(mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {
@@ -77,7 +75,6 @@ public class ApiProvider {
                         .build();
                 Log.d("ApiModule", "HttpUrl: " + baseUrl);
                 OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
-                // initImageLoader(mPrefs, client, context);
                 initRetrofitApi(baseUrl, client);
                 apiConnectedListener.onConnected();
             } else {

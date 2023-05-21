@@ -184,8 +184,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		// Fragments are not ready when calling the method below in onCreate()
 		updateButtonLayout();
 
-		//Start auto sync if enabled
-		if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
+		// Start auto sync if enabled (and user is logged in)
+		if (isUserLoggedIn() && mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
 			startSync();
 		}
 	}
@@ -744,8 +744,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public void startSync()
     {
-		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-            startLoginActivity();
+		if (!isUserLoggedIn()) {
+			startLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
 				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
@@ -754,7 +754,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 				AccountManager mAccountManager = AccountManager.get(this);
 				Account[] accounts = mAccountManager.getAccounts();
-				for(Account acc : accounts) {
+				for (Account acc : accounts) {
 					String accountType = AccountGeneral.getAccountType(this);
 					if (acc.type.equals(accountType)) {
                         ContentResolver.requestSync(acc, accountType, accBundle);
