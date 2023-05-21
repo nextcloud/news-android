@@ -7,7 +7,7 @@ Start image with:
   'trusted_domains' =>
     array (
       0 => 'localhost',
-      1 => '192.168.1.100',
+      1 => '*',
     ),
   ```
 4. Open Nextcloud in Browser (e.g. http://192.168.1.100)
