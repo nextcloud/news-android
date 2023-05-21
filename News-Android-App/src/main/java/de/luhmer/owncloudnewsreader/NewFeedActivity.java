@@ -86,7 +86,7 @@ public class NewFeedActivity extends AppCompatActivity {
     private List<Folder> folders;
     protected @Inject ApiProvider mApi;
 
-    protected boolean useMediaStore = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R;
+    protected boolean useMediaStore = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 
     @NonNull
     public static String convertStreamToString(InputStream is) throws Exception {
@@ -259,7 +259,6 @@ public class NewFeedActivity extends AppCompatActivity {
         try {
             String path = "";
             if (useMediaStore) {
-                // Android 11 and above
                 ContentResolver contentResolver = getContentResolver();
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, filename);
@@ -271,7 +270,6 @@ public class NewFeedActivity extends AppCompatActivity {
                 out.write(xml.getBytes(StandardCharsets.UTF_8));
                 out.close();
             } else {
-                // Android 10 and below
                 File fPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
                 path = fPath.getPath();
                 FileOutputStream fos = new FileOutputStream(fPath);
