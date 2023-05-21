@@ -101,6 +101,11 @@ public class NewFeedActivity extends AppCompatActivity {
     }
 
     public static String getStringFromFile(String filePath) throws Exception {
+        if (filePath.contains("..")) {
+            // Prevent java/path-injection
+            // https://github.com/nextcloud/news-android/security/code-scanning/5
+            throw new IllegalStateException("Input File path may not contain ..");
+        }
         File fl = new File(filePath);
         FileInputStream fin = new FileInputStream(fl);
         String ret = convertStreamToString(fin);
