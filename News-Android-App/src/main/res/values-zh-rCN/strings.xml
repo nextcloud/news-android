@@ -67,7 +67,7 @@
     <string name="action_link_copy">复制链接</string>
     <string name="toast_img_download_wait">正在下载。请稍候 ...</string>
     <string name="toast_img_saved">图片已保存</string>
-    <string name="toast_img_notwriteable">未能写入图片。</string>
+    <string name="toast_img_notwriteable">写入图片失败。</string>
     <string name="toast_copied_to_clipboard">复制到剪贴板</string>
     <string name="error_download_failed">下载失败</string>
     <string name="intent_title_share">共享途径</string>
@@ -178,7 +178,7 @@
     <string name="pref_license">许可证</string>
     <string name="pref_license_summary">GNU Affero 通用公共许可证 (AGPL) 版本3</string>
     <string name="pref_report_issue">报告问题</string>
-    <string name="pref_report_issue_summary">请求一个(免费) GitHub 账号</string>
+    <string name="pref_report_issue_summary">需要一个（免费的）GitHub 账号</string>
     <string name="pref_contribute">贡献！</string>
     <string name="pref_contribute_summary">获取源代码</string>
     <string name="pref_privacy">隐私</string>
@@ -241,7 +241,7 @@
     <string name="login_dialog_title_error">错误</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">您的服务器上似乎未安装或激活您的新闻应用。 请按照此处给出的说明在您的服务器上首先设置新闻应用：%1$s</string>
     <string name="login_dialog_text_something_went_wrong">有地方出错了 :(</string>
-    <string name="login_dialog_text_zero_version_code">网页新闻应用返回的版本号为 “0”。请查阅以下 bug 报告：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">网页新闻应用返回的版本号为 “0”。请查阅以下bug报告：https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">此 App 版本与您的 Nextcloud 新闻应用版本不兼容。请更新新闻 app 和 appframework。</string>
     <string name="login_dialog_title_security_warning">安全警告</string>
     <string name="login_dialog_text_security_warning">您没有使用 HTTPS，该方法我们强烈推荐使用。攻击者可能会截获您的流量并获得某些敏感信息（例如您的密码）</string>
