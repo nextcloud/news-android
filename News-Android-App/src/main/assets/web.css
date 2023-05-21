@@ -65,10 +65,6 @@ body, blockquote, img, iframe, video, div, table, tbody, tr, td, pre, code, bloc
     max-width:  100% !important;
 }
 
-span {
-    display:    block;
-}
-
 body {
     font-size:    var(--fontsize-body);
     font-weight:  normal;
