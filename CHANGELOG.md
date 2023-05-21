@@ -1,3 +1,11 @@
+0.9.9.80
+---------------------
+- Changed - Internal dependency updates
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1212">!1212 - Nextcloud Single-Sign-On updates</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1200">!1200 - Bail out early on generating unread rss items notifications (thanks to @Unpublished)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1199">!1199 - Housekeeping / Remove unused classes (thanks to @Unpublished)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1195">!1195 - Migrate some classes to Kotlin (thanks to @Unpublished)</a>
+ 
 0.9.9.79
 ---------------------
 - Changed - Internal dependency updates
