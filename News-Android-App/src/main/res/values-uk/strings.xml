@@ -3,13 +3,13 @@
 
     <string name="auto_sync_string">Автоматична синхронізація</string>
     <string name="title_activity_sync_interval_selector">Інтервал синхронізації</string>
-    <string name="empty_view_content">Нічого нема</string>
-    <string name="empty_view_content_action">Pull down to refresh</string>
-    <string name="toast_GettingMoreItems">Розпочато звантаження декількох об\'єктів. Будь ласка, зачекайте...</string>
+    <string name="empty_view_content">Тут нічого немає</string>
+    <string name="empty_view_content_action">Потягніть вниз, щоб оновити</string>
+    <string name="toast_GettingMoreItems">Розпочато звантаження додаткових елементів. Будь ласка, зачекайте …</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
     <string name="do_you_want_to_download_without_wifi">Бажаєте завантажити зображення без підключення до Wi-Fi?</string>
     <string name="current_version">Ви використовуєте версію %s</string>
-    <string name="widget_header">Новини Nextcloud</string>
+    <string name="widget_header">Новини для Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Доступний %d новий елемент</item>
         <item quantity="few">Доступно %d нових елементів</item>
@@ -18,7 +18,7 @@
     </plurals>
     <string name="message_bar_reload">Перезавантажити</string>
     <string name="allUnreadFeeds">Всі непрочитані</string>
-    <string name="starredFeeds">Улюблене</string>
+    <string name="starredFeeds">Улюблені</string>
     <string name="title_activity_new_feed">Додати нову стрічку</string>
 
     <string name="menu_update">Оновити</string>
@@ -33,7 +33,7 @@
     <string name="action_read">Читати</string>
     <string name="action_playPodacst">Відтворити подкаст</string>
     <string name="action_openInBrowser">Відкрити у браузері</string>
-    <string name="action_Share">Спільний доступ</string>
+    <string name="action_Share">Поширити</string>
     <string name="action_login">Налаштування сервера</string>
     <string name="action_save">Зберегти</string>
     <string name="action_settings">Налаштування</string>
@@ -46,11 +46,24 @@
     <!-- notifications -->
     <string name="notification_download_articles_offline">Завантаження статей для доступу в автономному режимі.</string>
     <string name="notification_download_images_offline">Завантаження зображень для використання в автономному режимі</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">У вас є %d новий непрочитаний елемент</item>
+        <item quantity="few">У вас є %d нових непрочитаних елементи</item>
+        <item quantity="many">У вас є %d нових непрочитаних елементів</item>
+        <item quantity="other">У вас є %d нових непрочитаних елементів</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">Доступний %d новий непрочитаний елемент</item>
+        <item quantity="few">Доступні %d нові непрочитані елементи</item>
+        <item quantity="many">Доступно %d нових непрочитаних елементів</item>
+        <item quantity="other">Доступно %d нових непрочитаних елементів</item>
+    </plurals>
+
     <!-- Add new feed -->
     <string name="hint_feed_url">Посилання стрічки</string>
     <string name="action_add_feed">Додати стрічку</string>
     <string name="import_opml">Імпорт OPML</string>
-    <string name="export_opml">Імпорт OPML</string>
+    <string name="export_opml">Експорт OPML</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -77,27 +90,57 @@
     <string name="feed_remove_button">Вилучити</string>
     <string name="feed_rename_button">Перейменувати</string>
     <string name="confirm_feed_remove">Дійсно вилучити цю стрічку? Цю дію неможливо буде скасувати!</string>
+    <string name="feed_move_list_description">Оберіть каталог, до якого перемістити стрічку</string>
+    <string name="move_feed_root_folder">Кореневий каталог</string>
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Вилучити каталог</string>
     <string name="action_folder_rename">Перейменувати каталог</string>
     <string name="folder_remove_button">Вилучити</string>
     <string name="folder_rename_button">Перейменувати</string>
+    <string name="confirm_folder_remove">Ви дійсно хочете видалити цю папку? Це не можна скасувати!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Отримувати унікальні сповіщення для цієї стрічки</string>
+    <string name="notification_feed_default">Всі стрічки з налаштуваннями за замовчуванням з\'являтимуться в одному сповіщенні</string>
+    <string name="notification_feed_none">Жодних сповіщень взагалі</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Додати</string>
     <string name="hint_folder_name">Назва каталогу</string>
+    <string name="folder_already_exists">Ця папка вже існує</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Вхід вручну</string>
+    <string name="login_sso">Увійти за допомогою застосунку Nextcloud Files</string>
     <string name="pref_title_username">Ім\'я користувача</string>
     <string name="pref_title_password">Пароль</string>
+    <string name="pref_title_owncloudRootPath">Коренева адреса Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Увійти...</string>
+    <string name="login_progress_signing_in">Входимо в систему …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Обов\'язкове поле</string>
     <string name="error_invalid_url">Неправильний URL</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Завантажено %d старий елемент</item>
+        <item quantity="few">Завантажено %d старих елементи</item>
+        <item quantity="many">Завантажено %d старих елементів</item>
+        <item quantity="other">Завантажено %d старих елементів</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Наразі отримано %d елемент …</item>
+        <item quantity="few">Наразі отримано %d елементи …</item>
+        <item quantity="many">Наразі отримано %d елементів …</item>
+        <item quantity="other">Наразі отримано %d елементів …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Налаштування</string>
     <string name="cache_is_cleared">Кеш очищено!</string>
@@ -107,12 +150,19 @@
     <string name="pref_header_general">Загалом</string>
     <string name="pref_title_general_sort_order">Порядок сортування</string>
 
+    <string name="pref_general_sort_order_new_old">Нові → Старі</string>
+    <string name="pref_general_sort_order_old_new">Старі → Нові</string>
+
+    <string name="pref_rename_action_swipe_right">Дія при свайпі вправо</string>
+    <string name="pref_rename_action_swipe_left">Дія при свайпі вліво</string>
+
     <string name="pref_title_general_search_in">Шукати в</string>
 
     <string name="pref_general_search_in_title">Назва</string>
     <string name="pref_general_search_in_body">Тіло</string>
 
     <string name="dialog_clearing_cache">Очистити кеш</string>
+    <string name="dialog_clearing_cache_please_wait">Очищення кешу. Будь ласка, зачекайте …</string>
     <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>
     <string name="warning">Попередження</string>
     <string name="pref_title_AutoSyncOnStart">Синхронізація при включені</string>
@@ -120,6 +170,9 @@
     <string name="pref_title_DisableHostnameVerification">Вимкнути перевірку доменного ім\'я</string>
     <string name="pref_title_NavigateWithVolumeButtons">Керування кнопками гучності</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
+    <string name="pref_title_ShowFastActions">Активувати функції швидкого доступу</string>
+    <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд і відкрити статтю в браузері</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
     <string name="mtm_decision_always">Завжди</string>
@@ -129,13 +182,25 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Жодного подкасту не вибрано</string>
+    <string name="no_chapters_available">Немає доступних розділів</string>
+    <string name="exit_playback">Вийти з програвача</string>
+    <string name="podcast_playback_speed_dialog_title">Швидкість відтворення</string>
     <string name="notification_downloading_podcast_title">Завантаження подкасту</string>
 
 
     <!-- Settings for About -->
     <string name="pref_header_about">Про програму</string>
     <string name="pref_license">Ліцензія</string>
+    <string name="pref_license_summary">Загальна громадська ліцензія GNU Афферо (AGPL) версії 3</string>
+    <string name="pref_report_issue">Повідомити про проблему</string>
+    <string name="pref_report_issue_summary">Потрібен (безкоштовний) обліковий запис на GitHub</string>
+    <string name="pref_contribute">Долучайтеся!</string>
+    <string name="pref_contribute_summary">Отримати вихідний код</string>
     <string name="pref_privacy">Конфіденційність</string>
+    <string name="pref_privacy_summary">Політика конфіденційності Nextcloud News Android</string>
+    <string name="pref_version">Застосунок Nextcloud News для Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Показати</string>
     <string name="pref_title_app_theme">Тема</string>
@@ -144,21 +209,46 @@
     <string name="pref_display_browser">Переглядач</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Іконки дій (детальний перегляд)</string>
+
     <string name="pref_display_apptheme_auto">Системна</string>
     <string name="pref_display_apptheme_light">Світла</string>
     <string name="pref_display_apptheme_dark">Темна</string>
 
+    <string name="pref_oled_mode">Чорне тло</string>
+    <string name="pref_oled_mode_summary">Для темної теми на OLED-екранах</string>
+
+    <string name="pref_external_player">Зовнішній програвач</string>
+    <string name="pref_external_player_summary">Відтворювати подкасти у стандартній медіапрограмі</string>
+
+    <string name="pref_display_browser_cct">Вбудовані користувацькі вкладки Chrome</string>
+    <string name="pref_display_browser_built_in">Вбудований браузер</string>
+    <string name="pref_display_browser_external">Зовнішній браузер</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Мініатюри (тільки заголовки)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Мініатюри</string>
+    <string name="pref_display_feed_list_layout_simple_text">Звичайний текст</string>
+    <string name="pref_display_feed_list_layout_headlines">Заголовки</string>
     <string name="pref_display_feed_list_layout_full_text">Контекстний</string>
+    <string name="pref_display_feed_list_layout_web_layout">Веб-макет</string>
+    <string name="pref_display_feed_list_layout_card_view">Вид картки</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Малий</string>
     <string name="pref_display_font_size_d">За замовчуванням</string>
     <string name="pref_display_font_size_l">Великий</string>
+    <string name="pref_display_font_size_xl">Дуже великий</string>
+
     <string name="content_desc_play">Грати</string>
     <string name="content_desc_pause">Пауза</string>
+    <string name="content_desc_playback_speed">Швидкість відтворення</string>
+    <string name="content_desc_rewind">Відмотати назад</string>
     <string name="content_desc_forward">Переслати</string>
+    <string name="content_desc_expand">Розгорнути</string>
     <string name="content_desc_collapse">Згорнути</string>
     <string name="content_desc_mark_as_read">Відмітити прочитаним</string>
     <string name="content_desc_mark_as_unread">Позначити не прочитаним</string>
+    <string name="content_desc_tap_to_refresh">Торкніться для оновлення</string>
     <string name="content_desc_add_to_favorites">Вподобати</string>
     <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
     <string name="content_desc_show_password">Показати пароль</string>
@@ -167,8 +257,15 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Помилка</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Схоже, що ваш застосунок новин не встановлено або не активовано на вашому сервері. Будь ласка, спочатку налаштуйте застосунок новин на вашому сервері, дотримуючись інструкцій, наведених тут: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Щось пішло не так :(</string>
+    <string name="login_dialog_text_zero_version_code">Веб-застосунок новин повернув версію \"0\". Будь ласка, ознайомтеся з наступним звітом про помилку: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Ця версія застосунку не сумісна з вашим додатком новин Nextcloud. Будь ласка, оновіть додаток новин та фреймворк додатків (appframework).</string>
     <string name="login_dialog_title_security_warning">Попередження про небезпеку</string>
+    <string name="login_dialog_text_security_warning">Ви не використовуєте HTTPS, який дуже рекомендується. Зловмисник може перехопити ваш трафік і отримати доступ до деяких конфіденційних даних (наприклад, вашого пароля).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Щось пішло не так. Будь ласка, спробуйте ще раз.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Дані та синхронізація</string>
     <string name="pref_title_clearCache">Очистити кеш</string>
@@ -178,6 +275,8 @@
     <string name="pref_data_sync_image_cache_never">Ніколи</string>
     <string name="pref_data_sync_image_cache_wifi_only">Лише через WiFi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">Через WiFi та у мобільних мережах</string>
+    <string name="pref_data_sync_image_cache_ask">Питати, коли не підключено до WiFi</string>
+
     <string name="array_sync_interval_min_0">Ніколи</string>
     <string name="array_sync_interval_min_5">5 хвилин</string>
     <string name="array_sync_interval_min_15">15 хвилин</string>
@@ -191,6 +290,10 @@
     <string name="array_sync_interval_hour_24">24 години</string>
     <string name="switch_account">Перемкнути обліковий запис</string>
     
+    <string name="successfully_exported">Успішно експортовано до:</string>
     <string name="opml_export">OPML Експорт</string>
+    <string name="parsing_opml">Парсинґ OPML</string>
     <string name="please_wait">Будь ласка, зачекайте…</string>
+    <string name="interval_sync_title">Інтервальна синхронізація</string>
+
     </resources>

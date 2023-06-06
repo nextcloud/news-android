@@ -152,7 +152,7 @@
     <string name="pref_general_search_in_body">Body</string>
 
     <string name="dialog_clearing_cache">Leegmaken cache</string>
-    <string name="dialog_clearing_cache_please_wait">Opschonen cache… Even geduld.</string>
+    <string name="dialog_clearing_cache_please_wait">Cache opschonen. Even geduld …</string>
     <string name="reset_cache_unsaved_changes">Er zijn nog niet gesynchroniseerde wijzigingen. Wil je de cache toch resetten?</string>
     <string name="warning">Waarschuwing</string>
     <string name="pref_title_AutoSyncOnStart">Sync bij opstarten</string>
@@ -160,7 +160,7 @@
     <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
-    <string name="pref_title_ShowFastActions">Active snelle toegangsfuncties</string>
+    <string name="pref_title_ShowFastActions">Snelle toegangsfuncties activeren</string>
     <string name="pref_title_OpenInBrowserDirectly">Sla detailvoorbeeld over en open artikel in browser</string>
 
     <!-- MemorizingTrustManager -->
