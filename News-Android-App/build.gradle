@@ -26,8 +26,8 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        versionCode 184
-        versionName "0.9.9.80"
+        versionCode 185
+        versionName "0.9.9.81"
     }
 
     buildFeatures {
@@ -131,7 +131,7 @@ dependencies {
     // implementation 'com.google.android.gms:play-services:4.2.42'
     // implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
     // implementation project(':Android-SingleSignOn:lib')
-    implementation 'com.github.nextcloud:Android-SingleSignOn:0.8.0'
+    implementation 'com.github.nextcloud:Android-SingleSignOn:0.8.1'
     implementation "androidx.core:core:1.10.1"
     implementation 'androidx.annotation:annotation:1.6.0'
     implementation "androidx.appcompat:appcompat:1.6.1"

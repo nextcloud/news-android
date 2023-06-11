@@ -120,6 +120,8 @@
 -dontwarn freemarker.**
 -dontwarn com.google.auto.value.**
 -dontwarn autovalue.shaded.**
+#-keep class com.gu.option.Option
+#-keep class com.gu.option.UnitFunction
 
 -keep class de.luhmer.** { *; }
 -keepclassmembers class de.luhmer.** { *; }
