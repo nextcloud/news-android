@@ -249,7 +249,7 @@
     <string name="content_desc_mark_as_read">Відмітити прочитаним</string>
     <string name="content_desc_mark_as_unread">Позначити не прочитаним</string>
     <string name="content_desc_tap_to_refresh">Торкніться для оновлення</string>
-    <string name="content_desc_add_to_favorites">Вподобати</string>
+    <string name="content_desc_add_to_favorites">Додати зірочку</string>
     <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
     <string name="content_desc_show_password">Показати пароль</string>
     <string name="content_desc_delete">Вилучити</string>
