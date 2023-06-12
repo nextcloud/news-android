@@ -206,6 +206,7 @@
     <string name="content_desc_play">Reproducir</string>
     <string name="content_desc_pause">Pausa</string>
     <string name="content_desc_forward">Reenviar</string>
+    <string name="content_desc_expand">Expandir</string>
     <string name="content_desc_collapse">Contraer</string>
     <string name="content_desc_mark_as_read">Marcar como lido</string>
     <string name="content_desc_mark_as_unread">Marcar como sen ler</string>
