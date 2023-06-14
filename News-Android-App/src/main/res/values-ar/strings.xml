@@ -122,6 +122,7 @@
     <string name="array_sync_interval_min_15">15 دقيقة</string>
     <string name="array_sync_interval_min_30">30 دقيقة</string>
     <string name="array_sync_interval_hour_1">ساعة واحدة</string>
+    <string name="array_sync_interval_hour_2">ساعتان</string>
     <string name="array_sync_interval_hour_3">3 ساعات</string>
     <string name="array_sync_interval_hour_6">6 ساعات</string>
     <string name="array_sync_interval_hour_12">12 ساعة</string>
