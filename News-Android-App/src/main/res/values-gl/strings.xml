@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">Non hai elementos aquí</string>
     <string name="empty_view_content_action">Tire cara a abaixo para actualizar</string>
+    <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos. Agarde…</string>
     <string name="no_wifi_available">Non está conectado á wifi</string>
+    <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
     <string name="widget_header">Novas do Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -66,6 +68,7 @@
     <string name="action_link_share">Compartir a ligazón</string>
     <string name="action_link_open">Abrir a ligazón no navegador</string>
     <string name="action_link_copy">Copiar a ligazón</string>
+    <string name="toast_img_download_wait">Descargando. Agarde…</string>
     <string name="toast_img_saved">Imaxe gardada</string>
     <string name="toast_img_notwriteable">Produciuse un erro ao gravar a imaxe</string>
     <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
@@ -92,13 +95,14 @@
     <string name="hint_folder_name">Nome do cartafol</string>
     <!-- Strings related to login -->
     <string name="login_manual">Acceso manual</string>
-    <string name="login_sso">Acceso empregando a aplicación Ficheiros do Nextcloud</string>
+    <string name="login_sso">Acceso empregando a aplicación Ficheiros de Nextcloud</string>
     <string name="pref_title_username">Nome de usuario</string>
     <string name="pref_title_password">Contrasinal</string>
     <string name="pref_title_owncloudRootPath">Enderezo raíz do Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Rexistrarse</string>
+    <string name="login_progress_signing_in">Rexistrándose en…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatorio</string>
     <string name="error_invalid_url">URL incorrecto</string>
@@ -110,6 +114,12 @@
         <item quantity="other">Descargados %d elementos antigos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">%delemento recuperados polo de agora…</item>
+        <item quantity="other">%delementos recuperados polo de agora…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Axustes</string>
     <string name="cache_is_cleared">A caché está limpa!</string>
@@ -131,6 +141,7 @@
     <string name="pref_general_search_in_body">Corpo</string>
 
     <string name="dialog_clearing_cache">Limpando a caché</string>
+    <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde…</string>
     <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
     <string name="warning">Advertencia</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
@@ -205,11 +216,14 @@
 
     <string name="content_desc_play">Reproducir</string>
     <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_playback_speed">Velocidade de reprodución</string>
+    <string name="content_desc_rewind">Atrás</string>
     <string name="content_desc_forward">Reenviar</string>
     <string name="content_desc_expand">Expandir</string>
     <string name="content_desc_collapse">Contraer</string>
     <string name="content_desc_mark_as_read">Marcar como lido</string>
     <string name="content_desc_mark_as_unread">Marcar como sen ler</string>
+    <string name="content_desc_tap_to_refresh">Toque para actualizar</string>
     <string name="content_desc_add_to_favorites">Engadir a favoritos</string>
     <string name="content_desc_remove_from_favorites">Retirar de favoritos</string>
     <string name="content_desc_show_password">Amosar o contrasinal</string>
@@ -242,6 +256,7 @@
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
     <string name="array_sync_interval_hour_1">1 hora</string>
     <string name="array_sync_interval_hour_2">2 horas</string>
     <string name="array_sync_interval_hour_3">3 horas</string>
