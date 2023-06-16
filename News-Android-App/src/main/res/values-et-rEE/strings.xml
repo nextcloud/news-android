@@ -128,6 +128,7 @@
     <string name="content_desc_collapse">Sulge</string>
     <string name="content_desc_add_to_favorites">Lisa lemmikutesse</string>
     <string name="content_desc_remove_from_favorites">Eemalda lemmikutest</string>
+    <string name="content_desc_show_password">Näita parooli</string>
     <string name="content_desc_delete">Kustuta</string>
     <string name="content_desc_download">Lae alla</string>
 
