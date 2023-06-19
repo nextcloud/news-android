@@ -120,7 +120,7 @@ final DAGGER_VERSION = '2.46.1'
 final GLIDE_VERSION = '4.15.1'
 final ESPRESSO_VERSION = '3.5.1'
 final OKHTTP_VERSION = '4.11.0'
-final MOCKITO_VERSION = '5.3.1'
+final MOCKITO_VERSION = '5.4.0'
 final RETROFIT_VERSION = '2.9.0'
 
 dependencies {
