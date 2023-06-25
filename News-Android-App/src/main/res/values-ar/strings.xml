@@ -112,6 +112,8 @@
     <string name="login_dialog_title_error">خطأ</string>
     <string name="login_dialog_text_something_went_wrong">حدث خطأ ما: (</string>
     <string name="login_dialog_title_security_warning">تحذير أمان</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">بيانات &amp; مُزامَنة</string>
     <string name="pref_title_clearCache">مسح ذاكرة التخزين المؤقتة</string>
     <string name="pref_title_Max_Cache_Size">أقصى حجم لذاكرة التخزين المؤقتة</string>
 
