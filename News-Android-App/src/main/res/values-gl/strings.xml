@@ -182,7 +182,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Presentar</string>
     <string name="pref_title_app_theme">Tema</string>
-    <string name="pref_title_feed_list_layout">Deseño da lista de novas</string>
+    <string name="pref_title_feed_list_layout">Dsposición da lista de novas</string>
     <string name="pref_title_font_size">Tamaño da letra</string>
     <string name="pref_display_browser">Navegador</string>
 
