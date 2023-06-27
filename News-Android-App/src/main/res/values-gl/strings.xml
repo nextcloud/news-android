@@ -160,8 +160,9 @@
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Non hai ningún podcast seleccionadp</string>
+    <string name="no_podcast_selected">Non hai ningún podcast seleccionado</string>
     <string name="no_chapters_available">Non hai capítulos dispoñíbeis</string>
+    <string name="exit_playback">Saír do reprodutor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade de reprodución</string>
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
 
