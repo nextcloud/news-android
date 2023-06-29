@@ -87,12 +87,23 @@
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Retirar o cartafol</string>
     <string name="action_folder_rename">Renomear o cartafol</string>
     <string name="folder_remove_button">Retirar</string>
     <string name="folder_rename_button">Renomear</string>
+    <string name="confirm_folder_remove">Confirma que quere retirar este cartafol? Isto non pode desfacerse!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Recibir notificacións únicas para esta fonte</string>
+    <string name="notification_feed_default">Todas as fontes cos axustes predeterminados aparecerán nunha única notificación</string>
+    <string name="notification_feed_none">Non hai ningunha notificación</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Engadir</string>
     <string name="hint_folder_name">Nome do cartafol</string>
+    <string name="folder_already_exists">Xa existe o cartafol</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Acceso manual</string>
     <string name="login_sso">Acceso empregando a aplicación Ficheiros de Nextcloud</string>
@@ -197,6 +208,9 @@
     <string name="pref_oled_mode">Fondo escuro</string>
     <string name="pref_oled_mode_summary">Para o tema escuro nas pantallas OLED</string>
 
+    <string name="pref_external_player">Reprodutor externo</string>
+    <string name="pref_external_player_summary">Reproduce podcasts na súa aplicación multimedia predeterminada</string>
+
     <string name="pref_display_browser_cct">Lapelas integradas do Chrome</string>
     <string name="pref_display_browser_built_in">Navegador integrado</string>
     <string name="pref_display_browser_external">Navegador externo</string>
@@ -266,5 +280,10 @@
     <string name="array_sync_interval_hour_24">24 horas</string>
     <string name="switch_account">Cambiar de conta</string>
     
+    <string name="successfully_exported">Exportado satisfactoriamente a:</string>
+    <string name="opml_export">Exportar OPML</string>
+    <string name="parsing_opml">Analizando OPML</string>
     <string name="please_wait">Agarde…</string>
+    <string name="interval_sync_title">Intervalo de sincronización</string>
+
     </resources>
