@@ -150,5 +150,7 @@
     <string name="array_sync_interval_min_0">Mitte kunagi</string>
     <string name="array_sync_interval_min_30">30 minutit</string>
     <string name="array_sync_interval_hour_1">1 tund</string>
+    <string name="switch_account">Vaheta kontot</string>
+    
     <string name="please_wait">Palun oota...</string>
     </resources>
