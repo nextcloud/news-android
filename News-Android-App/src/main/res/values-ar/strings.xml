@@ -90,6 +90,7 @@
     <string name="pref_display_browser_built_in">متصفح مدمج</string>
     <string name="pref_display_browser_external">متصفح خارجي</string>
 
+    <string name="pref_display_feed_list_layout_simple_text">نص بسيط</string>
     <string name="pref_display_feed_list_layout_headlines">العناوين</string>
     <string name="pref_display_feed_list_layout_full_text">نص كامل</string>
     <!-- font size scaling definitions -->
