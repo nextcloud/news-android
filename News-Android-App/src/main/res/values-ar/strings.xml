@@ -87,6 +87,9 @@
     <string name="pref_header_general">عام</string>
     <string name="pref_title_general_sort_order">ترتيب</string>
 
+    <string name="pref_general_sort_order_new_old">جديد - قديم</string>
+    <string name="pref_general_sort_order_old_new">قديم -جديد</string>
+
     <string name="pref_general_search_in_title">العنوان</string>
     <string name="pref_general_search_in_body">المحتوى</string>
 
@@ -111,6 +114,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">لم يتم اختيار بودكاست</string>
     <string name="no_chapters_available">لا توجد فصول متاحة</string>
+    <string name="podcast_playback_speed_dialog_title">سرعة التشغيل</string>
     <!-- Settings for About -->
     <string name="pref_header_about">عن</string>
     <string name="pref_license">الرخصة</string>
@@ -133,6 +137,7 @@
     <string name="pref_display_apptheme_dark">ليلي</string>
 
     <string name="pref_oled_mode">خلفية سوداء</string>
+    <string name="pref_display_browser_cct">علامات تبويب المخصصة المدمجة بمتصفح كروم</string>
     <string name="pref_display_browser_built_in">متصفح مدمج</string>
     <string name="pref_display_browser_external">متصفح خارجي</string>
 
@@ -145,6 +150,7 @@
     <string name="pref_display_font_size_l">كبير</string>
     <string name="content_desc_play">تشغيل</string>
     <string name="content_desc_pause">إيقاف</string>
+    <string name="content_desc_playback_speed">سرعة التشغيل</string>
     <string name="content_desc_rewind">الإرجاع</string>
     <string name="content_desc_forward">إعادة توجيه</string>
     <string name="content_desc_expand">توسيع</string>
@@ -173,10 +179,14 @@
 
     <string name="pref_data_sync_image_cache_never">أبدا</string>
     <string name="pref_data_sync_image_cache_wifi_only">عبر الواي فاي فقط</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">عبر الواي فاي&amp; المتنقل \"WiFi Mobile\"</string>
+    <string name="pref_data_sync_image_cache_ask">السؤال في حالة عدم الاتصال بشبكة واي-فاي</string>
+
     <string name="array_sync_interval_min_0">أبدا</string>
     <string name="array_sync_interval_min_5">5 دقائق</string>
     <string name="array_sync_interval_min_15">15 دقيقة</string>
     <string name="array_sync_interval_min_30">30 دقيقة</string>
+    <string name="array_sync_interval_min_45">45 دقيقة</string>
     <string name="array_sync_interval_hour_1">ساعة واحدة</string>
     <string name="array_sync_interval_hour_2">ساعتان</string>
     <string name="array_sync_interval_hour_3">3 ساعات</string>
