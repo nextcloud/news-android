@@ -2,17 +2,17 @@
 <resources>
 
     <string name="auto_sync_string">مزامنة تلقائية</string>
-    <string name="title_activity_sync_interval_selector">الفترات الفاصلة بين عمليات المزامنة</string>
-    <string name="empty_view_content">لا يوجد عناصر هنا</string>
-    <string name="empty_view_content_action">اسحب للاسفل للتحديث</string>
+    <string name="title_activity_sync_interval_selector">الزمن الفاصل بين عمليات المزامنة</string>
+    <string name="empty_view_content">لا توجد أي عناصر هنا</string>
+    <string name="empty_view_content_action">إسحب للاسفل للتحديث</string>
     <string name="toast_GettingMoreItems">بدأ تنزيل المزيد من العناصر. انتظر من فضلك …</string>
-    <string name="no_wifi_available">لم يتم الاتصال بشبكة الواي فاي</string>
-    <string name="do_you_want_to_download_without_wifi">هل تريد تنزيل الصور بدون اتصال واي-فاي؟</string>
+    <string name="no_wifi_available">لا يوجد اتصال بشبكة الواي فاي</string>
+    <string name="do_you_want_to_download_without_wifi">هل تريد تنزيل الصور بدون اتصال واي فاي؟</string>
     <string name="current_version">أنت تستخدم الإصدار %s</string>
-    <string name="widget_header">أخبار ownCloud</string>
+    <string name="widget_header">أخبار نكست كلاود</string>
     <string name="message_bar_reload">إعادة تحميل</string>
     <string name="allUnreadFeeds">كل العناصر غير المقروءه</string>
-    <string name="starredFeeds">العناصر المعلّمة بنجمة</string>
+    <string name="starredFeeds">العناصر المُعلّمة بنجمة</string>
     <string name="title_activity_new_feed">إضافة موجز جديد</string>
 
     <string name="menu_update">تحديث</string>
@@ -20,112 +20,157 @@
     <string name="menu_StartImageCaching">تحميل الصور</string>
     <string name="menu_downloadMoreItems">تحميل المزيد من العناصر</string>
 
+    <string name="tv_showing_cached_version">عرض النسخة المُخبّأة cached</string>
+
     <!-- Action Bar Items -->
-    <string name="action_starred">معلّم بنجمة.</string>
+    <string name="action_starred">مُعلّم بنجمة</string>
     <string name="action_read">قراءة</string>
     <string name="action_playPodacst">تشغيل بودكاست</string>
     <string name="action_openInBrowser">فتح في متصفح الويب</string>
     <string name="action_Share">شارك</string>
-    <string name="action_login">إعدادات الخادم.</string>
+    <string name="action_login">إعدادات الخادوم</string>
     <string name="action_save">حفظ</string>
     <string name="action_settings">إعدادات</string>
     <string name="action_sync_settings">مزامنة الإعدادات</string>
     <string name="action_add_new_feed">إضافة موجز جديد</string>
-    <string name="action_textToSpeech">اقرأ</string>
+    <string name="action_add_new_folder">إضافة مجلد جديد</string>
+    <string name="action_textToSpeech">إقرأ</string>
     <string name="action_search">بحث</string>
+    <string name="action_download_articles_offline">تنزيل مقالات لاستعمالها عند انقطاع بالإنترنت</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">تنزيل مقالات لاستعمالها عند انقطاع بالإنترنت</string>
+    <string name="notification_download_images_offline">تنزيل صور لاستعمالها عند انقطاع بالإنترنت</string>
     <!-- Add new feed -->
-    <string name="hint_feed_url">عنوان محدد موقع الموارد المُوحّد \"URL\" الموجز</string>
+    <string name="hint_feed_url">عنوان URL للموجز</string>
     <string name="action_add_feed">إضافة موجز</string>
+    <string name="import_opml">إستيراد OPML</string>
+    <string name="export_opml">تصدير OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">تنزيل الصورة</string>
     <string name="action_img_sharelink">شارك رابط الصورة</string>
-    <string name="action_img_open">افتح الصورة في المستعرض</string>
+    <string name="action_img_open">إفتح الصورة في المستعرض</string>
     <string name="action_img_copylink">نسخ رابط الصورة</string>
     <string name="action_link_share">شارك الرابط</string>
     <string name="action_link_open">افتح الرابط في المستعرض</string>
-    <string name="action_link_copy">انسخ الرابط</string>
-    <string name="toast_img_download_wait">جارى التحميل. رجاء الانتظار …</string>
-    <string name="toast_img_saved">تم حفظ الصورة</string>
-    <string name="toast_img_notwriteable">فشل في نسخ الصورة.</string>
-    <string name="toast_copied_to_clipboard">تم النسخ للحافظة</string>
-    <string name="error_download_failed">فشل التحميل</string>
-    <string name="intent_title_share">شارك عبر</string>
+    <string name="action_link_copy">إنسخ الرابط</string>
+    <string name="toast_img_download_wait">التحميل جارٍ. يرجى الانتظار …</string>
+    <string name="toast_img_saved">تمّ حفظ الصورة</string>
+    <string name="toast_img_notwriteable">تعذّر نسخ الصورة</string>
+    <string name="toast_copied_to_clipboard">تمّ النسخ للحافظة</string>
+    <string name="error_download_failed">تعذّر التحميل</string>
+    <string name="intent_title_share">شارِك عبر</string>
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">إزالة الموجز </string>
     <string name="action_feed_rename">إعادة تسمية الموجز</string>
-    <string name="action_feed_notification_settings">إعدادات الإشعار</string>
+    <string name="action_feed_move">نقل الموجز</string>
+    <string name="action_feed_notification_settings">إعدادات الإشعارات</string>
     <string name="feed_remove_button">حذف</string>
-    <string name="feed_rename_button">إعادة التسمية</string>
-    <string name="confirm_feed_remove">هل تريد حقًا إزالة هذا الموجز؟ لا يمكن التراجع عن ذلك!</string>
-    <string name="action_folder_rename">اعادة تسمية المجلد</string>
+    <string name="feed_rename_button">تغيير التسمية</string>
+    <string name="confirm_feed_remove">هل تريد حقًا إزالة هذا الموجز؟ لا يمكن التراجع عن هذا لاحقاً!</string>
+    <string name="feed_move_list_description">إختر مجلداً ليُنقل إليه الموجز</string>
+    <string name="move_feed_root_folder">المجلد الجذري root folder</string>
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">إحذف المجلد</string>
+    <string name="action_folder_rename">غيّر تسمية المجلد</string>
     <string name="folder_remove_button">حذف</string>
-    <string name="folder_rename_button">إعادة تسمية</string>
+    <string name="folder_rename_button">تغيير التسمية</string>
+    <string name="confirm_folder_remove">هل تريد حقًا إزالة هذا المجلد؟ لا يمكن التراجع عن هذا لاحقاً!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">تَلَقَّى إشعارات فريدة unique لهذا الموجز</string>
+    <string name="notification_feed_default">ستظهر جميع المواجيز feeds ذات الإعدادات الافتراضية في إشعار واحد</string>
+    <string name="notification_feed_none">لا توجد أيّ إشعاراتٍ</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">إضافة</string>
     <string name="hint_folder_name">اسم المجلد</string>
+    <string name="folder_already_exists">المجلد موجودٌ مسبقاً</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">دخول يدوي</string>
+    <string name="login_sso">الدخول من خلال تطبيق الملفات Files لنكست كلاود</string>
     <string name="pref_title_username">إسم المستخدم</string>
     <string name="pref_title_password">كلمة المرور</string>
-    <string name="pref_title_owncloudRootPath">عنوان جذر نكست كلود</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">العنوان الجذري لنكست كلاود</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">تسجيل الدخول</string>
-    <string name="login_progress_signing_in">تسجيل الدخول …</string>
+    <string name="login_progress_signing_in">تسجيل الدخول جارٍ…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">هذا الحقل مطلوب</string>
-    <string name="error_invalid_url">عنوان محدد موقع الموارد المُوحّد \"URL\"غير صحيح</string>
+    <string name="error_field_required">هذا الحقل لازمٌ</string>
+    <string name="error_invalid_url">عنوان URL  غير صحيحٍ</string>
 
 
-    <string name="toast_no_more_downloads_available">لا يوجد عناصر أخرى متوفرة</string>
+    <string name="toast_no_more_downloads_available">لا توجد عناصر أخرى متوفرة</string>
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">إعدادات</string>
-    <string name="cache_is_cleared">تم مسح ذاكرة التخزين المؤقت!</string>
+    <string name="cache_is_cleared">تمّ مسح ذاكرة التخزين المؤقت!</string>
 
 
     <!-- General settings -->
-    <string name="pref_header_general">عام</string>
-    <string name="pref_title_general_sort_order">ترتيب</string>
+    <string name="pref_header_general">عامٌّ</string>
+    <string name="pref_title_general_sort_order">الترتيب</string>
 
-    <string name="pref_general_sort_order_new_old">جديد - قديم</string>
-    <string name="pref_general_sort_order_old_new">قديم -جديد</string>
+    <string name="pref_general_sort_order_new_old">جديد ← قديم</string>
+    <string name="pref_general_sort_order_old_new">قديم ← جديد</string>
+
+    <string name="pref_rename_action_swipe_right">التصرُّف عند السحب لليمين</string>
+    <string name="pref_rename_action_swipe_left">التصرُّف عند السحب لليسار</string>
+
+    <string name="pref_title_general_search_in">البحث في</string>
 
     <string name="pref_general_search_in_title">العنوان</string>
-    <string name="pref_general_search_in_body">المحتوى</string>
+    <string name="pref_general_search_in_body">المتن</string>
 
     <string name="dialog_clearing_cache">مسح ذاكرة التخزين المؤقت</string>
-    <string name="dialog_clearing_cache_please_wait">مسح ذاكرة التخزين المؤقت. انتظر من فضلك …</string>
+    <string name="dialog_clearing_cache_please_wait">مسح ذاكرة التخزين المؤقت جارٍ.  يُرجى الانتظار …</string>
     <string name="reset_cache_unsaved_changes">توجد تغييرات غير متزامنة. هل ترغب في إعادة تعيين ذاكرة التخزين المؤقت على أي حال؟</string>
     <string name="warning">تحذير</string>
     <string name="pref_title_AutoSyncOnStart">بدء المزامنة عند التشغيل</string>
     <string name="pref_title_ShowOnlyUnread">أظهر فقط المقالات غير المقروءة</string>
     <string name="pref_title_DisableHostnameVerification">تعطيل التحقق من اسم المضيف</string>
-    <string name="pref_title_NavigateWithVolumeButtons">التنقل باستخدام أزرار الصوت</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">حدد كمقروء أثناء التنقل</string>
+    <string name="pref_title_NavigateWithVolumeButtons">التّنقل باستخدام أزرار الصوت</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">حدِّد كمقروء أثناء التنقل</string>
+    <string name="pref_title_ShowFastActions">مكًن وظائف الوصول السريع</string>
     <string name="pref_title_OpenInBrowserDirectly">تخطي العرض المفصل وفتح المقال في المتصفح</string>
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">هل ترغب بقبول شهادة غير معروفه؟</string>
+    <string name="mtm_accept_cert">هل تقبل بشهادة غير معروفة؟</string>
     <string name="mtm_decision_always">دائماً</string>
     <string name="mtm_decision_abort">إلغاء.</string>
     <string name="mtm_notification">التحقق من الشهادة</string>
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">لم يتم اختيار بودكاست</string>
+    <string name="no_podcast_selected">لم يتم اختيار أي بودكاست</string>
     <string name="no_chapters_available">لا توجد فصول متاحة</string>
+    <string name="exit_playback">أُخرُج من المُشغّل</string>
     <string name="podcast_playback_speed_dialog_title">سرعة التشغيل</string>
+    <string name="notification_downloading_podcast_title">تنزيل البودكاست</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">عن</string>
     <string name="pref_license">الرخصة</string>
+    <string name="pref_license_summary">رخصة GNU (AGPL) الإصدار 3</string>
     <string name="pref_report_issue">الإبلاغ عن خطأ</string>
+    <string name="pref_report_issue_summary">يلزم حساب GitHub (مجاني)</string>
     <string name="pref_contribute">ساهم!</string>
-    <string name="pref_contribute_summary">الحصول على الشفرة المصدرية</string>
+    <string name="pref_contribute_summary">أحصل على الشفرة المصدرية</string>
     <string name="pref_privacy">الخصوصية</string>
+    <string name="pref_privacy_summary">سياسة الخصوصية في تطبيق News من نكست كلاود على الأندرويد</string>
+    <string name="pref_version">تطبيق News من نكست كلاود على الأندرويد</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">عرض</string>
-    <string name="pref_title_app_theme">المظهر</string>
-    <string name="pref_title_feed_list_layout">مخطط قائمة الموجز</string>
+    <string name="pref_title_app_theme">الثيمة</string>
+    <string name="pref_title_feed_list_layout">مخطط عرض الموجز بالقائمة</string>
     <string name="pref_title_font_size">حجم الخط</string>
     <string name="pref_display_browser">المتصفح</string>
 
@@ -134,66 +179,87 @@
 
     <string name="pref_display_apptheme_auto">النظام الإفتراضي </string>
     <string name="pref_display_apptheme_light">فاتح</string>
-    <string name="pref_display_apptheme_dark">ليلي</string>
+    <string name="pref_display_apptheme_dark">داكن</string>
 
     <string name="pref_oled_mode">خلفية سوداء</string>
-    <string name="pref_display_browser_cct">علامات تبويب المخصصة المدمجة بمتصفح كروم</string>
+    <string name="pref_oled_mode_summary">للوضع الداكن على شاشات OLED</string>
+
+    <string name="pref_external_player">مُشغّل خارجي</string>
+    <string name="pref_external_player_summary">قُم بتشغيل ملفات podcast في تطبيقك الافتراضي للوسائط</string>
+
+    <string name="pref_display_browser_cct">علامات التبويب المخصصة لمتصفح كروم</string>
     <string name="pref_display_browser_built_in">متصفح مدمج</string>
     <string name="pref_display_browser_external">متصفح خارجي</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">صور مصغرة thumbnails ـ (للعناوين فقط)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">صور مصغرة thumbnails</string>
     <string name="pref_display_feed_list_layout_simple_text">نص بسيط</string>
     <string name="pref_display_feed_list_layout_headlines">العناوين</string>
     <string name="pref_display_feed_list_layout_full_text">نص كامل</string>
+    <string name="pref_display_feed_list_layout_web_layout">مخطط عرض صفحة الوب</string>
+    <string name="pref_display_feed_list_layout_card_view">عرض البطاقات</string>
+
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">صغير</string>
     <string name="pref_display_font_size_d">افتراضي</string>
     <string name="pref_display_font_size_l">كبير</string>
+    <string name="pref_display_font_size_xl">كبير جداً</string>
+
     <string name="content_desc_play">تشغيل</string>
     <string name="content_desc_pause">إيقاف</string>
     <string name="content_desc_playback_speed">سرعة التشغيل</string>
-    <string name="content_desc_rewind">الإرجاع</string>
-    <string name="content_desc_forward">إعادة توجيه</string>
+    <string name="content_desc_rewind">أعد من البداية</string>
+    <string name="content_desc_forward">للأمام</string>
     <string name="content_desc_expand">توسيع</string>
     <string name="content_desc_collapse">طوي</string>
     <string name="content_desc_mark_as_read">تمييز كمقروء</string>
     <string name="content_desc_mark_as_unread">تمييز كغير مقروء</string>
-    <string name="content_desc_tap_to_refresh">انقر للإنعاش</string>
+    <string name="content_desc_tap_to_refresh">أنقر للإنعاش</string>
     <string name="content_desc_add_to_favorites">إضافة إلى المفضلة</string>
-    <string name="content_desc_remove_from_favorites">إزالتها مِن المفضلة</string>
-    <string name="content_desc_show_password">اظهر كلمة المرور</string>
+    <string name="content_desc_remove_from_favorites">إزالة من المفضلة</string>
+    <string name="content_desc_show_password">أظهر كلمة المرور</string>
     <string name="content_desc_delete">إزالة</string>
     <string name="content_desc_download">تنزيل</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">خطأ</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">يبدو أنه لم يتم تنصيب تطبيق الأخبار الخاص بك أو تنشيطه على خادومك. يرجى اتباع التعليمات الواردة هنا لإعداد تطبيق الأخبار على خادومك أولاً: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">حدث خطأ ما: (</string>
-    <string name="login_dialog_text_zero_version_code">أرجع تطبيق أخبار الويب الإصدار \"0\". يرجى إلقاء نظرة على تقرير الخطأ التالي: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">إصدار هذا التطبيق غير متوافق مع تطبيق أخبار نكست كلود نيوز \"Nextcloud News\" الخاص بك. يُرجى ترقية تطبيق الأخبار وإطار عمل التطبيق.</string>
-    <string name="login_dialog_title_security_warning">تحذير أمان</string>
-    <string name="login_dialog_text_security_warning">أنت لا تستخدم بروتوكول نقل النص الفائق الآمن \"HTTPS\"، والذي نوصي به بشدة. يمكن للمهاجم اعتراض حركة المرور الخاصة بك والوصول إلى بعض البيانات الحساسة (مثل كلمة المرور الخاصة بك).</string>
+    <string name="login_dialog_text_zero_version_code">قام تطبيق أخبار الويب بإرجاع الإصدار \"0\". يرجى إلقاء نظرة على تقرير الخطأ التالي: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">هذا إصدار من التطبيق غير متوافق مع تطبيق أخبار نكست كلود نيوز News لديك. يُرجى ترقية تطبيق الأخبار وإطار عمل التطبيق.</string>
+    <string name="login_dialog_title_security_warning">تحذير أمني</string>
+    <string name="login_dialog_text_security_warning">أنت لا تستخدم بروتوكول HTTPS، والذي نوصي به بشدة. يمكن للمهاجم اعتراض حركة المرور الخاصة بك والوصول إلى بعض البيانات الحساسة (مثل كلمة المرور الخاصة بك).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">حدث خطأٌ ما. يرجى إعادة المحاولة.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">بيانات &amp; مُزامَنة</string>
     <string name="pref_title_clearCache">مسح ذاكرة التخزين المؤقتة</string>
-    <string name="pref_title_CacheImagesOffline">ذاكرة التخزين المؤقت للصور غير متصلة بالإنترنت</string>
+    <string name="pref_title_CacheImagesOffline">تخبئة الصور لحالة عدم توافر الاتصال بالإنترنت</string>
     <string name="pref_title_Max_Cache_Size">أقصى حجم لذاكرة التخزين المؤقتة</string>
 
     <string name="pref_data_sync_image_cache_never">أبدا</string>
     <string name="pref_data_sync_image_cache_wifi_only">عبر الواي فاي فقط</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">عبر الواي فاي&amp; المتنقل \"WiFi Mobile\"</string>
-    <string name="pref_data_sync_image_cache_ask">السؤال في حالة عدم الاتصال بشبكة واي-فاي</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">عبر الواي فاي&amp; النقّال</string>
+    <string name="pref_data_sync_image_cache_ask">إسأل في حالة عدم الاتصال بشبكة واي فاي</string>
 
     <string name="array_sync_interval_min_0">أبدا</string>
     <string name="array_sync_interval_min_5">5 دقائق</string>
     <string name="array_sync_interval_min_15">15 دقيقة</string>
     <string name="array_sync_interval_min_30">30 دقيقة</string>
     <string name="array_sync_interval_min_45">45 دقيقة</string>
-    <string name="array_sync_interval_hour_1">ساعة واحدة</string>
-    <string name="array_sync_interval_hour_2">ساعتان</string>
+    <string name="array_sync_interval_hour_1">1 ساعة</string>
+    <string name="array_sync_interval_hour_2">2 ساعة</string>
     <string name="array_sync_interval_hour_3">3 ساعات</string>
     <string name="array_sync_interval_hour_6">6 ساعات</string>
     <string name="array_sync_interval_hour_12">12 ساعة</string>
     <string name="array_sync_interval_hour_24">24 ساعة</string>
     <string name="switch_account">تبديل الحساب</string>
     
+    <string name="successfully_exported">تمّ بنجاح التصدير إلى:</string>
+    <string name="opml_export">تصدير OPML</string>
+    <string name="parsing_opml">تحليل OPML</string>
     <string name="please_wait">الرجاء الانتظار...</string>
+    <string name="interval_sync_title">مزامنة الزمن الفاصل Interval Sync</string>
+
     </resources>
