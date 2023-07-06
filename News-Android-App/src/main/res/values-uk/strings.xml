@@ -29,7 +29,7 @@
     <string name="tv_showing_cached_version">Відображається кешована версія</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Улюблене</string>
+    <string name="action_starred">Із зірочкою</string>
     <string name="action_read">Читати</string>
     <string name="action_playPodacst">Відтворити подкаст</string>
     <string name="action_openInBrowser">Відкрити у браузері</string>
