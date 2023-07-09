@@ -10,6 +10,14 @@
     <string name="do_you_want_to_download_without_wifi">هل تريد تنزيل الصور بدون اتصال واي فاي؟</string>
     <string name="current_version">أنت تستخدم الإصدار %s</string>
     <string name="widget_header">أخبار نكست كلاود</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="zero">%dبنود جديدة متاحة</item>
+        <item quantity="one">%dبند جديد متاح</item>
+        <item quantity="two">%dبنود جديدة متاحة</item>
+        <item quantity="few">%dبنود جديدة متاحة</item>
+        <item quantity="many">%dبنود جديدة متاحة</item>
+        <item quantity="other">%dبنود جديدة متاحة</item>
+    </plurals>
     <string name="message_bar_reload">إعادة تحميل</string>
     <string name="allUnreadFeeds">كل العناصر غير المقروءه</string>
     <string name="starredFeeds">العناصر المُعلّمة بنجمة</string>
@@ -40,6 +48,23 @@
     <!-- notifications -->
     <string name="notification_download_articles_offline">تنزيل مقالات لاستعمالها عند انقطاع بالإنترنت</string>
     <string name="notification_download_images_offline">تنزيل صور لاستعمالها عند انقطاع بالإنترنت</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="zero">لديك %dبنود جديدة غير مقروءة </item>
+        <item quantity="one">لديك %dبند جديد غير مقروء</item>
+        <item quantity="two">لديك %dبنود جديدة غير مقروءة </item>
+        <item quantity="few">لديك ب%dنود جديدة غير مقروءة </item>
+        <item quantity="many">لديك%d بنود جديدة غير مقروءة </item>
+        <item quantity="other">لديك%d بنود جديدة غير مقروءة </item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="zero">%dبنود جديدة غير مقروءة متاحة</item>
+        <item quantity="one">%dبند جديد غير مقروء متاح</item>
+        <item quantity="two">%dبنود جديدة غير مقروءة متاحة</item>
+        <item quantity="few">%dبنود جديدة غير مقروءة متاحة</item>
+        <item quantity="many">%dبنود جديدة غير مقروءة متاحة</item>
+        <item quantity="other">%dبنود جديدة غير مقروءة متاحة</item>
+    </plurals>
+
     <!-- Add new feed -->
     <string name="hint_feed_url">عنوان URL للموجز</string>
     <string name="action_add_feed">إضافة موجز</string>
@@ -106,7 +131,26 @@
     <string name="error_invalid_url">عنوان URL  غير صحيحٍ</string>
 
 
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="zero">تم تنزيل %dعناصر قديمة</item>
+        <item quantity="one">تم تنزيل %dعنصر قديمة</item>
+        <item quantity="two">تم تنزيل %dعناصر قديمة</item>
+        <item quantity="few">تم تنزيل %dعناصر قديمة</item>
+        <item quantity="many">تم تنزيل %dعناصر قديمة</item>
+        <item quantity="other">تم تنزيل %dعناصر قديمة</item>
+    </plurals>
     <string name="toast_no_more_downloads_available">لا توجد عناصر أخرى متوفرة</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="zero">استدعاء %dبنود حتي الآن ...</item>
+        <item quantity="one">استدعاء %dبند حتي الآن ...</item>
+        <item quantity="two">استدعاء %d بنود حتي الآن ...</item>
+        <item quantity="few">استدعاء %dبنود حتي الآن ...</item>
+        <item quantity="many">استدعاء %dبنود حتي الآن ...</item>
+        <item quantity="other">استدعاء %d بنود حتي الآن ...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">إعدادات</string>
     <string name="cache_is_cleared">تمّ مسح ذاكرة التخزين المؤقت!</string>
