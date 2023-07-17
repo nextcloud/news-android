@@ -40,10 +40,10 @@
     <string name="action_add_new_folder">Yeni klasör ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
     <string name="action_search">Arama</string>
-    <string name="action_download_articles_offline">Makaleleri çevrimdış olarak indir</string>
+    <string name="action_download_articles_offline">Makaleleri çevrim dışı olarak indir</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Makaleler çevrimdışı kullanım için indiriliyor</string>
-    <string name="notification_download_images_offline">Görseller çevrimdışı kullanım için indiriliyor</string>
+    <string name="notification_download_articles_offline">Makaleler çevrim dışı kullanım için indiriliyor</string>
+    <string name="notification_download_images_offline">Görseller çevrim dışı kullanım için indiriliyor</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Yeni %d okunmamış ögeniz var</item>
         <item quantity="other">Okunmamış %d yeni ögeniz var</item>
@@ -259,7 +259,7 @@
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Veri ve eşitleme</string>
     <string name="pref_title_clearCache">Ön belleği temizle</string>
-    <string name="pref_title_CacheImagesOffline">Görseller çevrimdışı ön belleğe alınsın</string>
+    <string name="pref_title_CacheImagesOffline">Görseller çevrim dışı ön belleğe alınsın</string>
     <string name="pref_title_Max_Cache_Size">En büyük ön bellek boyutu</string>
 
     <string name="pref_data_sync_image_cache_never">Asla</string>
