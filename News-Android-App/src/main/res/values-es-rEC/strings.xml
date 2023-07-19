@@ -2,9 +2,12 @@
 <resources>
 
     <string name="auto_sync_string">Sincronización automática</string>
+    <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">Aquí no hay elementos</string>
     <string name="empty_view_content_action">Jala hacia abajo para actualizar</string>
+    <string name="toast_GettingMoreItems">Se inició la descarga de más elementos. Por favor, espera...</string>
     <string name="no_wifi_available">No estás conectado a una WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">¿Deseas descargar las imágenes sin conexión a Wi-Fi?</string>
     <string name="current_version">Estás usando la Versión %s</string>
     <string name="widget_header">Noticias de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -22,6 +25,8 @@
     <string name="menu_StartImageCaching">Descargar imágenes</string>
     <string name="menu_downloadMoreItems">Descargar más artículos</string>
 
+    <string name="tv_showing_cached_version">Mostrando versión en caché</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Marcado como favorito</string>
     <string name="action_read">Leer</string>
@@ -33,8 +38,13 @@
     <string name="action_settings">Configuraciones</string>
     <string name="action_sync_settings">Configuración de Sincronización</string>
     <string name="action_add_new_feed">Agregar una nueva fuente</string>
+    <string name="action_add_new_folder">Agregar nueva carpeta</string>
     <string name="action_textToSpeech">Lectura</string>
     <string name="action_search">Buscar</string>
+    <string name="action_download_articles_offline">Descargar artículos sin conexión</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Descargando artículos para uso sin conexión</string>
+    <string name="notification_download_images_offline">Descargando imágenes para uso sin conexión</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Tienes %d elemento nuevo sin leer</item>
         <item quantity="many">Tienes %d elmentos nuevos sin leer</item>
@@ -49,6 +59,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">URL de la Fuente</string>
     <string name="action_add_feed">Agregar fuente</string>
+    <string name="import_opml">Importar OPML</string>
+    <string name="export_opml">Exportar OPML</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Descargar Imagen</string>
     <string name="action_img_sharelink">Compartir Liga de la Imagen</string>
@@ -57,6 +71,7 @@
     <string name="action_link_share">Compartir Liga</string>
     <string name="action_link_open">Abrir la Liga en el Navegador</string>
     <string name="action_link_copy">Copiar Liga</string>
+    <string name="toast_img_download_wait">Descargando. Por favor, espera...</string>
     <string name="toast_img_saved">Imagen guardada</string>
     <string name="toast_img_notwriteable">Falla al escribir la Imagen.</string>
     <string name="toast_copied_to_clipboard">Copiado al portapapeles</string>
@@ -67,20 +82,41 @@
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Eliminar Fuente</string>
     <string name="action_feed_rename">Renombrar la Fuente</string>
+    <string name="action_feed_move">Mover fuente</string>
+    <string name="action_feed_notification_settings">Configuración de notificaciones</string>
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente deseas eliminar esta Fuente? ¡Esta operación no se puede deshacer!</string>
+    <string name="feed_move_list_description">Seleccionar carpeta para mover fuente</string>
+    <string name="move_feed_root_folder">Carpeta raíz</string>
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Eliminar carpeta</string>
+    <string name="action_folder_rename">Renombrar carpeta</string>
     <string name="folder_remove_button">Eliminar</string>
     <string name="folder_rename_button">Renombrar</string>
+    <string name="confirm_folder_remove">¿Realmente quieres eliminar esta carpeta? ¡Esto no se puede deshacer!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Recibir notificaciones únicas para esta fuente</string>
+    <string name="notification_feed_default">Todas las fuentes con la configuración predeterminada aparecerán en una notificación</string>
+    <string name="notification_feed_none">Sin notificaciones en absoluto</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Agregar</string>
     <string name="hint_folder_name">Nombre de la carpeta</string>
+    <string name="folder_already_exists">La carpeta ya existe</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Iniciar sesión manual</string>
+    <string name="login_sso">Iniciar sesión usando la aplicación Nextcloud Files</string>
     <string name="pref_title_username">Nombre de usuario</string>
     <string name="pref_title_password">Contraseña</string>
     <string name="pref_title_owncloudRootPath">Dirección raíz de Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="login_progress_signing_in">Iniciando sesión...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este es un campo requerido</string>
     <string name="error_invalid_url">URL incorrecta</string>
@@ -93,6 +129,13 @@
         <item quantity="other">%d elementos antiguos descargados</item>
     </plurals>
     <string name="toast_no_more_downloads_available">No hay más elementos disponibles</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Se han obtenido %d elemento hasta ahora...</item>
+        <item quantity="many">Se han obtenido %d elementos hasta ahora...</item>
+        <item quantity="other">Se han obtenido %d elementos hasta ahora...</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Configuraciones</string>
     <string name="cache_is_cleared">¡Se ha limpiado el caché!</string>
@@ -102,8 +145,19 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_general_sort_order">Cirterio para ordenar</string>
 
+    <string name="pref_general_sort_order_new_old">Nuevo → Antiguo</string>
+    <string name="pref_general_sort_order_old_new">Antiguo → Nuevo</string>
+
+    <string name="pref_rename_action_swipe_right">Acción al deslizar hacia la derecha</string>
+    <string name="pref_rename_action_swipe_left">Acción al deslizar hacia la izquierda</string>
+
+    <string name="pref_title_general_search_in">Buscar en</string>
+
     <string name="pref_general_search_in_title">Título</string>
+    <string name="pref_general_search_in_body">Cuerpo</string>
+
     <string name="dialog_clearing_cache">Limpiando el caché</string>
+    <string name="dialog_clearing_cache_please_wait">Borrando caché. Por favor, espera...</string>
     <string name="reset_cache_unsaved_changes">Hay cambios que no han sido sincronizados. ¿Quieres limpiar el caché de cualquier modo?</string>
     <string name="warning">Advertencia</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar al iniciar</string>
@@ -111,6 +165,7 @@
     <string name="pref_title_DisableHostnameVerification">Deshabilitar la verificación del hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
+    <string name="pref_title_ShowFastActions">Activar funciones de acceso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Omitir la vista detallada y abrir el artículo en el navegador</string>
 
     <!-- MemorizingTrustManager -->
@@ -123,44 +178,89 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <string name="exit_playback">Salir del reproductor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidad de Reproducción</string>
+    <string name="notification_downloading_podcast_title">Descargando podcast</string>
+
+
     <!-- Settings for About -->
     <string name="pref_header_about">Acerca de</string>
     <string name="pref_license">Licencia</string>
+    <string name="pref_license_summary">Licencia Pública General Affero GNU (AGPL) versión 3</string>
+    <string name="pref_report_issue">Informar un problema</string>
+    <string name="pref_report_issue_summary">Requiere una cuenta de GitHub (gratuita)</string>
+    <string name="pref_contribute">¡Contribuye!</string>
+    <string name="pref_contribute_summary">Obtener el código fuente</string>
     <string name="pref_privacy">Privacidad</string>
+    <string name="pref_privacy_summary">Política de privacidad de Nextcloud News para Android</string>
+    <string name="pref_version">Aplicación Nextcloud News para Android</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Mostrar</string>
     <string name="pref_title_app_theme">Tema</string>
     <string name="pref_title_feed_list_layout">Distribución de lista de fuente</string>
+    <string name="pref_title_font_size">Tamaño de fuente</string>
     <string name="pref_display_browser">Navegador</string>
 
 
     <string name="pref_display_news_detail_actionbar_icons_title">Íconos de acción (Vista Detallada)</string>
 
+    <string name="pref_display_apptheme_auto">Configuración predeterminada del sistema</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Oscuro</string>
+
+    <string name="pref_oled_mode">Fondo negro</string>
+    <string name="pref_oled_mode_summary">Para tema oscuro en pantallas OLED</string>
+
+    <string name="pref_external_player">Reproductor externo</string>
+    <string name="pref_external_player_summary">Reproducir podcasts en tu aplicación de medios predeterminada</string>
 
     <string name="pref_display_browser_cct">Pestañas-Personalizadas-de-Chrome Integradas</string>
     <string name="pref_display_browser_built_in">Navegador Integrado</string>
     <string name="pref_display_browser_external">Navegador Externo</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturas (solo titulares)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Miniaturas</string>
+    <string name="pref_display_feed_list_layout_simple_text">Texto simple</string>
+    <string name="pref_display_feed_list_layout_headlines">Titulares</string>
+    <string name="pref_display_feed_list_layout_full_text">Texto completo</string>
+    <string name="pref_display_feed_list_layout_web_layout">Diseño web</string>
+    <string name="pref_display_feed_list_layout_card_view">Vista de tarjeta</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Pequeño</string>
     <string name="pref_display_font_size_d">Predeterminado</string>
+    <string name="pref_display_font_size_l">Grande</string>
+    <string name="pref_display_font_size_xl">Muy grande</string>
+
     <string name="content_desc_play">Reproducir</string>
     <string name="content_desc_pause">Pausar</string>
+    <string name="content_desc_playback_speed">Velocidad de reproducción</string>
+    <string name="content_desc_rewind">Rebobinar</string>
     <string name="content_desc_forward">Adelante</string>
+    <string name="content_desc_expand">Expandir</string>
     <string name="content_desc_collapse">Colapsar</string>
+    <string name="content_desc_mark_as_read">Marcar como leído</string>
+    <string name="content_desc_mark_as_unread">Marcar como no leído</string>
+    <string name="content_desc_tap_to_refresh">Toca para actualizar</string>
     <string name="content_desc_add_to_favorites">Agregar a tus favoritos</string>
     <string name="content_desc_remove_from_favorites">Eliminar de favoritos</string>
+    <string name="content_desc_show_password">Mostrar contraseña</string>
     <string name="content_desc_delete">Borrar</string>
     <string name="content_desc_download">Descargar</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Error</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Parece que tu aplicación de noticias no está instalada o activada en tu servidor. Sigue las instrucciones proporcionadas aquí para configurar la aplicación de noticias en tu servidor primero: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Algo salió mal :(</string>
     <string name="login_dialog_text_zero_version_code">La aplicación de Noticias Web regresó Versión \"0\". Por favor revisa el siguiente reporte de fallas: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Esta versión de la Aplicación no es compatible con tu Aplicación de Noticias de Nextcloud. Por favor actualiza la aplicación de noticias y el appframework. </string>
     <string name="login_dialog_title_security_warning">Advertencia de seguridad</string>
     <string name="login_dialog_text_security_warning">No estas usando HTTPS, que se recomienda ámpliamente. Un atacante podría interceptar tu tráfico y ganar acceso a algunos datos sensitivos (p. ej. tu contraseña).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Algo salió mal. Por favor, inténtalo de nuevo.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Sincronización de datos &amp;</string>
     <string name="pref_title_clearCache">Limpiar el caché</string>
@@ -176,6 +276,7 @@
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
     <string name="array_sync_interval_hour_1">1 hora</string>
     <string name="array_sync_interval_hour_2">2 horas</string>
     <string name="array_sync_interval_hour_3">3 horas</string>
@@ -184,4 +285,10 @@
     <string name="array_sync_interval_hour_24">24 horas</string>
     <string name="switch_account">Cambiar cuenta</string>
     
+    <string name="successfully_exported">Exportado correctamente a:</string>
+    <string name="opml_export">Exportar OPML</string>
+    <string name="parsing_opml">Analizando OPML</string>
+    <string name="please_wait">Por favor, espera...</string>
+    <string name="interval_sync_title">Sincronización por intervalo</string>
+
     </resources>
