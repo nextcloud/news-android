@@ -115,7 +115,7 @@
     <string name="action_sign_in_short">Rexistrarse</string>
     <string name="login_progress_signing_in">Rexistrándose en…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Este campo é obrigatorio</string>
+    <string name="error_field_required">Precisase este campo</string>
     <string name="error_invalid_url">URL incorrecto</string>
 
 
