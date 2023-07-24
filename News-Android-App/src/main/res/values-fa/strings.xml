@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">فواصل همگام‌سازی</string>
     <string name="empty_view_content">موردی وجود ندارد</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="toast_GettingMoreItems">دانلود موارد بیشتر شروع شد. لطفا صبر کنید …</string>
     <string name="no_wifi_available">وای‌فایی وصل نیست</string>
+    <string name="do_you_want_to_download_without_wifi">آیا می خواهید تصاویر را بدون اتصال Wi-Fi دانلود کنید؟</string>
     <string name="current_version">از نگارش %s استفاده می‌کنید</string>
     <string name="widget_header">اخبار نکست‌کلود</string>
     <plurals name="message_bar_new_articles_available">
@@ -35,6 +37,7 @@
     <string name="action_settings">تنظیمات</string>
     <string name="action_sync_settings">تنظییمات همگام‌سازی</string>
     <string name="action_add_new_feed">افزودن خوراک جدید</string>
+    <string name="action_add_new_folder">پوشه جدید اضافه کنید.</string>
     <string name="action_textToSpeech">بازخوانی</string>
     <string name="action_search">جستجو</string>
     <string name="action_download_articles_offline">بارگیری برون‌خط مقاله‌ها</string>
@@ -65,6 +68,7 @@
     <string name="action_link_share">هم‌رسانی پیوند</string>
     <string name="action_link_open">گشودن پیوند در مرورگر</string>
     <string name="action_link_copy">رونوشت از پیوند</string>
+    <string name="toast_img_download_wait">در حال دانلود. لطفا صبر کنید …</string>
     <string name="toast_img_saved">تصویر ذخیره شد</string>
     <string name="toast_img_notwriteable">شکست در نوشتن تصویر</string>
     <string name="toast_copied_to_clipboard">در حافظه رونویسی شد</string>
@@ -83,12 +87,23 @@
     <string name="feed_move_list_description">پوشه‌ای برای انتقال خوراک برگزینید</string>
     <string name="move_feed_root_folder">پوشهٔ ریشه</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">پوشه را حذف کنید.</string>
     <string name="action_folder_rename">تغییر نام پوشه</string>
     <string name="folder_remove_button">حذف</string>
     <string name="folder_rename_button">تغییرنام</string>
+    <string name="confirm_folder_remove">آیا واقعاً می خواهید این پوشه را حذف کنید؟ این قابل بازگشت نیست!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">اعلان‌های منحصربه‌فردی را برای این فید دریافت کنید.</string>
+    <string name="notification_feed_default">همه فیدها با تنظیمات پیش‌فرض در یک اعلان ظاهر می‌شوند.</string>
+    <string name="notification_feed_none">اصلا نوتیفیکیشن نیست.</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">افزودن</string>
     <string name="hint_folder_name">نام پوشه</string>
+    <string name="folder_already_exists">پوشه از قبل وجود دارد.</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">ورود به سیستم دستی</string>
     <string name="login_sso">ورود به سیستم با استفاده از برنامه فایل های نکست کلود</string>
@@ -98,6 +113,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">ورود</string>
+    <string name="login_progress_signing_in">وارد شدن …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">این زمینه لازم است</string>
     <string name="error_invalid_url">نشانی نادرست</string>
@@ -118,6 +134,9 @@
     <string name="pref_header_general">عمومی</string>
     <string name="pref_title_general_sort_order">ترتیب چینش</string>
 
+    <string name="pref_general_sort_order_new_old">جدید → قدیمی</string>
+    <string name="pref_general_sort_order_old_new">قدیمی → جدید</string>
+
     <string name="pref_rename_action_swipe_right">هنگام حرکت به سمت راست ، اقدام کنید</string>
     <string name="pref_rename_action_swipe_left">هنگام حرکت به سمت چپ ، اقدام کنید</string>
 
@@ -127,6 +146,7 @@
     <string name="pref_general_search_in_body">متن</string>
 
     <string name="dialog_clearing_cache">پاک‌سازی انباره</string>
+    <string name="dialog_clearing_cache_please_wait">در حال پاک کردن مخزن لطفا صبر کنید …</string>
     <string name="reset_cache_unsaved_changes">تغییرات ناهمگامی موجودند. به هر روی، انباره بازنشانی شود؟</string>
     <string name="warning">هشدار</string>
     <string name="pref_title_AutoSyncOnStart">همگام‌سازی در شروع</string>
@@ -147,6 +167,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">هیچ پادکستی گزیده نشده</string>
     <string name="no_chapters_available">هیچ فصلی موجود نیست</string>
+    <string name="exit_playback">از پخش کننده خارج شوید.</string>
     <string name="podcast_playback_speed_dialog_title">سرعت پخش</string>
     <string name="notification_downloading_podcast_title">بارگیری پادکست</string>
 
@@ -160,6 +181,7 @@
     <string name="pref_contribute">مشارکت!</string>
     <string name="pref_contribute_summary">کد منبع را دریافت کنید</string>
     <string name="pref_privacy">حریم خصوصی</string>
+    <string name="pref_privacy_summary">خط‌ مشی رازداری Nextcloud News Android</string>
     <string name="pref_version">برنامه آندروید Nextcloud News</string>
 
 
@@ -180,10 +202,14 @@
     <string name="pref_oled_mode">پس‌زمینهٔ سیاه</string>
     <string name="pref_oled_mode_summary">برای زمینهٔ تیره روی صفحه‌های OLED</string>
 
+    <string name="pref_external_player">پخش کننده خارجی</string>
+    <string name="pref_external_player_summary">پادکست‌ها را در برنامه رسانه پیش‌فرض خود پخش کنید.</string>
+
     <string name="pref_display_browser_cct">زبانه‌های شخصی کروم توکار</string>
     <string name="pref_display_browser_built_in">مرورگر توکار</string>
     <string name="pref_display_browser_external">مرورگر خارجی</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">تصاویر کوچک (فقط سرفصل ها)</string>
     <string name="pref_display_feed_list_layout_thumbnails">بندانگشتی‌ها</string>
     <string name="pref_display_feed_list_layout_simple_text">متن ساده</string>
     <string name="pref_display_feed_list_layout_headlines">عناوین</string>
@@ -199,10 +225,14 @@
 
     <string name="content_desc_play">پخش کردن</string>
     <string name="content_desc_pause">توقف کردن</string>
+    <string name="content_desc_playback_speed">سرعت پخش</string>
+    <string name="content_desc_rewind">باز پیچی</string>
     <string name="content_desc_forward">ارسال کردن</string>
+    <string name="content_desc_expand">بسط دادن</string>
     <string name="content_desc_collapse">فروکش  کردن</string>
     <string name="content_desc_mark_as_read">علامت به عنوان خوانده‌شده</string>
     <string name="content_desc_mark_as_unread">علامت به عنوان خوانده‌نشده</string>
+    <string name="content_desc_tap_to_refresh">برای تازه کردن ضربه بزنید.</string>
     <string name="content_desc_add_to_favorites">افزودن‌ به مورد علاقه‌ها</string>
     <string name="content_desc_remove_from_favorites">حذف کردن از مورد علاقه‌ها</string>
     <string name="content_desc_show_password">نمایش گذرواژه</string>
@@ -217,6 +247,9 @@
     <string name="login_dialog_text_not_compatible">نگارش کاره با کارهٔ اخبار نکست‌کلودتان سازگار نیست. لطفاً کارهٔ اخبار و چارچوب کاره را ارتقا دهید.</string>
     <string name="login_dialog_title_security_warning">اخطار امنیتی</string>
     <string name="login_dialog_text_security_warning">شما از HTTPS که قویاً تشویق می‌شود، استفاده نمی‌کنید. یک نفوذگر می‌تواند ترافیکتان را شنود کرده و به برخی داده‌های حسّاس (مانند گذرواژه) دسترسی پیدا کنید.</string>
+    <string name="login_dialog_select_account_unknown_error_toast">مشکلی پیش آمد. لطفا دوباره تلاش کنید.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">داده ها و همگام سازی</string>
     <string name="pref_title_clearCache">پاک‌سازی انباره</string>
@@ -232,11 +265,19 @@
     <string name="array_sync_interval_min_5">۵ دقیقه</string>
     <string name="array_sync_interval_min_15">۱۵ دقیقه</string>
     <string name="array_sync_interval_min_30">۳۰ دقیقه</string>
+    <string name="array_sync_interval_min_45">45 دقیقه</string>
     <string name="array_sync_interval_hour_1">۱ ساعت</string>
+    <string name="array_sync_interval_hour_2">2 ساعت</string>
     <string name="array_sync_interval_hour_3">۳ ساعت</string>
     <string name="array_sync_interval_hour_6">۶ ساعت</string>
     <string name="array_sync_interval_hour_12">۱۲ساعت</string>
     <string name="array_sync_interval_hour_24">24 ساعت</string>
     <string name="switch_account">تعویض حساب</string>
     
+    <string name="successfully_exported">با موفقیت صادر شد به:</string>
+    <string name="opml_export">صادرات OPML</string>
+    <string name="parsing_opml">تجزیه OPML</string>
+    <string name="please_wait">لطفا صبر کنید …</string>
+    <string name="interval_sync_title">همگام سازی فاصله زمانی</string>
+
     </resources>
