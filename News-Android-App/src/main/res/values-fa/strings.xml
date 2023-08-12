@@ -125,6 +125,12 @@
         <item quantity="other">%d مورد قدیمی بارگیری شدند</item>
     </plurals>
     <string name="toast_no_more_downloads_available">هیچ مورد دیگری موجود نیست</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Fetched %d item so far …</item>
+        <item quantity="other">Fetched %d items so far …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">تنظیمات</string>
     <string name="cache_is_cleared">انباره پاک‌سازی شد!</string>
