@@ -148,7 +148,7 @@
 
     <!-- General settings -->
     <string name="pref_header_general">Загалом</string>
-    <string name="pref_title_general_sort_order">Порядок сортування</string>
+    <string name="pref_title_general_sort_order">Впорядковано за</string>
 
     <string name="pref_general_sort_order_new_old">Нові → Старі</string>
     <string name="pref_general_sort_order_old_new">Старі → Нові</string>
