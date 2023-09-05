@@ -1,0 +1,5 @@
+Changed - Internal dependency updates
+Changed - !1212 - Nextcloud Single-Sign-On updates
+Changed - !1200 - Bail out early on generating unread rss items notifications (thanks to @Unpublished)
+Changed - !1199 - Housekeeping / Remove unused classes (thanks to @Unpublished)
+Changed - !1195 - Migrate some classes to Kotlin (thanks to @Unpublished)

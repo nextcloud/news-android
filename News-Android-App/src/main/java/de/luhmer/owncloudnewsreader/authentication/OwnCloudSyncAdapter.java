@@ -41,11 +41,11 @@ import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
 
@@ -90,7 +90,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         EventBus.getDefault().post(new SyncFinishedEvent());
 
         syncStopWatch.stop();
-        Log.v(TAG, "Finished sync - time needed (synchronization): " + syncStopWatch.toString());
+        Log.v(TAG, "Finished sync - time needed (synchronization): " + syncStopWatch);
     }
 
     private static class NextcloudSyncResult {
@@ -223,9 +223,9 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
         Log.e(TAG, "throwException() called [" + Thread.currentThread().getName() + "]", ex);
         syncRunning = false;
         if(ex instanceof Exception) {
-            EventBus.getDefault().post(SyncFailedEvent.create(OkHttpSSLClient.HandleExceptions((Exception) ex)));
+            EventBus.getDefault().post(new SyncFailedEvent(OkHttpSSLClient.HandleExceptions((Exception) ex)));
         } else {
-            EventBus.getDefault().post(SyncFailedEvent.create(ex));
+            EventBus.getDefault().post(new SyncFailedEvent(ex));
         }
     }
 

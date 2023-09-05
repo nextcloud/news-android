@@ -1,14 +1,13 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
+    id 'io.gitlab.arturbosch.detekt' version "1.23.0"
+    id "com.diffplug.spotless" version "6.19.0"
+}
 
 android {
-
-    /*
-    signingConfigs {
-        debug {
-            storeFile file("~/.android/debug.keystore")
-        }
-    }*/
-
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
 
     testOptions.unitTests.includeAndroidResources = true
@@ -27,11 +26,12 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        versionCode 182
-        versionName "0.9.9.78"
+        versionCode 185
+        versionName "0.9.9.81"
     }
 
     buildFeatures {
+        buildConfig true
         viewBinding true
     }
 
@@ -42,8 +42,8 @@ android {
 
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     buildTypes {
@@ -77,9 +77,10 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            aidl.srcDirs = ['src/main/java']
+    spotless {
+        kotlin {
+            target 'src/*/java/**/*.kt'
+            ktlint()
         }
     }
 
@@ -115,11 +116,11 @@ repositories {
     maven { url 'https://guardian.github.io/maven/repo-releases' } //needed for com.gu:option:1.3 in Android-DirectoryChooser
 }
 
-final DAGGER_VERSION = '2.45'
+final DAGGER_VERSION = '2.46.1'
 final GLIDE_VERSION = '4.15.1'
 final ESPRESSO_VERSION = '3.5.1'
-final OKHTTP_VERSION = '4.10.0'
-final MOCKITO_VERSION = '5.2.0'
+final OKHTTP_VERSION = '4.11.0'
+final MOCKITO_VERSION = '5.4.0'
 final RETROFIT_VERSION = '2.9.0'
 
 dependencies {
@@ -130,29 +131,25 @@ dependencies {
     // implementation 'com.google.android.gms:play-services:4.2.42'
     // implementation project(path: ':MaterialShowcaseView:library', configuration: 'default')
     // implementation project(':Android-SingleSignOn:lib')
-    implementation 'com.github.nextcloud:Android-SingleSignOn:0.6.1'
-
-    implementation "androidx.core:core:1.9.0"
-    implementation 'androidx.annotation:annotation:1.3.0'
+    implementation 'com.github.nextcloud:Android-SingleSignOn:0.8.1'
+    implementation "androidx.core:core:1.10.1"
+    implementation 'androidx.annotation:annotation:1.6.0'
     implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "androidx.preference:preference:1.2.0"
+    implementation "androidx.preference:preference:1.2.1"
     implementation 'androidx.core:core-splashscreen:1.0.0'
     implementation "androidx.media:media:1.6.0"
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
-    implementation "com.google.android.material:material:1.8.0"
-    //implementation "com.google.android.material:material:1.0.0"
+    implementation "com.google.android.material:material:1.9.0"
     implementation "androidx.palette:palette:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.3.0"
+    implementation "androidx.recyclerview:recyclerview:1.3.1"
     implementation "androidx.browser:browser:1.5.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    // implementation 'de.mrmaffen:holocircularprogressbar:1.0.1'
-    // implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
+    ksp "com.github.bumptech.glide:ksp:${GLIDE_VERSION}"
     debugImplementation "com.github.technoir42:glide-debug-indicator:0.9.1"
     implementation 'com.caverock:androidsvg-aar:1.4'
 
@@ -167,22 +164,21 @@ dependencies {
     // implementation 'org.freemarker:freemarker:2.3.23' // Required for DAO generation
     // implementation 'org.apache.commons:commons-lang3:3.4' // Required for DAO generation
 
-
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
-    implementation 'org.jsoup:jsoup:1.15.4'
+    implementation 'org.jsoup:jsoup:1.16.1'
     implementation ('net.rdrei.android.dirchooser:library:3.2@aar') {
         exclude group: 'com.google.auto.value', module: 'auto-value'
         transitive = true
     }
 
     implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$RETROFIT_VERSION"
 
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
@@ -200,7 +196,7 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_VERSION}"
 
 
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/mockwebserver
     //androidTestImplementation "com.squareup.okhttp3:mockwebserver:${OKHTTP_VERSION}"
@@ -217,7 +213,7 @@ dependencies {
     //androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     //androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
 
-    testImplementation 'org.robolectric:robolectric:4.9.2'
+    testImplementation 'org.robolectric:robolectric:4.10.3'
 
     // Core library
     androidTestImplementation 'androidx.test:core:1.5.0'
@@ -229,7 +225,7 @@ dependencies {
     // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.ext:truth:1.5.0'
-    androidTestImplementation 'com.google.truth:truth:1.1.3'
+    androidTestImplementation 'com.google.truth:truth:1.1.5'
 
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
@@ -248,14 +244,3 @@ dependencies {
     // classpath.
     //androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
 }
-
-/*
-// Workaround for https://github.com/mockito/mockito/issues/1511#issuecomment-458544398
-configurations.all {
-    resolutionStrategy.eachDependency { details ->
-        if (details.requested.group == 'net.bytebuddy') {
-            details.useVersion "1.8.22"
-        }
-    }
-}
-*/

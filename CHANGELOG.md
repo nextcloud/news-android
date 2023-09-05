@@ -1,13 +1,40 @@
+0.9.9.81
+---------------------
+
+- Changed - Updated SSO lib
+
+0.9.9.80
+---------------------
+
+- Changed - Internal dependency updates
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1212">!1212 - Nextcloud
+  Single-Sign-On updates</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1200">!1200 - Bail out early on
+  generating unread rss items notifications (thanks to @Unpublished)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1199">!1199 - Housekeeping /
+  Remove unused classes (thanks to @Unpublished)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1195">!1195 - Migrate some
+  classes to Kotlin (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1214">!1214 - Text formatting is a
+  bit weird</a>
+
+0.9.9.79
+---------------------
+- Changed - Internal dependency updates
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1171">!1171 - Allow selecting feed URL in options dialog (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1187">!1187 - Fix crash related when trying to move a feed (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1184">!1184 - Prevent podcast view from showing up on every app start (thanks to @Unpublished)</a>
+
 0.9.9.78
 ---------------------
-- Fix broken Notifications on Android 13 [!1134](https://github.com/nextcloud/news-android/pull/1134/) (thanks to @Unpublished)
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1134">!1134 - Fix broken Notifications on Android 13 (thanks to @Unpublished)</a>
 
 0.9.9.77
 ---------------------
-- Fix incorrect height of listview rows [#1111](https://github.com/nextcloud/news-android/issues/1111)
-- Switched from Universal-Image-Loader to Glide as image loading library [!1115](https://github.com/nextcloud/news-android/pull/1115)
-- Added support for SVG favicons
-- Added support for external media players [!1130](https://github.com/nextcloud/news-android/pull/1130) (thanks to @JFronny)
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1111">#1111 - Fix incorrect height of listview rows</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1115">!1115 - Switched from Universal-Image-Loader to Glide as image loading library</a>
+- Added - Added support for SVG favicons
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1130">!1130 - Added support for external media players (thanks to @JFronny)</a>
 
 0.9.9.76
 ---------------------

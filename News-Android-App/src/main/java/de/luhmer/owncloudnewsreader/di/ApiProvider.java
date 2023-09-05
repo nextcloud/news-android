@@ -22,7 +22,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.NextcloudRetrofitApiBuilder;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -58,14 +58,12 @@ public class ApiProvider {
     public void initApi(@NonNull NextcloudAPI.ApiConnectedListener apiConnectedListener) {
         if(mNextcloudSsoApi != null) {
             // Destroy previous Service Connection if we need to reconnect (e.g. login again)
-            mNextcloudSsoApi.stop();
+            mNextcloudSsoApi.close();
             mNextcloudSsoApi = null;
         }
 
         boolean useSSO = mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
         if(useSSO) {
-            // OkHttpClient client = new OkHttpClient.Builder().build();
-            // initImageLoader(mPrefs, client, context);
             initSsoApi(apiConnectedListener);
         } else {
             if(mPrefs.contains(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING)) {
@@ -75,9 +73,8 @@ public class ApiProvider {
                 HttpUrl baseUrl = HttpUrl.parse(baseUrlStr).newBuilder()
                         .addPathSegments("index.php/apps/news/api/v1-2/")
                         .build();
-                Log.d("ApiModule", "HttpUrl: " + baseUrl.toString());
+                Log.d("ApiModule", "HttpUrl: " + baseUrl);
                 OkHttpClient client = OkHttpSSLClient.GetSslClient(baseUrl, username, password, mPrefs, mMemorizingTrustManager);
-                // initImageLoader(mPrefs, client, context);
                 initRetrofitApi(baseUrl, client);
                 apiConnectedListener.onConnected();
             } else {
@@ -89,7 +86,7 @@ public class ApiProvider {
     private void initRetrofitApi(HttpUrl baseUrl, OkHttpClient client) {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(GsonConfig.GetGson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .baseUrl(baseUrl)
                 .client(client)
                 .build();

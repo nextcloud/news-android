@@ -62,6 +62,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
@@ -77,7 +78,6 @@ import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -101,9 +101,7 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.Folder;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ActivityNewsreaderBinding;
-import de.luhmer.owncloudnewsreader.events.podcast.FeedPanelSlideEvent;
-import de.luhmer.owncloudnewsreader.helper.DatabaseUtils;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
+import de.luhmer.owncloudnewsreader.helper.DatabaseUtilsKt;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.model.OcsUser;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.RssItemObservable;
@@ -115,11 +113,11 @@ import de.luhmer.owncloudnewsreader.services.events.SyncFinishedEvent;
 import de.luhmer.owncloudnewsreader.services.events.SyncStartedEvent;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
-import io.reactivex.Completable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 /**
  * An activity representing a list of NewsReader. This activity has different
@@ -185,8 +183,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		// Fragments are not ready when calling the method below in onCreate()
 		updateButtonLayout();
 
-		//Start auto sync if enabled
-		if (mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
+		// Start auto sync if enabled (and user is logged in)
+		if (isUserLoggedIn() && mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
 			startSync();
 		}
 	}
@@ -245,7 +243,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					super.onDrawerClosed(drawerView);
 
 					syncState();
-					EventBus.getDefault().post(new FeedPanelSlideEvent(false));
 				}
 
 				@Override
@@ -437,7 +434,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(SyncFailedEvent event) {
-        Throwable exception = event.exception();
+        Throwable exception = event.getCause();
 
         // If SSOException is wrapped inside another exception, we extract that SSOException
         if(exception.getCause() != null && exception.getCause() instanceof SSOException) {
@@ -590,7 +587,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
 			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
 
-			GlideApp.with(this)
+			Glide.with(this)
 					.load(avatarUrl)
 					.diskCacheStrategy(DiskCacheStrategy.DATA)
 					.placeholder(placeHolder)
@@ -746,8 +743,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public void startSync()
     {
-		if(mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-            startLoginActivity();
+		if (!isUserLoggedIn()) {
+			startLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
 				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
@@ -756,7 +753,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 				AccountManager mAccountManager = AccountManager.get(this);
 				Account[] accounts = mAccountManager.getAccounts();
-				for(Account acc : accounts) {
+				for (Account acc : accounts) {
 					String accountType = AccountGeneral.getAccountType(this);
 					if (acc.type.equals(accountType)) {
                         ContentResolver.requestSync(acc, accountType, accBundle);
@@ -842,14 +839,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onBackPressed() {
         if(!handlePodcastBackPressed()) {
-			if (binding.drawerLayout != null) {
-				if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
-					super.onBackPressed();
-				else
-					binding.drawerLayout.openDrawer(GravityCompat.START);
-			} else {
-				super.onBackPressed();
-			}
+			super.onBackPressed();
 		}
 	}
 
@@ -878,10 +868,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
 			DownloadImagesService.enqueueWork(this, data);
 		} else if (itemId == R.id.menu_CreateDatabaseDump) {
-			DatabaseUtils.CopyDatabaseToSdCard(this);
+			DatabaseUtilsKt.copyDatabaseToSdCard(this);
 
 			new AlertDialog.Builder(this)
-					.setMessage("Created dump at: " + DatabaseUtils.GetPath(this))
+					.setMessage("Created dump at: " + DatabaseUtilsKt.getPath(this))
 					.setNeutralButton(getString(android.R.string.ok), null)
 					.show();
 		} else if (itemId == R.id.menu_markAllAsRead) {
@@ -1172,15 +1162,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public boolean onQueryTextChange(String newText) {
         if (searchPublishSubject == null) {
-            searchPublishSubject = PublishSubject.create();
-            searchPublishSubject
-                    .debounce(400, TimeUnit.MILLISECONDS)
-                    .distinctUntilChanged()
-                    .map(s -> getNewsReaderDetailFragment().performSearch(s))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(getNewsReaderDetailFragment().searchResultObserver)
-                    .isDisposed();
+			searchPublishSubject = PublishSubject.create();
+			searchPublishSubject
+					.debounce(400, TimeUnit.MILLISECONDS)
+					.distinctUntilChanged()
+					.map(s -> getNewsReaderDetailFragment().performSearch(s))
+					.subscribeOn(Schedulers.io())
+					.observeOn(AndroidSchedulers.mainThread())
+					.subscribeWith(getNewsReaderDetailFragment().searchResultObserver);
 
         }
         searchPublishSubject.onNext(newText);

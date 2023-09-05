@@ -32,6 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.palette.graphics.Palette;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -54,7 +55,7 @@ public class FavIconHandler {
     public FavIconHandler(Context context) {
         mPlaceHolder = FavIconHandler.getResourceIdForRightDefaultFeedIcon();
         mContext = context;
-        mGlide = GlideApp.with(context);
+        mGlide = Glide.with(context);
     }
 
     public <T extends Drawable> void loadFavIconForFeed(@Nullable String favIconUrl, ImageView imgView) {
@@ -144,7 +145,7 @@ public class FavIconHandler {
             Feed feed = dbConn.getFeedById(feedId);
             Palette palette = Palette.from(bitmap).generate();
             String avg = String.valueOf(
-                    palette.getVibrantColor(ContextCompat.getColor(context, R.color.material_blue_grey_800))
+                    palette.getVibrantColor(ContextCompat.getColor(context, androidx.appcompat.R.color.material_blue_grey_800))
             );
             feed.setAvgColour(avg);
             dbConn.updateFeed(feed);

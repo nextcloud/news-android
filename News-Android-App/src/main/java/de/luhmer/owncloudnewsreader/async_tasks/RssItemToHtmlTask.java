@@ -12,6 +12,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -30,7 +31,6 @@ import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 
@@ -67,7 +67,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         this.mRssItem = rssItem;
         this.mListener = listener;
         this.mPrefs = prefs;
-        this.mGlide = GlideApp.with(context);
+        this.mGlide = Glide.with(context);
 
         this.isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
     }

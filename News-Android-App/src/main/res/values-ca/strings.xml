@@ -68,7 +68,7 @@
     <string name="action_link_share">Comparteix l\'enllaç</string>
     <string name="action_link_open">Obre l\'enllaç al navegador</string>
     <string name="action_link_copy">Copia l\'enllaç</string>
-    <string name="toast_img_download_wait">S\'està baixant. Espereu...</string>
+    <string name="toast_img_download_wait">S\'està baixant. Espereu…</string>
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
@@ -113,7 +113,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Inicia la sessió</string>
-    <string name="login_progress_signing_in">S\'està iniciant la sessió...</string>
+    <string name="login_progress_signing_in">S\'està iniciant la sessió…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Aquest camp és obligatori</string>
     <string name="error_invalid_url">L\'URL és incorrecte</string>
@@ -126,8 +126,8 @@
     </plurals>
     <string name="toast_no_more_downloads_available">No hi ha més elements disponibles</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">S\'ha recuperat %d element fins ara ...</item>
-        <item quantity="other">S\'han recuperat %d elements fins ara ...</item>
+        <item quantity="one">S\'ha recuperat %d element fins ara …</item>
+        <item quantity="other">S\'han recuperat %d elements fins ara …</item>
     </plurals>
 
 
@@ -152,7 +152,7 @@
     <string name="pref_general_search_in_body">Cos</string>
 
     <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
-    <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau. Espereu si us plau ... </string>
+    <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau. Espereu si us plau … </string>
     <string name="reset_cache_unsaved_changes">Hi ha canvis no sincronitzats. Voleu suprimir la memòria cau igualment?</string>
     <string name="warning">Avís</string>
     <string name="pref_title_AutoSyncOnStart">Sincronitza durant l\'inici</string>
@@ -283,7 +283,7 @@
     <string name="successfully_exported">S\'ha importat correctament a:</string>
     <string name="opml_export">Exportació OPML</string>
     <string name="parsing_opml">S\'està analitzant OPML</string>
-    <string name="please_wait">Espereu...</string>
+    <string name="please_wait">Espereu…</string>
     <string name="interval_sync_title">Sincronització de l\'interval</string>
 
     </resources>

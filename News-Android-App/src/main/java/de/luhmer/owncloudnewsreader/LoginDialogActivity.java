@@ -69,11 +69,11 @@ import de.luhmer.owncloudnewsreader.di.ApiProvider;
 import de.luhmer.owncloudnewsreader.model.NextcloudNewsVersion;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import de.luhmer.owncloudnewsreader.ssl.OkHttpSSLClient;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -243,7 +243,7 @@ public class LoginDialogActivity extends AppCompatActivity {
 
         resetDatabase();
 
-        SingleAccountHelper.setCurrentAccount(this, importedAccount.name);
+        SingleAccountHelper.commitCurrentAccount(this, importedAccount.name);
 
         mApi.initApi(new NextcloudAPI.ApiConnectedListener() {
             @Override
@@ -365,7 +365,7 @@ public class LoginDialogActivity extends AppCompatActivity {
         mApi.getNewsAPI().version()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<NextcloudNewsVersion>() {
+                .subscribe(new Observer<>() {
                     boolean loginSuccessful = false;
 
                     @Override
@@ -380,7 +380,7 @@ public class LoginDialogActivity extends AppCompatActivity {
                         loginSuccessful = true;
                         mPrefs.edit().putString(Constants.NEWS_WEB_VERSION_NUMBER_STRING, version.version).apply();
 
-                        if(version.version.equals("0")) {
+                        if (version.version.equals("0")) {
                             ShowAlertDialog(getString(R.string.login_dialog_title_error), getString(R.string.login_dialog_text_zero_version_code), LoginDialogActivity.this);
                             loginSuccessful = false;
                         }
@@ -395,7 +395,7 @@ public class LoginDialogActivity extends AppCompatActivity {
 
                         Throwable t = OkHttpSSLClient.HandleExceptions(e);
 
-                        if(t instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) t).getStatusCode() == 302) {
+                        if (t instanceof NextcloudHttpRequestFailedException && ((NextcloudHttpRequestFailedException) t).getStatusCode() == 302) {
                             ShowAlertDialog(
                                     getString(R.string.login_dialog_title_error),
                                     getString(R.string.login_dialog_text_news_app_not_installed_on_server,
@@ -410,12 +410,11 @@ public class LoginDialogActivity extends AppCompatActivity {
                     public void onComplete() {
                         dialogLogin.dismiss();
 
-                        Log.v(TAG, "onComplete() called");
+                        Log.v(TAG, "onComplete() called - Login successful: " + loginSuccessful);
 
-                        if(loginSuccessful) {
+                        if (loginSuccessful) {
                             Intent returnIntent = new Intent();
                             setResult(RESULT_OK, returnIntent);
-
                             finish();
                         }
                     }

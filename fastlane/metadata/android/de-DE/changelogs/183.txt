@@ -1,0 +1,4 @@
+- Internal dependency updates
+- Fix crash related when trying to move a feed (thanks to @Unpublished)
+- Prevent podcast view from showing up on every app start (thanks to @Unpublished)
+- Allow selecting feed URL in options dialog (thanks to @Unpublished)

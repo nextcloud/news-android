@@ -1,12 +1,12 @@
 # Nextcloud News for Android
 
 [![Android CI](https://github.com/nextcloud/news-android/workflows/Android%20CI/badge.svg)](https://github.com/nextcloud/news-android/actions)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bb65782750445c99e80dab29f6701a6)](https://www.codacy.com/app/Nextcloud/news-android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nextcloud/news-android&amp;utm_campaign=Badge_Grade)
 [![GitHub issues](https://img.shields.io/github/issues/nextcloud/news-android.svg)](https://github.com/nextcloud/news-android/issues)
 [![GitHub stars](https://img.shields.io/github/stars/nextcloud/news-android.svg)](https://github.com/nextcloud/news-android/stargazers)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CHANGELOG.md](https://img.shields.io/badge/Changelog-CHANGELOG.md-informational)](CHANGELOG.md)
-[![Flattr this git repo](https://img.shields.io/badge/Flattr-Donate-success)](https://flattr.com/submit/auto?user_id=david-dev&url=https://github.com/owncloud/News-Android-App&title=News-Android-App&language=JAVA&tags=github&category=software)
+[![PayPal this git repo](https://img.shields.io/badge/Donate-PayPal-success.svg)]([https://www.paypal.com/donate?hosted_button_id=5TJ6LTEVTDF5J)
+
 
 An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 

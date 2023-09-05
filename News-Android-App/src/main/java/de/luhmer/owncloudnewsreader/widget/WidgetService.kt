@@ -18,16 +18,13 @@
 * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
+package de.luhmer.owncloudnewsreader.widget
 
-package de.luhmer.owncloudnewsreader.widget;
+import android.content.Intent
+import android.widget.RemoteViewsService
 
-import android.content.Intent;
-import android.widget.RemoteViewsService;
-
-public class WidgetService extends RemoteViewsService {
-	
-	@Override
-	public RemoteViewsFactory onGetViewFactory(Intent intent) {
-		return new WidgetNewsViewsFactory(this.getApplicationContext(), intent);
-	}
+class WidgetService : RemoteViewsService() {
+    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
+        return WidgetNewsViewsFactory(this.applicationContext, intent)
+    }
 }

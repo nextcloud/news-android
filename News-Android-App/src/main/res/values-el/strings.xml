@@ -208,6 +208,9 @@
     <string name="pref_oled_mode">Μαύρο φόντο</string>
     <string name="pref_oled_mode_summary">Σκούρο θέμα για οθόνες OLED</string>
 
+    <string name="pref_external_player">Εξωτερικό πρόγραμμα αναπαραγωγής</string>
+    <string name="pref_external_player_summary">Αναπαραγωγή podcasts στην προεπιλεγμένη εφαρμογή πολυμέσων</string>
+
     <string name="pref_display_browser_cct">Ενσωματωμένες καρτέλες Chrome</string>
     <string name="pref_display_browser_built_in">Ενσωματωμένος Περιηγητής</string>
     <string name="pref_display_browser_external">Εξωτερικός περιηγητής</string>
@@ -229,6 +232,7 @@
     <string name="content_desc_play">Αναπαραγωγή</string>
     <string name="content_desc_pause">Παύση</string>
     <string name="content_desc_playback_speed">Ταχύτητα αναπαραγωγής</string>
+    <string name="content_desc_rewind">Επαναφορά</string>
     <string name="content_desc_forward">Προώθηση</string>
     <string name="content_desc_expand">Επεκτείνω</string>
     <string name="content_desc_collapse">Σύμπτυξη</string>

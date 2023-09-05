@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Kéo xuống để làm mới</string>
     <string name="toast_GettingMoreItems">Đã bắt đầu tải xuống nhiều mục. Vui lòng đợi ...</string>
     <string name="no_wifi_available">Không có kết nối WiFi</string>
+    <string name="do_you_want_to_download_without_wifi">Bạn có muốn tải xuống hình ảnh mà không cần Wi-Fi?</string>
     <string name="current_version">Bạn đang sử dụng phiên bản %s</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
@@ -188,7 +189,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Hiển th</string>
     <string name="pref_title_app_theme">Chủ đề</string>
-    <string name="pref_title_feed_list_layout">Danh sách bố trí F</string>
+    <string name="pref_title_feed_list_layout">Bố cục danh sách Feed</string>
     <string name="pref_title_font_size">Cỡ chữ</string>
     <string name="pref_display_browser">Trình duyệt</string>
 
@@ -201,6 +202,9 @@
 
     <string name="pref_oled_mode">Nền đen</string>
     <string name="pref_oled_mode_summary">Dành cho chủ đề tối trên màn hình OLED</string>
+
+    <string name="pref_external_player">Trình phát ngoài</string>
+    <string name="pref_external_player_summary">Phát podcast trong trình phát mặc định</string>
 
     <string name="pref_display_browser_cct">Tab tuỳ chỉnh của Chrome được tích hợp sẵn</string>
     <string name="pref_display_browser_built_in">Trình duyệt được tích hợp sẵn</string>
@@ -220,7 +224,7 @@
     <string name="pref_display_font_size_l">Lớn</string>
     <string name="pref_display_font_size_xl">Rất lớn</string>
 
-    <string name="content_desc_play">Chơi</string>
+    <string name="content_desc_play">Phát</string>
     <string name="content_desc_pause">Tạm dừng</string>
     <string name="content_desc_playback_speed">Tốc độ phát</string>
     <string name="content_desc_rewind">Tua lại</string>
@@ -271,7 +275,7 @@
     <string name="array_sync_interval_hour_24">24 tiếng</string>
     <string name="switch_account">Chuyển tài khoản</string>
     
-    <string name="successfully_exported">Đã xuất thành công ra:</string>
+    <string name="successfully_exported">Đã xuất thành công tới:</string>
     <string name="opml_export">Bản xuất OPML</string>
     <string name="parsing_opml">Đang xử lý OPML</string>
     <string name="please_wait">Vui lòng đợi ...</string>

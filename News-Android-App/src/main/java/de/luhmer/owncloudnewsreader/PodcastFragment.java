@@ -4,7 +4,6 @@ import static android.media.MediaMetadata.METADATA_KEY_MEDIA_ID;
 import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_MEDIA_TYPE;
 import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.PLAYBACK_SPEED_FLOAT;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +28,9 @@ import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -54,7 +55,6 @@ import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.StartDownloadPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
-import de.luhmer.owncloudnewsreader.helper.GlideApp;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -76,7 +76,7 @@ public class PodcastFragment extends Fragment {
     private PodcastSlidingUpPanelLayout sliding_layout;
     private EventBus eventBus;
     private MediaBrowserCompat mMediaBrowser;
-    private Activity mActivity;
+    private FragmentActivity mActivity;
 
     private long currentPositionInMillis = 0;
     private long maxPositionInMillis = 100000;
@@ -395,7 +395,7 @@ public class PodcastFragment extends Fragment {
             Log.d(TAG, "currentPlayingPodcastReceived: " + favIconUrl);
 
             int placeholder = R.drawable.default_feed_icon_light;
-            GlideApp.with(this.mActivity)
+            Glide.with(this.mActivity)
                     .load(favIconUrl)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .placeholder(placeholder)

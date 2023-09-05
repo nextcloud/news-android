@@ -218,6 +218,9 @@
     <string name="pref_oled_mode">Чёрный фон</string>
     <string name="pref_oled_mode_summary">Для тёмного стиля оформления на экранах OLED</string>
 
+    <string name="pref_external_player">Внешний плеер</string>
+    <string name="pref_external_player_summary">Воспроизводить подкасты в вашем мультимедийном приложении по умолчанию</string>
+
     <string name="pref_display_browser_cct">Встроенные настраиваемые ярлыки Chrome</string>
     <string name="pref_display_browser_built_in">Встроенный браузер</string>
     <string name="pref_display_browser_external">Сторонний браузер</string>

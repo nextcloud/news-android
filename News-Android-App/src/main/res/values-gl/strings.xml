@@ -5,9 +5,11 @@
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">Non hai elementos aquí</string>
     <string name="empty_view_content_action">Tire cara a abaixo para actualizar</string>
+    <string name="toast_GettingMoreItems">Iniciada a descarga de máis elementos. Agarde…</string>
     <string name="no_wifi_available">Non está conectado á wifi</string>
+    <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
-    <string name="widget_header">Novas do Nextcloud</string>
+    <string name="widget_header">Novas de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d elemento novo dispoñíbel</item>
         <item quantity="other">%d elementos novos dispoñíbeis</item>
@@ -66,6 +68,7 @@
     <string name="action_link_share">Compartir a ligazón</string>
     <string name="action_link_open">Abrir a ligazón no navegador</string>
     <string name="action_link_copy">Copiar a ligazón</string>
+    <string name="toast_img_download_wait">Descargando. Agarde…</string>
     <string name="toast_img_saved">Imaxe gardada</string>
     <string name="toast_img_notwriteable">Produciuse un erro ao gravar a imaxe</string>
     <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
@@ -84,23 +87,35 @@
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Retirar o cartafol</string>
     <string name="action_folder_rename">Renomear o cartafol</string>
     <string name="folder_remove_button">Retirar</string>
     <string name="folder_rename_button">Renomear</string>
+    <string name="confirm_folder_remove">Confirma que quere retirar este cartafol? Isto non pode desfacerse!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Recibir notificacións únicas para esta fonte</string>
+    <string name="notification_feed_default">Todas as fontes cos axustes predeterminados aparecerán nunha única notificación</string>
+    <string name="notification_feed_none">Non hai ningunha notificación</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Engadir</string>
     <string name="hint_folder_name">Nome do cartafol</string>
+    <string name="folder_already_exists">Xa existe o cartafol</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Acceso manual</string>
-    <string name="login_sso">Acceso empregando a aplicación Ficheiros do Nextcloud</string>
+    <string name="login_sso">Acceso empregando a aplicación Ficheiros de Nextcloud</string>
     <string name="pref_title_username">Nome de usuario</string>
     <string name="pref_title_password">Contrasinal</string>
-    <string name="pref_title_owncloudRootPath">Enderezo raíz do Nextcloud</string>
+    <string name="pref_title_owncloudRootPath">Enderezo raíz de Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
-    <string name="action_sign_in_short">Rexistrarse</string>
+    <string name="action_sign_in_short">Acceder</string>
+    <string name="login_progress_signing_in">Accedendo a…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Este campo é obrigatorio</string>
+    <string name="error_field_required">Precisase este campo</string>
     <string name="error_invalid_url">URL incorrecto</string>
 
 
@@ -110,6 +125,12 @@
         <item quantity="other">Descargados %d elementos antigos</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Non hai máis elementos dispoñíbeis</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">%delemento recuperados polo de agora…</item>
+        <item quantity="other">%delementos recuperados polo de agora…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Axustes</string>
     <string name="cache_is_cleared">A caché está limpa!</string>
@@ -131,6 +152,7 @@
     <string name="pref_general_search_in_body">Corpo</string>
 
     <string name="dialog_clearing_cache">Limpando a caché</string>
+    <string name="dialog_clearing_cache_please_wait">Limpando a caché. Agarde…</string>
     <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a caché aínda así?</string>
     <string name="warning">Advertencia</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
@@ -149,8 +171,9 @@
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Non hai ningún podcast seleccionadp</string>
+    <string name="no_podcast_selected">Non hai ningún podcast seleccionado</string>
     <string name="no_chapters_available">Non hai capítulos dispoñíbeis</string>
+    <string name="exit_playback">Saír do reprodutor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade de reprodución</string>
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
 
@@ -160,18 +183,18 @@
     <string name="pref_license">Licenza</string>
     <string name="pref_license_summary">GNU Licenza Pública Xeral Affero (AGPL) versión 3</string>
     <string name="pref_report_issue">Informe dun incidente</string>
-    <string name="pref_report_issue_summary">Require unha conta (gratuíta) de GitHub</string>
+    <string name="pref_report_issue_summary">Precisase dunha conta (gratuíta) de GitHub</string>
     <string name="pref_contribute">Colabora!</string>
     <string name="pref_contribute_summary">Obteña o código fonte</string>
     <string name="pref_privacy">Privacidade</string>
-    <string name="pref_privacy_summary">Diretiva de privacidade de Novas do Nextcloud para Android</string>
-    <string name="pref_version">Apli Android para novas do Nextcloud</string>
+    <string name="pref_privacy_summary">Directiva de privacidade de Novas de Nextcloud para Android</string>
+    <string name="pref_version">Aplicación de Android para novas de Nextcloud</string>
 
 
     <!-- Settings for Display -->
     <string name="pref_header_display">Presentar</string>
     <string name="pref_title_app_theme">Tema</string>
-    <string name="pref_title_feed_list_layout">Deseño da lista de novas</string>
+    <string name="pref_title_feed_list_layout">Dsposición da lista de novas</string>
     <string name="pref_title_font_size">Tamaño da letra</string>
     <string name="pref_display_browser">Navegador</string>
 
@@ -184,6 +207,9 @@
 
     <string name="pref_oled_mode">Fondo escuro</string>
     <string name="pref_oled_mode_summary">Para o tema escuro nas pantallas OLED</string>
+
+    <string name="pref_external_player">Reprodutor externo</string>
+    <string name="pref_external_player_summary">Reproduce podcasts na súa aplicación multimedia predeterminada</string>
 
     <string name="pref_display_browser_cct">Lapelas integradas do Chrome</string>
     <string name="pref_display_browser_built_in">Navegador integrado</string>
@@ -205,10 +231,14 @@
 
     <string name="content_desc_play">Reproducir</string>
     <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_playback_speed">Velocidade de reprodución</string>
+    <string name="content_desc_rewind">Atrás</string>
     <string name="content_desc_forward">Reenviar</string>
+    <string name="content_desc_expand">Estender</string>
     <string name="content_desc_collapse">Contraer</string>
     <string name="content_desc_mark_as_read">Marcar como lido</string>
     <string name="content_desc_mark_as_unread">Marcar como sen ler</string>
+    <string name="content_desc_tap_to_refresh">Toque para actualizar</string>
     <string name="content_desc_add_to_favorites">Engadir a favoritos</string>
     <string name="content_desc_remove_from_favorites">Retirar de favoritos</string>
     <string name="content_desc_show_password">Amosar o contrasinal</string>
@@ -219,9 +249,9 @@
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Semella que a súa aplicación de novas non está instalada ou activada no seu servidor. Siga as instrucións para configurar a aplicación de novas no seu servidor: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Algo foi mal :(</string>
-    <string name="login_dialog_text_zero_version_code">A aplicación web de novas devolveu a versión «0». Bótelle un ollo ao seguinte informe de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_zero_version_code">A aplicación web de novas devolveu a versión «0». Bótelle un ollo ao seguinte informe de fallo: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Esta versión da aplicación non é compatíbel coa súa aplicación de novas para Nextcloud. Anove a aplicación de novas e o contorno de traballo da aplicación.</string>
-    <string name="login_dialog_title_security_warning">Advertencia de seguridade</string>
+    <string name="login_dialog_title_security_warning">Advertencia de seguranza</string>
     <string name="login_dialog_text_security_warning">Non está a empregar HTTPS, o que se recomenda encarecidamente. Un atacante podería interceptar o seu tráfico e obter acceso a algúns datos sensíbeis (p.ex. o contrasinal).</string>
     <string name="login_dialog_select_account_unknown_error_toast">Algo foi mal. Ténteo de novo.</string>
 
@@ -241,12 +271,19 @@
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
     <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 horas</string>
     <string name="array_sync_interval_hour_3">3 horas</string>
     <string name="array_sync_interval_hour_6">6 horas</string>
     <string name="array_sync_interval_hour_12">12 horas</string>
     <string name="array_sync_interval_hour_24">24 horas</string>
     <string name="switch_account">Cambiar de conta</string>
     
+    <string name="successfully_exported">Exportado satisfactoriamente a:</string>
+    <string name="opml_export">Exportar OPML</string>
+    <string name="parsing_opml">Analizando OPML</string>
     <string name="please_wait">Agarde…</string>
+    <string name="interval_sync_title">Intervalo de sincronización</string>
+
     </resources>
