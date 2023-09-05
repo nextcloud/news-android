@@ -25,7 +25,7 @@
     <item
         android:id="@+id/action_openInBrowser"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_open_in_browser"
+        android:icon="@drawable/ic_action_open_in_browser_24"
         android:title="@string/action_openInBrowser"/>
 
     <item

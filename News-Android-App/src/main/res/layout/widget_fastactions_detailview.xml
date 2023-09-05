@@ -28,7 +28,7 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_action_star_border_dark" />
+            android:src="@drawable/ic_star_border_white_24dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/fa_mark_as_read"
@@ -54,7 +54,7 @@
         android:layout_height="56dp"
         android:layout_toEndOf="@id/fa_collapse_layout"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_action_open_in_browser"
+        android:src="@drawable/ic_action_open_in_browser_24"
         android:translationZ="50dp" />
 
 </RelativeLayout>

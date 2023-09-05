@@ -313,7 +313,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 	        } else {
 	        	viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.VISIBLE);
                 viewHolder.binding.imgViewFavicon.setVisibility(View.INVISIBLE);
-                viewHolder.binding.imgViewExpandableIndicator.setImageResource(R.drawable.ic_action_expand_less);
+                viewHolder.binding.imgViewExpandableIndicator.setImageResource(R.drawable.ic_action_expand_less_24);
 
 	        	if(isExpanded) {
                     rotation = 180;
@@ -346,9 +346,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private int getBtn_rating_star_off_normal_holo_light() {
         if(btn_rating_star_off_normal_holo_light == null) {
             if(ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
-                btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;
+                btn_rating_star_off_normal_holo_light = R.drawable.ic_star_border_black_24dp;
             } else {
-                btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
+                btn_rating_star_off_normal_holo_light = R.drawable.ic_star_border_white_24dp;
             }
         }
         return btn_rating_star_off_normal_holo_light;

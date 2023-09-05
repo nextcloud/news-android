@@ -341,7 +341,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
     public void setPlaying(boolean playing) {
         this.playing = playing;
 
-        int imageId = playing ? R.drawable.ic_action_pause : R.drawable.ic_baseline_play_arrow_24;
+        int imageId = playing ? R.drawable.ic_action_pause_24 : R.drawable.ic_baseline_play_arrow_24;
         int contentDescriptionId = playing ? R.string.content_desc_pause : R.string.content_desc_play;
 
         ImageView playPause = getPlayPausePodcastButton();

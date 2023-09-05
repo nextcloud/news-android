@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         app:tint="?attr/colorOnSecondaryContainer"
         android:contentDescription="@string/content_desc_pause"
-        android:src="@drawable/ic_action_pause" />
+        android:src="@drawable/ic_action_pause_24" />
 
     <ProgressBar
         android:id="@+id/podcastDownloadProgress"

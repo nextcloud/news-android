@@ -57,7 +57,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@string/content_desc_add_to_favorites"
-                    android:src="@drawable/ic_action_star_dark"
+                    android:src="@drawable/ic_star_white_24"
                     app:layout_constraintStart_toEndOf="@id/imgViewFavIcon"
                     app:layout_constraintTop_toBottomOf="@id/summary"
                     app:tint="?attr/starredColor" />
