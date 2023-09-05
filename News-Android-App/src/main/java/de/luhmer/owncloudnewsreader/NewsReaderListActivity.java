@@ -840,14 +840,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onBackPressed() {
         if(!handlePodcastBackPressed()) {
-			if (binding.drawerLayout != null) {
-				if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
-					super.onBackPressed();
-				else
-					binding.drawerLayout.openDrawer(GravityCompat.START);
-			} else {
-				super.onBackPressed();
-			}
+			super.onBackPressed();
 		}
 	}
 
