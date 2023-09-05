@@ -45,6 +45,8 @@
 
     <color name="text_medium_emphasis">#a0000000</color>
 
+    <color name="fast_action_background">@color/nextcloudBlue</color>
+
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">@color/bg_default</color>
     <color name="news_detail_background_color_oled">@color/bg_default</color>

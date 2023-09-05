@@ -53,7 +53,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_toEndOf="@id/fa_collapse_layout"
-        android:background="@drawable/fa_button"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_action_open_in_browser"
         android:translationZ="50dp" />
 

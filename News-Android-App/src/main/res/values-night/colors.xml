@@ -34,12 +34,13 @@
     <color name="tertiary">#D3BFE6</color>
     <color name="tertiaryContainer">#4F4061</color>
 
-
     <color name="primaryTextColor">@android:color/white</color>
 
     <color name="divider_row_color">#292929</color>
 
     <color name="options_menu_item_text">@color/options_menu_item_night</color>
+
+    <color name="fast_action_background">#29486F</color>
 
     <!-- see also assets/web.css -->
     <color name="news_detail_background_color">#121212</color>
