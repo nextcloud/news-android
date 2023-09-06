@@ -401,27 +401,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			menuItem_PlayPodcast.setVisible(podcastAvailable);
 		}
 
-		boolean isDark = ThemeChooser.isDarkTheme(this);
-		boolean darkIcons = !isDark && !mShowFastActions;
-
 		if (menuItem_Starred != null) {
-			int res;
-			if (isStarred) {
-				res = darkIcons ? R.drawable.ic_star_black_24dp : R.drawable.ic_star_white_24;
-			} else {
-				res = darkIcons ? R.drawable.ic_star_border_black_24dp : R.drawable.ic_star_border_white_24dp;
-			}
+			int res = isStarred ? R.drawable.ic_star_24_theme_aware : R.drawable.ic_star_border_24dp_theme_aware;
 			menuItem_Starred.setIcon(res);
 			binding.faDetailBar.faStar.setImageResource(res);
 		}
 
 		if (menuItem_Read != null) {
-			int res;
-			if (isRead) {
-				res = darkIcons ? R.drawable.ic_checkbox_black : R.drawable.ic_checkbox_white;
-			} else {
-				res = darkIcons ? R.drawable.ic_checkbox_outline_black : R.drawable.ic_checkbox_outline_white;
-			}
+			int res = isRead ? R.drawable.ic_checkbox_theme_aware : R.drawable.ic_checkbox_outline_theme_aware;
 			menuItem_Read.setIcon(res);
 			menuItem_Read.setChecked(isRead);
 			binding.faDetailBar.faMarkAsRead.setImageResource(res);
@@ -470,19 +457,18 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			switch (selection) {
 				case "open_in_browser":
 					menuItem_OpenInBrowser.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					// TODO!! this is not working..
 					break;
 				case "share":
 					menuItem_ShareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					// TODO!! this is not working..
 					break;
 				case "podcast":
 					menuItem_PlayPodcast.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					// TODO!! this is not working..
 					break;
-				//case "tts":
-				//    menu.findItem(R.id.action_tts).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-				//    break;
 			}
 		}
-
 
 		initIncognitoMode();
 

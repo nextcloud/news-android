@@ -9,10 +9,11 @@
     <item
         android:id="@+id/menu_search"
         android:enabled="true"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:icon="@drawable/ic_search_24dp_theme_aware"
         android:iconifiedByDefault="false"
         android:title="@string/action_search"
         android:visible="true"
+        app:tint="?attr/colorControlNormal"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
 
