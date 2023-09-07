@@ -224,6 +224,10 @@ ul li:before {
     line-height:    1.5em !important;
 }
 
+h1 {
+    line-height: 1em !important;
+}
+
 #imgFavicon {
     margin-right: 4px;
     vertical-align:middle;
