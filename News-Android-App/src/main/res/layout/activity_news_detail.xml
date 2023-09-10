@@ -1,8 +1,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent">
 
     <!-- SlidingUpPanelLayout doesn't work with layout_behavior, use marginTop -->
     <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
@@ -56,8 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="11dp"
-                android:layout_marginEnd="11dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 layout="@layout/widget_fastactions_detailview" />
 
         </RelativeLayout>
@@ -84,8 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:theme="@style/ToolbarTheme"
-        app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme">
+        android:theme="@style/ToolbarTheme">
     </com.google.android.material.bottomappbar.BottomAppBar>
 -->
 

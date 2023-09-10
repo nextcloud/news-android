@@ -39,7 +39,7 @@
         android:text="@string/tv_showing_cached_version"
         android:gravity="center"
         android:textColor="@android:color/black"
-        android:background="@color/material_red_600"
+        android:background="?attr/colorError"
         android:visibility="gone" />
 
 </RelativeLayout>

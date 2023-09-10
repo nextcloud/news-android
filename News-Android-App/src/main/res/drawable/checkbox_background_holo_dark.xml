@@ -2,10 +2,7 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--  <item android:state_checked="false" android:drawable="@drawable/btn_rating_star_off_normal_holo_light" />
-    <item android:state_checked="true" android:drawable="@drawable/btn_rating_star_on_normal_holo_light" /> -->
-
-	<item android:state_checked="false" android:drawable="@drawable/ic_action_star_border_dark" />
-    <item android:state_checked="true" android:drawable="@drawable/ic_action_star_dark" />
+	<item android:state_checked="false" android:drawable="@drawable/ic_star_border_24dp_theme_aware" />
+    <item android:state_checked="true" android:drawable="@drawable/ic_star_white_24" />
 
 </selector>

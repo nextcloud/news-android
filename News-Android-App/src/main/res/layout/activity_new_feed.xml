@@ -37,16 +37,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/et_feed_url"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:hint="@string/hint_feed_url"
-                    android:inputType="textUri"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textAlignment="viewStart"/>
+                    android:hint="@string/hint_feed_url">
+                    <EditText
+                        android:id="@+id/et_feed_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:inputType="textUri"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Spinner
                     android:id="@+id/sp_folder"
@@ -57,9 +61,6 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_addFeed"
-                    style="@style/Widget.MaterialComponents.Button"
-                    android:textColor="@android:color/black"
-                    android:backgroundTint="#eeeeee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -72,10 +73,8 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button"
                         android:id="@+id/btn_import_opml"
-                        android:textColor="@android:color/black"
-                        android:backgroundTint="#eeeeee"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -85,9 +84,7 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button"
-                        android:textColor="@android:color/black"
-                        android:backgroundTint="#eeeeee"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
                         android:id="@+id/btn_export_opml"
                         android:layout_width="0dp"
                         android:layout_weight="1"

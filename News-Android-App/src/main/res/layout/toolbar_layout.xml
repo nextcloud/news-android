@@ -13,14 +13,11 @@
             android:id="@+id/toolbar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1"
-            android:theme="@style/ToolbarTheme"
-            app:popupTheme="@style/ToolbarOptionMenuBackgroundTheme" />
+            android:layout_weight="1" />
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/avatar"

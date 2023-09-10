@@ -56,11 +56,7 @@
     </style>
 	-->
 
-    <style name="DirectoryChooserTheme" parent="AppTheme" >
-        <item name="android:background">@color/news_detail_background_color</item>
-    </style>
-
-    <style name="FloatingDialog" parent="AppTheme" >
+    <style name="FloatingDialog" parent="ThemeOverlay.Material3.Dialog" >
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>

@@ -401,29 +401,17 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			menuItem_PlayPodcast.setVisible(podcastAvailable);
 		}
 
-		boolean isDark = ThemeChooser.isDarkTheme(this);
-		boolean darkIcons = !isDark && !mShowFastActions;
-
 		if (menuItem_Starred != null) {
-			if (isStarred) {
-				menuItem_Starred.setIcon(darkIcons ? R.drawable.ic_action_star_light : R.drawable.ic_action_star_dark);
-				binding.faDetailBar.faStar.setImageResource(darkIcons ? R.drawable.ic_action_star_light : R.drawable.ic_action_star_dark);
-			} else {
-				menuItem_Starred.setIcon(darkIcons ? R.drawable.ic_action_star_border_light : R.drawable.ic_action_star_border_dark);
-				binding.faDetailBar.faStar.setImageResource(darkIcons ? R.drawable.ic_action_star_border_light : R.drawable.ic_action_star_border_dark);
-			}
+			int res = isStarred ? R.drawable.ic_star_24_theme_aware : R.drawable.ic_star_border_24dp_theme_aware;
+			menuItem_Starred.setIcon(res);
+			binding.faDetailBar.faStar.setImageResource(res);
 		}
 
 		if (menuItem_Read != null) {
-			if (isRead) {
-				menuItem_Read.setIcon(darkIcons ? R.drawable.ic_checkbox_black : R.drawable.ic_checkbox_white);
-				menuItem_Read.setChecked(true);
-				binding.faDetailBar.faMarkAsRead.setImageResource(darkIcons ? R.drawable.ic_checkbox_black : R.drawable.ic_checkbox_white);
-			} else {
-				menuItem_Read.setIcon(darkIcons ? R.drawable.ic_checkbox_outline_black : R.drawable.ic_checkbox_outline_white);
-				menuItem_Read.setChecked(false);
-				binding.faDetailBar.faMarkAsRead.setImageResource(darkIcons ? R.drawable.ic_checkbox_outline_black : R.drawable.ic_checkbox_outline_white);
-			}
+			int res = isRead ? R.drawable.ic_checkbox_theme_aware : R.drawable.ic_checkbox_outline_theme_aware;
+			menuItem_Read.setIcon(res);
+			menuItem_Read.setChecked(isRead);
+			binding.faDetailBar.faMarkAsRead.setImageResource(res);
 		}
 
 		if (menuItem_Incognito != null) {
@@ -469,19 +457,18 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			switch (selection) {
 				case "open_in_browser":
 					menuItem_OpenInBrowser.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					// TODO!! this is not working..
 					break;
 				case "share":
 					menuItem_ShareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					// TODO!! this is not working..
 					break;
 				case "podcast":
 					menuItem_PlayPodcast.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					// TODO!! this is not working..
 					break;
-				//case "tts":
-				//    menu.findItem(R.id.action_tts).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-				//    break;
 			}
 		}
-
 
 		initIncognitoMode();
 
@@ -642,24 +629,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	}
 
 	public void initIncognitoMode() {
-		boolean isLightTheme = !ThemeChooser.isDarkTheme(this);
+        if (isIncognitoEnabled()) {
+            boolean isLightTheme = !ThemeChooser.isDarkTheme(this);
+            if (isLightTheme) {
 
-		int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
-		ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
-		if (isLightTheme) {
-			// the first three menu items are from the fast actions (if enabled)
-			int skipItems = mShowFastActions ? 3 : 0;
-			if (isIncognitoEnabled()) {
-				int white = getResources().getColor(android.R.color.white);
-				ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
-				clearLightStatusBar(getWindow().getDecorView());
-			} else {
-				int primaryTextColor = getResources().getColor(R.color.primaryTextColor);
-				ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, primaryTextColor, skipItems);
-				setLightStatusBar(getWindow().getDecorView());
-			}
-		}
-		getWindow().setStatusBarColor(color);
+                int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
+                ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
+                // the first three menu items are from the fast actions (if enabled)
+                int skipItems = mShowFastActions ? 3 : 0;
+                int white = getResources().getColor(android.R.color.white);
+                ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
+                clearLightStatusBar(getWindow().getDecorView());
+                getWindow().setStatusBarColor(color);
+            }
+        }
 
 
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);

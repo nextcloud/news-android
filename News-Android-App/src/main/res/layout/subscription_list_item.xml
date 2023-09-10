@@ -16,12 +16,12 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:src="@drawable/ic_action_expand_less"
+            android:src="@drawable/ic_action_expand_less_24"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="12dp"
-            app:tint="?attr/tintColor"
+            app:tint="?attr/colorOnSecondaryContainer"
             android:contentDescription="@string/content_desc_expand"/>
         <ImageView
             android:id="@+id/img_view_favicon"

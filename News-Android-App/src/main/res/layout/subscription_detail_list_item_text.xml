@@ -112,7 +112,7 @@
             android:paddingBottom="20dp"
             android:paddingStart="8dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_action_star_light"
+            android:src="@drawable/ic_star_black_24dp"
             app:tint="?attr/starredColor"
             android:layout_alignParentEnd="true"
             android:paddingEnd="@dimen/listview_row_margin_left"

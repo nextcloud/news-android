@@ -48,9 +48,7 @@
             android:visibility="visible"
             android:translationX="-16dp"
             android:translationY="-16dp"
-            app:tint="@android:color/white"
             app:fabSize="normal"
-            app:backgroundTint="@color/nextcloudBlue"
             app:srcCompat="@drawable/ic_done_all"
             />
 

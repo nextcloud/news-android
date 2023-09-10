@@ -20,15 +20,15 @@
             android:pathData="M64.001,64m-60,0a60,60 0,1 1,119.999 0a60,60 0,1 1,-119.999 0"
             android:strokeWidth="6"
             android:fillColor="#00000000"
-            android:strokeColor="#68BDEC"/>
+            android:strokeColor="?attr/colorPrimaryContainer"/>
       </group>
       <path
           android:pathData="M64,64m-26.25,0a26.25,26.25 0,1 1,52.5 0a26.25,26.25 0,1 1,-52.5 0"
-          android:fillColor="#68BDEC"
+          android:fillColor="?attr/colorPrimaryContainer"
           />
       <path
           android:pathData="M68.969,58.656C68.603,58.291 68.012,58.291 67.647,58.656L62.359,63.944L63.681,65.266L68.969,59.969C69.325,59.612 69.325,59.013 68.969,58.656ZM72.944,58.647L63.681,67.909L60.419,64.656C60.053,64.291 59.463,64.291 59.097,64.656C58.731,65.022 58.731,65.613 59.097,65.978L63.016,69.897C63.381,70.262 63.972,70.262 64.338,69.897L74.266,59.978C74.631,59.612 74.631,59.022 74.266,58.656L74.256,58.656C73.9,58.281 73.309,58.281 72.944,58.647ZM53.8,65.988L57.719,69.906C58.084,70.272 58.675,70.272 59.041,69.906L59.697,69.25L55.122,64.656C54.756,64.291 54.166,64.291 53.8,64.656C53.434,65.022 53.434,65.622 53.8,65.988Z"
-          android:fillColor="#ffffff"
+          android:fillColor="?attr/colorOnPrimaryContainer"
           android:fillType="nonZero"/>
     </vector>
   </aapt:attr>

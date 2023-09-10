@@ -90,7 +90,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="@dimen/listview_row_margin_right"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_action_star_dark"
+            android:src="@drawable/ic_star_white_24"
             app:tint="?attr/starredColor"
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/content_desc_add_to_favorites"/>

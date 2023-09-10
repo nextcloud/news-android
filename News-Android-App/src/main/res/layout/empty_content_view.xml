@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:padding="@dimen/spacer_2x"
     android:visibility="gone"
-    tools:background="?attr/colorPrimary"
     tools:visibility="visible">
 
     <ImageView
@@ -20,7 +19,7 @@
         android:scaleX="1.7"
         android:scaleY="1.7"
         app:srcCompat="@drawable/ic_launcher_foreground"
-        app:tint="@color/empty_content_view_logo" />
+        app:tint="?attr/colorSecondaryContainer" />
 
     <TextView
         android:id="@+id/title"

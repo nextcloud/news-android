@@ -76,7 +76,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
     private ArrayList<AbstractItem> mCategoriesArrayList;
     private SparseArray<ArrayList<ConcreteFeedItem>> mItemsArrayList;
     private boolean showOnlyUnread = false;
-    private Integer btn_rating_star_off_normal_holo_light;
 
     private SparseArray<String> starredCountFeeds;
     private SparseArray<String> unreadCountFolders;
@@ -306,14 +305,14 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
         		viewHolder.binding.imgViewFavicon.setVisibility(View.VISIBLE);
                 rotation = 0;
-                viewHolder.binding.imgViewFavicon.setImageResource(getBtn_rating_star_off_normal_holo_light());
+                viewHolder.binding.imgViewFavicon.setImageResource(R.drawable.ic_star_border_24dp_theme_aware);
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
 	        	viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
                 viewHolder.binding.imgViewFavicon.setVisibility(View.INVISIBLE);
 	        } else {
 	        	viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.VISIBLE);
                 viewHolder.binding.imgViewFavicon.setVisibility(View.INVISIBLE);
-                viewHolder.binding.imgViewExpandableIndicator.setImageResource(R.drawable.ic_action_expand_less);
+                viewHolder.binding.imgViewExpandableIndicator.setImageResource(R.drawable.ic_action_expand_less_24);
 
 	        	if(isExpanded) {
                     rotation = 180;
@@ -342,17 +341,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         return convertView;
     }
 
-
-    private int getBtn_rating_star_off_normal_holo_light() {
-        if(btn_rating_star_off_normal_holo_light == null) {
-            if(ThemeChooser.getSelectedTheme().equals(ThemeChooser.THEME.LIGHT)) {
-                btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_light;
-            } else {
-                btn_rating_star_off_normal_holo_light = R.drawable.ic_action_star_border_dark;
-            }
-        }
-        return btn_rating_star_off_normal_holo_light;
-    }
 
     static class GroupHolder {
         @NonNull final SubscriptionListItemBinding binding;

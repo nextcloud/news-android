@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/nextcloudBlue">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,36 +65,40 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username_container"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterOverflowTextColor="@android:color/white"
                 android:theme="@style/TextInputLayoutAppearance"
-                style="@style/TextInputLayoutStyle">
+                app:counterOverflowTextColor="@android:color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/username"
+                    style="@style/TextInputEditTextLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:hint="@string/pref_title_username"
                     android:inputType="textEmailAddress"
-                    android:textAlignment="viewStart"
-                    style="@style/TextInputEditTextLogin"/>
+                    android:textAlignment="viewStart" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_container"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/username_container"
                 android:layout_alignParentStart="true"
-                app:counterOverflowTextColor="@android:color/white"
                 android:theme="@style/TextInputLayoutAppearance"
-                style="@style/TextInputLayoutStyle">
+                app:counterOverflowTextColor="@android:color/white"
+                app:endIconDrawable="@drawable/ic_visibility_24"
+                app:endIconMode="custom"
+                app:endIconTint="#fff">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
+                    style="@style/TextInputEditTextLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -103,23 +106,23 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textAlignment="viewStart"
-                    style="@style/TextInputEditTextLogin"/>
+                    android:textAlignment="viewStart" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/url_container"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/password_container"
                 android:layout_alignParentStart="true"
-                app:counterOverflowTextColor="@android:color/white"
                 android:theme="@style/TextInputLayoutAppearance"
-                style="@style/TextInputLayoutStyle">
+                app:counterOverflowTextColor="@android:color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_owncloudRootPath"
+                    style="@style/TextInputEditTextLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -129,24 +132,10 @@
                     android:selectAllOnFocus="true"
                     android:singleLine="true"
                     android:textAlignment="viewStart"
-                    style="@style/TextInputEditTextLogin"
                     android:theme="@style/TextInputEditTextLogin"
                     android:title="@string/pref_default_owncloudRootPath" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/imgView_ShowPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/password_container"
-                android:layout_alignEnd="@+id/password_container"
-                android:layout_alignBottom="@+id/password_container"
-                android:layout_gravity="end"
-                android:contentDescription="@string/content_desc_show_password"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:src="@drawable/ic_action_visibility" />
 
             <CheckBox
                 android:id="@+id/cb_AllowAllSSLCertificates"
@@ -166,10 +155,10 @@
                 android:layout_marginTop="16dp"
                 android:padding="16dp"
                 android:text="@string/action_sign_in_short"
-                android:textColor="@android:color/black"
                 android:textAllCaps="false"
+                android:textColor="@android:color/black"
                 app:backgroundTint="@android:color/white"
-                app:cornerRadius="24dp"/>
+                app:cornerRadius="24dp" />
 
         </RelativeLayout>
 

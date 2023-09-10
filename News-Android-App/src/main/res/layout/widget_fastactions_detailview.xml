@@ -27,15 +27,17 @@
             android:id="@+id/fa_star"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_action_star_border_dark" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_star_border_24dp_theme_aware"
+            android:tint="?attr/colorControlActivated"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/fa_mark_as_read"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:background="?android:attr/selectableItemBackground"
-            app:srcCompat="@drawable/ic_checkbox_outline_white" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_checkbox_outline_theme_aware"
+            android:tint="?attr/colorControlActivated"/>
 
         <!--
         <androidx.appcompat.widget.AppCompatImageButton
@@ -53,8 +55,9 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_toEndOf="@id/fa_collapse_layout"
-        android:background="@drawable/fa_button"
-        android:src="@drawable/ic_action_open_in_browser"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_action_open_in_browser_24_theme_aware"
+        android:tint="?attr/colorControlActivated"
         android:translationZ="50dp" />
 
 </RelativeLayout>

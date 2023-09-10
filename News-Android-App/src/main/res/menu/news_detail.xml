@@ -25,7 +25,7 @@
     <item
         android:id="@+id/action_openInBrowser"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_open_in_browser"
+        android:icon="@drawable/ic_action_open_in_browser_24_theme_aware"
         android:title="@string/action_openInBrowser"/>
 
     <item
@@ -50,14 +50,13 @@
     <item
         android:id="@+id/action_ShareItem"
         app:showAsAction="always"
-        android:icon="@drawable/ic_share_white"
+        android:icon="@drawable/ic_share_theme_aware"
         android:title="@string/action_Share" />
 
     <item
         android:id="@+id/action_incognito_mode"
-        app:showAsAction="never"
+        app:showAsAction="always"
         android:icon="@drawable/incognito"
-        app:iconTint="@android:color/white"
         android:title="Incognito Mode"/>
 
 </menu>

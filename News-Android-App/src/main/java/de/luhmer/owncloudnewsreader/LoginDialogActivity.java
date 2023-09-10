@@ -1,23 +1,23 @@
 /*
-* Android ownCloud News
-*
-* @author David Luhmer
-* @copyright 2013 David Luhmer david-dev@live.de
-*
-* This library is free software; you can redistribute it and/or
-* modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
-* License as published by the Free Software Foundation; either
-* version 3 of the License, or any later version.
-*
-* This library is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU AFFERO GENERAL PUBLIC LICENSE for more details.
-*
-* You should have received a copy of the GNU Affero General Public
-* License along with this library.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ * Android ownCloud News
+ *
+ * @author David Luhmer
+ * @copyright 2013 David Luhmer david-dev@live.de
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package de.luhmer.owncloudnewsreader;
 
@@ -85,13 +85,25 @@ public class LoginDialogActivity extends AppCompatActivity {
 
     public static final int RESULT_LOGIN = 16000;
 
-	/**
-	 * Keep track of the login task to ensure we can cancel it if requested.
-	 */
-	protected @Inject ApiProvider mApi;
+    private final TextWatcher PasswordTextChangedListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
     protected @Inject SharedPreferences mPrefs;
     protected @Inject MemorizingTrustManager mMemorizingTrustManager;
-	//private UserLoginTask mAuthTask = null;
+    //private UserLoginTask mAuthTask = null;
 
     // Values for email and password at the time of the login attempt.
     private String mUsername;
@@ -103,54 +115,25 @@ public class LoginDialogActivity extends AppCompatActivity {
 
     private SingleSignOnAccount importedAccount = null;
     private boolean mPasswordVisible = false;
+    private final View.OnClickListener TogglePasswordVisibilityListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int lastSelection = binding.password.getSelectionEnd();
+            mPasswordVisible = !mPasswordVisible;
 
+            if (mPasswordVisible) {
+                binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            } else {
+                binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
 
-	@Override
-	public void onCreate(Bundle savedInstance) {
-		super.onCreate(savedInstance);
-		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
-		
-		binding = ActivityLoginDialogBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        binding.btnSingleSignOn.setOnClickListener((v) -> startSingleSignOn());
-        binding.btnLogin.setOnClickListener((v) -> startManualLogin());
-        binding.tvManualLogin.setOnClickListener((v) -> manualLogin());
-
-        // Manual Login
-        binding.imgViewShowPassword.setOnClickListener(ImgViewShowPasswordListener);
-        binding.password.addTextChangedListener(PasswordTextChangedListener);
-
-        mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
-        mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
-        mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
-        boolean mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
-
-        if(!mPassword.isEmpty()) {
-            binding.imgViewShowPassword.setVisibility(View.GONE);
+            binding.password.setSelection(lastSelection);
         }
-
-        // Set up the login form.
-        binding.username.setText(mUsername);
-        binding.password.setText(mPassword);
-        binding.edtOwncloudRootPath.setText(mOc_root_path);
-
-        binding.cbAllowAllSSLCertificates.setChecked(mCbDisableHostnameVerification);
-        binding.cbAllowAllSSLCertificates.setOnCheckedChangeListener((buttonView, isChecked) -> mPrefs.edit()
-                .putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
-                .commit());
-	}
-
-    @Override
-    public void onBackPressed() {
-	    if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-	        // exit application if no account is set uo
-            finishAffinity();
-        } else {
-            // go back to previous activity
-            super.onBackPressed();
-        }
-    }
+    };
+    /**
+     * Keep track of the login task to ensure we can cancel it if requested.
+     */
+    protected @Inject ApiProvider mApi;
 
     @Override
     protected void onStart() {
@@ -189,40 +172,48 @@ public class LoginDialogActivity extends AppCompatActivity {
         binding.oldLoginWrapper.setVisibility(View.VISIBLE);
     }
 
-	private final TextWatcher PasswordTextChangedListener = new TextWatcher() {
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    @Override
+    public void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
+        ((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
 
-		}
+        binding = ActivityLoginDialogBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
+        binding.btnSingleSignOn.setOnClickListener((v) -> startSingleSignOn());
+        binding.btnLogin.setOnClickListener((v) -> startManualLogin());
+        binding.tvManualLogin.setOnClickListener((v) -> manualLogin());
 
-		}
+        // Manual Login
+        binding.passwordContainer.setEndIconOnClickListener(TogglePasswordVisibilityListener);
+        binding.password.addTextChangedListener(PasswordTextChangedListener);
 
-		@Override
-		public void afterTextChanged(Editable s) {
-            if(s.toString().isEmpty()) {
-                binding.imgViewShowPassword.setVisibility(View.VISIBLE);
-            }
-		}
-	};
+        mUsername = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, "");
+        mPassword = mPrefs.getString(SettingsActivity.EDT_PASSWORD_STRING, "");
+        mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, "");
+        boolean mCbDisableHostnameVerification = mPrefs.getBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, false);
 
-	private final View.OnClickListener ImgViewShowPasswordListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int lastSelection = binding.password.getSelectionEnd();
-            mPasswordVisible = !mPasswordVisible;
+        // Set up the login form.
+        binding.username.setText(mUsername);
+        binding.password.setText(mPassword);
+        binding.edtOwncloudRootPath.setText(mOc_root_path);
 
-            if(mPasswordVisible) {
-                binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            } else {
-                binding.password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            }
+        binding.cbAllowAllSSLCertificates.setChecked(mCbDisableHostnameVerification);
+        binding.cbAllowAllSSLCertificates.setOnCheckedChangeListener((buttonView, isChecked) -> mPrefs.edit()
+                .putBoolean(SettingsActivity.CB_DISABLE_HOSTNAME_VERIFICATION_STRING, isChecked)
+                .commit());
+    }
 
-            binding.password.setSelection(lastSelection);
+    @Override
+    public void onBackPressed() {
+        if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
+            // exit application if no account is set uo
+            finishAffinity();
+        } else {
+            // go back to previous activity
+            super.onBackPressed();
         }
-    };
+    }
 
     private ProgressDialog buildPendingDialogWhileLoggingIn() {
         ProgressDialog pDialog = new ProgressDialog(this);
@@ -261,31 +252,31 @@ public class LoginDialogActivity extends AppCompatActivity {
         });
     }
 
-	/**
-	 * Attempts to sign in or register the account specified by the login form.
-	 * If there are form errors (invalid email, missing fields, etc.), the
-	 * errors are presented and no actual login attempt is made.
-	 */
-	@SuppressLint({"SetTextI18n"})
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual login attempt is made.
+     */
+    @SuppressLint({"SetTextI18n"})
     public void attemptLogin() {
-		// Reset errors.
-		binding.username.setError(null);
-		binding.password.setError(null);
-		binding.edtOwncloudRootPath.setError(null);
+        // Reset errors.
+        binding.username.setError(null);
+        binding.password.setError(null);
+        binding.edtOwncloudRootPath.setError(null);
 
-		// Append "https://" is url doesn't contain it already
+        // Append "https://" is url doesn't contain it already
         mOc_root_path = requireNonNull(binding.edtOwncloudRootPath.getText()).toString().trim();
-        if(!mOc_root_path.startsWith("http")) {
+        if (!mOc_root_path.startsWith("http")) {
             binding.edtOwncloudRootPath.setText("https://" + mOc_root_path);
         }
 
-		// Store values at the time of the login attempt.
-		mUsername = requireNonNull(binding.username.getText()).toString().trim();
-		mPassword = requireNonNull(binding.password.getText()).toString();
-		mOc_root_path = binding.edtOwncloudRootPath.getText().toString().trim();
+        // Store values at the time of the login attempt.
+        mUsername = requireNonNull(binding.username.getText()).toString().trim();
+        mPassword = requireNonNull(binding.password.getText()).toString();
+        mOc_root_path = binding.edtOwncloudRootPath.getText().toString().trim();
 
-		boolean cancel = false;
-		View focusView = null;
+        boolean cancel = false;
+        View focusView = null;
 
         // Check for a valid password.
         if (TextUtils.isEmpty(mPassword)) {
@@ -307,7 +298,7 @@ public class LoginDialogActivity extends AppCompatActivity {
         } else {
             try {
                 URL url = new URL(mOc_root_path);
-                if(!Patterns.WEB_URL.matcher(mOc_root_path).matches()) {
+                if (!Patterns.WEB_URL.matcher(mOc_root_path).matches()) {
                     throw new MalformedURLException();
                 }
                 if (!url.getProtocol().equals("https")) {
@@ -321,11 +312,11 @@ public class LoginDialogActivity extends AppCompatActivity {
             }
         }
 
-		if (cancel) {
-			// There was an error; don't attempt login and focus the first
-			// form field with an error.
-			focusView.requestFocus();
-		} else {
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
             Editor editor = mPrefs.edit();
             editor.putString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, mOc_root_path);
             editor.putString(SettingsActivity.EDT_PASSWORD_STRING, mPassword);
@@ -352,10 +343,10 @@ public class LoginDialogActivity extends AppCompatActivity {
                     ShowAlertDialog(getString(R.string.login_dialog_title_error), ex.getMessage(), LoginDialogActivity.this);
                 }
             });
-		}
-	}
+        }
+    }
 
-	private void resetDatabase() {
+    private void resetDatabase() {
         //Reset Database
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(LoginDialogActivity.this);
         dbConn.resetDatabase();

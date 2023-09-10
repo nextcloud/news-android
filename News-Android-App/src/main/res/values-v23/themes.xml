@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="AppTheme.Base">
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    <style name="AppTheme" parent="BaseTheme">
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">@bool/isDayMode</item>
-
-        <!-- Inherited -->
-        <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
-        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
-        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
-    <style name="SplashTheme" parent="AppTheme.Base">
-        <item name="android:windowLightStatusBar">false</item>
-
-        <!-- Inherited -->
-        <item name="android:statusBarColor">@color/nextcloudBlue</item>
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+    <style name="AppTheme.OLED" parent="BaseTheme.OLED">
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">@bool/isDayMode</item>
     </style>
 </resources>

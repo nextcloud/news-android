@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="AppTheme.Base"/>
 
-    <style name="SplashTheme" parent="AppTheme.Base">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
-    <style name="AppThemeOLED" parent="AppTheme.Base">
-        <item name="android:windowBackground">@android:color/black</item>
-
-        <!-- for settings activity -->
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textColorSecondary">@color/material_grey_500</item>
-        <!-- for settings activity end-->
-
-        <item name="news_detail_background_color">@android:color/black</item>
-        <item name="primaryTextColor">@android:color/white</item>
-    </style>
-
-
-    <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight">
+    <style name="BaseTheme" parent="Theme.Material3.DayNight">
         <item name="android:windowBackground">@color/rss_item_list_background</item>
 
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorErrorContainer">@color/errorContainer</item>
+        <item name="colorOnBackground">@color/onBackground</item>
+        <item name="colorOnError">@color/onError</item>
+        <item name="colorOnErrorContainer">@color/onErrorContainer</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorOnPrimaryContainer">@color/onPrimaryContainer</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorOnSecondaryContainer">@color/onSecondaryContainer</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorOnSurfaceVariant">@color/onSurfaceVariant</item>
+        <item name="colorOnTertiary">@color/onTertiary</item>
+        <item name="colorOnTertiaryContainer">@color/onTertiaryContainer</item>
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outlineVariant</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryContainer">@color/primaryContainer</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/surfaceVariant</item>
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorTertiaryContainer">@color/tertiaryContainer</item>
+
+        <item name="android:statusBarColor">@color/surface</item>
 
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-
-        <item name="tintColor">@color/tintColor</item>
 
         <item name="dividerLineColor">#1effffff</item>
 
@@ -43,27 +45,31 @@
 
         <item name="news_detail_background_color">@color/news_detail_background_color</item>
 
-        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
-    <style name="ToolbarOptionMenuBackgroundTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="android:background">@color/rss_item_list_background</item>
-        <item name="android:itemBackground">@color/rss_item_list_background</item>
+    <style name="BaseTheme.OLED" parent="BaseTheme">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorSecondary">@color/material_grey_500</item>
+        <item name="news_detail_background_color">@color/news_detail_background_color_oled</item>
     </style>
 
-    <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="rippleColor">@color/button_ripple</item>
-        <item name="android:textColor">@color/material_button_text_color</item>
+    <style name="AppTheme" parent="BaseTheme" />
+
+    <style name="AppTheme.OLED" parent="BaseTheme" />
+
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/nextcloudBlue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/AppTheme</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColor">@color/options_menu_item_text</item>
-    </style>
-
-
-
-    <style name="TextInputEditTextLogin" parent="ThemeOverlay.MaterialComponents.TextInputEditText">
+    <style name="TextInputEditTextLogin" parent="ThemeOverlay.Material3.TextInputEditText">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:textColor">@android:color/white</item>
 
@@ -94,9 +100,8 @@
         <item name="colorControlHighlight">@android:color/white</item>
     </style>
 
-
     <style name="ErrorText" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/material_red_600</item>
+        <item name="android:textColor">?attr/colorError</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -104,16 +109,5 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">14sp</item>
     </style>
-
-
-    <!-- https://stackoverflow.com/a/54751236 -->
-    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="buttonBarButtonStyle">@style/ButtonBarButtonStyle</item>
-    </style>
-
-    <style name="ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog.Flush">
-        <item name="android:textColor">@color/primaryTextColor</item>
-    </style>
-
 
 </resources>

@@ -6,7 +6,10 @@
             <item android:state_above_anchor="true"><color android:color="@color/starredColor" /></item>
         </selector>
     </item>
-    <item android:right="5dp" android:left="5dp">
-        <bitmap android:src="@drawable/ic_action_star_dark" android:gravity="center_vertical" />
+    <item
+        android:right="5dp"
+        android:left="5dp"
+        android:drawable="@drawable/ic_star_white_24"
+        android:gravity="center">
     </item>
 </layer-list>

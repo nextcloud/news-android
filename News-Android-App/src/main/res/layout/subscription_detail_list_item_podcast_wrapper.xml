@@ -14,9 +14,9 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        app:tint="?attr/tintColor"
+        app:tint="?attr/colorOnSecondaryContainer"
         android:contentDescription="@string/content_desc_pause"
-        android:src="@drawable/ic_action_pause" />
+        android:src="@drawable/ic_action_pause_24" />
 
     <ProgressBar
         android:id="@+id/podcastDownloadProgress"

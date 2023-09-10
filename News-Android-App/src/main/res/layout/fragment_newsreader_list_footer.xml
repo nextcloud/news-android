@@ -9,8 +9,8 @@
         app:itemIconPadding="23dp"
         app:itemHorizontalPadding="13dp"
         android:id="@+id/listfooterMenu"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_drawer_feed_list_background_color"
         app:menu="@menu/list_footer_menu" />
 </LinearLayout>
