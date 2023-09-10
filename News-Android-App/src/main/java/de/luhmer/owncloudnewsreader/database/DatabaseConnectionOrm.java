@@ -574,10 +574,6 @@ public class DatabaseConnectionOrm {
 
 
     public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
-        //If all starred items are requested always return them in desc. order
-        if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
-            sortDirection = SORT_DIRECTION.desc;
-
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
