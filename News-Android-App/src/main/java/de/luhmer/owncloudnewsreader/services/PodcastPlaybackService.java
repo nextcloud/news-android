@@ -55,6 +55,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
+import de.luhmer.owncloudnewsreader.events.podcast.SeekPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -443,6 +444,14 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             if(seekTo < 0) {
                 seekTo = 0;
             }
+            mPlaybackService.seekTo(seekTo);
+        }
+    }
+
+    @Subscribe
+    public void onEvent(SeekPodcast event) {
+        if(mPlaybackService != null) {
+            int seekTo = (int) (event.milliSeconds);
             mPlaybackService.seekTo(seekTo);
         }
     }
