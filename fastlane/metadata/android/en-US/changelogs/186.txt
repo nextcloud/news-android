@@ -1,0 +1,5 @@
+Changed - !1186 - Material 3 Theme (thanks to @stefan-niedermann)
+Changed - !1256 - Fix starred items not obeying sort order (thanks to @mkanilsson)
+Changed - Dependency updates
+Fixed - !1257 - Seeking in podcast player doesn't work (thanks to @annasoin)
+Fixed - !1255 - add line-height for h1 tags (thanks to @mkanilsson)

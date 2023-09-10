@@ -1,3 +1,16 @@
+0.9.9.82
+---------------------
+
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1186">!1186 - Material 3 Theme (
+  thanks to @stefan-niedermann)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1256">!1256 - Fix starred items
+  not obeying sort order (thanks to @mkanilsson)</a>
+- Changed - Dependency updates
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1257">!1257 - Seeking in podcast
+  player doesn't work (thanks to @annasoin)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1255">!1255 - add line-height for
+  h1 tags (thanks to @mkanilsson)</a>
+
 0.9.9.81
 ---------------------
 
