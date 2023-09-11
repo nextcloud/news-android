@@ -140,7 +140,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
+	private MenuItem menuItemOnlyUnread;
 	private MenuItem menuItemDownloadMoreItems;
+
+	private Long currentFolderId;
 
 	@VisibleForTesting(otherwise = PROTECTED)
 	public ActivityNewsreaderBinding binding;
@@ -671,19 +674,31 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         Long folderId;
         String title = null;
 
+		if (menuItemOnlyUnread != null) {
+			menuItemOnlyUnread.setVisible(true);
+		}
+
         if(!folder) {
+			currentFolderId = null;
             feedId = id;
             folderId = optional_folder_id;
             title = dbConn.getFeedById(id).getFeedTitle();
         } else {
+			currentFolderId = id;
             folderId = id;
             int idFolder = (int) id;
             if(idFolder >= 0) {
                 title = dbConn.getFolderById(id).getLabel();
             } else if(idFolder == -10) {
                 title = getString(R.string.allUnreadFeeds);
+				if (menuItemOnlyUnread != null) {
+					menuItemOnlyUnread.setVisible(false);
+				}
             } else if(idFolder == -11) {
                 title = getString(R.string.starredFeeds);
+				if (menuItemOnlyUnread != null) {
+					menuItemOnlyUnread.setVisible(false);
+				}
             }
         }
 
@@ -789,6 +804,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		menuItemDownloadMoreItems.setEnabled(false);
 
 		MenuItem searchItem = menu.findItem(R.id.menu_search);
+		menuItemOnlyUnread = menu.findItem(R.id.menu_toggleShowOnlyUnread);
+		menuItemOnlyUnread.setChecked(mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false));
+		menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
 
         //Set expand listener to close keyboard
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
@@ -857,7 +875,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 		} else if (itemId == R.id.menu_update) {
 			startSync();
-		} else if (itemId == R.id.menu_StartImageCaching) {
+		}
+		else if (itemId == R.id.menu_toggleShowOnlyUnread) {
+			boolean newValue = !mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+			mPrefs.edit().putBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, newValue).commit();
+			item.setChecked(newValue);
+			getSlidingListFragment().reloadAdapter();
+			updateCurrentRssView();
+		}
+		else if (itemId == R.id.menu_StartImageCaching) {
 			final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
 
 			long highestItemId = dbConn.getLowestRssItemIdUnread();
