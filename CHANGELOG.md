@@ -1,15 +1,12 @@
 0.9.9.82
 ---------------------
 
-- Changed - <a href="https://github.com/nextcloud/news-android/pull/1186">!1186 - Material 3 Theme (
-  thanks to @stefan-niedermann)</a>
-- Changed - <a href="https://github.com/nextcloud/news-android/pull/1256">!1256 - Fix starred items
-  not obeying sort order (thanks to @mkanilsson)</a>
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1262">!1262 - Add shortcut to "Show only unread articles" in the toolbar (thanks to @mkanilsson)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1186">!1186 - Material 3 Theme (thanks to @stefan-niedermann)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1256">!1256 - Fix starred items not obeying sort order (thanks to @mkanilsson)</a>
 - Changed - Dependency updates
-- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1257">!1257 - Seeking in podcast
-  player doesn't work (thanks to @annasoin)</a>
-- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1255">!1255 - add line-height for
-  h1 tags (thanks to @mkanilsson)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1257">!1257 - Seeking in podcast player doesn't work (thanks to @annasoin)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1255">!1255 - add line-height for h1 tags (thanks to @mkanilsson)</a>
 
 0.9.9.81
 ---------------------
@@ -20,16 +17,11 @@
 ---------------------
 
 - Changed - Internal dependency updates
-- Changed - <a href="https://github.com/nextcloud/news-android/pull/1212">!1212 - Nextcloud
-  Single-Sign-On updates</a>
-- Changed - <a href="https://github.com/nextcloud/news-android/pull/1200">!1200 - Bail out early on
-  generating unread rss items notifications (thanks to @Unpublished)</a>
-- Changed - <a href="https://github.com/nextcloud/news-android/pull/1199">!1199 - Housekeeping /
-  Remove unused classes (thanks to @Unpublished)</a>
-- Changed - <a href="https://github.com/nextcloud/news-android/pull/1195">!1195 - Migrate some
-  classes to Kotlin (thanks to @Unpublished)</a>
-- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1214">!1214 - Text formatting is a
-  bit weird</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1212">!1212 - Nextcloud Single-Sign-On updates</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1200">!1200 - Bail out early on generating unread rss items notifications (thanks to @Unpublished)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1199">!1199 - Housekeeping / Remove unused classes (thanks to @Unpublished)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1195">!1195 - Migrate some classes to Kotlin (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1214">!1214 - Text formatting is a bit weird</a>
 
 0.9.9.79
 ---------------------
