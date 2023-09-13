@@ -41,6 +41,13 @@
         android:title="@string/menu_markAllAsRead"/>
 
     <item
+        android:id="@+id/menu_toggleShowOnlyUnread"
+        android:orderInCategory="98"
+        android:title="@string/pref_title_ShowOnlyUnread"
+        android:checkable="true"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_add_new_feed"
         android:orderInCategory="101"
         app:showAsAction="never"
