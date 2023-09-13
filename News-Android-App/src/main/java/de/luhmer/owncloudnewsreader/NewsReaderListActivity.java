@@ -663,49 +663,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 
-    private NewsReaderDetailFragment updateDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
-        if(menuItemDownloadMoreItems != null) {
-            menuItemDownloadMoreItems.setEnabled(true);
-        }
-
-        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
-
-        Long feedId = null;
-        Long folderId;
-        String title = null;
-
-		if (menuItemOnlyUnread != null) {
-			menuItemOnlyUnread.setVisible(true);
-		}
-
-        if(!folder) {
-			currentFolderId = null;
-            feedId = id;
-            folderId = optional_folder_id;
-            title = dbConn.getFeedById(id).getFeedTitle();
-        } else {
-			currentFolderId = id;
-            folderId = id;
-            int idFolder = (int) id;
-            if(idFolder >= 0) {
-                title = dbConn.getFolderById(id).getLabel();
-            } else if(idFolder == -10) {
-                title = getString(R.string.allUnreadFeeds);
-				if (menuItemOnlyUnread != null) {
-					menuItemOnlyUnread.setVisible(false);
-				}
-            } else if(idFolder == -11) {
-                title = getString(R.string.starredFeeds);
-				if (menuItemOnlyUnread != null) {
-					menuItemOnlyUnread.setVisible(false);
-				}
-            }
-        }
-
-        NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
-        fragment.setData(feedId, folderId, title, updateListView);
-        return fragment;
-    }
+	public static final int RESULT_ADD_NEW_FEED = 15643;
 
 	private void updateDetailFragmentTitle() {
 		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
@@ -793,6 +751,45 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
     }
 
+    private NewsReaderDetailFragment updateDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
+        if(menuItemDownloadMoreItems != null) {
+            menuItemDownloadMoreItems.setEnabled(true);
+        }
+
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getApplicationContext());
+
+        Long feedId = null;
+        Long folderId;
+        String title = null;
+
+        if(!folder) {
+			currentFolderId = null;
+            feedId = id;
+            folderId = optional_folder_id;
+            title = dbConn.getFeedById(id).getFeedTitle();
+        } else {
+			currentFolderId = id;
+			folderId = id;
+			int idFolder = (int) id;
+			if (idFolder >= 0) {
+				title = dbConn.getFolderById(id).getLabel();
+			} else if (idFolder == -10) {
+				title = getString(R.string.allUnreadFeeds);
+			} else if (idFolder == -11) {
+				title = getString(R.string.starredFeeds);
+			}
+		}
+
+		syncMenuItemUnreadOnly();
+
+		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
+		fragment.setData(feedId, folderId, title, updateListView);
+		return fragment;
+	}
+
+	public MenuItem getMenuItemDownloadMoreItems() {
+		return menuItemDownloadMoreItems;
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -806,7 +803,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		MenuItem searchItem = menu.findItem(R.id.menu_search);
 		menuItemOnlyUnread = menu.findItem(R.id.menu_toggleShowOnlyUnread);
 		menuItemOnlyUnread.setChecked(mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false));
-		menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
+		syncMenuItemUnreadOnly();
 
         //Set expand listener to close keyboard
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
@@ -850,19 +847,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         return true;
 	}
 
-	public MenuItem getMenuItemDownloadMoreItems() {
-		return menuItemDownloadMoreItems;
-	}
-
 	@Override
 	public void onBackPressed() {
-        if(!handlePodcastBackPressed()) {
+		if (!handlePodcastBackPressed()) {
 			super.onBackPressed();
 		}
 	}
 
 	public static final int RESULT_SETTINGS = 15642;
-    public static final int RESULT_ADD_NEW_FEED = 15643;
+
+	private void syncMenuItemUnreadOnly() {
+		if (menuItemOnlyUnread != null) {
+			menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
+		}
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
