@@ -41,6 +41,8 @@
         <item name="unstarredColor">@color/unstarredColor</item>
         <item name="markasreadDrawable">@drawable/swipe_markasread</item>
         <item name="openinbrowserDrawable">@drawable/swipe_openinbrowser</item>
+        <item name="shareDrawable">@drawable/swipe_share</item>
+
         <item name="starredDrawable">@drawable/swipe_setstarred</item>
 
         <item name="news_detail_background_color">@color/news_detail_background_color</item>

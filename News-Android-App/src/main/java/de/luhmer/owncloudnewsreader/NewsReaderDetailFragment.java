@@ -466,6 +466,7 @@ public class NewsReaderDetailFragment extends Fragment {
             case "0": return R.attr.openinbrowserDrawable;
             case "1": return R.attr.starredDrawable;
             case "2": return R.attr.markasreadDrawable;
+            case "3": return R.attr.shareDrawable;
             default:
                 Log.e(TAG, "Invalid option saved to prefs. This should not happen");
                 return Integer.MAX_VALUE;
@@ -629,6 +630,17 @@ public class NewsReaderDetailFragment extends Fragment {
                     break;
                 case "2": // Read
                     adapter.toggleReadStateOfItem((RssItemViewHolder) viewHolder);
+                    break;
+                case "3": // Share
+                    RssItem rssItem = ((RssItemViewHolder) viewHolder).getRssItem();
+                    String title = rssItem.getTitle();
+                    String content = rssItem.getLink();
+
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.setType("text/plain");
+                    share.putExtra(Intent.EXTRA_SUBJECT, title);
+                    share.putExtra(Intent.EXTRA_TEXT, content);
+                    startActivity(Intent.createChooser(share, "Share Item"));
                     break;
                 default:
                     Log.e(TAG, "Swipe preferences has an invalid value");
