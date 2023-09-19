@@ -24,8 +24,84 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
 
     /** @inheritdoc */
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+    protected void bindValues(SQLiteStatement stmt, RssItem entity) {
+        stmt.clearBindings();
+        stmt.bindLong(1, entity.getId());
+        stmt.bindLong(2, entity.getFeedId());
+
+        String link = entity.getLink();
+        if (link != null) {
+            stmt.bindString(3, link);
+        }
+
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(4, title);
+        }
+
+        String body = entity.getBody();
+        if (body != null) {
+            stmt.bindString(5, body);
+        }
+
+        Boolean read = entity.getRead();
+        if (read != null) {
+            stmt.bindLong(6, read ? 1L: 0L);
+        }
+
+        Boolean starred = entity.getStarred();
+        if (starred != null) {
+            stmt.bindLong(7, starred ? 1L: 0L);
+        }
+        stmt.bindString(8, entity.getAuthor());
+        stmt.bindString(9, entity.getGuid());
+        stmt.bindString(10, entity.getGuidHash());
+        stmt.bindString(11, entity.getFingerprint());
+
+        Boolean read_temp = entity.getRead_temp();
+        if (read_temp != null) {
+            stmt.bindLong(12, read_temp ? 1L: 0L);
+        }
+
+        Boolean starred_temp = entity.getStarred_temp();
+        if (starred_temp != null) {
+            stmt.bindLong(13, starred_temp ? 1L: 0L);
+        }
+
+        java.util.Date lastModified = entity.getLastModified();
+        if (lastModified != null) {
+            stmt.bindLong(14, lastModified.getTime());
+        }
+
+        java.util.Date pubDate = entity.getPubDate();
+        if (pubDate != null) {
+            stmt.bindLong(15, pubDate.getTime());
+        }
+
+        String enclosureLink = entity.getEnclosureLink();
+        if (enclosureLink != null) {
+            stmt.bindString(16, enclosureLink);
+        }
+
+        String enclosureMime = entity.getEnclosureMime();
+        if (enclosureMime != null) {
+            stmt.bindString(17, enclosureMime);
+        }
+
+        String mediaThumbnail = entity.getMediaThumbnail();
+        if (mediaThumbnail != null) {
+            stmt.bindString(18, mediaThumbnail);
+        }
+
+        String mediaDescription = entity.getMediaDescription();
+        if (mediaDescription != null) {
+            stmt.bindString(19, mediaDescription);
+        }
+
+        Boolean rtl = entity.getRtl();
+        if (rtl != null) {
+            stmt.bindLong(20, rtl ? 1L : 0L);
+        }
     }
 
     private DaoSession daoSession;
@@ -76,86 +152,12 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         db.execSQL(sql);
     }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     @Override
-    protected void bindValues(SQLiteStatement stmt, RssItem entity) {
-        stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
-        stmt.bindLong(2, entity.getFeedId());
- 
-        String link = entity.getLink();
-        if (link != null) {
-            stmt.bindString(3, link);
-        }
- 
-        String title = entity.getTitle();
-        if (title != null) {
-            stmt.bindString(4, title);
-        }
- 
-        String body = entity.getBody();
-        if (body != null) {
-            stmt.bindString(5, body);
-        }
- 
-        Boolean read = entity.getRead();
-        if (read != null) {
-            stmt.bindLong(6, read ? 1L: 0L);
-        }
- 
-        Boolean starred = entity.getStarred();
-        if (starred != null) {
-            stmt.bindLong(7, starred ? 1L: 0L);
-        }
-        stmt.bindString(8, entity.getAuthor());
-        stmt.bindString(9, entity.getGuid());
-        stmt.bindString(10, entity.getGuidHash());
-        stmt.bindString(11, entity.getFingerprint());
- 
-        Boolean read_temp = entity.getRead_temp();
-        if (read_temp != null) {
-            stmt.bindLong(12, read_temp ? 1L: 0L);
-        }
- 
-        Boolean starred_temp = entity.getStarred_temp();
-        if (starred_temp != null) {
-            stmt.bindLong(13, starred_temp ? 1L: 0L);
-        }
- 
-        java.util.Date lastModified = entity.getLastModified();
-        if (lastModified != null) {
-            stmt.bindLong(14, lastModified.getTime());
-        }
- 
-        java.util.Date pubDate = entity.getPubDate();
-        if (pubDate != null) {
-            stmt.bindLong(15, pubDate.getTime());
-        }
- 
-        String enclosureLink = entity.getEnclosureLink();
-        if (enclosureLink != null) {
-            stmt.bindString(16, enclosureLink);
-        }
- 
-        String enclosureMime = entity.getEnclosureMime();
-        if (enclosureMime != null) {
-            stmt.bindString(17, enclosureMime);
-        }
- 
-        String mediaThumbnail = entity.getMediaThumbnail();
-        if (mediaThumbnail != null) {
-            stmt.bindString(18, mediaThumbnail);
-        }
- 
-        String mediaDescription = entity.getMediaDescription();
-        if (mediaDescription != null) {
-            stmt.bindString(19, mediaDescription);
-        }
- 
-        Boolean rtl = entity.getRtl();
-        if (rtl != null) {
-            stmt.bindLong(20, rtl ? 1L: 0L);
-        }
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.getLong(offset);
     }
 
     @Override
@@ -164,11 +166,13 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         entity.__setDaoSession(daoSession);
     }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     @Override
     public RssItem readEntity(Cursor cursor, int offset) {
         RssItem entity = new RssItem( //
-                cursor.getLong(offset + 0), // id
+                cursor.getLong(offset), // id
                 cursor.getLong(offset + 1), // feedId
                 cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // link
                 cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // title
@@ -192,10 +196,22 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         return entity;
     }
 
+    protected RssItem loadCurrentDeep(Cursor cursor, boolean lock) {
+        RssItem entity = loadCurrent(cursor, 0, lock);
+        int offset = getAllColumns().length;
+
+        Feed feed = loadCurrentOther(daoSession.getFeedDao(), cursor, offset);
+        if (feed != null) {
+            entity.setFeed(feed);
+        }
+
+        return entity;
+    }
+     
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, RssItem entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setFeedId(cursor.getLong(offset + 1));
         entity.setLink(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setTitle(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
@@ -238,18 +254,6 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
         }
     }
 
-    protected RssItem loadCurrentDeep(Cursor cursor, boolean lock) {
-        RssItem entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        Feed feed = loadCurrentOther(daoSession.getFeedDao(), cursor, offset);
-        if (feed != null) {
-            entity.setFeed(feed);
-        }
-
-        return entity;
-    }
-
     /**
      * @inheritdoc
      */
@@ -288,6 +292,33 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
             selectDeep = builder.toString();
         }
         return selectDeep;
+    }
+
+    /**
+     * Properties of entity RssItem.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property FeedId = new Property(1, long.class, "feedId", false, "FEED_ID");
+        public final static Property Link = new Property(2, String.class, "link", false, "LINK");
+        public final static Property Title = new Property(3, String.class, "title", false, "TITLE");
+        public final static Property Body = new Property(4, String.class, "body", false, "BODY");
+        public final static Property Read = new Property(5, Boolean.class, "read", false, "READ");
+        public final static Property Starred = new Property(6, Boolean.class, "starred", false, "STARRED");
+        public final static Property Author = new Property(7, String.class, "author", false, "AUTHOR");
+        public final static Property Guid = new Property(8, String.class, "guid", false, "GUID");
+        public final static Property GuidHash = new Property(9, String.class, "guidHash", false, "GUID_HASH");
+        public final static Property Fingerprint = new Property(10, String.class, "fingerprint", false, "FINGERPRINT");
+        public final static Property Read_temp = new Property(11, Boolean.class, "read_temp", false, "READ_TEMP");
+        public final static Property Starred_temp = new Property(12, Boolean.class, "starred_temp", false, "STARRED_TEMP");
+        public final static Property LastModified = new Property(13, java.util.Date.class, "lastModified", false, "LAST_MODIFIED");
+        public final static Property PubDate = new Property(14, java.util.Date.class, "pubDate", false, "PUB_DATE");
+        public final static Property EnclosureLink = new Property(15, String.class, "enclosureLink", false, "ENCLOSURE_LINK");
+        public final static Property EnclosureMime = new Property(16, String.class, "enclosureMime", false, "ENCLOSURE_MIME");
+        public final static Property MediaThumbnail = new Property(17, String.class, "mediaThumbnail", false, "MEDIA_THUMBNAIL");
+        public final static Property MediaDescription = new Property(18, String.class, "mediaDescription", false, "MEDIA_DESCRIPTION");
+        public final static Property Rtl = new Property(19, Boolean.class, "rtl", false, "RTL");
     }
 
     public RssItem loadDeep(Long key) {
@@ -340,33 +371,6 @@ public class RssItemDao extends AbstractDao<RssItem, Long> {
             }
         }
         return list;
-    }
-
-    /**
-     * Properties of entity RssItem.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-     */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
-        public final static Property FeedId = new Property(1, long.class, "feedId", false, "FEED_ID");
-        public final static Property Link = new Property(2, String.class, "link", false, "LINK");
-        public final static Property Title = new Property(3, String.class, "title", false, "TITLE");
-        public final static Property Body = new Property(4, String.class, "body", false, "BODY");
-        public final static Property Read = new Property(5, Boolean.class, "read", false, "READ");
-        public final static Property Starred = new Property(6, Boolean.class, "starred", false, "STARRED");
-        public final static Property Author = new Property(7, String.class, "author", false, "AUTHOR");
-        public final static Property Guid = new Property(8, String.class, "guid", false, "GUID");
-        public final static Property GuidHash = new Property(9, String.class, "guidHash", false, "GUID_HASH");
-        public final static Property Fingerprint = new Property(10, String.class, "fingerprint", false, "FINGERPRINT");
-        public final static Property Read_temp = new Property(11, Boolean.class, "read_temp", false, "READ_TEMP");
-        public final static Property Starred_temp = new Property(12, Boolean.class, "starred_temp", false, "STARRED_TEMP");
-        public final static Property LastModified = new Property(13, java.util.Date.class, "lastModified", false, "LAST_MODIFIED");
-        public final static Property PubDate = new Property(14, java.util.Date.class, "pubDate", false, "PUB_DATE");
-        public final static Property EnclosureLink = new Property(15, String.class, "enclosureLink", false, "ENCLOSURE_LINK");
-        public final static Property EnclosureMime = new Property(16, String.class, "enclosureMime", false, "ENCLOSURE_MIME");
-        public final static Property MediaThumbnail = new Property(17, String.class, "mediaThumbnail", false, "MEDIA_THUMBNAIL");
-        public final static Property MediaDescription = new Property(18, String.class, "mediaDescription", false, "MEDIA_DESCRIPTION");
-        public final static Property Rtl = new Property(19, Boolean.class, "rtl", false, "RTL");
     }
     
     protected List<RssItem> loadDeepAllAndCloseCursor(Cursor cursor) {

@@ -21,6 +21,7 @@ public class Feed {
     private String link;
     private String avgColour;
     private String notificationChannel;
+    private Long openIn;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -43,7 +44,7 @@ public class Feed {
         this.id = id;
     }
 
-    public Feed(long id, Long folderId, String feedTitle, String faviconUrl, String link, String avgColour, String notificationChannel) {
+    public Feed(long id, Long folderId, String feedTitle, String faviconUrl, String link, String avgColour, String notificationChannel, Long openIn) {
         this.id = id;
         this.folderId = folderId;
         this.feedTitle = feedTitle;
@@ -51,6 +52,7 @@ public class Feed {
         this.link = link;
         this.avgColour = avgColour;
         this.notificationChannel = notificationChannel;
+        this.openIn = openIn;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -115,6 +117,14 @@ public class Feed {
 
     public void setNotificationChannel(String notificationChannel) {
         this.notificationChannel = notificationChannel;
+    }
+
+    public Long getOpenIn() {
+        return openIn;
+    }
+
+    public void setOpenIn(Long openIn) {
+        this.openIn = openIn;
     }
 
     /**

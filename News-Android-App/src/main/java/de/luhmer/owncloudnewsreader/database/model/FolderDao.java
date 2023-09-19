@@ -16,10 +16,12 @@ public class FolderDao extends AbstractDao<Folder, Long> {
 
     public static final String TABLENAME = "FOLDER";
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.getLong(offset);
     }
 
     private DaoSession daoSession;
@@ -62,14 +64,25 @@ public class FolderDao extends AbstractDao<Folder, Long> {
         entity.__setDaoSession(daoSession);
     }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     @Override
     public Folder readEntity(Cursor cursor, int offset) {
         Folder entity = new Folder( //
-                cursor.getLong(offset + 0), // id
+                cursor.getLong(offset), // id
                 cursor.getString(offset + 1) // label
         );
         return entity;
+    }
+
+    /**
+     * Properties of entity Folder.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property Label = new Property(1, String.class, "label", false, "LABEL");
     }
 
     /**
@@ -77,7 +90,7 @@ public class FolderDao extends AbstractDao<Folder, Long> {
      */
     @Override
     public void readEntity(Cursor cursor, Folder entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setLabel(cursor.getString(offset + 1));
     }
 
@@ -100,15 +113,6 @@ public class FolderDao extends AbstractDao<Folder, Long> {
         } else {
             return null;
         }
-    }
-
-    /**
-     * Properties of entity Folder.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-     */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
-        public final static Property Label = new Property(1, String.class, "label", false, "LABEL");
     }
 
     /**

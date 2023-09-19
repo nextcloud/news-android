@@ -4,26 +4,18 @@ import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
 
-public class Version9 extends SchemaVersion {
+public class LastestVersion extends SchemaVersion {
 
     /**
      * Constructor
      *
      * @param current
      */
-    public Version9(boolean current) {
+    public LastestVersion(boolean current) {
         super(current);
 
         Schema schema = getSchema();
         addEntitysToSchema(schema);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getVersionNumber() {
-        return 9;
     }
 
     @SuppressWarnings("unused") // id properties (folderId, etc.) need to be in database
@@ -44,7 +36,7 @@ public class Version9 extends SchemaVersion {
         feed.addStringProperty("link");
         feed.addStringProperty("avgColour");
         feed.addStringProperty("notificationChannel"); // none, default, <anything-else>
-
+        feed.addLongProperty("openIn");
 
 
         /* RSS Item */
@@ -89,5 +81,13 @@ public class Version9 extends SchemaVersion {
 
 
         rssItem.implementsInterface("HasId<Long>");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getVersionNumber() {
+        return 10;
     }
 }

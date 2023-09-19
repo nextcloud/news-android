@@ -16,12 +16,12 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
 
     public static final String TABLENAME = "CURRENT_RSS_ITEM_VIEW";
 
-    /** @inheritdoc */
-    @Override
-    protected void bindValues(SQLiteStatement stmt, CurrentRssItemView entity) {
-        stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
-        stmt.bindLong(2, entity.getRssItemId());
+    /**
+     * Drops the underlying database table.
+     */
+    public static void dropTable(SQLiteDatabase db, boolean ifExists) {
+        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"CURRENT_RSS_ITEM_VIEW\"";
+        db.execSQL(sql);
     }
 
 
@@ -41,25 +41,23 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
                 "\"RSS_ITEM_ID\" INTEGER NOT NULL );"); // 1: rssItemId
     }
 
-    /** Drops the underlying database table. */
-    public static void dropTable(SQLiteDatabase db, boolean ifExists) {
-        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"CURRENT_RSS_ITEM_VIEW\"";
-        db.execSQL(sql);
+    /**
+     * @inheritdoc
+     */
+    @Override
+    protected void bindValues(SQLiteStatement stmt, CurrentRssItemView entity) {
+        stmt.clearBindings();
+        stmt.bindLong(1, entity.getId());
+        stmt.bindLong(2, entity.getRssItemId());
     }
 
     /**
      * @inheritdoc
      */
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
-    }
-
-    /** @inheritdoc */
-    @Override
     public CurrentRssItemView readEntity(Cursor cursor, int offset) {
         CurrentRssItemView entity = new CurrentRssItemView( //
-                cursor.getLong(offset + 0), // id
+                cursor.getLong(offset), // id
                 cursor.getLong(offset + 1) // rssItemId
         );
         return entity;
@@ -69,8 +67,25 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
      * @inheritdoc
      */
     @Override
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.getLong(offset);
+    }
+
+    /**
+     * Properties of entity CurrentRssItemView.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property RssItemId = new Property(1, long.class, "rssItemId", false, "RSS_ITEM_ID");
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
     public void readEntity(Cursor cursor, CurrentRssItemView entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setRssItemId(cursor.getLong(offset + 1));
     }
 
@@ -103,13 +118,4 @@ public class CurrentRssItemViewDao extends AbstractDao<CurrentRssItemView, Long>
         return true;
     }
 
-    /**
-     * Properties of entity CurrentRssItemView.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-     */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
-        public final static Property RssItemId = new Property(1, long.class, "rssItemId", false, "RSS_ITEM_ID");
-    }
-    
 }

@@ -73,8 +73,16 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 6. `./desktop-head-unit`
 7. From inside the terminal type: `mic play ./voice/pause.wav`
 
-That's all. I hope it works for you! If something is not working, please send me an email to david-dev@live.de
+That's all. I hope it works for you! If something is not working, please send me an email to
+david-dev@live.de
 
+### Updating the database schema
+
+- Edit Database Schema in `LastestVersion.java`
+      - Make sure to increase version number inside `getVersionNumber` function
+- Open build.gradle and uncomment imports annotated with `// Required for DAO generation`
+- In Android Studio - choose "DatabaseOrmGenerator" configuration
+- Hit the "Run" Button
 
 ## Contributors
 

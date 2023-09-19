@@ -22,7 +22,25 @@ public class FeedDao extends AbstractDao<Feed, Long> {
 
     public static final String TABLENAME = "FEED";
 
+    /** Creates the underlying database table. */
+    public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
+        String constraint = ifNotExists ? "IF NOT EXISTS " : "";
+        db.execSQL("CREATE TABLE " + constraint + "\"FEED\" (" + //
+                "\"_id\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
+                "\"FOLDER_ID\" INTEGER," + // 1: folderId
+                "\"FEED_TITLE\" TEXT NOT NULL ," + // 2: feedTitle
+                "\"FAVICON_URL\" TEXT," + // 3: faviconUrl
+                "\"LINK\" TEXT," + // 4: link
+                "\"AVG_COLOUR\" TEXT," + // 5: avgColour
+                "\"NOTIFICATION_CHANNEL\" TEXT," + // 6: notificationChannel
+                "\"OPEN_IN\" INTEGER);"); // 7: openIn
+        // Add Indexes
+        db.execSQL("CREATE INDEX " + constraint + "IDX_FEED_FOLDER_ID ON FEED" +
+                " (\"FOLDER_ID\");");
+    }
+
     private DaoSession daoSession;
+
     private Query<Feed> folder_FeedListQuery;
 
     public FeedDao(DaoConfig config) {
@@ -34,26 +52,12 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         this.daoSession = daoSession;
     }
 
-    /** Drops the underlying database table. */
+    /**
+     * Drops the underlying database table.
+     */
     public static void dropTable(SQLiteDatabase db, boolean ifExists) {
         String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"FEED\"";
         db.execSQL(sql);
-    }
-
-    /** Creates the underlying database table. */
-    public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
-        String constraint = ifNotExists ? "IF NOT EXISTS " : "";
-        db.execSQL("CREATE TABLE " + constraint + "\"FEED\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
-                "\"FOLDER_ID\" INTEGER," + // 1: folderId
-                "\"FEED_TITLE\" TEXT NOT NULL ," + // 2: feedTitle
-                "\"FAVICON_URL\" TEXT," + // 3: faviconUrl
-                "\"LINK\" TEXT," + // 4: link
-                "\"AVG_COLOUR\" TEXT," + // 5: avgColour
-                "\"NOTIFICATION_CHANNEL\" TEXT);"); // 6: notificationChannel
-        // Add Indexes
-        db.execSQL("CREATE INDEX " + constraint + "IDX_FEED_FOLDER_ID ON FEED" +
-                " (\"FOLDER_ID\");");
     }
 
     /**
@@ -89,12 +93,11 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         if (notificationChannel != null) {
             stmt.bindString(7, notificationChannel);
         }
-    }
 
-    /** @inheritdoc */
-    @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        Long openIn = entity.getOpenIn();
+        if (openIn != null) {
+            stmt.bindLong(8, openIn);
+        }
     }
 
     @Override
@@ -103,17 +106,28 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         entity.__setDaoSession(daoSession);
     }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
+    @Override
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.getLong(offset);
+    }
+
+    /**
+     * @inheritdoc
+     */
     @Override
     public Feed readEntity(Cursor cursor, int offset) {
         Feed entity = new Feed( //
-                cursor.getLong(offset + 0), // id
+                cursor.getLong(offset), // id
                 cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // folderId
                 cursor.getString(offset + 2), // feedTitle
                 cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // faviconUrl
                 cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // link
                 cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // avgColour
-                cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // notificationChannel
+                cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // notificationChannel
+                cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7) // openIn
         );
         return entity;
     }
@@ -123,22 +137,14 @@ public class FeedDao extends AbstractDao<Feed, Long> {
      */
     @Override
     public void readEntity(Cursor cursor, Feed entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.getLong(offset));
         entity.setFolderId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setFeedTitle(cursor.getString(offset + 2));
         entity.setFaviconUrl(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setLink(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setAvgColour(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setNotificationChannel(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-    }
-
-    /**
-     * @inheritdoc
-     */
-    @Override
-    protected Long updateKeyAfterInsert(Feed entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
+        entity.setOpenIn(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
     }
 
     protected Feed loadCurrentDeep(Cursor cursor, boolean lock) {
@@ -149,6 +155,15 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         entity.setFolder(folder);
 
         return entity;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    @Override
+    protected Long updateKeyAfterInsert(Feed entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
 
     /**
@@ -199,6 +214,29 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         return selectDeep;
     }
 
+    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
+    public List<Feed> loadAllDeepFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        List<Feed> list = new ArrayList<Feed>(count);
+
+        if (cursor.moveToFirst()) {
+            if (identityScope != null) {
+                identityScope.lock();
+                identityScope.reserveRoom(count);
+            }
+            try {
+                do {
+                    list.add(loadCurrentDeep(cursor, false));
+                } while (cursor.moveToNext());
+            } finally {
+                if (identityScope != null) {
+                    identityScope.unlock();
+                }
+            }
+        }
+        return list;
+    }
+
     public Feed loadDeep(Long key) {
         assertSinglePk();
         if (key == null) {
@@ -225,30 +263,7 @@ public class FeedDao extends AbstractDao<Feed, Long> {
             cursor.close();
         }
     }
-
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
-    public List<Feed> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<Feed> list = new ArrayList<Feed>(count);
-
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
-    }
-
+    
     /**
      * Properties of entity Feed.<br/>
      * Can be used for QueryBuilder and for referencing column names.
@@ -261,8 +276,9 @@ public class FeedDao extends AbstractDao<Feed, Long> {
         public final static Property Link = new Property(4, String.class, "link", false, "LINK");
         public final static Property AvgColour = new Property(5, String.class, "avgColour", false, "AVG_COLOUR");
         public final static Property NotificationChannel = new Property(6, String.class, "notificationChannel", false, "NOTIFICATION_CHANNEL");
+        public final static Property OpenIn = new Property(7, Long.class, "openIn", false, "OPEN_IN");
     }
-
+    
     protected List<Feed> loadDeepAllAndCloseCursor(Cursor cursor) {
         try {
             return loadAllDeepFromCursor(cursor);
@@ -270,7 +286,7 @@ public class FeedDao extends AbstractDao<Feed, Long> {
             cursor.close();
         }
     }
-
+    
 
     /** A raw-style query where you can pass any WHERE clause and arguments. */
     public List<Feed> queryDeep(String where, String... selectionArg) {
