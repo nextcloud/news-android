@@ -1,5 +1,9 @@
 package de.luhmer.owncloudnewsreader.di;
 
+import static org.mockito.ArgumentMatchers.any;
+import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_AccountName;
+import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_username;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Looper;
@@ -17,17 +21,13 @@ import org.mockito.Mockito;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import de.luhmer.owncloudnewsreader.helper.GsonConfig;
 import de.luhmer.owncloudnewsreader.reader.nextcloud.NewsAPI;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import retrofit2.NextcloudRetrofitApiBuilder;
-
-import static com.nextcloud.android.sso.Constants.ACCOUNT_TYPE_PROD;
-import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_AccountName;
-import static de.luhmer.owncloudnewsreader.di.TestApiModule.DUMMY_ACCOUNT_username;
-import static org.mockito.ArgumentMatchers.any;
 
 public class TestApiProvider extends ApiProvider {
 
@@ -48,7 +48,7 @@ public class TestApiProvider extends ApiProvider {
 
     @Override
     protected void initSsoApi(final NextcloudAPI.ApiConnectedListener callback) {
-        NewsTestNetworkRequest networkRequest = new NewsTestNetworkRequest(callback);
+        NewsTestNetworkRequest networkRequest = new NewsTestNetworkRequest(context, callback);
         networkRequestSpy = Mockito.spy(networkRequest);
 
         // By spying on the method "performNetworkRequest" we can later check if requests were build correctly
@@ -65,17 +65,16 @@ public class TestApiProvider extends ApiProvider {
 
     public class NewsTestNetworkRequest extends NetworkRequest {
 
-        NewsTestNetworkRequest(NextcloudAPI.ApiConnectedListener callback) {
+        NewsTestNetworkRequest(Context context, NextcloudAPI.ApiConnectedListener callback) {
             super(null, null, callback);
         }
 
         @Override
         protected void connect(String type) {
-            super.connect(ACCOUNT_TYPE_PROD);
+            super.connect(type);
             mCallback.onConnected();
         }
 
-        @Override
         public InputStream performNetworkRequest(NextcloudRequest request, InputStream requestBodyInputStream) throws Exception {
             if(Looper.myLooper() == Looper.getMainLooper()) {
                 throw new NetworkOnMainThreadException();
@@ -126,13 +125,14 @@ public class TestApiProvider extends ApiProvider {
 
         // https://github.com/nextcloud/news/blob/master/docs/externalapi/Legacy.md#create-a-feed
         private InputStream handleCreateFeed(NextcloudRequest request) throws NextcloudHttpRequestFailedException {
-            switch (request.getParameter().get("url")) {
+            var url = request.getParameterV2().stream().filter((s) -> s.key.equals("url")).findFirst().get().value;
+            switch (url) {
                 case NEW_FEED_SUCCESS:
                     return stringToInputStream("");
                 case NEW_FEED_EXISTING:
-                    throw new NextcloudHttpRequestFailedException(409, new Throwable(NEW_FEED_EXISTING_ERROR_MESSAGE));
+                    throw new NextcloudHttpRequestFailedException(context, 409, new Throwable(NEW_FEED_EXISTING_ERROR_MESSAGE));
                 case NEW_FEED_FAIL:
-                    throw new NextcloudHttpRequestFailedException(422, new Throwable(NEW_FEED_FAIL_ERROR_MESSAGE));
+                    throw new NextcloudHttpRequestFailedException(context, 422, new Throwable(NEW_FEED_FAIL_ERROR_MESSAGE));
                 default:
                     throw new Error("Not implemented yet!");
             }
@@ -150,7 +150,7 @@ public class TestApiProvider extends ApiProvider {
         }
 
         private InputStream stringToInputStream(String data) {
-            return new ByteArrayInputStream(data.getBytes(Charset.forName("UTF-8")));
+            return new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
         }
     }
 }

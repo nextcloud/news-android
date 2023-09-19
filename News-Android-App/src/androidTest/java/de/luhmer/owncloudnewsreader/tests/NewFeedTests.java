@@ -1,27 +1,6 @@
 package de.luhmer.owncloudnewsreader.tests;
 
 
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
-
-import com.nextcloud.android.sso.aidl.NextcloudRequest;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.runners.MockitoJUnitRunner;
-
-import javax.inject.Inject;
-
-import de.luhmer.owncloudnewsreader.NewFeedActivity;
-import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.TestApplication;
-import de.luhmer.owncloudnewsreader.di.ApiProvider;
-import de.luhmer.owncloudnewsreader.di.TestApiProvider;
-import de.luhmer.owncloudnewsreader.di.TestComponent;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -37,6 +16,27 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
+
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+
+import com.nextcloud.android.sso.aidl.NextcloudRequest;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import javax.inject.Inject;
+
+import de.luhmer.owncloudnewsreader.NewFeedActivity;
+import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.TestApplication;
+import de.luhmer.owncloudnewsreader.di.ApiProvider;
+import de.luhmer.owncloudnewsreader.di.TestApiProvider;
+import de.luhmer.owncloudnewsreader.di.TestComponent;
 
 
 //@RunWith(AndroidJUnit4.class)
@@ -124,11 +124,13 @@ public class NewFeedTests {
 
     // Verify that the API was actually called
     private void verifyRequest(String feed) throws Exception {
-        TestApiProvider.NewsTestNetworkRequest nr = ((TestApiProvider)mApi).networkRequestSpy;
+        TestApiProvider.NewsTestNetworkRequest nr = ((TestApiProvider) mApi).networkRequestSpy;
         ArgumentCaptor<NextcloudRequest> argument = ArgumentCaptor.forClass(NextcloudRequest.class);
         verify(nr, timeout(2000)).performNetworkRequest(argument.capture(), any());
         assertEquals("/index.php/apps/news/api/v1-2/feeds", argument.getValue().getUrl());
-        assertEquals(feed, argument.getValue().getParameter().get("url"));
-        assertEquals("0", argument.getValue().getParameter().get("folderId"));
+        var url = argument.getValue().getParameterV2().stream().filter((s) -> s.key.equals(("url"))).findFirst().get().value;
+        var folderId = argument.getValue().getParameterV2().stream().filter((s) -> s.key.equals(("folderId"))).findFirst().get().value;
+        assertEquals(feed, url);
+        assertEquals("0", folderId);
     }
 }
