@@ -9,6 +9,8 @@
     <attr name="openinbrowserDrawable" format="reference" />
     <attr name="markasreadDrawable" format="reference" />
 
+    <attr name="shareDrawable" format="reference" />
+
     <attr name="news_detail_background_color" format="color" />
 
     <attr name="primaryTextColor" format="color" />
