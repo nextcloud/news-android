@@ -90,11 +90,15 @@
     <string name="action_feed_rename">Rename Feed</string>
     <string name="action_feed_move">Move Feed</string>
     <string name="action_feed_notification_settings">Notification settings</string>
+    <string name="action_feed_open_in">Open-in settings</string>
+    <string name="action_feed_open_in_general_setting">Use general setting</string>
+    <string name="action_feed_open_in_detailed_view">Detailed view</string>
     <string name="feed_remove_button">Remove</string>
     <string name="feed_rename_button">Rename</string>
     <string name="confirm_feed_remove">Do you really want to remove this Feed? This cannot be undone!</string>
     <string name="feed_move_list_description">Select folder to move feed in</string>
     <string name="move_feed_root_folder">Root folder</string>
+
 
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Remove folder</string>
