@@ -89,3 +89,4 @@ That's all. I hope it works for you! If something is not working, please send me
 * [Unpublished](https://github.com/Unpublished)
 * [emasty](https://github.com/emasty)
 * [Yaroslav Pronin](https://github.com/proninyaroslav)
+* [Marcus Nilsson](https://github.com/mkanilsson)
