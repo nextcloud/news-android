@@ -85,6 +85,7 @@ public class InsertIntoDatabase {
                         newFeed.setAvgColour(oldFeed.getAvgColour());
                         // Set the notification channel after sync again
                         newFeed.setNotificationChannel(oldFeed.getNotificationChannel());
+                        newFeed.setOpenIn(oldFeed.getOpenIn());
 
                         // fix favicon url
                         newFeed.setFaviconUrl(FavIconUtils.fixFavIconUrl(newFeed.getFaviconUrl()));
