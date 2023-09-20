@@ -857,7 +857,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public static final int RESULT_SETTINGS = 15642;
 
 	private void syncMenuItemUnreadOnly() {
-		if (menuItemOnlyUnread != null) {
+		if (menuItemOnlyUnread != null && currentFolderId != null) {
 			menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
 		}
 	}
