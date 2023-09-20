@@ -1,6 +1,5 @@
 0.9.9.82
 ---------------------
-
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1262">!1262 - Add shortcut to "Show only unread articles" in the toolbar (thanks to @mkanilsson)</a>
 - Changed - <a href="https://github.com/nextcloud/news-android/pull/1186">!1186 - Material 3 Theme (thanks to @stefan-niedermann)</a>
 - Changed - <a href="https://github.com/nextcloud/news-android/pull/1256">!1256 - Fix starred items not obeying sort order (thanks to @mkanilsson)</a>
@@ -10,12 +9,10 @@
 
 0.9.9.81
 ---------------------
-
 - Changed - Updated SSO lib
 
 0.9.9.80
 ---------------------
-
 - Changed - Internal dependency updates
 - Changed - <a href="https://github.com/nextcloud/news-android/pull/1212">!1212 - Nextcloud Single-Sign-On updates</a>
 - Changed - <a href="https://github.com/nextcloud/news-android/pull/1200">!1200 - Bail out early on generating unread rss items notifications (thanks to @Unpublished)</a>

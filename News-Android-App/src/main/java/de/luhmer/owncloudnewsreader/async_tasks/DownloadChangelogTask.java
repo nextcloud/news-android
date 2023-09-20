@@ -3,6 +3,7 @@ package de.luhmer.owncloudnewsreader.async_tasks;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -26,7 +27,7 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
 
     private static final String TAG = "DownloadChangelogTask";
 
-    private static final String README_URL = "https://raw.githubusercontent.com/nextcloud/news-android/master/CHANGELOG.md";
+    private static final String CHANGELOG_URL = "https://raw.githubusercontent.com/nextcloud/news-android/master/CHANGELOG.md";
     private static final String FILE_NAME = "changelog.xml";
 
     private final Context mContext;
@@ -54,7 +55,7 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
         String path = null;
 
         try {
-            ArrayList<String> changelogArr = downloadReadme();
+            ArrayList<String> changelogArr = downloadChangelog();
             String xml = convertToXML(changelogArr);
             path = saveToTempFile(xml, FILE_NAME);
         } catch (IOException e) {
@@ -80,17 +81,23 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
         });
     }
 
-    private ArrayList<String> downloadReadme() throws IOException {
+    private ArrayList<String> downloadChangelog() throws IOException {
         ArrayList<String> changelogArr = new ArrayList<>();
 
-        URL url = new URL(README_URL);
+        URL url = new URL(CHANGELOG_URL);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream isTemp = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(isTemp));
             String inputLine;
+            String prevLine = "";
             while ((inputLine = in.readLine()) != null) {
-                changelogArr.add(inputLine.replace("<", "[").replace(">", "]"));
+                if(inputLine.trim().isEmpty() && prevLine.startsWith("---")) {
+                    Log.e(TAG, "skip empty line after version code in changelog (please fix changelog - remove all empty lines after the version code line)");
+                } else {
+                    changelogArr.add(inputLine.replace("<", "[").replace(">", "]"));
+                }
+                prevLine = inputLine;
             }
             in.close();
         } finally {
