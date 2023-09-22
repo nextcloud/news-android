@@ -46,7 +46,7 @@ public class Search {
                                        final DatabaseConnectionOrm dbConn,
                                        final SharedPreferences mPrefs) {
         String sql = "";
-        String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
+        String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN, SEARCH_IN_BOTH); 
         if(searchIn.equals(SEARCH_IN_TITLE)) {
             sql = dbConn.getAllItemsIdsForFeedSQLFilteredByTitle(idFeed, false, false, sortDirection, searchString);
         } else if(searchIn.equals(SEARCH_IN_BODY)) {
@@ -63,7 +63,7 @@ public class Search {
                                          final DatabaseConnectionOrm dbConn,
                                          final SharedPreferences mPrefs) {
         String sql = "";
-        String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN,"0");
+        String searchIn = mPrefs.getString(SettingsActivity.SP_SEARCH_IN, SEARCH_IN_BOTH);
         if(searchIn.equals(SEARCH_IN_TITLE)) {
             sql = dbConn.getAllItemsIdsForFolderSQLSearch(ID_FOLDER, sortDirection, Collections.singletonList(RssItemDao.Properties.Title.columnName), searchString);
         } else if(searchIn.equals(SEARCH_IN_BODY)) {
