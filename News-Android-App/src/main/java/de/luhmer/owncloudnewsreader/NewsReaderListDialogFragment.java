@@ -310,8 +310,7 @@ public class NewsReaderListDialogFragment extends DialogFragment {
                     binding.openInBrowserExternal.setChecked(true);
                     break;
                 default:
-                    Log.e("NRLDF", "openIn has illegal value: " + openIn);
-                    break;
+                    throw new RuntimeException("Unreachable: openIn has illegal value " + openIn);
             }
         }
 

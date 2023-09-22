@@ -1172,8 +1172,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					openRssItemInExternalBrowser(currentUrl);
 					break;
 				default:
-					Log.e("NRLA", "openIn has illegal value");
-					break;
+					throw new RuntimeException("Unreachable: openIn has illegal value " + openIn);
 			}
 		}
 	}
