@@ -22,8 +22,10 @@ import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +49,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private static final Pattern PATTERN_AUTOPLAY_VIDEOS_1 = Pattern.compile("(<video[^>]*)(autoplay=\".*?\")(.*?>)");
     private static final Pattern PATTERN_AUTOPLAY_VIDEOS_2 = Pattern.compile("(<video[^>]*)(\\sautoplay)(.*?>)");
     // private static final Pattern PATTERN_AUTOPLAY_REGEX_CB = Pattern.compile("(.*?)^(Unser Feedsponsor:\\s*<\\/p><p>\\s*.*?\\s*<\\/p>)(.*)", Pattern.MULTILINE);
+    private static final Pattern PATTERN_PRE_BLOCK = Pattern.compile("<pre>(.*?)</pre>", Pattern.MULTILINE | Pattern.DOTALL);
 
     private final RssItem mRssItem;
     private final Listener mListener;
@@ -134,7 +137,32 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
 
         String description = rssItem.getBody();
-        if(description.isEmpty() && rssItem.getMediaDescription() != null) {
+
+        if (!description.isEmpty()) {
+            // UUID is used so there is only a very small chance that the placeholder text actually exists in the article
+            var uuid = UUID.randomUUID().toString();
+
+            // pre-blocks shouldn't have their formatting changed
+            var matcher = PATTERN_PRE_BLOCK.matcher(description);
+            var preBlocks = new ArrayList<String>();
+
+            while (matcher.find()) {
+                var group = matcher.group();
+                description = description.replace(group, "PRE_BLOCK_THAT_WILL_BE_REPLACED_" + uuid + "_" + preBlocks.size());
+                preBlocks.add(group);
+            }
+
+            description = description
+                    .replaceAll("\n\n", "THIS_WILL_BE_BECOME_ONE_NEWLINE_LATER_" + uuid) // This is required because otherwise `\n\n` would become 2 spaces
+                    .replaceAll(">\n", ">") // The first character after a tag shouldn't have a space
+                    .replaceAll("\n", " ")
+                    .replaceAll("THIS_WILL_BE_BECOME_ONE_NEWLINE_LATER_" + uuid, "\n");
+
+            for (int i = 0; i < preBlocks.size(); i++) {
+                description = description.replace("PRE_BLOCK_THAT_WILL_BE_REPLACED_" + uuid + "_" + i, preBlocks.get(i));
+            }
+        }
+        else if(rssItem.getMediaDescription() != null) {
             // in case the rss body is empty, fallback to the media description (e.g. youtube / ted talks)
             description = rssItem.getMediaDescription();
         }
