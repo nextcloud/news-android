@@ -35,6 +35,7 @@
     <string name="action_starred">Starred</string>
     <string name="action_read">Read</string>
     <string name="action_playPodacst">Play Podcast</string>
+    <string name="action_removePodcast">Remove Podcast Media</string>
     <string name="action_openInBrowser">Open in Web browser</string>
     <string name="action_Share">Share</string>
     <string name="action_login">Server Settings</string>

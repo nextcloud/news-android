@@ -28,6 +28,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -316,6 +317,35 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
             alertDialog.show();
         }
+    }
+
+
+    public void removePodcastMedia(final RssItem rssItem, final Consumer<Boolean> callback) {
+        final PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.link, false));
+
+        if (!file.exists()) {
+            callback.accept(true);
+        }
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
+                .setNegativeButton("Remove", (dialogInterface, i) -> {
+                    boolean success = file.delete() && file.getParentFile().delete(); // remove audio file and parent folder
+                    if (!success) {
+                        Toast.makeText(PodcastFragmentActivity.this, "Failed to remove media for \"" + podcastItem.title + "\"", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(PodcastFragmentActivity.this, "Media for \"" + podcastItem.title + "\" has been removed", Toast.LENGTH_SHORT).show();
+                    }
+
+                    callback.accept(success);
+                })
+                .setNeutralButton("Cancel", (dialogInterface, i) -> {
+                    callback.accept(false);
+                })
+                .setTitle("Are you sure?")
+                .setMessage("Do you want to remove downloaded media for \"" + podcastItem.title + "?\"");
+
+        alertDialog.show();
     }
 
 
