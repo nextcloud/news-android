@@ -339,7 +339,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     private void updateMetadata(MediaItem mediaItem) {
         MediaItem mi = mediaItem;
         if(mi == null) {
-            mi = new PodcastItem(-1, "", "", "", "", false, null, false);
+            mi = new PodcastItem(-1, "", "", "", "", false, null, false, "");
         }
 
         int totalDuration = 0;

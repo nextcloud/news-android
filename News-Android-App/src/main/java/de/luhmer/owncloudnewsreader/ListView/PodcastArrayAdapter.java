@@ -57,7 +57,7 @@ public class PodcastArrayAdapter extends ArrayAdapter<PodcastItem> {
         });
 
         holder.binding.flDeletePodcastWrapper.setOnClickListener(view13 -> {
-            if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.link)) {
+            if(NewsFileUtils.deletePodcastFile(getContext(), podcastItem.fingerprint, podcastItem.link)) {
                 podcastItem.offlineCached = false;
                 podcastItem.downloadProgress = PodcastItem.DOWNLOAD_NOT_STARTED;
                 notifyDataSetChanged();

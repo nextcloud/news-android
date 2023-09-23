@@ -182,7 +182,7 @@ public class PodcastFragment extends Fragment {
 
                     if (downloadProgress.podcast.downloadProgress == 100) {
                         pItem.downloadProgress = PodcastItem.DOWNLOAD_COMPLETED;
-                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), pItem.link, false));
+                        File file = new File(PodcastDownloadService.getUrlToPodcastFile(getActivity(), pItem.fingerprint, pItem.link, false));
                         pItem.offlineCached = file.exists();
                     } else
                         pItem.downloadProgress = downloadProgress.podcast.downloadProgress;

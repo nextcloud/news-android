@@ -405,7 +405,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		}
 
 		if(menuItem_RemovePodcast != null) {
-			File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.link, false));
+			File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.fingerprint, podcastItem.link, false));
 			menuItem_RemovePodcast.setVisible(file.exists());
 		}
 

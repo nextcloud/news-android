@@ -352,7 +352,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
 
     public void setDownloadPodcastProgressbar() {
         float progress;
-        if (PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getEnclosureLink())) {
+        if (PodcastDownloadService.PodcastAlreadyCached(itemView.getContext(), rssItem.getFingerprint(), rssItem.getEnclosureLink())) {
             progress = 100;
         } else {
             progress = downloadProgressList.get(rssItem.getId().intValue(), 0);

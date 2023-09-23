@@ -295,7 +295,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
     public void openPodcast(final RssItem rssItem) {
         final PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
 
-        File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.link, false));
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.fingerprint, podcastItem.link, false));
         if(file.exists()) {
             podcastItem.link = file.getAbsolutePath();
             openMediaItem(podcastItem);
@@ -322,7 +322,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     public void removePodcastMedia(final RssItem rssItem, final Consumer<Boolean> callback) {
         final PodcastItem podcastItem = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(this, rssItem);
-        File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.link, false));
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.fingerprint, podcastItem.link, false));
 
         if (!file.exists()) {
             callback.accept(true);

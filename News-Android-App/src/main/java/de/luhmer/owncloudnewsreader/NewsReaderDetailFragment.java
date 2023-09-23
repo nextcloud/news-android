@@ -22,6 +22,7 @@
 package de.luhmer.owncloudnewsreader;
 
 import static java.util.Objects.requireNonNull;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_DOWNLOADED_PODCASTS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
@@ -67,6 +68,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -515,9 +517,9 @@ public class NewsReaderDetailFragment extends Fragment {
                 }
                 sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
             } else if (idFolder != null) {
-                if (idFolder == ALL_STARRED_ITEMS.getValue())
+                if (idFolder == ALL_STARRED_ITEMS.getValue() || idFolder == ALL_DOWNLOADED_PODCASTS.getValue())
                     onlyUnreadItems = false;
-                sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection);
+                sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection, mActivity);
             }
             if (sqlSelectStatement != null) {
                 int index = sqlSelectStatement.indexOf("ORDER BY");
@@ -532,6 +534,13 @@ public class NewsReaderDetailFragment extends Fragment {
             sw.start();
 
             List<RssItem> items = dbConn.getCurrentRssItemView(0);
+
+            if (idFolder == ALL_DOWNLOADED_PODCASTS.getValue()) {
+                items = items.stream().filter((rss) -> {
+                    var podcast = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(mActivity, rss);
+                    return podcast.offlineCached;
+                }).toList();
+            }
 
             sw.stop();
             Log.v(TAG, "Time needed (init loading): " + sw);

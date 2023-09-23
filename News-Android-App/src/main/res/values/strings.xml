@@ -21,6 +21,7 @@
     <string name="message_bar_reload">Reload</string>
     <string name="allUnreadFeeds">All unread items</string>
     <string name="starredFeeds">Starred items</string>
+    <string name="downloadedPodcasts">Downloaded podcasts</string>
     <string name="title_activity_new_feed">Add new feed</string>
 
     <string name="menu_update">Refresh</string>

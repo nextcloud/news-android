@@ -31,6 +31,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
@@ -73,9 +77,9 @@ public class NewsFileUtils {
     }
 
 
-    public static boolean deletePodcastFile(Context context, String url) {
+    public static boolean deletePodcastFile(Context context, String fingerprint, String url) {
         try {
-            File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, url, false));
+            File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, fingerprint, url, false));
             if(file.exists())
                 return file.delete();
         } catch (Exception ex) {
@@ -234,6 +238,16 @@ public class NewsFileUtils {
                 throw new IOException(message);
             }
         }
+    }
+
+    public static String[] getDownloadedPodcastsFingerprints(Context context) {
+        File folder = new File(NewsFileUtils.getPathPodcasts(context));
+        File[] files = folder.listFiles();
+        if (files == null) {
+            return new String[0];
+        }
+        List<String> ids = Arrays.stream(files).map(File::getName).collect(Collectors.toList());
+        return ids.toArray(new String[0]);
     }
 
 }
