@@ -70,6 +70,8 @@ public class DatabaseConnectionOrm {
 
     private final static int PageSize = 25;
 
+    private Context context;
+
     protected @Inject @Named("databaseFileName") String databasePath;
 
     public void resetDatabase() {
@@ -80,6 +82,7 @@ public class DatabaseConnectionOrm {
     }
 
     public DatabaseConnectionOrm(Context context) {
+        this.context = context;
         if(databasePath == null) {
             ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectDatabaseConnection(this);
         }
@@ -782,9 +785,13 @@ public class DatabaseConnectionOrm {
             if(overSize > read)
                 overSize = read;
 
+            var downloadedPodcastsFingerprints = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
+            var files = Arrays.stream(downloadedPodcastsFingerprints).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
+
             String sqlStatement = "DELETE FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Id.columnName +
                                     " IN (SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME +
                                     " WHERE " + RssItemDao.Properties.Read_temp.columnName + " = 1 AND " + RssItemDao.Properties.Starred_temp.columnName + " != 1 " +
+                                    " AND " + RssItemDao.Properties.Fingerprint.columnName + " NOT IN (" + String.join(",", files) + ")" + // This means that the article has downloaded podcast media
                                     " AND " + RssItemDao.Properties.Id.columnName + " NOT IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")" +
                                     " ORDER BY " + RssItemDao.Properties.Id.columnName + " asc LIMIT " + overSize + ")";
             daoSession.getDatabase().execSQL(sqlStatement);
