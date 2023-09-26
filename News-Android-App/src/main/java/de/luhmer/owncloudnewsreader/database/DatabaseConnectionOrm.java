@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -550,17 +551,30 @@ public class DatabaseConnectionOrm {
 
     public String getAllItemsIdsForFeedSQLFilteredByTitle(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
         String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
+
         return new StringBuilder(
-                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Title.columnName + " LIKE \"%" + searchString + "%\" ").toString();
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + getSearchSQLForColumn(RssItemDao.Properties.Title.columnName, searchString)).toString();
     }
 
     public String getAllItemsIdsForFeedSQLFilteredByBodySQL(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
         String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
-        return new StringBuilder(buildSQL).insert(
-                buildSQL.indexOf("ORDER"), " AND " + RssItemDao.Properties.Body.columnName + " LIKE \"%" + searchString + "%\" ").toString();
 
+        return new StringBuilder(
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND " + getSearchSQLForColumn(RssItemDao.Properties.Body.columnName, searchString)).toString();
     }
 
+    public String getAllItemsIdsForFeedSQLFilteredByTitleAndBodySQL(final long feedId, boolean onlyUnread, boolean onlyStarredItems, SORT_DIRECTION sortDirection, final String searchString) {
+        String buildSQL = getAllItemsIdsForFeedSQL(feedId, onlyUnread, onlyStarredItems, sortDirection);
+        String titleQuery = getSearchSQLForColumn(RssItemDao.Properties.Title.columnName, searchString);
+        String bodyQuery = getSearchSQLForColumn(RssItemDao.Properties.Body.columnName, searchString);
+
+        return new StringBuilder(
+                buildSQL).insert(buildSQL.indexOf("ORDER"), " AND (" + titleQuery + " OR " + bodyQuery + ")" ).toString();
+    }
+
+    private String getSearchSQLForColumn(String column, String searchString) {
+        return column + " LIKE \"%" + searchString + "%\"";
+    }
 
     public Long getLowestItemIdByFolder(Long id_folder) {
         WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.FeedId.columnName + " IN " +
@@ -598,7 +612,7 @@ public class DatabaseConnectionOrm {
         return buildSQL;
     }
 
-    public String getAllItemsIdsForFolderSQLSearch(long ID_FOLDER, SORT_DIRECTION sortDirection, String searchPredicate, String searchString) {
+    public String getAllItemsIdsForFolderSQLSearch(long ID_FOLDER, SORT_DIRECTION sortDirection, List<String> columns, String searchString) {
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
@@ -613,7 +627,8 @@ public class DatabaseConnectionOrm {
             buildSQL += " WHERE ";
         }
 
-        buildSQL += searchPredicate + " LIKE \"%" + searchString + "%\"";
+        columns = columns.stream().map(c -> c + " LIKE \"%" + searchString + "%\"").collect(Collectors.toList());
+        buildSQL += String.join(" OR ", columns);
 
         buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
 

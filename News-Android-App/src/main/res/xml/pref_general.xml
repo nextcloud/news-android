@@ -113,9 +113,10 @@
             android:key="sp_sort_order"
             android:title="@string/pref_title_general_sort_order"
             app:iconSpaceReserved="false"/>
-
+    
+    	<!-- Default is BOTH(2) -->
         <ListPreference
-            android:defaultValue="0"
+	    android:defaultValue="2" 
             android:entries="@array/pref_general_search_in"
             android:entryValues="@array/pref_general_search_in_values"
             android:key="sp_search_in"
