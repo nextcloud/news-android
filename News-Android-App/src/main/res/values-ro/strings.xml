@@ -155,7 +155,6 @@
 
     <string name="pref_general_search_in_title">Titlu</string>
     <string name="pref_general_search_in_body">Corp</string>
-
     <string name="dialog_clearing_cache">Ștergere cache</string>
     <string name="dialog_clearing_cache_please_wait">Se golește memoria cache. Vă rugăm așteptați ...</string>
     <string name="reset_cache_unsaved_changes">Există modificări nesincronizate. Dorești totuși să ștergi cache-ul?</string>

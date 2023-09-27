@@ -132,7 +132,6 @@
 
     <string name="pref_general_search_in_title">Naslov</string>
     <string name="pref_general_search_in_body">Tijelo</string>
-
     <string name="dialog_clearing_cache">Brisanje predmemorije</string>
     <string name="reset_cache_unsaved_changes">Postoje nesinkronizirane promjene. Želite li resetirati predmemoriju?</string>
     <string name="warning">Upozorenje</string>

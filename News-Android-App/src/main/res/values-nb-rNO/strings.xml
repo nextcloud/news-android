@@ -150,7 +150,6 @@
 
     <string name="pref_general_search_in_title">Tittel</string>
     <string name="pref_general_search_in_body">Kropp</string>
-
     <string name="dialog_clearing_cache">Tømmer hurtiglager</string>
     <string name="dialog_clearing_cache_please_wait">Tømmer cache. Vennligst vent …</string>
     <string name="reset_cache_unsaved_changes">Det er usynkroniserte endringer i hurtiglagret, skal det nullstilles likevel?</string>

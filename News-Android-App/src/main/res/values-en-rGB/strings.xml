@@ -150,6 +150,7 @@
 
     <string name="pref_general_search_in_title">Title</string>
     <string name="pref_general_search_in_body">Body</string>
+    <string name="pref_general_search_in_both">Both</string>
 
     <string name="dialog_clearing_cache">Clearing cache</string>
     <string name="dialog_clearing_cache_please_wait">Clearing cache. Please wait …</string>

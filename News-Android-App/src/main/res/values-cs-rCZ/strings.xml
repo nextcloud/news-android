@@ -160,6 +160,7 @@
 
     <string name="pref_general_search_in_title">Nadpisu</string>
     <string name="pref_general_search_in_body">Těle textu</string>
+    <string name="pref_general_search_in_both">Obojí</string>
 
     <string name="dialog_clearing_cache">Vyprazdňování mezipaměťi</string>
     <string name="dialog_clearing_cache_please_wait">Maže se mezipaměť. Čekejte…</string>

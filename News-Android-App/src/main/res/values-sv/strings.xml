@@ -150,6 +150,7 @@
 
     <string name="pref_general_search_in_title">Rubrik</string>
     <string name="pref_general_search_in_body">Textyta</string>
+    <string name="pref_general_search_in_both">Både</string>
 
     <string name="dialog_clearing_cache">Rensar cachen</string>
     <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänligen vänta …</string>

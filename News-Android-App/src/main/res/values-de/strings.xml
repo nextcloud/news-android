@@ -150,6 +150,7 @@
 
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Artikel</string>
+    <string name="pref_general_search_in_both">Beide</string>
 
     <string name="dialog_clearing_cache">Zwischenspeicher wird geleert</string>
     <string name="dialog_clearing_cache_please_wait">Zwischenspeicher wird geleert. Bitte warten …</string>

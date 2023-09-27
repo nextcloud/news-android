@@ -90,7 +90,6 @@
 
     <string name="pref_general_search_in_title">Títol</string>
     <string name="pref_general_search_in_body">Còs</string>
-
     <string name="dialog_clearing_cache">Voidar l\'escondedor</string>
     <string name="reset_cache_unsaved_changes">Certanas modificacions son pas sincronizadas. Volètz reïnicializar l\'escondedor malgrat tot ?</string>
     <string name="warning">Atencion</string>

@@ -129,7 +129,6 @@
 
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Krop</string>
-
     <string name="dialog_clearing_cache">Nulstil mellemlager</string>
     <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
     <string name="warning">Advarsel</string>

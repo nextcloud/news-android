@@ -128,7 +128,6 @@
 
     <string name="pref_general_search_in_title">Tìtulu</string>
     <string name="pref_general_search_in_body">Corpus</string>
-
     <string name="dialog_clearing_cache">Lìmpia memòria temporànea</string>
     <string name="reset_cache_unsaved_changes">Ddoe at càmbios non sincronizados. Cheres azerare sa memòria temporànea gasi etotu?</string>
     <string name="warning">Avisu</string>

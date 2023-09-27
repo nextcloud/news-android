@@ -160,6 +160,7 @@
 
     <string name="pref_general_search_in_title">Tytuł</string>
     <string name="pref_general_search_in_body">Treść</string>
+    <string name="pref_general_search_in_both">Obydwa</string>
 
     <string name="dialog_clearing_cache">Czyszczenie pamięci podręcznej</string>
     <string name="dialog_clearing_cache_please_wait">Czyszczenie pamięci podręcznej. Proszę czekać…</string>

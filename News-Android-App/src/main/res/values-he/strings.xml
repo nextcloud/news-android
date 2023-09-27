@@ -133,7 +133,6 @@
 
     <string name="pref_general_search_in_title">כותרת</string>
     <string name="pref_general_search_in_body">גוף</string>
-
     <string name="dialog_clearing_cache">זכרון המטמון מתפנה</string>
     <string name="reset_cache_unsaved_changes">יש שינויים שלא סונכרנו. לאפס את המטמון בכל זאת?</string>
     <string name="warning">אזהרה</string>

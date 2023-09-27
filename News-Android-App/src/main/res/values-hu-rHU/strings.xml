@@ -150,7 +150,6 @@
 
     <string name="pref_general_search_in_title">Cím</string>
     <string name="pref_general_search_in_body">Törzs</string>
-
     <string name="dialog_clearing_cache">Gyorsítótár ürítése</string>
     <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése. Kis türelmet…</string>
     <string name="reset_cache_unsaved_changes">Nem szinkronizált változások vannak. Biztos, hogy mindenképp alaphelyzetbe állítja a gyorsítótárat?</string>

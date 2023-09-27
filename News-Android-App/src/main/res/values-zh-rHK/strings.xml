@@ -145,6 +145,7 @@
 
     <string name="pref_general_search_in_title">標題</string>
     <string name="pref_general_search_in_body">內文</string>
+    <string name="pref_general_search_in_both">皆是</string>
 
     <string name="dialog_clearing_cache">正在清除快取</string>
     <string name="dialog_clearing_cache_please_wait">正在清除快取。請稍候 …</string>

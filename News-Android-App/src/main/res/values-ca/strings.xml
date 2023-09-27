@@ -150,6 +150,7 @@
 
     <string name="pref_general_search_in_title">Títol</string>
     <string name="pref_general_search_in_body">Cos</string>
+    <string name="pref_general_search_in_both">Tots dos</string>
 
     <string name="dialog_clearing_cache">S\'està esborrant la memòria cau</string>
     <string name="dialog_clearing_cache_please_wait">S\'està netejant la memòria cau. Espereu si us plau … </string>

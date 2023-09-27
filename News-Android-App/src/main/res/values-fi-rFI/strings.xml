@@ -150,6 +150,7 @@
 
     <string name="pref_general_search_in_title">Otsikko</string>
     <string name="pref_general_search_in_body">Sisältö</string>
+    <string name="pref_general_search_in_both">Molemmat</string>
 
     <string name="dialog_clearing_cache">Tyhjennetään välimuistia</string>
     <string name="dialog_clearing_cache_please_wait">Tyhjennetään välimuistia, odota hetki…</string>

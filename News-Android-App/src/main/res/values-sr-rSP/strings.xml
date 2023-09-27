@@ -127,7 +127,6 @@
 
     <string name="pref_general_search_in_title">Naslov</string>
     <string name="pref_general_search_in_body">Telo</string>
-
     <string name="dialog_clearing_cache">Čistim keš</string>
     <string name="reset_cache_unsaved_changes">Postoje nesinhronizovane izmene. Da ipak obrišem keš?</string>
     <string name="warning">Upozorenje</string>

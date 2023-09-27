@@ -160,7 +160,6 @@
 
     <string name="pref_general_search_in_title">Názov</string>
     <string name="pref_general_search_in_body">Telo</string>
-
     <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
     <string name="dialog_clearing_cache_please_wait">Maže sa vyrovnávacia pamäť. Čakajte prosím ...</string>
     <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>

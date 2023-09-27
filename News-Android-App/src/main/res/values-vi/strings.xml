@@ -145,7 +145,6 @@
 
     <string name="pref_general_search_in_title">Tiêu đề</string>
     <string name="pref_general_search_in_body">Thân</string>
-
     <string name="dialog_clearing_cache">Đang xoá bộ nhớ đệm</string>
     <string name="dialog_clearing_cache_please_wait">Đang xoá bộ nhớ đệm. Vui lòng đợi ...</string>
     <string name="reset_cache_unsaved_changes">Có sự thay đổi đồng bộ. Bạn muốn thiết lập lại bộ nhớ đệm ?</string>

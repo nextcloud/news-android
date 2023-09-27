@@ -150,6 +150,7 @@
 
     <string name="pref_general_search_in_title">Izenburua</string>
     <string name="pref_general_search_in_body">Gorputza</string>
+    <string name="pref_general_search_in_both">Biak</string>
 
     <string name="dialog_clearing_cache">Cachea garbitzen</string>
     <string name="dialog_clearing_cache_please_wait">Cachea garbitzen. Itxaron mesedez ...</string>
