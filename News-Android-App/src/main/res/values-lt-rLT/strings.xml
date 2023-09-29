@@ -31,7 +31,7 @@
     <string name="action_read">Skaityti</string>
     <string name="action_playPodacst">Groti tinklalaidę</string>
     <string name="action_openInBrowser">Atverti saityno naršyklėje</string>
-    <string name="action_Share">Dalintis</string>
+    <string name="action_Share">Bendrinti</string>
     <string name="action_login">Serverio nustatymai</string>
     <string name="action_save">Išsaugoti</string>
     <string name="action_settings">Nustatymai</string>
