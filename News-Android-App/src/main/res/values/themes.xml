@@ -52,6 +52,10 @@
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+
+        <!-- https://stackoverflow.com/a/46587460/13370504 -->
+        <!-- switch on thumb & track color -->
+        <item name="colorControlActivated">@color/primary</item>
     </style>
 
     <style name="BaseTheme.OLED" parent="BaseTheme">
