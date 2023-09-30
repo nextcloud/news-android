@@ -26,12 +26,15 @@ import android.util.Log;
 
 import com.bumptech.glide.Glide;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import okhttp3.OkHttpClient;
 
 public class ImageHandler {
     private static final String TAG = "[ImageHandler]";
@@ -192,18 +195,27 @@ public class ImageHandler {
     private static String getFileName(String url) {
         int idx = url.lastIndexOf("/");
         int countOfSlashes = url.split("/").length - 1;
-        if(idx > 0) {
+        if (idx > 0) {
             return url.substring(idx);
         } else {
             return url;
         }
     }
 
-    public static void clearCache(Context context)
-    {
+    public static void clearGlideCache(Context context) {
+        Glide.get(context).clearMemory(); // needs to run on main thread
         new Thread(() -> {
-            Glide.get(context).clearMemory();
             Glide.get(context).clearDiskCache();
+        }).start();
+    }
+
+    public static void clearOkHttpCache(OkHttpClient okHttpClient) {
+        new Thread(() -> {
+            try {
+                okHttpClient.cache().evictAll();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }).start();
     }
 }

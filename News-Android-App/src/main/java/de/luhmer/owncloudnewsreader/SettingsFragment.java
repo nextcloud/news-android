@@ -54,6 +54,7 @@ import androidx.preference.TwoStatePreference;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -66,11 +67,14 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import okhttp3.OkHttpClient;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     protected @Inject SharedPreferences mPrefs;
-    protected @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
+    protected @Inject OkHttpClient mOkHttpClient;
+    protected @Inject
+    @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
     private static String version = "<loading>";
 
     @Override
@@ -126,10 +130,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = (preference, value) -> {
         String stringValue = value.toString();
 
-        if (preference instanceof ListPreference) {
+        if (preference instanceof ListPreference listPreference) {
             // For list preferences, look up the correct display value in
             // the preference's 'entries' list.
-            ListPreference listPreference = (ListPreference) preference;
             int index = listPreference.findIndexOfValue(stringValue);
 
             // Set the summary to reflect the new value.
@@ -158,8 +161,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     };
 
     private static final Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = (preference, newValue) -> {
-        if(preference instanceof CheckBoxPreference) { //For legacy Android support
-            CheckBoxPreference cbPreference = ((CheckBoxPreference) preference);
+        if(preference instanceof CheckBoxPreference cbPreference) { //For legacy Android support
             cbPreference.setChecked((Boolean) newValue);
         } else {
             TwoStatePreference twoStatePreference = ((TwoStatePreference) preference);
@@ -262,12 +264,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         //   the list will show the default sync interval value of 15min
         //   whereas the user may have configured some other value
         //   once the user selects a value, this new value is actually used; and no more impact is expected
-
     }
 
     private void bindDataSyncPreferences(final PreferenceFragmentCompat prefFrag)
     {
-
         // handle the sync interval list:
         bindPreferenceSummaryToValue(prefFrag.findPreference(PREF_SYNC_SETTINGS));
 
@@ -317,13 +317,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     public void checkForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-        boolean resetDatabase = true;
-        if(dbConn.areThereAnyUnsavedChangesInDatabase()) {
-            resetDatabase = false;
-        }
+        boolean resetDatabase = !dbConn.areThereAnyUnsavedChangesInDatabase();
 
         if(resetDatabase) {
-            new ResetDatabaseAsyncTask(context).execute();
+            new ResetDatabaseAsyncTask(context, mOkHttpClient).execute();
         } else {
             new AlertDialog.Builder(context)
                     .setTitle(context.getString(R.string.warning))
@@ -335,7 +332,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             PostDelayHandler pDelayHandler = new PostDelayHandler(context);
                             pDelayHandler.stopRunningPostDelayHandler();
 
-                            new ResetDatabaseAsyncTask(context).execute();
+                            new ResetDatabaseAsyncTask(context, mOkHttpClient).execute();
                         }
                     })
                     .setNegativeButton(context.getString(android.R.string.no), null)
@@ -379,11 +376,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         }
 
-        try {
-            body = URLEncoder.encode(debugInfo,"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8);
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
         startActivity(browserIntent);
     }
@@ -418,8 +411,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         private ProgressDialog pd;
         private final Context context;
 
-        public ResetDatabaseAsyncTask(Context context) {
+        private final OkHttpClient okHttpClient;
+
+        public ResetDatabaseAsyncTask(Context context, OkHttpClient okHttpClient) {
             this.context = context;
+            this.okHttpClient = okHttpClient;
         }
 
         @Override
@@ -440,7 +436,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
-            ImageHandler.clearCache(context);
+            ImageHandler.clearGlideCache(context);
+            ImageHandler.clearOkHttpCache(okHttpClient);
             NewsFileUtils.clearWebArchiveCache(context);
             NewsFileUtils.clearPodcastCache(context);
             return null;
@@ -453,8 +450,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             pd.dismiss();
             Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
 
-            if(context instanceof SettingsActivity) {
-                SettingsActivity sa = (SettingsActivity) context;
+            if(context instanceof SettingsActivity sa) {
                 sa.resultIntent.putExtra(SettingsActivity.RI_CACHE_CLEARED, true);
             }
         }

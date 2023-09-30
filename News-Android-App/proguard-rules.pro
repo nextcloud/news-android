@@ -112,6 +112,8 @@
 -keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Observable
 -keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Single
 
+# glide
+-keep class com.bumptech.glide.integration.okhttp.OkHttpGlideModule
 
 
 

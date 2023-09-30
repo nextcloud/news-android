@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.bumptech.glide.load.MultiTransformation;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
@@ -94,7 +93,7 @@ public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<Subscr
 
             mGlide
                     .load(mediaThumbnail)
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    // .diskCacheStrategy(DiskCacheStrategy.DATA) // use okhttp caching
                     .placeholder(feedIcon)
                     .error(feedIcon)
                     .transform(new MultiTransformation<>(new CenterCrop(), new RoundedCorners(60)))

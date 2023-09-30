@@ -63,7 +63,6 @@ import androidx.preference.PreferenceManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -592,7 +591,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			Glide.with(this)
 					.load(avatarUrl)
-					.diskCacheStrategy(DiskCacheStrategy.DATA)
 					.placeholder(placeHolder)
 					.error(placeHolder)
 					.circleCrop()
