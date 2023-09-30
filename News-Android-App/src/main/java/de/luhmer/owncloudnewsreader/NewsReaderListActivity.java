@@ -1133,34 +1133,75 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onClick(RssItemViewHolder vh, int position) {
+		Feed feed = vh.getRssItem().getFeed();
+		Long openIn	= feed.getOpenIn();
 
-		if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
-			String currentUrl = vh.getRssItem().getLink();
+		Uri currentUrl = Uri.parse(vh.getRssItem().getLink());
 
-			//Choose Browser based on user settings
-			//modified copy from NewsDetailFragment.java:loadUrl(String url)
-			int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
-			if (selectedBrowser == 0) { // Custom Tabs
-				CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
-						.setShowTitle(true)
-						.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left)
-						.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right)
-						.addDefaultShareMenuItem();
-				builder.build().launchUrl(this, Uri.parse(currentUrl));
-			} else { //External browser
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl));
-				startActivity(browserIntent);
+		if (openIn == null) {
+			if (mPrefs.getBoolean(SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING, false)) {
+
+				//Choose Browser based on user settings
+				//modified copy from NewsDetailFragment.java:loadUrl(String url)
+				int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
+				switch(selectedBrowser) {
+					case 0:
+						openRssItemInCustomTab(currentUrl);
+						break;
+					case 1:
+						//openRssItemInInternalBrowser(currentUrl);
+						break;
+					case 2:
+						openRssItemInExternalBrowser(currentUrl);
+						break;
+				}
+
+				((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).changeReadStateOfItem(vh, true);
+			} else {
+				openRssItemInDetailedView(position);
 			}
-
-			((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).changeReadStateOfItem(vh, true);
 		} else {
-			Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
-
-			intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
-			intentNewsDetailAct.putExtra(NewsReaderListActivity.TITLE, getNewsReaderDetailFragment().getTitle());
-			startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
+			switch (openIn.intValue()) {
+				case 1:
+					openRssItemInDetailedView(position);
+					break;
+				case 2:
+					openRssItemInCustomTab(currentUrl);
+					break;
+				case 3:
+					openRssItemInExternalBrowser(currentUrl);
+					break;
+				default:
+					throw new RuntimeException("Unreachable: openIn has illegal value " + openIn);
+			}
 		}
 	}
+
+	private void openRssItemInDetailedView(int position) {
+		Intent intentNewsDetailAct = new Intent(this, NewsDetailActivity.class);
+
+		intentNewsDetailAct.putExtra(NewsReaderListActivity.ITEM_ID, position);
+		intentNewsDetailAct.putExtra(NewsReaderListActivity.TITLE, getNewsReaderDetailFragment().getTitle());
+		startActivityForResult(intentNewsDetailAct, Activity.RESULT_CANCELED);
+	}
+
+	private void openRssItemInCustomTab(Uri currentUrl) {
+		CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+				.setShowTitle(true)
+				.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left)
+				.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right)
+				.setShareState(CustomTabsIntent.SHARE_STATE_ON);
+		builder.build().launchUrl(this, currentUrl);
+	}
+
+	private void openRssItemInExternalBrowser(Uri currentUrl) {
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, currentUrl);
+		startActivity(browserIntent);
+	}
+
+	// private void openRssItemInInternalBrowser(Uri currentUrl) {
+	// 	getNewsReaderDetailFragment().binding.webview.loadUrl(currentUrl.toString());
+	// }
 
 	@Override
 	public boolean onLongClick(RssItemViewHolder vh, int position) {

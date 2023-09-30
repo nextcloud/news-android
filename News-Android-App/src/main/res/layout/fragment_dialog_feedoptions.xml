@@ -220,6 +220,39 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/open_feed_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontalDivider"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/open_in_use_general_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_feed_open_in_general_setting" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/open_in_detailed_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_feed_open_in_detailed_view" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/open_in_browser_cct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_display_browser_cct" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/open_in_browser_external"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_display_browser_external" />
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/progressView"
         android:layout_width="match_parent"

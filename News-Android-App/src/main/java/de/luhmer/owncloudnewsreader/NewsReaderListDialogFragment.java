@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,8 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         mMenuItems.put(getString(R.string.action_feed_move), () -> showMoveFeedView(mFeedId));
 
         mMenuItems.put(getString(R.string.action_feed_notification_settings), () -> showNotificationSettingsView(mFeedId));
+
+        mMenuItems.put(getString(R.string.action_feed_open_in), () -> showOpenSettingsView(mFeedId));
 
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FloatingDialog);
     }
@@ -280,6 +283,47 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         });
     }
 
+    private void showOpenSettingsView(final long feedId) {
+        binding.lvMenuList.setVisibility(View.GONE);
+        binding.openFeedDialog.setVisibility(View.VISIBLE);
+
+        DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(getContext());
+        Feed feed = dbConn.getFeedById(feedId);
+        Long openIn = feed.getOpenIn();
+
+        binding.openInUseGeneralSetting.setChecked(false);
+        binding.openInDetailedView.setChecked(false);
+        binding.openInBrowserCct.setChecked(false);
+        binding.openInBrowserExternal.setChecked(false);
+
+        if (openIn == null) {
+            binding.openInUseGeneralSetting.setChecked(true);
+        } else {
+            switch (openIn.intValue()) {
+                case 1:
+                    binding.openInDetailedView.setChecked(true);
+                    break;
+                case 2:
+                    binding.openInBrowserCct.setChecked(true);
+                    break;
+                case 3:
+                    binding.openInBrowserExternal.setChecked(true);
+                    break;
+                default:
+                    throw new RuntimeException("Unreachable: openIn has illegal value " + openIn);
+            }
+        }
+
+        binding.openInUseGeneralSetting.setOnCheckedChangeListener((button, checked)
+                -> setOpenInForFeed(feed, null, checked));
+        binding.openInDetailedView.setOnCheckedChangeListener((button, checked)
+                -> setOpenInForFeed(feed, 1L, checked));
+        binding.openInBrowserCct.setOnCheckedChangeListener((button, checked)
+                -> setOpenInForFeed(feed, 2L, checked));
+        binding.openInBrowserExternal.setOnCheckedChangeListener((button, checked)
+                -> setOpenInForFeed(feed, 3L, checked));
+    }
+
     private void showNotificationSettingsView(final long feedId) {
         binding.lvMenuList.setVisibility(View.GONE);
         binding.notificationFeedDialog.setVisibility(View.VISIBLE);
@@ -311,6 +355,14 @@ public class NewsReaderListDialogFragment extends DialogFragment {
         binding.notificationSettingUnique.setOnCheckedChangeListener((button, checked) ->
                 // Use the feed name as notification channel name
                 setNotificationChannelForFeed(feed, feed.getFeedTitle(), checked));
+    }
+
+    private void setOpenInForFeed(Feed feed, Long openIn, Boolean checked) {
+        if (checked) {
+            feed.setOpenIn(openIn);
+            feed.update();
+            this.showOpenSettingsView(feed.getId()); // reload dialog
+        }
     }
 
     private void setNotificationChannelForFeed(Feed feed, String channel, Boolean checked) {
