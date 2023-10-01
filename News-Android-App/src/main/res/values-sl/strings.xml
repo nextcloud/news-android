@@ -93,6 +93,7 @@
     <string name="feed_move_list_description">Izbor mape za premikanje vira</string>
     <string name="move_feed_root_folder">Korenska mapa</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Odstrani mapo</string>
     <string name="action_folder_rename">Preimenuj mapo</string>

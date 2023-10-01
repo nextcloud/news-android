@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Den Zielordner für den Feed auswählen</string>
     <string name="move_feed_root_folder">Quellordner</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Ordner entfernen</string>
     <string name="action_folder_rename">Ordner umbenennen</string>

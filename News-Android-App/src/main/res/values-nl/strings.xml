@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Kies de map om de feed naar te verplaatsen</string>
     <string name="move_feed_root_folder">Hoofdmap</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Verwijder map</string>
     <string name="action_folder_rename">Hernoem map</string>

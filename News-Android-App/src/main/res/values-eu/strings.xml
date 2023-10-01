@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Hautatu jarioa ze karpetatara eraman nahi duzun</string>
     <string name="move_feed_root_folder">Erro karpeta</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Kendu karpeta</string>
     <string name="action_folder_rename">Berrizendatu karpeta</string>

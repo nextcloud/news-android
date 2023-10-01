@@ -86,6 +86,7 @@
     <string name="feed_move_list_description">Odaberite mapu u koju želite premjestiti sažetak</string>
     <string name="move_feed_root_folder">Korijenska mapa</string>
 
+
     <string name="action_folder_rename">Preimenuj mapu</string>
     <string name="folder_remove_button">Ukloni</string>
     <string name="folder_rename_button">Preimenuj</string>

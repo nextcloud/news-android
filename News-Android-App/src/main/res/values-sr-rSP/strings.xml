@@ -85,6 +85,7 @@
     <string name="feed_move_list_description">Izaberite fasciklu da premestite dovod</string>
     <string name="move_feed_root_folder">Korena fascikla</string>
 
+
     <string name="folder_remove_button">Ukloni</string>
     <string name="folder_rename_button">Preimenuj</string>
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->

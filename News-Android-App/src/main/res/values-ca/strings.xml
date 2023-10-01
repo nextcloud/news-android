@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Selecciona la carpeta per moure-hi el canal</string>
     <string name="move_feed_root_folder">Carpeta arrel</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Suprimeix la carpeta</string>
     <string name="action_folder_rename">Canvia el nom de la carpeta</string>

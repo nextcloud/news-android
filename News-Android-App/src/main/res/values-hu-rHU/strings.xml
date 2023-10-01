@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Válassza ki a mappát, amelybe áthelyezi a hírcsatornát</string>
     <string name="move_feed_root_folder">Gyökérmappa</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Mappa eltávolítása</string>
     <string name="action_folder_rename">Mappa átnevezése</string>

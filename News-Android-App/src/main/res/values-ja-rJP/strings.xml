@@ -84,6 +84,7 @@
     <string name="feed_move_list_description">フィードを移動するフォルダーを選択</string>
     <string name="move_feed_root_folder">ルートフォルダー</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">フォルダーを削除</string>
     <string name="action_folder_rename">フォルダーの名前を変更</string>

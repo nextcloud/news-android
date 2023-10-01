@@ -84,6 +84,7 @@
     <string name="feed_move_list_description">選擇要移動摘要至的資料夾</string>
     <string name="move_feed_root_folder">根目錄</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">移除資料夾</string>
     <string name="action_folder_rename">重新命名資料夾</string>

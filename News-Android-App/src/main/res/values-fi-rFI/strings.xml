@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Valitse kansio, johon syöte siirretään</string>
     <string name="move_feed_root_folder">Juurikansio</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Poista kansio</string>
     <string name="action_folder_rename">Nimeä kansio uudelleen</string>

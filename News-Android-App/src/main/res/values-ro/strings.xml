@@ -90,6 +90,7 @@
     <string name="feed_move_list_description">Seleactează dosarul în care dorești să muți feed-ul</string>
     <string name="move_feed_root_folder">Folder principal</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Șterge dosarul</string>
     <string name="action_folder_rename">Redenumește dosar</string>

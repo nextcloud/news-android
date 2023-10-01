@@ -90,6 +90,7 @@
     <string name="feed_move_list_description">Selecciona la carpeta a la que mover la fuente</string>
     <string name="move_feed_root_folder">Carpeta raíz</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Eliminar carpeta</string>
     <string name="action_folder_rename">Renombrar carpeta</string>

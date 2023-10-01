@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Επιλέξτε το φάκελο που θα μετακινηθεί η ροή</string>
     <string name="move_feed_root_folder">Αρχικός φάκελος</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Κατάργηση φακέλου</string>
     <string name="action_folder_rename">Μετονομασία φακέλου</string>

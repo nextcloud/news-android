@@ -90,6 +90,7 @@
     <string name="feed_move_list_description">Selecione a pasta para mover o feed</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Remover pasta</string>
     <string name="action_folder_rename">Renomear pasta</string>

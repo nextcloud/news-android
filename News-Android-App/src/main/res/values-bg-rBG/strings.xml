@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Изберете в коя папка да бъде преместена емисията</string>
     <string name="move_feed_root_folder">Основна папка</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Премахване на папка</string>
     <string name="action_folder_rename">Преименуване на папка</string>

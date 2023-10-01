@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Retirar o cartafol</string>
     <string name="action_folder_rename">Renomear o cartafol</string>

@@ -93,6 +93,7 @@
     <string name="feed_move_list_description">Vyberte složku do které kanál přesunout</string>
     <string name="move_feed_root_folder">Kořenová složka</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Odstranit složku</string>
     <string name="action_folder_rename">Přejmenovat složku</string>

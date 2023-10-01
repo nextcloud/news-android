@@ -89,6 +89,7 @@
     <string name="feed_move_list_description">לבחור תיקייה אליה להעביר את ההזנה</string>
     <string name="move_feed_root_folder">תיקיית בסיס</string>
 
+
     <string name="action_folder_rename">שינוי שם תיקייה</string>
     <string name="folder_remove_button">הסרה</string>
     <string name="folder_rename_button">שינוי שם</string>

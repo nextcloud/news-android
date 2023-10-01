@@ -83,6 +83,7 @@
     <string name="feed_move_list_description">Veldu möppu sem á að færa streymið í</string>
     <string name="move_feed_root_folder">Rótarmappa</string>
 
+
     <string name="action_folder_rename">Endurnefna möppu</string>
     <string name="folder_remove_button">Fjarlægja</string>
     <string name="folder_rename_button">Endurnefna</string>

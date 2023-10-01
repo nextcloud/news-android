@@ -84,6 +84,7 @@
     <string name="feed_move_list_description">选择文件夹以移动订阅源</string>
     <string name="move_feed_root_folder">根目录</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">移除文件夹</string>
     <string name="action_folder_rename">重命名文件夹</string>
@@ -145,6 +146,8 @@
 
     <string name="pref_general_search_in_title">标题</string>
     <string name="pref_general_search_in_body">主体</string>
+    <string name="pref_general_search_in_both">都是</string>
+
     <string name="dialog_clearing_cache">清除缓存</string>
     <string name="dialog_clearing_cache_please_wait">正在清理缓存。请稍候 ...</string>
     <string name="reset_cache_unsaved_changes">有一部分文件未同步，您确定仍然清空缓存吗？</string>

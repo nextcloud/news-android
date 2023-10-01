@@ -87,6 +87,7 @@
     <string name="feed_move_list_description">Välj mapp för att flytta flöde till</string>
     <string name="move_feed_root_folder">Topp-mapp</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Ta bort mapp</string>
     <string name="action_folder_rename">Döp om mapp</string>

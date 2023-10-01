@@ -93,6 +93,7 @@
     <string name="feed_move_list_description">Оберіть каталог, до якого перемістити стрічку</string>
     <string name="move_feed_root_folder">Кореневий каталог</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Вилучити каталог</string>
     <string name="action_folder_rename">Перейменувати каталог</string>

@@ -83,6 +83,7 @@
     <string name="feed_move_list_description">피드가 이동할 폴더 선택</string>
     <string name="move_feed_root_folder">루트 폴더</string>
 
+
     <string name="action_folder_rename">폴더 이름 바꾸기</string>
     <string name="folder_remove_button">삭제</string>
     <string name="folder_rename_button">이름 바꾸기</string>

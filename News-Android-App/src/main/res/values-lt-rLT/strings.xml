@@ -85,6 +85,7 @@
     <string name="feed_move_list_description">Pasirinkite aplanką į kurį norite perkelti kanalą</string>
     <string name="move_feed_root_folder">Šakninis aplankas</string>
 
+
     <string name="action_folder_rename">Pervadinti aplanką</string>
     <string name="folder_remove_button">Šalinti</string>
     <string name="folder_rename_button">Pervadinti</string>

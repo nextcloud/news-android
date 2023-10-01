@@ -84,6 +84,7 @@
     <string name="feed_move_list_description">Chọn thư mục để di chuyển nguồn dữ liệu vào</string>
     <string name="move_feed_root_folder">Thư mục gốc</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Xoá thư mục</string>
     <string name="action_folder_rename">Đổi tên thư mục</string>

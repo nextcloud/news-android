@@ -90,6 +90,7 @@
     <string name="feed_move_list_description">Seleziona la cartella in cui spostare la fonte</string>
     <string name="move_feed_root_folder">Cartella radice</string>
 
+
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Rimuovi cartella</string>
     <string name="action_folder_rename">Rinomina cartella</string>
