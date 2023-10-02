@@ -81,6 +81,9 @@
     <string name="action_feed_rename">Feed umbenennen</string>
     <string name="action_feed_move">Feed verschieben</string>
     <string name="action_feed_notification_settings">Benachrichtigungseinstellungen</string>
+    <string name="action_feed_open_in">Öffnen-in Einstellungen</string>
+    <string name="action_feed_open_in_general_setting">Allgemeine Einstellungen verwenden</string>
+    <string name="action_feed_open_in_detailed_view">Detaillierte Ansicht</string>
     <string name="feed_remove_button">Entfernen</string>
     <string name="feed_rename_button">Umbenennen</string>
     <string name="confirm_feed_remove">Möchten Sie wirklich dieses Feed löschen? Die Aktion kann nicht rückgängig gemacht werden!</string>

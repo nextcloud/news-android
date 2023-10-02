@@ -93,6 +93,9 @@
     <string name="action_feed_rename">إعادة تسمية الموجز</string>
     <string name="action_feed_move">نقل الموجز</string>
     <string name="action_feed_notification_settings">إعدادات الإشعارات</string>
+    <string name="action_feed_open_in">إعدادات الافتتاح</string>
+    <string name="action_feed_open_in_general_setting">استخدم الإعدادات العامة</string>
+    <string name="action_feed_open_in_detailed_view">عرض تفصيلي</string>
     <string name="feed_remove_button">حذف</string>
     <string name="feed_rename_button">تغيير التسمية</string>
     <string name="confirm_feed_remove">هل تريد حقًا إزالة هذا الموجز؟ لا يمكن التراجع عن هذا لاحقاً!</string>

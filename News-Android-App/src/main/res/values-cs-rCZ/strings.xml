@@ -87,6 +87,9 @@
     <string name="action_feed_rename">Přejmenovat kanál</string>
     <string name="action_feed_move">Přesunout kanál</string>
     <string name="action_feed_notification_settings">Nastavení upozorňování</string>
+    <string name="action_feed_open_in">Nastavení „Otevírat pomocí“</string>
+    <string name="action_feed_open_in_general_setting">Použít obecné nastavení</string>
+    <string name="action_feed_open_in_detailed_view">Podrobné zobrazení</string>
     <string name="feed_remove_button">Odstranit</string>
     <string name="feed_rename_button">Přejmenovat</string>
     <string name="confirm_feed_remove">Opravdu chcete odstranit tento kanál? Toto nelze vrátit zpět!</string>
