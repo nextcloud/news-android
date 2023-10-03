@@ -81,6 +81,9 @@
     <string name="action_feed_rename">Akışı yeniden adlandır</string>
     <string name="action_feed_move">Akışı taşı</string>
     <string name="action_feed_notification_settings">Bildirim ayarları</string>
+    <string name="action_feed_open_in">Açılış ayarları</string>
+    <string name="action_feed_open_in_general_setting">Genel ayarlar kullanılsın</string>
+    <string name="action_feed_open_in_detailed_view">Ayrıntılı görünüm</string>
     <string name="feed_remove_button">Sil</string>
     <string name="feed_rename_button">Yeniden adlandır</string>
     <string name="confirm_feed_remove">Bu akışı silmek istediğinize emin misiniz? Bu işlem geri alınamaz!</string>

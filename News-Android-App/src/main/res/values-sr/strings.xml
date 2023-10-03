@@ -84,6 +84,9 @@
     <string name="action_feed_rename">Преименуј довод</string>
     <string name="action_feed_move">Премести довод</string>
     <string name="action_feed_notification_settings">Поставке обавештења</string>
+    <string name="action_feed_open_in">Подешавања за отвори-у</string>
+    <string name="action_feed_open_in_general_setting">Корисни општа подешавања</string>
+    <string name="action_feed_open_in_detailed_view">Детаљни приказ</string>
     <string name="feed_remove_button">Уклони</string>
     <string name="feed_rename_button">Преименуј</string>
     <string name="confirm_feed_remove">Заиста желите да уклоните овај довод? Ово се не може опозвати!</string>

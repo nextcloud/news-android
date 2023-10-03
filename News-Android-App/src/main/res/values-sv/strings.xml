@@ -81,6 +81,8 @@
     <string name="action_feed_rename">Döp om Feed</string>
     <string name="action_feed_move">Flytta flöde</string>
     <string name="action_feed_notification_settings">Aviseringsinställningar</string>
+    <string name="action_feed_open_in_general_setting">Använd allmänna inställningar</string>
+    <string name="action_feed_open_in_detailed_view">Detaljerad vy</string>
     <string name="feed_remove_button">Ta bort</string>
     <string name="feed_rename_button">Byt namn</string>
     <string name="confirm_feed_remove">Vill du verkligen ta bort denna Feed? Det kan inte ångras!</string>

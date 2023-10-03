@@ -161,6 +161,8 @@
 
     <string name="pref_general_search_in_title">Назва</string>
     <string name="pref_general_search_in_body">Тіло</string>
+    <string name="pref_general_search_in_both">Обидва</string>
+
     <string name="dialog_clearing_cache">Очистити кеш</string>
     <string name="dialog_clearing_cache_please_wait">Очищення кешу. Будь ласка, зачекайте …</string>
     <string name="reset_cache_unsaved_changes">Є несинхронізовані зміни. Ви дійсно бажаєте очистити кеш?</string>

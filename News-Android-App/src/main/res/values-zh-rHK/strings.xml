@@ -78,6 +78,9 @@
     <string name="action_feed_rename">重新命名 Feed</string>
     <string name="action_feed_move">移動摘要</string>
     <string name="action_feed_notification_settings">通告設定</string>
+    <string name="action_feed_open_in">Open-in 設定</string>
+    <string name="action_feed_open_in_general_setting">使用一般設定</string>
+    <string name="action_feed_open_in_detailed_view">細節檢視</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
     <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此操作無法復原</string>

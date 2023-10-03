@@ -87,6 +87,9 @@
     <string name="action_feed_rename">Zmień nazwę kanału</string>
     <string name="action_feed_move">Przenieś kanał</string>
     <string name="action_feed_notification_settings">Ustawienia powiadomień</string>
+    <string name="action_feed_open_in">Otwórz w ustawieniach</string>
+    <string name="action_feed_open_in_general_setting">Użyj ustawień ogólnych</string>
+    <string name="action_feed_open_in_detailed_view">Widok szczegółów</string>
     <string name="feed_remove_button">Usuń</string>
     <string name="feed_rename_button">Zmień nazwę</string>
     <string name="confirm_feed_remove">Czy na pewno chcesz usunąć ten kanał? Operacja jest nieodwracalna!</string>
