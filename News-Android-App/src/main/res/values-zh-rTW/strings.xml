@@ -78,6 +78,9 @@
     <string name="action_feed_rename">重新命名 Feed</string>
     <string name="action_feed_move">移動摘要</string>
     <string name="action_feed_notification_settings">通知設定</string>
+    <string name="action_feed_open_in">「開啟於」設定</string>
+    <string name="action_feed_open_in_general_setting">使用一般設定</string>
+    <string name="action_feed_open_in_detailed_view">詳細資訊檢視</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重新命名</string>
     <string name="confirm_feed_remove">您真的要移除這個 Feed 嗎？此動作無法復原</string>
@@ -204,6 +207,9 @@
 
     <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_oled_mode_summary">供 OLED 螢幕使用的暗黑主題</string>
+
+    <string name="pref_external_player">外部播放程式</string>
+    <string name="pref_external_player_summary">在您預設的媒體應用程式播放 podcast</string>
 
     <string name="pref_display_browser_cct">內建 Chrome 自訂分頁</string>
     <string name="pref_display_browser_built_in">內建瀏覽器</string>
