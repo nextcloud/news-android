@@ -84,6 +84,7 @@
     <string name="action_feed_rename">Renomear Alimentação</string>
     <string name="action_feed_move">Mover Feed</string>
     <string name="action_feed_notification_settings">Configurações de notificação</string>
+    <string name="action_feed_open_in_detailed_view">Visualização detalhada</string>
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Você realmente deseja remover esta alimentação? Isso não pode ser desfeito!</string>
