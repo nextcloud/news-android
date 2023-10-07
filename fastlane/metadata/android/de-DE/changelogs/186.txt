@@ -1,5 +1,3 @@
-Changed - !1186 - Material 3 Theme (thanks to @stefan-niedermann)
-Changed - !1256 - Fix starred items not obeying sort order (thanks to @mkanilsson)
-Changed - Dependency updates
-Fixed - !1257 - Seeking in podcast player doesn't work (thanks to @annasoin)
-Fixed - !1255 - add line-height for h1 tags (thanks to @mkanilsson)
+Note: Due to changes to the database schema the data will be cleared when upgrading
+Note: What a release! Thank you for the endless contributions from the community!
+Note: The changelog is too long for this release - you'll see it when you launch the app!
