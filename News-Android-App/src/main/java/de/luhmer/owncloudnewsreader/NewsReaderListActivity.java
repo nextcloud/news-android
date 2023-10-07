@@ -226,7 +226,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			startLoginActivity();
 		}
 
-
 		Bundle args = new Bundle();
 		String userName = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
 		String url = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
@@ -273,6 +272,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (savedInstanceState == null) { //When the app starts (no orientation change)
 			updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 		}
+
+		showChangelogIfNecessary();
 	}
 
 	@Override
@@ -333,6 +334,17 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		super.onConfigurationChanged(newConfig);
 		if (drawerToggle != null) {
 			drawerToggle.onConfigurationChanged(newConfig);
+		}
+	}
+
+	void showChangelogIfNecessary() {
+		// on first app start with new version - always show the changelog
+		int currentVersionCode = BuildConfig.VERSION_CODE;
+		int previousVersionCode = mPrefs.getInt("PREVIOUS_VERSION_CODE", 0);
+		if (currentVersionCode > previousVersionCode) {
+			DialogFragment dialog = new VersionInfoDialogFragment();
+			dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
+			mPrefs.edit().putInt("PREVIOUS_VERSION_CODE", currentVersionCode).apply();
 		}
 	}
 

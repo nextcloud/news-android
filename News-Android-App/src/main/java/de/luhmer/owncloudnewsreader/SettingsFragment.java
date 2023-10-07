@@ -29,7 +29,6 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MIN
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -45,6 +44,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.DialogPreference;
 import androidx.preference.ListPreference;
@@ -54,6 +54,7 @@ import androidx.preference.TwoStatePreference;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -126,10 +127,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = (preference, value) -> {
         String stringValue = value.toString();
 
-        if (preference instanceof ListPreference) {
+        if (preference instanceof ListPreference listPreference) {
             // For list preferences, look up the correct display value in
             // the preference's 'entries' list.
-            ListPreference listPreference = (ListPreference) preference;
             int index = listPreference.findIndexOfValue(stringValue);
 
             // Set the summary to reflect the new value.
@@ -158,8 +158,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     };
 
     private static final Preference.OnPreferenceChangeListener sBindPreferenceBooleanToValueListener = (preference, newValue) -> {
-        if(preference instanceof CheckBoxPreference) { //For legacy Android support
-            CheckBoxPreference cbPreference = ((CheckBoxPreference) preference);
+        if(preference instanceof CheckBoxPreference cbPreference) { //For legacy Android support
             cbPreference.setChecked((Boolean) newValue);
         } else {
             TwoStatePreference twoStatePreference = ((TwoStatePreference) preference);
@@ -297,7 +296,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference changelogPreference = prefFrag.findPreference(CB_VERSION);
         changelogPreference.setOnPreferenceClickListener(preference -> {
             DialogFragment dialog = new VersionInfoDialogFragment();
-            dialog.show(prefFrag.requireActivity().getFragmentManager(), "VersionChangelogDialogFragment");
+            dialog.show(prefFrag.requireActivity().getSupportFragmentManager(), "VersionChangelogDialogFragment");
             return true;
         });
 
@@ -317,10 +316,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     public void checkForUnsycedChangesInDatabaseAndResetDatabase(final Context context) {
         DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
-        boolean resetDatabase = true;
-        if(dbConn.areThereAnyUnsavedChangesInDatabase()) {
-            resetDatabase = false;
-        }
+        boolean resetDatabase = !dbConn.areThereAnyUnsavedChangesInDatabase();
 
         if(resetDatabase) {
             new ResetDatabaseAsyncTask(context).execute();
@@ -379,11 +375,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         }
 
-        try {
-            body = URLEncoder.encode(debugInfo,"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8);
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
         startActivity(browserIntent);
     }
@@ -453,8 +445,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             pd.dismiss();
             Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
 
-            if(context instanceof SettingsActivity) {
-                SettingsActivity sa = (SettingsActivity) context;
+            if(context instanceof SettingsActivity sa) {
                 sa.resultIntent.putExtra(SettingsActivity.RI_CACHE_CLEARED, true);
             }
         }
