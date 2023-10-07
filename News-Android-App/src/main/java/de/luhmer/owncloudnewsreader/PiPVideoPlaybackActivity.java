@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
+import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_MEDIA_TYPE;
+
 import android.app.PictureInPictureParams;
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
@@ -7,7 +9,6 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
@@ -28,8 +29,6 @@ import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.services.PodcastPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
-
-import static de.luhmer.owncloudnewsreader.services.PodcastPlaybackService.CURRENT_PODCAST_MEDIA_TYPE;
 
 public class PiPVideoPlaybackActivity extends AppCompatActivity {
 
@@ -172,6 +171,8 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+
         Log.d(TAG, "onBackPressed() called");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             enterPictureInPictureMode();
