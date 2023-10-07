@@ -14,7 +14,6 @@ private const val COMPLETE = 100
  * only be visible during loading.
  */
 class ProgressBarWebChromeClient(private val progressBar: ProgressBar) : WebChromeClient() {
-
     val tag = javaClass.canonicalName
 
     override fun onConsoleMessage(cm: ConsoleMessage): Boolean {
@@ -22,7 +21,10 @@ class ProgressBarWebChromeClient(private val progressBar: ProgressBar) : WebChro
         return true
     }
 
-    override fun onProgressChanged(view: WebView, progress: Int) {
+    override fun onProgressChanged(
+        view: WebView,
+        progress: Int,
+    ) {
         progressBar.progress = progress
         if (progress < COMPLETE && progressBar.visibility == ProgressBar.GONE) {
             progressBar.visibility = ProgressBar.VISIBLE

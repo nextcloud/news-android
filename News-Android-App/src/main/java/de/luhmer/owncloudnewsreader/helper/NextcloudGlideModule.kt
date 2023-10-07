@@ -25,14 +25,16 @@ private const val MB = 1024 * KB
 
 @GlideModule
 class NextcloudGlideModule : AppGlideModule() {
-
     @Inject
     lateinit var mApi: ApiProvider
 
     @Inject
     lateinit var mPrefs: SharedPreferences
 
-    override fun applyOptions(context: Context, builder: GlideBuilder) {
+    override fun applyOptions(
+        context: Context,
+        builder: GlideBuilder,
+    ) {
         super.applyOptions(context, builder)
         (context.applicationContext as NewsReaderApplication).appComponent.injectGlideModule(this)
         val cacheSize = mPrefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, CACHE_SIZE.toString())
@@ -56,7 +58,11 @@ class NextcloudGlideModule : AppGlideModule() {
         // )
     }
 
-    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
+    override fun registerComponents(
+        context: Context,
+        glide: Glide,
+        registry: Registry,
+    ) {
         super.registerComponents(context, glide, registry)
         registry
             .register(SVG::class.java, PictureDrawable::class.java, SvgDrawableTranscoder())

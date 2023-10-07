@@ -38,14 +38,21 @@ class OwnCloudSyncProvider : ContentProvider() {
     /*
      * insert() always returns null (no URI)
      */
-    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+    override fun insert(
+        uri: Uri,
+        values: ContentValues?,
+    ): Uri? {
         return null
     }
 
     /*
      * delete() always returns "no rows affected" (0)
      */
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
+    override fun delete(
+        uri: Uri,
+        selection: String?,
+        selectionArgs: Array<String>?,
+    ): Int {
         return 0
     }
 
