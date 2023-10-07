@@ -4,7 +4,7 @@
 - Note: What a release! Thank you for the endless contributions from the community! 
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1262">!1262 - Add shortcut to "Show only unread articles" in the toolbar (thanks to @mkanilsson)</a>
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1264">!1264 - Add share to swipe option (thanks to @mkanilsson)</a>
-- Added - <a href="https://github.com/nextcloud/news-android/pull/1266">!1266 - per-feed open-in settings ([#1221](https://github.com/nextcloud/news-android/issues/1221) / [#1058](https://github.com/nextcloud/news-android/issues/1058) / [#957](https://github.com/nextcloud/news-android/issues/957)) (thanks to @mkanilsson)</a>
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1266">!1266 - per-feed open-in settings (thanks to @mkanilsson)</a>
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1265">!1265 - Allow searching both title and body at the same time (thanks to @mkanilsson)</a>
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1271">!1271 - Enable support for predictive back gestures (thanks to @KingOfDog)</a>
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1286">!1286 - Show changelog after update of app</a>
