@@ -340,11 +340,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	void showChangelogIfNecessary() {
 		// on first app start with new version - always show the changelog
 		int currentVersionCode = BuildConfig.VERSION_CODE;
-		int previousVersionCode = mPrefs.getInt("PREVIOUS_VERSION_CODE", 0);
+		int previousVersionCode = mPrefs.getInt(Constants.PREVIOUS_VERSION_CODE, 0);
 		if (currentVersionCode > previousVersionCode) {
 			DialogFragment dialog = new VersionInfoDialogFragment();
 			dialog.show(getSupportFragmentManager(), "VersionChangelogDialogFragment");
-			mPrefs.edit().putInt("PREVIOUS_VERSION_CODE", currentVersionCode).apply();
+			mPrefs.edit().putInt(Constants.PREVIOUS_VERSION_CODE, currentVersionCode).apply();
 		}
 	}
 
