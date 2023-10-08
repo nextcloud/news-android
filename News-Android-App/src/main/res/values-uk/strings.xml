@@ -172,7 +172,7 @@
     <string name="pref_title_DisableHostnameVerification">Вимкнути перевірку доменного ім\'я</string>
     <string name="pref_title_NavigateWithVolumeButtons">Керування кнопками гучності</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
-    <string name="pref_title_ShowFastActions">Активувати функції швидкого доступу</string>
+    <string name="pref_title_ShowFastActions">Увімкнути функції швидкого доступу</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд і відкрити статтю в браузері</string>
 
     <!-- MemorizingTrustManager -->
