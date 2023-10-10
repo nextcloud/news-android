@@ -84,6 +84,9 @@
     <string name="action_feed_rename">Renombrar Fuente</string>
     <string name="action_feed_move">Mover fuente</string>
     <string name="action_feed_notification_settings">Configuraciones de notificación</string>
+    <string name="action_feed_open_in">Abrir en ajustes</string>
+    <string name="action_feed_open_in_general_setting">Utilizar ajuste general</string>
+    <string name="action_feed_open_in_detailed_view">Vista detallada</string>
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente desea eliminar esta Fuente? ¡Esto no se puede deshacer!</string>
