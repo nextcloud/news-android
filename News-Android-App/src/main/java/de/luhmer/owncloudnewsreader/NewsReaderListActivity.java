@@ -862,7 +862,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onBackPressed() {
 		if (!handlePodcastBackPressed()) {
-			super.onBackPressed();
+
+			//Add in check for preference to determine if closes app or opens drawer
+			Boolean backAction  = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER,false);
+			//if (backAction) {  //change this line to the preference test - or add into an AND in the below iff
+			if (backAction) {  //change this line to the preference test - or add into an AND in the below iff
+				if (binding.drawerLayout != null) {
+					if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
+						super.onBackPressed();
+					else
+						binding.drawerLayout.openDrawer(GravityCompat.START);
+				} else {
+					super.onBackPressed();
+				}
+			}else {
+				super.onBackPressed();
+			}
 		}
 	}
 

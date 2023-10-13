@@ -26,6 +26,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_PREF_BACK_OPENS_DRAWER;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -239,6 +240,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_FAST_ACTIONS));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
+        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_PREF_BACK_OPENS_DRAWER));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SORT_ORDER));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SWIPE_RIGHT_ACTION));

@@ -211,6 +211,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read while scrolling</string>
     <string name="pref_title_ShowFastActions">Activate fast access functions</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
+    <string name="pref_title_BackButtonOpensDrawer">Back button opens drawer</string>
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accept Unknown Certificate?</string>
