@@ -48,6 +48,8 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -208,6 +210,33 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 
 		super.onCreate(savedInstanceState);
+
+
+		//trying to get back button working again
+		OnBackPressedDispatcher dispatcher = getOnBackPressedDispatcher();
+		getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+			@Override
+			public void handleOnBackPressed() {
+				Log.d(TAG, "NewsReaderListActivity handleOnBackPressed() called");
+				if (!handlePodcastBackPressed()) {
+
+					//Add in check for preference to determine if closes app or opens drawer
+					if (mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false)) {  //change this line to the preference test - or add into an AND in the below iff
+
+						if (binding.drawerLayout != null) {
+							if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
+								setEnabled(false);
+							else
+								binding.drawerLayout.openDrawer(GravityCompat.START);
+						} else {
+							setEnabled(false);
+						}
+					} else {
+						setEnabled(false);
+					}
+				}
+			}
+		});
 
 		binding = ActivityNewsreaderBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
@@ -859,28 +888,30 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         return true;
 	}
 
+	// remove this method overide as no longer works when using the new android predictive back gestures
+	// cleanup once confirmed new approach is working as expected
+/*
 	@Override
 	public void onBackPressed() {
+		Log.e(TAG,"NewsReaderListActivity onBackPressed() Called");
 		if (!handlePodcastBackPressed()) {
 
 			//Add in check for preference to determine if closes app or opens drawer
-			Boolean backAction  = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER,false);
-			//if (backAction) {  //change this line to the preference test - or add into an AND in the below iff
-			if (backAction) {  //change this line to the preference test - or add into an AND in the below iff
+			if (mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER,false)) {  //change this line to the preference test - or add into an AND in the below iff
 				if (binding.drawerLayout != null) {
 					if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
-						super.onBackPressed();
-					else
+						//super.onBackPressed();
+					//else
 						binding.drawerLayout.openDrawer(GravityCompat.START);
 				} else {
-					super.onBackPressed();
+					//super.onBackPressed();
 				}
 			}else {
 				super.onBackPressed();
 			}
 		}
 	}
-
+*/
 	public static final int RESULT_SETTINGS = 15642;
 
 	private void syncMenuItemUnreadOnly() {

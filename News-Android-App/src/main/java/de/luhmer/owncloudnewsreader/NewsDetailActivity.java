@@ -427,6 +427,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	@Override
 	public void onBackPressed() {
+		Log.v(TAG,"NewsDetailActivity onBackPressed() Called");
 		if (!handlePodcastBackPressed())
 			super.onBackPressed();
 	}
