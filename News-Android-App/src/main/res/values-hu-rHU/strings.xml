@@ -81,6 +81,9 @@
     <string name="action_feed_rename">Hírfolyam átnevezése</string>
     <string name="action_feed_move">Hírcsatorna áthelyezése</string>
     <string name="action_feed_notification_settings">Értesítési beállítások</string>
+    <string name="action_feed_open_in">Megnyitási beállítások</string>
+    <string name="action_feed_open_in_general_setting">Általános beállítások használata</string>
+    <string name="action_feed_open_in_detailed_view">Részletes nézet</string>
     <string name="feed_remove_button">Eltávolítás</string>
     <string name="feed_rename_button">Átnevezés</string>
     <string name="confirm_feed_remove">Biztos, hogy eltávolítja ezt a hírcsatornát? Ez nem vonható vissza!</string>
@@ -151,6 +154,8 @@
 
     <string name="pref_general_search_in_title">Cím</string>
     <string name="pref_general_search_in_body">Törzs</string>
+    <string name="pref_general_search_in_both">Mindkettő</string>
+
     <string name="dialog_clearing_cache">Gyorsítótár ürítése</string>
     <string name="dialog_clearing_cache_please_wait">Gyorsítótár ürítése. Kis türelmet…</string>
     <string name="reset_cache_unsaved_changes">Nem szinkronizált változások vannak. Biztos, hogy mindenképp alaphelyzetbe állítja a gyorsítótárat?</string>
