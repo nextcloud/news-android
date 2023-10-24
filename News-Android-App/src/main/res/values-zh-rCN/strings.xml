@@ -78,6 +78,9 @@
     <string name="action_feed_rename">重命名订阅源</string>
     <string name="action_feed_move">移动订阅源</string>
     <string name="action_feed_notification_settings">通知设置</string>
+    <string name="action_feed_open_in">Open-in 设置</string>
+    <string name="action_feed_open_in_general_setting">使用一般设置</string>
+    <string name="action_feed_open_in_detailed_view">详细视图</string>
     <string name="feed_remove_button">移除</string>
     <string name="feed_rename_button">重命名</string>
     <string name="confirm_feed_remove">您真的要删除此订阅源吗？本操作不可恢复！</string>

@@ -84,6 +84,7 @@
     <string name="action_feed_rename">Renommer le Flux</string>
     <string name="action_feed_move">Déplacer le Flux</string>
     <string name="action_feed_notification_settings">Paramètres de notification</string>
+    <string name="action_feed_open_in_detailed_view">Vue détaillée</string>
     <string name="feed_remove_button">Retirer</string>
     <string name="feed_rename_button">Renommer</string>
     <string name="confirm_feed_remove">Voulez-vous vraiment retirer ce flux ? Cela ne pourra pas être annulé !</string>
