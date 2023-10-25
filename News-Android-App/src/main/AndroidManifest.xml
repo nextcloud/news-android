@@ -16,6 +16,7 @@
         android:maxSdkVersion="22" />
     <!-- <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" /> -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <application
         android:name=".NewsReaderApplication"
@@ -257,7 +258,8 @@
         -->
         <service
             android:name=".services.PodcastPlaybackService"
-            android:enabled="true"
+			android:foregroundServiceType="mediaPlayback"
+			android:enabled="true"
             android:exported="true">
             <intent-filter>
                <action android:name="android.media.browse.MediaBrowserService" />
