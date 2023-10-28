@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.DialogFragment;
 
@@ -483,7 +484,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
             }
         };
         IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-        requireActivity().registerReceiver(downloadCompleteReceiver, intentFilter);
+        ContextCompat.registerReceiver(requireActivity(), downloadCompleteReceiver, intentFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     public boolean isExternalStorageWritable() {
