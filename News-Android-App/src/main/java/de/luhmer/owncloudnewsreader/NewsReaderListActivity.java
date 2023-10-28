@@ -200,66 +200,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) != null);
 	}
 
-	@Override
-	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-		restoreInstanceState(savedInstanceState);
-		super.onRestoreInstanceState(savedInstanceState);
-	}
-
-	@Override
-	protected void onSaveInstanceState(@NonNull Bundle outState) {
-		saveInstanceState(outState);
-		super.onSaveInstanceState(outState);
-	}
-
-	private void saveInstanceState(Bundle outState) {
-		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-		if (ndf != null) {
-			outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFolder());
-			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
-			outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
-
-			NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
-			if (adapter != null) {
-				outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
-				outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
-			}
-		}
-		if (mSearchView != null) {
-			mSearchString = mSearchView.getQuery().toString();
-			outState.putString(SEARCH_KEY, mSearchString);
-        }
-    }
-
-    private void restoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState.containsKey(ID_FEED_STRING) &&
-                savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
-                savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
-
-			NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().binding.list, this, mPostDelayHandler, mPrefs);
-
-			adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
-			adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
-
-			getNewsReaderDetailFragment()
-					.getRecyclerView()
-					.setAdapter(adapter);
-
-			updateDetailFragment(savedInstanceState.getLong(ID_FEED_STRING),
-					savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
-					savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
-					false);
-		}
-		mSearchString = savedInstanceState.getString(SEARCH_KEY, null);
-	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		if (drawerToggle != null) {
-			drawerToggle.onConfigurationChanged(newConfig);
-		}
-	}
 	SlidingUpPanelLayout.PanelSlideListener panelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
 		@Override
 		public void onPanelSlide(View panel, float slideOffset) {
@@ -379,6 +319,67 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 
 		showChangelogIfNecessary();
+	}
+
+	@Override
+	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+		restoreInstanceState(savedInstanceState);
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+	@Override
+	protected void onSaveInstanceState(@NonNull Bundle outState) {
+		saveInstanceState(outState);
+		super.onSaveInstanceState(outState);
+	}
+
+	private void saveInstanceState(Bundle outState) {
+		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+		if (ndf != null) {
+			outState.putLong(OPTIONAL_FOLDER_ID, ndf.getIdFolder());
+			outState.putBoolean(IS_FOLDER_BOOLEAN, ndf.getIdFeed() == null);
+			outState.putLong(ID_FEED_STRING, ndf.getIdFeed() != null ? ndf.getIdFeed() : ndf.getIdFolder());
+
+			NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter();
+			if (adapter != null) {
+				outState.putInt(LIST_ADAPTER_TOTAL_COUNT, adapter.getTotalItemCount());
+				outState.putInt(LIST_ADAPTER_PAGE_COUNT, adapter.getCachedPages());
+			}
+		}
+		if (mSearchView != null) {
+			mSearchString = mSearchView.getQuery().toString();
+			outState.putString(SEARCH_KEY, mSearchString);
+		}
+	}
+
+	private void restoreInstanceState(Bundle savedInstanceState) {
+		if (savedInstanceState.containsKey(ID_FEED_STRING) &&
+				savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
+				savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
+
+			NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().binding.list, this, mPostDelayHandler, mPrefs);
+
+			adapter.setTotalItemCount(savedInstanceState.getInt(LIST_ADAPTER_TOTAL_COUNT));
+			adapter.setCachedPages(savedInstanceState.getInt(LIST_ADAPTER_PAGE_COUNT));
+
+			getNewsReaderDetailFragment()
+					.getRecyclerView()
+					.setAdapter(adapter);
+
+			updateDetailFragment(savedInstanceState.getLong(ID_FEED_STRING),
+					savedInstanceState.getBoolean(IS_FOLDER_BOOLEAN),
+					savedInstanceState.getLong(OPTIONAL_FOLDER_ID),
+					false);
+		}
+		mSearchString = savedInstanceState.getString(SEARCH_KEY, null);
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		if (drawerToggle != null) {
+			drawerToggle.onConfigurationChanged(newConfig);
+		}
 	}
 
 	void showChangelogIfNecessary() {
