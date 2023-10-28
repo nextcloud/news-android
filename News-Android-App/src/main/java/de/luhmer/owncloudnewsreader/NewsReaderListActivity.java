@@ -149,26 +149,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@VisibleForTesting(otherwise = PROTECTED)
 	public ActivityNewsreaderBinding binding;
-	OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
-		// we need to handle two cases:
-		// - The user has the "Open Sidebar on Backpress" option enabled
-		//   - the callback need to be set because we want to close the podcast pane on back navigation (in case it's open)
-		//   - set callback will be enabled/disabled based on whether the podcast pane is open/closed
-		// - The user has the "Open Sidebar on Backpress" option disabled
-		//   - the callback needs to check first if the podcast is open - if so - close it and on
-		//     the next back navigation open the sidebar - and then close the app
-		//   - once the podcast pane is open - the callback will be disabled
-		//   - the event listener (onDrawerClosed) will enable the back pressed callback again
-		@Override
-		public void handleOnBackPressed() {
-			Log.d(TAG, "handleOnBackPressed() 1");
-			if (!handlePodcastBackPressed()) {
-				Log.d(TAG, "handleOnBackPressed() 2");
-				binding.drawerLayout.openDrawer(GravityCompat.START);
-				setEnabled(false);
-			}
-		}
-	};
 
 	//private ServiceConnection mConnection = null;
 
@@ -289,6 +269,27 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			boolean panelIsOpen = newState.equals(SlidingUpPanelLayout.PanelState.EXPANDED);
 			// in case the podcast panel is open, we need to close it first (intercept back presses)
 			onBackPressedCallback.setEnabled(panelIsOpen || mBackOpensDrawer);
+		}
+	};
+
+	OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+		// we need to handle two cases:
+		// - The user has the "Open Sidebar on Backpress" option enabled
+		//   - the callback need to be set because we want to close the podcast pane on back navigation (in case it's open)
+		//   - set callback will be enabled/disabled based on whether the podcast pane is open/closed
+		// - The user has the "Open Sidebar on Backpress" option disabled
+		//   - the callback needs to check first if the podcast is open - if so - close it and on
+		//     the next back navigation open the sidebar - and then close the app
+		//   - once the podcast pane is open - the callback will be disabled
+		//   - the event listener (onDrawerClosed) will enable the back pressed callback again
+		@Override
+		public void handleOnBackPressed() {
+			Log.d(TAG, "handleOnBackPressed() 1");
+			if (!handlePodcastBackPressed()) {
+				Log.d(TAG, "handleOnBackPressed() 2");
+				binding.drawerLayout.openDrawer(GravityCompat.START);
+				setEnabled(false);
+			}
 		}
 	};
 
