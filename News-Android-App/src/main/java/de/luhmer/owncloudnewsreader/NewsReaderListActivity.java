@@ -150,6 +150,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@VisibleForTesting(otherwise = PROTECTED)
 	public ActivityNewsreaderBinding binding;
 
+	private boolean mBackOpensDrawer = false;
+
 	//private ServiceConnection mConnection = null;
 
 	private ActionBarDrawerToggle drawerToggle;
@@ -197,7 +199,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private boolean isUserLoggedIn() {
 		return (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) != null);
 	}
-	private boolean mBackOpensDrawer = false;
 
 	@Override
 	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
