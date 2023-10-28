@@ -165,7 +165,7 @@ dependencies {
     // implementation 'org.apache.commons:commons-lang3:3.4' // Required for DAO generation
 
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
-    implementation 'org.jsoup:jsoup:1.16.1'
+    implementation 'org.jsoup:jsoup:1.16.2'
     implementation ('net.rdrei.android.dirchooser:library:3.2@aar') {
         exclude group: 'com.google.auto.value', module: 'auto-value'
         transitive = true
