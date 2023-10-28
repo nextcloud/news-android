@@ -49,7 +49,6 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -79,6 +78,7 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -140,7 +140,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITLE = "TITLE";
 
-    public static HashSet<Long> stayUnreadItems = new HashSet<>();
+	public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
 	private MenuItem menuItemOnlyUnread;
 	private MenuItem menuItemDownloadMoreItems;
@@ -149,6 +149,26 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@VisibleForTesting(otherwise = PROTECTED)
 	public ActivityNewsreaderBinding binding;
+	OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+		// we need to handle two cases:
+		// - The user has the "Open Sidebar on Backpress" option enabled
+		//   - the callback need to be set because we want to close the podcast pane on back navigation (in case it's open)
+		//   - set callback will be enabled/disabled based on whether the podcast pane is open/closed
+		// - The user has the "Open Sidebar on Backpress" option disabled
+		//   - the callback needs to check first if the podcast is open - if so - close it and on
+		//     the next back navigation open the sidebar - and then close the app
+		//   - once the podcast pane is open - the callback will be disabled
+		//   - the event listener (onDrawerClosed) will enable the back pressed callback again
+		@Override
+		public void handleOnBackPressed() {
+			Log.d(TAG, "handleOnBackPressed() 1");
+			if (!handlePodcastBackPressed()) {
+				Log.d(TAG, "handleOnBackPressed() 2");
+				binding.drawerLayout.openDrawer(GravityCompat.START);
+				setEnabled(false);
+			}
+		}
+	};
 
 	//private ServiceConnection mConnection = null;
 
@@ -197,113 +217,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private boolean isUserLoggedIn() {
 		return (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) != null);
 	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
-
-		SharedPreferences defaultValueSp = getSharedPreferences(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
-		if (!defaultValueSp.getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
-			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_data_sync, true);
-			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_display, true);
-			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_general, true);
-		}
-
-		super.onCreate(savedInstanceState);
-
-
-		//trying to get back button working again
-		OnBackPressedDispatcher dispatcher = getOnBackPressedDispatcher();
-		getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
-			@Override
-			public void handleOnBackPressed() {
-				Log.d(TAG, "NewsReaderListActivity handleOnBackPressed() called");
-				if (!handlePodcastBackPressed()) {
-
-					//Add in check for preference to determine if closes app or opens drawer
-					if (mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false)) {  //change this line to the preference test - or add into an AND in the below iff
-
-						if (binding.drawerLayout != null) {
-							if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
-								setEnabled(false);
-							else
-								binding.drawerLayout.openDrawer(GravityCompat.START);
-						} else {
-							setEnabled(false);
-						}
-					} else {
-						setEnabled(false);
-					}
-				}
-			}
-		});
-
-		binding = ActivityNewsreaderBinding.inflate(getLayoutInflater());
-		setContentView(binding.getRoot());
-
-		setSupportActionBar(binding.toolbarLayout.toolbar);
-
-		initAccountManager();
-
-		checkNotificationPermissions();
-
-		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
-		binding.toolbarLayout.avatar.setOnClickListener((v) -> startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN));
-
-		// Init config --> if nothing is configured start the login dialog.
-		if (!isUserLoggedIn()) {
-			startLoginActivity();
-		}
-
-		Bundle args = new Bundle();
-		String userName = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String url = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-		args.putString("accountName", String.format("%s\n%s", userName, url));
-		NewsReaderListFragment newsReaderListFragment = new NewsReaderListFragment();
-		newsReaderListFragment.setArguments(args);
-		// Insert the fragment by replacing any existing fragment
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.left_drawer, newsReaderListFragment)
-				.commit();
-
-		if (binding.drawerLayout != null) {
-			drawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbarLayout.toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
-				@Override
-				public void onDrawerClosed(View drawerView) {
-					super.onDrawerClosed(drawerView);
-
-					syncState();
-				}
-
-				@Override
-				public void onDrawerOpened(View drawerView) {
-					super.onDrawerOpened(drawerView);
-					reloadCountNumbersOfSlidingPaneAdapter();
-
-					syncState();
-				}
-			};
-
-			binding.drawerLayout.addDrawerListener(drawerToggle);
-
-			adjustEdgeSizeOfDrawer();
-		}
-		setSupportActionBar(binding.toolbarLayout.toolbar);
-		Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-		if (drawerToggle != null) {
-			drawerToggle.syncState();
-		}
-
-		//AppRater.app_launched(this);
-		//AppRater.rateNow(this);
-
-		if (savedInstanceState == null) { //When the app starts (no orientation change)
-			updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-		}
-
-		showChangelogIfNecessary();
-	}
+	private boolean mBackOpensDrawer = false;
 
 	@Override
 	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
@@ -364,6 +278,105 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (drawerToggle != null) {
 			drawerToggle.onConfigurationChanged(newConfig);
 		}
+	}
+	SlidingUpPanelLayout.PanelSlideListener panelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
+		@Override
+		public void onPanelSlide(View panel, float slideOffset) {
+		}
+
+		@Override
+		public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+			boolean panelIsOpen = newState.equals(SlidingUpPanelLayout.PanelState.EXPANDED);
+			// in case the podcast panel is open, we need to close it first (intercept back presses)
+			onBackPressedCallback.setEnabled(panelIsOpen || mBackOpensDrawer);
+		}
+	};
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
+		SharedPreferences defaultValueSp = getSharedPreferences(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
+		if (!defaultValueSp.getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
+			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_data_sync, true);
+			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_display, true);
+			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_general, true);
+		}
+
+		super.onCreate(savedInstanceState);
+
+		binding = ActivityNewsreaderBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
+
+		setSupportActionBar(binding.toolbarLayout.toolbar);
+
+		initAccountManager();
+
+		checkNotificationPermissions();
+
+		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
+		binding.toolbarLayout.avatar.setOnClickListener((v) -> startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN));
+
+		// Init config --> if nothing is configured start the login dialog.
+		if (!isUserLoggedIn()) {
+			startLoginActivity();
+		}
+
+		Bundle args = new Bundle();
+		String userName = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
+		String url = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+		args.putString("accountName", String.format("%s\n%s", userName, url));
+		NewsReaderListFragment newsReaderListFragment = new NewsReaderListFragment();
+		newsReaderListFragment.setArguments(args);
+		// Insert the fragment by replacing any existing fragment
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.left_drawer, newsReaderListFragment)
+				.commit();
+
+		if (binding.drawerLayout != null) {
+			drawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbarLayout.toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
+				@Override
+				public void onDrawerClosed(View drawerView) {
+					super.onDrawerClosed(drawerView);
+					onBackPressedCallback.setEnabled(mBackOpensDrawer);
+
+					syncState();
+				}
+
+				@Override
+				public void onDrawerOpened(View drawerView) {
+					super.onDrawerOpened(drawerView);
+					reloadCountNumbersOfSlidingPaneAdapter();
+
+					// -> handleOnBackPressed() will disable it
+					// onBackPressedCallback.setEnabled(false);
+
+					syncState();
+				}
+			};
+
+			binding.drawerLayout.addDrawerListener(drawerToggle);
+
+			adjustEdgeSizeOfDrawer();
+		}
+		setSupportActionBar(binding.toolbarLayout.toolbar);
+		Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+		if (drawerToggle != null) {
+			drawerToggle.syncState();
+		}
+
+		getPodcastSlidingUpPanelLayout().addPanelSlideListener(panelSlideListener);
+		getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+
+		//AppRater.app_launched(this);
+		//AppRater.rateNow(this);
+
+		if (savedInstanceState == null) { // When the app starts (no orientation change)
+			updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+		}
+
+		showChangelogIfNecessary();
 	}
 
 	void showChangelogIfNecessary() {
@@ -566,12 +579,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	protected void onResume() {
+		mBackOpensDrawer = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false);
+		onBackPressedCallback.setEnabled(mBackOpensDrawer);
+
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 		if (newsReaderListFragment != null) {
-            newsReaderListFragment.reloadAdapter();
+			newsReaderListFragment.reloadAdapter();
 			newsReaderListFragment.bindUserInfoToUI();
 		}
-        invalidateOptionsMenu();
+
+		invalidateOptionsMenu();
 		super.onResume();
 	}
 
@@ -888,30 +905,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         return true;
 	}
 
-	// remove this method overide as no longer works when using the new android predictive back gestures
-	// cleanup once confirmed new approach is working as expected
-/*
-	@Override
-	public void onBackPressed() {
-		Log.e(TAG,"NewsReaderListActivity onBackPressed() Called");
-		if (!handlePodcastBackPressed()) {
-
-			//Add in check for preference to determine if closes app or opens drawer
-			if (mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER,false)) {  //change this line to the preference test - or add into an AND in the below iff
-				if (binding.drawerLayout != null) {
-					if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
-						//super.onBackPressed();
-					//else
-						binding.drawerLayout.openDrawer(GravityCompat.START);
-				} else {
-					//super.onBackPressed();
-				}
-			}else {
-				super.onBackPressed();
-			}
-		}
-	}
-*/
 	public static final int RESULT_SETTINGS = 15642;
 
 	private void syncMenuItemUnreadOnly() {
