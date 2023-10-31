@@ -79,6 +79,7 @@
                     android:gravity="start"
                     android:hint="@string/pref_title_username"
                     android:inputType="textEmailAddress"
+                    android:autofillHints="emailAddress"
                     android:textAlignment="viewStart" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -104,6 +105,7 @@
                     android:gravity="start"
                     android:hint="@string/pref_title_password"
                     android:inputType="textPassword"
+                    android:autofillHints="password"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textAlignment="viewStart" />
