@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -65,6 +66,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -153,6 +156,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private boolean mBackOpensDrawer = false;
 
 	//private ServiceConnection mConnection = null;
+
+	private OcsUser currentUser = null;
 
 	private ActionBarDrawerToggle drawerToggle;
 	private SearchView mSearchView;
@@ -642,25 +647,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onUserInfoUpdated(OcsUser userInfo) {
-		final Drawable placeHolder = getDrawable(R.drawable.ic_baseline_account_circle_24);
+		currentUser = userInfo;
 
-		if (userInfo.getId() != null) {
-			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
-
-			// TODO: invalidate options menu and hack avatar and user name into the menu
-			/*Glide.with(this)
-					.load(avatarUrl)
-					.diskCacheStrategy(DiskCacheStrategy.DATA)
-					.placeholder(placeHolder)
-					.error(placeHolder)
-					.circleCrop()
-					.into(binding.toolbarLayout.avatar);
-
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				binding.toolbarLayout.avatar.setTooltipText(userInfo.getDisplayName());
-			}*/
-		}
+		invalidateOptionsMenu();
 	}
 
 	@Override
@@ -848,6 +837,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	public MenuItem getMenuItemDownloadMoreItems() {
 		return menuItemDownloadMoreItems;
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		MenuItem accountItem = menu.findItem(R.id.menu_account);
+		prepareAccountMenuItem(accountItem);
+
+		return super.onPrepareOptionsMenu(menu);
 	}
 
 	@Override
@@ -1252,6 +1249,38 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private void openRssItemInExternalBrowser(Uri currentUrl) {
 		Intent browserIntent = new Intent(Intent.ACTION_VIEW, currentUrl);
 		startActivity(browserIntent);
+	}
+
+	private void prepareAccountMenuItem(MenuItem accountMenuItem) {
+		if (currentUser == null || currentUser.getId() == null) {
+			// the default menu item is fine if no user info is present
+			return;
+		}
+
+		accountMenuItem.setTitle(currentUser.getDisplayName());
+
+		String ownCloudRootPath = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+		String avatarUrl = currentUser.getAvatarUrl(ownCloudRootPath);
+
+		Glide.with(this)
+				.asDrawable()
+				.load(avatarUrl)
+				.diskCacheStrategy(DiskCacheStrategy.DATA)
+				.placeholder(R.drawable.ic_baseline_account_circle_24)
+				.error(R.drawable.ic_baseline_account_circle_24)
+				.circleCrop()
+				// TODO: Which are the correct dimensions in pixels?
+				.into(new CustomTarget<Drawable>(300, 300) {
+					@Override
+					public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+						accountMenuItem.setIcon(resource);
+					}
+
+					@Override
+					public void onLoadCleared(@Nullable Drawable placeholder) {
+						accountMenuItem.setIcon(R.drawable.ic_baseline_account_circle_24);
+					}
+				});
 	}
 
 	// private void openRssItemInInternalBrowser(Uri currentUrl) {
