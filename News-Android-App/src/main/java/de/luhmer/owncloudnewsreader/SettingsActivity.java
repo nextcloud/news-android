@@ -70,6 +70,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static final String CB_MARK_AS_READ_WHILE_SCROLLING_STRING = "cb_MarkAsReadWhileScrolling";
     public static final String CB_SHOW_FAST_ACTIONS = "cb_ShowFastActions";
+    public static final String CB_PREF_BACK_OPENS_DRAWER = "cb_prefBackButtonOpensDrawer";
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
     public static final String CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING = "cb_openInBrowserDirectly";
 

@@ -90,6 +90,11 @@
             android:title="@string/pref_title_OpenInBrowserDirectly"
             app:iconSpaceReserved="false"/>
 
+        <SwitchPreference
+            android:key="cb_prefBackButtonOpensDrawer"
+            android:title="@string/pref_title_BackButtonOpensDrawer"
+            app:iconSpaceReserved="false" />
+
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/pref_general_swipe_action"

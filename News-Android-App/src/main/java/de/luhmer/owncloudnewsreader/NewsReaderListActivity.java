@@ -48,6 +48,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -77,6 +78,7 @@ import com.nextcloud.android.sso.exceptions.SSOException;
 import com.nextcloud.android.sso.exceptions.TokenMismatchException;
 import com.nextcloud.android.sso.helper.SingleAccountHelper;
 import com.nextcloud.android.sso.ui.UiExceptionManager;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -138,7 +140,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public static final String ITEM_ID = "ITEM_ID";
 	public static final String TITLE = "TITLE";
 
-    public static HashSet<Long> stayUnreadItems = new HashSet<>();
+	public static HashSet<Long> stayUnreadItems = new HashSet<>();
 
 	private MenuItem menuItemOnlyUnread;
 	private MenuItem menuItemDownloadMoreItems;
@@ -147,6 +149,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@VisibleForTesting(otherwise = PROTECTED)
 	public ActivityNewsreaderBinding binding;
+
+	private boolean mBackOpensDrawer = false;
 
 	//private ServiceConnection mConnection = null;
 
@@ -196,6 +200,40 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) != null);
 	}
 
+	SlidingUpPanelLayout.PanelSlideListener panelSlideListener = new SlidingUpPanelLayout.PanelSlideListener() {
+		@Override
+		public void onPanelSlide(View panel, float slideOffset) {
+		}
+
+		@Override
+		public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+			boolean panelIsOpen = newState.equals(SlidingUpPanelLayout.PanelState.EXPANDED);
+			// in case the podcast panel is open, we need to close it first (intercept back presses)
+			onBackPressedCallback.setEnabled(panelIsOpen || mBackOpensDrawer);
+		}
+	};
+
+	OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+		// we need to handle two cases:
+		// - The user has the "Open Sidebar on Backpress" option enabled
+		//   - the callback need to be set because we want to close the podcast pane on back navigation (in case it's open)
+		//   - set callback will be enabled/disabled based on whether the podcast pane is open/closed
+		// - The user has the "Open Sidebar on Backpress" option disabled
+		//   - the callback needs to check first if the podcast is open - if so - close it and on
+		//     the next back navigation open the sidebar - and then close the app
+		//   - once the podcast pane is open - the callback will be disabled
+		//   - the event listener (onDrawerClosed) will enable the back pressed callback again
+		@Override
+		public void handleOnBackPressed() {
+			Log.d(TAG, "handleOnBackPressed() 1");
+			if (!handlePodcastBackPressed()) {
+				Log.d(TAG, "handleOnBackPressed() 2");
+				binding.drawerLayout.openDrawer(GravityCompat.START);
+				setEnabled(false);
+			}
+		}
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
@@ -243,6 +281,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				@Override
 				public void onDrawerClosed(View drawerView) {
 					super.onDrawerClosed(drawerView);
+					onBackPressedCallback.setEnabled(mBackOpensDrawer);
 
 					syncState();
 				}
@@ -251,6 +290,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				public void onDrawerOpened(View drawerView) {
 					super.onDrawerOpened(drawerView);
 					reloadCountNumbersOfSlidingPaneAdapter();
+
+					// -> handleOnBackPressed() will disable it
+					// onBackPressedCallback.setEnabled(false);
 
 					syncState();
 				}
@@ -266,10 +308,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			drawerToggle.syncState();
 		}
 
+		getPodcastSlidingUpPanelLayout().addPanelSlideListener(panelSlideListener);
+		getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+
 		//AppRater.app_launched(this);
 		//AppRater.rateNow(this);
 
-		if (savedInstanceState == null) { //When the app starts (no orientation change)
+		if (savedInstanceState == null) { // When the app starts (no orientation change)
 			updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
 		}
 
@@ -304,13 +349,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (mSearchView != null) {
 			mSearchString = mSearchView.getQuery().toString();
 			outState.putString(SEARCH_KEY, mSearchString);
-        }
-    }
+		}
+	}
 
-    private void restoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState.containsKey(ID_FEED_STRING) &&
-                savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
-                savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
+	private void restoreInstanceState(Bundle savedInstanceState) {
+		if (savedInstanceState.containsKey(ID_FEED_STRING) &&
+				savedInstanceState.containsKey(IS_FOLDER_BOOLEAN) &&
+				savedInstanceState.containsKey(OPTIONAL_FOLDER_ID)) {
 
 			NewsListRecyclerAdapter adapter = new NewsListRecyclerAdapter(this, getNewsReaderDetailFragment().binding.list, this, mPostDelayHandler, mPrefs);
 
@@ -537,12 +582,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	protected void onResume() {
+		mBackOpensDrawer = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false);
+		onBackPressedCallback.setEnabled(mBackOpensDrawer);
+
 		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
 		if (newsReaderListFragment != null) {
-            newsReaderListFragment.reloadAdapter();
+			newsReaderListFragment.reloadAdapter();
 			newsReaderListFragment.bindUserInfoToUI();
 		}
-        invalidateOptionsMenu();
+
+		invalidateOptionsMenu();
 		super.onResume();
 	}
 
@@ -857,13 +906,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
 
         return true;
-	}
-
-	@Override
-	public void onBackPressed() {
-		if (!handlePodcastBackPressed()) {
-			super.onBackPressed();
-		}
 	}
 
 	public static final int RESULT_SETTINGS = 15642;
