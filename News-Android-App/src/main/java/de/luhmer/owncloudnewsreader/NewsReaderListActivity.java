@@ -256,9 +256,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		checkNotificationPermissions();
 
-		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
-		binding.toolbarLayout.avatar.setOnClickListener((v) -> startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN));
-
 		// Init config --> if nothing is configured start the login dialog.
 		if (!isUserLoggedIn()) {
 			startLoginActivity();
@@ -651,7 +648,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
 			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
 
-			Glide.with(this)
+			// TODO: invalidate options menu and hack avatar and user name into the menu
+			/*Glide.with(this)
 					.load(avatarUrl)
 					.diskCacheStrategy(DiskCacheStrategy.DATA)
 					.placeholder(placeHolder)
@@ -661,7 +659,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				binding.toolbarLayout.avatar.setTooltipText(userInfo.getDisplayName());
-			}
+			}*/
 		}
 	}
 
@@ -927,6 +925,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 		} else if (itemId == R.id.menu_update) {
 			startSync();
+		}
+		else if (itemId == R.id.menu_account) {
+			startLoginActivity();
 		}
 		else if (itemId == R.id.menu_toggleShowOnlyUnread) {
 			boolean newValue = !mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);

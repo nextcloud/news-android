@@ -18,6 +18,13 @@
         app:showAsAction="always|collapseActionView" />
 
     <item
+        android:id="@+id/menu_account"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/switch_account"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/menu_download_web_archive"
         android:enabled="true"
         android:title="@string/action_download_articles_offline"
