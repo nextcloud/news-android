@@ -81,6 +81,9 @@
     <string name="action_feed_rename">Renomear a fonte</string>
     <string name="action_feed_move">Mover a fonte</string>
     <string name="action_feed_notification_settings">Axustes de notificación</string>
+    <string name="action_feed_open_in">Axustes de apertura</string>
+    <string name="action_feed_open_in_general_setting">Usar os axustes xerais</string>
+    <string name="action_feed_open_in_detailed_view">Vista detallada</string>
     <string name="feed_remove_button">Retirar</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Confirma que quere retirar esta fonte? Isto non pode desfacerse!</string>
