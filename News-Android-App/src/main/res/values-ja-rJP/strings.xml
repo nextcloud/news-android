@@ -157,7 +157,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">スクロール時に既読としてマークする</string>
     <string name="pref_title_ShowFastActions">高速アクセス機能を有効化</string>
     <string name="pref_title_OpenInBrowserDirectly">詳細な表示をスキップし、ブラウザーで記事を開く</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">未知の証明書を受け入れますか？</string>
     <string name="mtm_decision_always">常に</string>

@@ -162,7 +162,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
     <string name="pref_title_ShowFastActions">Snelle toegangsfuncties activeren</string>
     <string name="pref_title_OpenInBrowserDirectly">Sla detailvoorbeeld over en open artikel in browser</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Onbekend certificaat accepteren?</string>
     <string name="mtm_decision_always">Altijd</string>

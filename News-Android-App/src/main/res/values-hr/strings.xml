@@ -143,7 +143,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Označi kao pročitano tijekom pomicanja</string>
     <string name="pref_title_ShowFastActions">Aktiviraj funkcije brzog pristupa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči detaljan prikaz i otvori članak u pregledniku</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Prihvati nepoznatu vjerodajnicu?</string>
     <string name="mtm_decision_always">Uvijek</string>

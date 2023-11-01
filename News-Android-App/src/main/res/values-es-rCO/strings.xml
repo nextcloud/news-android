@@ -112,7 +112,6 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navegar con los botones de volumen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído al desplazar</string>
     <string name="pref_title_OpenInBrowserDirectly">Omitir la vista detallada y abrir el artículo en el navegador</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">¿Aceptar certificados desconocidos?</string>
     <string name="mtm_decision_always">Siempre</string>

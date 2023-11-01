@@ -167,7 +167,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marchează ca citit in timpul derulării</string>
     <string name="pref_title_ShowFastActions">Activați funcția de acces rapid</string>
     <string name="pref_title_OpenInBrowserDirectly">Sari peste vizualizarea detaliată și deschide articole în browser</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepta Certificat Necunoscut?</string>
     <string name="mtm_decision_always">Întotdeauna</string>

@@ -157,7 +157,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Đánh dấu đã đọc trong khi di chuyển</string>
     <string name="pref_title_ShowFastActions">Kích hoạt các chức năng truy cập nhanh</string>
     <string name="pref_title_OpenInBrowserDirectly">Bỏ qua mục hiển thị chi tiết và mở bài báo trong trình duyệt</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Chấp nhận Certificate không biết nguồn gốc ?</string>
     <string name="mtm_decision_always">Luôn luôn</string>

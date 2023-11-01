@@ -169,7 +169,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
     <string name="pref_title_ShowFastActions">Attiva funzioni di accesso rapido</string>
     <string name="pref_title_OpenInBrowserDirectly">Salta la vista dettagliata e apri l\'articolo nel browser</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Vuoi accettare un certificato sconosciuto?</string>
     <string name="mtm_decision_always">Sempre</string>

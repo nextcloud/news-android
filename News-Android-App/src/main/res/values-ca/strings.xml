@@ -164,7 +164,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
     <string name="pref_title_ShowFastActions">Activa les funcions d\'accés ràpid</string>
     <string name="pref_title_OpenInBrowserDirectly">Omet la vista detallada i obre l\'article dins del navegador</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
     <string name="mtm_decision_always">Sempre</string>

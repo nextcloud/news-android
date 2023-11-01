@@ -172,7 +172,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Означи као прочитано током клизања</string>
     <string name="pref_title_ShowFastActions">Активирај функције за брзи приступ</string>
     <string name="pref_title_OpenInBrowserDirectly">Прескочи детаљни преглед и одмах отвори чланак у прегледачу</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Прихватити непознати сертификат?</string>
     <string name="mtm_decision_always">Увек</string>

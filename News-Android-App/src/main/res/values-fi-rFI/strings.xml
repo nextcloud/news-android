@@ -164,7 +164,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merkitse luetuiksi vierittäessä</string>
     <string name="pref_title_ShowFastActions">Ota käyttöön pikatoiminnot</string>
     <string name="pref_title_OpenInBrowserDirectly">Ohita artikkelinäkymä ja avaa se suoraan selaimessa</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Hyväksytäänkö tuntematon varmenne?</string>
     <string name="mtm_decision_always">Aina</string>

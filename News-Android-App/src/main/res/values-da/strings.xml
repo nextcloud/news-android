@@ -139,7 +139,6 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
     <string name="pref_title_OpenInBrowserDirectly">Spring detaljeret visning over og åbn artikel i browseren</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
     <string name="mtm_decision_always">Altid</string>

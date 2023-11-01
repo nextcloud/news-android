@@ -172,7 +172,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Med pomikanjem označi prispevke kot prebrane</string>
     <string name="pref_title_ShowFastActions">Omogoči možnosti hitrega dostopa</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči podrobni pogled in odpri vir v brskalniku</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ali želite prejeti neznano digitalno potrdilo?</string>
     <string name="mtm_decision_always">Vedno</string>

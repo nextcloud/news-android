@@ -167,7 +167,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
     <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini etkinleştir</string>
     <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp makaleyi tarayıcıda aç</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Bilinmeyen sertifikalar kabul edilsin mi?</string>
     <string name="mtm_decision_always">Her zaman</string>

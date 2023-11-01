@@ -170,7 +170,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
     <string name="pref_title_ShowFastActions">Activer les fonctions d\'accès rapide</string>
     <string name="pref_title_OpenInBrowserDirectly">Ignorer la vue détaillée et ouvrir dans un navigateur</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
     <string name="mtm_decision_always">Toujours</string>

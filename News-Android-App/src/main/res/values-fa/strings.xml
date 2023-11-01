@@ -164,7 +164,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری به عنوان خوانده شده در حال پیمایش</string>
     <string name="pref_title_ShowFastActions">فعال کردن عمل‌کردهای دسترسی سریع</string>
     <string name="pref_title_OpenInBrowserDirectly">پرش از نمای باجزییات و گشودن مقاله در مرورگر</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">پذیرش گواهی‌نامهٔ ناشناس؟</string>
     <string name="mtm_decision_always">همواره</string>

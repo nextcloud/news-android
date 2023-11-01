@@ -172,7 +172,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
     <string name="pref_title_ShowFastActions">Aktivovať funkcie pre rýchly prístup</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskočte podrobné zobrazenie a otvorte článok v prehliadači</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Prijať neznámy certifikát?</string>
     <string name="mtm_decision_always">Vždy</string>

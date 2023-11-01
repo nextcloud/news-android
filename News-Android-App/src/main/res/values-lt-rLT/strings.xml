@@ -146,7 +146,6 @@
     <string name="pref_title_NavigateWithVolumeButtons">Naršyti su garso mygtukais</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Žymėti perskaitytu slenkant</string>
     <string name="pref_title_OpenInBrowserDirectly">Praleisti išsamų atvaizdavimą ir atidaryti straipsnį naršyklėje.</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Priimti nežinomą liudijimą?</string>
     <string name="mtm_decision_always">Visada</string>

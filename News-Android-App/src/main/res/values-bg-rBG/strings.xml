@@ -162,7 +162,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Означаване като \"Прочетена\" след скролиране</string>
     <string name="pref_title_ShowFastActions">Активиране на функциите за бърз достъп</string>
     <string name="pref_title_OpenInBrowserDirectly">Без подробен изглед, директно отваряне на статиите в браузъра</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Приемане на неизвестни сертификати?</string>
     <string name="mtm_decision_always">Винаги</string>

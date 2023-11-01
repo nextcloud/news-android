@@ -136,7 +136,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
     <string name="pref_title_ShowFastActions">Virkja aðgerðir fyrir skyndiaðgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
     <string name="mtm_decision_always">Alltaf</string>

@@ -139,7 +139,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marca comente lèghidu cando ses iscurrende</string>
     <string name="pref_title_ShowFastActions">Ativa funtziones de atzessu lestru</string>
     <string name="pref_title_OpenInBrowserDirectly">Brinca sa vista a sa minuda e aberi s\'artìculu in su navigadore</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Cheres atzetare unu tzertificadu disconnotu?</string>
     <string name="mtm_decision_always">Semper</string>

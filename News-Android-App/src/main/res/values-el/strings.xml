@@ -162,7 +162,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
     <string name="pref_title_ShowFastActions">Ενεργοποιήστε τις λειτουργίες γρήγορης πρόσβασης</string>
     <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αρχείου στον περιηγητή</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
     <string name="mtm_decision_always">Πάντα</string>

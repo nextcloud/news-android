@@ -137,7 +137,6 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navigacija pomoću dugmadi za jačinu zvuka</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označi kao pročitano tokom klizanja</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskoči detaljni pregled i odmah otvori članak u pregledaču</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Prihvatiti nepoznati sertifikat?</string>
     <string name="mtm_decision_always">Uvek</string>

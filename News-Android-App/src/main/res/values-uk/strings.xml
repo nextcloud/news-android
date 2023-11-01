@@ -174,7 +174,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
     <string name="pref_title_ShowFastActions">Увімкнути функції швидкого доступу</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд і відкрити статтю в браузері</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
     <string name="mtm_decision_always">Завжди</string>

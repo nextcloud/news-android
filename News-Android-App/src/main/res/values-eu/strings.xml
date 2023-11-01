@@ -164,7 +164,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
     <string name="pref_title_ShowFastActions">Gaitu sarbide azkarreko funtzioak</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltatu ikuspegi xehatua eta ireki artikulua nabigatzailean</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ziurtagiri ezezaguna onartu?</string>
     <string name="mtm_decision_always">Beti</string>

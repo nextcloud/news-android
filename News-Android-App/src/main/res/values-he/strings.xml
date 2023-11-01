@@ -144,7 +144,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">סימון כנקרא בזמן הגלילה</string>
     <string name="pref_title_ShowFastActions">הפעלת תכונות גישה מהירה</string>
     <string name="pref_title_OpenInBrowserDirectly">לדלג על התצוגה המפורטת ולפתוח את הכתבה בדפדפן</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">לקבל אישור בלתי ידוע?</string>
     <string name="mtm_decision_always">תמיד</string>

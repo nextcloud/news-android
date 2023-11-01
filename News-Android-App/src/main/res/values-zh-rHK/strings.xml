@@ -162,7 +162,6 @@
     <string name="pref_title_MarkAsReadWhileScrolling">當滾動時標為已讀</string>
     <string name="pref_title_ShowFastActions">啟動快速存取功能</string>
     <string name="pref_title_OpenInBrowserDirectly">略過詳細檢視，並在瀏覽器開啟文章</string>
-
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">允許未知憑證？</string>
     <string name="mtm_decision_always">總是</string>
