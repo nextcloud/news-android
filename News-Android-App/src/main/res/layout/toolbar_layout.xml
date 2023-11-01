@@ -1,36 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.Material3.Toolbar.Surface"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1" />
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/avatar"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/spacer_1x"
-                android:background="@null"
-                android:contentDescription="@string/switch_account"
-                android:padding="@dimen/spacer_1x"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_baseline_account_circle_24"
-                tools:visibility="visible" />
-        </FrameLayout>
-    </LinearLayout>
 </com.google.android.material.appbar.AppBarLayout>

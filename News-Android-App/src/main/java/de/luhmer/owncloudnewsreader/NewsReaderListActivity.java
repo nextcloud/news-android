@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -65,6 +66,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -153,6 +157,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private boolean mBackOpensDrawer = false;
 
 	//private ServiceConnection mConnection = null;
+
+	private OcsUser currentUser = null;
 
 	private ActionBarDrawerToggle drawerToggle;
 	private SearchView mSearchView;
@@ -255,9 +261,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		initAccountManager();
 
 		checkNotificationPermissions();
-
-		binding.toolbarLayout.avatar.setVisibility(View.VISIBLE);
-		binding.toolbarLayout.avatar.setOnClickListener((v) -> startActivityForResult(new Intent(this, LoginDialogActivity.class), RESULT_LOGIN));
 
 		// Init config --> if nothing is configured start the login dialog.
 		if (!isUserLoggedIn()) {
@@ -645,24 +648,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	@Override
 	public void onUserInfoUpdated(OcsUser userInfo) {
-		final Drawable placeHolder = getDrawable(R.drawable.ic_baseline_account_circle_24);
+		currentUser = userInfo;
 
-		if (userInfo.getId() != null) {
-			String mOc_root_path = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-			String avatarUrl = mOc_root_path + "/index.php/avatar/" + Uri.encode(userInfo.getId()) + "/64";
-
-			Glide.with(this)
-					.load(avatarUrl)
-					.diskCacheStrategy(DiskCacheStrategy.DATA)
-					.placeholder(placeHolder)
-					.error(placeHolder)
-					.circleCrop()
-					.into(binding.toolbarLayout.avatar);
-
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				binding.toolbarLayout.avatar.setTooltipText(userInfo.getDisplayName());
-			}
-		}
+		invalidateOptionsMenu();
 	}
 
 	@Override
@@ -853,6 +841,14 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		MenuItem accountItem = menu.findItem(R.id.menu_account);
+		prepareAccountMenuItem(accountItem);
+
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.news_reader, menu);
@@ -927,6 +923,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				return true;
 		} else if (itemId == R.id.menu_update) {
 			startSync();
+		}
+		else if (itemId == R.id.menu_account) {
+			startLoginActivity();
 		}
 		else if (itemId == R.id.menu_toggleShowOnlyUnread) {
 			boolean newValue = !mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
@@ -1251,6 +1250,37 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private void openRssItemInExternalBrowser(Uri currentUrl) {
 		Intent browserIntent = new Intent(Intent.ACTION_VIEW, currentUrl);
 		startActivity(browserIntent);
+	}
+
+	private void prepareAccountMenuItem(MenuItem accountMenuItem) {
+		if (currentUser == null || currentUser.getId() == null) {
+			// the default menu item is fine if no user info is present
+			return;
+		}
+
+		accountMenuItem.setTitle(currentUser.getDisplayName());
+
+		String ownCloudRootPath = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+		String avatarUrl = currentUser.getAvatarUrl(ownCloudRootPath);
+
+		Glide.with(this)
+				.asDrawable()
+				.load(avatarUrl)
+				.diskCacheStrategy(DiskCacheStrategy.DATA)
+				.placeholder(R.drawable.ic_baseline_account_circle_24)
+				.error(R.drawable.ic_baseline_account_circle_24)
+				.circleCrop()
+				.into(new CustomTarget<Drawable>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+					@Override
+					public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+						accountMenuItem.setIcon(resource);
+					}
+
+					@Override
+					public void onLoadCleared(@Nullable Drawable placeholder) {
+						accountMenuItem.setIcon(R.drawable.ic_baseline_account_circle_24);
+					}
+				});
 	}
 
 	// private void openRssItemInInternalBrowser(Uri currentUrl) {

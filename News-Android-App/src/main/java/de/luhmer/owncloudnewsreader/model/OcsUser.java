@@ -1,5 +1,9 @@
 package de.luhmer.owncloudnewsreader.model;
 
+import android.net.Uri;
+
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 
 /**
@@ -34,6 +38,14 @@ public class OcsUser implements Serializable {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
+
+	public @Nullable String getAvatarUrl(@Nullable String ownCloudRootPath) {
+		if (id == null || ownCloudRootPath == null) {
+			return null;
+		}
+
+		return ownCloudRootPath + "/index.php/avatar/" + Uri.encode(id) + "/64";
+	}
 
     @Override
     public boolean equals(Object o) {
