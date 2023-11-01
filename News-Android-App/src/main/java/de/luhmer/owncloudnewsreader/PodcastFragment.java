@@ -167,7 +167,7 @@ public class PodcastFragment extends Fragment {
 
     @Subscribe
     public void onEvent(StartDownloadPodcast podcast) {
-        PodcastDownloadService.startPodcastDownload(getActivity(), podcast.podcast);//, new DownloadReceiver(new Handler(), new WeakReference<ProgressBar>(holder.pbDownloadPodcast)));
+        PodcastDownloadService.startPodcastDownload(getActivity(), podcast.getPodcast());
     }
 
     @Subscribe
