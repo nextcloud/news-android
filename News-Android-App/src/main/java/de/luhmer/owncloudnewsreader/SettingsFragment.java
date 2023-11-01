@@ -68,11 +68,14 @@ import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
+import okhttp3.OkHttpClient;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     protected @Inject SharedPreferences mPrefs;
-    protected @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
+    protected @Inject OkHttpClient mOkHttpClient;
+    protected @Inject
+    @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
     private static String version = "<loading>";
 
     @Override
@@ -263,12 +266,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         //   the list will show the default sync interval value of 15min
         //   whereas the user may have configured some other value
         //   once the user selects a value, this new value is actually used; and no more impact is expected
-
     }
 
     private void bindDataSyncPreferences(final PreferenceFragmentCompat prefFrag)
     {
-
         // handle the sync interval list:
         bindPreferenceSummaryToValue(prefFrag.findPreference(PREF_SYNC_SETTINGS));
 
@@ -321,7 +322,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         boolean resetDatabase = !dbConn.areThereAnyUnsavedChangesInDatabase();
 
         if(resetDatabase) {
-            new ResetDatabaseAsyncTask(context).execute();
+            new ResetDatabaseAsyncTask(context, mOkHttpClient).execute();
         } else {
             new AlertDialog.Builder(context)
                     .setTitle(context.getString(R.string.warning))
@@ -333,7 +334,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             PostDelayHandler pDelayHandler = new PostDelayHandler(context);
                             pDelayHandler.stopRunningPostDelayHandler();
 
-                            new ResetDatabaseAsyncTask(context).execute();
+                            new ResetDatabaseAsyncTask(context, mOkHttpClient).execute();
                         }
                     })
                     .setNegativeButton(context.getString(android.R.string.no), null)
@@ -412,8 +413,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         private ProgressDialog pd;
         private final Context context;
 
-        public ResetDatabaseAsyncTask(Context context) {
+        private final OkHttpClient okHttpClient;
+
+        public ResetDatabaseAsyncTask(Context context, OkHttpClient okHttpClient) {
             this.context = context;
+            this.okHttpClient = okHttpClient;
         }
 
         @Override
@@ -434,7 +438,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
-            ImageHandler.clearCache(context);
+            ImageHandler.clearGlideCache(context);
+            ImageHandler.clearOkHttpCache(okHttpClient);
             NewsFileUtils.clearWebArchiveCache(context);
             NewsFileUtils.clearPodcastCache(context);
             return null;

@@ -1,5 +1,8 @@
 package de.luhmer.owncloudnewsreader.di;
 
+import static de.luhmer.owncloudnewsreader.helper.NextcloudGlideModuleKt.CACHE_SIZE;
+import static de.luhmer.owncloudnewsreader.helper.NextcloudGlideModuleKt.MB;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,6 +16,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
@@ -85,17 +89,35 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache) {
-        // setCache(cache);
-        return new OkHttpClient();
-    }
-
-    @Provides
-    @Singleton
     PostDelayHandler providePostDelayHandler() {
         return new PostDelayHandler(mApplication);
     }
 
+
+    @Provides
+    @Singleton
+    OkHttpClient provideOkHttpClient(SharedPreferences prefs) {
+        String cacheSize = prefs.getString(SettingsActivity.SP_MAX_CACHE_SIZE, String.valueOf(CACHE_SIZE));
+        Long diskCacheSizeBytes = Long.valueOf(cacheSize) * MB;
+
+        OkHttpClient.Builder client = new OkHttpClient.Builder()
+                .cache(new Cache(mApplication.getApplicationContext().getCacheDir(), diskCacheSizeBytes));
+        /*
+                .addInterceptor(Interceptor { chain: Interceptor.Chain ->
+            val response = chain.proceed(chain.request())
+            if (response.cacheResponse != null) {
+                Log.d("NextcloudGlideModule", "cached response: " + response.request.url)
+            } else if (response.networkResponse != null) {
+                Log.d("NextcloudGlideModule", "network response: " + response.request.url)
+                for (h in response.request.headers) {
+                    Log.d("NextcloudGlideModule", "request headers: $h")
+                }
+            }
+            response
+        })
+         */
+        return client.build();
+    }
 
     /*
     @Provides

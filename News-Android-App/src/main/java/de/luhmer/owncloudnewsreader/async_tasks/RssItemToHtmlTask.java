@@ -290,9 +290,10 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
             try {
                 File file = null;
                 try {
+                    // TODO!!!! THIS CODE BELOW DOESN'T WORK WITH OKHTTP!!
                     file = glide
                             .asFile()
-                            .diskCacheStrategy(DiskCacheStrategy.DATA)
+                            // .diskCacheStrategy(DiskCacheStrategy.DATA) // TODO!! NOT WORKING
                             .onlyRetrieveFromCache(true)
                             // .listener(rl)
                             .load(link)
@@ -313,7 +314,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         return text;
     }
 
-    private static RequestListener<File> rl = new RequestListener<>() {
+    private static final RequestListener<File> rl = new RequestListener<>() {
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
             // Log the GlideException here (locally or with a remote logging framework):

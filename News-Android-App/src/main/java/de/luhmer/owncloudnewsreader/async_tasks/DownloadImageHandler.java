@@ -25,7 +25,6 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
@@ -51,7 +50,7 @@ public class DownloadImageHandler {
 			Bitmap bm = glide
 					.asBitmap()
 					.load(mImageUrl.toString())
-					.diskCacheStrategy(DiskCacheStrategy.DATA)
+					// .diskCacheStrategy(DiskCacheStrategy.DATA) // use okhttp cache
 					.submit()
 					.get();
 			NotifyDownloadFinished(bm);
