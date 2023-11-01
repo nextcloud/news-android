@@ -377,9 +377,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         }
 
-        body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8);
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
-        startActivity(browserIntent);
+        try {
+            body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8.toString());
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
+            startActivity(browserIntent);
+        } catch (UnsupportedEncodingException e) {
+            // Should never happen for UTF8 on android
+        }
     }
 
 
