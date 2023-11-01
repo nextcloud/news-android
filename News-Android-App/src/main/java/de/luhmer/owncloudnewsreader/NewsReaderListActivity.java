@@ -67,6 +67,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
@@ -1269,8 +1270,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				.placeholder(R.drawable.ic_baseline_account_circle_24)
 				.error(R.drawable.ic_baseline_account_circle_24)
 				.circleCrop()
-				// TODO: Which are the correct dimensions in pixels?
-				.into(new CustomTarget<Drawable>(300, 300) {
+				.into(new CustomTarget<Drawable>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
 					@Override
 					public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
 						accountMenuItem.setIcon(resource);
