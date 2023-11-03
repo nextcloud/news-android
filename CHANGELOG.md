@@ -1,3 +1,13 @@
+0.9.9.83
+---------------------
+- Dependency updates
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1315">!1315 - Fixed crash when reporting errors (API 33 and below) (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1311">!1311 - Fixed flickering of toolbar (thanks to @cemrich)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1306">!1306 - Fix avatar placeholder renders white on white in light theme (thanks to @cemrich)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1303">!1303 - Fix app crashing when streaming or downloading podcasts (thanks to @cemrich)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1304">!1304 - Back button preference and functionality to open sidebar (thanks to @mentalinc)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1307">!1307 - Enable androids autofill service in login mask (thanks to @cemrich)</a>
+
 0.9.9.82
 ---------------------
 - Note: Due to changes to the database schema the data will be cleared when upgrading
