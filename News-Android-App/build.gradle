@@ -119,8 +119,8 @@ repositories {
 final DAGGER_VERSION = '2.48.1'
 final GLIDE_VERSION = '4.16.0'
 final ESPRESSO_VERSION = '3.5.1'
-final OKHTTP_VERSION = '4.11.0'
-final MOCKITO_VERSION = '5.6.0'
+final OKHTTP_VERSION = '4.12.0'
+final MOCKITO_VERSION = '5.7.0'
 final RETROFIT_VERSION = '2.9.0'
 
 dependencies {
@@ -185,7 +185,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
     implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation("org.mockito:mockito-core:$MOCKITO_VERSION") {

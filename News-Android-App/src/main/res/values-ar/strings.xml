@@ -187,6 +187,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">حدِّد كمقروء أثناء التنقل</string>
     <string name="pref_title_ShowFastActions">مكًن وظائف الوصول السريع</string>
     <string name="pref_title_OpenInBrowserDirectly">تخطي العرض المفصل وفتح المقال في المتصفح</string>
+    <string name="pref_title_BackButtonOpensDrawer">زِر الرجوع يفتح الدُّرج</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">هل تقبل بشهادة غير معروفة؟</string>
     <string name="mtm_decision_always">دائماً</string>
