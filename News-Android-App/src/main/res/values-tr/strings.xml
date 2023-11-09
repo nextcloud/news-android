@@ -40,9 +40,9 @@
     <string name="action_add_new_folder">Yeni klasör ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
     <string name="action_search">Arama</string>
-    <string name="action_download_articles_offline">Makaleleri çevrim dışı olarak indir</string>
+    <string name="action_download_articles_offline">Yazıları çevrim dışı olarak indir</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Makaleler çevrim dışı kullanım için indiriliyor</string>
+    <string name="notification_download_articles_offline">Yazılar çevrim dışı kullanılmak üzere indiriliyor</string>
     <string name="notification_download_images_offline">Görseller çevrim dışı kullanım için indiriliyor</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Yeni %d okunmamış ögeniz var</item>
@@ -161,12 +161,12 @@
     <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>
     <string name="warning">Uyarı</string>
     <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
-    <string name="pref_title_ShowOnlyUnread">Yalnızca okunmamış makaleler görüntülensin</string>
+    <string name="pref_title_ShowOnlyUnread">Yalnızca okunmamış yazılar görüntülensin</string>
     <string name="pref_title_DisableHostnameVerification">Sunucu adı doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
     <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini etkinleştir</string>
-    <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp makaleyi tarayıcıda aç</string>
+    <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp yazıyı tarayıcıda aç</string>
     <string name="pref_title_BackButtonOpensDrawer">Geri düğmesi menüyü açsın</string>
 
     <!-- MemorizingTrustManager -->
