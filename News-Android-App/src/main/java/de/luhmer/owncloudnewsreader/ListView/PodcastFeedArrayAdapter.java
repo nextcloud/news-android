@@ -47,8 +47,7 @@ public class PodcastFeedArrayAdapter extends ArrayAdapter<PodcastFeedItem> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PodcastFeedClicked podcastFeedClicked = new PodcastFeedClicked();
-                podcastFeedClicked.position = position;
+                PodcastFeedClicked podcastFeedClicked = new PodcastFeedClicked(position);
                 eventBus.post(podcastFeedClicked);
             }
         });
