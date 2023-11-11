@@ -119,7 +119,7 @@
     <string name="action_sign_in_short">Acceder</string>
     <string name="login_progress_signing_in">Accedendo a…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Precisase este campo</string>
+    <string name="error_field_required">Precísase deste campo</string>
     <string name="error_invalid_url">URL incorrecto</string>
 
 
@@ -189,7 +189,7 @@
     <string name="pref_license">Licenza</string>
     <string name="pref_license_summary">GNU Licenza Pública Xeral Affero (AGPL) versión 3</string>
     <string name="pref_report_issue">Informe dun incidente</string>
-    <string name="pref_report_issue_summary">Precisase dunha conta (gratuíta) de GitHub</string>
+    <string name="pref_report_issue_summary">Precísase dunha conta (de balde) de GitHub</string>
     <string name="pref_contribute">Colabora!</string>
     <string name="pref_contribute_summary">Obteña o código fonte</string>
     <string name="pref_privacy">Privacidade</string>
