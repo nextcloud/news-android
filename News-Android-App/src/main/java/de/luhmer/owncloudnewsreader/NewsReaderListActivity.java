@@ -476,17 +476,30 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	}
 
+	/**
+	 * Updates the unread counts of the data in the sidebar (e.g. when the user marked a few articles as read we just need to reload the unread counts)
+	 */
 	public void reloadCountNumbersOfSlidingPaneAdapter() {
 		NewsReaderListFragment nlf = getSlidingListFragment();
 		if (nlf != null) {
-			nlf.ListViewNotifyDataSetChanged();
+			nlf.listViewNotifyDataSetChanged();
+		}
+	}
+
+	/**
+	 * Reload the whole Sidebar (all the categories / items in the sidebar)
+	 */
+	public void reloadSidebar() {
+		NewsReaderListFragment nlf = getSlidingListFragment();
+		if (nlf != null) {
+			nlf.reloadAdapter();
+			nlf.bindUserInfoToUI();
 		}
 	}
 
 	protected void updateCurrentRssView() {
 		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 		if (ndf != null) {
-			//ndf.reloadAdapterFromScratch();
 			ndf.updateCurrentRssView();
 		}
 	}
@@ -550,11 +563,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	 * @return true if new items count was greater than 0
 	 */
 	private boolean syncFinishedHandler() {
-		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-		newsReaderListFragment.reloadAdapter();
 		UpdateItemList();
 		updatePodcastView();
 		updateDetailFragmentTitle();
+		reloadSidebar();
 
 		if(mApi.getNewsAPI() != null) {
             getSlidingListFragment().startAsyncTaskGetUserInfo();
@@ -588,11 +600,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		mBackOpensDrawer = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false);
 		onBackPressedCallback.setEnabled(mBackOpensDrawer);
 
-		NewsReaderListFragment newsReaderListFragment = getSlidingListFragment();
-		if (newsReaderListFragment != null) {
-			newsReaderListFragment.reloadAdapter();
-			newsReaderListFragment.bindUserInfoToUI();
-		}
+		reloadSidebar();
 
 		invalidateOptionsMenu();
 		super.onResume();
@@ -931,7 +939,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			boolean newValue = !mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
 			mPrefs.edit().putBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, newValue).commit();
 			item.setChecked(newValue);
-			getSlidingListFragment().reloadAdapter();
+			reloadSidebar();
 			updateCurrentRssView();
 		}
 		else if (itemId == R.id.menu_StartImageCaching) {
@@ -1064,8 +1072,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_OK) {
-            UpdateListView();
-            getSlidingListFragment().ListViewNotifyDataSetChanged();
+			updateListView();
+			reloadCountNumbersOfSlidingPaneAdapter();
         }
 
 		if (requestCode == RESULT_LOGIN) {
@@ -1169,18 +1177,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void resetUiAndStartSync() {
-		NewsReaderListFragment nrlf = getSlidingListFragment();
-		if (nrlf != null) {
-			nrlf.reloadAdapter();
-			updateCurrentRssView();
-			startSync();
-			nrlf.bindUserInfoToUI();
-		} else {
-			Log.e(TAG, "resetUiAndStartSync - NewsReaderListFragment is not available");
-		}
+		reloadSidebar();
+		updateCurrentRssView();
+		startSync();
 	}
 
-	private void UpdateListView() {
+	private void updateListView() {
 		getNewsReaderDetailFragment().notifyDataSetChangedOnAdapter();
 	}
 

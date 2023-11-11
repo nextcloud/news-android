@@ -92,20 +92,20 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
     private Callbacks mCallbacks = null;
 
 
-	protected static final String TAG = "NewsReaderListFragment";
+    protected static final String TAG = "NewsReaderListFragment";
 
-    public void ListViewNotifyDataSetChanged()  {
-        lvAdapter.NotifyDataSetChangedAsync();
+    public void listViewNotifyDataSetChanged() {
+        lvAdapter.notifyDataSetChangedAsync();
     }
 
     public void reloadAdapter() {
         lvAdapter.ReloadAdapterAsync();
     }
 
-	public void setRefreshing(boolean isRefreshing) {
-		if(isRefreshing) {
-			//headerLogo.setImageResource(R.drawable.ic_launcher_background);
-			binding.headerLogo.setVisibility(View.INVISIBLE);
+    public void setRefreshing(boolean isRefreshing) {
+        if (isRefreshing) {
+            //headerLogo.setImageResource(R.drawable.ic_launcher_background);
+            binding.headerLogo.setVisibility(View.INVISIBLE);
 			binding.headerLogoProgress.setVisibility(View.VISIBLE);
 		} else {
 			//headerLogo.setImageResource(R.drawable.ic_launcher);
