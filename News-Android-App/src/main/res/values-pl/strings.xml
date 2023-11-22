@@ -177,6 +177,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
     <string name="pref_title_ShowFastActions">Aktywuj funkcje szybkiego dostępu</string>
     <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółów i otwórz artykuł w przeglądarce</string>
+    <string name="pref_title_BackButtonOpensDrawer">Przycisk wstecz otwiera szufladę</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Akceptować nieznane certyfikaty?</string>
     <string name="mtm_decision_always">Zawsze</string>
