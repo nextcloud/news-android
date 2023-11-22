@@ -54,7 +54,6 @@ import de.luhmer.owncloudnewsreader.databinding.SubscriptionListItemBinding;
 import de.luhmer.owncloudnewsreader.databinding.SubscriptionListSubItemBinding;
 import de.luhmer.owncloudnewsreader.helper.FavIconHandler;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
-import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.interfaces.ExpListTextClicked;
 import de.luhmer.owncloudnewsreader.model.AbstractItem;
 import de.luhmer.owncloudnewsreader.model.ConcreteFeedItem;
@@ -254,7 +253,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             }
 
             if (!skipFireEvent)
-                fireListTextClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
+                fireListTextClicked(idFeed, true, group.idFolder);
         });
 
         viewHolder.binding.listItemLayout.setOnLongClickListener(v -> {
@@ -264,7 +263,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             if (group instanceof ConcreteFeedItem) {
                 fireListTextLongClicked(idFeed, false, (long) ITEMS_WITHOUT_FOLDER.getValue());
             } else {
-                fireListTextLongClicked(idFeed, true, ((FolderSubscribtionItem) group).idFolder);
+                fireListTextLongClicked(idFeed, true, group.idFolder);
             }
             return true; //consume event
         });
@@ -361,10 +360,80 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 		return true;
 	}
 
-    public void NotifyDataSetChangedAsync() {
+    public void notifyDataSetChangedAsync() {
         new NotifyDataSetChangedAsyncTask().execute((Void) null);
     }
 
+    /**
+     * Reload categories and items from the database
+     */
+    public Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> loadCategoriesAndItemsFromDatabase() {
+        showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
+
+        ArrayList<AbstractItem> mCategories = new ArrayList<>();
+        SparseArray<ArrayList<ConcreteFeedItem>> mItems = new SparseArray<>();
+
+        mCategories.add(new FolderSubscribtionItem(mContext.getString(R.string.allUnreadFeeds), null, ALL_UNREAD_ITEMS.getValue()));
+        mCategories.add(new FolderSubscribtionItem(mContext.getString(R.string.starredFeeds), null, ALL_STARRED_ITEMS.getValue()));
+
+
+        StopWatch sw = new StopWatch();
+        sw.start();
+
+        List<Folder> folderList;
+        //if(showOnlyUnread) {
+        //    folderList = dbConn.getListOfFoldersWithUnreadItems();
+        //} else {
+        folderList = dbConn.getListOfFolders();
+        //}
+
+        sw.stop();
+        Log.v(TAG, "Time needed (fetch folder list): " + sw);
+
+
+        for (Folder folder : folderList) {
+            mCategories.add(new FolderSubscribtionItem(folder.getLabel(), null, folder.getId()));
+        }
+
+        for (Feed feed : dbConn.getListOfFeedsWithoutFolders(showOnlyUnread)) {
+            mCategories.add(new ConcreteFeedItem(feed.getFeedTitle(), (long) ITEMS_WITHOUT_FOLDER.getValue(), feed.getId(), feed.getFaviconUrl(), feed.getId()));
+        }
+
+
+        for (int groupPosition = 0; groupPosition < mCategories.size(); groupPosition++) {
+            //int parent_id = (int)getGroupId(groupPosition);
+            int parent_id = (int) mCategories.get(groupPosition).id_database;
+            mItems.append(parent_id, new ArrayList<>());
+
+            List<Feed> feedItemList = null;
+
+            if (parent_id == ALL_UNREAD_ITEMS.getValue()) {
+                feedItemList = dbConn.getAllFeedsWithUnreadRssItems();
+            } else if (parent_id == ALL_STARRED_ITEMS.getValue()) {
+                feedItemList = dbConn.getAllFeedsWithStarredRssItems();
+            } else {
+                for (Folder folder : folderList) {//Find the current selected folder
+                    if (folder.getId() == parent_id) {//Current item
+                        feedItemList = dbConn.getAllFeedsWithUnreadRssItemsForFolder(folder.getId());
+                        break;
+                    }
+                }
+            }
+
+            if(feedItemList != null) {
+                for (Feed feed : feedItemList) {
+                    ConcreteFeedItem newItem = new ConcreteFeedItem(feed.getFeedTitle(), (long) parent_id, feed.getId(), feed.getFaviconUrl(), feed.getId());
+                    mItems.get(parent_id).add(newItem);
+                }
+            }
+        }
+
+        return new Tuple<>(mCategories, mItems);
+    }
+
+    public void ReloadAdapterAsync() {
+        new ReloadAdapterAsyncTask().execute((Void) null);
+    }
 
     private class NotifyDataSetChangedAsyncTask extends AsyncTask<Void, Void, Void> {
         SparseArray<String> starredCountFeedsTemp;
@@ -386,7 +455,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
             urlsToFavIconsTemp = dbConn.getUrlsToFavIcons();
 
             stopwatch.stop();
-            Log.v(TAG, "Fetched folder/feed counts in " + stopwatch.toString());
+            Log.v(TAG, "Fetched folder/feed counts in " + stopwatch);
             return null;
         }
 
@@ -428,10 +497,6 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         }
     }
 
-    public void ReloadAdapterAsync() {
-        new ReloadAdapterAsyncTask().execute((Void) null);
-    }
-
     private class ReloadAdapterAsyncTask extends AsyncTask<Void, Void, Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>>> {
 
         public ReloadAdapterAsyncTask() {
@@ -442,13 +507,9 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         protected Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> doInBackground(Void... voids) {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
-
-            Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ad = ReloadAdapter();
-            //return reloadAdapter();
-
+            Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ad = loadCategoriesAndItemsFromDatabase();
             stopWatch.stop();
-            Log.v(TAG, "Reload Adapter - time taken: " + stopWatch.toString());
-
+            Log.v(TAG, "Reload Adapter - time taken: " + stopWatch);
             return ad;
         }
 
@@ -456,78 +517,11 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
         protected void onPostExecute(Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> arrayListSparseArrayTuple) {
             mCategoriesArrayList = arrayListSparseArrayTuple.key;
             mItemsArrayList = arrayListSparseArrayTuple.value;
-
-            notifyDataSetChanged();
-
-            NotifyDataSetChangedAsync();
-
+            notifyDataSetChanged(); // inform list view that the data changed
+            notifyDataSetChangedAsync();
             super.onPostExecute(arrayListSparseArrayTuple);
         }
 
-    }
-
-    public Tuple<ArrayList<AbstractItem>, SparseArray<ArrayList<ConcreteFeedItem>>> ReloadAdapter()
-    {
-        showOnlyUnread = mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
-
-        ArrayList<AbstractItem> mCategoriesArrayListAsync = new ArrayList<>();
-        mCategoriesArrayListAsync.add(new FolderSubscribtionItem(mContext.getString(R.string.allUnreadFeeds), null, ALL_UNREAD_ITEMS.getValue()));
-        mCategoriesArrayListAsync.add(new FolderSubscribtionItem(mContext.getString(R.string.starredFeeds), null, ALL_STARRED_ITEMS.getValue()));
-
-
-        StopWatch sw = new StopWatch();
-        sw.start();
-
-        List<Folder> folderList;
-        //if(showOnlyUnread) {
-        //    folderList = dbConn.getListOfFoldersWithUnreadItems();
-        //} else {
-            folderList = dbConn.getListOfFolders();
-        //}
-
-        sw.stop();
-        Log.v(TAG, "Time needed (fetch folder list): " + sw.toString());
-
-
-        for(Folder folder : folderList) {
-            mCategoriesArrayListAsync.add(new FolderSubscribtionItem(folder.getLabel(), null, folder.getId()));
-        }
-
-        for(Feed feed : dbConn.getListOfFeedsWithoutFolders(showOnlyUnread)) {
-            mCategoriesArrayListAsync.add(new ConcreteFeedItem(feed.getFeedTitle(), (long) ITEMS_WITHOUT_FOLDER.getValue(), feed.getId(), feed.getFaviconUrl(), feed.getId()));
-        }
-
-        SparseArray<ArrayList<ConcreteFeedItem>> mItemsArrayListAsync = new SparseArray<>();
-
-        for(int groupPosition = 0; groupPosition < mCategoriesArrayListAsync.size(); groupPosition++) {
-            //int parent_id = (int)getGroupId(groupPosition);
-            int parent_id = (int) mCategoriesArrayListAsync.get(groupPosition).id_database;
-            mItemsArrayListAsync.append(parent_id, new ArrayList<>());
-
-            List<Feed> feedItemList = null;
-
-            if(parent_id == ALL_UNREAD_ITEMS.getValue()) {
-                feedItemList = dbConn.getAllFeedsWithUnreadRssItems();
-            } else if(parent_id == ALL_STARRED_ITEMS.getValue()) {
-                feedItemList = dbConn.getAllFeedsWithStarredRssItems();
-            } else {
-                for(Folder folder : folderList) {//Find the current selected folder
-                    if (folder.getId() == parent_id) {//Current item
-                        feedItemList = dbConn.getAllFeedsWithUnreadRssItemsForFolder(folder.getId());
-                        break;
-                    }
-                }
-            }
-
-            if(feedItemList != null) {
-                for (Feed feed : feedItemList) {
-                    ConcreteFeedItem newItem = new ConcreteFeedItem(feed.getFeedTitle(), (long) parent_id, feed.getId(), feed.getFaviconUrl(), feed.getId());
-                    mItemsArrayListAsync.get(parent_id).add(newItem);
-                }
-            }
-        }
-
-        return new Tuple<>(mCategoriesArrayListAsync, mItemsArrayListAsync);
     }
 
 
