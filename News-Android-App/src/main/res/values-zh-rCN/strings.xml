@@ -162,6 +162,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
     <string name="pref_title_ShowFastActions">激活快速访问功能</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
+    <string name="pref_title_BackButtonOpensDrawer">返回按钮打开侧边栏</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">允许未知证书？</string>
     <string name="mtm_decision_always">总是</string>
