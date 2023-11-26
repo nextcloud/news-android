@@ -126,6 +126,8 @@
 
     <string name="pref_general_search_in_title">Titill</string>
     <string name="pref_general_search_in_body">Meginmál</string>
+    <string name="pref_general_search_in_both">Bæði</string>
+
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
     <string name="reset_cache_unsaved_changes">Það eru ósamstilltar breytingar. Viltu samt endurstilla skyndiminnið?</string>
     <string name="warning">Aðvörun</string>

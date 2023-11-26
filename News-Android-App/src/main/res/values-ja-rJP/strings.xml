@@ -146,6 +146,8 @@
 
     <string name="pref_general_search_in_title">タイトル</string>
     <string name="pref_general_search_in_body">本文</string>
+    <string name="pref_general_search_in_both">両方</string>
+
     <string name="dialog_clearing_cache">キャッシュをクリアしています。</string>
     <string name="dialog_clearing_cache_please_wait">キャッシュをクリアしています、しばらくお待ちください...</string>
     <string name="reset_cache_unsaved_changes">未同期の変更があります。とにかくキャッシュをリセットしますか？</string>
