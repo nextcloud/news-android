@@ -116,7 +116,7 @@
 
     <!-- Strings related to login -->
     <string name="login_manual">Ręczne logowanie</string>
-    <string name="login_sso">Zaloguj się używając aplikacji Nextcloud Files</string>
+    <string name="login_sso">Zaloguj się używając aplikacji Pliki Nextcloud</string>
     <string name="pref_title_username">Nazwa użytkownika</string>
     <string name="pref_title_password">Hasło</string>
     <string name="pref_title_owncloudRootPath">Adres główny Nextcloud</string>

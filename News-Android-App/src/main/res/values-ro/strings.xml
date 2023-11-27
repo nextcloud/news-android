@@ -114,7 +114,7 @@
     <string name="pref_title_username">Nume utilizator</string>
     <string name="pref_title_password">Parolă</string>
     <string name="pref_title_owncloudRootPath">Adresa principală Nextcloud</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Înregistraţi-vă</string>
     <string name="login_progress_signing_in">Autentificare ...</string>
@@ -281,7 +281,7 @@
     <string name="array_sync_interval_hour_3">3 ore</string>
     <string name="array_sync_interval_hour_6">6 ore</string>
     <string name="array_sync_interval_hour_12">12 ore</string>
-    <string name="array_sync_interval_hour_24">14 de ore</string>
+    <string name="array_sync_interval_hour_24">24 de ore</string>
     <string name="switch_account">Schimbă contul</string>
     
     <string name="successfully_exported">Exportat cu succes în:</string>
