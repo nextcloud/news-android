@@ -5,9 +5,9 @@
     <string name="title_activity_sync_interval_selector">Intervalo de sincronización</string>
     <string name="empty_view_content">No hay artículos aquí</string>
     <string name="empty_view_content_action">Arrastra hacia abajo para recargar</string>
-    <string name="toast_GettingMoreItems">Ha empezado la descarga de más elementos. Por favor, espera…</string>
+    <string name="toast_GettingMoreItems">Ha empezado la descarga de más elementos. Por favor, espere …</string>
     <string name="no_wifi_available">No hay una conexión WiFi</string>
-    <string name="do_you_want_to_download_without_wifi">¿Quieres descargar las imágenes sin conexión WiFi?</string>
+    <string name="do_you_want_to_download_without_wifi">¿Quiere descargar las imágenes sin conexión WiFi?</string>
     <string name="current_version">Está utilizando la versión %s</string>
     <string name="widget_header">Noticias de Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -99,7 +99,7 @@
     <string name="action_folder_rename">Renombrar carpeta</string>
     <string name="folder_remove_button">Eliminar</string>
     <string name="folder_rename_button">Renombrar</string>
-    <string name="confirm_folder_remove">¿Seguro que quieres eliminar esta carpeta? Esto no se puede deshacer.</string>
+    <string name="confirm_folder_remove">¿Seguro que quiere eliminar esta carpeta?, ¡Esto no se puede deshacer!.</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Recibir notificaciones únicas para esta fuente</string>
@@ -120,7 +120,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Iniciar sesión</string>
-    <string name="login_progress_signing_in">Registrándose…</string>
+    <string name="login_progress_signing_in">Registrándose …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo es necesario</string>
     <string name="error_invalid_url">URL incorrecta</string>
@@ -134,9 +134,9 @@
     </plurals>
     <string name="toast_no_more_downloads_available">No hay elementos disponibles</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Recuperado %d ítem por ahora…</item>
-        <item quantity="many">Recuperados %d ítems por ahora…</item>
-        <item quantity="other">Recuperados %d ítems por ahora…</item>
+        <item quantity="one">Recuperado %d ítem hasta ahora…</item>
+        <item quantity="many">Recuperados %d ítems hasta ahora…</item>
+        <item quantity="other">Recuperados %d ítems hasta ahora…</item>
     </plurals>
 
 
@@ -162,7 +162,7 @@
     <string name="pref_general_search_in_both">Ambos</string>
 
     <string name="dialog_clearing_cache">Vaciando el caché</string>
-    <string name="dialog_clearing_cache_please_wait">Limpiando caché. Por favor, espera…</string>
+    <string name="dialog_clearing_cache_please_wait">Limpiando caché. Por favor, espere …</string>
     <string name="reset_cache_unsaved_changes">Hay cambios no sincronizados. ¿Quiere vaciar la caché igualmente?</string>
     <string name="warning">Precaución</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar al inicio</string>
@@ -172,6 +172,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como leído mientras se desplaza</string>
     <string name="pref_title_ShowFastActions">Activar funciones de acceso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltarse la vista detallada y abrir el artículo en el navegador</string>
+    <string name="pref_title_BackButtonOpensDrawer">Botón de retroceso abre el cajón</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">¿Aceptar certificado desconocido?</string>
     <string name="mtm_decision_always">Siempre</string>
@@ -240,14 +242,14 @@
 
     <string name="content_desc_play">Reproducir</string>
     <string name="content_desc_pause">Pausar</string>
-    <string name="content_desc_playback_speed">Velocidad de reproducció</string>
-    <string name="content_desc_rewind">Retroceso</string>
-    <string name="content_desc_forward">Reenviar</string>
-    <string name="content_desc_expand">Expendir</string>
+    <string name="content_desc_playback_speed">Velocidad de reproducción</string>
+    <string name="content_desc_rewind">Retroceder</string>
+    <string name="content_desc_forward">Adelantar</string>
+    <string name="content_desc_expand">Expandir</string>
     <string name="content_desc_collapse">Colapsar</string>
     <string name="content_desc_mark_as_read">Marcar como leído</string>
     <string name="content_desc_mark_as_unread">Marcar como no leído</string>
-    <string name="content_desc_tap_to_refresh">Tocar para refrescar</string>
+    <string name="content_desc_tap_to_refresh">Toque para refrescar</string>
     <string name="content_desc_add_to_favorites">Añadir a favoritos</string>
     <string name="content_desc_remove_from_favorites">Eliminar de favoritos</string>
     <string name="content_desc_show_password">Mostrar contraseña</string>
@@ -292,7 +294,7 @@
     <string name="successfully_exported">Exportado con éxito a:</string>
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Procesando OPML</string>
-    <string name="please_wait">Por favor, espera…</string>
+    <string name="please_wait">Por favor, espere …</string>
     <string name="interval_sync_title">Intervalo Sync</string>
 
     </resources>
