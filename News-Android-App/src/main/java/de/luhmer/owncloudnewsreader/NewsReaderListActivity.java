@@ -1189,7 +1189,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	public void onClick(RssItemViewHolder vh, int position) {
 		Feed feed = vh.getRssItem().getFeed();
-		Long openIn	= feed.getOpenIn();
+
+		// check @NewsReadListDialogFragment
+		// open feed in means:
+		// 1: openInDetailedView
+		// 2: openInBrowserCct
+		// 3: openInBrowserExternal
+		Long openIn = feed.getOpenIn();
 
 		Uri currentUrl = Uri.parse(vh.getRssItem().getLink());
 
@@ -1199,14 +1205,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				//Choose Browser based on user settings
 				//modified copy from NewsDetailFragment.java:loadUrl(String url)
 				int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
-				switch(selectedBrowser) {
-					case 0:
-					case 2:
-						openRssItemInCustomTab(currentUrl);
-						break;
-					case 1:
-						openRssItemInExternalBrowser(currentUrl);
-						break;
+				switch (selectedBrowser) {
+					case 0, 2 -> openRssItemInCustomTab(currentUrl);
+					case 1 -> openRssItemInExternalBrowser(currentUrl);
 				}
 
 				((NewsListRecyclerAdapter) getNewsReaderDetailFragment().getRecyclerView().getAdapter()).changeReadStateOfItem(vh, true);
@@ -1215,17 +1216,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			}
 		} else {
 			switch (openIn.intValue()) {
-				case 1:
-					openRssItemInDetailedView(position);
-					break;
-				case 2:
-					openRssItemInCustomTab(currentUrl);
-					break;
-				case 3:
-					openRssItemInExternalBrowser(currentUrl);
-					break;
-				default:
-					throw new RuntimeException("Unreachable: openIn has illegal value " + openIn);
+				case 1 -> openRssItemInDetailedView(position);
+				case 2 -> openRssItemInCustomTab(currentUrl);
+				case 3 -> openRssItemInExternalBrowser(currentUrl);
+				default ->
+						throw new RuntimeException("Unreachable: openIn has illegal value " + openIn);
 			}
 		}
 	}
