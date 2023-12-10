@@ -1,3 +1,8 @@
+0.9.9.84
+---------------------
+- Dependency updates
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1332">!1332 - Typo in selected browser preference usage (thanks to @thebaztet)</a>
+
 0.9.9.83
 ---------------------
 - Dependency updates
