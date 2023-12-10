@@ -1201,12 +1201,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				int selectedBrowser = Integer.parseInt(mPrefs.getString(SettingsActivity.SP_DISPLAY_BROWSER, "0"));
 				switch(selectedBrowser) {
 					case 0:
+					case 2:
 						openRssItemInCustomTab(currentUrl);
 						break;
 					case 1:
-						//openRssItemInInternalBrowser(currentUrl);
-						break;
-					case 2:
 						openRssItemInExternalBrowser(currentUrl);
 						break;
 				}
