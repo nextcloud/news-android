@@ -81,6 +81,9 @@
     <string name="action_feed_rename">Aldatu izena jarioari</string>
     <string name="action_feed_move">Lekuz aldatu jarioa</string>
     <string name="action_feed_notification_settings">Jakinarazpen-ezarpenak</string>
+    <string name="action_feed_open_in">Irekiera ezarpenak</string>
+    <string name="action_feed_open_in_general_setting">Erabili ezarpen orokorrak</string>
+    <string name="action_feed_open_in_detailed_view">Ikuspegi xehea</string>
     <string name="feed_remove_button">Ezabatu</string>
     <string name="feed_rename_button">Berrizendatu</string>
     <string name="confirm_feed_remove">Ziur zaude jario hau ezabatu nahi duzu? Aldaketa ezin da desegin!</string>
@@ -164,6 +167,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markatu irakurrita gisa korritzean</string>
     <string name="pref_title_ShowFastActions">Gaitu sarbide azkarreko funtzioak</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltatu ikuspegi xehatua eta ireki artikulua nabigatzailean</string>
+    <string name="pref_title_BackButtonOpensDrawer">Atzeko botoiak tiradera irekitzen du</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Ziurtagiri ezezaguna onartu?</string>
     <string name="mtm_decision_always">Beti</string>
