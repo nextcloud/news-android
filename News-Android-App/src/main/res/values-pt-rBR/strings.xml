@@ -84,6 +84,8 @@
     <string name="action_feed_rename">Renomear Alimentação</string>
     <string name="action_feed_move">Mover Feed</string>
     <string name="action_feed_notification_settings">Configurações de notificação</string>
+    <string name="action_feed_open_in">Configurações de abertura</string>
+    <string name="action_feed_open_in_general_setting">Usar configuração geral</string>
     <string name="action_feed_open_in_detailed_view">Visualização detalhada</string>
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
@@ -170,6 +172,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
     <string name="pref_title_ShowFastActions">Ativar as funções de acesso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltar exibição detalhada e abrir o artigo no navegador</string>
+    <string name="pref_title_BackButtonOpensDrawer">O botão Voltar abre a gaveta</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
     <string name="mtm_decision_always">Sempre</string>
