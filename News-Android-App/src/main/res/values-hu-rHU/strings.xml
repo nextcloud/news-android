@@ -167,6 +167,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben megjelölés olvasottként</string>
     <string name="pref_title_ShowFastActions">Gyors elérési funkciók aktiválása</string>
     <string name="pref_title_OpenInBrowserDirectly">Részletes nézet megjelenítésének átugrása és megnyitás böngészőben</string>
+    <string name="pref_title_BackButtonOpensDrawer">A vissza gomb megnyitja a fiókot</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Elfogadja az ismeretlen tanúsítványokat?</string>
     <string name="mtm_decision_always">Mindig</string>
