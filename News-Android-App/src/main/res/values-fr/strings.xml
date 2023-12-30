@@ -84,6 +84,8 @@
     <string name="action_feed_rename">Renommer le Flux</string>
     <string name="action_feed_move">Déplacer le Flux</string>
     <string name="action_feed_notification_settings">Paramètres de notification</string>
+    <string name="action_feed_open_in">Paramètres d\'ouverture</string>
+    <string name="action_feed_open_in_general_setting">Utilisez les paramètres généraux</string>
     <string name="action_feed_open_in_detailed_view">Vue détaillée</string>
     <string name="feed_remove_button">Retirer</string>
     <string name="feed_rename_button">Renommer</string>
@@ -170,6 +172,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
     <string name="pref_title_ShowFastActions">Activer les fonctions d\'accès rapide</string>
     <string name="pref_title_OpenInBrowserDirectly">Ignorer la vue détaillée et ouvrir dans un navigateur</string>
+    <string name="pref_title_BackButtonOpensDrawer">Le bouton Retour ouvre le dossier</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepter les certificats non sûrs ?</string>
     <string name="mtm_decision_always">Toujours</string>
