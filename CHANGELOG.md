@@ -1,3 +1,8 @@
+0.9.9.85
+---------------------
+- Dependency updates
+- Add Google News Policy / Contact Us page
+
 0.9.9.84
 ---------------------
 - Dependency updates
