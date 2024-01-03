@@ -52,11 +52,21 @@
         </Preference>
 
         <Preference
+            android:key="cb_news_policy"
+            android:summary="@string/pref_news_policy_summary"
+            android:title="@string/pref_news_policy"
+            app:iconSpaceReserved="false">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/nextcloud/news-android/blob/master/NEWS-POLICY.md" />
+        </Preference>
+
+        <Preference
             android:key="cb_version"
             android:title="@string/pref_version"
             android:summary="@string/current_version"
-            app:iconSpaceReserved="false">
-        </Preference>
+            app:iconSpaceReserved="false"></Preference>
 
     </PreferenceCategory>
 

@@ -238,6 +238,8 @@
     <string name="pref_contribute_summary">Get the source code</string>
     <string name="pref_privacy">Privacy</string>
     <string name="pref_privacy_summary">Nextcloud News Android Privacy Policy</string>
+    <string name="pref_news_policy">Contact Us / News Policy</string>
+    <string name="pref_news_policy_summary">Nextcloud News Android News Policy / Contact Us</string>
     <string name="pref_version">Nextcloud News Android app</string>
 
 
