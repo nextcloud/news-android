@@ -1,5 +1,8 @@
 package de.luhmer.owncloudnewsreader.services;
 
+import static android.view.KeyEvent.KEYCODE_MEDIA_STOP;
+import static de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.ParsePodcastItemFromRssItem;
+
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -24,7 +27,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -37,7 +39,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -52,10 +53,10 @@ import de.luhmer.owncloudnewsreader.events.podcast.ExitPlayback;
 import de.luhmer.owncloudnewsreader.events.podcast.NewPodcastPlaybackListener;
 import de.luhmer.owncloudnewsreader.events.podcast.PodcastCompletedEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.RegisterVideoOutput;
+import de.luhmer.owncloudnewsreader.events.podcast.SeekPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
-import de.luhmer.owncloudnewsreader.events.podcast.SeekPodcast;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -64,9 +65,6 @@ import de.luhmer.owncloudnewsreader.services.podcast.MediaPlayerPlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.PlaybackService;
 import de.luhmer.owncloudnewsreader.services.podcast.TTSPlaybackService;
 import de.luhmer.owncloudnewsreader.view.PodcastNotification;
-
-import static android.view.KeyEvent.KEYCODE_MEDIA_STOP;
-import static de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm.ParsePodcastItemFromRssItem;
 
 public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
@@ -283,12 +281,14 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                     mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
                 }
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             Log.e(TAG, "Probably missing permission.." + ex);
         }
 
         mExecutorService.shutdown();
         podcastNotification.cancel();
+
+        eventBus.unregister(this);
 
         super.onDestroy();
     }
@@ -556,31 +556,6 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     }
 
     public void syncMediaAndPlaybackStatus() {
-        /*
-        if(mPlaybackService == null) {
-            audioPodcastEvent = new UpdatePodcastStatusEvent(0, 0, PlaybackService.Status.NOT_INITIALIZED, "", "", PlaybackService.VideoType.None, -1, -1);
-        } else {
-            audioPodcastEvent = new UpdatePodcastStatusEvent(
-                    mPlaybackService.getCurrentPosition(),
-                    mPlaybackService.getTotalDuration(),
-                    mPlaybackService.getStatus(),
-                    mPlaybackService.getMediaItem().link,
-                    "NOT SUPPORTED ANYMORE!!!",
-                    mPlaybackService.getVideoType(),
-                    mPlaybackService.getMediaItem().itemId,
-                    getPlaybackSpeed());
-        }
-
-        eventBus.post(audioPodcastEvent);
-
-        if(audioPodcastEvent.isPlaying()) {
-            startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
-        } else {
-            stopForeground(false);
-        }
-        */
-
-
         @PlaybackStateCompat.State int playbackState;
         int currentPosition = 0;
         int totalDuration = 0;

@@ -7,7 +7,6 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -29,6 +28,9 @@ public class MediaPlayerPlaybackService extends PlaybackService {
 
         mMediaPlayer = new MediaPlayer();
 
+        // disable video view on launch (e.g. for Android Auto)
+        setVideoView(null);
+
         //mMediaPlayer.setOnVideoSizeChangedListener((mp, width, height) -> configureVideo(width, height));
 
         mMediaPlayer.setOnErrorListener((mediaPlayer, i, i2) -> {
@@ -44,15 +46,14 @@ public class MediaPlayerPlaybackService extends PlaybackService {
         });
 
         mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
-            pause();//Send the over signal
+            pause(); //Send the over signal
             podcastCompleted();
         });
 
 
         try {
             setStatus(PlaybackStateCompat.STATE_CONNECTING);
-
-            mMediaPlayer.setDataSource(((PodcastItem) mediaItem).link);
+            mMediaPlayer.setDataSource(mediaItem.link);
             mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
