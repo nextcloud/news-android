@@ -18,5 +18,7 @@ Start image with:
 
 # Debug requests
 
+```bash
 curl -u admin http://localhost/index.php/apps/news/api/v1-2/items
 curl -u admin http://localhost/index.php/apps/news/api/v1-2/items/updated?lastModified=1636295405&type=3&id=0 | jq '. | length'
+```
