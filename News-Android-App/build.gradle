@@ -116,7 +116,7 @@ repositories {
     //needed for com.gu:option:1.3 in Android-DirectoryChooser
 }
 
-final DAGGER_VERSION = '2.49'
+final DAGGER_VERSION = '2.50'
 final GLIDE_VERSION = '4.16.0'
 final ESPRESSO_VERSION = '3.5.1'
 final OKHTTP_VERSION = '4.12.0'
