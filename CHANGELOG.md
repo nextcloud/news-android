@@ -1,6 +1,7 @@
 0.9.9.85
 ---------------------
 - Dependency updates
+- Fix crash when playing video podcasts on Android Auto
 - Add Google News Policy / Contact Us page
 
 0.9.9.84
