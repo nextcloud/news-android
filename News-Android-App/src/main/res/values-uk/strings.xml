@@ -99,7 +99,7 @@
     <string name="action_folder_rename">Перейменувати каталог</string>
     <string name="folder_remove_button">Вилучити</string>
     <string name="folder_rename_button">Перейменувати</string>
-    <string name="confirm_folder_remove">Ви дійсно хочете видалити цю папку? Це не можна скасувати!</string>
+    <string name="confirm_folder_remove">Дійсно вилучити цей каталог? Це не можна буде скасувати!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Отримувати унікальні сповіщення для цієї стрічки</string>
@@ -109,7 +109,7 @@
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Додати</string>
     <string name="hint_folder_name">Назва каталогу</string>
-    <string name="folder_already_exists">Ця папка вже існує</string>
+    <string name="folder_already_exists">Такий каталог вже присутній</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Вхід вручну</string>

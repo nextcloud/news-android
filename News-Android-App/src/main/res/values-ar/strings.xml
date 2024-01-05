@@ -214,6 +214,8 @@
     <string name="pref_contribute_summary">أحصل على الشفرة المصدرية</string>
     <string name="pref_privacy">الخصوصية</string>
     <string name="pref_privacy_summary">سياسة الخصوصية في تطبيق News من نكست كلاود على الأندرويد</string>
+    <string name="pref_news_policy">تواصل معنا / السياسة الإخبارية</string>
+    <string name="pref_news_policy_summary">الأخبار على أندرويد من نكست كلاود / تواصل معنا</string>
     <string name="pref_version">تطبيق News من نكست كلاود على الأندرويد</string>
 
 

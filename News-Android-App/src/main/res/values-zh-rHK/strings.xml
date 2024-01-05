@@ -189,6 +189,8 @@
     <string name="pref_contribute_summary">取得原始碼</string>
     <string name="pref_privacy">隱私</string>
     <string name="pref_privacy_summary">Nextcloud 新聞 Android 隱私政策</string>
+    <string name="pref_news_policy">聯絡我們 / 新聞政策</string>
+    <string name="pref_news_policy_summary">Nextcloud 新聞 Android 新聞政策 / 聯絡我們</string>
     <string name="pref_version">Nextcloud News Android 應用程式</string>
 
 

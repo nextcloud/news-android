@@ -81,6 +81,7 @@
     <string name="action_feed_rename">Döp om Feed</string>
     <string name="action_feed_move">Flytta flöde</string>
     <string name="action_feed_notification_settings">Aviseringsinställningar</string>
+    <string name="action_feed_open_in">Öppna i inställningar</string>
     <string name="action_feed_open_in_general_setting">Använd allmänna inställningar</string>
     <string name="action_feed_open_in_detailed_view">Detaljerad vy</string>
     <string name="feed_remove_button">Ta bort</string>
@@ -166,6 +167,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
     <string name="pref_title_ShowFastActions">Aktivera snabbåtkomstsfunktioner</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
+    <string name="pref_title_BackButtonOpensDrawer">Bakåtknappen öppnar panelen</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptera okänt certifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
@@ -191,6 +194,8 @@
     <string name="pref_contribute_summary">Hämta källkoden</string>
     <string name="pref_privacy">Integritet</string>
     <string name="pref_privacy_summary">Nextcloud Nyheter Android Integritetspolicy</string>
+    <string name="pref_news_policy">Kontakta oss / Nyhetspolicy</string>
+    <string name="pref_news_policy_summary">Nextcloud Nyheter Android Nyhetspolicy / Kontakta oss</string>
     <string name="pref_version">Nextcloud Nyheter Android-app</string>
 
 
