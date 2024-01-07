@@ -194,6 +194,8 @@
     <string name="pref_contribute_summary">Eskuratu iturburu-kodea</string>
     <string name="pref_privacy">Pribatutasuna</string>
     <string name="pref_privacy_summary">Nextcloud Albisteak Android Pribatutasun Gidalerroa</string>
+    <string name="pref_news_policy">Gurekin harremanetan jarri / Albisteen politika</string>
+    <string name="pref_news_policy_summary">Nextcloud Albisteak Android Albisteen politika / Jarri gurekin harremanetan</string>
     <string name="pref_version">Nextcloud Albisteak Android aplikazioa</string>
 
 
