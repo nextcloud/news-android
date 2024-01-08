@@ -194,6 +194,8 @@
     <string name="pref_contribute_summary">Kaynak kodunu alın</string>
     <string name="pref_privacy">Gizlilik</string>
     <string name="pref_privacy_summary">Nextcloud News Android kişisel verilerin gizliliği ilkesi</string>
+    <string name="pref_news_policy">Bize ulaşın / Haberler ilkesi</string>
+    <string name="pref_news_policy_summary">Nextcloud haberleri Android haberleri ilkesi / Bize ulaşın</string>
     <string name="pref_version">Nextcloud News Android uygulaması</string>
 
 
