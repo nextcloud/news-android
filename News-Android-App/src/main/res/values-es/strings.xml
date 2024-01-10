@@ -199,6 +199,8 @@
     <string name="pref_contribute_summary">Consigue el código fuente</string>
     <string name="pref_privacy">Privacidad</string>
     <string name="pref_privacy_summary">Política de privacidad para Android Noticias de Nextcloud</string>
+    <string name="pref_news_policy">Contáctenos / Política de noticias</string>
+    <string name="pref_news_policy_summary">Nextcloud Noticias, Política de Noticias de Android / Contáctenos</string>
     <string name="pref_version">App Android para Noticias de Nextcloud</string>
 
 
