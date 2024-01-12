@@ -199,6 +199,8 @@
     <string name="pref_contribute_summary">Узми изворни кôд</string>
     <string name="pref_privacy">Приватност</string>
     <string name="pref_privacy_summary">Политика приватности за Некстклауд Новости</string>
+    <string name="pref_news_policy">Контактирајте нас / Полиса Вести</string>
+    <string name="pref_news_policy_summary">Полиса Android Вести Nextcloud Вести / Контактирајте нас</string>
     <string name="pref_version">Андроид апликација за Некстклауд Вести</string>
 
 
