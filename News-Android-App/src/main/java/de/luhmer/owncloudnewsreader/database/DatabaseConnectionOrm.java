@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader.database;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_DOWNLOADED_PODCASTS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
@@ -38,6 +39,7 @@ import de.luhmer.owncloudnewsreader.database.model.FolderDao;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
+import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -68,6 +70,8 @@ public class DatabaseConnectionOrm {
 
     private final static int PageSize = 25;
 
+    private Context context;
+
     protected @Inject @Named("databaseFileName") String databasePath;
 
     public void resetDatabase() {
@@ -78,6 +82,7 @@ public class DatabaseConnectionOrm {
     }
 
     public DatabaseConnectionOrm(Context context) {
+        this.context = context;
         if(databasePath == null) {
             ((NewsReaderApplication) context.getApplicationContext()).getAppComponent().injectDatabaseConnection(this);
         }
@@ -182,6 +187,13 @@ public class DatabaseConnectionOrm {
     public List<Feed> getAllFeedsWithStarredRssItems() {
         return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(
                 new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1)")).list();
+    }
+
+    public List<Feed> getAllFeedsWithDownloadedPodcasts(Context context) {
+        var ids = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
+        var files = Arrays.stream(ids).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
+        return daoSession.getFeedDao().queryBuilder().orderAsc(FeedDao.Properties.FeedTitle).where(
+                new WhereCondition.StringCondition(FeedDao.Properties.Id.columnName + " IN " + "(SELECT " + RssItemDao.Properties.FeedId.columnName + " FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + "))")).list();
     }
 
     public List<PodcastFeedItem> getListOfFeedsWithAudioPodcasts() {
@@ -517,6 +529,7 @@ public class DatabaseConnectionOrm {
         podcastItem.link = rssItem.getEnclosureLink();
         podcastItem.mimeType = rssItem.getEnclosureMime();
         podcastItem.favIcon = feed.getFaviconUrl();
+        podcastItem.fingerprint = rssItem.getFingerprint();
 
         if("image/jpeg".equals(podcastItem.mimeType)) {
             // We don't want to accidentally think that enclosed images are podcasts
@@ -526,7 +539,7 @@ public class DatabaseConnectionOrm {
 
         podcastItem.isVideoPodcast = Arrays.asList(DatabaseConnectionOrm.VIDEO_FORMATS).contains(podcastItem.mimeType);
 
-        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.link, false));
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastItem.fingerprint, podcastItem.link, false));
         podcastItem.offlineCached = file.exists();
 
         return podcastItem;
@@ -587,11 +600,11 @@ public class DatabaseConnectionOrm {
     }
 
 
-    public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection) {
+    public String getAllItemsIdsForFolderSQL(long ID_FOLDER, boolean onlyUnread, SORT_DIRECTION sortDirection, Context context) {
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
-        if(!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue()) || ID_FOLDER == ALL_ITEMS.getValue())//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+        if(!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue()) || ID_FOLDER == ALL_ITEMS.getValue())//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
         {
             buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
                     "(SELECT sc." + FeedDao.Properties.Id.columnName +
@@ -606,6 +619,11 @@ public class DatabaseConnectionOrm {
             buildSQL += " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1";
         else if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
             buildSQL += " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1";
+        else if (ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue()) {
+            var ids = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
+            var files = Arrays.stream(ids).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
+            buildSQL += " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + ")";
+        }
 
         buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
 
@@ -732,6 +750,18 @@ public class DatabaseConnectionOrm {
         return getStringSparseArrayFromSQL(buildSQL, 0, 1);
     }
 
+    public SparseArray<String> getDownloadedPodcastsCount(Context context) {
+        var ids = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
+        var files = Arrays.stream(ids).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
+
+        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
+                " FROM " + RssItemDao.TABLENAME +
+                " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + ")" +
+                " GROUP BY " + RssItemDao.Properties.FeedId.columnName;
+
+        return getStringSparseArrayFromSQL(buildSQL, 0, 1);
+    }
+
     public void clearDatabaseOverSize()
     {
         //If i have 9023 rows in the database, when i run that query it should delete 8023 rows and leave me with 1000
@@ -755,9 +785,13 @@ public class DatabaseConnectionOrm {
             if(overSize > read)
                 overSize = read;
 
+            var downloadedPodcastsFingerprints = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
+            var files = Arrays.stream(downloadedPodcastsFingerprints).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
+
             String sqlStatement = "DELETE FROM " + RssItemDao.TABLENAME + " WHERE " + RssItemDao.Properties.Id.columnName +
                                     " IN (SELECT " + RssItemDao.Properties.Id.columnName + " FROM " + RssItemDao.TABLENAME +
                                     " WHERE " + RssItemDao.Properties.Read_temp.columnName + " = 1 AND " + RssItemDao.Properties.Starred_temp.columnName + " != 1 " +
+                                    " AND " + RssItemDao.Properties.Fingerprint.columnName + " NOT IN (" + String.join(",", files) + ")" + // This means that the article has downloaded podcast media
                                     " AND " + RssItemDao.Properties.Id.columnName + " NOT IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")" +
                                     " ORDER BY " + RssItemDao.Properties.Id.columnName + " asc LIMIT " + overSize + ")";
             daoSession.getDatabase().execSQL(sqlStatement);

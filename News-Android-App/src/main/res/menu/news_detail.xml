@@ -29,6 +29,12 @@
         android:title="@string/action_openInBrowser"/>
 
     <item
+        android:id="@+id/action_removePodcast"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_delete_24_theme_aware"
+        android:title="@string/action_removePodcast"/>
+
+    <item
         android:id="@+id/action_playPodcast"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_play_arrow_24_theme_aware"

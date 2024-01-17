@@ -746,6 +746,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				title = getString(R.string.allUnreadFeeds);
 			} else if (idFolder == -11) {
 				title = getString(R.string.starredFeeds);
+			} else if (idFolder == -13) {
+				title = getString(R.string.downloadedPodcasts);
 			}
 		} else {
 			Feed feed = dbConn.getFeedById(id);
@@ -834,6 +836,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				title = getString(R.string.allUnreadFeeds);
 			} else if (idFolder == -11) {
 				title = getString(R.string.starredFeeds);
+			} else if (idFolder == -13) {
+				title = getString(R.string.downloadedPodcasts);
 			}
 		}
 

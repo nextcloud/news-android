@@ -49,6 +49,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.Set;
@@ -63,6 +64,7 @@ import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
 import de.luhmer.owncloudnewsreader.helper.ThemeUtils;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
 import de.luhmer.owncloudnewsreader.model.TTSItem;
+import de.luhmer.owncloudnewsreader.services.PodcastDownloadService;
 import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
@@ -90,6 +92,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private int currentPosition;
 
 	private MenuItem menuItem_PlayPodcast;
+	private MenuItem menuItem_RemovePodcast;
 	private MenuItem menuItem_Starred;
 	private MenuItem menuItem_Read;
 	private MenuItem menuItem_Incognito;
@@ -401,6 +404,11 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			menuItem_PlayPodcast.setVisible(podcastAvailable);
 		}
 
+		if(menuItem_RemovePodcast != null) {
+			File file = new File(PodcastDownloadService.getUrlToPodcastFile(this, podcastItem.fingerprint, podcastItem.link, false));
+			menuItem_RemovePodcast.setVisible(file.exists());
+		}
+
 		if (menuItem_Starred != null) {
 			int res = isStarred ? R.drawable.ic_star_24_theme_aware : R.drawable.ic_star_border_24dp_theme_aware;
 			menuItem_Starred.setIcon(res);
@@ -442,6 +450,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		menuItem_Starred = menu.findItem(R.id.action_starred);
 		menuItem_Read = menu.findItem(R.id.action_read);
 		menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
+		menuItem_RemovePodcast = menu.findItem(R.id.action_removePodcast);
 		menuItem_Incognito = menu.findItem(R.id.action_incognito_mode);
 
 		if (mShowFastActions) {
@@ -493,6 +502,12 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			this.openInBrowser(currentPosition);
 		} else if (itemId == R.id.action_playPodcast) {
 			openPodcast(rssItem);
+		} else if (itemId == R.id.action_removePodcast) {
+			removePodcastMedia(rssItem, (result) -> {
+				if (menuItem_RemovePodcast != null) {
+					menuItem_RemovePodcast.setVisible(!result);
+				}
+			});
 		} else if (itemId == R.id.action_tts) {
 			this.startTTS(currentPosition);
 		} else if (itemId == R.id.action_ShareItem) {

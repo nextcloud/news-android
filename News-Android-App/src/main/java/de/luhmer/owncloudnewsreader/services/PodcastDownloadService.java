@@ -93,7 +93,7 @@ public class PodcastDownloadService extends IntentService {
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-        String path = "file://" + getUrlToPodcastFile(this, podcast.link, true);
+        String path = "file://" + getUrlToPodcastFile(this, podcast.fingerprint, podcast.link, true);
         request.setDestinationUri(Uri.parse(path));
         //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "bla.txt");
 
@@ -103,32 +103,15 @@ public class PodcastDownloadService extends IntentService {
     }
 
 
-    public static String getUrlToPodcastFile(Context context, String WEB_URL_TO_FILE, boolean createDir) {
+    public static String getUrlToPodcastFile(Context context, String fingerprint, String WEB_URL_TO_FILE, boolean createDir) {
         File file = new File(WEB_URL_TO_FILE);
 
-        String path = NewsFileUtils.getPathPodcasts(context) + "/" + getHashOfString(WEB_URL_TO_FILE) + "/";
+        String path = NewsFileUtils.getPathPodcasts(context) + "/" + fingerprint + "/";
         if(createDir)
             new File(path).mkdirs();
 
         return path + file.getName();
     }
-
-    public static String getHashOfString(String WEB_URL_TO_FILE)
-    {
-        try {
-            MessageDigest m = MessageDigest.getInstance("MD5");
-            m.reset();
-            m.update(WEB_URL_TO_FILE.trim().getBytes());
-            byte[] digest = m.digest();
-            BigInteger bigInt = new BigInteger(1,digest);
-
-            return bigInt.toString(16);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return WEB_URL_TO_FILE;
-    }
-
 
     private void downloadPodcast(PodcastItem podcast, Context context) {
 
@@ -141,7 +124,7 @@ public class PodcastDownloadService extends IntentService {
 
         try {
             String urlTemp = podcast.link;
-            String path = getUrlToPodcastFile(this, urlTemp, true);
+            String path = getUrlToPodcastFile(this, podcast.fingerprint, urlTemp, true);
             Log.v(TAG, "Storing podcast to: " + path);
 
             URL url = new URL(urlTemp);
@@ -242,8 +225,8 @@ public class PodcastDownloadService extends IntentService {
         public PodcastItem podcast;
     }
 
-    public static boolean PodcastAlreadyCached(Context context, String podcastUrl) {
-        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastUrl, false));
+    public static boolean PodcastAlreadyCached(Context context, String podcastFingerprint, String podcastUrl) {
+        File file = new File(PodcastDownloadService.getUrlToPodcastFile(context, podcastFingerprint, podcastUrl, false));
         return file.exists();
     }
 }

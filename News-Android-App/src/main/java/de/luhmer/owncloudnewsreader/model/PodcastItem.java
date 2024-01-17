@@ -6,7 +6,7 @@ public class PodcastItem extends MediaItem {
 
     }
 
-    public PodcastItem(long itemId, String author, String title, String link, String mimeType, boolean offlineCached, String favIcon, boolean isVideoPodcast) {
+    public PodcastItem(long itemId, String author, String title, String link, String mimeType, boolean offlineCached, String favIcon, boolean isVideoPodcast, String fingerprint) {
         this.itemId = itemId;
         this.author = author;
         this.title = title;
@@ -15,9 +15,11 @@ public class PodcastItem extends MediaItem {
         this.offlineCached = offlineCached;
         this.favIcon = favIcon;
         this.isVideoPodcast = isVideoPodcast;
+        this.fingerprint = fingerprint;
     }
 
     public String mimeType;
+    public String fingerprint;
     public boolean offlineCached;
     public boolean isVideoPodcast;
 
