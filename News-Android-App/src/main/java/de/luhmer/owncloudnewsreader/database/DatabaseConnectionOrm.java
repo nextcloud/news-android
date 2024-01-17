@@ -70,7 +70,7 @@ public class DatabaseConnectionOrm {
 
     private final static int PageSize = 25;
 
-    private Context context;
+    private final Context context;
 
     protected @Inject @Named("databaseFileName") String databasePath;
 
@@ -750,16 +750,15 @@ public class DatabaseConnectionOrm {
         return getStringSparseArrayFromSQL(buildSQL, 0, 1);
     }
 
-    public SparseArray<String> getDownloadedPodcastsCount(Context context) {
+    public int getDownloadedPodcastsCount(Context context) {
         var ids = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
         var files = Arrays.stream(ids).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
 
-        String buildSQL = "SELECT " + RssItemDao.Properties.FeedId.columnName + ", COUNT(1)" + // rowid as _id,
+        String buildSQL = "SELECT COUNT(1)" +
                 " FROM " + RssItemDao.TABLENAME +
-                " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + ")" +
-                " GROUP BY " + RssItemDao.Properties.FeedId.columnName;
+                " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + ")";
 
-        return getStringSparseArrayFromSQL(buildSQL, 0, 1);
+        return (int) getLongValueBySQL(buildSQL);
     }
 
     public void clearDatabaseOverSize()

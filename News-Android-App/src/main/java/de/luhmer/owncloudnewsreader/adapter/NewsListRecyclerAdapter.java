@@ -74,11 +74,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         EventBus.getDefault().register(this);
 
-        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-
-            final LinearLayoutManager linearLayoutManager =
-                    (LinearLayoutManager) recyclerView.getLayoutManager();
-
+        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager linearLayoutManager) {
 
             recyclerView
                     .addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -92,7 +88,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                                     .findLastVisibleItemPosition();
                             if (!loading &&
                                     adapterTotalItemCount <= (lastVisibleItem + visibleThreshold) &&
-                                    adapterTotalItemCount < totalItemCount) {
+                                    adapterTotalItemCount < totalItemCount &&
+                                    adapterTotalItemCount > 0) {
                                 loading = true;
 
                                 Log.v(TAG, "start load more task...");
@@ -100,10 +97,15 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                                 recyclerView.post(() -> {
                                     // End has been reached
                                     // Do something
-                                    lazyList.add(null);
-                                    notifyItemInserted(lazyList.size() - 1);
-
-                                    AsyncTaskHelper.StartAsyncTask(new LoadMoreItemsAsyncTask());
+                                    try {
+                                        lazyList.add(null);
+                                        notifyItemInserted(lazyList.size() - 1);
+                                        AsyncTaskHelper.StartAsyncTask(new LoadMoreItemsAsyncTask());
+                                    } catch (UnsupportedOperationException ex) {
+                                        Log.e(TAG, "error while lazy loading more items");
+                                        // this can happen in case a podcast download is running and
+                                        // the user tries to open the Downloaded Podcast View
+                                    }
                                 });
                             }
                         }
@@ -378,7 +380,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             List<RssItem> rssItems = refreshAdapterData();
 
             sw.stop();
-            Log.v(TAG, "Time needed (refreshing adapter): " + sw.toString());
+            Log.v(TAG, "Time needed (refreshing adapter): " + sw);
 
             return rssItems;
         }
@@ -407,7 +409,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             List<RssItem> items = dbConn.getCurrentRssItemView(cachedPages++);
 
             sw.stop();
-            Log.v(TAG, "Time needed (loading more): " + sw.toString());
+            Log.v(TAG, "Time needed (loading more): " + sw);
             return items;
         }
 
@@ -440,7 +442,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             holder.rssItems = list;
 
             sw.stop();
-            Log.v(TAG, "Reloaded CurrentRssView - time taken: " + sw.toString());
+            Log.v(TAG, "Reloaded CurrentRssView - time taken: " + sw);
             return holder;
         }
 
