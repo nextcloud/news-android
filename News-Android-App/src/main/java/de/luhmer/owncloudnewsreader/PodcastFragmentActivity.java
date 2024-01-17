@@ -329,21 +329,20 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
         }
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
-                .setNegativeButton("Remove", (dialogInterface, i) -> {
+                .setNegativeButton(getString(R.string.dialog_podcast_remove_confirm), (dialogInterface, i) -> {
                     boolean success = file.delete() && file.getParentFile().delete(); // remove audio file and parent folder
                     if (!success) {
-                        Toast.makeText(PodcastFragmentActivity.this, "Failed to remove media for \"" + podcastItem.title + "\"", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PodcastFragmentActivity.this, getString(R.string.dialog_podcast_status_failed, podcastItem.title), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(PodcastFragmentActivity.this, "Media for \"" + podcastItem.title + "\" has been removed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PodcastFragmentActivity.this, getString(R.string.dialog_podcast_status_success, podcastItem.title), Toast.LENGTH_SHORT).show();
                     }
-
                     callback.accept(success);
                 })
-                .setNeutralButton("Cancel", (dialogInterface, i) -> {
+                .setNeutralButton(getString(android.R.string.cancel), (dialogInterface, i) -> {
                     callback.accept(false);
                 })
-                .setTitle("Are you sure?")
-                .setMessage("Do you want to remove downloaded media for \"" + podcastItem.title + "?\"");
+                .setTitle(getString(R.string.dialog_podcast_remove_title))
+                .setMessage(getString(R.string.dialog_podcast_remove_body, podcastItem.title));
 
         alertDialog.show();
     }

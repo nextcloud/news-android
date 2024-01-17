@@ -228,7 +228,11 @@
     <string name="exit_playback">Exit Player</string>
     <string name="podcast_playback_speed_dialog_title">Playback Speed</string>
     <string name="notification_downloading_podcast_title">Downloading podcast</string>
-
+    <string name="dialog_podcast_remove_title">Are you sure?</string>
+    <string name="dialog_podcast_remove_body">Do you want to remove downloaded media for  %1$s?</string>
+    <string name="dialog_podcast_status_failed">Failed to remove media for %1$s</string>
+    <string name="dialog_podcast_status_success">Media for %1$s has been removed</string>
+    <string name="dialog_podcast_remove_confirm">Remove</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">About</string>
