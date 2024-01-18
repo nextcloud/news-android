@@ -81,6 +81,9 @@
     <string name="action_feed_rename">Omdøp strøm</string>
     <string name="action_feed_move">Flytt strøm</string>
     <string name="action_feed_notification_settings">Innstillinger for notifiseringer</string>
+    <string name="action_feed_open_in">Åpningsinnstillinger</string>
+    <string name="action_feed_open_in_general_setting">Bruk generell innstilling</string>
+    <string name="action_feed_open_in_detailed_view">Detaljert visning</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Gi nytt navn</string>
     <string name="confirm_feed_remove">Vil du fjerne denne strømmen? Dette kan ikke angres!</string>
@@ -151,6 +154,8 @@
 
     <string name="pref_general_search_in_title">Tittel</string>
     <string name="pref_general_search_in_body">Kropp</string>
+    <string name="pref_general_search_in_both">Begge</string>
+
     <string name="dialog_clearing_cache">Tømmer hurtiglager</string>
     <string name="dialog_clearing_cache_please_wait">Tømmer cache. Vennligst vent …</string>
     <string name="reset_cache_unsaved_changes">Det er usynkroniserte endringer i hurtiglagret, skal det nullstilles likevel?</string>
@@ -162,6 +167,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merk som lest når du scroller</string>
     <string name="pref_title_ShowFastActions">Aktiver funksjoner for rask tilgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Dropp detaljert visning og åpne artikkel i nettleser</string>
+    <string name="pref_title_BackButtonOpensDrawer">Tilbake-knappen åpner skuffen</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aksepter ukjent sertifikat?</string>
     <string name="mtm_decision_always">Alltid</string>
@@ -175,8 +182,7 @@
     <string name="exit_playback">Lukk avspiller</string>
     <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
     <string name="notification_downloading_podcast_title">Last ned podkast</string>
-
-
+    <string name="dialog_podcast_remove_title">Er du sikker?</string>
     <!-- Settings for About -->
     <string name="pref_header_about">Om</string>
     <string name="pref_license">Lisens</string>
@@ -187,6 +193,8 @@
     <string name="pref_contribute_summary">Hent kildekode</string>
     <string name="pref_privacy">Personvern</string>
     <string name="pref_privacy_summary">Nextcloud News Android Personvernserklæring</string>
+    <string name="pref_news_policy">Kontakt oss / Retningslinjer for nyheter</string>
+    <string name="pref_news_policy_summary">Nextcloud nyheter / Android retningslinjer for nyheter / Kontakt oss</string>
     <string name="pref_version">Nextcloud Nyheter Android app</string>
 
 

@@ -192,7 +192,8 @@
     <string name="exit_playback">Wyjdź z odtwarzacza</string>
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
     <string name="notification_downloading_podcast_title">Pobieranie podcastu</string>
-
+    <string name="dialog_podcast_remove_title">Jesteś pewny?</string>
+    <string name="dialog_podcast_remove_confirm">Usuń</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">O aplikacji</string>

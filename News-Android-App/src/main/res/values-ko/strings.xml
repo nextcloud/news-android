@@ -162,7 +162,8 @@
     <string name="no_chapters_available">사용 가능한 챕터가 없음</string>
     <string name="podcast_playback_speed_dialog_title">재생 속도</string>
     <string name="notification_downloading_podcast_title">팟캐스트 다운로드 중</string>
-
+    <string name="dialog_podcast_remove_title">확실합니까?</string>
+    <string name="dialog_podcast_remove_confirm">삭제</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">정보</string>

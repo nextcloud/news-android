@@ -182,7 +182,8 @@
     <string name="exit_playback">Irten erreproduzigailua</string>
     <string name="podcast_playback_speed_dialog_title">Erreprodukzio abiadura</string>
     <string name="notification_downloading_podcast_title">Podcasta deskargatzen</string>
-
+    <string name="dialog_podcast_remove_title">Ziur zaude?</string>
+    <string name="dialog_podcast_remove_confirm">Kendu</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Honi buruz</string>

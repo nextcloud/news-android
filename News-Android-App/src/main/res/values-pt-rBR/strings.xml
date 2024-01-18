@@ -187,7 +187,8 @@
     <string name="exit_playback">Sair</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade do Playback</string>
     <string name="notification_downloading_podcast_title">Baixando podcast</string>
-
+    <string name="dialog_podcast_remove_title">Você tem certeza?</string>
+    <string name="dialog_podcast_remove_confirm">Remover</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Sobre</string>

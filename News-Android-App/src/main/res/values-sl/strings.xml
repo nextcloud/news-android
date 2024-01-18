@@ -185,7 +185,8 @@
     <string name="exit_playback">Končaj predvajalnik</string>
     <string name="podcast_playback_speed_dialog_title">Hitrost predvajanja</string>
     <string name="notification_downloading_podcast_title">Potekanje prejemanje podkasta ...</string>
-
+    <string name="dialog_podcast_remove_title">Ali ste prepričani?</string>
+    <string name="dialog_podcast_remove_confirm">Odstrani</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">O programu</string>

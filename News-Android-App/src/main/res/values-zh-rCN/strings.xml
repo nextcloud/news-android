@@ -177,7 +177,8 @@
     <string name="exit_playback">退出播放器</string>
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
     <string name="notification_downloading_podcast_title">正在下载播客</string>
-
+    <string name="dialog_podcast_remove_title">你确定吗？</string>
+    <string name="dialog_podcast_remove_confirm">移除</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">关于</string>

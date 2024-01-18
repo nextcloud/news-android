@@ -182,7 +182,8 @@
     <string name="exit_playback">Kilépés a lejátszóból</string>
     <string name="podcast_playback_speed_dialog_title">Lejátszási sebesség</string>
     <string name="notification_downloading_podcast_title">Podcast letöltése</string>
-
+    <string name="dialog_podcast_remove_title">Biztos benne?</string>
+    <string name="dialog_podcast_remove_confirm">Eltávolítás</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Névjegy</string>

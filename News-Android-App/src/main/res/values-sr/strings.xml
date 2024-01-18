@@ -187,7 +187,8 @@
     <string name="exit_playback">Напусти Плејер</string>
     <string name="podcast_playback_speed_dialog_title">Брзина пуштања</string>
     <string name="notification_downloading_podcast_title">Преузимам подкаст</string>
-
+    <string name="dialog_podcast_remove_title">Да ли сте сигурни?</string>
+    <string name="dialog_podcast_remove_confirm">Уклони</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">О програму</string>

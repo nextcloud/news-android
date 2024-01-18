@@ -149,8 +149,6 @@
     <string name="no_chapters_available">Nema dostupnih poglavlja</string>
     <string name="podcast_playback_speed_dialog_title">Brzina puštanja</string>
     <string name="notification_downloading_podcast_title">Preuzimam podkast</string>
-
-
     <!-- Settings for About -->
     <string name="pref_header_about">O programu</string>
     <string name="pref_license">Licenca</string>

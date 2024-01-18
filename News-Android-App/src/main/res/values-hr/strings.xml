@@ -155,7 +155,7 @@
     <string name="no_chapters_available">Nema dostupnih poglavlja</string>
     <string name="podcast_playback_speed_dialog_title">Brzina reprodukcije</string>
     <string name="notification_downloading_podcast_title">Preuzimanje podcasta</string>
-
+    <string name="dialog_podcast_remove_confirm">Ukloni</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Informacije</string>

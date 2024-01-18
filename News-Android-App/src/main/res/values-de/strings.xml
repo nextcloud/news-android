@@ -182,8 +182,7 @@
     <string name="exit_playback">Den Player beenden</string>
     <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
     <string name="notification_downloading_podcast_title">Podcast wird herunterladen</string>
-
-
+    <string name="dialog_podcast_remove_title">Sind Sie sicher?</string>
     <!-- Settings for About -->
     <string name="pref_header_about">Über</string>
     <string name="pref_license">Lizenz</string>

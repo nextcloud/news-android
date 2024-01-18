@@ -177,7 +177,8 @@
     <string name="exit_playback">Sulje toistin</string>
     <string name="podcast_playback_speed_dialog_title">Toistonopeus</string>
     <string name="notification_downloading_podcast_title">Ladataan podcast</string>
-
+    <string name="dialog_podcast_remove_title">Oletko varma?</string>
+    <string name="dialog_podcast_remove_confirm">Poista</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Tietoja</string>

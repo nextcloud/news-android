@@ -170,7 +170,8 @@
     <string name="exit_playback">Thoát trình phát</string>
     <string name="podcast_playback_speed_dialog_title">Tốc độ phát</string>
     <string name="notification_downloading_podcast_title">Đang tải xuống podcast</string>
-
+    <string name="dialog_podcast_remove_title">Bạn chắc chắn?</string>
+    <string name="dialog_podcast_remove_confirm">Xoá</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Thông tin</string>

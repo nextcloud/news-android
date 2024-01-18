@@ -175,8 +175,7 @@
     <string name="exit_playback">Έξοδος από τον αναπαραγωγέα</string>
     <string name="podcast_playback_speed_dialog_title">Ταχύτητα Αναπαραγωγής</string>
     <string name="notification_downloading_podcast_title">Γίνεται λήψη podcast</string>
-
-
+    <string name="dialog_podcast_remove_title">Είστε σίγουροι;</string>
     <!-- Settings for About -->
     <string name="pref_header_about">Περί</string>
     <string name="pref_license">Άδεια χρήσης</string>

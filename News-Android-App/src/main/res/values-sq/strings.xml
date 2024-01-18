@@ -121,6 +121,8 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">S\’u përzgjodh podcast</string>
     <string name="no_chapters_available">S’ka kapituj gati</string>
+    <string name="dialog_podcast_remove_confirm">Hiqe</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Rreth </string>
     <string name="pref_license">Liçenca</string>

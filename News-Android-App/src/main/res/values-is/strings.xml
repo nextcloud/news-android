@@ -150,8 +150,6 @@
     <string name="no_chapters_available">Engir kaflar tiltækir</string>
     <string name="podcast_playback_speed_dialog_title">Hraði afspilunar</string>
     <string name="notification_downloading_podcast_title">Sæki hlaðvarp</string>
-
-
     <!-- Settings for About -->
     <string name="pref_header_about">Um hugbúnaðinn</string>
     <string name="pref_license">Notkunarleyfi</string>

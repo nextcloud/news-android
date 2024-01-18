@@ -151,7 +151,8 @@
     <string name="no_chapters_available">Perunu capìtulu a disponimentu</string>
     <string name="podcast_playback_speed_dialog_title">Velotzidade de riprodutzione</string>
     <string name="notification_downloading_podcast_title">Iscarrigamentu podcast</string>
-
+    <string name="dialog_podcast_remove_title">A beru boles sighire?</string>
+    <string name="dialog_podcast_remove_confirm">Boga</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">In contu de</string>

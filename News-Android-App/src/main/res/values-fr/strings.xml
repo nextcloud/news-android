@@ -187,7 +187,8 @@
     <string name="exit_playback">Quitter le lecteur</string>
     <string name="podcast_playback_speed_dialog_title">Vitesse de lecture</string>
     <string name="notification_downloading_podcast_title">Téléchargement du podcast</string>
-
+    <string name="dialog_podcast_remove_title">Êtes-vous sûr ?</string>
+    <string name="dialog_podcast_remove_confirm">Retirer</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">À propos</string>

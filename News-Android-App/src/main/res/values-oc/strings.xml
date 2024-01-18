@@ -108,6 +108,9 @@
 
     <!-- Podcast -->
     <string name="no_podcast_selected">Cap de podcast pas seleccionat</string>
+    <string name="dialog_podcast_remove_title">Ne sètz segur ?</string>
+    <string name="dialog_podcast_remove_confirm">Suprimir</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">A prepaus</string>
     <string name="pref_license">Licéncia</string>

@@ -110,6 +110,8 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">ไม่ได้เลือกพอดคาสต์</string>
     <string name="no_chapters_available">ไม่มีบทที่สามารถใช้ได้</string>
+    <string name="dialog_podcast_remove_confirm">ลบออก</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">เกี่ยวกับ</string>
     <string name="pref_license">สัญญาอนุญาต</string>

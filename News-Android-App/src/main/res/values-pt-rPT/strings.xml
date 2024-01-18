@@ -156,7 +156,8 @@
     <string name="no_chapters_available">Sem capítulos disponíveis</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade de Reprodução</string>
     <string name="notification_downloading_podcast_title">A transferir \"podcast\"</string>
-
+    <string name="dialog_podcast_remove_title">Tem a certeza?</string>
+    <string name="dialog_podcast_remove_confirm">Remover</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Sobre</string>

@@ -187,7 +187,8 @@
     <string name="exit_playback">Выйти из проигрывателя</string>
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
     <string name="notification_downloading_podcast_title">Загрузка подкастов</string>
-
+    <string name="dialog_podcast_remove_title">Вы уверены?</string>
+    <string name="dialog_podcast_remove_confirm">Удалить</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">О нас</string>

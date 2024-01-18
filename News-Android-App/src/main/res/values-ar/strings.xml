@@ -202,8 +202,6 @@
     <string name="exit_playback">أُخرُج من المُشغّل</string>
     <string name="podcast_playback_speed_dialog_title">سرعة التشغيل</string>
     <string name="notification_downloading_podcast_title">تنزيل البودكاست</string>
-
-
     <!-- Settings for About -->
     <string name="pref_header_about">عن</string>
     <string name="pref_license">الرخصة</string>

@@ -177,7 +177,8 @@
     <string name="exit_playback">از پخش کننده خارج شوید.</string>
     <string name="podcast_playback_speed_dialog_title">سرعت پخش</string>
     <string name="notification_downloading_podcast_title">بارگیری پادکست</string>
-
+    <string name="dialog_podcast_remove_title">مطمئنی؟</string>
+    <string name="dialog_podcast_remove_confirm">حذف</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">درباره</string>

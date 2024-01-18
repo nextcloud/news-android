@@ -180,7 +180,7 @@
     <string name="exit_playback">Ieși din player</string>
     <string name="podcast_playback_speed_dialog_title">Viteză de redare</string>
     <string name="notification_downloading_podcast_title">Se descarcă podcast-ul</string>
-
+    <string name="dialog_podcast_remove_confirm">Elimină</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Despre</string>

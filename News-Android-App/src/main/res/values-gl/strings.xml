@@ -182,7 +182,8 @@
     <string name="exit_playback">Saír do reprodutor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade de reprodución</string>
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
-
+    <string name="dialog_podcast_remove_title">Confirma isto?</string>
+    <string name="dialog_podcast_remove_confirm">Retirar</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Sobre</string>

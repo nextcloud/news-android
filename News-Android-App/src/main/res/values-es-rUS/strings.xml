@@ -116,6 +116,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <string name="dialog_podcast_remove_title">¿Estás seguro?</string>
     <!-- Settings for About -->
     <string name="pref_header_about">Acerca de</string>
     <string name="pref_license">Licencia</string>

@@ -182,7 +182,8 @@
     <string name="exit_playback">Stäng mediaspelaren</string>
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
     <string name="notification_downloading_podcast_title">Hämtar podcast</string>
-
+    <string name="dialog_podcast_remove_title">Är du säker?</string>
+    <string name="dialog_podcast_remove_confirm">Ta bort</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Om</string>

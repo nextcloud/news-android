@@ -172,7 +172,8 @@
     <string name="exit_playback">プレイヤーを終了</string>
     <string name="podcast_playback_speed_dialog_title">再生速度</string>
     <string name="notification_downloading_podcast_title">ポッドキャストのダウンロード</string>
-
+    <string name="dialog_podcast_remove_title">本当に実行しますか？</string>
+    <string name="dialog_podcast_remove_confirm">削除</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">アプリについて</string>

@@ -182,7 +182,8 @@
     <string name="exit_playback">Oynatıcıdan çık</string>
     <string name="podcast_playback_speed_dialog_title">Oynatma hızı</string>
     <string name="notification_downloading_podcast_title">Podcast indiriliyor</string>
-
+    <string name="dialog_podcast_remove_title">Emin misiniz?</string>
+    <string name="dialog_podcast_remove_confirm">Kaldır</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Hakkında</string>

@@ -175,7 +175,8 @@
     <string name="exit_playback">Speler verlaten</string>
     <string name="podcast_playback_speed_dialog_title">Afspeelsnelheid</string>
     <string name="notification_downloading_podcast_title">Downloaden podcast</string>
-
+    <string name="dialog_podcast_remove_title">Weet je het zeker?</string>
+    <string name="dialog_podcast_remove_confirm">Verwijderen</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Over</string>

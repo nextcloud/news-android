@@ -158,7 +158,8 @@
     <string name="no_chapters_available">Skyriai neprieinami</string>
     <string name="podcast_playback_speed_dialog_title">Atkūrimo greitis</string>
     <string name="notification_downloading_podcast_title">Atsisiunčiama tinklalaidė</string>
-
+    <string name="dialog_podcast_remove_title">Ar esate tikri?</string>
+    <string name="dialog_podcast_remove_confirm">Šalinti</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Apie</string>
