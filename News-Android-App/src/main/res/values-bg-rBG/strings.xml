@@ -175,6 +175,9 @@
     <string name="exit_playback">Излизане от плейъра</string>
     <string name="podcast_playback_speed_dialog_title">Скорост на възпроизвеждане</string>
     <string name="notification_downloading_podcast_title">Изтегляне на подкаст</string>
+    <string name="dialog_podcast_remove_title">Сигурни ли сте?</string>
+    <string name="dialog_podcast_remove_confirm">Премахване</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Относно</string>
     <string name="pref_license">Лиценз</string>

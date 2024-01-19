@@ -18,6 +18,7 @@
     <string name="message_bar_reload">Поново учитај</string>
     <string name="allUnreadFeeds">Све непрочитане ставке</string>
     <string name="starredFeeds">Озвездане ставке</string>
+    <string name="downloadedPodcasts">Преузети подкасти</string>
     <string name="title_activity_new_feed">Додај довод</string>
 
     <string name="menu_update">Освежи</string>
@@ -31,6 +32,7 @@
     <string name="action_starred">Озвездано</string>
     <string name="action_read">Читај</string>
     <string name="action_playPodacst">Пусти подемисију</string>
+    <string name="action_removePodcast">Уклони подкаст медије</string>
     <string name="action_openInBrowser">Отвори у прегледачу</string>
     <string name="action_Share">Дели</string>
     <string name="action_login">Поставке сервера</string>
@@ -188,6 +190,9 @@
     <string name="podcast_playback_speed_dialog_title">Брзина пуштања</string>
     <string name="notification_downloading_podcast_title">Преузимам подкаст</string>
     <string name="dialog_podcast_remove_title">Да ли сте сигурни?</string>
+    <string name="dialog_podcast_remove_body">Да ли желите да обришете преузете медије за %1$s?</string>
+    <string name="dialog_podcast_status_failed">Није успело уклањање медија за %1$s</string>
+    <string name="dialog_podcast_status_success">Обрисани су медији за %1$s</string>
     <string name="dialog_podcast_remove_confirm">Уклони</string>
 
     <!-- Settings for About -->

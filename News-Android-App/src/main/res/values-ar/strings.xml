@@ -21,6 +21,7 @@
     <string name="message_bar_reload">إعادة تحميل</string>
     <string name="allUnreadFeeds">كل العناصر غير المقروءه</string>
     <string name="starredFeeds">العناصر المُعلّمة بنجمة</string>
+    <string name="downloadedPodcasts">ملفات بودكاست تمّ تنزيلها</string>
     <string name="title_activity_new_feed">إضافة موجز جديد</string>
 
     <string name="menu_update">تحديث</string>
@@ -34,6 +35,7 @@
     <string name="action_starred">مُعلّم بنجمة</string>
     <string name="action_read">قراءة</string>
     <string name="action_playPodacst">تشغيل بودكاست</string>
+    <string name="action_removePodcast">إزالة وسائط البودكاست</string>
     <string name="action_openInBrowser">فتح في متصفح الويب</string>
     <string name="action_Share">شارك</string>
     <string name="action_login">إعدادات الخادوم</string>
@@ -202,6 +204,12 @@
     <string name="exit_playback">أُخرُج من المُشغّل</string>
     <string name="podcast_playback_speed_dialog_title">سرعة التشغيل</string>
     <string name="notification_downloading_podcast_title">تنزيل البودكاست</string>
+    <string name="dialog_podcast_remove_title">هل أنت متأكد؟</string>
+    <string name="dialog_podcast_remove_body">هل ترغب في حذف الوسائط التي تمّ تنزيلها لـ %1$s؟</string>
+    <string name="dialog_podcast_status_failed">تعذّر حذف الوسائط لـ %1$s</string>
+    <string name="dialog_podcast_status_success">وسائط %1$s تمّ حذفها</string>
+    <string name="dialog_podcast_remove_confirm">حذف</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">عن</string>
     <string name="pref_license">الرخصة</string>

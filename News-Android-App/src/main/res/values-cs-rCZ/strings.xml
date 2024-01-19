@@ -192,6 +192,9 @@
     <string name="exit_playback">Ukončit přehrávač</string>
     <string name="podcast_playback_speed_dialog_title">Rychlost přehrávání</string>
     <string name="notification_downloading_podcast_title">Stahuje se podcast</string>
+    <string name="dialog_podcast_remove_title">Opravdu to chcete?</string>
+    <string name="dialog_podcast_remove_confirm">Odebrat</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">O aplikaci</string>
     <string name="pref_license">Licence</string>

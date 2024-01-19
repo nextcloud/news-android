@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Uppdatera</string>
     <string name="allUnreadFeeds">Alla olästa objekt</string>
     <string name="starredFeeds">Stjärnmärkta objekt</string>
+    <string name="downloadedPodcasts">Nedladdade podcasts</string>
     <string name="title_activity_new_feed">Lägg till flöde</string>
 
     <string name="menu_update">Uppdatera</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Stjärnmärkt</string>
     <string name="action_read">Läsa</string>
     <string name="action_playPodacst">Spela Podcast</string>
+    <string name="action_removePodcast">Ta bort Podcast Media</string>
     <string name="action_openInBrowser">Öppna i webbläsare</string>
     <string name="action_Share">Dela</string>
     <string name="action_login">Serverinställningar</string>
@@ -183,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
     <string name="notification_downloading_podcast_title">Hämtar podcast</string>
     <string name="dialog_podcast_remove_title">Är du säker?</string>
+    <string name="dialog_podcast_remove_body">Vill du ta bort nedladdad media för %1$s?</string>
+    <string name="dialog_podcast_status_failed">Misslyckades med att ta bort media för %1$s</string>
+    <string name="dialog_podcast_status_success">Media för %1$s har tagits bort</string>
     <string name="dialog_podcast_remove_confirm">Ta bort</string>
 
     <!-- Settings for About -->

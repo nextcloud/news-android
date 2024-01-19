@@ -16,6 +16,7 @@
     <string name="message_bar_reload">重新載入</string>
     <string name="allUnreadFeeds">所有未閱讀項目</string>
     <string name="starredFeeds">星號項目</string>
+    <string name="downloadedPodcasts">已下載的播客節目</string>
     <string name="title_activity_new_feed">加入新訂閱</string>
 
     <string name="menu_update">重新整理</string>
@@ -29,6 +30,7 @@
     <string name="action_starred">星號</string>
     <string name="action_read">已讀</string>
     <string name="action_playPodacst">播放 Podcast</string>
+    <string name="action_removePodcast">移除播客節目媒體</string>
     <string name="action_openInBrowser">用瀏覽器開啟</string>
     <string name="action_Share">分享</string>
     <string name="action_login">伺服器設定</string>
@@ -178,6 +180,9 @@
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
     <string name="notification_downloading_podcast_title">正在下載音訊資料</string>
     <string name="dialog_podcast_remove_title">你確定嗎？</string>
+    <string name="dialog_podcast_remove_body">您是否要刪除 %1$s 的已下載媒體？</string>
+    <string name="dialog_podcast_status_failed">無法刪除 %1$s 的媒體</string>
+    <string name="dialog_podcast_status_success">已成功刪除 %1$s 的媒體</string>
     <string name="dialog_podcast_remove_confirm">移除</string>
 
     <!-- Settings for About -->

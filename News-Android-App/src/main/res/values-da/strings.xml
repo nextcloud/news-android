@@ -151,6 +151,9 @@
     <string name="no_chapters_available">Ingen kapitler tilgængelige</string>
     <string name="podcast_playback_speed_dialog_title">Afspilningshastighed</string>
     <string name="notification_downloading_podcast_title">Henter podcast</string>
+    <string name="dialog_podcast_remove_title">Er du sikker?</string>
+    <string name="dialog_podcast_remove_confirm">Fjern</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Om</string>
     <string name="pref_license">Licens</string>

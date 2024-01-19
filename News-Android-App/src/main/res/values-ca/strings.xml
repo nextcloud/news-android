@@ -177,6 +177,9 @@
     <string name="exit_playback">Surt del reproductor</string>
     <string name="podcast_playback_speed_dialog_title">Velocitat de reproducció</string>
     <string name="notification_downloading_podcast_title">S\'està descarregant el podcast</string>
+    <string name="dialog_podcast_remove_title">Estas segur?</string>
+    <string name="dialog_podcast_remove_confirm">Suprimir</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Quant a</string>
     <string name="pref_license">Llicència</string>

@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Aktualisieren</string>
     <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
     <string name="starredFeeds">Favorisierte Artikel</string>
+    <string name="downloadedPodcasts">Heruntergeladene Podcasts</string>
     <string name="title_activity_new_feed">Einen neuen Feed hinzufügen</string>
 
     <string name="menu_update">Aktualisieren</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Favorisiert</string>
     <string name="action_read">Gelesen</string>
     <string name="action_playPodacst">Podcast wiedergeben</string>
+    <string name="action_removePodcast">Podcast-Medien entfernen</string>
     <string name="action_openInBrowser">Im Browser öffnen</string>
     <string name="action_Share">Teilen</string>
     <string name="action_login">Servereinstellungen</string>
@@ -183,6 +185,11 @@
     <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
     <string name="notification_downloading_podcast_title">Podcast wird herunterladen</string>
     <string name="dialog_podcast_remove_title">Sind Sie sicher?</string>
+    <string name="dialog_podcast_remove_body">Möchten Sie heruntergeladene Medien für %1$s entfernen?</string>
+    <string name="dialog_podcast_status_failed">Fehler beim Entfernen der Medien für %1$s</string>
+    <string name="dialog_podcast_status_success">Medien für %1$s wurden entfernt</string>
+    <string name="dialog_podcast_remove_confirm">Entfernen</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Über</string>
     <string name="pref_license">Lizenz</string>
