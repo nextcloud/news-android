@@ -76,6 +76,10 @@ body {
     margin-right: 1rem;
 }
 
+body iframe:not([src]) {
+    display: none;
+}
+
 img {
     /* make images fill the whole screen */
     max-width:   calc(100% + 2rem) !important;
