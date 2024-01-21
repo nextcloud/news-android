@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.reader.FeedItemTags;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 
 /**
@@ -71,8 +72,11 @@ public class ItemStateSync {
         if (response.isSuccessful()) {
             onSuccess.call();
         } else {
-            if (response.errorBody() != null) {
-                throw new IOException(response.errorBody().toString());
+            ResponseBody errorBody = response.errorBody();
+            if (errorBody != null) {
+                String errorBodyStr = errorBody.string();
+                Log.e(TAG, errorBodyStr);
+                throw new IOException(errorBodyStr);
             } else {
                 throw new IOException("mark item as read failed - http code: " + response.code());
             }

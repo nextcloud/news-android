@@ -1,5 +1,7 @@
 package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
+import com.nextcloud.android.sso.api.EmptyResponse;
+
 import java.util.List;
 import java.util.Map;
 
@@ -96,15 +98,15 @@ public interface NewsAPI {
 
 
     @PUT("items/read/multiple")
-    Call<Void> markItemsRead(@Body ItemIds items);
+    Call<EmptyResponse> markItemsRead(@Body ItemIds items);
 
     @PUT("items/unread/multiple")
-    Call<Void> markItemsUnread(@Body ItemIds items);
+    Call<EmptyResponse> markItemsUnread(@Body ItemIds items);
 
     @PUT("items/star/multiple")
-    Call<Void> markItemsStarred(@Body ItemMap itemMap);
+    Call<EmptyResponse> markItemsStarred(@Body ItemMap itemMap);
 
     @PUT("items/unstar/multiple")
-    Call<Void> markItemsUnstarred(@Body ItemMap itemMap);
+    Call<EmptyResponse> markItemsUnstarred(@Body ItemMap itemMap);
 
 }
