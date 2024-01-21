@@ -96,17 +96,17 @@
     <string name="action_folder_rename">Rinomina cartella</string>
     <string name="folder_remove_button">Rimuovi</string>
     <string name="folder_rename_button">Rinomina</string>
-    <string name="confirm_folder_remove">Vuoi veramente cancellare questa cartella? Questa operazione non può essere annullata!</string>
+    <string name="confirm_folder_remove">Vuoi davvero rimuovere questa cartella? Questa operazione non può essere annullata!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
-    <string name="notification_feed_unique">Ricevi una notifica unica per questo feed</string>
-    <string name="notification_feed_default">Tutti i feed con le impostazioni di default appariranno in un\'unica notifica</string>
+    <string name="notification_feed_unique">Ricevi una notifica unica per questa fonte</string>
+    <string name="notification_feed_default">Tutte le fonti con le impostazioni predefinite appariranno in un\'unica notifica</string>
     <string name="notification_feed_none">Nessuna notifica presente</string>
 
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Aggiungi</string>
     <string name="hint_folder_name">Nome della cartella</string>
-    <string name="folder_already_exists">Questa cartella già esiste</string>
+    <string name="folder_already_exists">Questa cartella esiste già</string>
 
     <!-- Strings related to login -->
     <string name="login_manual">Accesso manuale</string>
@@ -179,7 +179,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nessun podcast selezionato</string>
     <string name="no_chapters_available">Nessun capitolo disponibile</string>
-    <string name="exit_playback">Esci dal player</string>
+    <string name="exit_playback">Esci dal lettore</string>
     <string name="podcast_playback_speed_dialog_title">Velocità  di riproduzione</string>
     <string name="notification_downloading_podcast_title">Scaricamento podcast</string>
     <string name="dialog_podcast_remove_title">Sei sicuro?</string>
@@ -236,7 +236,7 @@
     <string name="content_desc_play">Gioca</string>
     <string name="content_desc_pause">Pausa</string>
     <string name="content_desc_playback_speed">Velocità di riproduzione</string>
-    <string name="content_desc_rewind">Rivedi</string>
+    <string name="content_desc_rewind">Riavvolgi</string>
     <string name="content_desc_forward">Inoltra</string>
     <string name="content_desc_expand">Espandi</string>
     <string name="content_desc_collapse">Contrai</string>

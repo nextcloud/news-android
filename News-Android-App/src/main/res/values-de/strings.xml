@@ -185,7 +185,6 @@
     <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
     <string name="notification_downloading_podcast_title">Podcast wird herunterladen</string>
     <string name="dialog_podcast_remove_title">Sind Sie sicher?</string>
-    <string name="dialog_podcast_remove_body">Möchten Sie heruntergeladene Medien für %1$s entfernen?</string>
     <string name="dialog_podcast_status_failed">Fehler beim Entfernen der Medien für %1$s</string>
     <string name="dialog_podcast_status_success">Medien für %1$s wurden entfernt</string>
     <string name="dialog_podcast_remove_confirm">Entfernen</string>

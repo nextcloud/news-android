@@ -180,7 +180,6 @@
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
     <string name="notification_downloading_podcast_title">正在下載音訊資料</string>
     <string name="dialog_podcast_remove_title">你確定嗎？</string>
-    <string name="dialog_podcast_remove_body">您是否要刪除 %1$s 的已下載媒體？</string>
     <string name="dialog_podcast_status_failed">無法刪除 %1$s 的媒體</string>
     <string name="dialog_podcast_status_success">已成功刪除 %1$s 的媒體</string>
     <string name="dialog_podcast_remove_confirm">移除</string>

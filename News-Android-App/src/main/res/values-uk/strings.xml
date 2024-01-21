@@ -191,7 +191,7 @@
     <string name="dialog_podcast_remove_confirm">Видалити</string>
 
     <!-- Settings for About -->
-    <string name="pref_header_about">Про програму</string>
+    <string name="pref_header_about">Про застосунок</string>
     <string name="pref_license">Ліцензія</string>
     <string name="pref_license_summary">Загальна громадська ліцензія GNU Афферо (AGPL) версії 3</string>
     <string name="pref_report_issue">Повідомити про проблему</string>
@@ -221,7 +221,7 @@
     <string name="pref_oled_mode_summary">Для темної теми на OLED-екранах</string>
 
     <string name="pref_external_player">Зовнішній програвач</string>
-    <string name="pref_external_player_summary">Відтворювати подкасти у стандартній медіапрограмі</string>
+    <string name="pref_external_player_summary">Відтворювати подкасти у вашому встановленому мультимедійному програвачу</string>
 
     <string name="pref_display_browser_cct">Вбудовані користувацькі вкладки Chrome</string>
     <string name="pref_display_browser_built_in">Вбудований браузер</string>
