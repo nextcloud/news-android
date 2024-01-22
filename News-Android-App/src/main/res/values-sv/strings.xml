@@ -185,6 +185,7 @@
     <string name="podcast_playback_speed_dialog_title">Uppspelningshastighet</string>
     <string name="notification_downloading_podcast_title">Hämtar podcast</string>
     <string name="dialog_podcast_remove_title">Är du säker?</string>
+    <string name="dialog_podcast_remove_body">Vill du ta bort nedladdad media för %1$s?</string>
     <string name="dialog_podcast_status_failed">Misslyckades med att ta bort media för %1$s</string>
     <string name="dialog_podcast_status_success">Media för %1$s har tagits bort</string>
     <string name="dialog_podcast_remove_confirm">Ta bort</string>

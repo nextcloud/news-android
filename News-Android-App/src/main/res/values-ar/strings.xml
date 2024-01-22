@@ -205,6 +205,7 @@
     <string name="podcast_playback_speed_dialog_title">سرعة التشغيل</string>
     <string name="notification_downloading_podcast_title">تنزيل البودكاست</string>
     <string name="dialog_podcast_remove_title">هل أنت متأكد؟</string>
+    <string name="dialog_podcast_remove_body">هل ترغب في إزالة الوسائط التي تمّ تنزيلها لـ %1$s?</string>
     <string name="dialog_podcast_status_failed">تعذّر حذف الوسائط لـ %1$s</string>
     <string name="dialog_podcast_status_success">وسائط %1$s تمّ حذفها</string>
     <string name="dialog_podcast_remove_confirm">حذف</string>
