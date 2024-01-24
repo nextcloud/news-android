@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Yeniden yükle</string>
     <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
     <string name="starredFeeds">Yıldızlanmış ögeler</string>
+    <string name="downloadedPodcasts">İndirilmiş Podcast ortamları</string>
     <string name="title_activity_new_feed">Yeni akış ekle</string>
 
     <string name="menu_update">Yenile</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Yıldızlanmış</string>
     <string name="action_read">Oku</string>
     <string name="action_playPodacst">Podcast oynat</string>
+    <string name="action_removePodcast">Podcast ortamını sil</string>
     <string name="action_openInBrowser">Tarayıcıda aç</string>
     <string name="action_Share">Paylaş</string>
     <string name="action_login">Sunucu ayarları</string>
@@ -183,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Oynatma hızı</string>
     <string name="notification_downloading_podcast_title">Podcast indiriliyor</string>
     <string name="dialog_podcast_remove_title">Emin misiniz?</string>
+    <string name="dialog_podcast_remove_body">%1$s indirilmiş ortamını silmek ister misiniz?</string>
+    <string name="dialog_podcast_status_failed">%1$s ortamı silinemedi</string>
+    <string name="dialog_podcast_status_success">%1$s ortamı silindi</string>
     <string name="dialog_podcast_remove_confirm">Kaldır</string>
 
     <!-- Settings for About -->
