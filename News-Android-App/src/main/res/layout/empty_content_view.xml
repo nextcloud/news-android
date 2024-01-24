@@ -19,7 +19,7 @@
         android:scaleX="1.7"
         android:scaleY="1.7"
         app:srcCompat="@drawable/ic_launcher_foreground"
-        app:tint="?attr/colorSecondaryContainer" />
+        app:tint="?attr/colorOnSurfaceVariant" />
 
     <TextView
         android:id="@+id/title"
