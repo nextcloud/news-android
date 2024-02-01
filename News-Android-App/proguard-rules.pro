@@ -16,8 +16,6 @@
 #   public *;
 #}
 
--dontobfuscate
-
 # Required for Test execution
 -dontwarn org.xmlpull.v1.**
 -dontwarn org.apache.tools.ant.**
@@ -113,8 +111,6 @@
 -keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Single
 
 
-
-
 # Other Libraries
 -dontwarn org.apache.velocity.**
 -dontwarn freemarker.**
@@ -123,15 +119,24 @@
 #-keep class com.gu.option.Option
 #-keep class com.gu.option.UnitFunction
 
--keep class de.luhmer.** { *; }
--keepclassmembers class de.luhmer.** { *; }
+# keep application classes used as database and network models
+-keep class de.luhmer.owncloudnewsreader.database.model.** { *; }
+-keep class de.luhmer.owncloudnewsreader.reader.nextcloud.ItemIds { *; }
+-keep class de.luhmer.owncloudnewsreader.reader.nextcloud.ItemMap { *; }
+-keep class de.luhmer.owncloudnewsreader.model.** { *; }
+# keep the name of SyncItemStateService so SyncItemStateService.isMyServiceRunning works
+-keepnames class de.luhmer.owncloudnewsreader.services.SyncItemStateService
+# keep fields necessary for NewsReaderListActivity.adjustEdgeSizeOfDrawer and NewsReaderListActivity.getEdgeSizeOfDrawer to work
+-keepclassmembers class androidx.drawerlayout.widget.DrawerLayout {
+    private androidx.customview.widget.ViewDragHelper mLeftDragger;
+}
+-keepclassmembers class androidx.customview.widget.ViewDragHelper {
+    private int mEdgeSize;
+}
 
 -printmapping out.map
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute SourceFile
-
--keepclasseswithmembers public class android.support.v7.widget.RecyclerView { *; }
-
 
 ###############
 # GreenDAO
