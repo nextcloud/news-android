@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Birkargatu</string>
     <string name="allUnreadFeeds">Irakurri gabeko elementu guztiak</string>
     <string name="starredFeeds">Izardun elementuak</string>
+    <string name="downloadedPodcasts">Deskargatutako podcastak</string>
     <string name="title_activity_new_feed">Gehitu jario berria</string>
 
     <string name="menu_update">Freskatu</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Izarduna</string>
     <string name="action_read">Irakurri</string>
     <string name="action_playPodacst">Erreproduzitu podcasta</string>
+    <string name="action_removePodcast">Kendu Podcast Media</string>
     <string name="action_openInBrowser">Ireki nabigatzailean</string>
     <string name="action_Share">Partekatu</string>
     <string name="action_login">Zerbitzariaren ezarpenak</string>
@@ -183,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Erreprodukzio abiadura</string>
     <string name="notification_downloading_podcast_title">Podcasta deskargatzen</string>
     <string name="dialog_podcast_remove_title">Ziur zaude?</string>
+    <string name="dialog_podcast_remove_body">%1$s-rentzat deskargatutako multimedia kendu nahi duzu?</string>
+    <string name="dialog_podcast_status_failed">%1$s-ren multimedia kentzeak huts egin du</string>
+    <string name="dialog_podcast_status_success">%1$s-ren multimedia kendu da</string>
     <string name="dialog_podcast_remove_confirm">Kendu</string>
 
     <!-- Settings for About -->
