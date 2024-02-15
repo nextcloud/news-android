@@ -123,6 +123,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">No se ha seleccionado algún podcast</string>
     <string name="no_chapters_available">No hay capítulos disponibles</string>
+    <string name="exit_playback">Salir del reproductor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidad de Reproducción</string>
     <string name="dialog_podcast_remove_title">¿Estás seguro?</string>
     <string name="dialog_podcast_remove_confirm">Borrar</string>
@@ -180,6 +181,7 @@
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
     <string name="array_sync_interval_hour_1">1 hora</string>
     <string name="array_sync_interval_hour_3">3 horas</string>
     <string name="array_sync_interval_hour_6">6 horas</string>
