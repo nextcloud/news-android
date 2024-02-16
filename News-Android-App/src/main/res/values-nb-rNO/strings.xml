@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Last på nytt</string>
     <string name="allUnreadFeeds">Alle uleste elementer</string>
     <string name="starredFeeds">Stjernemerkede elementer</string>
+    <string name="downloadedPodcasts">Nedlastede podkaster</string>
     <string name="title_activity_new_feed">Legg til ny strøm</string>
 
     <string name="menu_update">Oppdater</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Merket</string>
     <string name="action_read">Les</string>
     <string name="action_playPodacst">Spill podkast</string>
+    <string name="action_removePodcast">Fjern Podkast Media</string>
     <string name="action_openInBrowser">Åpne i nettleser</string>
     <string name="action_Share">Del</string>
     <string name="action_login">Serverinnstillinger</string>
@@ -183,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Avspillingshastighet</string>
     <string name="notification_downloading_podcast_title">Last ned podkast</string>
     <string name="dialog_podcast_remove_title">Er du sikker?</string>
+    <string name="dialog_podcast_remove_body">Vil du fjerne nedlastede medier for %1$s?</string>
+    <string name="dialog_podcast_status_failed">Fjerning av medier for %1$s feilet</string>
+    <string name="dialog_podcast_status_success">Medier for %1$s er fjernet</string>
     <string name="dialog_podcast_remove_confirm">Fjern</string>
 
     <!-- Settings for About -->
