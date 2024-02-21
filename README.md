@@ -79,10 +79,31 @@ david-dev@live.de
 ### Updating the database schema
 
 - Edit Database Schema in `LastestVersion.java`
-      - Make sure to increase version number inside `getVersionNumber` function
+  - Make sure to increase version number inside `getVersionNumber` function
 - Open build.gradle and uncomment imports annotated with `// Required for DAO generation`
 - In Android Studio - choose "DatabaseOrmGenerator" configuration
 - Hit the "Run" Button
+
+### Updating Dependencies
+
+This project
+uses [Gradle's Dependency Verification](https://docs.gradle.org/current/userguide/dependency_verification.html)
+Feature:
+
+In case you get the following error "Dependency verification failed" or in case you updated a
+dependencies you need to run the following commands to allow the new version:
+
+```bash
+# run in the project root
+./gradlew --write-verification-metadata pgp,sha256 help
+./gradlew --export-keys
+```
+
+### Analyze Dependencies
+
+```bash
+./gradlew build --scan  
+```
 
 ## Contributors
 
