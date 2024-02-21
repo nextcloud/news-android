@@ -38,4 +38,8 @@ build/*
 *~
 *.swp
 News-Android-App/out.map
-News-Android-App/extra/release/output.json
+News-Android-App/extra/release/*
+News-Android-App/oss/release/*
+fastlane/Appfile
+fastlane/report.xml
+gradle/verification-keyring.gpg
