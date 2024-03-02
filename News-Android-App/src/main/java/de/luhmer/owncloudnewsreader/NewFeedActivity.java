@@ -511,7 +511,7 @@ public class NewFeedActivity extends AppCompatActivity {
             String opmlContent;
             try {
                 if (mUrlToFile.startsWith("http")) {//http[s]
-                    opmlContent = URLConnectionReader.getText(mUrlToFile);
+                    opmlContent = URLConnectionReader.INSTANCE.getText(mUrlToFile);
                 } else {
                     opmlContent = getStringFromFile(mUrlToFile);
                 }

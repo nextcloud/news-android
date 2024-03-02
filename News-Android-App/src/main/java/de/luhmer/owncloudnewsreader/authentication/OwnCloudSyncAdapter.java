@@ -237,7 +237,7 @@ public class OwnCloudSyncAdapter extends AbstractThreadedSyncAdapter {
             // int newItemsCount = Integer.parseInt(dbConn.getUnreadItemsCountForSpecificFolder(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS));
 
             // If another app is not in foreground
-            if (!ForegroundListener.isInForeground()) {
+            if (!ForegroundListener.Companion.isInForeground()) {
                 NextcloudNotificationManager.showUnreadRssItemsNotification(getContext(), mPrefs, false);
             }
         }
