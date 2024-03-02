@@ -46,7 +46,6 @@
     <plurals name="notification_new_items_ticker">
         <item quantity="one">יש לך פריט חדש %d שלא נקרא</item>
         <item quantity="two">יש לך %dפריטים חדשים שלא נקראו </item>
-        <item quantity="many">יש לך %d פריטים חדשים שלא נקראו</item>
         <item quantity="other">יש לך %d פריטים חדשים שלא נקראו</item>
     </plurals>
     <plurals name="notification_new_items_text">
@@ -114,7 +113,6 @@
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">התקבל פריט ישן %d</item>
         <item quantity="two">התקבלו %d פריטים ישנים</item>
-        <item quantity="many">התקבלו %d פריטים ישנים</item>
         <item quantity="other">התקבלו %d פריטים ישנים</item>
     </plurals>
     <string name="toast_no_more_downloads_available">אין פריטים נוספים זמינים</string>
