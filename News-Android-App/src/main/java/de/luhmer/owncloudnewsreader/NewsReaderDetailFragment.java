@@ -539,7 +539,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 items = items.stream().filter((rss) -> {
                     var podcast = DatabaseConnectionOrm.ParsePodcastItemFromRssItem(mActivity, rss);
                     return podcast.offlineCached;
-                }).toList();
+                }).collect(Collectors.toList());
             }
 
             sw.stop();
