@@ -42,10 +42,10 @@
     <string name="action_add_new_folder">Додати новий каталог</string>
     <string name="action_textToSpeech">Читати</string>
     <string name="action_search">Пошук</string>
-    <string name="action_download_articles_offline">Завантажуйте статті в автономному режимі</string>
+    <string name="action_download_articles_offline">Зберігайте статті в автономному режимі</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Завантаження статей для доступу в автономному режимі.</string>
-    <string name="notification_download_images_offline">Завантаження зображень для використання в автономному режимі</string>
+    <string name="notification_download_articles_offline">Збереження статей для доступу в автономному режимі.</string>
+    <string name="notification_download_images_offline">Збереження зображень для використання в автономному режимі</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">У вас є %d новий непрочитаний елемент</item>
         <item quantity="few">У вас є %d нових непрочитаних елементи</item>
@@ -74,11 +74,11 @@
     <string name="action_link_share">Поділитися посиланням</string>
     <string name="action_link_open">Відкрити посилання у переглядачі</string>
     <string name="action_link_copy">Копіювати посилання</string>
-    <string name="toast_img_download_wait">Завантаження. Будь ласка, зачекайте…</string>
+    <string name="toast_img_download_wait">Звантаження. Будь ласка, зачекайте…</string>
     <string name="toast_img_saved">Зображення збережено</string>
     <string name="toast_img_notwriteable">Помилка із записом зображення.</string>
     <string name="toast_copied_to_clipboard">Скопійовано в буфер обміну</string>
-    <string name="error_download_failed">Завантаження не вдалося</string>
+    <string name="error_download_failed">Звантаження не вдалося</string>
     <string name="intent_title_share">Поділитися через</string>
 
 
@@ -131,7 +131,7 @@
         <item quantity="one">Завантажено %d старий елемент</item>
         <item quantity="few">Завантажено %d старих елементи</item>
         <item quantity="many">Завантажено %d старих елементів</item>
-        <item quantity="other">Завантажено %d старих елементів</item>
+        <item quantity="other">Звантажено %d старих елементів</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Більше немає об\'єктів</string>
     <plurals name="fetched_items_so_far">
@@ -186,7 +186,7 @@
     <string name="no_chapters_available">Немає доступних розділів</string>
     <string name="exit_playback">Вийти з програвача</string>
     <string name="podcast_playback_speed_dialog_title">Швидкість відтворення</string>
-    <string name="notification_downloading_podcast_title">Завантаження подкасту</string>
+    <string name="notification_downloading_podcast_title">Звантаження подкасту</string>
     <string name="dialog_podcast_remove_title">Ви впевнені?</string>
     <string name="dialog_podcast_remove_confirm">Видалити</string>
 
