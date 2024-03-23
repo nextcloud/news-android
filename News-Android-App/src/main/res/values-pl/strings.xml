@@ -19,6 +19,7 @@
     <string name="message_bar_reload">Przeładuj</string>
     <string name="allUnreadFeeds">Wszystkie nieprzeczytane pozycje</string>
     <string name="starredFeeds">Pozycje oznaczone gwiazdką</string>
+    <string name="downloadedPodcasts">Pobrane podcasty</string>
     <string name="title_activity_new_feed">Dodaj nowy kanał</string>
 
     <string name="menu_update">Odśwież</string>
@@ -32,6 +33,7 @@
     <string name="action_starred">Oznaczone</string>
     <string name="action_read">Przeczytane</string>
     <string name="action_playPodacst">Odtwórz Podcast</string>
+    <string name="action_removePodcast">Usuń multimedia z podcastami</string>
     <string name="action_openInBrowser">Otwórz w przeglądarce </string>
     <string name="action_Share">Udostępnij</string>
     <string name="action_login">Ustawienia serwera</string>
@@ -193,6 +195,9 @@
     <string name="podcast_playback_speed_dialog_title">Prędkość odtwarzania</string>
     <string name="notification_downloading_podcast_title">Pobieranie podcastu</string>
     <string name="dialog_podcast_remove_title">Jesteś pewny?</string>
+    <string name="dialog_podcast_remove_body">Czy chcesz usunąć pobrane multimedia dla %1$s?</string>
+    <string name="dialog_podcast_status_failed">Nie udało się usunąć multimediów dla %1$s</string>
+    <string name="dialog_podcast_status_success">Multimedia dla %1$s zostały usunięte</string>
     <string name="dialog_podcast_remove_confirm">Usuń</string>
 
     <!-- Settings for About -->
@@ -205,6 +210,8 @@
     <string name="pref_contribute_summary">Pobierz kod źródłowy</string>
     <string name="pref_privacy">Prywatność</string>
     <string name="pref_privacy_summary">Polityka prywatności Nextcloud News na Androida</string>
+    <string name="pref_news_policy">Skontaktuj się z nami / Polityka prywatności News</string>
+    <string name="pref_news_policy_summary">Polityka prywatności Nextcloud News Android / Skontaktuj się z nami</string>
     <string name="pref_version">Aplikacja Nextcloud News Android</string>
 
 
