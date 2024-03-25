@@ -84,7 +84,7 @@
     <string name="action_feed_rename">Renommer le Flux</string>
     <string name="action_feed_move">Déplacer le Flux</string>
     <string name="action_feed_notification_settings">Paramètres de notification</string>
-    <string name="action_feed_open_in">Paramètres d\'ouverture</string>
+    <string name="action_feed_open_in">Paramètres d’ouverture</string>
     <string name="action_feed_open_in_general_setting">Utilisez les paramètres généraux</string>
     <string name="action_feed_open_in_detailed_view">Vue détaillée</string>
     <string name="feed_remove_button">Retirer</string>
