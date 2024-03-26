@@ -208,7 +208,7 @@
     <!-- Settings for Display -->
     <string name="pref_header_display">Görüntüle</string>
     <string name="pref_title_app_theme">Tema</string>
-    <string name="pref_title_feed_list_layout">Akış listesi görünümü</string>
+    <string name="pref_title_feed_list_layout">Akış listesi yerleşimi</string>
     <string name="pref_title_font_size">Yazı boyutu</string>
     <string name="pref_display_browser">Tarayıcı</string>
 
@@ -234,7 +234,7 @@
     <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
     <string name="pref_display_feed_list_layout_headlines">Başlıklar</string>
     <string name="pref_display_feed_list_layout_full_text">Tam metin</string>
-    <string name="pref_display_feed_list_layout_web_layout">Site görünümü</string>
+    <string name="pref_display_feed_list_layout_web_layout">Site yerleşimi</string>
     <string name="pref_display_feed_list_layout_card_view">Kart görünümü</string>
 
     <!-- font size scaling definitions -->
