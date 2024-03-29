@@ -115,7 +115,7 @@
     <!-- Strings related to login -->
     <string name="login_manual">Connexion manuelle</string>
     <string name="login_sso">Se connecter avec l\'application Nextcloud Files</string>
-    <string name="pref_title_username">Nom d\'utilisateur</string>
+    <string name="pref_title_username">Nom d’utilisateur</string>
     <string name="pref_title_password">Mot de passe</string>
     <string name="pref_title_owncloudRootPath">adresse racine d\'ownCloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
