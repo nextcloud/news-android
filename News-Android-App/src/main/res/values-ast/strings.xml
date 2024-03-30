@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="empty_view_content">Equí nun hai nengún elementu</string>
+    <string name="current_version">Tas usando la versión %s</string>
+    <string name="widget_header">Nextcloud News</string>
+    <string name="message_bar_reload">Volver cargar</string>
+    <string name="allUnreadFeeds">Tolos elementos ensin lleer</string>
+    <string name="downloadedPodcasts">Podcasts baxaos</string>
+    <string name="menu_update">Anovar</string>
+    <string name="menu_StartImageCaching">Baxar les imáxenes</string>
+    <string name="menu_downloadMoreItems">Baxar más elementos</string>
+
+    <string name="tv_showing_cached_version">Amosando la versión de la caché</string>
+
+    <string name="action_playPodacst">Reproducir el podcast</string>
+    <string name="action_openInBrowser">Abrir nel restolador web</string>
+    <string name="action_Share">Compartir</string>
+    <string name="action_login">Configuración del sirvidor</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_settings">Configuración</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_img_sharelink">Compartir l\'enllaz de la imaxe</string>
+    <string name="action_img_open">Abrir la imaxe nel restolador web</string>
+    <string name="action_img_copylink">Copiar l\'enllaz de la imaxe</string>
+    <string name="action_link_share">Compartir l\'enllaz</string>
+    <string name="action_link_open">Abrir l\'enllaz nel restolador web</string>
+    <string name="action_link_copy">Copiar l\'enllaz</string>
+    <string name="toast_img_download_wait">Baxando, espera…</string>
+    <string name="toast_img_saved">Guardóse la imaxe</string>
+    <string name="toast_copied_to_clipboard">Copióse nel cartafueyu</string>
+    <string name="error_download_failed">La descarga falló</string>
+    <string name="intent_title_share">Compartir per</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Quitar el feed</string>
+    <string name="action_feed_rename">Renomar el feed</string>
+    <string name="action_feed_move">Mover el feed</string>
+    <string name="action_feed_notification_settings">Configuración de los avisos</string>
+    <string name="action_feed_open_in_detailed_view">Vista detallada</string>
+    <string name="feed_remove_button">Quitar</string>
+    <string name="feed_rename_button">Renomar</string>
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Quitar la carpeta</string>
+    <string name="action_folder_rename">Renomar la carpeta</string>
+    <string name="folder_remove_button">Quitar</string>
+    <string name="folder_rename_button">Renomar</string>
+    <string name="confirm_folder_remove">¿De xuru que quies quitar esta carpeta? ¡Esta aición nun se pue desfacer!</string>
+
+    <string name="notification_feed_none">Nun hai nengún avisu</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Amestar</string>
+    <string name="hint_folder_name">Nome de la carpeta</string>
+    <string name="folder_already_exists">La carpeta yá esiste</string>
+
+    <string name="pref_title_password">Contraseña</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Aniciar la sesión</string>
+    <string name="login_progress_signing_in">Aniciando la sesión…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">El campu ye obligatoriu</string>
+    <string name="error_invalid_url">La URL ye incorreuta</string>
+
+
+    <string name="toast_no_more_downloads_available">Nun hai más elementos disponibles</string>
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Configuración</string>
+    <!-- General settings -->
+    <string name="pref_header_general">Xeneral</string>
+    <string name="pref_general_search_in_title">Títulu</string>
+    <string name="pref_general_search_in_body">Cuerpu</string>
+    <string name="pref_general_search_in_both">Dambos</string>
+
+    <string name="dialog_clearing_cache">Llimpiando la caché</string>
+    <string name="dialog_clearing_cache_please_wait">Llimpiando la caché, espera…</string>
+    <string name="warning">Alvertencia</string>
+    <string name="pref_title_ShowOnlyUnread">Amosar namás los artículos ensin lleer</string>
+    <string name="pref_title_ShowFastActions">Activar les funciones d\'accesu rápidu</string>
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">¿Quies aceptar el certificáu desconocíu?</string>
+    <string name="mtm_decision_always">Siempres</string>
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Nun se seleicionó nengún podcast</string>
+    <string name="no_chapters_available">Nun hai nengún capítulu disponible</string>
+    <string name="exit_playback">Colar del reproductor</string>
+    <string name="podcast_playback_speed_dialog_title">Velocidá de la reproducción</string>
+    <string name="notification_downloading_podcast_title">Baxando\'l podcast</string>
+    <string name="dialog_podcast_remove_confirm">Quitar</string>
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Tocante a</string>
+    <string name="pref_license">Llicencia</string>
+    <string name="pref_report_issue">Informar d\'un problema</string>
+    <string name="pref_contribute_summary">Consiguir el códigu fonte</string>
+    <string name="pref_privacy">Privacidá</string>
+    <string name="pref_privacy_summary">Política de privacidá de Nextcloud News p\'Android</string>
+    <string name="pref_version">Aplicación Nextcloud News p\'Android</string>
+
+
+    <string name="pref_title_app_theme">Estilu</string>
+    <string name="pref_display_apptheme_light">Claridá</string>
+    <string name="pref_display_apptheme_dark">Escuridá</string>
+
+    <string name="pref_oled_mode">Fondu en prieto</string>
+    <string name="pref_external_player">Reproductor esternu</string>
+    <string name="pref_display_browser_built_in">Restolador integráu</string>
+    <string name="pref_display_browser_external">Restolador esternu</string>
+
+    <string name="pref_display_feed_list_layout_thumbnails">Miniatures</string>
+    <string name="pref_display_font_size_d">Por defeutu</string>
+    <string name="content_desc_play">Reproducir</string>
+    <string name="content_desc_pause">Posar</string>
+    <string name="content_desc_playback_speed">Velocidá de la reproducción</string>
+    <string name="content_desc_rewind">Rebobinar</string>
+    <string name="content_desc_forward">Avanzar</string>
+    <string name="content_desc_expand">Espander</string>
+    <string name="content_desc_collapse">Contrayer</string>
+    <string name="content_desc_tap_to_refresh">Toca p\'anovar</string>
+    <string name="content_desc_add_to_favorites">Meter en Favoritos</string>
+    <string name="content_desc_remove_from_favorites">Quitar de Favoritos</string>
+    <string name="content_desc_show_password">Amosar la contraseña</string>
+    <string name="content_desc_delete">Desaniciar</string>
+    <string name="content_desc_download">Baxar</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Error</string>
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Datos y sincronización</string>
+    <string name="pref_data_sync_image_cache_never">Enxamás</string>
+    <string name="array_sync_interval_min_0">Enxamás</string>
+    <string name="array_sync_interval_min_5">5 minutos</string>
+    <string name="array_sync_interval_min_15">15 minutos</string>
+    <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
+    <string name="array_sync_interval_hour_1">1 hora</string>
+    <string name="array_sync_interval_hour_2">2 hores</string>
+    <string name="array_sync_interval_hour_3">3 hores</string>
+    <string name="array_sync_interval_hour_6">6 hores</string>
+    <string name="array_sync_interval_hour_12">12 hores</string>
+    <string name="array_sync_interval_hour_24">24 hores</string>
+    <string name="switch_account">Cambiar de cuenta</string>
+    
+    <string name="please_wait">Espera…</string>
+    </resources>
