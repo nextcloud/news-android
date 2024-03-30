@@ -48,8 +48,8 @@ import de.luhmer.owncloudnewsreader.database.model.Feed;
 public class FavIconHandler {
     private static final String TAG = FavIconHandler.class.getCanonicalName();
 
-    private final RequestManager mGlide;
-    private final Context mContext;
+    private RequestManager mGlide;
+    private Context mContext;
     private final int mPlaceHolder;
 
     public FavIconHandler(Context context) {
@@ -154,5 +154,10 @@ public class FavIconHandler {
         } else {
             Log.v(TAG, "Failed to update AVG color of feed: " + feedId);
         }
+    }
+
+    public void setContext(Context context) {
+        mContext = context;
+        mGlide = Glide.with(context);
     }
 }

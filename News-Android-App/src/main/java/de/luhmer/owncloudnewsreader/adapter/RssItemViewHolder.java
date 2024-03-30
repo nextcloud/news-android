@@ -220,6 +220,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
 
 
         ImageView imgViewFavIcon = getImageViewFavIcon();
+        favIconHandler.setContext(itemView.getContext());
         if (imgViewFavIcon != null) {
             favIconHandler.loadFavIconForFeed(favIconUrl, imgViewFavIcon, Math.round((marginFavIcon - sizeOfFavIcon) / 2f));
         }
