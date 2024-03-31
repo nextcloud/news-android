@@ -95,7 +95,7 @@
     <string name="login_manual">Manuel login</string>
     <string name="login_sso">Login ved hjælp af Nextcloud Files app\'en</string>
     <string name="pref_title_username">Brugernavn</string>
-    <string name="pref_title_password">Kodeord</string>
+    <string name="pref_title_password">Password</string>
     <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 

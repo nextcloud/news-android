@@ -13,6 +13,7 @@
 
     <string name="tv_showing_cached_version">Amosando la versión de la caché</string>
 
+    <string name="action_read">Lleer</string>
     <string name="action_playPodacst">Reproducir el podcast</string>
     <string name="action_openInBrowser">Abrir nel restolador web</string>
     <string name="action_Share">Compartir</string>
@@ -110,6 +111,7 @@
     <string name="pref_display_browser_external">Restolador esternu</string>
 
     <string name="pref_display_feed_list_layout_thumbnails">Miniatures</string>
+    <string name="pref_display_feed_list_layout_simple_text">Testu simple</string>
     <string name="pref_display_font_size_d">Por defeutu</string>
     <string name="content_desc_play">Reproducir</string>
     <string name="content_desc_pause">Posar</string>
