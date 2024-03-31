@@ -82,35 +82,6 @@
 
 ##---------------End: proguard configuration for Gson  ----------
 
-# Retrofit
-# Following are additional rules not released yet (as of 2.9.0)
-# Keep annotation default values (e.g., retrofit2.http.Field.encoded).
--keepattributes AnnotationDefault
-
-# With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy
-# and replaces all potential values with null. Explicitly keeping the interfaces prevents this.
-# Keep inherited services.
--if interface * { @retrofit2.http.* <methods>; }
--keep,allowobfuscation interface * extends <1>
-
-# Keep generic signature of Call, Response (R8 full mode strips signatures from non-kept items).
--keep,allowobfuscation,allowshrinking interface retrofit2.Call
--keep,allowobfuscation,allowshrinking class retrofit2.Response
-
-# With R8 full mode generic signatures are stripped for classes that are not
-# kept. Suspend functions are wrapped in continuations where the type argument
-# is used.
--keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
-
-# rxjava3
-# https://github.com/square/retrofit/blob/ac07d9162309b11a3b8b3f14909b5d05d3f021d0/retrofit-adapters/rxjava3/src/main/resources/META-INF/proguard/retrofit2-rxjava3-adapter.pro
-# Keep generic signature of RxJava3 (R8 full mode strips signatures from non-kept items).
--keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Flowable
--keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Maybe
--keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Observable
--keep,allowobfuscation,allowshrinking class io.reactivex.rxjava3.core.Single
-
-
 # Other Libraries
 -dontwarn org.apache.velocity.**
 -dontwarn freemarker.**
