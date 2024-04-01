@@ -157,6 +157,9 @@ public class FavIconHandler {
     }
 
     public void setContext(Context context) {
+        if (context == mContext) {
+            return;
+        }
         mContext = context;
         mGlide = Glide.with(context);
     }
