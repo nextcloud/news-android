@@ -11,22 +11,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+package de.luhmer.owncloudnewsreader.chrometabs
 
-package de.luhmer.owncloudnewsreader.chrometabs;
-
-import android.app.Service;
-import android.content.Intent;
-import android.os.Binder;
-import android.os.IBinder;
+import android.app.Service
+import android.content.Intent
+import android.os.Binder
+import android.os.IBinder
 
 /**
  * Empty service used by the custom tab to bind to, raising the application's importance.
  */
-public class KeepAliveService extends Service {
-    private static final Binder sBinder = new Binder();
+class KeepAliveService : Service() {
+    override fun onBind(intent: Intent): IBinder? {
+        return sBinder
+    }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return sBinder;
+    companion object {
+        private val sBinder = Binder()
     }
 }
