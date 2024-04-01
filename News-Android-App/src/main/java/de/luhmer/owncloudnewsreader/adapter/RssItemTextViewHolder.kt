@@ -1,77 +1,71 @@
-package de.luhmer.owncloudnewsreader.adapter;
+package de.luhmer.owncloudnewsreader.adapter
 
-import android.content.SharedPreferences;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.content.SharedPreferences
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.annotation.CallSuper
+import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.RequestManager
+import de.luhmer.owncloudnewsreader.database.model.RssItem
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemTextBinding
+import de.luhmer.owncloudnewsreader.helper.FavIconHandler
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.viewbinding.ViewBinding;
-
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemTextBinding;
-
-public class RssItemTextViewHolder extends RssItemViewHolder<SubscriptionDetailListItemTextBinding> {
-
-    RssItemTextViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
-        super(binding, sharedPreferences);
+open class RssItemTextViewHolder internal constructor(
+    binding: ViewBinding,
+    faviconHandler: FavIconHandler,
+    glide: RequestManager,
+    sharedPreferences: SharedPreferences,
+) : RssItemViewHolder<SubscriptionDetailListItemTextBinding>(
+        binding,
+        faviconHandler,
+        glide,
+        sharedPreferences,
+    ) {
+    override fun getImageViewFavIcon(): ImageView {
+        return binding.imgViewFavIcon
     }
 
-    @Override
-    protected ImageView getImageViewFavIcon() {
-        return binding.imgViewFavIcon;
+    override fun getStar(): ImageView {
+        return binding.starImageview
     }
 
-    @Override
-    protected ImageView getStar() {
-        return binding.starImageview;
+    override fun getPlayPausePodcastButton(): ImageView {
+        return binding.podcastWrapper.btnPlayPausePodcast
     }
 
-    @Override
-    protected ImageView getPlayPausePodcastButton() {
-        return binding.podcastWrapper.btnPlayPausePodcast;
+    override fun getColorFeed(): View {
+        return binding.colorLineFeed
     }
 
-    @Override
-    protected View getColorFeed() {
-        return binding.colorLineFeed;
+    override fun getTextViewTitle(): TextView {
+        return binding.tvSubscription
     }
 
-    @Override
-    protected TextView getTextViewTitle() {
-        return binding.tvSubscription;
+    override fun getTextViewSummary(): TextView {
+        return binding.summary
     }
 
-    @Override
-    protected TextView getTextViewSummary() {
-        return binding.summary;
+    override fun getTextViewBody(): TextView {
+        return binding.body
     }
 
-    @Override
-    protected TextView getTextViewBody() {
-        return binding.body;
+    override fun getTextViewItemDate(): TextView {
+        return binding.tvItemDate
     }
 
-    @Override
-    protected TextView getTextViewItemDate() {
-        return binding.tvItemDate;
+    override fun getPlayPausePodcastWrapper(): FrameLayout {
+        return binding.podcastWrapper.flPlayPausePodcastWrapper
     }
 
-    @Override
-    protected FrameLayout getPlayPausePodcastWrapper() {
-        return binding.podcastWrapper.flPlayPausePodcastWrapper;
-    }
-
-    @Override
-    protected ProgressBar getPodcastDownloadProgress() {
-        return binding.podcastWrapper.podcastDownloadProgress;
+    override fun getPodcastDownloadProgress(): ProgressBar {
+        return binding.podcastWrapper.podcastDownloadProgress
     }
 
     @CallSuper
-    public void bind(@NonNull RssItem rssItem) {
-        super.bind(rssItem);
+    override fun bind(rssItem: RssItem) {
+        super.bind(rssItem)
     }
 }

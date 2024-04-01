@@ -1,114 +1,104 @@
-package de.luhmer.owncloudnewsreader.adapter;
+package de.luhmer.owncloudnewsreader.adapter
 
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.content.SharedPreferences
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.annotation.CallSuper
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import de.luhmer.owncloudnewsreader.R
+import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm
+import de.luhmer.owncloudnewsreader.database.model.RssItem
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding
+import de.luhmer.owncloudnewsreader.helper.FavIconHandler
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+private const val RADIUS_IN_DP = 60
 
-import com.bumptech.glide.load.MultiTransformation;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+class RssItemHeadlineThumbnailViewHolder internal constructor(
+    binding: SubscriptionDetailListItemHeadlineThumbnailBinding,
+    faviconHandler: FavIconHandler,
+    glide: RequestManager,
+    sharedPreferences: SharedPreferences,
+) : RssItemViewHolder<SubscriptionDetailListItemHeadlineThumbnailBinding>(
+        binding,
+        faviconHandler,
+        glide,
+        sharedPreferences,
+    ) {
+    var feedIcon = VectorDrawableCompat.create(itemView.resources, R.drawable.feed_icon, null)
 
-import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemHeadlineThumbnailBinding;
-
-public class RssItemHeadlineThumbnailViewHolder extends RssItemViewHolder<SubscriptionDetailListItemHeadlineThumbnailBinding> {
-
-    Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
-
-    RssItemHeadlineThumbnailViewHolder(@NonNull SubscriptionDetailListItemHeadlineThumbnailBinding binding, SharedPreferences sharedPreferences) {
-        super(binding, sharedPreferences);
+    override fun getImageViewFavIcon(): ImageView {
+        return binding.imgViewFavIcon
     }
 
-    @Override
-    protected ImageView getImageViewFavIcon() {
-        return binding.imgViewFavIcon;
+    override fun getStar(): ImageView {
+        return binding.starImageview
     }
 
-    @Override
-    protected ImageView getStar() {
-        return binding.starImageview;
+    override fun getPlayPausePodcastButton(): ImageView {
+        return binding.podcastWrapper.btnPlayPausePodcast
     }
 
-    @Override
-    protected ImageView getPlayPausePodcastButton() {
-        return binding.podcastWrapper.btnPlayPausePodcast;
+    override fun getColorFeed(): View? {
+        return null
     }
 
-    @Override
-    protected View getColorFeed() {
-        return null;
+    override fun getTextViewTitle(): TextView {
+        return binding.tvSubscription
     }
 
-    @Override
-    protected TextView getTextViewTitle() {
-        return binding.tvSubscription;
+    override fun getTextViewSummary(): TextView {
+        return binding.summary
     }
 
-    @Override
-    protected TextView getTextViewSummary() {
-        return binding.summary;
+    override fun getTextViewBody(): TextView? {
+        return null
     }
 
-    @Override
-    protected TextView getTextViewBody() {
-        return null;
+    override fun getTextViewItemDate(): TextView? {
+        return null
     }
 
-    @Override
-    protected TextView getTextViewItemDate() {
-        return null;
+    override fun getPlayPausePodcastWrapper(): FrameLayout {
+        return binding.podcastWrapper.flPlayPausePodcastWrapper
     }
 
-
-    @Override
-    protected FrameLayout getPlayPausePodcastWrapper() {
-        return binding.podcastWrapper.flPlayPausePodcastWrapper;
-    }
-
-    @Override
-    protected ProgressBar getPodcastDownloadProgress() {
-        return binding.podcastWrapper.podcastDownloadProgress;
+    override fun getPodcastDownloadProgress(): ProgressBar {
+        return binding.podcastWrapper.podcastDownloadProgress
     }
 
     @CallSuper
-    public void bind(@NonNull RssItem rssItem) {
-        super.bind(rssItem);
-
-        binding.starImageview.setVisibility(rssItem.getStarred_temp() ? View.VISIBLE : View.GONE);
-
-        binding.imgViewThumbnail.setColorFilter(null);
-        String mediaThumbnail = rssItem.getMediaThumbnail();
-        if (mediaThumbnail != null && !mediaThumbnail.isEmpty()) {
-            binding.imgViewThumbnail.setVisibility(View.VISIBLE);
-
+    override fun bind(rssItem: RssItem) {
+        super.bind(rssItem)
+        binding.starImageview.visibility = if (rssItem.starred_temp) View.VISIBLE else View.GONE
+        binding.imgViewThumbnail.colorFilter = null
+        val mediaThumbnail = rssItem.mediaThumbnail
+        if (mediaThumbnail.isNullOrEmpty()) {
+            binding.imgViewThumbnail.visibility = View.VISIBLE
             mGlide
-                    .load(mediaThumbnail)
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .placeholder(feedIcon)
-                    .error(feedIcon)
-                    .transform(new MultiTransformation<>(new CenterCrop(), new RoundedCorners(60)))
-                    .into(binding.imgViewThumbnail);
+                .load(mediaThumbnail)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .placeholder(feedIcon)
+                .error(feedIcon)
+                .transform(MultiTransformation(CenterCrop(), RoundedCorners(RADIUS_IN_DP)))
+                .into(binding.imgViewThumbnail)
         } else {
-            // Show Podcast Icon if no thumbnail is available but it is a podcast (otherwise the podcast button will go missing)
-            if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.getEnclosureMime())) {
-                binding.imgViewThumbnail.setVisibility(View.VISIBLE);
-                //imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
-                Drawable feedIcon = VectorDrawableCompat.create(itemView.getResources(), R.drawable.feed_icon, null);
-                binding.imgViewThumbnail.setImageDrawable(feedIcon);
+            // Show Podcast Icon if no thumbnail is available but it is a podcast
+            // (otherwise the podcast button will go missing)
+            if (DatabaseConnectionOrm.ALLOWED_PODCASTS_TYPES.contains(rssItem.enclosureMime)) {
+                binding.imgViewThumbnail.visibility = View.VISIBLE
+                // imgViewThumbnail.setColorFilter(Color.parseColor("#d8d8d8"));
+                binding.imgViewThumbnail.setImageDrawable(feedIcon)
             } else {
-                binding.imgViewThumbnail.setImageDrawable(null);
-                binding.imgViewThumbnail.setVisibility(View.GONE);
+                binding.imgViewThumbnail.setImageDrawable(null)
+                binding.imgViewThumbnail.visibility = View.GONE
             }
         }
     }

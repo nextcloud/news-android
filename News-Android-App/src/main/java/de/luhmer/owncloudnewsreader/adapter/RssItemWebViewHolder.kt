@@ -1,82 +1,73 @@
-package de.luhmer.owncloudnewsreader.adapter;
+package de.luhmer.owncloudnewsreader.adapter
 
-import android.content.SharedPreferences;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.content.SharedPreferences
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.annotation.CallSuper
+import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.RequestManager
+import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask
+import de.luhmer.owncloudnewsreader.database.model.RssItem
+import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemWebLayoutBinding
+import de.luhmer.owncloudnewsreader.helper.FavIconHandler
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.viewbinding.ViewBinding;
-
-import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
-import de.luhmer.owncloudnewsreader.database.model.RssItem;
-import de.luhmer.owncloudnewsreader.databinding.SubscriptionDetailListItemWebLayoutBinding;
-
-public class RssItemWebViewHolder extends RssItemViewHolder<SubscriptionDetailListItemWebLayoutBinding> {
-
-
-    public RssItemWebViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
-        super(binding, sharedPreferences);
+class RssItemWebViewHolder(
+    binding: ViewBinding,
+    faviconHandler: FavIconHandler,
+    glide: RequestManager,
+    sharedPreferences: SharedPreferences,
+) : RssItemViewHolder<SubscriptionDetailListItemWebLayoutBinding>(
+        binding,
+        faviconHandler,
+        glide,
+        sharedPreferences,
+    ) {
+    override fun getImageViewFavIcon(): ImageView {
+        return binding.layoutThumbnail.imgViewFavIcon
     }
 
-    @Override
-    protected ImageView getImageViewFavIcon() {
-        return binding.layoutThumbnail.imgViewFavIcon;
+    override fun getStar(): ImageView {
+        return binding.layoutThumbnail.starImageview
     }
 
-    @Override
-    protected ImageView getStar() {
-        return binding.layoutThumbnail.starImageview;
+    override fun getPlayPausePodcastButton(): ImageView {
+        return binding.layoutThumbnail.podcastWrapper.btnPlayPausePodcast
     }
 
-    @Override
-    protected ImageView getPlayPausePodcastButton() {
-        return binding.layoutThumbnail.podcastWrapper.btnPlayPausePodcast;
+    override fun getColorFeed(): ImageView? {
+        return null
     }
 
-    @Override
-    protected ImageView getColorFeed() {
-        return null;
+    override fun getTextViewTitle(): TextView {
+        return binding.layoutThumbnail.tvSubscription
     }
 
-    @Override
-    protected TextView getTextViewTitle() {
-        return binding.layoutThumbnail.tvSubscription;
+    override fun getTextViewSummary(): TextView {
+        return binding.layoutThumbnail.summary
     }
 
-    @Override
-    protected TextView getTextViewSummary() {
-        return binding.layoutThumbnail.summary;
+    override fun getTextViewBody(): TextView {
+        return binding.layoutThumbnail.body
     }
 
-    @Override
-    protected TextView getTextViewBody() {
-        return binding.layoutThumbnail.body;
+    override fun getTextViewItemDate(): TextView {
+        return binding.layoutThumbnail.tvItemDate
     }
 
-    @Override
-    protected TextView getTextViewItemDate() {
-        return binding.layoutThumbnail.tvItemDate;
+    override fun getPlayPausePodcastWrapper(): FrameLayout {
+        return binding.layoutThumbnail.podcastWrapper.flPlayPausePodcastWrapper
     }
 
-    @Override
-    protected FrameLayout getPlayPausePodcastWrapper() {
-        return binding.layoutThumbnail.podcastWrapper.flPlayPausePodcastWrapper;
-    }
-
-    @Override
-    protected ProgressBar getPodcastDownloadProgress() {
-        return binding.layoutThumbnail.podcastWrapper.podcastDownloadProgress;
+    override fun getPodcastDownloadProgress(): ProgressBar {
+        return binding.layoutThumbnail.podcastWrapper.podcastDownloadProgress
     }
 
     @CallSuper
-    public void bind(@NonNull RssItem rssItem) {
-        super.bind(rssItem);
-
-        String htmlPage = RssItemToHtmlTask.getHtmlPage(this.mGlide, rssItem, false, mPrefs, itemView.getContext());
-        binding.webViewBody.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "");
-
+    override fun bind(rssItem: RssItem) {
+        super.bind(rssItem)
+        val htmlPage: String = RssItemToHtmlTask.getHtmlPage(mGlide, rssItem, false, mPrefs, itemView.context)
+        binding.webViewBody.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "")
     }
 }
