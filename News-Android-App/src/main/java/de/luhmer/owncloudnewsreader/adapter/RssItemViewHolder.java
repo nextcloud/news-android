@@ -44,7 +44,7 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
 
     protected T binding;
     private static final SparseIntArray downloadProgressList = new SparseIntArray();
-    private static FavIconHandler favIconHandler = null;
+    private final FavIconHandler favIconHandler;
     protected final SharedPreferences mPrefs;
     @SuppressWarnings("FieldCanBeLocal")
     private final int LengthBody = 400;
@@ -59,7 +59,12 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
 
     private final SparseIntArray initalFontSizes = new SparseIntArray();
 
-    RssItemViewHolder(@NonNull ViewBinding binding, SharedPreferences sharedPreferences) {
+    RssItemViewHolder(
+            @NonNull ViewBinding binding,
+            FavIconHandler favIconHandler,
+            RequestManager glide,
+            SharedPreferences sharedPreferences
+    ) {
         super(binding.getRoot());
         this.binding = (T) binding;
         this.mPrefs = sharedPreferences;
@@ -67,11 +72,9 @@ public abstract class RssItemViewHolder<T extends ViewBinding> extends RecyclerV
         Context context = itemView.getContext();
         bodyForegroundColor = new ForegroundColorSpan(ContextCompat.getColor(context, android.R.color.secondary_text_dark));
 
-        mGlide = Glide.with(context);
+        mGlide = glide;
 
-        if (favIconHandler == null) {
-            favIconHandler = new FavIconHandler(context);
-        }
+        this.favIconHandler = favIconHandler;
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
