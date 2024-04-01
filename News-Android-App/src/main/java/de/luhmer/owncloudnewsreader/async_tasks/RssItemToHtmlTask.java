@@ -1,5 +1,6 @@
 package de.luhmer.owncloudnewsreader.async_tasks;
 
+import static java.lang.reflect.Modifier.PRIVATE;
 import static de.luhmer.owncloudnewsreader.NewsDetailActivity.INCOGNITO_MODE_ENABLED;
 import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
 
@@ -11,6 +12,7 @@ import android.text.format.DateUtils;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -139,28 +141,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         String description = rssItem.getBody();
 
         if (!description.isEmpty()) {
-            // UUID is used so there is only a very small chance that the placeholder text actually exists in the article
-            var uuid = UUID.randomUUID().toString();
-
-            // pre-blocks shouldn't have their formatting changed
-            var matcher = PATTERN_PRE_BLOCK.matcher(description);
-            var preBlocks = new ArrayList<String>();
-
-            while (matcher.find()) {
-                var group = matcher.group();
-                description = description.replace(group, "PRE_BLOCK_THAT_WILL_BE_REPLACED_" + uuid + "_" + preBlocks.size());
-                preBlocks.add(group);
-            }
-
-            description = description
-                    .replaceAll("\n\n", "THIS_WILL_BE_BECOME_ONE_NEWLINE_LATER_" + uuid) // This is required because otherwise `\n\n` would become 2 spaces
-                    .replaceAll(">\n", ">") // The first character after a tag shouldn't have a space
-                    .replaceAll("\n", " ")
-                    .replaceAll("THIS_WILL_BE_BECOME_ONE_NEWLINE_LATER_" + uuid, "\n");
-
-            for (int i = 0; i < preBlocks.size(); i++) {
-                description = description.replace("PRE_BLOCK_THAT_WILL_BE_REPLACED_" + uuid + "_" + i, preBlocks.get(i));
-            }
+            description = removeLineBreaksFromHtml(description);
         }
         else if(rssItem.getMediaDescription() != null) {
             // in case the rss body is empty, fallback to the media description (e.g. youtube / ted talks)
@@ -189,6 +170,36 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         builder.append("</body></html>");
 
         return builder.toString().replaceAll("\"//", "\"https://");
+    }
+
+    @VisibleForTesting()
+    public static String removeLineBreaksFromHtml(String description) {
+        // UUID is used so there is only a very small chance that the placeholder text actually exists in the article
+        var uuid = UUID.randomUUID().toString();
+
+        // pre-blocks shouldn't have their formatting changed
+        var matcher = PATTERN_PRE_BLOCK.matcher(description);
+        var preBlocks = new ArrayList<String>();
+
+        while (matcher.find()) {
+            var group = matcher.group();
+            description = description.replaceFirst(Pattern.quote(group), "PRE_BLOCK_THAT_WILL_BE_REPLACED_" + uuid + "_" + preBlocks.size());
+            preBlocks.add(group);
+        }
+
+        description = description
+                .replaceAll("\n\n", "THIS_WILL_BE_BECOME_ONE_NEWLINE_LATER_" + uuid) // This is required because otherwise `\n\n` would become 2 spaces
+                .replaceAll(">\n", ">") // The first character after a tag shouldn't have a space
+                .replaceAll("\n", " ")
+                .replaceAll("THIS_WILL_BE_BECOME_ONE_NEWLINE_LATER_" + uuid, "\n");
+
+        for (int i = 0; i < preBlocks.size(); i++) {
+            description = description.replaceFirst(
+                    "PRE_BLOCK_THAT_WILL_BE_REPLACED_" + uuid + "_" + i,
+                    Matcher.quoteReplacement(preBlocks.get(i))
+            );
+        }
+        return description;
     }
 
     private static String getSelectedTheme() {
