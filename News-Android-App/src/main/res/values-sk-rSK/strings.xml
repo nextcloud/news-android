@@ -19,6 +19,7 @@
     <string name="message_bar_reload">Znovu načítať</string>
     <string name="allUnreadFeeds">Všetky neprečítané položky</string>
     <string name="starredFeeds">Položky s hviezdičkou</string>
+    <string name="downloadedPodcasts">Stiahnuté podcasty</string>
     <string name="title_activity_new_feed">Pridať nový kanál</string>
 
     <string name="menu_update">Obnoviť</string>
@@ -32,6 +33,7 @@
     <string name="action_starred">S hviezdičkou</string>
     <string name="action_read">Čítať</string>
     <string name="action_playPodacst">Prehrať podcast</string>
+    <string name="action_removePodcast">Odstráňte Podcast Media</string>
     <string name="action_openInBrowser">Otvoriť vo webovom prehliadači</string>
     <string name="action_Share">Zdieľať</string>
     <string name="action_login">Nastavenia servera</string>
@@ -87,6 +89,9 @@
     <string name="action_feed_rename">Premenovať kanál</string>
     <string name="action_feed_move">Presunúť kanál</string>
     <string name="action_feed_notification_settings">Nastavenie notifikácií</string>
+    <string name="action_feed_open_in">Otvoriť nastavenia</string>
+    <string name="action_feed_open_in_general_setting">Použiť všeobecné nastavenie</string>
+    <string name="action_feed_open_in_detailed_view">Detailný pohľad</string>
     <string name="feed_remove_button">Odobrať</string>
     <string name="feed_rename_button">Premenovať</string>
     <string name="confirm_feed_remove">Naozaj chcete odstrániť tento informačný kanál? Nie je to možné vrátiť späť!</string>
@@ -161,6 +166,8 @@
 
     <string name="pref_general_search_in_title">Názov</string>
     <string name="pref_general_search_in_body">Telo</string>
+    <string name="pref_general_search_in_both">obidva</string>
+
     <string name="dialog_clearing_cache">Čistenie medzipamäte</string>
     <string name="dialog_clearing_cache_please_wait">Maže sa vyrovnávacia pamäť. Čakajte prosím ...</string>
     <string name="reset_cache_unsaved_changes">Nezosynchronizované zmeny sú k dispozícii. Aj napriek tomu chcete vyprázdniť medzipamäť?</string>
@@ -198,6 +205,8 @@
     <string name="pref_contribute_summary">Získajte zdrojový kód</string>
     <string name="pref_privacy">Súkromie</string>
     <string name="pref_privacy_summary">Nextcloud novinky pre Politiku Zabezpečenia Androidu</string>
+    <string name="pref_news_policy">Kontaktujte nás / Zásady noviniek</string>
+    <string name="pref_news_policy_summary">Nextcloud Novinky Pravidlá Android News / Kontaktujte nás</string>
     <string name="pref_version">Aplikácia Nextcloud novinky pre Android</string>
 
 
@@ -217,6 +226,9 @@
 
     <string name="pref_oled_mode">Čierne pozadie</string>
     <string name="pref_oled_mode_summary">Pre tmavé motívy vzhľadu na obrazovkách OLED</string>
+
+    <string name="pref_external_player">Externý prehrávač</string>
+    <string name="pref_external_player_summary">Prehrávajte podcasty vo svojej predvolenej mediálnej aplikácii</string>
 
     <string name="pref_display_browser_cct">Vstavané karty prehliadača Chrome</string>
     <string name="pref_display_browser_built_in">Vstavaný prehliadač</string>
