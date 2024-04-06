@@ -104,6 +104,8 @@
     <string name="pref_title_general_sort_order">Cirterio para ordenar</string>
 
     <string name="pref_general_search_in_title">Título</string>
+    <string name="pref_general_search_in_both">Ambos</string>
+
     <string name="dialog_clearing_cache">Limpiando el caché</string>
     <string name="reset_cache_unsaved_changes">Hay cambios que no han sido sincronizados. ¿Quieres limpiar el caché de cualquier modo?</string>
     <string name="warning">Advertencia</string>
