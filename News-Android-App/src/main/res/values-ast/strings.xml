@@ -83,6 +83,7 @@
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">¿Quies aceptar el certificáu desconocíu?</string>
     <string name="mtm_decision_always">Siempres</string>
+    <string name="mtm_decision_abort">Albortar</string>
     <!-- Podcast -->
     <string name="no_podcast_selected">Nun se seleicionó nengún podcast</string>
     <string name="no_chapters_available">Nun hai nengún capítulu disponible</string>
