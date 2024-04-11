@@ -56,6 +56,7 @@
     <string name="hint_folder_name">Nome de la carpeta</string>
     <string name="folder_already_exists">La carpeta yá esiste</string>
 
+    <string name="pref_title_username">Nome d\'usuariu</string>
     <string name="pref_title_password">Contraseña</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
