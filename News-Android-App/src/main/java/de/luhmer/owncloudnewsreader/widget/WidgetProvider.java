@@ -33,6 +33,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import androidx.core.app.PendingIntentCompat;
+
 import java.util.Arrays;
 
 import javax.inject.Inject;
@@ -211,10 +213,13 @@ public class WidgetProvider extends AppWidgetProvider {
         onListClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         onListClickIntent.setData(Uri.parse(onListClickIntent.toUri(Intent.URI_INTENT_SCHEME)));    
         
-        final PendingIntent onListClickPendingIntent = PendingIntent.getBroadcast(context,
-                                                        0,
-										        		onListClickIntent,
-										        		PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        final PendingIntent onListClickPendingIntent = PendingIntentCompat.getBroadcast(
+                context,
+                0,
+                onListClickIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT,
+                true
+        );
         rv.setPendingIntentTemplate(R.id.list_view, onListClickPendingIntent);
 
 
