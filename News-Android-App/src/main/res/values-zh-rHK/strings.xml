@@ -190,7 +190,7 @@
     <string name="pref_license">授權</string>
     <string name="pref_license_summary">GNU Affero 通用公眾授權條款（GNU AGPL）第 3 版</string>
     <string name="pref_report_issue">舉報問題</string>
-    <string name="pref_report_issue_summary">需要一個（免費的）GitHub 賬戶</string>
+    <string name="pref_report_issue_summary">需要一個（免費的）GitHub 帳戶</string>
     <string name="pref_contribute">貢獻</string>
     <string name="pref_contribute_summary">取得原始碼</string>
     <string name="pref_privacy">隱私</string>
