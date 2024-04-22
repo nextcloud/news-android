@@ -70,6 +70,9 @@
     <string name="feed_remove_button">Eliminar</string>
     <string name="feed_rename_button">Renombrar</string>
     <string name="confirm_feed_remove">¿Realmente deseas eliminar esta Fuente? ¡Esta operación no se puede deshacer!</string>
+    <string name="move_feed_root_folder">Carpeta raíz</string>
+
+
     <string name="action_folder_rename">Renombrar carpeta</string>
     <string name="folder_remove_button">Eliminar</string>
     <string name="folder_rename_button">Renombrar</string>
