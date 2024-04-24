@@ -1,0 +1,7 @@
+Added - Add "remove podcast" in toolbar and "Downloaded podcasts" special folder
+Fixed - Code section shows the same listing in some code posts
+Fixed - Changing theme (light/dark) caused favicons to display in wrong color
+Fixed - Widget opens wrong article / #1355 Clicking on the widget jumps to a previously opened article
+Fixed - Crash when opening downloaded podcasts
+Fixed - Images not shown in Details view of specific feeds
+Changed - Reduced apk size by 8%
