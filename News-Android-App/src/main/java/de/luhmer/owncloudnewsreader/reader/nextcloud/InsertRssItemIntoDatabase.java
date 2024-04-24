@@ -128,13 +128,14 @@ class InsertRssItemIntoDatabase {
         rssItem.setBody(content);
 
         String mediaThumbnail = getStringOrEmpty("mediaThumbnail", e); // Possible XSS Fields
+        // in case the server doesn't provide a mediaThumbnail - the app will try to find one
         if(mediaThumbnail.isEmpty()) {
             List<String> images = ImageHandler.getImageLinksFromText(url, content);
-            if(images.size() > 0) {
-                // Log.d(TAG, "extracted mediaThumbnail from body");
+            if (!images.isEmpty()) {
                 mediaThumbnail = images.get(0);
+                // Log.d(TAG, "extracted mediaThumbnail from body" + mediaThumbnail);
             } else {
-                Log.d(TAG, "extracting mediaThumbnail from body failed - no images detected");
+                Log.d(TAG, "extraction of mediaThumbnail not possible - no images detected");
             }
         }
         rssItem.setMediaThumbnail(mediaThumbnail);

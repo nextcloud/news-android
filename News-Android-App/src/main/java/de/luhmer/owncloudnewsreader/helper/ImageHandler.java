@@ -40,8 +40,7 @@ public class ImageHandler {
     private static final Pattern patternHref = Pattern.compile("<a[^>]*>");
     private static final Pattern patternHrefLink = Pattern.compile("href=\"(.*?)\"");
 
-	public static List<String> getImageLinksFromText(String articleUrl, String text)
-	{
+    public static List<String> getImageLinksFromText(String articleUrl, String text) {
 		List<String> links = new ArrayList<>();
 
 		Matcher matcher = patternImg.matcher(text);
@@ -50,15 +49,18 @@ public class ImageHandler {
 	    	Matcher matcherSrcLink = patternImgSrcLink.matcher(matcher.group());
 	    	if(matcherSrcLink.find()) {
                 String link = matcherSrcLink.group(1);
-                if(link != null && link.startsWith("//")) { //Maybe the text contains image urls without http or https prefix.
-                    link = "https:" + link;
-                }
 
-                // the android universal image loader doesn't support svg images. Therefore we don't want to load them through UIL
-                if(link.endsWith(".svg")) {
-                    Log.d(TAG, "detected unsupported svg image in article: " + articleUrl + " -> " + link);
-                } else {
-                    links.add(link);
+                if (link != null) {
+                    if (link.startsWith("//")) { //Maybe the text contains image urls without http or https prefix.
+                        link = "https:" + link;
+                    }
+
+                    // the android universal image loader doesn't support svg images. Therefore we don't want to load them through UIL
+                    if (link.endsWith(".svg")) {
+                        Log.d(TAG, "detected unsupported svg image in article: " + articleUrl + " -> " + link);
+                    } else {
+                        links.add(link);
+                    }
                 }
 	    	}
 	    }
