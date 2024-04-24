@@ -1,7 +1,7 @@
 0.9.9.86
 ---------------------
 - Dependency updates
-- Added - <a href="https://github.com/nextcloud/news-android/pull/1273">!1273 - Add "remove podcast" in toolbar and "Downloaded podcasts" special folder</a>
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1273">!1273 - Add "remove podcast" in toolbar and "Downloaded podcasts" special folder (thanks to @mkanilsson)</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1400">!1400 - Code section shows the same listing in some code posts (thanks to @Unpublished)</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/pull/1410">!1410 - Changing theme (light/dark) caused favicons to display in wrong color (thanks to @Unpublished / @DoHe)</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1035">#1035 - Widget opens wrong article / #1355 Clicking on the widget jumps to a previously opened article (thanks to @Unpublished)</a>
