@@ -80,7 +80,7 @@ class RssItemHeadlineThumbnailViewHolder internal constructor(
         binding.starImageview.visibility = if (rssItem.starred_temp) View.VISIBLE else View.GONE
         binding.imgViewThumbnail.colorFilter = null
         val mediaThumbnail = rssItem.mediaThumbnail
-        if (mediaThumbnail.isNullOrEmpty()) {
+        if (!mediaThumbnail.isNullOrEmpty()) {
             binding.imgViewThumbnail.visibility = View.VISIBLE
             mGlide
                 .load(mediaThumbnail)
