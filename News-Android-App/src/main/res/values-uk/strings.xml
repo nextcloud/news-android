@@ -18,7 +18,7 @@
     </plurals>
     <string name="message_bar_reload">Перезавантажити</string>
     <string name="allUnreadFeeds">Всі непрочитані</string>
-    <string name="starredFeeds">Улюблені</string>
+    <string name="starredFeeds">Із зірочкою</string>
     <string name="title_activity_new_feed">Додати нову стрічку</string>
 
     <string name="menu_update">Оновити</string>
@@ -252,7 +252,7 @@
     <string name="content_desc_mark_as_unread">Позначити не прочитаним</string>
     <string name="content_desc_tap_to_refresh">Торкніться для оновлення</string>
     <string name="content_desc_add_to_favorites">Додати зірочку</string>
-    <string name="content_desc_remove_from_favorites">Вилучено з улюбленого</string>
+    <string name="content_desc_remove_from_favorites">Прибрати зірочку</string>
     <string name="content_desc_show_password">Показати пароль</string>
     <string name="content_desc_delete">Вилучити</string>
     <string name="content_desc_download">Звантажити</string>
