@@ -43,6 +43,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
@@ -56,6 +57,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuProvider;
 import androidx.customview.widget.ViewDragHelper;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -137,7 +139,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
  * selections.
  */
 public class NewsReaderListActivity extends PodcastFragmentActivity implements
-		 NewsReaderListFragment.Callbacks, RecyclerItemClickListener, SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
+		 NewsReaderListFragment.Callbacks, RecyclerItemClickListener, SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener, MenuProvider {
 
 	private static final String TAG = NewsReaderListActivity.class.getCanonicalName();
 
@@ -852,18 +854,16 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return menuItemDownloadMoreItems;
 	}
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		MenuItem accountItem = menu.findItem(R.id.menu_account);
-		prepareAccountMenuItem(accountItem);
+    @Override
+    public void onPrepareMenu(@NonNull Menu menu) {
+        MenuItem accountItem = menu.findItem(R.id.menu_account);
+        prepareAccountMenuItem(accountItem);
+    }
 
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+	public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.news_reader, menu);
+		menuInflater.inflate(R.menu.news_reader, menu);
 
 		menuItemDownloadMoreItems = menu.findItem(R.id.menu_downloadMoreItems);
 
@@ -874,77 +874,70 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		menuItemOnlyUnread.setChecked(mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false));
 		syncMenuItemUnreadOnly();
 
-        //Set expand listener to close keyboard
-        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
+		//Set expand listener to close keyboard
+		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+			@Override
+			public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
 				return true;
 			}
 
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                //onQueryTextChange(""); // Reset search
-                mSearchView.setQuery("", true);
-                clearSearchViewFocus();
-                return true;
-            }
-        });
+			@Override
+			public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
+				//onQueryTextChange(""); // Reset search
+				mSearchView.setQuery("", true);
+				clearSearchViewFocus();
+				return true;
+			}
+		});
 
 		mSearchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		mSearchView.setIconifiedByDefault(false);
 		mSearchView.setOnQueryTextListener(this);
 		mSearchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
-            if(!hasFocus) {
-                clearSearchViewFocus();
-            }
-        });
+			if(!hasFocus) {
+				clearSearchViewFocus();
+			}
+		});
 
-        NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
-        if(ndf != null) {
-            ndf.updateMenuItemsState();
-        }
+		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+		if(ndf != null) {
+			ndf.updateMenuItemsState();
+		}
 
-        updateButtonLayout();
+		updateButtonLayout();
 
-        // focus the SearchView (if search view was active before orientation change)
-        if (mSearchString != null && !mSearchString.isEmpty()) {
-            searchItem.expandActionView();
-            mSearchView.setQuery(mSearchString, true);
-            mSearchView.clearFocus();
-        }
-
-        return true;
-	}
-
-	public static final int RESULT_SETTINGS = 15642;
-
-	private void syncMenuItemUnreadOnly() {
-		if (menuItemOnlyUnread != null && currentFolderId != null) {
-			menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
+		// focus the SearchView (if search view was active before orientation change)
+		if (mSearchString != null && !mSearchString.isEmpty()) {
+			searchItem.expandActionView();
+			mSearchView.setQuery(mSearchString, true);
+			mSearchView.clearFocus();
 		}
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-		if (drawerToggle != null && drawerToggle.onOptionsItemSelected(item))
+	public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+		if (drawerToggle != null && drawerToggle.onOptionsItemSelected(menuItem))
 			return true;
 
-		int itemId = item.getItemId();
+		int itemId = menuItem.getItemId();
 		if (itemId == android.R.id.home) {
 			if (handlePodcastBackPressed())
 				return true;
 		} else if (itemId == R.id.menu_update) {
 			startSync();
+			return true;
 		}
 		else if (itemId == R.id.menu_account) {
 			startLoginActivity();
+			return true;
 		}
 		else if (itemId == R.id.menu_toggleShowOnlyUnread) {
 			boolean newValue = !mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false);
 			mPrefs.edit().putBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, newValue).commit();
-			item.setChecked(newValue);
+			menuItem.setChecked(newValue);
 			reloadSidebar();
 			updateCurrentRssView();
+			return true;
 		}
 		else if (itemId == R.id.menu_StartImageCaching) {
 			final DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(this);
@@ -956,6 +949,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			data.putExtra(DownloadImagesService.LAST_ITEM_ID, highestItemId);
 			data.putExtra(DownloadImagesService.DOWNLOAD_MODE_STRING, DownloadImagesService.DownloadMode.PICTURES_ONLY);
 			DownloadImagesService.enqueueWork(this, data);
+			return true;
 		} else if (itemId == R.id.menu_CreateDatabaseDump) {
 			DatabaseUtilsKt.copyDatabaseToSdCard(this);
 
@@ -963,6 +957,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					.setMessage("Created dump at: " + DatabaseUtilsKt.getPath(this))
 					.setNeutralButton(getString(android.R.string.ok), null)
 					.show();
+			return true;
 		} else if (itemId == R.id.menu_markAllAsRead) {
 			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 			if (ndf != null) {
@@ -985,7 +980,15 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			checkAndStartDownloadWebPagesForOfflineReadingPermission();
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		return false;
+	}
+
+	public static final int RESULT_SETTINGS = 15642;
+
+	private void syncMenuItemUnreadOnly() {
+		if (menuItemOnlyUnread != null && currentFolderId != null) {
+			menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
+		}
 	}
 
 	private void checkAndStartDownloadWebPagesForOfflineReadingPermission() {
