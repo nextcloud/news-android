@@ -211,8 +211,8 @@
     <string name="pref_display_news_detail_actionbar_icons_title">操作圖示（詳細檢視）</string>
 
     <string name="pref_display_apptheme_auto">系統預設</string>
-    <string name="pref_display_apptheme_light">亮色</string>
-    <string name="pref_display_apptheme_dark">暗色</string>
+    <string name="pref_display_apptheme_light">淺色</string>
+    <string name="pref_display_apptheme_dark">深色</string>
 
     <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_oled_mode_summary">供 OLED 螢幕使用的暗黑主題</string>
