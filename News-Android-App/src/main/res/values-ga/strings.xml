@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Sioncronú uathoibríoch</string>
+    <string name="title_activity_sync_interval_selector">Eatramh Sioncronaithe</string>
+    <string name="empty_view_content">Uimh míreanna anseo</string>
+    <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="toast_GettingMoreItems">Íoslódáil níos mó míreanna tosaithe. Fán le do thoil …</string>
+    <string name="no_wifi_available">Níl WiFi ceangailte</string>
+    <string name="do_you_want_to_download_without_wifi">Ar mhaith leat na híomhánna a íoslódáil gan nasc Wi-Fi?</string>
+    <string name="current_version"> Tá tú ag úsáid Leagan%s</string>
+    <string name="widget_header">Nuacht Nextcloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d mír nua ar fáil</item>
+        <item quantity="two">%d míreanna nua ar fáil</item>
+        <item quantity="few">%d míreanna nua ar fáil</item>
+        <item quantity="many">%d míreanna nua ar fáil</item>
+        <item quantity="other">%d míreanna nua ar fáil</item>
+    </plurals>
+    <string name="message_bar_reload">Athlódáil</string>
+    <string name="allUnreadFeeds">Gach mír neamhléite</string>
+    <string name="starredFeeds">Míreanna le réiltín</string>
+    <string name="downloadedPodcasts">Podchraoltaí íoslódáilte</string>
+    <string name="title_activity_new_feed">Cuir fotha nua leis</string>
+
+    <string name="menu_update">Athnuaigh</string>
+    <string name="menu_markAllAsRead">Marcáil go léir mar a léitear</string>
+    <string name="menu_StartImageCaching">Íosluchtaigh pictiúir éan</string>
+    <string name="menu_downloadMoreItems">Íoslódáil níos mó míreanna</string>
+
+    <string name="tv_showing_cached_version">Leagan taisce á thaispeáint</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Réiltín</string>
+    <string name="action_read">Léigh</string>
+    <string name="action_playPodacst">Seinn Podchraoladh</string>
+    <string name="action_removePodcast">Bain Podchraoladh Meáin</string>
+    <string name="action_openInBrowser">Oscail sa bhrabhsálaí gréasáin</string>
+    <string name="action_Share">Comhroinn</string>
+    <string name="action_login">Socruithe Freastalaí</string>
+    <string name="action_save">Sábháil</string>
+    <string name="action_settings">Socruithe</string>
+    <string name="action_sync_settings">Socruithe Sioncronaithe</string>
+    <string name="action_add_new_feed">Cuir fotha nua leis</string>
+    <string name="action_add_new_folder">Cuir fillteán nua leis</string>
+    <string name="action_textToSpeech">Léigh amach</string>
+    <string name="action_search">Cuardach</string>
+    <string name="action_download_articles_offline">Íosluchtaigh earraí as an Idirlíon</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Íosluchtaigh earraí le haghaidh úsáide as líne</string>
+    <string name="notification_download_images_offline">Íosluchtaigh pictiúir le haghaidh úsáide as líne</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">Tá %d mhír nua neamhléite agat</item>
+        <item quantity="two">Tá %d mhír nua neamhléite agat</item>
+        <item quantity="few">Tá %d mhír nua neamhléite agat</item>
+        <item quantity="many">Tá %d mhír nua neamhléite agat</item>
+        <item quantity="other">Tá %d mhír nua neamhléite agat</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d nmíreanna nua neamhléite ar fáil</item>
+        <item quantity="two">%d nmíreanna nua neamhléite ar fáil</item>
+        <item quantity="few">%d míreanna nua neamhléite ar fáil</item>
+        <item quantity="many">%d míreanna nua neamhléite ar fáil</item>
+        <item quantity="other">%d míreanna nua neamhléite ar fáil</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL fotha</string>
+    <string name="action_add_feed">Cuir beatha leis</string>
+    <string name="import_opml">Iompórtáil OPML</string>
+    <string name="export_opml">Easpórtáil OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Íosluchtaigh íomhá</string>
+    <string name="action_img_sharelink">Comhroinn Nasc Íomhá</string>
+    <string name="action_img_open">Oscail Íomhá sa Bhrabhsálaí</string>
+    <string name="action_img_copylink">Cóipeáil Nasc Íomhá</string>
+    <string name="action_link_share">Comhroinn Nasc</string>
+    <string name="action_link_open">Oscail Nasc sa Bhrabhsálaí</string>
+    <string name="action_link_copy">Cóipeáil Nasc</string>
+    <string name="toast_img_download_wait">Ag íosluchtú. Fán le do thoil …</string>
+    <string name="toast_img_saved">Sábháladh an íomhá</string>
+    <string name="toast_img_notwriteable">Theip ar Scríobh an Íomhá.</string>
+    <string name="toast_copied_to_clipboard">Cóipeáladh chuig an ngearrthaisce</string>
+    <string name="error_download_failed">Theip ar an íoslódáil</string>
+    <string name="intent_title_share">Roinn trí</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Bain Fotha</string>
+    <string name="action_feed_rename">Athainmnigh Fotha</string>
+    <string name="action_feed_move">Bog Fotha</string>
+    <string name="action_feed_notification_settings">Socruithe fógra</string>
+    <string name="action_feed_open_in">Socruithe oscailte isteach</string>
+    <string name="action_feed_open_in_general_setting">Bain úsáid as socrú ginearálta</string>
+    <string name="action_feed_open_in_detailed_view">Amharc mionsonraithe</string>
+    <string name="feed_remove_button">Bain</string>
+    <string name="feed_rename_button">Athainmnigh</string>
+    <string name="confirm_feed_remove">An bhfuil tú cinnte gur mhaith leat an Fotha seo a bhaint? Ní féidir é seo a chealú!</string>
+    <string name="feed_move_list_description">Roghnaigh fillteán chun fotha a bhogadh isteach</string>
+    <string name="move_feed_root_folder">Fillteán fréimhe</string>
+
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Bain fillteán</string>
+    <string name="action_folder_rename">Athainmnigh fillteán</string>
+    <string name="folder_remove_button">Bain</string>
+    <string name="folder_rename_button">Athainmnigh</string>
+    <string name="confirm_folder_remove">An bhfuil tú cinnte gur mhaith leat an fillteán seo a bhaint? Ní féidir é seo a chealú!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Faigh fógraí uathúla don fhotha seo</string>
+    <string name="notification_feed_default">Beidh gach fothaí leis na socruithe réamhshocraithe le feiceáil i bhfógra amháin</string>
+    <string name="notification_feed_none">Gan fógraí ar chor ar bith</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Cuir</string>
+    <string name="hint_folder_name">Ainm fillteáin</string>
+    <string name="folder_already_exists">Tá an fillteán ann cheana</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Logáil isteach láimhe</string>
+    <string name="login_sso">Logáil isteach ag baint úsáide as Nextcloud Files App</string>
+    <string name="pref_title_username">Ainm úsáideora</string>
+    <string name="pref_title_password">Pasfhocal</string>
+    <string name="pref_title_owncloudRootPath">Seoladh fréimhe Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Sínigh isteach</string>
+    <string name="login_progress_signing_in">Ag síniú isteach…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Tá an réimse seo ag teastáil</string>
+    <string name="error_invalid_url">URL mícheart</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Lódáladh %d  earra sean</item>
+        <item quantity="two">Lódáladh %d  earra sean</item>
+        <item quantity="few">Lódáladh %d  earra sean</item>
+        <item quantity="many">Lódáladh %d  earra sean</item>
+        <item quantity="other">Lódáladh %d earra sean</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Níl aon earraí breise ar fáil</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Aimsíodh%dearra go dtí seo …</item>
+        <item quantity="two">Aimsíodh%d earraí go dtí seo …</item>
+        <item quantity="few">Aimsíodh%d earraí go dtí seo …</item>
+        <item quantity="many">Aimsíodh%d earraí go dtí seo …</item>
+        <item quantity="other">Aimsíodh%d earraí go dtí seo …</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Socruithe</string>
+    <string name="cache_is_cleared">Tá an taisce glanta!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Ginearálta</string>
+    <string name="pref_title_general_sort_order">Ordú Sórtála</string>
+
+    <string name="pref_general_sort_order_new_old">Nua → Sean</string>
+    <string name="pref_general_sort_order_old_new">Sean → Nua</string>
+
+    <string name="pref_rename_action_swipe_right">Gníomh nuair a swiping ceart</string>
+    <string name="pref_rename_action_swipe_left">Gníomh nuair a swiping ar chlé</string>
+
+    <string name="pref_title_general_search_in">Cuardach Isteach</string>
+
+    <string name="pref_general_search_in_title">Teideal</string>
+    <string name="pref_general_search_in_body">Corp</string>
+    <string name="pref_general_search_in_both">An dá</string>
+
+    <string name="dialog_clearing_cache">Taisce á ghlanadh</string>
+    <string name="dialog_clearing_cache_please_wait">Taisce á ghlanadh. Fán le do thoil …</string>
+    <string name="reset_cache_unsaved_changes">Tá athruithe neamhshioncrónaithe ann. Ar mhaith leat an taisce a athshocrú ar aon nós?</string>
+    <string name="warning">Rabhadh</string>
+    <string name="pref_title_AutoSyncOnStart">Sioncronaigh ar am tosaithe</string>
+    <string name="pref_title_ShowOnlyUnread">Ná taispeáin ach ailt neamhléite</string>
+    <string name="pref_title_DisableHostnameVerification">Díchumasaigh Fíorú Óstainm</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Déan nascleanúint le cnaipí toirte</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marcáil léite agus tú ag scrollú</string>
+    <string name="pref_title_ShowFastActions">Feidhmeanna rochtana tapa a ghníomhachtú</string>
+    <string name="pref_title_OpenInBrowserDirectly">Scipeáil radharc mionsonraithe agus oscail alt sa bhrabhsálaí</string>
+    <string name="pref_title_BackButtonOpensDrawer">Osclaíonn an cnaipe ar ais tarraiceán</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Glac le Deimhniú Anaithnid?</string>
+    <string name="mtm_decision_always">I gcónaí</string>
+    <string name="mtm_decision_abort">ginmhilleadh</string>
+    <string name="mtm_notification">Fíorú Teastais</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Níl aon phodchraoladh roghnaithe</string>
+    <string name="no_chapters_available">Níl caibidlí ar fáil</string>
+    <string name="exit_playback">Scoir an tImreoir</string>
+    <string name="podcast_playback_speed_dialog_title">Luas Athsheinm</string>
+    <string name="notification_downloading_podcast_title">Podchraoladh á íoslódáil</string>
+    <string name="dialog_podcast_remove_title">An bhfuil tú cinnte?</string>
+    <string name="dialog_podcast_remove_body">An bhfuil fonn ort meán íosluchtaithe do  %1$sa bhaint?</string>
+    <string name="dialog_podcast_status_failed">Theip ar bhaint meáin le haghaidh %1$s</string>
+    <string name="dialog_podcast_status_success">Baileadh meán do%1$s </string>
+    <string name="dialog_podcast_remove_confirm">Bain</string>
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Faoi</string>
+    <string name="pref_license">Ceadúnas</string>
+    <string name="pref_license_summary">GNU Affero Ceadúnas Ginearálta Poiblí (AGPL) leagan 3</string>
+    <string name="pref_report_issue">Tuairiscigh saincheist</string>
+    <string name="pref_report_issue_summary">Teastaíonn cuntas GitHub (saor in aisce).</string>
+    <string name="pref_contribute">Cur!</string>
+    <string name="pref_contribute_summary">Faigh an cód foinse</string>
+    <string name="pref_privacy">Príobháideacht</string>
+    <string name="pref_privacy_summary">Beartas Príobháideachta Android Nextcloud Nuacht</string>
+    <string name="pref_news_policy">Déan Teagmháil Linn / Polasaí Nuachta</string>
+    <string name="pref_news_policy_summary">Nextcloud News Beartas Nuacht Android / Déan Teagmháil Linn</string>
+    <string name="pref_version">Aip Nextcloud Nuacht do Android</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Taispeáin</string>
+    <string name="pref_title_app_theme">Téama</string>
+    <string name="pref_title_feed_list_layout">Leagan amach liosta beathaithe</string>
+    <string name="pref_title_font_size">Méid cló</string>
+    <string name="pref_display_browser">Brabhsálaí</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Deilbhíní gnímh (Mionsonraí Amharc)</string>
+
+    <string name="pref_display_apptheme_auto">Réamhshocrú Córais</string>
+    <string name="pref_display_apptheme_light">Solas</string>
+    <string name="pref_display_apptheme_dark">Dorcha</string>
+
+    <string name="pref_oled_mode">Cúlra dubh</string>
+    <string name="pref_oled_mode_summary">Le haghaidh téama dorcha ar scáileáin OLED</string>
+
+    <string name="pref_external_player">Imreoir Seachtrach</string>
+    <string name="pref_external_player_summary">Seinn podchraoltaí i d\'aip meán réamhshocraithe</string>
+
+    <string name="pref_display_browser_cct">Tógtha-i Chrome-Cluaisíní-Gnás</string>
+    <string name="pref_display_browser_built_in">Brabhsálaí Insuite</string>
+    <string name="pref_display_browser_external">Brabhsálaí Seachtrach</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Mionsamhlacha (Ceannlínte amháin)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Mionsamhlacha</string>
+    <string name="pref_display_feed_list_layout_simple_text">Téacs simplí</string>
+    <string name="pref_display_feed_list_layout_headlines">Ceannlínte</string>
+    <string name="pref_display_feed_list_layout_full_text">Téacs iomlán</string>
+    <string name="pref_display_feed_list_layout_web_layout">Leagan amach gréasáin</string>
+    <string name="pref_display_feed_list_layout_card_view">Radharc cárta</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Beaga</string>
+    <string name="pref_display_font_size_d">Réamhshocrú</string>
+    <string name="pref_display_font_size_l">Mór</string>
+    <string name="pref_display_font_size_xl">Breise Mór</string>
+
+    <string name="content_desc_play">Imir</string>
+    <string name="content_desc_pause">Sos</string>
+    <string name="content_desc_playback_speed">Luas athsheinm</string>
+    <string name="content_desc_rewind">Athchasadh</string>
+    <string name="content_desc_forward">Ar aghaidh</string>
+    <string name="content_desc_expand">Leathnaigh</string>
+    <string name="content_desc_collapse">Laghdaigh</string>
+    <string name="content_desc_mark_as_read">Marcáil mar léite</string>
+    <string name="content_desc_mark_as_unread">Marcáil mar neamhléite</string>
+    <string name="content_desc_tap_to_refresh">Tapáil chun athnuachan</string>
+    <string name="content_desc_add_to_favorites">Cuir le ceanáin</string>
+    <string name="content_desc_remove_from_favorites">Bain ó cheanáin</string>
+    <string name="content_desc_show_password">Taispeáin pasfhocal</string>
+    <string name="content_desc_delete">Scrios</string>
+    <string name="content_desc_download">Íoslódáil</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Earráid</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Tá an chuma ar an scéal nach bhfuil d\'aip nuachta suiteáilte nó gníomhachtaithe ar do fhreastalaí. Lean na treoracha a thugtar anseo chun an aip nuachta a shocrú ar do fhreastalaí ar dtús le do thoil:%1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Chuaigh rud eigin mícheart :(</string>
+    <string name="login_dialog_text_zero_version_code">Chuir an Web Nuacht Aip Leagan \"0\" ar ais. Féach ar an tuairisc fhabht seo a leanas le do thoil: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Níl an leagan Feidhmchláir seo comhoiriúnach le d’aip Nextcloud Nuacht. Uasghrádaigh an aip nuachta agus creat na haipe le do thoil.</string>
+    <string name="login_dialog_title_security_warning">Rabhadh Slándála</string>
+    <string name="login_dialog_text_security_warning">Níl HTTPS á úsáid agat, rud a spreagtar go láidir. D’fhéadfadh ionsaitheoir do thrácht a thascradh agus rochtain a fháil ar roinnt sonraí íogaire (m.sh. do phasfhocal).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Chuaigh rud eigin mícheart. Arís, le do thoil.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Sonraí &amp; sioncronaithe</string>
+    <string name="pref_title_clearCache">Glan taisce</string>
+    <string name="pref_title_CacheImagesOffline">Íomhánna taisce as líne</string>
+    <string name="pref_title_Max_Cache_Size">Méid Taisce Max</string>
+
+    <string name="pref_data_sync_image_cache_never">Riamh</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Thar WiFi amháin</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Thar WiFi &amp; Soghluaiste</string>
+    <string name="pref_data_sync_image_cache_ask">Fiafraigh nuair nach bhfuil sé ceangailte le wifi</string>
+
+    <string name="array_sync_interval_min_0">Riamh</string>
+    <string name="array_sync_interval_min_5">5 nóiméad</string>
+    <string name="array_sync_interval_min_15">15 nóiméad</string>
+    <string name="array_sync_interval_min_30">30 nóiméad</string>
+    <string name="array_sync_interval_min_45">45 nóiméad</string>
+    <string name="array_sync_interval_hour_1">1 uair</string>
+    <string name="array_sync_interval_hour_2">2 uair an chloig</string>
+    <string name="array_sync_interval_hour_3">3 uair an chloig</string>
+    <string name="array_sync_interval_hour_6">6 huaire</string>
+    <string name="array_sync_interval_hour_12">12 uair</string>
+    <string name="array_sync_interval_hour_24">24 uair </string>
+    <string name="switch_account">Athraigh cuntas</string>
+    
+    <string name="successfully_exported">D\'éirigh le heaspórtáil chuig:</string>
+    <string name="opml_export">Easpórtáil OPML</string>
+    <string name="parsing_opml">OPML á pharsáil</string>
+    <string name="please_wait">Fán le do thoil …</string>
+    <string name="interval_sync_title">Sioncronú Eatramh</string>
+
+    </resources>
