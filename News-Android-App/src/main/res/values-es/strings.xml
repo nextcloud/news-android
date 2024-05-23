@@ -48,9 +48,9 @@
     <string name="notification_download_articles_offline">Descargar los artículos para uso sin conexión</string>
     <string name="notification_download_images_offline">Descargar las imágenes para uso sin conexión</string>
     <plurals name="notification_new_items_ticker">
-        <item quantity="one">Tienes %d elemento nuevo sin leer</item>
-        <item quantity="many">Tienes %d elementos nuevos sin leer</item>
-        <item quantity="other">Tienes %d elementos nuevos sin leer</item>
+        <item quantity="one">Tiene %d elemento nuevo sin leer</item>
+        <item quantity="many">Tiene %d elementos nuevos sin leer</item>
+        <item quantity="other">Tiene %d elementos nuevos sin leer</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d elementos nuevos sin leer</item>
