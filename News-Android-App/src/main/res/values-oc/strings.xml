@@ -47,7 +47,7 @@
     <string name="action_img_sharelink">Partejar lo Ligam cap a l\'Imatge</string>
     <string name="action_img_open">Dobrir l\'Imatge dins lo Navigador</string>
     <string name="action_img_copylink">Copiar lo Ligam cap a l\'Imatge</string>
-    <string name="action_link_share">Partejar per un Ligam</string>
+    <string name="action_link_share">Partejar via ligam</string>
     <string name="action_link_open">Dobrir lo Ligam dins lo Navigador</string>
     <string name="action_link_copy">Copiar lo Ligam</string>
     <string name="toast_img_notwriteable">Error d\'escritura de l\'Imatge.</string>
