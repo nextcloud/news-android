@@ -45,10 +45,6 @@
 # https://github.com/umano/AndroidSlidingUpPanel/issues/921
 -dontwarn com.sothree.slidinguppanel.SlidingUpPanelLayout
 
-# Gson
-# Application classes that will be serialized/deserialized over Gson
--keep class com.nextcloud.android.sso.model.** { <fields>; }
-##---------------End: proguard configuration for Gson  ----------
 
 # Other Libraries
 -dontwarn org.apache.velocity.**
