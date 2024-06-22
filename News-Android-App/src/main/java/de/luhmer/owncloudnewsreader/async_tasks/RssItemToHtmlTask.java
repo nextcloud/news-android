@@ -1,6 +1,5 @@
 package de.luhmer.owncloudnewsreader.async_tasks;
 
-import static java.lang.reflect.Modifier.PRIVATE;
 import static de.luhmer.owncloudnewsreader.NewsDetailActivity.INCOGNITO_MODE_ENABLED;
 import static de.luhmer.owncloudnewsreader.helper.ThemeChooser.THEME;
 
@@ -24,9 +23,11 @@ import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -280,16 +281,19 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private static String getFontSizeScalingCss(SharedPreferences mPrefs) {
         // font size scaling
         double scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
-        DecimalFormat fontFormat = new DecimalFormat("#.#");
+        DecimalFormat fontFormat = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
         return String.format(
-                ":root { \n" +
-                        "--fontsize-body: %sem; \n" +
-                        "--fontsize-header: %sem; \n" +
-                        "--fontsize-subscript: %sem; \n" +
-                        "}",
-                fontFormat.format(scalingFactor*BODY_FONT_SIZE),
-                fontFormat.format(scalingFactor*HEADING_FONT_SIZE),
-                fontFormat.format(scalingFactor*SUBSCRIPT_FONT_SIZE)
+            Locale.US,
+            """
+            :root {\s
+                --fontsize-body: %sem;\s
+                --fontsize-header: %sem;\s
+                --fontsize-subscript: %sem;\s
+            }
+            """,
+            fontFormat.format(scalingFactor * BODY_FONT_SIZE),
+            fontFormat.format(scalingFactor * HEADING_FONT_SIZE),
+            fontFormat.format(scalingFactor * SUBSCRIPT_FONT_SIZE)
         );
     }
 
