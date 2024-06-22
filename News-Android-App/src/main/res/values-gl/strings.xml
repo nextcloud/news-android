@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Volver cargar</string>
     <string name="allUnreadFeeds">Todos os elementos sen ler</string>
     <string name="starredFeeds">Elementos destacados</string>
+    <string name="downloadedPodcasts">Downloaded podcasts</string>
     <string name="title_activity_new_feed">Engadir unha nova fonte</string>
 
     <string name="menu_update">Actualizar</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Destacado</string>
     <string name="action_read">Ler</string>
     <string name="action_playPodacst">Reproducir o Podcast</string>
+    <string name="action_removePodcast">Retirar os ficheiros multimedia de podcast</string>
     <string name="action_openInBrowser">Abrir no navegador web</string>
     <string name="action_Share">Compartir</string>
     <string name="action_login">Axustes do servidor</string>
@@ -183,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Velocidade de reprodución</string>
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
     <string name="dialog_podcast_remove_title">Confirma isto?</string>
+    <string name="dialog_podcast_remove_body">Confirma que quere eliminar os ficheiros multimedia descargados para %1$s?</string>
+    <string name="dialog_podcast_status_failed">Produciuse un fallo ao retirar os ficheiros multimedia para %1$s</string>
+    <string name="dialog_podcast_status_success">Retiráronse os ficheiros multimedia para %1$s</string>
     <string name="dialog_podcast_remove_confirm">Retirar</string>
 
     <!-- Settings for About -->
@@ -195,6 +200,8 @@
     <string name="pref_contribute_summary">Obteña o código fonte</string>
     <string name="pref_privacy">Privacidade</string>
     <string name="pref_privacy_summary">Directiva de privacidade de Novas de Nextcloud para Android</string>
+    <string name="pref_news_policy">Contacte connosco / Directiva de noticias</string>
+    <string name="pref_news_policy_summary">Noticias de Nextcloud. Directiva de noticias de Android / Contacte connosco</string>
     <string name="pref_version">Aplicación de Android para novas de Nextcloud</string>
 
 
