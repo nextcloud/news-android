@@ -223,7 +223,7 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.5.0'
 
     // Assertions
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.ext:truth:1.5.0'
     androidTestImplementation 'com.google.truth:truth:1.4.2'
 
