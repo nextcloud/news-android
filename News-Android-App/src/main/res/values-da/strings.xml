@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
     <string name="empty_view_content">Her er ingen artikler</string>
     <string name="empty_view_content_action">Træk ned for at genindlæse</string>
+    <string name="toast_GettingMoreItems">Download af flere elementer begyndt. Vent venligst...</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
+    <string name="do_you_want_to_download_without_wifi">Ønsker du at downloade billederne uden en WiFi forbindelse?</string>
     <string name="current_version">Du bruger version %s</string>
     <string name="widget_header">ownCloud Nyheder</string>
     <plurals name="message_bar_new_articles_available">
@@ -15,6 +17,7 @@
     <string name="message_bar_reload">Genindlæs</string>
     <string name="allUnreadFeeds">Alle ulæste artikler</string>
     <string name="starredFeeds">Markerede artikler</string>
+    <string name="downloadedPodcasts">Downloadede podcasts</string>
     <string name="title_activity_new_feed">Tilføj nyt feed</string>
 
     <string name="menu_update">Opdatér</string>
@@ -28,6 +31,7 @@
     <string name="action_starred">Stjernemarkéret</string>
     <string name="action_read">Læst</string>
     <string name="action_playPodacst">Afspil podcast</string>
+    <string name="action_removePodcast">Fjern podcastmediet</string>
     <string name="action_openInBrowser">Åbn i browser</string>
     <string name="action_Share">Del</string>
     <string name="action_login">Server-indstillinger</string>
@@ -35,6 +39,7 @@
     <string name="action_settings">Indstillinger</string>
     <string name="action_sync_settings">Synkroniseringsindstillinger</string>
     <string name="action_add_new_feed">Tilføj nyt feed</string>
+    <string name="action_add_new_folder">Tilføj ny mappe</string>
     <string name="action_textToSpeech">Læs højt</string>
     <string name="action_search">Søg</string>
     <string name="action_download_articles_offline">Hent artikler offline</string>
@@ -78,6 +83,9 @@
     <string name="action_feed_rename">Omdøb feed</string>
     <string name="action_feed_move">Flyt feed</string>
     <string name="action_feed_notification_settings">Meddelelsesindstillinger</string>
+    <string name="action_feed_open_in">Åbn i indstillinger</string>
+    <string name="action_feed_open_in_general_setting">Brug generelle indstillinger</string>
+    <string name="action_feed_open_in_detailed_view">Detaljerede visning</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Omdøb</string>
     <string name="confirm_feed_remove">Ønsker du virkelig at slette denne strøm. Det kan ikke fortrydes?</string>
@@ -85,12 +93,23 @@
     <string name="move_feed_root_folder">Rodmappe</string>
 
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Fjern mappe</string>
     <string name="action_folder_rename">Omdøb mappe</string>
     <string name="folder_remove_button">Fjern</string>
     <string name="folder_rename_button">Omdøb</string>
+    <string name="confirm_folder_remove">Vil du gerne fjerne denne mappe? Dette kan ikke fortrydes!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Få unikke notifikationer for dette feed</string>
+    <string name="notification_feed_default">Alle feeds med standardindstillingerne vil vises i en notifikation</string>
+    <string name="notification_feed_none">Ingen notifikationer overhovedet</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Tilføj</string>
     <string name="hint_folder_name">Mappenavn</string>
+    <string name="folder_already_exists">Mappen eksistere allerede</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Manuel login</string>
     <string name="login_sso">Login ved hjælp af Nextcloud Files app\'en</string>
@@ -100,6 +119,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Log ind</string>
+    <string name="login_progress_signing_in">Logger ind ...</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette felt er påkrævet</string>
     <string name="error_invalid_url">Ukorrekt URL</string>
@@ -111,6 +131,12 @@
         <item quantity="other">Hentede %d gamle elementer</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hentet %dartikel indtil nu... </item>
+        <item quantity="other">Hentet %d artikler indtil nu... </item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Indstillinger</string>
     <string name="cache_is_cleared">Cachen er ryddet!</string>
@@ -130,7 +156,10 @@
 
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Krop</string>
+    <string name="pref_general_search_in_both">Begge</string>
+
     <string name="dialog_clearing_cache">Nulstil mellemlager</string>
+    <string name="dialog_clearing_cache_please_wait">Rydder cache. Vent venligst...</string>
     <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
     <string name="warning">Advarsel</string>
     <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
@@ -138,7 +167,10 @@
     <string name="pref_title_DisableHostnameVerification">Deaktivér verifikation af værtsnavn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigér med lydknapper</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markér som læst når der rulles</string>
+    <string name="pref_title_ShowFastActions">Aktiver hurtigadgangsfunktioner</string>
     <string name="pref_title_OpenInBrowserDirectly">Spring detaljeret visning over og åbn artikel i browseren</string>
+    <string name="pref_title_BackButtonOpensDrawer">Tilbageknap åbner skuffe</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Acceptér ukendt certifikat? </string>
     <string name="mtm_decision_always">Altid</string>
@@ -149,9 +181,13 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Der er ikke valgt podcasts</string>
     <string name="no_chapters_available">Ingen kapitler tilgængelige</string>
+    <string name="exit_playback">Afslut afspiller</string>
     <string name="podcast_playback_speed_dialog_title">Afspilningshastighed</string>
     <string name="notification_downloading_podcast_title">Henter podcast</string>
     <string name="dialog_podcast_remove_title">Er du sikker?</string>
+    <string name="dialog_podcast_remove_body">Vil du gerne fjerne downloadede medie for %1$s?</string>
+    <string name="dialog_podcast_status_failed">Kunne ikke fjerne medie for %1$s</string>
+    <string name="dialog_podcast_status_success">Medie for %1$s er blevet fjernet </string>
     <string name="dialog_podcast_remove_confirm">Fjern</string>
 
     <!-- Settings for About -->
@@ -163,6 +199,9 @@
     <string name="pref_contribute">Medvirk!</string>
     <string name="pref_contribute_summary">Hent kildeteksten</string>
     <string name="pref_privacy">Privatliv</string>
+    <string name="pref_privacy_summary">Nextcloud Nyheder Android privathedspolitik</string>
+    <string name="pref_news_policy">Kontakt os / Nyhedspolitik</string>
+    <string name="pref_news_policy_summary">Nextcloud Nyheder Android nyhedspolitik / Kontakt os</string>
     <string name="pref_version">Nextcloud News Android app</string>
 
 
@@ -183,10 +222,14 @@
     <string name="pref_oled_mode">Sort baggrund</string>
     <string name="pref_oled_mode_summary">Til mørkt tema for OLED skærme</string>
 
+    <string name="pref_external_player">Ekstern afspiller</string>
+    <string name="pref_external_player_summary">Afspil podcasts i din standard medieapp</string>
+
     <string name="pref_display_browser_cct">Indbygget Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Indbygget browser</string>
     <string name="pref_display_browser_external">Ekstern browser</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Thumbnails (kun overskrifter)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturer</string>
     <string name="pref_display_feed_list_layout_simple_text">Simpel tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
@@ -202,6 +245,8 @@
 
     <string name="content_desc_play">Afspil</string>
     <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_playback_speed">Afspilningshastighed</string>
+    <string name="content_desc_rewind">Spol tilbage</string>
     <string name="content_desc_forward">Videresend</string>
     <string name="content_desc_expand">Udvid</string>
     <string name="content_desc_collapse">Sammenfold</string>
@@ -249,5 +294,10 @@
     <string name="array_sync_interval_hour_24">24 timer</string>
     <string name="switch_account">Skift konto</string>
     
+    <string name="successfully_exported">Eksporterede til:</string>
+    <string name="opml_export">OPML-eksport</string>
+    <string name="parsing_opml">Analyserer OPML</string>
     <string name="please_wait">Vent venligst …</string>
+    <string name="interval_sync_title">Intervalsynkronisering</string>
+
     </resources>
