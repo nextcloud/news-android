@@ -326,7 +326,7 @@ public class NewsReaderDetailFragment extends Fragment {
         binding = FragmentNewsreaderDetailBinding.inflate(inflater, container, false);
 
         binding.list.setHasFixedSize(true);
-        binding.list.setLayoutManager(new LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false));
+        binding.list.setLayoutManager(new LazyLoadingLinearLayoutManager(mActivity, RecyclerView.VERTICAL, false));
         binding.list.setItemAnimator(new DefaultItemAnimator());
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewsReaderItemTouchHelperCallback());
