@@ -80,14 +80,14 @@
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
     <string name="action_feed_remove">Retirar a fonte</string>
-    <string name="action_feed_rename">Renomear a fonte</string>
+    <string name="action_feed_rename">Cambiar o nome da fonte</string>
     <string name="action_feed_move">Mover a fonte</string>
     <string name="action_feed_notification_settings">Axustes de notificación</string>
     <string name="action_feed_open_in">Axustes de apertura</string>
     <string name="action_feed_open_in_general_setting">Usar os axustes xerais</string>
     <string name="action_feed_open_in_detailed_view">Vista detallada</string>
     <string name="feed_remove_button">Retirar</string>
-    <string name="feed_rename_button">Renomear</string>
+    <string name="feed_rename_button">Cambiar o nome</string>
     <string name="confirm_feed_remove">Confirma que quere retirar esta fonte? Isto non pode desfacerse!</string>
     <string name="feed_move_list_description">Seleccione o cartafol ao que mover a fonte</string>
     <string name="move_feed_root_folder">Cartafol raíz</string>
@@ -95,9 +95,9 @@
 
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
     <string name="action_folder_remove">Retirar o cartafol</string>
-    <string name="action_folder_rename">Renomear o cartafol</string>
+    <string name="action_folder_rename">Cambiar o nome do cartafol</string>
     <string name="folder_remove_button">Retirar</string>
-    <string name="folder_rename_button">Renomear</string>
+    <string name="folder_rename_button">Cambiar o nome</string>
     <string name="confirm_folder_remove">Confirma que quere retirar este cartafol? Isto non pode desfacerse!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
