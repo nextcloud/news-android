@@ -110,6 +110,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">ไม่ได้เลือกพอดคาสต์</string>
     <string name="no_chapters_available">ไม่มีบทที่สามารถใช้ได้</string>
+    <string name="dialog_podcast_remove_title">คุณแน่ใจหรือไม่?</string>
     <string name="dialog_podcast_remove_confirm">ลบออก</string>
 
     <!-- Settings for About -->
