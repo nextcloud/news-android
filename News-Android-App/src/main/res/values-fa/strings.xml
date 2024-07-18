@@ -185,7 +185,7 @@
     <string name="pref_license">License</string>
     <string name="pref_license_summary">مجوز عمومی GNU Affero (AGPL) نسخه 3</string>
     <string name="pref_report_issue">گزارش یک مسئله</string>
-    <string name="pref_report_issue_summary">به یک حساب GitHub (رایگان) نیاز دارد</string>
+    <string name="pref_report_issue_summary">به یک حساب (رایگان) گیت‌هاب نیاز دارد</string>
     <string name="pref_contribute">مشارکت!</string>
     <string name="pref_contribute_summary">کد منبع را دریافت کنید</string>
     <string name="pref_privacy">حریم خصوصی</string>
