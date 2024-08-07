@@ -146,6 +146,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Íconos de acción (Vista Detallada)</string>
 
+    <string name="pref_display_apptheme_auto">Configuración predeterminada del sistema</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Oscuro</string>
 
