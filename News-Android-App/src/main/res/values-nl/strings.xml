@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Herladen</string>
     <string name="allUnreadFeeds">Alle ongelezen berichten</string>
     <string name="starredFeeds">Gemarkeerde berichten</string>
+    <string name="downloadedPodcasts">Gedownloade podcast</string>
     <string name="title_activity_new_feed">Voeg nieuwe feed toe</string>
 
     <string name="menu_update">Vernieuwen</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Gemarkeerd</string>
     <string name="action_read">Lees</string>
     <string name="action_playPodacst">Afspelen Podcast</string>
+    <string name="action_removePodcast">Verwijder podcast media</string>
     <string name="action_openInBrowser">Openen in webbrowser</string>
     <string name="action_Share">Delen</string>
     <string name="action_login">Serverinstellingen</string>

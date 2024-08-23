@@ -112,7 +112,7 @@
 
     <!-- Strings related to login -->
     <string name="login_manual">El ile oturum açma</string>
-    <string name="login_sso">Nextcloud Files uygulaması ile oturum aç</string>
+    <string name="login_sso">Nextcloud Dosyalar uygulaması ile oturum aç</string>
     <string name="pref_title_username">Kullanıcı adı</string>
     <string name="pref_title_password">Parola</string>
     <string name="pref_title_owncloudRootPath">Nextcloud kök adresi</string>
