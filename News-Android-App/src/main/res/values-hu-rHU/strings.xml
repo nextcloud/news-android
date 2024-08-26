@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Újratöltés</string>
     <string name="allUnreadFeeds">Összes olvasatlan elem</string>
     <string name="starredFeeds">Csillagozott elemek</string>
+    <string name="downloadedPodcasts">Letöltött podcastok</string>
     <string name="title_activity_new_feed">Új hírcsatorna hozzáadása</string>
 
     <string name="menu_update">Frissítés</string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Csillagozott</string>
     <string name="action_read">Olvasás</string>
     <string name="action_playPodacst">Podcast lejátszása</string>
+    <string name="action_removePodcast">Podcast média eltávolítása</string>
     <string name="action_openInBrowser">Megnyitás böngészőben</string>
     <string name="action_Share">Megosztás</string>
     <string name="action_login">Kiszolgálóbeállítások</string>
@@ -183,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Lejátszási sebesség</string>
     <string name="notification_downloading_podcast_title">Podcast letöltése</string>
     <string name="dialog_podcast_remove_title">Biztos benne?</string>
+    <string name="dialog_podcast_remove_body">Biztos, hogy eltávolítja a(z) %1$s összes letöltött médiáját?</string>
+    <string name="dialog_podcast_status_failed">A média eltávolítása sikertelen ennél: %1$s</string>
+    <string name="dialog_podcast_status_success">A(z) %1$s médiája el lett távolítva</string>
     <string name="dialog_podcast_remove_confirm">Eltávolítás</string>
 
     <!-- Settings for About -->
@@ -195,6 +200,8 @@
     <string name="pref_contribute_summary">Töltse le a forráskódot</string>
     <string name="pref_privacy">Adatvédelem</string>
     <string name="pref_privacy_summary">Nextcloud Hírek androidos adatvédelmi irányelvek</string>
+    <string name="pref_news_policy">Kapcsolat/hírházirend</string>
+    <string name="pref_news_policy_summary">Androidos Nextcloud Hírek hírházirendje / kapcsolat</string>
     <string name="pref_version">Nextcloud hírek androidos alkalmazás</string>
 
 
