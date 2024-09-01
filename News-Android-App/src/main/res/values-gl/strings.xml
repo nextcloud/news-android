@@ -73,7 +73,7 @@
     <string name="toast_img_download_wait">Descargando. Agarde…</string>
     <string name="toast_img_saved">Imaxe gardada</string>
     <string name="toast_img_notwriteable">Produciuse un erro ao gravar a imaxe</string>
-    <string name="toast_copied_to_clipboard">Copiado no portapapeis.</string>
+    <string name="toast_copied_to_clipboard">Copiado no portapapeis</string>
     <string name="error_download_failed">Produciuse un fallo na descarga</string>
     <string name="intent_title_share">Compartido mediante</string>
 
