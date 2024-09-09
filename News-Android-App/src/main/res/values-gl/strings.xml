@@ -67,7 +67,7 @@
     <string name="action_img_sharelink">Compartir a ligazón da imaxe</string>
     <string name="action_img_open">Abrir a imaxe no navegador</string>
     <string name="action_img_copylink">Copiar a ligazón da imaxe</string>
-    <string name="action_link_share">Compartir a ligazón</string>
+    <string name="action_link_share">Ligazón para compartir</string>
     <string name="action_link_open">Abrir a ligazón no navegador</string>
     <string name="action_link_copy">Copiar a ligazón</string>
     <string name="toast_img_download_wait">Descargando. Agarde…</string>
