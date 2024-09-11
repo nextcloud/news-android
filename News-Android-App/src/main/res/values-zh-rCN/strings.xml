@@ -9,7 +9,7 @@
     <string name="no_wifi_available">没有连接到 WiFi</string>
     <string name="do_you_want_to_download_without_wifi">是否要在没有 WiFi 的状况下下载图像？</string>
     <string name="current_version">您正在使用的版本号为：%s</string>
-    <string name="widget_header">ownCloud 新闻</string>
+    <string name="widget_header">Nextcloud 新闻</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d 条新内容</item>
     </plurals>
