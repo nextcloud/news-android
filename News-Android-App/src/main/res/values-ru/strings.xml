@@ -88,6 +88,7 @@
     <string name="action_feed_rename">Переименовать Новостную ленту</string>
     <string name="action_feed_move">Перенести Новостную ленту</string>
     <string name="action_feed_notification_settings">Настройки уведомлений</string>
+    <string name="action_feed_open_in">Открыть в настройках</string>
     <string name="action_feed_open_in_general_setting">Использовать общие настройки</string>
     <string name="feed_remove_button">Удалить</string>
     <string name="feed_rename_button">Переименовать</string>
