@@ -165,10 +165,16 @@ a {
     color: #ffffff !important;
 }
 
-/* We use custom list style / use 0 padding for first level of lists */
-ul, ol {
+
+ul {
+    /* We use custom list style for Unordered Lists */
     list-style: none;
+    /* For the first level we should not have padding */
     padding: 0px;
+}
+ol {
+    /* ol items already have an intrinsic padding (the number in front has a negativ padding) */
+    padding-left: 22px;
 }
 
 /* Nested lists should be indented a little */
@@ -176,13 +182,12 @@ ul li ul,
 ul li ol,
 ol li ul,
 ol li ol {
-    padding: 0px 0px 0px 12px;
+    padding-left: 14px;
 }
 
-
-ul li:before, ol li:before {
+ul li:before {
     vertical-align: 18%;
-    margin-right:10px;
+    margin-right: 10px;
     border-style: solid;
 	border-width: 0.10em 0.10em 0 0;
 	content: '';
