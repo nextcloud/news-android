@@ -8,7 +8,7 @@ jobs:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     steps:
       - uses: actions/checkout@v4
-      - uses: gradle/actions/wrapper-validation@v3
+      - uses: gradle/actions/wrapper-validation@v4
 
   lint:
     name: Run Lint Checks
