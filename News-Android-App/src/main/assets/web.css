@@ -165,12 +165,22 @@ a {
     color: #ffffff !important;
 }
 
-ul {
+/* We use custom list style / use 0 padding for first level of lists */
+ul, ol {
     list-style: none;
-    padding: 0;
+    padding: 0px;
 }
 
-ul li:before {
+/* Nested lists should be indented a little */
+ul li ul,
+ul li ol,
+ol li ul,
+ol li ol {
+    padding: 0px 0px 0px 12px;
+}
+
+
+ul li:before, ol li:before {
     vertical-align: 18%;
     margin-right:10px;
     border-style: solid;
