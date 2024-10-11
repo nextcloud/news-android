@@ -225,7 +225,7 @@ dependencies {
     // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.ext:truth:1.6.0'
-    androidTestImplementation 'com.google.truth:truth:1.4.2'
+    androidTestImplementation 'com.google.truth:truth:1.4.4'
 
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
