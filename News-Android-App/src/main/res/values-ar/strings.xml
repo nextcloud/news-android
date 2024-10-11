@@ -133,7 +133,7 @@
     <string name="action_sign_in_short">تسجيل الدخول</string>
     <string name="login_progress_signing_in">تسجيل الدخول جارٍ…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">هذا الحقل لازمٌ</string>
+    <string name="error_field_required">هذا الحقل مطلوب</string>
     <string name="error_invalid_url">عنوان URL  غير صحيحٍ</string>
 
 
