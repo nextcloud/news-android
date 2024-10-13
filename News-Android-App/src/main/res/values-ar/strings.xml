@@ -249,7 +249,7 @@
     <string name="pref_display_browser_built_in">متصفح مدمج</string>
     <string name="pref_display_browser_external">متصفح خارجي</string>
 
-    <string name="pref_display_feed_list_layout_headline_thumbnails">صور مصغرة thumbnails ـ (للعناوين فقط)</string>
+    <string name="pref_display_feed_list_layout_headline_thumbnails">مصغرات  (للعناوين فقط)</string>
     <string name="pref_display_feed_list_layout_thumbnails">صور مصغرة thumbnails</string>
     <string name="pref_display_feed_list_layout_simple_text">نص بسيط</string>
     <string name="pref_display_feed_list_layout_headlines">العناوين</string>
