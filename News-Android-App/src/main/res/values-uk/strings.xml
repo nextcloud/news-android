@@ -7,7 +7,7 @@
     <string name="empty_view_content_action">Потягніть вниз, щоб оновити</string>
     <string name="toast_GettingMoreItems">Розпочато звантаження додаткових елементів. Будь ласка, зачекайте …</string>
     <string name="no_wifi_available">Відсутнє WiFi з\'єднання</string>
-    <string name="do_you_want_to_download_without_wifi">Бажаєте завантажити зображення без підключення до Wi-Fi?</string>
+    <string name="do_you_want_to_download_without_wifi">Бажаєте звантажити зображення без підключення до Wi-Fi?</string>
     <string name="current_version">Ви використовуєте версію %s</string>
     <string name="widget_header">Новини для Nextcloud</string>
     <plurals name="message_bar_new_articles_available">

@@ -186,7 +186,7 @@
     <string name="pref_title_ShowOnlyUnread">أظهر فقط المقالات غير المقروءة</string>
     <string name="pref_title_DisableHostnameVerification">تعطيل التحقق من اسم المضيف</string>
     <string name="pref_title_NavigateWithVolumeButtons">التّنقل باستخدام أزرار الصوت</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">حدِّد كمقروء أثناء التنقل</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">تحديد كمقروء أثناء التنقل</string>
     <string name="pref_title_ShowFastActions">مكًن وظائف الوصول السريع</string>
     <string name="pref_title_OpenInBrowserDirectly">تخطي العرض المفصل وفتح المقال في المتصفح</string>
     <string name="pref_title_BackButtonOpensDrawer">زِر الرجوع يفتح الدُّرج</string>
