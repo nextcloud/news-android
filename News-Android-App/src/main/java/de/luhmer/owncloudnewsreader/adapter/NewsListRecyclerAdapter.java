@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +21,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.LazyLoadingLinearLayoutManager;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
@@ -57,7 +57,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private final PostDelayHandler pDelayHandler;
     private final FragmentActivity activity;
 
-    private int totalItemCount = 0;
     private int cachedPages = 1;
 
     private final IPlayPausePodcastClicked playPausePodcastClicked;
@@ -67,6 +66,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     // before loading more.
     private final int visibleThreshold = 5;
     private final SharedPreferences mPrefs;
+
+    private LazyLoadingLinearLayoutManager layoutManager = null;
 
     public NewsListRecyclerAdapter(FragmentActivity activity, RecyclerView recyclerView, IPlayPausePodcastClicked playPausePodcastClicked, PostDelayHandler postDelayHandler, SharedPreferences prefs) {
         this.activity = activity;
@@ -82,7 +83,8 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         EventBus.getDefault().register(this);
 
-        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager linearLayoutManager) {
+        if (recyclerView.getLayoutManager() instanceof LazyLoadingLinearLayoutManager lm) {
+            layoutManager = lm;
 
             recyclerView
                     .addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -91,13 +93,14 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                                                int dx, int dy) {
                             super.onScrolled(recyclerView, dx, dy);
 
-                            int adapterTotalItemCount = linearLayoutManager.getItemCount();
-                            int lastVisibleItem = linearLayoutManager
+                            int adapterItemCount = layoutManager.getItemCount();
+                            int adapterTotalItemCount = layoutManager.getTotalItemCount();
+                            int lastVisibleItem = layoutManager
                                     .findLastVisibleItemPosition();
                             if (!loading &&
-                                    adapterTotalItemCount <= (lastVisibleItem + visibleThreshold) &&
-                                    adapterTotalItemCount < totalItemCount &&
-                                    adapterTotalItemCount > 0) {
+                                    adapterItemCount <= (lastVisibleItem + visibleThreshold) &&
+                                    adapterItemCount < adapterTotalItemCount &&
+                                    adapterItemCount > 0) {
                                 loading = true;
 
                                 Log.v(TAG, "start load more task...");
@@ -122,7 +125,10 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public int getTotalItemCount() {
-        return totalItemCount;
+        if (this.layoutManager != null) {
+            return this.layoutManager.getTotalItemCount();
+        }
+        return 0;
     }
 
     public int getCachedPages() {
@@ -130,7 +136,9 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public void setTotalItemCount(int totalItemCount) {
-        this.totalItemCount = totalItemCount;
+        if (this.layoutManager != null) {
+            this.layoutManager.setTotalItemCount(totalItemCount);
+        }
     }
 
     public void setCachedPages(int cachedPages) {
@@ -348,7 +356,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        //return totalItemCount;
         return lazyList != null ? lazyList.size() : 0;
     }
 
@@ -384,7 +391,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         //}
         //new ReloadAdapterAsyncTask().execute();
 
-        totalItemCount = ((Long) dbConn.getCurrentRssItemViewCount()).intValue();
+        setTotalItemCount(((Long) dbConn.getCurrentRssItemViewCount()).intValue());
 
         lazyList = rssItems;
         notifyDataSetChanged();
@@ -492,7 +499,7 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         @Override
         protected void onPostExecute(CurrentRssViewDataHolder holder) {
             lazyList = holder.rssItems;
-            totalItemCount = holder.maxCount.intValue();
+            setTotalItemCount(holder.maxCount.intValue());
             cachedPages = 1;
             notifyDataSetChanged();
         }
