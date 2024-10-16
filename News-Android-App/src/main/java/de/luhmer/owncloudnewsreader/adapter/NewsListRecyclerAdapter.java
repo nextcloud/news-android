@@ -21,9 +21,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.luhmer.owncloudnewsreader.LazyLoadingLinearLayoutManager;
 import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.SettingsActivity;
-import de.luhmer.owncloudnewsreader.LazyLoadingLinearLayoutManager;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.ProgressbarItemBinding;
@@ -57,7 +57,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private final PostDelayHandler pDelayHandler;
     private final FragmentActivity activity;
 
-    private int totalItemCount = 0;
     private int cachedPages = 1;
 
     private final IPlayPausePodcastClicked playPausePodcastClicked;
@@ -94,13 +93,14 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                                                int dx, int dy) {
                             super.onScrolled(recyclerView, dx, dy);
 
-                            int adapterTotalItemCount = layoutManager.getItemCount();
+                            int adapterItemCount = layoutManager.getItemCount();
+                            int adapterTotalItemCount = layoutManager.getTotalItemCount();
                             int lastVisibleItem = layoutManager
                                     .findLastVisibleItemPosition();
                             if (!loading &&
-                                    adapterTotalItemCount <= (lastVisibleItem + visibleThreshold) &&
-                                    adapterTotalItemCount < totalItemCount &&
-                                    adapterTotalItemCount > 0) {
+                                    adapterItemCount <= (lastVisibleItem + visibleThreshold) &&
+                                    adapterItemCount < adapterTotalItemCount &&
+                                    adapterItemCount > 0) {
                                 loading = true;
 
                                 Log.v(TAG, "start load more task...");
@@ -125,7 +125,10 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public int getTotalItemCount() {
-        return totalItemCount;
+        if (this.layoutManager != null) {
+            return this.layoutManager.getTotalItemCount();
+        }
+        return 0;
     }
 
     public int getCachedPages() {
@@ -133,8 +136,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public void setTotalItemCount(int totalItemCount) {
-        this.totalItemCount = totalItemCount;
-
         if (this.layoutManager != null) {
             this.layoutManager.setTotalItemCount(totalItemCount);
         }
@@ -355,7 +356,6 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        //return totalItemCount;
         return lazyList != null ? lazyList.size() : 0;
     }
 
