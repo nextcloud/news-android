@@ -280,7 +280,7 @@
     <string name="array_sync_interval_hour_6">6小时</string>
     <string name="array_sync_interval_hour_12">12小时</string>
     <string name="array_sync_interval_hour_24">24小时</string>
-    <string name="switch_account">切换账户</string>
+    <string name="switch_account">切换账号</string>
     
     <string name="successfully_exported">已成功导出到：</string>
     <string name="opml_export">OPML 导出</string>
