@@ -106,7 +106,7 @@
 
 
     <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
-    <string name="action_folder_remove">إحذف المجلد</string>
+    <string name="action_folder_remove">حذف المجلد</string>
     <string name="action_folder_rename">غيّر تسمية المجلد</string>
     <string name="folder_remove_button">حذف</string>
     <string name="folder_rename_button">تغيير التسمية</string>
@@ -114,7 +114,7 @@
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">تَلَقَّى إشعارات فريدة unique لهذا الموجز</string>
-    <string name="notification_feed_default">ستظهر جميع المواجيز feeds ذات الإعدادات الافتراضية في إشعار واحد</string>
+    <string name="notification_feed_default">ستظهر جميع الإيجازات ذات الإعدادات الافتراضية في إشعار واحد</string>
     <string name="notification_feed_none">لا توجد أيّ إشعاراتٍ</string>
 
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
