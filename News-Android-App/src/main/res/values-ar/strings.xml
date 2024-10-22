@@ -38,7 +38,7 @@
     <string name="action_removePodcast">إزالة وسائط البودكاست</string>
     <string name="action_openInBrowser">فتح في متصفح الويب</string>
     <string name="action_Share">شارك</string>
-    <string name="action_login">إعدادات الخادوم</string>
+    <string name="action_login">إعدادات الخادم</string>
     <string name="action_save">حفظ</string>
     <string name="action_settings">إعدادات</string>
     <string name="action_sync_settings">مزامنة الإعدادات</string>
