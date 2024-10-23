@@ -35,6 +35,7 @@
     <string name="action_settings">Cunfiguratzione</string>
     <string name="action_sync_settings">Cunfiguratzione de sincronizatzione</string>
     <string name="action_add_new_feed">Agiunghe fonte noa</string>
+    <string name="action_add_new_folder">Agiunghe una cartella noa</string>
     <string name="action_textToSpeech">Letura vocale</string>
     <string name="action_search">Chirca</string>
     <string name="action_download_articles_offline">Iscàrriga artìculos fora de lìnia</string>
@@ -164,6 +165,8 @@
     <string name="pref_contribute_summary">Otene su còdighe fonte</string>
     <string name="pref_privacy">Riservadesa</string>
     <string name="pref_privacy_summary">Critèriu de riservadesa de Noas de Nextcloud pro Android</string>
+    <string name="pref_news_policy">Iscrie·nos / Polìtica de noas</string>
+    <string name="pref_news_policy_summary">Polìtica de noas de Nextcloud e Android / Iscrie·nos</string>
     <string name="pref_version">Aplicatzione de Noas de Nextcloud pro Android </string>
 
 

@@ -32,6 +32,7 @@
     <string name="action_starred">Favori</string>
     <string name="action_read">Lu</string>
     <string name="action_playPodacst">Lire le Podcast</string>
+    <string name="action_removePodcast">Supprimer le podcast média</string>
     <string name="action_openInBrowser">Afficher dans le navigateur internet</string>
     <string name="action_Share">Partager</string>
     <string name="action_login">Paramètres du serveur</string>
@@ -189,6 +190,9 @@
     <string name="podcast_playback_speed_dialog_title">Vitesse de lecture</string>
     <string name="notification_downloading_podcast_title">Téléchargement du podcast</string>
     <string name="dialog_podcast_remove_title">Êtes-vous sûr ?</string>
+    <string name="dialog_podcast_remove_body">Voulez-vous supprimer les médias téléchargés pour %1$s ?</string>
+    <string name="dialog_podcast_status_failed">Échec de suppression des médias pour %1$s</string>
+    <string name="dialog_podcast_status_success">Le média pour %1$s a été supprimé</string>
     <string name="dialog_podcast_remove_confirm">Retirer</string>
 
     <!-- Settings for About -->
@@ -202,6 +206,7 @@
     <string name="pref_privacy">Vie privée</string>
     <string name="pref_privacy_summary">Politique de confidentialité de Nextcloud News pour Android</string>
     <string name="pref_news_policy">Contactez-nous / Politique</string>
+    <string name="pref_news_policy_summary">Politique d\'actualités Nextcloud Actualités Android / Contactez-nous</string>
     <string name="pref_version">Application Android NextCloud News</string>
 
 
