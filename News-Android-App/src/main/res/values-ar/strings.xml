@@ -26,8 +26,8 @@
 
     <string name="menu_update">تحديث</string>
     <string name="menu_markAllAsRead">تحديد الكل كمقروء</string>
-    <string name="menu_StartImageCaching">تحميل الصور</string>
-    <string name="menu_downloadMoreItems">تحميل المزيد من العناصر</string>
+    <string name="menu_StartImageCaching">تنزيل الصور</string>
+    <string name="menu_downloadMoreItems">تنزيل المزيد من العناصر</string>
 
     <string name="tv_showing_cached_version">عرض النسخة المُخبّأة cached</string>
 
@@ -82,11 +82,11 @@
     <string name="action_link_share">شارك الرابط</string>
     <string name="action_link_open">افتح الرابط في المستعرض</string>
     <string name="action_link_copy">إنسخ الرابط</string>
-    <string name="toast_img_download_wait">التحميل جارٍ. يرجى الانتظار …</string>
+    <string name="toast_img_download_wait">يتم التنزيل. يرجى الانتظار …</string>
     <string name="toast_img_saved">تمّ حفظ الصورة</string>
     <string name="toast_img_notwriteable">تعذّر نسخ الصورة</string>
     <string name="toast_copied_to_clipboard">تمّ النسخ للحافظة</string>
-    <string name="error_download_failed">تعذّر التحميل</string>
+    <string name="error_download_failed">تعذّر التنزيل</string>
     <string name="intent_title_share">شارِك عبر</string>
 
 
