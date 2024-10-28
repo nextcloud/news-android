@@ -147,7 +147,7 @@
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Настройки</string>
-    <string name="cache_is_cleared">Кеш очищен!</string>
+    <string name="cache_is_cleared">Кэш очищен!</string>
 
 
     <!-- General settings -->
@@ -166,9 +166,9 @@
     <string name="pref_general_search_in_body">Тело</string>
     <string name="pref_general_search_in_both">Оба</string>
 
-    <string name="dialog_clearing_cache">Очистить кеш.</string>
+    <string name="dialog_clearing_cache">Очистить кэш.</string>
     <string name="dialog_clearing_cache_please_wait">Очистка кэша. Пожалуйста, подождите ...</string>
-    <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кеш?</string>
+    <string name="reset_cache_unsaved_changes">Есть несинхронизированные изменения. Вы действительно хотите очистить кэш?</string>
     <string name="warning">Предупреждение</string>
     <string name="pref_title_AutoSyncOnStart">Синхронизация при запуске</string>
     <string name="pref_title_ShowOnlyUnread">Показать только непрочитанные статьи</string>
