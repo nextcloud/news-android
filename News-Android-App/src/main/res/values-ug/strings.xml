@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">ئاپتوماتىك ماسقەدەملەش</string>
+    <string name="title_activity_sync_interval_selector">ماس قەدەم ئارىلىقى</string>
+    <string name="empty_view_content">بۇ يەردە ھېچقانداق نەرسە يوق</string>
+    <string name="empty_view_content_action">يېڭىلاپ يېڭىلاش</string>
+    <string name="toast_GettingMoreItems">تېخىمۇ كۆپ تۈرلەرنى چۈشۈرۈش باشلاندى. ساقلاپ تۇرۇڭ…</string>
+    <string name="no_wifi_available">WiFi ئۇلانمىدى</string>
+    <string name="do_you_want_to_download_without_wifi">رەسىملەرنى Wi-Fi ئۇلانمىسىڭىز چۈشۈرمەكچىمۇ؟</string>
+    <string name="current_version">سىز% s نەشرىنى ئىشلىتىۋاتىسىز</string>
+    <string name="widget_header">Nextcloud News</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d new item available</item>
+        <item quantity="other">%d new items available</item>
+    </plurals>
+    <string name="message_bar_reload">قايتا يۈكلەڭ</string>
+    <string name="allUnreadFeeds">ئوقۇلمىغان بارلىق تۈرلەر</string>
+    <string name="starredFeeds">يۇلتۇز تۈرلىرى</string>
+    <string name="downloadedPodcasts">چۈشۈرۈلگەن podcast</string>
+    <string name="title_activity_new_feed">يېڭى يەم قوشۇڭ</string>
+
+    <string name="menu_update">يېڭىلاش</string>
+    <string name="menu_markAllAsRead">ھەممىنى ئوقۇغاندەك بەلگە قويۇڭ</string>
+    <string name="menu_StartImageCaching">رەسىملەرنى چۈشۈرۈڭ</string>
+    <string name="menu_downloadMoreItems">تېخىمۇ كۆپ تۈرلەرنى چۈشۈرۈڭ</string>
+
+    <string name="tv_showing_cached_version">غەملەك نۇسخىسىنى كۆرسىتىش</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">چولپان</string>
+    <string name="action_read">ئوقۇ</string>
+    <string name="action_playPodacst">Podcast نى ئويناڭ</string>
+    <string name="action_removePodcast">Podcast Media نى ئۆچۈرۈڭ</string>
+    <string name="action_openInBrowser">توركۆرگۈدە ئېچىڭ</string>
+    <string name="action_Share">ھەمبەھىرلەش</string>
+    <string name="action_login">مۇلازىمېتىر تەڭشىكى</string>
+    <string name="action_save">ساقلاش</string>
+    <string name="action_settings">تەڭشەك</string>
+    <string name="action_sync_settings">ماسقەدەملەش</string>
+    <string name="action_add_new_feed">يېڭى يەم قوشۇڭ</string>
+    <string name="action_add_new_folder">يېڭى ھۆججەت قىسقۇچ قوشۇڭ</string>
+    <string name="action_textToSpeech">ئوقۇڭ</string>
+    <string name="action_search">ئىزدەش</string>
+    <string name="action_download_articles_offline">تورسىز ماقالىلەرنى چۈشۈرۈڭ</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">تورسىز ئىشلىتىش ئۈچۈن ماقالىلەرنى چۈشۈرۈش</string>
+    <string name="notification_download_images_offline">تورسىز ئىشلىتىش ئۈچۈن رەسىملەرنى چۈشۈرۈش</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">You have %d new unread item</item>
+        <item quantity="other">You have %d new unread items</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d new unread item available</item>
+        <item quantity="other">%d new unread items available</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL نى بېقىڭ</string>
+    <string name="action_add_feed">يەم قوشۇڭ</string>
+    <string name="import_opml">OPML ئەكىرىڭ</string>
+    <string name="export_opml">OPML نى چىقىرىش</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">رەسىمنى چۈشۈرۈش</string>
+    <string name="action_img_sharelink">رەسىم ئۇلىنىشى</string>
+    <string name="action_img_open">توركۆرگۈدە رەسىمنى ئېچىڭ</string>
+    <string name="action_img_copylink">رەسىم ئۇلانمىسىنى كۆچۈرۈڭ</string>
+    <string name="action_link_share">ئۇلىنىشنى ھەمبەھىرلەش</string>
+    <string name="action_link_open">توركۆرگۈدە ئۇلىنىش ئېچىڭ</string>
+    <string name="action_link_copy">ئۇلانمىنى كۆچۈرۈڭ</string>
+    <string name="toast_img_download_wait">چۈشۈرۈش. ساقلاپ تۇرۇڭ…</string>
+    <string name="toast_img_saved">رەسىم ساقلاندى</string>
+    <string name="toast_img_notwriteable">رەسىم يېزىش مەغلۇب بولدى.</string>
+    <string name="toast_copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈرۈلدى</string>
+    <string name="error_download_failed">چۈشۈرۈش مەغلۇب بولدى</string>
+    <string name="intent_title_share">ئورتاقلىشىش</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">يەمنى ئېلىۋېتىڭ</string>
+    <string name="action_feed_rename">يەمنىڭ نامىنى ئۆزگەرتىش</string>
+    <string name="action_feed_move">Feed Feed</string>
+    <string name="action_feed_notification_settings">ئۇقتۇرۇش تەڭشىكى</string>
+    <string name="action_feed_open_in">ئوچۇق تەڭشەكلەر</string>
+    <string name="action_feed_open_in_general_setting">ئادەتتىكى تەڭشەكنى ئىشلىتىڭ</string>
+    <string name="action_feed_open_in_detailed_view">تەپسىلىي كۆرۈنۈش</string>
+    <string name="feed_remove_button">ئۆچۈرۈڭ</string>
+    <string name="feed_rename_button">ئىسىم ئۆزگەرتىش</string>
+    <string name="confirm_feed_remove">بۇ يەمنى ئۆچۈرمەكچىمۇ؟ بۇنى ئەمەلدىن قالدۇرغىلى بولمايدۇ!</string>
+    <string name="feed_move_list_description">يەمنى يۆتكەش ئۈچۈن ھۆججەت قىسقۇچنى تاللاڭ</string>
+    <string name="move_feed_root_folder">يىلتىز قىسقۇچ</string>
+
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">ھۆججەت قىسقۇچنى ئۆچۈرۈڭ</string>
+    <string name="action_folder_rename">ھۆججەت قىسقۇچنىڭ نامىنى ئۆزگەرتىڭ</string>
+    <string name="folder_remove_button">ئۆچۈرۈڭ</string>
+    <string name="folder_rename_button">ئىسىم ئۆزگەرتىش</string>
+    <string name="confirm_folder_remove">بۇ ھۆججەت قىسقۇچنى ئۆچۈرمەكچىمۇ؟ بۇنى ئەمەلدىن قالدۇرغىلى بولمايدۇ!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">بۇ يەم ئۈچۈن ئۆزگىچە ئۇقتۇرۇش تاپشۇرۇۋېلىڭ</string>
+    <string name="notification_feed_default">سۈكۈتتىكى تەڭشەكلىرى بار بارلىق يەملەر بىر ئۇقتۇرۇشتا كۆرۈنىدۇ</string>
+    <string name="notification_feed_none">ھېچقانداق ئۇقتۇرۇش يوق</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">قوش</string>
+    <string name="hint_folder_name">ھۆججەت قىسقۇچنىڭ ئىسمى</string>
+    <string name="folder_already_exists">ھۆججەت قىسقۇچ مەۋجۇت</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">قولدا كىرىش</string>
+    <string name="login_sso">Nextcloud ھۆججەت دېتالى ئارقىلىق كىرىڭ</string>
+    <string name="pref_title_username">ئىشلەتكۈچى ئىسمى</string>
+    <string name="pref_title_password">پارول</string>
+    <string name="pref_title_owncloudRootPath">Nextcloud يىلتىز ئادرېسى</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">تىزىملىتىڭ</string>
+    <string name="login_progress_signing_in">تىزىملىتىڭ…</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">بۇ ساھە تەلەپ قىلىنىدۇ</string>
+    <string name="error_invalid_url">URL خاتا</string>
+
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Downloaded %d old item</item>
+        <item quantity="other">Downloaded %d old items</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">باشقا تۈرلەر يوق</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Fetched %d item so far …</item>
+        <item quantity="other">Fetched %d items so far …</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">تەڭشەك</string>
+    <string name="cache_is_cleared">غەملەك تازىلاندى!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_general_sort_order">تەرتىپلەش</string>
+
+    <string name="pref_general_sort_order_new_old">يېڭى → كونا</string>
+    <string name="pref_general_sort_order_old_new">كونا → يېڭى</string>
+
+    <string name="pref_rename_action_swipe_right">ئوڭغا سۈرگەندە ھەرىكەت</string>
+    <string name="pref_rename_action_swipe_left">سولغا سۈرگەندە ھەرىكەت</string>
+
+    <string name="pref_title_general_search_in">ئىزدەش</string>
+
+    <string name="pref_general_search_in_title">ماۋزۇ</string>
+    <string name="pref_general_search_in_body">بەدەن</string>
+    <string name="pref_general_search_in_both">ھەر ئىككىلىسى</string>
+
+    <string name="dialog_clearing_cache">ساقلىغۇچنى تازىلاش</string>
+    <string name="dialog_clearing_cache_please_wait">غەملەكنى تازىلاش. ساقلاپ تۇرۇڭ…</string>
+    <string name="reset_cache_unsaved_changes">ماس قەدەمسىز ئۆزگىرىشلەر بار. قانداقلا بولمىسۇن غەملەكنى ئەسلىگە كەلتۈرمەكچىمۇ؟</string>
+    <string name="warning">ئاگاھلاندۇرۇش</string>
+    <string name="pref_title_AutoSyncOnStart">ئىگىلىك تىكلەشتە ماسقەدەملەش</string>
+    <string name="pref_title_ShowOnlyUnread">پەقەت ئوقۇلمىغان ماقالىلەرنىلا كۆرسىتىڭ</string>
+    <string name="pref_title_DisableHostnameVerification">باش ئاپپارات دەلىللەشنى چەكلەڭ</string>
+    <string name="pref_title_NavigateWithVolumeButtons">ئاۋاز كۇنۇپكىسى بىلەن يوللاڭ</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">سىيرىلغاندا ئوقۇغاندەك بەلگە قويۇڭ</string>
+    <string name="pref_title_ShowFastActions">تېز زىيارەت قىلىش ئىقتىدارىنى قوزغىتىڭ</string>
+    <string name="pref_title_OpenInBrowserDirectly">توركۆرگۈدە تەپسىلىي كۆرۈنۈش ۋە ماقالىنى ئېچىڭ</string>
+    <string name="pref_title_BackButtonOpensDrawer">ئارقا كۇنۇپكا تارتمىنى ئاچىدۇ</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">نامەلۇم گۇۋاھنامە قوبۇل قىلامسىز؟</string>
+    <string name="mtm_decision_always">ھەمىشە</string>
+    <string name="mtm_decision_abort">ئەمەلدىن قالدۇرۇش</string>
+    <string name="mtm_notification">گۇۋاھنامە دەلىللەش</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Podcast تاللانمىدى</string>
+    <string name="no_chapters_available">ھېچقانداق باب يوق</string>
+    <string name="exit_playback">قويغۇچتىن چېكىنىش</string>
+    <string name="podcast_playback_speed_dialog_title">قويۇش سۈرئىتى</string>
+    <string name="notification_downloading_podcast_title">Podcast نى چۈشۈرۈش</string>
+    <string name="dialog_podcast_remove_title">ئىشىنەمسىز؟</string>
+    <string name="dialog_podcast_remove_body">چۈشۈرۈلگەن مېدىيانى% 1 $ s ئۆچۈرمەكچىمۇ؟</string>
+    <string name="dialog_podcast_status_failed">% 1 $ s ئۈچۈن مېدىيانى ئۆچۈرەلمىدى</string>
+    <string name="dialog_podcast_status_success">% 1 $ s ئۈچۈن مېدىيا چىقىرىۋېتىلدى</string>
+    <string name="dialog_podcast_remove_confirm">ئۆچۈرۈڭ</string>
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">ھەققىدە</string>
+    <string name="pref_license">ئىجازەتنامە</string>
+    <string name="pref_license_summary">GNU Affero ئادەتتىكى ئاممىۋى ئىجازەتنامە (AGPL) 3-نەشرى</string>
+    <string name="pref_report_issue">بىر مەسىلىنى دوكلات قىلىڭ</string>
+    <string name="pref_report_issue_summary">(ھەقسىز) GitHub ھېساباتىنى تەلەپ قىلىدۇ</string>
+    <string name="pref_contribute">تۆھپە قوشۇڭ!</string>
+    <string name="pref_contribute_summary">ئەسلى كودقا ئېرىشىڭ</string>
+    <string name="pref_privacy">مەخپىيەتلىك</string>
+    <string name="pref_privacy_summary">Nextcloud خەۋەرلىرى ئاندىرويىد مەخپىيەتلىك تۈزۈمى</string>
+    <string name="pref_news_policy">بىز بىلەن ئالاقىلىشىڭ / خەۋەر سىياسىتى</string>
+    <string name="pref_news_policy_summary">Nextcloud خەۋەرلىرى ئاندىرويىد خەۋەر سىياسىتى / بىز بىلەن ئالاقىلىشىڭ</string>
+    <string name="pref_version">Nextcloud News ئاندىرويىد دېتالى</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">كۆرسىتىش</string>
+    <string name="pref_title_app_theme">باشتېما</string>
+    <string name="pref_title_feed_list_layout">تىزىملىك تىزىملىكى</string>
+    <string name="pref_title_font_size">خەت چوڭلۇقى</string>
+    <string name="pref_display_browser">توركۆرگۈ</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">ھەرىكەت سىنبەلگىسى (تەپسىلىي كۆرۈنۈش)</string>
+
+    <string name="pref_display_apptheme_auto">سىستېما كۆڭۈلدىكى قىممىتى</string>
+    <string name="pref_display_apptheme_light">نۇر</string>
+    <string name="pref_display_apptheme_dark">قاراڭغۇ</string>
+
+    <string name="pref_oled_mode">قارا تەگلىك</string>
+    <string name="pref_oled_mode_summary">OLED ئېكرانىدىكى قاراڭغۇ تېما ئۈچۈن</string>
+
+    <string name="pref_external_player">سىرتقى قويغۇچ</string>
+    <string name="pref_external_player_summary">سۈكۈتتىكى مېدىيا دېتالىدا podcast نى ئويناڭ</string>
+
+    <string name="pref_display_browser_cct">ئىچىگە Chrome-Custom-Tabs قاچىلانغان</string>
+    <string name="pref_display_browser_built_in">تور كۆرگۈچ</string>
+    <string name="pref_display_browser_external">سىرتقى توركۆرگۈ</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">كىچىك كۆرۈنۈشلەر (پەقەت ماۋزۇلار)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Thumbnails</string>
+    <string name="pref_display_feed_list_layout_simple_text">ئاددىي تېكىست</string>
+    <string name="pref_display_feed_list_layout_headlines">ماۋزۇلار</string>
+    <string name="pref_display_feed_list_layout_full_text">تولۇق تېكىست</string>
+    <string name="pref_display_feed_list_layout_web_layout">تور ئورۇنلاشتۇرۇشى</string>
+    <string name="pref_display_feed_list_layout_card_view">كارتا كۆرۈنۈشى</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">كىچىك</string>
+    <string name="pref_display_font_size_d">سۈكۈتتىكى</string>
+    <string name="pref_display_font_size_l">چوڭ</string>
+    <string name="pref_display_font_size_xl">قوشۇمچە چوڭ</string>
+
+    <string name="content_desc_play">ئويناش</string>
+    <string name="content_desc_pause">Pause</string>
+    <string name="content_desc_playback_speed">قويۇش سۈرئىتى</string>
+    <string name="content_desc_rewind">مۇكاپاتلاش</string>
+    <string name="content_desc_forward">ئالدىغا</string>
+    <string name="content_desc_expand">كېڭەيتىش</string>
+    <string name="content_desc_collapse">يىمىرىلىش</string>
+    <string name="content_desc_mark_as_read">ئوقۇغاندەك بەلگە قويۇڭ</string>
+    <string name="content_desc_mark_as_unread">ئوقۇلمىغان دەپ بەلگە قويۇڭ</string>
+    <string name="content_desc_tap_to_refresh">يېڭىلاش ئۈچۈن چېكىڭ</string>
+    <string name="content_desc_add_to_favorites">ياقتۇرىدىغانلارغا قوشۇڭ</string>
+    <string name="content_desc_remove_from_favorites">ياقتۇرىدىغانلاردىن ئۆچۈرۈڭ</string>
+    <string name="content_desc_show_password">پارولنى كۆرسەت</string>
+    <string name="content_desc_delete">ئۆچۈرۈش</string>
+    <string name="content_desc_download">چۈشۈرۈش</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">خاتالىق</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">ئۇ سىزنىڭ خەۋەر ئەپىڭىزنىڭ مۇلازىمېتىرىڭىزغا ئورنىتىلمىغان ياكى قوزغىتىلمىغاندەك قىلىدۇ. ئالدى بىلەن مۇلازىمېتىرىڭىزدا خەۋەر ئەپىنى تەڭشەش ئۈچۈن بېرىلگەن كۆرسەتمىلەرگە ئەگىشىڭ:% 1 $ s</string>
+    <string name="login_dialog_text_something_went_wrong">چاتاق چىقتى :(</string>
+    <string name="login_dialog_text_zero_version_code">تور خەۋەرلىرى دېتالى «0» نەشرىنى قايتۇردى. تۆۋەندىكى خاتالىق دوكلاتىنى كۆرۈپ بېقىڭ: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">بۇ ئەپ نەشرى Nextcloud خەۋەر ئەپىڭىزگە ماس كەلمەيدۇ. خەۋەر ئەپلىرى ۋە ئەپ دېتاللىرىنى يېڭىلاڭ.</string>
+    <string name="login_dialog_title_security_warning">بىخەتەرلىك ئاگاھلاندۇرۇشى</string>
+    <string name="login_dialog_text_security_warning">سىز كۈچلۈك ئىلھاملاندۇرۇلغان HTTPS نى ئىشلەتمەيسىز. ھۇجۇم قىلغۇچى سىزنىڭ ئېقىمىڭىزنى توسۇپ بەزى سەزگۈر سانلىق مەلۇماتلارنى زىيارەت قىلالايدۇ (مەسىلەن پارولىڭىز).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">چاتاق چىقتى. قايتا سىناڭ.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">سانلىق مەلۇمات ۋە ماسقەدەملەش</string>
+    <string name="pref_title_clearCache">غەملەكنى تازىلاش</string>
+    <string name="pref_title_CacheImagesOffline">رەسىملەرنى تورسىز ساقلاڭ</string>
+    <string name="pref_title_Max_Cache_Size">Max Cache Size</string>
+
+    <string name="pref_data_sync_image_cache_never">ھەرگىز بولمايدۇ</string>
+    <string name="pref_data_sync_image_cache_wifi_only">پەقەت WiFi دىن ئېشىپ كەتتى</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi &amp; Mobile دىن ئېشىپ كەتتى</string>
+    <string name="pref_data_sync_image_cache_ask">WiFi غا ئۇلانمىغان ۋاقىتتا سوراڭ</string>
+
+    <string name="array_sync_interval_min_0">ھەرگىز بولمايدۇ</string>
+    <string name="array_sync_interval_min_5">5 مىنۇت</string>
+    <string name="array_sync_interval_min_15">15 مىنۇت</string>
+    <string name="array_sync_interval_min_30">30 مىنۇت</string>
+    <string name="array_sync_interval_min_45">45 مىنۇت</string>
+    <string name="array_sync_interval_hour_1">1 سائەت</string>
+    <string name="array_sync_interval_hour_2">2 سائەت</string>
+    <string name="array_sync_interval_hour_3">3 سائەت</string>
+    <string name="array_sync_interval_hour_6">6 سائەت</string>
+    <string name="array_sync_interval_hour_12">12 سائەت</string>
+    <string name="array_sync_interval_hour_24">24 سائەت</string>
+    <string name="switch_account">ھېساباتنى ئالماشتۇرۇش</string>
+    
+    <string name="successfully_exported">مۇۋەپپەقىيەتلىك ئېكسپورت قىلىندى:</string>
+    <string name="opml_export">OPML ئېكسپورتى</string>
+    <string name="parsing_opml">OPML نى تەھلىل قىلىش</string>
+    <string name="please_wait">ساقلاپ تۇرۇڭ…</string>
+    <string name="interval_sync_title">ئارىلىق ماسقەدەملەش</string>
+
+    </resources>
