@@ -77,7 +77,7 @@
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">تنزيل الصورة</string>
     <string name="action_img_sharelink">شارك رابط الصورة</string>
-    <string name="action_img_open">إفتح الصورة في المستعرض</string>
+    <string name="action_img_open">افتح الصورة في المستعرض</string>
     <string name="action_img_copylink">نسخ رابط الصورة</string>
     <string name="action_link_share">شارك الرابط</string>
     <string name="action_link_open">افتح الرابط في المستعرض</string>
@@ -99,7 +99,7 @@
     <string name="action_feed_open_in_general_setting">استخدم الإعدادات العامة</string>
     <string name="action_feed_open_in_detailed_view">عرض تفصيلي</string>
     <string name="feed_remove_button">حذف</string>
-    <string name="feed_rename_button">تغيير التسمية</string>
+    <string name="feed_rename_button">إعادة التسمية</string>
     <string name="confirm_feed_remove">هل تريد حقًا إزالة هذا الموجز؟ لا يمكن التراجع عن هذا لاحقاً!</string>
     <string name="feed_move_list_description">إختر مجلداً ليُنقل إليه الموجز</string>
     <string name="move_feed_root_folder">المجلد الجذري root folder</string>
@@ -109,7 +109,7 @@
     <string name="action_folder_remove">حذف المجلد</string>
     <string name="action_folder_rename">غيّر تسمية المجلد</string>
     <string name="folder_remove_button">حذف</string>
-    <string name="folder_rename_button">تغيير التسمية</string>
+    <string name="folder_rename_button">إعادة التسمية</string>
     <string name="confirm_folder_remove">هل تريد حقًا إزالة هذا المجلد؟ لا يمكن التراجع عن هذا لاحقاً!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->

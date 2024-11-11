@@ -33,6 +33,7 @@
     <string name="action_starred">Избранное</string>
     <string name="action_read">Читать</string>
     <string name="action_playPodacst">Воспроизвести Подкаст</string>
+    <string name="action_removePodcast">Удалить подкаст</string>
     <string name="action_openInBrowser">Открыть в браузере</string>
     <string name="action_Share">Поделиться</string>
     <string name="action_login">Параметры сервера</string>
@@ -90,6 +91,7 @@
     <string name="action_feed_notification_settings">Настройки уведомлений</string>
     <string name="action_feed_open_in">Открыть в настройках</string>
     <string name="action_feed_open_in_general_setting">Использовать общие настройки</string>
+    <string name="action_feed_open_in_detailed_view">Подробный обзор</string>
     <string name="feed_remove_button">Удалить</string>
     <string name="feed_rename_button">Переименовать</string>
     <string name="confirm_feed_remove">Вы действительно хотите удалить эту Новостную ленту? Это не действие необратимо!</string>
@@ -177,6 +179,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
     <string name="pref_title_ShowFastActions">Включить функции быстрого доступа</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустить детальный обзор и открыть статью в браузере</string>
+    <string name="pref_title_BackButtonOpensDrawer">Кнопка \"Назад\" открывает ящик</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Принять неизвестный сертификат?</string>
     <string name="mtm_decision_always">Всегда</string>
@@ -191,6 +195,9 @@
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
     <string name="notification_downloading_podcast_title">Загрузка подкастов</string>
     <string name="dialog_podcast_remove_title">Вы уверены?</string>
+    <string name="dialog_podcast_remove_body">Вы хотите удалить загруженные медиафайлы для %1$s?</string>
+    <string name="dialog_podcast_status_failed">Не удалось удалить медиафайл для %1$s</string>
+    <string name="dialog_podcast_status_success">Медиафайлы для %1$s были удалены</string>
     <string name="dialog_podcast_remove_confirm">Удалить</string>
 
     <!-- Settings for About -->
