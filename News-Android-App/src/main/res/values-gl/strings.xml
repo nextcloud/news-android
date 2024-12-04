@@ -162,7 +162,7 @@
     <string name="dialog_clearing_cache_please_wait">Limpando a memoria tobo. Agarde…</string>
     <string name="reset_cache_unsaved_changes">Hai cambios sen sincronizar. Quere restabelecer a memoria tobo aínda así?</string>
     <string name="warning">Advertencia</string>
-    <string name="pref_title_AutoSyncOnStart">Sincronizar o inicio</string>
+    <string name="pref_title_AutoSyncOnStart">Sincronizar no inicio</string>
     <string name="pref_title_ShowOnlyUnread">Amosar só os artigos non lidos</string>
     <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>

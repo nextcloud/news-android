@@ -18,6 +18,7 @@
     <string name="message_bar_reload">Ricarica</string>
     <string name="allUnreadFeeds">Tutti gli elementi non letti</string>
     <string name="starredFeeds">Elementi preferiti</string>
+    <string name="downloadedPodcasts">Podcast scaricati</string>
     <string name="title_activity_new_feed">Aggiungi una nuova fonte</string>
 
     <string name="menu_update">Aggiorna</string>
@@ -31,6 +32,7 @@
     <string name="action_starred">Preferiti</string>
     <string name="action_read">Lettura</string>
     <string name="action_playPodacst">Riproduci podcast</string>
+    <string name="action_removePodcast">Rimuovi Media Podcast</string>
     <string name="action_openInBrowser">Apri nel browser web</string>
     <string name="action_Share">Condividi</string>
     <string name="action_login">Impostazioni del server</string>
@@ -84,6 +86,9 @@
     <string name="action_feed_rename">Rinomina fonte</string>
     <string name="action_feed_move">Sposta fonte</string>
     <string name="action_feed_notification_settings">Impostazioni di notifica</string>
+    <string name="action_feed_open_in">Impostazioni Apri-in</string>
+    <string name="action_feed_open_in_general_setting">Utilizza l\'impostazione generale</string>
+    <string name="action_feed_open_in_detailed_view">Vista dettagliata</string>
     <string name="feed_remove_button">Rimuovi</string>
     <string name="feed_rename_button">Rinomina</string>
     <string name="confirm_feed_remove">Vuoi davvero rimuovere questa fonte? Ciò non può essere annullato!</string>
@@ -169,6 +174,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Segna come letto durante lo scorrimento</string>
     <string name="pref_title_ShowFastActions">Attiva funzioni di accesso rapido</string>
     <string name="pref_title_OpenInBrowserDirectly">Salta la vista dettagliata e apri l\'articolo nel browser</string>
+    <string name="pref_title_BackButtonOpensDrawer">Il pulsante Indietro apre la cartella</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Vuoi accettare un certificato sconosciuto?</string>
     <string name="mtm_decision_always">Sempre</string>
@@ -183,6 +190,9 @@
     <string name="podcast_playback_speed_dialog_title">Velocità  di riproduzione</string>
     <string name="notification_downloading_podcast_title">Scaricamento podcast</string>
     <string name="dialog_podcast_remove_title">Sei sicuro?</string>
+    <string name="dialog_podcast_remove_body">Vuoi rimuovere il media scaricato per %1$s?</string>
+    <string name="dialog_podcast_status_failed">Impossibile rimuovere il media per %1$s</string>
+    <string name="dialog_podcast_status_success">Il media per %1$s è stato rimosso</string>
     <string name="dialog_podcast_remove_confirm">Rimuovi</string>
 
     <!-- Settings for About -->
@@ -195,6 +205,8 @@
     <string name="pref_contribute_summary">Ottieni il codice sorgente</string>
     <string name="pref_privacy">Riservatezza</string>
     <string name="pref_privacy_summary">Criterio di riservatezza di Notizie di Nextcloud per Android</string>
+    <string name="pref_news_policy">Contattaci / Policy Notizie</string>
+    <string name="pref_news_policy_summary">Nextcloud Politica sulle Notizie Android / Contattaci</string>
     <string name="pref_version">Applicazione Notizie di Nextcloud per Android</string>
 
 
@@ -214,6 +226,9 @@
 
     <string name="pref_oled_mode">Sfondo scuro</string>
     <string name="pref_oled_mode_summary">Per tema scuro su schermi OLED</string>
+
+    <string name="pref_external_player">Player Esterno</string>
+    <string name="pref_external_player_summary">Riproduci i podcast nella tua app multimediale predefinita</string>
 
     <string name="pref_display_browser_cct">Schede personalizzate di Chrome integrate</string>
     <string name="pref_display_browser_built_in">Browser integrato</string>
