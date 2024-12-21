@@ -7,6 +7,7 @@
     <string name="empty_view_content_action">Puxe para atualizar</string>
     <string name="toast_GettingMoreItems">Iniciada a transferência de mais itens. Por favor, aguarde...</string>
     <string name="no_wifi_available">Sem ligação wi-fi</string>
+    <string name="do_you_want_to_download_without_wifi">Deseja transferir as imagens sem uma ligação Wi-Fi?</string>
     <string name="current_version">Está a usar a Versão %s</string>
     <string name="widget_header">Notícias da ownCloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -17,11 +18,12 @@
     <string name="message_bar_reload">Recarregar</string>
     <string name="allUnreadFeeds">Todos os itens não lidos</string>
     <string name="starredFeeds">Itens destacados</string>
+    <string name="downloadedPodcasts">Podcasts transferidos</string>
     <string name="title_activity_new_feed">Adicionar nova feed</string>
 
     <string name="menu_update">Atualizar</string>
     <string name="menu_markAllAsRead">Marcar tudo como lido</string>
-    <string name="menu_StartImageCaching">Transferir as imagens</string>
+    <string name="menu_StartImageCaching">Transferir imagens</string>
     <string name="menu_downloadMoreItems">Transferir mais itens</string>
 
     <string name="tv_showing_cached_version">A mostrar versão em cache</string>
@@ -157,6 +159,7 @@
     <string name="podcast_playback_speed_dialog_title">Velocidade de Reprodução</string>
     <string name="notification_downloading_podcast_title">A transferir \"podcast\"</string>
     <string name="dialog_podcast_remove_title">Tem a certeza?</string>
+    <string name="dialog_podcast_remove_body">Deseja remover a mediateca transferida para %1$s?</string>
     <string name="dialog_podcast_remove_confirm">Remover</string>
 
     <!-- Settings for About -->
