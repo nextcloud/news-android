@@ -206,7 +206,7 @@
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) verze 3</string>
     <string name="pref_report_issue">Nahlásit problém</string>
     <string name="pref_report_issue_summary">Vyžaduje účet na portálu GitHub (zdarma)</string>
-    <string name="pref_contribute">Zapojení se</string>
+    <string name="pref_contribute">Zapojte se!</string>
     <string name="pref_contribute_summary">Získat zdrojové kódy</string>
     <string name="pref_privacy">Soukromí</string>
     <string name="pref_privacy_summary">Zásady ochrany soukromí aplikace Nextcloud Novinky pro Android</string>
