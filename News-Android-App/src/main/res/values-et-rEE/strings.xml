@@ -53,6 +53,7 @@
     <string name="action_link_share">Jaga linki</string>
     <string name="action_link_open">Ava link veebilehitsejas</string>
     <string name="action_link_copy">Kopeeri link</string>
+    <string name="toast_img_saved">Pilt salvestatud</string>
     <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
     <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
     <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
@@ -151,6 +152,7 @@
     <string name="array_sync_interval_min_0">Mitte kunagi</string>
     <string name="array_sync_interval_min_30">30 minutit</string>
     <string name="array_sync_interval_hour_1">1 tund</string>
+    <string name="array_sync_interval_hour_3">3 tundi</string>
     <string name="switch_account">Vaheta kontot</string>
     
     <string name="please_wait">Palun oota...</string>
