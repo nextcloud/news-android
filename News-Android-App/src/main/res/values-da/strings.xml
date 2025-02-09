@@ -225,7 +225,7 @@
     <string name="pref_external_player">Ekstern afspiller</string>
     <string name="pref_external_player_summary">Afspil podcasts i din standard medieapp</string>
 
-    <string name="pref_display_browser_cct">Indbygget Chrome-Custom-Tabs</string>
+    <string name="pref_display_browser_cct">Indbyggede Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Indbygget browser</string>
     <string name="pref_display_browser_external">Ekstern browser</string>
 
