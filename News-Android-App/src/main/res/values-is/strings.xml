@@ -5,7 +5,9 @@
     <string name="title_activity_sync_interval_selector">Bil milli samstillinga</string>
     <string name="empty_view_content">Engin atriði hér</string>
     <string name="empty_view_content_action">Draga niður til að endurlesa</string>
+    <string name="toast_GettingMoreItems">Byrjað er að sækja fleiri atriði. Hinkraðu aðeins …</string>
     <string name="no_wifi_available">Ekkert WiFi-net tengt</string>
+    <string name="do_you_want_to_download_without_wifi">Viltu sækja myndirnar án Wi-Fi-tengingar?</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
     <plurals name="message_bar_new_articles_available">
@@ -15,6 +17,7 @@
     <string name="message_bar_reload">Endurhlaða</string>
     <string name="allUnreadFeeds">Öll ólesin atriði</string>
     <string name="starredFeeds">Stjörnumerkt atriði</string>
+    <string name="downloadedPodcasts">Sótt hlaðvörp</string>
     <string name="title_activity_new_feed">Bæta við nýjum fréttastraumi</string>
 
     <string name="menu_update">Endurlesa</string>
@@ -28,6 +31,7 @@
     <string name="action_starred">Stjörnumerkt</string>
     <string name="action_read">Lesa</string>
     <string name="action_playPodacst">Spila hlaðvarp</string>
+    <string name="action_removePodcast">Fjarlægja hlaðvarpsgögn</string>
     <string name="action_openInBrowser">Opna í vafra</string>
     <string name="action_Share">Deila</string>
     <string name="action_login">Stillingar þjóns</string>
@@ -35,6 +39,7 @@
     <string name="action_settings">Stillingar</string>
     <string name="action_sync_settings">Valkostir samstillingar</string>
     <string name="action_add_new_feed">Bæta við nýjum fréttastraum</string>
+    <string name="action_add_new_folder">Bæta við nýrri möppu</string>
     <string name="action_textToSpeech">Lesa upphátt</string>
     <string name="action_search">Leita</string>
     <string name="action_download_articles_offline">Sækja ónettengdar greinar</string>
@@ -65,6 +70,7 @@
     <string name="action_link_share">Deila tengli</string>
     <string name="action_link_open">Opna tengil í vafra</string>
     <string name="action_link_copy">Afrita tengil</string>
+    <string name="toast_img_download_wait">Er að sækja. Bíddu aðeins …</string>
     <string name="toast_img_saved">Mynd vistuð</string>
     <string name="toast_img_notwriteable">Tókst ekki að skrifa mynd.</string>
     <string name="toast_copied_to_clipboard">Afritað á klippispjald</string>
@@ -77,6 +83,9 @@
     <string name="action_feed_rename">Endurnefna streymi</string>
     <string name="action_feed_move">Færa streymi</string>
     <string name="action_feed_notification_settings">Stillingar á tilkynningum</string>
+    <string name="action_feed_open_in">Opna í stillingum</string>
+    <string name="action_feed_open_in_general_setting">Nota almenna stillingu</string>
+    <string name="action_feed_open_in_detailed_view">Ítarleg sýn</string>
     <string name="feed_remove_button">Fjarlægja</string>
     <string name="feed_rename_button">Endurskýra</string>
     <string name="confirm_feed_remove">Ertu viss um að þú viljir fjarlægja þetta streymi? Þetta er ekki hægt að afturkalla!</string>
@@ -84,12 +93,23 @@
     <string name="move_feed_root_folder">Rótarmappa</string>
 
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Fjarlægja möppu</string>
     <string name="action_folder_rename">Endurnefna möppu</string>
     <string name="folder_remove_button">Fjarlægja</string>
     <string name="folder_rename_button">Endurnefna</string>
+    <string name="confirm_folder_remove">Ertu viss um að þú viljir fjarlægja þessa möppu? Þetta er ekki hægt að afturkalla!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Taka á móti sérstökum tilkynningum fyrir þetta streymi</string>
+    <string name="notification_feed_default">Öll streymi með sjálfgefnu stillingunni munu birtast í einni tilkynningu</string>
+    <string name="notification_feed_none">Alls engar tilkynningar</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Bæta við</string>
     <string name="hint_folder_name">Heiti möppu</string>
+    <string name="folder_already_exists">Mappan er þegar til</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Handvirk innskráning</string>
     <string name="login_sso">Skrá inn með Nextcloud-skráaforritinu</string>
@@ -99,6 +119,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Skrá inn</string>
+    <string name="login_progress_signing_in">Skrái inn …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
     <string name="error_invalid_url">Röng slóð</string>
@@ -110,6 +131,12 @@
         <item quantity="other">Sótti %d eldri atriði</item>
     </plurals>
     <string name="toast_no_more_downloads_available">Engin fleiri atriði tiltæk</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Hef náð í %d atriði fram til þessa …</item>
+        <item quantity="other">Hef náð í %d atriði fram til þessa …</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Stillingar</string>
     <string name="cache_is_cleared">Skyndiminni hreinsað!</string>
@@ -118,6 +145,9 @@
     <!-- General settings -->
     <string name="pref_header_general">Almennt</string>
     <string name="pref_title_general_sort_order">Röðun</string>
+
+    <string name="pref_general_sort_order_new_old">Nýtt → Eldra</string>
+    <string name="pref_general_sort_order_old_new">Eldra → Nýtt</string>
 
     <string name="pref_rename_action_swipe_right">Aðgerð þegar strokið er til hægri</string>
     <string name="pref_rename_action_swipe_left">Aðgerð þegar strokið er til vinstri</string>
@@ -129,6 +159,7 @@
     <string name="pref_general_search_in_both">Bæði</string>
 
     <string name="dialog_clearing_cache">Hreinsa skyndiminni</string>
+    <string name="dialog_clearing_cache_please_wait">Hreinsa skyndiminni. Bíddu aðeins …</string>
     <string name="reset_cache_unsaved_changes">Það eru ósamstilltar breytingar. Viltu samt endurstilla skyndiminnið?</string>
     <string name="warning">Aðvörun</string>
     <string name="pref_title_AutoSyncOnStart">Samstilla í ræsingu</string>
@@ -138,6 +169,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
     <string name="pref_title_ShowFastActions">Virkja aðgerðir fyrir skyndiaðgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
+    <string name="pref_title_BackButtonOpensDrawer">Til baka-hnappur opnar sleða</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Samþykkja óþekkt skilríki?</string>
     <string name="mtm_decision_always">Alltaf</string>
@@ -148,8 +181,15 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ekkert hlaðvarp valið</string>
     <string name="no_chapters_available">Engir kaflar tiltækir</string>
+    <string name="exit_playback">Hætta í spilara</string>
     <string name="podcast_playback_speed_dialog_title">Hraði afspilunar</string>
     <string name="notification_downloading_podcast_title">Sæki hlaðvarp</string>
+    <string name="dialog_podcast_remove_title">Ertu viss?</string>
+    <string name="dialog_podcast_remove_body">Viltu fjarlægja sótt gögn fyrir %1$s?</string>
+    <string name="dialog_podcast_status_failed">Mistókst að fjarlægja gögn fyrir %1$s</string>
+    <string name="dialog_podcast_status_success">Gögn fyrir %1$s hafa verið fjarlægð</string>
+    <string name="dialog_podcast_remove_confirm">Fjarlægja</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Um hugbúnaðinn</string>
     <string name="pref_license">Notkunarleyfi</string>
@@ -159,6 +199,9 @@
     <string name="pref_contribute">Vertu virkur þáttakandi!</string>
     <string name="pref_contribute_summary">Náðu í grunnkóðann</string>
     <string name="pref_privacy">Gagnaleynd</string>
+    <string name="pref_privacy_summary"> Meðferð persónuupplýsinga í Nextcloud News Android</string>
+    <string name="pref_news_policy">Hafa samband / Reglur fréttaforritsins</string>
+    <string name="pref_news_policy_summary">Reglur Nextcloud News Android fréttaforritsins / Hafa samband</string>
     <string name="pref_version">Nextcloud Android fréttaforrit</string>
 
 
@@ -179,10 +222,14 @@
     <string name="pref_oled_mode">Svartur bakgrunnur</string>
     <string name="pref_oled_mode_summary">Fyrir dökkt þema á OLED-skjám</string>
 
+    <string name="pref_external_player">Utanaðkomandi spilari</string>
+    <string name="pref_external_player_summary">Spilaðu hlaðvörp í sjálfgefna margmiðlunarspilaranum þínum</string>
+
     <string name="pref_display_browser_cct">Innbyggðir Chrome-sérsniðnir-flipar</string>
     <string name="pref_display_browser_built_in">Innbyggður vafri</string>
     <string name="pref_display_browser_external">Ytri vafri</string>
 
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Smámyndir (aðeins fyrirsagnir)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Smámyndir</string>
     <string name="pref_display_feed_list_layout_simple_text">Einfaldur texti</string>
     <string name="pref_display_feed_list_layout_headlines">Fyrirsagnir</string>
@@ -199,10 +246,13 @@
     <string name="content_desc_play">Spila</string>
     <string name="content_desc_pause">Í bið</string>
     <string name="content_desc_playback_speed">Hraði afspilunar</string>
+    <string name="content_desc_rewind">Spóla til baka</string>
     <string name="content_desc_forward">Áframsenda</string>
+    <string name="content_desc_expand">Fletta út</string>
     <string name="content_desc_collapse">Fella saman</string>
     <string name="content_desc_mark_as_read">Merkja sem lesið</string>
     <string name="content_desc_mark_as_unread">Merkja allt sem ólesið</string>
+    <string name="content_desc_tap_to_refresh">Ýttu til að endurlesa</string>
     <string name="content_desc_add_to_favorites">Bæta í Eftirlæti</string>
     <string name="content_desc_remove_from_favorites">Fjarlægja úr eftirlætum</string>
     <string name="content_desc_show_password">Sýna lykilorð</string>
@@ -217,6 +267,9 @@
     <string name="login_dialog_text_not_compatible">Útgáfa þessa forrits er ekki samhæfð við Nextcloud fréttaforritið þitt. Endilega uppfærðu fréttaforritið og forritsumhverfi þess.</string>
     <string name="login_dialog_title_security_warning">Öryggisaðvörun</string>
     <string name="login_dialog_text_security_warning">Þú ert ekki að nota HTTPS, sem sterklega er mælt með að gera. Utanaðkomandi aðili gæti komist inn í samskiptin og öðlast þannig aðgang að viðkvæmum gögnum (t.d. lykilorðinu þínu).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Eitthvað fór úrskeiðis. Prófaðu aftur.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Gögn &amp; samstilling</string>
     <string name="pref_title_clearCache">Hreinsa skyndiminni</string>
@@ -241,5 +294,10 @@
     <string name="array_sync_interval_hour_24">24 klukkustundir</string>
     <string name="switch_account">Skipta um notandaaðgang</string>
     
+    <string name="successfully_exported">Tókst að flytja út í:</string>
+    <string name="opml_export">OPML-útflutningur</string>
+    <string name="parsing_opml">Þátta OPML</string>
     <string name="please_wait">Bíddu aðeins …</string>
+    <string name="interval_sync_title">Millibil samstillinga</string>
+
     </resources>
