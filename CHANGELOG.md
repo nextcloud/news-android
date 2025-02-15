@@ -1,3 +1,9 @@
+TBD
+---------------------
+
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1498">!1498 - Fix crash when
+  clearing cache</a>
+
 0.9.9.91
 ---------------------
 - Dependency updates

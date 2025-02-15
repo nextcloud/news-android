@@ -203,9 +203,7 @@ public class ImageHandler {
 
     public static void clearCache(Context context)
     {
-        new Thread(() -> {
-            Glide.get(context).clearMemory();
-            Glide.get(context).clearDiskCache();
-        }).start();
+        Glide.get(context).clearMemory();
+        Glide.get(context).clearDiskCache();
     }
 }
