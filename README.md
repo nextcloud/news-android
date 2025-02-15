@@ -39,7 +39,7 @@ An Android client for [Nextcloud News App](https://github.com/nextcloud/news/).
 * [Pick a good first issue](https://github.com/nextcloud/news-android/labels/good%20first%20issue) :notebook:
 * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
 * Help increasing the test coverage by contributing unit tests
-* Translate the app on [Transifex](https://app.transifex.com/nextcloud/nextcloud/)
+* Translate the app on [Transifex](https://app.transifex.com/nextcloud/nextcloud/android-news/) 
 * Send me a bottle of your favorite beer :beers: :wink:
 
 ## How to compile the App
