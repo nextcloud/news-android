@@ -4,6 +4,7 @@ import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_PREF_BACK_OPENS_DRAWER;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_REPORT_ISSUE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOWONLYUNREAD_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_FAST_ACTIONS;
@@ -26,7 +27,6 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SORT_ORDER;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_RIGHT_ACTION;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MINUTES_STRING_DEPRECATED;
-import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_PREF_BACK_OPENS_DRAWER;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -377,13 +377,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         }
 
-        try {
-            body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8.toString());
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
-            startActivity(browserIntent);
-        } catch (UnsupportedEncodingException e) {
-            // Should never happen for UTF8 on android
-        }
+        body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
+        startActivity(browserIntent);
     }
 
 
@@ -438,7 +434,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             DatabaseConnectionOrm dbConn = new DatabaseConnectionOrm(context);
             dbConn.resetDatabase();
-            ImageHandler.clearCache(context);
             NewsFileUtils.clearWebArchiveCache(context);
             NewsFileUtils.clearPodcastCache(context);
             return null;
@@ -447,6 +442,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+
+            // needs to be executed on main thread
+            ImageHandler.clearCache(context);
 
             pd.dismiss();
             Toast.makeText(context, context.getString(R.string.cache_is_cleared), Toast.LENGTH_SHORT).show();
