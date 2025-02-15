@@ -1,4 +1,11 @@
-0.9.9.86
+0.9.9.91
+---------------------
+- Dependency updates
+- Added - <a href="https://github.com/nextcloud/news-android/issues/1490">#1490 - Option to Increase Text Size in Detail View for Accessibility</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1456">#1456 - Bullet points in unsorted item list look all of the same level</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1428">#1428 - Font size a lot smaller when language set to other than English (superseded by #1490) (@thanks to @cemrich)</a>
+
+0.9.9.90
 ---------------------
 - Dependency updates
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1273">!1273 - Add "remove podcast" in toolbar and "Downloaded podcasts" special folder (thanks to @mkanilsson)</a>
