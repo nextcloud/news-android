@@ -79,8 +79,9 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
     private int section_number;
     protected String html;
-    private String title = "";
-    private String baseUrl = null;
+    // private String title = "";
+    // private String baseUrl = null;
+    private final float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
     // private GestureDetector mGestureDetector;
 
 
@@ -254,8 +255,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 
         init_webView();
         RssItem rssItem = ndActivity.rssItems.get(section_number);
-        title = rssItem.getTitle();
-        Log.d(TAG, "startLoadRssItemToWebViewTask: " + title);
+        Log.d(TAG, "startLoadRssItemToWebViewTask: " + rssItem.getTitle());
         RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this, mPrefs);
         AsyncTaskHelper.StartAsyncTask(task);
     }
@@ -305,6 +305,8 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         webSettings.setSupportMultipleWindows(false);
         webSettings.setSupportZoom(false);
         webSettings.setMediaPlaybackRequiresUserGesture(true);
+
+        webSettings.setTextZoom(Math.round(scalingFactor * 100));
 
         syncIncognitoState();
     }
