@@ -22,18 +22,14 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.R;
-import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
@@ -127,9 +123,9 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
 
         // font size scaling
-        builder.append("<style type=\"text/css\">");
-        builder.append(getFontSizeScalingCss(mPrefs));
-        builder.append("</style>");
+        // builder.append("<style type=\"text/css\">");
+        // builder.append(getFontSizeScalingCss(mPrefs));
+        // builder.append("</style>");
 
         builder.append(String.format("</head><body class=\"%s %s\">", body_id, rtlClass));
 
@@ -278,6 +274,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         }
     }
 
+    /*
     private static String getFontSizeScalingCss(SharedPreferences mPrefs) {
         // font size scaling
         double scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
@@ -296,6 +293,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
             fontFormat.format(scalingFactor * SUBSCRIPT_FONT_SIZE)
         );
     }
+    */
 
     private static String getDescriptionWithCachedImages(RequestManager glide, String articleUrl, String text) {
         List<String> links = ImageHandler.getImageLinksFromText(articleUrl, text);
@@ -328,7 +326,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         return text;
     }
 
-    private static RequestListener<File> rl = new RequestListener<>() {
+    private static final RequestListener<File> rl = new RequestListener<>() {
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
             // Log the GlideException here (locally or with a remote logging framework):

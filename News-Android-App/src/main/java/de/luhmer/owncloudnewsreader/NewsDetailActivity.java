@@ -537,7 +537,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				link = rssItem.getLink();
 			}
 
-			if (link.length() > 0) {
+			if (!link.isEmpty()) {
 				newsDetailFragment.loadURL(link);
 			}
 		} else {
