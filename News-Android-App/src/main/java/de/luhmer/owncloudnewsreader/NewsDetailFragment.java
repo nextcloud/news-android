@@ -81,7 +81,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     protected String html;
     // private String title = "";
     // private String baseUrl = null;
-    private final float scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
+    private float scalingFactor = 1.0f;
     // private GestureDetector mGestureDetector;
 
 
@@ -95,6 +95,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((NewsReaderApplication) requireActivity().getApplication()).getAppComponent().injectFragment(this);
+        scalingFactor = Float.parseFloat(mPrefs.getString(SettingsActivity.SP_FONT_SIZE, "1.0"));
 
         // Retain this fragment across configuration changes.
         setRetainInstance(true);
