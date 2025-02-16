@@ -17,12 +17,13 @@
     <string name="message_bar_reload">Recarrega</string>
     <string name="allUnreadFeeds">Tots els elements no llegits</string>
     <string name="starredFeeds">Elements destacats</string>
+    <string name="downloadedPodcasts">Podcasts descarregats</string>
     <string name="title_activity_new_feed">Afegeix un nou canal</string>
 
     <string name="menu_update">Actualitza</string>
     <string name="menu_markAllAsRead">Marca-ho tot com a llegit</string>
-    <string name="menu_StartImageCaching">Descarrega imatges</string>
-    <string name="menu_downloadMoreItems">Descarrega més elements</string>
+    <string name="menu_StartImageCaching">Baixa imatges</string>
+    <string name="menu_downloadMoreItems">Baixa més elements</string>
 
     <string name="tv_showing_cached_version">S\'està mostrant la versió en memòria cau</string>
 
@@ -30,6 +31,7 @@
     <string name="action_starred">Destacat</string>
     <string name="action_read">Llegeix</string>
     <string name="action_playPodacst">Reprodueix el Podcast</string>
+    <string name="action_removePodcast">Elimina el suport del Podcast</string>
     <string name="action_openInBrowser">Obre-ho en un navegador web</string>
     <string name="action_Share">Comparteix</string>
     <string name="action_login">Paràmetres del servidor</string>
@@ -40,7 +42,7 @@
     <string name="action_add_new_folder">Afegeix una carpeta nova</string>
     <string name="action_textToSpeech">De lectura</string>
     <string name="action_search">Cerca</string>
-    <string name="action_download_articles_offline">Descarrega els articles fora de línia</string>
+    <string name="action_download_articles_offline">Baixa els articles fora de línia</string>
     <!-- notifications -->
     <string name="notification_download_articles_offline">S\'estan baixant els articles per a ús fora de línia</string>
     <string name="notification_download_images_offline">S\'estan baixant les imatges per a ús fora de línia</string>
@@ -61,7 +63,7 @@
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
-    <string name="action_img_download">Descarrega la imatge</string>
+    <string name="action_img_download">Baixa la imatge</string>
     <string name="action_img_sharelink">Comparteix l\'enllaç de la imatge</string>
     <string name="action_img_open">Obre la imatge al navegador</string>
     <string name="action_img_copylink">Copia l\'enllaç de la imatge</string>
@@ -72,7 +74,7 @@
     <string name="toast_img_saved">S\'ha desat la imatge</string>
     <string name="toast_img_notwriteable">No s\'ha pogut escriure la imatge.</string>
     <string name="toast_copied_to_clipboard">S\'ha copiat al porta-retalls</string>
-    <string name="error_download_failed">Ha fallat la descàrrega</string>
+    <string name="error_download_failed">Ha fallat la baixada</string>
     <string name="intent_title_share">Comparteix mitjançant</string>
 
 
@@ -81,6 +83,8 @@
     <string name="action_feed_rename">Reanomena el canal</string>
     <string name="action_feed_move">Mou el canal</string>
     <string name="action_feed_notification_settings">Paràmetres de les notificacions</string>
+    <string name="action_feed_open_in_general_setting">Utilitza la configuració general</string>
+    <string name="action_feed_open_in_detailed_view">Vista detallada</string>
     <string name="feed_remove_button">Suprimeix</string>
     <string name="feed_rename_button">Reanomena</string>
     <string name="confirm_feed_remove">Segur que voleu suprimir aquest Canal? Això no es podrà desfer!</string>
@@ -92,7 +96,7 @@
     <string name="action_folder_remove">Suprimeix la carpeta</string>
     <string name="action_folder_rename">Canvia el nom de la carpeta</string>
     <string name="folder_remove_button">Elimina</string>
-    <string name="folder_rename_button">Anomena</string>
+    <string name="folder_rename_button">Canviar el nom</string>
     <string name="confirm_folder_remove">Segur que voleu suprimir aquesta carpeta? Això no es podrà desfer!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
@@ -164,6 +168,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marca com a llegits en desplaçar-vos</string>
     <string name="pref_title_ShowFastActions">Activa les funcions d\'accés ràpid</string>
     <string name="pref_title_OpenInBrowserDirectly">Omet la vista detallada i obre l\'article dins del navegador</string>
+    <string name="pref_title_BackButtonOpensDrawer">el botó enrere obre el calaix</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Accepta certificats de desconeguts?</string>
     <string name="mtm_decision_always">Sempre</string>
@@ -178,6 +184,7 @@
     <string name="podcast_playback_speed_dialog_title">Velocitat de reproducció</string>
     <string name="notification_downloading_podcast_title">S\'està descarregant el podcast</string>
     <string name="dialog_podcast_remove_title">Estas segur?</string>
+    <string name="dialog_podcast_status_success">El mèdia per %1$s ha estat suprimit</string>
     <string name="dialog_podcast_remove_confirm">Suprimir</string>
 
     <!-- Settings for About -->
@@ -190,6 +197,7 @@
     <string name="pref_contribute_summary">Obteniu el codi font</string>
     <string name="pref_privacy">Privadesa</string>
     <string name="pref_privacy_summary">Política de privadesa d\'Android de notícies de Nextcloud</string>
+    <string name="pref_news_policy">Contacta amb nosaltres / Política de notícies</string>
     <string name="pref_version">Aplicació Android de notícies de Nextcloud</string>
 
 
