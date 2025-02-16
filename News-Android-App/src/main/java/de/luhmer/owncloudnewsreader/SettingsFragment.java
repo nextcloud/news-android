@@ -53,7 +53,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.TwoStatePreference;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -345,39 +344,41 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private void openBugReport() {
         String title = "";
         String body = "";
-        String debugInfo = "Please describe your bug here...\n\n---\n";
+        StringBuilder debugInfo = new StringBuilder("Please describe your bug here...\n\n---\n");
 
-        try {
-            PackageInfo pInfo = requireContext().getPackageManager().getPackageInfo(requireContext().getPackageName(), 0);
-            debugInfo += "\nApp Version: " + pInfo.versionName;
-            debugInfo += "\nApp Version Code: " + pInfo.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        debugInfo += "\n\n---\n";
-
-        debugInfo += "\nSSO enabled: " + mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false);
-
-
-        debugInfo += "\n\n---\n";
-        debugInfo += "\nOS Version: " + System.getProperty("os.version") + "(" + Build.VERSION.INCREMENTAL + ")";
-        debugInfo += "\nOS API Level: " + Build.VERSION.SDK_INT;
-        debugInfo += "\nDevice: " + Build.DEVICE;
-        debugInfo += "\nModel (and Product): " + Build.MODEL + " ("+ Build.PRODUCT + ")";
-
-        debugInfo += "\n\n---\n\n";
-
-        List<String> excludedSettings = Arrays.asList(EDT_USERNAME_STRING, EDT_PASSWORD_STRING, EDT_OWNCLOUDROOTPATH_STRING, Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, USER_INFO_STRING);
-        Map<String, ?> allEntries = mPrefs.getAll();
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            String key =entry.getKey();
-            if(!excludedSettings.contains(key)) {
-                debugInfo += entry + "\n";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            try {
+                PackageInfo pInfo = requireContext().getPackageManager().getPackageInfo(requireContext().getPackageName(), 0);
+                debugInfo.append("\nApp Version: ").append(pInfo.versionName);
+                debugInfo.append("\nApp Version Code: ").append(pInfo.versionCode);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
-        }
 
-        body = URLEncoder.encode(debugInfo, StandardCharsets.UTF_8);
+            debugInfo.append("\n\n---\n");
+
+            debugInfo.append("\nSSO enabled: ").append(mPrefs.getBoolean(SettingsActivity.SW_USE_SINGLE_SIGN_ON, false));
+
+
+            debugInfo.append("\n\n---\n");
+            debugInfo.append("\nOS Version: ").append(System.getProperty("os.version")).append("(").append(Build.VERSION.INCREMENTAL).append(")");
+            debugInfo.append("\nOS API Level: ").append(Build.VERSION.SDK_INT);
+            debugInfo.append("\nDevice: ").append(Build.DEVICE);
+            debugInfo.append("\nModel (and Product): ").append(Build.MODEL).append(" (").append(Build.PRODUCT).append(")");
+
+            debugInfo.append("\n\n---\n\n");
+
+            List<String> excludedSettings = Arrays.asList(EDT_USERNAME_STRING, EDT_PASSWORD_STRING, EDT_OWNCLOUDROOTPATH_STRING, Constants.LAST_UPDATE_NEW_ITEMS_COUNT_STRING, USER_INFO_STRING);
+            Map<String, ?> allEntries = mPrefs.getAll();
+            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                String key = entry.getKey();
+                if (!excludedSettings.contains(key)) {
+                    debugInfo.append(entry).append("\n");
+                }
+            }
+
+            body = URLEncoder.encode(debugInfo.toString(), StandardCharsets.UTF_8);
+        }
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nextcloud/news-android/issues/new?title=" + title + "&body=" + body));
         startActivity(browserIntent);
     }
