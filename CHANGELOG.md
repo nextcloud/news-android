@@ -1,15 +1,10 @@
-TBD
----------------------
-
-- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1498">!1498 - Fix crash when
-  clearing cache</a>
-
 0.9.9.91
 ---------------------
 - Dependency updates
 - Added - <a href="https://github.com/nextcloud/news-android/issues/1490">#1490 - Option to Increase Text Size in Detail View for Accessibility</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1456">#1456 - Bullet points in unsorted item list look all of the same level</a>
 - Fixed - <a href="https://github.com/nextcloud/news-android/issues/1428">#1428 - Font size a lot smaller when language set to other than English (superseded by #1490) (@thanks to @cemrich)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1498">!1498 - Fix crash when clearing cache</a>
 
 0.9.9.90
 ---------------------
