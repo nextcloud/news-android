@@ -8,7 +8,7 @@
     <string name="toast_GettingMoreItems">تېخىمۇ كۆپ تۈرلەرنى چۈشۈرۈش باشلاندى. ساقلاپ تۇرۇڭ…</string>
     <string name="no_wifi_available">WiFi ئۇلانمىدى</string>
     <string name="do_you_want_to_download_without_wifi">رەسىملەرنى Wi-Fi ئۇلانمىسىڭىز چۈشۈرمەكچىمۇ؟</string>
-    <string name="current_version">سىز% s نەشرىنى ئىشلىتىۋاتىسىز</string>
+    <string name="current_version">سىز%s نەشرىنى ئىشلىتىۋاتىسىز</string>
     <string name="widget_header">Nextcloud News</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d new item available</item>
@@ -185,9 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">قويۇش سۈرئىتى</string>
     <string name="notification_downloading_podcast_title">Podcast نى چۈشۈرۈش</string>
     <string name="dialog_podcast_remove_title">ئىشىنەمسىز؟</string>
-    <string name="dialog_podcast_remove_body">چۈشۈرۈلگەن مېدىيانى% 1 $ s ئۆچۈرمەكچىمۇ؟</string>
-    <string name="dialog_podcast_status_failed">% 1 $ s ئۈچۈن مېدىيانى ئۆچۈرەلمىدى</string>
-    <string name="dialog_podcast_status_success">% 1 $ s ئۈچۈن مېدىيا چىقىرىۋېتىلدى</string>
+    <string name="dialog_podcast_remove_body">چۈشۈرۈلگەن مېدىيانى%1$s ئۆچۈرمەكچىمۇ؟</string>
+    <string name="dialog_podcast_status_failed">%1$s ئۈچۈن مېدىيانى ئۆچۈرەلمىدى</string>
+    <string name="dialog_podcast_status_success">%1$s ئۈچۈن مېدىيا چىقىرىۋېتىلدى</string>
     <string name="dialog_podcast_remove_confirm">ئۆچۈرۈڭ</string>
 
     <!-- Settings for About -->
@@ -261,7 +261,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">خاتالىق</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">ئۇ سىزنىڭ خەۋەر ئەپىڭىزنىڭ مۇلازىمېتىرىڭىزغا ئورنىتىلمىغان ياكى قوزغىتىلمىغاندەك قىلىدۇ. ئالدى بىلەن مۇلازىمېتىرىڭىزدا خەۋەر ئەپىنى تەڭشەش ئۈچۈن بېرىلگەن كۆرسەتمىلەرگە ئەگىشىڭ:% 1 $ s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">ئۇ سىزنىڭ خەۋەر ئەپىڭىزنىڭ مۇلازىمېتىرىڭىزغا ئورنىتىلمىغان ياكى قوزغىتىلمىغاندەك قىلىدۇ. ئالدى بىلەن مۇلازىمېتىرىڭىزدا خەۋەر ئەپىنى تەڭشەش ئۈچۈن بېرىلگەن كۆرسەتمىلەرگە ئەگىشىڭ:%1$s</string>
     <string name="login_dialog_text_something_went_wrong">چاتاق چىقتى :(</string>
     <string name="login_dialog_text_zero_version_code">تور خەۋەرلىرى دېتالى «0» نەشرىنى قايتۇردى. تۆۋەندىكى خاتالىق دوكلاتىنى كۆرۈپ بېقىڭ: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">بۇ ئەپ نەشرى Nextcloud خەۋەر ئەپىڭىزگە ماس كەلمەيدۇ. خەۋەر ئەپلىرى ۋە ئەپ دېتاللىرىنى يېڭىلاڭ.</string>
