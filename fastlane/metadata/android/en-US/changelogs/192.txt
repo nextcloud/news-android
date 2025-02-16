@@ -1,0 +1,5 @@
+Dependency updates
+Added - #1490 - Option to Increase Text Size in Detail View for Accessibility
+Fixed - #1456 - Bullet points in unsorted item list look all of the same level
+Fixed - #1428 - Font size a lot smaller when language set to other than English (superseded by #1490) (@thanks to @cemrich)
+Fixed - !1498 - Fix crash when clearing cache
