@@ -4,7 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.kapt'
     id 'com.google.devtools.ksp'
     id 'io.gitlab.arturbosch.detekt' version "1.23.6"
-    id "com.diffplug.spotless" version "6.25.0"
+    id "com.diffplug.spotless" version "7.0.2"
 }
 
 android {
