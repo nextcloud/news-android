@@ -185,7 +185,7 @@
     <string name="podcast_playback_speed_dialog_title">Velocidade de reprodución</string>
     <string name="notification_downloading_podcast_title">Descargando podcast</string>
     <string name="dialog_podcast_remove_title">Confirma isto?</string>
-    <string name="dialog_podcast_remove_body">Confirma que quere eliminar os ficheiros multimedia descargados para %1$s?</string>
+    <string name="dialog_podcast_remove_body">Confirma que quere retirar os ficheiros multimedia descargados para %1$s?</string>
     <string name="dialog_podcast_status_failed">Produciuse un fallo ao retirar os ficheiros multimedia para %1$s</string>
     <string name="dialog_podcast_status_success">Retiráronse os ficheiros multimedia para %1$s</string>
     <string name="dialog_podcast_remove_confirm">Retirar</string>
