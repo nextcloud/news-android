@@ -16,6 +16,7 @@
     <string name="message_bar_reload">刷新</string>
     <string name="allUnreadFeeds">所有未读内容</string>
     <string name="starredFeeds">标星内容</string>
+    <string name="downloadedPodcasts">已下载播客</string>
     <string name="title_activity_new_feed">添加新订阅源</string>
 
     <string name="menu_update">刷新</string>
@@ -29,6 +30,7 @@
     <string name="action_starred">已加星标</string>
     <string name="action_read">阅读</string>
     <string name="action_playPodacst">播放 Podcast</string>
+    <string name="action_removePodcast">移除播客媒体</string>
     <string name="action_openInBrowser">在浏览器中打开网页</string>
     <string name="action_Share">共享</string>
     <string name="action_login">服务器配置</string>
@@ -178,6 +180,9 @@
     <string name="podcast_playback_speed_dialog_title">播放速度</string>
     <string name="notification_downloading_podcast_title">正在下载播客</string>
     <string name="dialog_podcast_remove_title">你确定吗？</string>
+    <string name="dialog_podcast_remove_body">是否要移除 %1$s 的已下载媒体？</string>
+    <string name="dialog_podcast_status_failed">无法移除 %1$s 的媒体</string>
+    <string name="dialog_podcast_status_success">已移除 %1$s 的媒体</string>
     <string name="dialog_podcast_remove_confirm">移除</string>
 
     <!-- Settings for About -->
@@ -190,6 +195,8 @@
     <string name="pref_contribute_summary">获取源代码</string>
     <string name="pref_privacy">隐私</string>
     <string name="pref_privacy_summary">Nextcloud News 安卓版隐私政策</string>
+    <string name="pref_news_policy">联系我们/新闻政策</string>
+    <string name="pref_news_policy_summary">Nextcloud 新闻 Android 新闻政策/联系我们</string>
     <string name="pref_version">Nextcloud News 安卓应用</string>
 
 
