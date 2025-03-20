@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Auto sünk</string>
+    <string name="auto_sync_string">Automaatne sünkimine</string>
+    <string name="title_activity_sync_interval_selector">Sünkimise välp</string>
     <string name="empty_view_content">Siin pole üksusi</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
     <string name="no_wifi_available">WiFi pole ühendatud</string>
     <string name="current_version">Sa kasutad versioon %s</string>
-    <string name="widget_header">ownCloud Uudised</string>
+    <string name="widget_header">Nextcloudi uudised</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Saadaval on %d uus kirjet</item>
         <item quantity="other">Saadaval on %d uut kirjet</item>
     </plurals>
-    <string name="message_bar_reload">Lae uuesti</string>
+    <string name="message_bar_reload">Laadi uuesti</string>
     <string name="allUnreadFeeds">Kõik lugemata üksused</string>
     <string name="starredFeeds">Tärniga märgitud üksused</string>
+    <string name="downloadedPodcasts">Allalaaditud taskuhäälingud</string>
     <string name="title_activity_new_feed">Lisa uudisvoog</string>
 
     <string name="menu_update">Värskenda</string>
@@ -21,16 +23,21 @@
     <string name="menu_StartImageCaching">Laadi pildid alla</string>
     <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
 
+    <string name="tv_showing_cached_version">Näitame puhverdatud versiooni</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Tärniga märgitud</string>
     <string name="action_read">Lugemine</string>
-    <string name="action_playPodacst">Mängi podcast</string>
+    <string name="action_playPodacst">Esita taskuhäälingut</string>
+    <string name="action_removePodcast">Eemalda taskuhäälingu meedia</string>
+    <string name="action_openInBrowser">Ava veebilehitsejas</string>
     <string name="action_Share">Jaga</string>
     <string name="action_login">Serveri seaded</string>
     <string name="action_save">Salvesta</string>
     <string name="action_settings">Seaded</string>
     <string name="action_sync_settings">Sync seaded</string>
     <string name="action_add_new_feed">Lisa uudisvoog</string>
+    <string name="action_add_new_folder">Lisa uus kaust</string>
     <string name="action_textToSpeech">Loe ette</string>
     <string name="action_search">Otsi</string>
     <plurals name="notification_new_items_ticker">
@@ -45,6 +52,10 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Uudisvoo URL</string>
     <string name="action_add_feed">Lisa uudivoog</string>
+    <string name="import_opml">Impordi opml-fail</string>
+    <string name="export_opml">Ekspordi opml-failina</string>
+
+
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Laadi pilt alla</string>
     <string name="action_img_sharelink">Jaga pildi linki</string>
@@ -53,6 +64,7 @@
     <string name="action_link_share">Jaga linki</string>
     <string name="action_link_open">Ava link veebilehitsejas</string>
     <string name="action_link_copy">Kopeeri link</string>
+    <string name="toast_img_download_wait">Laadin alla. Palun oota…</string>
     <string name="toast_img_saved">Pilt salvestatud</string>
     <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
     <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
@@ -60,11 +72,17 @@
     <string name="intent_title_share">Jaga kasutades</string>
 
 
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Eemalda uudisvoog</string>
+    <string name="action_feed_rename">Muuda uudisvoo nime</string>
+    <string name="action_feed_move">Teisalda uudisvoog</string>
+    <string name="action_feed_notification_settings">Teavituse seadistused</string>
+    <string name="action_feed_open_in_detailed_view">Üksikasjalik vaade</string>
     <string name="feed_remove_button">Eemalda</string>
-    <string name="feed_rename_button">Nimeta ümber</string>
-    <string name="action_folder_rename">Nimeta kaust ümber</string>
+    <string name="feed_rename_button">Muuda nime</string>
+    <string name="action_folder_rename">Muuda kausta nime</string>
     <string name="folder_remove_button">Eemalda</string>
-    <string name="folder_rename_button">Nimeta ümber</string>
+    <string name="folder_rename_button">Muuda nime</string>
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Lisa</string>
     <string name="hint_folder_name">Kausta nimi</string>
@@ -76,6 +94,9 @@
     <string name="action_sign_in_short">Logi sisse</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">See väli on kohustuslik</string>
+    <string name="error_invalid_url">Vigane võrguaadress</string>
+
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Alla on laaditud %d vana kirje</item>
@@ -123,6 +144,9 @@
     <string name="pref_display_apptheme_light">Tume</string>
     <string name="pref_display_apptheme_dark">Hele</string>
 
+    <string name="pref_oled_mode">Must taust</string>
+    <string name="pref_oled_mode_summary">Tumeda kujunduse jaoks oled-ekraanidel</string>
+
     <string name="pref_display_font_size_d">Vaikeväärtus</string>
     <string name="content_desc_play">Esita</string>
     <string name="content_desc_pause">Paus</string>
@@ -132,7 +156,7 @@
     <string name="content_desc_remove_from_favorites">Eemalda lemmikutest</string>
     <string name="content_desc_show_password">Näita parooli</string>
     <string name="content_desc_delete">Kustuta</string>
-    <string name="content_desc_download">Lae alla</string>
+    <string name="content_desc_download">Laadi alla</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Viga</string>
