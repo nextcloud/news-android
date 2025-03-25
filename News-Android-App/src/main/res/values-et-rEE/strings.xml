@@ -174,9 +174,14 @@
     <string name="pref_data_sync_image_cache_ask">Küsi, kui pole WiFisse ühendatud</string>
 
     <string name="array_sync_interval_min_0">Mitte kunagi</string>
+    <string name="array_sync_interval_min_5">5 minutit</string>
+    <string name="array_sync_interval_min_15">15 minutit</string>
     <string name="array_sync_interval_min_30">30 minutit</string>
     <string name="array_sync_interval_hour_1">1 tund</string>
     <string name="array_sync_interval_hour_3">3 tundi</string>
+    <string name="array_sync_interval_hour_6">6 tundi</string>
+    <string name="array_sync_interval_hour_12">12 tundi</string>
+    <string name="array_sync_interval_hour_24">24 tundi</string>
     <string name="switch_account">Vaheta kontot</string>
     
     <string name="please_wait">Palun oota...</string>
