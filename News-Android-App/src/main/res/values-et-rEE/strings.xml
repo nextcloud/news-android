@@ -80,6 +80,9 @@
     <string name="action_feed_open_in_detailed_view">Üksikasjalik vaade</string>
     <string name="feed_remove_button">Eemalda</string>
     <string name="feed_rename_button">Muuda nime</string>
+    <string name="move_feed_root_folder">Juurkaust</string>
+
+
     <string name="action_folder_rename">Muuda kausta nime</string>
     <string name="folder_remove_button">Eemalda</string>
     <string name="folder_rename_button">Muuda nime</string>
