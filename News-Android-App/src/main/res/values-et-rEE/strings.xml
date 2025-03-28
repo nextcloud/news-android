@@ -135,6 +135,8 @@
     <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
     <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
     <string name="dialog_podcast_remove_title">Kas oled kindel?</string>
+    <string name="dialog_podcast_remove_confirm">Eemalda</string>
+
     <!-- Settings for About -->
     <string name="pref_header_about">Info</string>
     <string name="pref_license">Litsents</string>
@@ -155,6 +157,8 @@
     <string name="content_desc_pause">Paus</string>
     <string name="content_desc_forward">Edasi</string>
     <string name="content_desc_collapse">Sulge</string>
+    <string name="content_desc_mark_as_read">Märgi loetuks</string>
+    <string name="content_desc_mark_as_unread">Märgi mitteloetuks</string>
     <string name="content_desc_add_to_favorites">Lisa lemmikutesse</string>
     <string name="content_desc_remove_from_favorites">Eemalda lemmikutest</string>
     <string name="content_desc_show_password">Näita parooli</string>
