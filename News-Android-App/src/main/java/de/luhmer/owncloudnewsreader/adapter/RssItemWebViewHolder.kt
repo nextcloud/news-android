@@ -24,50 +24,45 @@ class RssItemWebViewHolder(
         glide,
         sharedPreferences,
     ) {
-    override fun getImageViewFavIcon(): ImageView {
-        return binding.layoutThumbnail.imgViewFavIcon
-    }
+    override fun getImageViewFavIcon(): ImageView = binding.layoutThumbnail.imgViewFavIcon
 
-    override fun getStar(): ImageView {
-        return binding.layoutThumbnail.starImageview
-    }
+    override fun getStar(): ImageView = binding.layoutThumbnail.starImageview
 
-    override fun getPlayPausePodcastButton(): ImageView {
-        return binding.layoutThumbnail.podcastWrapper.btnPlayPausePodcast
-    }
+    override fun getPlayPausePodcastButton(): ImageView = binding.layoutThumbnail.podcastWrapper.btnPlayPausePodcast
 
-    override fun getColorFeed(): ImageView? {
-        return null
-    }
+    override fun getColorFeed(): ImageView? = null
 
-    override fun getTextViewTitle(): TextView {
-        return binding.layoutThumbnail.tvSubscription
-    }
+    override fun getTextViewTitle(): TextView = binding.layoutThumbnail.tvSubscription
 
-    override fun getTextViewSummary(): TextView {
-        return binding.layoutThumbnail.summary
-    }
+    override fun getTextViewSummary(): TextView = binding.layoutThumbnail.summary
 
-    override fun getTextViewBody(): TextView {
-        return binding.layoutThumbnail.body
-    }
+    override fun getTextViewBody(): TextView = binding.layoutThumbnail.body
 
-    override fun getTextViewItemDate(): TextView {
-        return binding.layoutThumbnail.tvItemDate
-    }
+    override fun getTextViewItemDate(): TextView = binding.layoutThumbnail.tvItemDate
 
-    override fun getPlayPausePodcastWrapper(): FrameLayout {
-        return binding.layoutThumbnail.podcastWrapper.flPlayPausePodcastWrapper
-    }
+    override fun getPlayPausePodcastWrapper(): FrameLayout =
+        binding.layoutThumbnail.podcastWrapper.flPlayPausePodcastWrapper
 
-    override fun getPodcastDownloadProgress(): ProgressBar {
-        return binding.layoutThumbnail.podcastWrapper.podcastDownloadProgress
-    }
+    override fun getPodcastDownloadProgress(): ProgressBar =
+        binding.layoutThumbnail.podcastWrapper.podcastDownloadProgress
 
     @CallSuper
     override fun bind(rssItem: RssItem) {
         super.bind(rssItem)
-        val htmlPage: String = RssItemToHtmlTask.getHtmlPage(mGlide, rssItem, false, mPrefs, itemView.context)
-        binding.webViewBody.loadDataWithBaseURL("file:///android_asset/", htmlPage, "text/html", "UTF-8", "")
+        val htmlPage: String =
+            RssItemToHtmlTask.getHtmlPage(
+                mGlide,
+                rssItem,
+                false,
+                mPrefs,
+                itemView.context,
+            )
+        binding.webViewBody.loadDataWithBaseURL(
+            "file:///android_asset/",
+            htmlPage,
+            "text/html",
+            "UTF-8",
+            "",
+        )
     }
 }

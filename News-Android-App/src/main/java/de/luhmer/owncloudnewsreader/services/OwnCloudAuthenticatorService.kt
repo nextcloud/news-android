@@ -18,7 +18,5 @@ class OwnCloudAuthenticatorService : Service() {
      * When the system binds to this Service to make the RPC call
      * return the authenticator's IBinder.
      */
-    override fun onBind(intent: Intent): IBinder? {
-        return mAuthenticator?.iBinder
-    }
+    override fun onBind(intent: Intent): IBinder? = mAuthenticator?.iBinder
 }

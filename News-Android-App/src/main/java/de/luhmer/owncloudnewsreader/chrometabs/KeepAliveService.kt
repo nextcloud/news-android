@@ -22,9 +22,7 @@ import android.os.IBinder
  * Empty service used by the custom tab to bind to, raising the application's importance.
  */
 class KeepAliveService : Service() {
-    override fun onBind(intent: Intent): IBinder? {
-        return sBinder
-    }
+    override fun onBind(intent: Intent): IBinder? = sBinder
 
     companion object {
         private val sBinder = Binder()

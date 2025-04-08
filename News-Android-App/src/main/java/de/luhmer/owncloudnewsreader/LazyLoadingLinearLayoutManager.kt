@@ -17,6 +17,10 @@ class LazyLoadingLinearLayoutManager(
             return 0
         }
 
-        return (super.computeVerticalScrollRange(state) / state.itemCount.toFloat() * totalItemCount).roundToInt()
+        return (
+            super.computeVerticalScrollRange(
+                state,
+            ) / state.itemCount.toFloat() * totalItemCount
+        ).roundToInt()
     }
 }
