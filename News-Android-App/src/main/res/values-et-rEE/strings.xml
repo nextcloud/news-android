@@ -146,13 +146,17 @@
     <string name="pref_title_app_theme">Teema</string>
     <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
     <string name="pref_title_font_size">Kirjasuurus</string>
+    <string name="pref_display_apptheme_auto">Süsteemi kujundus</string>
     <string name="pref_display_apptheme_light">Tume</string>
     <string name="pref_display_apptheme_dark">Hele</string>
 
     <string name="pref_oled_mode">Must taust</string>
     <string name="pref_oled_mode_summary">Tumeda kujunduse jaoks oled-ekraanidel</string>
 
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Väike</string>
     <string name="pref_display_font_size_d">Vaikeväärtus</string>
+    <string name="pref_display_font_size_l">Suur</string>
     <string name="content_desc_play">Esita</string>
     <string name="content_desc_pause">Paus</string>
     <string name="content_desc_forward">Edasi</string>
