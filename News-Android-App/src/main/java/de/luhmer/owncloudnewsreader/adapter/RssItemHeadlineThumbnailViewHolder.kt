@@ -34,45 +34,25 @@ class RssItemHeadlineThumbnailViewHolder internal constructor(
     ) {
     var feedIcon = VectorDrawableCompat.create(itemView.resources, R.drawable.feed_icon, null)
 
-    override fun getImageViewFavIcon(): ImageView {
-        return binding.imgViewFavIcon
-    }
+    override fun getImageViewFavIcon(): ImageView = binding.imgViewFavIcon
 
-    override fun getStar(): ImageView {
-        return binding.starImageview
-    }
+    override fun getStar(): ImageView = binding.starImageview
 
-    override fun getPlayPausePodcastButton(): ImageView {
-        return binding.podcastWrapper.btnPlayPausePodcast
-    }
+    override fun getPlayPausePodcastButton(): ImageView = binding.podcastWrapper.btnPlayPausePodcast
 
-    override fun getColorFeed(): View? {
-        return null
-    }
+    override fun getColorFeed(): View? = null
 
-    override fun getTextViewTitle(): TextView {
-        return binding.tvSubscription
-    }
+    override fun getTextViewTitle(): TextView = binding.tvSubscription
 
-    override fun getTextViewSummary(): TextView {
-        return binding.summary
-    }
+    override fun getTextViewSummary(): TextView = binding.summary
 
-    override fun getTextViewBody(): TextView? {
-        return null
-    }
+    override fun getTextViewBody(): TextView? = null
 
-    override fun getTextViewItemDate(): TextView? {
-        return null
-    }
+    override fun getTextViewItemDate(): TextView? = null
 
-    override fun getPlayPausePodcastWrapper(): FrameLayout {
-        return binding.podcastWrapper.flPlayPausePodcastWrapper
-    }
+    override fun getPlayPausePodcastWrapper(): FrameLayout = binding.podcastWrapper.flPlayPausePodcastWrapper
 
-    override fun getPodcastDownloadProgress(): ProgressBar {
-        return binding.podcastWrapper.podcastDownloadProgress
-    }
+    override fun getPodcastDownloadProgress(): ProgressBar = binding.podcastWrapper.podcastDownloadProgress
 
     @CallSuper
     override fun bind(rssItem: RssItem) {

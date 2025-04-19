@@ -16,8 +16,7 @@ fun getText(url: String?): String {
     val connection = website.openConnection()
 
     val response = StringBuilder()
-    BufferedReader(InputStreamReader(connection.getInputStream())).use {
-            inReader ->
+    BufferedReader(InputStreamReader(connection.getInputStream())).use { inReader ->
         {
             var inputLine: String?
             while (inReader.readLine().also { inputLine = it } != null) response.append(inputLine)
