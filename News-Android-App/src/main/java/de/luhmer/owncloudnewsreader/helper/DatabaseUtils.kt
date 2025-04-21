@@ -46,9 +46,10 @@ fun copyDatabaseToSdCard(context: Context): Boolean {
     return false
 }
 
-fun getPath(context: Context): File {
-    return File(NewsFileUtils.getCacheDirPath(context) + "/dbBackup/" + DATABASE_NAME)
-}
+fun getPath(context: Context): File =
+    File(
+        NewsFileUtils.getCacheDirPath(context) + "/dbBackup/" + DATABASE_NAME,
+    )
 
 fun getSortDirectionFromSettings(prefs: SharedPreferences): SORT_DIRECTION {
     val default = SORT_DIRECTION.desc

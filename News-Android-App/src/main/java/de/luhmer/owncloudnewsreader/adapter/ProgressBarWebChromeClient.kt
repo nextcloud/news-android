@@ -13,7 +13,9 @@ private const val COMPLETE = 100
  * ProgressBar instance while loading. The ProgressBar instance will
  * only be visible during loading.
  */
-class ProgressBarWebChromeClient(private val progressBar: ProgressBar) : WebChromeClient() {
+class ProgressBarWebChromeClient(
+    private val progressBar: ProgressBar,
+) : WebChromeClient() {
     val tag = javaClass.canonicalName
 
     override fun onConsoleMessage(cm: ConsoleMessage): Boolean {

@@ -16,7 +16,9 @@ import javax.net.ssl.SSLSocketFactory
    by an qualified person.
 
 */
-class TLSSocketFactory(sslContext: SSLContext) : SSLSocketFactory() {
+class TLSSocketFactory(
+    sslContext: SSLContext,
+) : SSLSocketFactory() {
     private val socketFactory: SSLSocketFactory
 
     init {
@@ -43,44 +45,32 @@ class TLSSocketFactory(sslContext: SSLContext) : SSLSocketFactory() {
         return sslSocket
     }
 
-    override fun getDefaultCipherSuites(): Array<String> {
-        return socketFactory.defaultCipherSuites
-    }
+    override fun getDefaultCipherSuites(): Array<String> = socketFactory.defaultCipherSuites
 
-    override fun getSupportedCipherSuites(): Array<String> {
-        return socketFactory.supportedCipherSuites
-    }
+    override fun getSupportedCipherSuites(): Array<String> = socketFactory.supportedCipherSuites
 
     // NoTLS
     override fun createSocket(
         s: String,
         i: Int,
-    ): Socket {
-        return super.createSocket()
-    }
+    ): Socket = super.createSocket()
 
     override fun createSocket(
         s: String,
         i: Int,
         inetAddress: InetAddress,
         i2: Int,
-    ): Socket {
-        return super.createSocket()
-    }
+    ): Socket = super.createSocket()
 
     override fun createSocket(
         inetAddress: InetAddress,
         i: Int,
-    ): Socket {
-        return super.createSocket()
-    }
+    ): Socket = super.createSocket()
 
     override fun createSocket(
         inetAddress: InetAddress,
         i: Int,
         inetAddress2: InetAddress,
         i2: Int,
-    ): Socket {
-        return super.createSocket()
-    }
+    ): Socket = super.createSocket()
 }

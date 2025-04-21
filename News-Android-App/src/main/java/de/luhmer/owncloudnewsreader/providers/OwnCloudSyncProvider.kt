@@ -10,16 +10,12 @@ class OwnCloudSyncProvider : ContentProvider() {
      * Always return true, indicating that the
      * provider loaded correctly.
      */
-    override fun onCreate(): Boolean {
-        return true
-    }
+    override fun onCreate(): Boolean = true
 
     /*
      * Return an empty String for MIME type
      */
-    override fun getType(uri: Uri): String {
-        return ""
-    }
+    override fun getType(uri: Uri): String = ""
 
     /*
      * query() always returns no results
@@ -31,9 +27,7 @@ class OwnCloudSyncProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<String>?,
         sortOrder: String?,
-    ): Cursor? {
-        return null
-    }
+    ): Cursor? = null
 
     /*
      * insert() always returns null (no URI)
@@ -41,9 +35,7 @@ class OwnCloudSyncProvider : ContentProvider() {
     override fun insert(
         uri: Uri,
         values: ContentValues?,
-    ): Uri? {
-        return null
-    }
+    ): Uri? = null
 
     /*
      * delete() always returns "no rows affected" (0)
@@ -52,9 +44,7 @@ class OwnCloudSyncProvider : ContentProvider() {
         uri: Uri,
         selection: String?,
         selectionArgs: Array<String>?,
-    ): Int {
-        return 0
-    }
+    ): Int = 0
 
     /*
      * update() always returns "no rows affected" (0)
@@ -64,7 +54,5 @@ class OwnCloudSyncProvider : ContentProvider() {
         values: ContentValues?,
         selection: String?,
         selectionArgs: Array<String>?,
-    ): Int {
-        return 0
-    }
+    ): Int = 0
 }
