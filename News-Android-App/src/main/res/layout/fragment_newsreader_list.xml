@@ -4,62 +4,69 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface">
 
-    <!-- TODO: make header scroll up with listview -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Wrap in Frame-Layout so that we can add Padding through the Edge-to-Edge callbacks -->
+    <FrameLayout
         android:id="@+id/header_view"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/nextcloudBlue"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:background="@color/nextcloudBlue">
 
-        <TextView
-            android:id="@+id/appName"
-            android:layout_width="wrap_content"
+        <!-- TODO: make header scroll up with listview -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacer_2x"
-            android:layout_toEndOf="@+id/header_logo"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@id/header_logo"
-            app:layout_constraintStart_toEndOf="@id/header_logo"
-            app:layout_constraintTop_toTopOf="@id/header_logo" />
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="16dp">
 
-        <ImageView
-            android:id="@+id/header_logo"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="@dimen/spacer_1x"
-            android:contentDescription="@string/content_desc_tap_to_refresh"
-            android:scaleX="1.7"
-            android:scaleY="1.7"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            <TextView
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacer_2x"
+                android:layout_toEndOf="@+id/header_logo"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/header_logo"
+                app:layout_constraintStart_toEndOf="@id/header_logo"
+                app:layout_constraintTop_toTopOf="@id/header_logo" />
 
-        <ProgressBar
-            android:id="@+id/header_logo_progress"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            android:indeterminateTint="@android:color/white"
-            android:indeterminateTintMode="src_in"
-            app:layout_constraintBottom_toBottomOf="@id/header_logo"
-            app:layout_constraintEnd_toEndOf="@id/header_logo"
-            app:layout_constraintStart_toStartOf="@id/header_logo"
-            app:layout_constraintTop_toTopOf="@id/header_logo" />
+            <ImageView
+                android:id="@+id/header_logo"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="@dimen/spacer_1x"
+                android:contentDescription="@string/content_desc_tap_to_refresh"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/header_logo_progress"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"
+                android:indeterminateTintMode="src_in"
+                app:layout_constraintBottom_toBottomOf="@id/header_logo"
+                app:layout_constraintEnd_toEndOf="@id/header_logo"
+                app:layout_constraintStart_toStartOf="@id/header_logo"
+                app:layout_constraintTop_toTopOf="@id/header_logo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <de.luhmer.owncloudnewsreader.ListView.BlockingExpandableListView
         android:id="@+id/expandableListView"

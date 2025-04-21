@@ -8,6 +8,7 @@
     android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
     sothree:umanoParallaxOffset="100dp"
+    android:fitsSystemWindows="true"
     sothree:umanoShadowHeight="4dp"> <!-- sothree:dragView="@+id/name" -->
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

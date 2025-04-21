@@ -168,6 +168,22 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         bindNavigationMenu(binding.getRoot(), inflater);
 
+        /*
+        // move header of sidebar down according to insets
+        ViewCompat.setOnApplyWindowInsetsListener(binding.headerView, (View v, WindowInsetsCompat insets) -> {
+            var systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, systemBars.top, 0, 0);
+            return insets;
+        });
+
+        // make sure that the end of the sidebar doesn't go behind the navigation bar
+        ViewCompat.setOnApplyWindowInsetsListener(binding.expandableListView, (View v, WindowInsetsCompat insets) -> {
+            var systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom);
+            return insets;
+        });
+        */
+
 		return binding.getRoot();
 	}
 

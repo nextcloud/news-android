@@ -8,6 +8,7 @@
     android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
     sothree:umanoParallaxOffset="100dp"
+    android:fitsSystemWindows="true"
     sothree:umanoShadowHeight="4dp"> <!-- sothree:dragView="@+id/name" -->
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -32,7 +33,6 @@
             <include
                 android:id="@+id/toolbar_layout"
                 layout="@layout/toolbar_layout" />
-
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
