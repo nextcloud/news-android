@@ -40,6 +40,8 @@ import android.widget.ExpandableListView.OnChildClickListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
@@ -168,7 +170,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 
         bindNavigationMenu(binding.getRoot(), inflater);
 
-        /*
         // move header of sidebar down according to insets
         ViewCompat.setOnApplyWindowInsetsListener(binding.headerView, (View v, WindowInsetsCompat insets) -> {
             var systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -182,7 +183,6 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
             v.setPadding(0, 0, 0, systemBars.bottom);
             return insets;
         });
-        */
 
 		return binding.getRoot();
 	}
