@@ -133,6 +133,11 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_url">Incorrect URL</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Marked %d item as read</item>
+        <item quantity="other">Marked %d items as read</item>
+    </plurals>
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">

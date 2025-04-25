@@ -69,6 +69,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -967,10 +968,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
 			if (ndf != null) {
 				DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this);
-				dbConn2.markAllItemsAsReadForCurrentView();
+				var deletedCount =dbConn2.markAllItemsAsReadForCurrentView();
 
 				reloadCountNumbersOfSlidingPaneAdapter();
 				ndf.refreshCurrentRssView();
+
+				var fab = ndf.binding.fabDoneAll;
+				var snackbar = Snackbar.make(
+						ndf.getView(),
+						getResources().getQuantityString(
+								R.plurals.marked_as_read_message,
+								deletedCount,
+								deletedCount
+						),
+						BaseTransientBottomBar.LENGTH_SHORT
+				);
+				if (fab.getVisibility() == View.VISIBLE) {
+					snackbar.setAnchorView(fab);
+				}
+				snackbar.show();
 			}
 			return true;
 		} else if (itemId == R.id.menu_downloadMoreItems) {

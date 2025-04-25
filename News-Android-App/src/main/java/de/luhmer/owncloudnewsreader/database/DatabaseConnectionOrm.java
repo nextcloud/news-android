@@ -298,7 +298,7 @@ public class DatabaseConnectionOrm {
         daoSession.getRssItemDao().update(rssItem);
     }
 
-    public void markAllItemsAsReadForCurrentView() {
+    public int markAllItemsAsReadForCurrentView() {
         /*
         String sql = "UPDATE " + RssItemDao.TABLENAME + " SET " + RssItemDao.Properties.Read_temp.columnName + " = 1 " +
                 "WHERE " + RssItemDao.Properties.Id.columnName + " IN (SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ")";
@@ -329,6 +329,7 @@ public class DatabaseConnectionOrm {
 
             iterationCount++;
         } while(rssItemList.size() == itemsPerIteration);
+        return (iterationCount - 1) * itemsPerIteration + rssItemList.size();
     }
 
 
