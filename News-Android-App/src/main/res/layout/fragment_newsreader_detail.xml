@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             tools:listitem="@layout/subscription_detail_list_item_thumbnail"/>
+        <!-- android:clipToPadding="false" -->
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

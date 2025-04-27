@@ -1,14 +1,17 @@
-<de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+    <de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout
     android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
     sothree:umanoParallaxOffset="100dp"
-    sothree:umanoShadowHeight="4dp"> <!-- sothree:dragView="@+id/name" -->
+        android:gravity="bottom"
+        sothree:umanoShadowHeight="4dp"> <!-- sothree:dragView="@+id/name" -->
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -18,7 +21,8 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinator_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
             <fragment
                 class="de.luhmer.owncloudnewsreader.NewsReaderDetailFragment"
@@ -32,7 +36,6 @@
             <include
                 android:id="@+id/toolbar_layout"
                 layout="@layout/toolbar_layout" />
-
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -50,3 +53,4 @@
         android:layout_height="match_parent" />
 
 </de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
