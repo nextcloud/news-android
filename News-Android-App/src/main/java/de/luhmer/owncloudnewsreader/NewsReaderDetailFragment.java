@@ -66,6 +66,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -259,7 +261,7 @@ public class NewsReaderDetailFragment extends Fragment {
      * @param rootView root view of fragment
      */
     protected void initFastDoneAll(View rootView) {
-        FloatingActionButton fab_done_all = rootView.findViewById(R.id.fab_done_all);
+        FloatingActionButton fab_done_all = binding.fabDoneAll;
         if (mPrefs.getBoolean(SettingsActivity.CB_SHOW_FAST_ACTIONS, true)) {
             fab_done_all.setVisibility(View.VISIBLE);
             fab_done_all.setOnTouchListener(new FastMarkReadMotionListener(rootView));
@@ -841,8 +843,17 @@ public class NewsReaderDetailFragment extends Fragment {
          */
         private void markAllAsReadForCurrentView() {
             DatabaseConnectionOrm dbConn2 = new DatabaseConnectionOrm(this.fabMarkAllAsRead.getContext());
-            dbConn2.markAllItemsAsReadForCurrentView();
+            var deletedCount = dbConn2.markAllItemsAsReadForCurrentView();
             NewsReaderDetailFragment.this.refreshCurrentRssView();
+            Snackbar.make(
+                    fabMarkAllAsRead,
+                    getResources().getQuantityString(
+                            R.plurals.marked_as_read_message,
+                            deletedCount,
+                            deletedCount
+                    ),
+                    BaseTransientBottomBar.LENGTH_SHORT
+            ).setAnchorView(fabMarkAllAsRead).show();
         }
     }
 }
