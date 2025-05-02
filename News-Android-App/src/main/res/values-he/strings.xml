@@ -108,7 +108,6 @@
     <string name="error_field_required">השדה הזה נחוץ</string>
     <string name="error_invalid_url">כתובת שגויה</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">התקבל פריט ישן %d</item>

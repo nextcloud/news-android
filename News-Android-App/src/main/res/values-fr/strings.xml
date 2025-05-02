@@ -127,7 +127,6 @@
     <string name="error_field_required">Ce champs est requis</string>
     <string name="error_invalid_url">Adresse incorrecte</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d ancien article téléchargé</item>

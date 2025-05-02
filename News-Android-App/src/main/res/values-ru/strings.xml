@@ -130,7 +130,6 @@
     <string name="error_field_required">Это поле обязательно для заполнения</string>
     <string name="error_invalid_url">Некорректный адрес</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Скачан %d старый элемент</item>

@@ -106,7 +106,6 @@
     <string name="error_field_required">Ovo polje je obavezno</string>
     <string name="error_invalid_url">Netočan URL</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Preuzeta je %d stara stavka</item>

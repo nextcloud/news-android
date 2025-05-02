@@ -136,7 +136,6 @@
     <string name="error_field_required">هذا الحقل مطلوب</string>
     <string name="error_invalid_url">عنوان URL  غير صحيحٍ</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="zero">تم تنزيل %dعناصر قديمة</item>

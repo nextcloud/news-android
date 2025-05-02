@@ -122,7 +122,6 @@
     <string name="error_field_required">Acest câmp este obligatoriu </string>
     <string name="error_invalid_url">URL incrorect</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Descarcă %d articol vechi</item>

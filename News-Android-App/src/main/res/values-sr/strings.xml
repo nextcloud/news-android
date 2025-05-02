@@ -127,7 +127,6 @@
     <string name="error_field_required">Ово поље је неопходно</string>
     <string name="error_invalid_url">Неисправна адреса</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Преузета %d стара ставка</item>

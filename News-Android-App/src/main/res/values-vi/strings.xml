@@ -116,7 +116,6 @@
     <string name="error_field_required">Những mục cần th</string>
     <string name="error_invalid_url">URL không chính xác</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">Đã tải xuống %d mục cũ</item>

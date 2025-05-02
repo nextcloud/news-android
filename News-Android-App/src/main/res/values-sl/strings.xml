@@ -125,7 +125,6 @@
     <string name="error_field_required">To polje mora biti izpolnjeno</string>
     <string name="error_invalid_url">Napačen naslov URL</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Prejet je %d stari predmeti</item>

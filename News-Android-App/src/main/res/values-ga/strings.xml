@@ -133,7 +133,6 @@
     <string name="error_field_required">Tá an réimse seo ag teastáil</string>
     <string name="error_invalid_url">URL mícheart</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Lódáladh %d  earra sean</item>

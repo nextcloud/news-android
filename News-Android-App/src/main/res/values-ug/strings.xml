@@ -124,7 +124,6 @@
     <string name="error_field_required">بۇ ساھە تەلەپ قىلىنىدۇ</string>
     <string name="error_invalid_url">URL خاتا</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Downloaded %d old item</item>

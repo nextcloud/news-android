@@ -124,7 +124,6 @@
     <string name="error_field_required">Bu alanın doldurulması zorunludur</string>
     <string name="error_invalid_url">Adres yanlış</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d eski öge indirildi</item>

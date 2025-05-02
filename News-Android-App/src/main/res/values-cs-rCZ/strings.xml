@@ -130,7 +130,6 @@
     <string name="error_field_required">Tuto kolonku je třeba vyplnit</string>
     <string name="error_invalid_url">Nesprávná URL</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Stažena %d stará položka</item>

@@ -119,7 +119,6 @@
     <string name="error_field_required">Полето е задължително</string>
     <string name="error_invalid_url">Грешен URL адрес</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Свалени %d стари елементи</item>

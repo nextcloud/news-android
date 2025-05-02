@@ -99,7 +99,6 @@
     <string name="error_field_required">See väli on kohustuslik</string>
     <string name="error_invalid_url">Vigane võrguaadress</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Alla on laaditud %d vana kirje</item>

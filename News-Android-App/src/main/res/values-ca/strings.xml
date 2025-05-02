@@ -123,7 +123,6 @@
     <string name="error_field_required">Aquest camp és obligatori</string>
     <string name="error_invalid_url">L\'URL és incorrecte</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Descarregat %d element antic</item>

@@ -109,7 +109,6 @@
     <string name="error_field_required">이 항목은 필수 사항입니다</string>
     <string name="error_invalid_url">잘못된 URL</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">오래된 항목 %d개 다운로드됨</item>

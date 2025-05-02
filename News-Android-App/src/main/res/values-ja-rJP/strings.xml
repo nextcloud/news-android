@@ -116,7 +116,6 @@
     <string name="error_field_required">このフィールドは必須です</string>
     <string name="error_invalid_url">URLが正しくありません</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">ダウンロードされた %d 個の古いアイテム</item>

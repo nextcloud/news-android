@@ -130,7 +130,6 @@
     <string name="error_field_required">Ten element jest wymagany</string>
     <string name="error_invalid_url">Nieprawidłowy adres URL</string>
 
-
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Pobrano %d starą pozycję</item>
