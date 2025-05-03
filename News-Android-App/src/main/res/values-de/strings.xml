@@ -124,6 +124,12 @@
     <string name="error_field_required">Dieses Feld ist erforderlich.</string>
     <string name="error_invalid_url">URL nicht korrekt</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">%d Artikel als gelesen markiert</item>
+        <item quantity="other">%d Artikel als gelesen markiert</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d alten Artikel heruntergeladen</item>

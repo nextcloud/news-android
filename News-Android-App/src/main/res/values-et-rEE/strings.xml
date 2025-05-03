@@ -3,9 +3,11 @@
 
     <string name="auto_sync_string">Automaatne sünkimine</string>
     <string name="title_activity_sync_interval_selector">Sünkimise välp</string>
-    <string name="empty_view_content">Siin pole üksusi</string>
+    <string name="empty_view_content">Siin pole kirjeid</string>
     <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="toast_GettingMoreItems">Täiendavate kirjete allalaadimine algas. Palun oota…</string>
     <string name="no_wifi_available">WiFi pole ühendatud</string>
+    <string name="do_you_want_to_download_without_wifi">Kas sa soovid pilte alla laadida ka väljaspool WiFi ühendust?</string>
     <string name="current_version">Sa kasutad versioon %s</string>
     <string name="widget_header">Nextcloudi uudised</string>
     <plurals name="message_bar_new_articles_available">
@@ -13,17 +15,17 @@
         <item quantity="other">Saadaval on %d uut kirjet</item>
     </plurals>
     <string name="message_bar_reload">Laadi uuesti</string>
-    <string name="allUnreadFeeds">Kõik lugemata üksused</string>
-    <string name="starredFeeds">Tärniga märgitud üksused</string>
+    <string name="allUnreadFeeds">Kõik lugemata kirjed</string>
+    <string name="starredFeeds">Tärniga märgitud kirjed</string>
     <string name="downloadedPodcasts">Allalaaditud taskuhäälingud</string>
     <string name="title_activity_new_feed">Lisa uudisvoog</string>
 
     <string name="menu_update">Värskenda</string>
     <string name="menu_markAllAsRead">Märgi loetuks</string>
     <string name="menu_StartImageCaching">Laadi pildid alla</string>
-    <string name="menu_downloadMoreItems">Laadi alla rohkem üksusi</string>
+    <string name="menu_downloadMoreItems">Laadi alla rohkem kirjeid</string>
 
-    <string name="tv_showing_cached_version">Näitame puhverdatud versiooni</string>
+    <string name="tv_showing_cached_version">Näitan puhverdatud versiooni</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Tärniga märgitud</string>
@@ -40,6 +42,10 @@
     <string name="action_add_new_folder">Lisa uus kaust</string>
     <string name="action_textToSpeech">Loe ette</string>
     <string name="action_search">Otsi</string>
+    <string name="action_download_articles_offline">Laadi artiklid alla kasutamiseks vallasrežiimis</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Laadin alla artikleid kasutamiseks vallasrežiimis</string>
+    <string name="notification_download_images_offline">Laadin alla pilte kasutamiseks vallasrežiimis</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Sul on %d uus lugemata kirje</item>
         <item quantity="other">Sul on %d uut lugemata kirjet</item>
@@ -52,8 +58,8 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Uudisvoo URL</string>
     <string name="action_add_feed">Lisa uudivoog</string>
-    <string name="import_opml">Impordi opml-fail</string>
-    <string name="export_opml">Ekspordi opml-failina</string>
+    <string name="import_opml">Impordi OPML-fail</string>
+    <string name="export_opml">Ekspordi OPML-failina</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -65,7 +71,7 @@
     <string name="action_link_open">Ava link veebilehitsejas</string>
     <string name="action_link_copy">Kopeeri link</string>
     <string name="toast_img_download_wait">Laadin alla. Palun oota…</string>
-    <string name="toast_img_saved">Pilt salvestatud</string>
+    <string name="toast_img_saved">Pilt on salvestatud</string>
     <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
     <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
     <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
@@ -77,34 +83,65 @@
     <string name="action_feed_rename">Muuda uudisvoo nime</string>
     <string name="action_feed_move">Teisalda uudisvoog</string>
     <string name="action_feed_notification_settings">Teavituse seadistused</string>
+    <string name="action_feed_open_in">Ava seadistused</string>
+    <string name="action_feed_open_in_general_setting">Kasuta üldisi seadistusi</string>
     <string name="action_feed_open_in_detailed_view">Üksikasjalik vaade</string>
     <string name="feed_remove_button">Eemalda</string>
     <string name="feed_rename_button">Muuda nime</string>
+    <string name="confirm_feed_remove">Kas oled kindel, et soovid selle uudisvoo aamaldada? Seda tegevust ei saa tagasi pöörata.</string>
+    <string name="feed_move_list_description">Vali kaust, kuhu soovid uudisvoo teisaldada</string>
     <string name="move_feed_root_folder">Juurkaust</string>
 
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Eemalda kaust</string>
     <string name="action_folder_rename">Muuda kausta nime</string>
     <string name="folder_remove_button">Eemalda</string>
     <string name="folder_rename_button">Muuda nime</string>
+    <string name="confirm_folder_remove">Kas oled kindel, et soovid selle kausta kustutada? Seda tegevust ei saa tagasi pöörata.</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Teavita selle konkreetse uudisvoo osas</string>
+    <string name="notification_feed_default">Teavita kõikide vaikimisi seadistustega uudisvoogude osas ühe teavitusega</string>
+    <string name="notification_feed_none">Ära teavita üldse</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Lisa</string>
     <string name="hint_folder_name">Kausta nimi</string>
+    <string name="folder_already_exists">Selline kaust on juba olemas</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Käsitsi sisselogimine</string>
+    <string name="login_sso">Logi sisse Nextcloudi Failirakendusega</string>
     <string name="pref_title_username">Kasutajanimi</string>
-    <string name="pref_title_password">Parool</string>
-    <string name="pref_title_owncloudRootPath">ownCloud juur address</string>
+    <string name="pref_title_password">Salasõna</string>
+    <string name="pref_title_owncloudRootPath">Nextcloudii juuraddress</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Logi sisse</string>
+    <string name="login_progress_signing_in">Sisselogimisel…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">See väli on kohustuslik</string>
     <string name="error_invalid_url">Vigane võrguaadress</string>
+
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Märkisin %d kirje loetuks</item>
+        <item quantity="other">Märkisin %d kirjet loetuks</item>
+    </plurals>
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Alla on laaditud %d vana kirje</item>
         <item quantity="other">Alla on laaditud %d vana kirjet</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">Rohkem üksusi pole saadaval</string>
+    <string name="toast_no_more_downloads_available">Rohkem kirjeid pole saadaval</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Seni on laaditud %d kirje…</item>
+        <item quantity="other">Seni on laaditud %d kirjet…</item>
+    </plurals>
+
+
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Seaded</string>
     <string name="cache_is_cleared">Vahemälu on tühjendatud!</string>
@@ -114,8 +151,20 @@
     <string name="pref_header_general">Üldine</string>
     <string name="pref_title_general_sort_order">Sorteerimise järjekord</string>
 
+    <string name="pref_general_sort_order_new_old">Uus → Vana</string>
+    <string name="pref_general_sort_order_old_new">Vana → Uus</string>
+
+    <string name="pref_rename_action_swipe_right">Tegevus paremale viipamisel</string>
+    <string name="pref_rename_action_swipe_left">Tegevus vasakule viipamisel</string>
+
+    <string name="pref_title_general_search_in">Otsi siit</string>
+
     <string name="pref_general_search_in_title">Pealkiri</string>
+    <string name="pref_general_search_in_body">Sisu</string>
+    <string name="pref_general_search_in_both">Mõlemad</string>
+
     <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
+    <string name="dialog_clearing_cache_please_wait">Vahemälu on kustutamisel, palun oota…</string>
     <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
     <string name="warning">Hoiatus</string>
     <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
@@ -123,6 +172,10 @@
     <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
+    <string name="pref_title_ShowFastActions">Lülita sisse kiirligipääsu funktsionaalsuse</string>
+    <string name="pref_title_OpenInBrowserDirectly">Jäta üksikasjalik vaade avamata ning tee seda veebilehitsejas</string>
+    <string name="pref_title_BackButtonOpensDrawer">„Tagasi“ nupp avab menüü</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Nõustu tundmatu sertifikaadiga?</string>
     <string name="mtm_decision_always">Alati</string>
@@ -133,45 +186,95 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
     <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
+    <string name="exit_playback">Sulge meediaesitaja</string>
+    <string name="podcast_playback_speed_dialog_title">Taasesituse kiirus</string>
+    <string name="notification_downloading_podcast_title">Taskuhääling on allalaadimisel</string>
     <string name="dialog_podcast_remove_title">Kas oled kindel?</string>
+    <string name="dialog_podcast_remove_body">Oled sa kindel, et soovid „%1$s“ allalaaditud meediafailid kustutada?</string>
+    <string name="dialog_podcast_status_failed">„%1$s“ meediafailide kustutamine ei õnnestunud</string>
+    <string name="dialog_podcast_status_success">„%1$s“ meediafailid on kustutatud</string>
     <string name="dialog_podcast_remove_confirm">Eemalda</string>
 
     <!-- Settings for About -->
     <string name="pref_header_about">Info</string>
     <string name="pref_license">Litsents</string>
+    <string name="pref_license_summary">GNU Affero Üldine Avalik Litsents (AGPL), versioon 3</string>
+    <string name="pref_report_issue">Teata veast</string>
+    <string name="pref_report_issue_summary">Eeldab GitHubi (tasuta) kasutajakonto olemasolu</string>
+    <string name="pref_contribute">Tee kaastööd!</string>
+    <string name="pref_contribute_summary">Vaata lähtekoodi</string>
     <string name="pref_privacy">Privaatsus</string>
+    <string name="pref_privacy_summary">Nextcloudi Uudiste privaatsusreeglid</string>
+    <string name="pref_news_policy">Meie kontaktid ja uudiste reeglid</string>
+    <string name="pref_news_policy_summary">Nextcloudi Uudiste reeglid ja meie kontaktid</string>
+    <string name="pref_version">Nextcloudi Uudiste rakendus</string>
+
+
     <!-- Settings for Display -->
     <string name="pref_header_display">Vaade</string>
-    <string name="pref_title_app_theme">Teema</string>
+    <string name="pref_title_app_theme">Kujundus</string>
     <string name="pref_title_feed_list_layout">Uudisvoo nimekirja paigutus</string>
     <string name="pref_title_font_size">Kirjasuurus</string>
+    <string name="pref_display_browser">Veebilehitseja</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Tegevuste ikoonid (üksikasjalik vaade)</string>
+
     <string name="pref_display_apptheme_auto">Süsteemi kujundus</string>
-    <string name="pref_display_apptheme_light">Tume</string>
-    <string name="pref_display_apptheme_dark">Hele</string>
+    <string name="pref_display_apptheme_light">Hele kujundus</string>
+    <string name="pref_display_apptheme_dark">Tume kujundus</string>
 
     <string name="pref_oled_mode">Must taust</string>
     <string name="pref_oled_mode_summary">Tumeda kujunduse jaoks oled-ekraanidel</string>
+
+    <string name="pref_external_player">Väline meediaesitaja</string>
+    <string name="pref_external_player_summary">Kuula taskuhäälinguid oma vaikimisi meediarakenduses</string>
+
+    <string name="pref_display_browser_cct">Sisseehitatud Chrome\'i põhised vahekaardid</string>
+    <string name="pref_display_browser_built_in">Sisseehitatud veebilehitseja</string>
+    <string name="pref_display_browser_external">Väline veebilehitseja</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Pisipildid (vaid alapealkirjad)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Pisipildid</string>
+    <string name="pref_display_feed_list_layout_simple_text">Lihtsustatud tekst</string>
+    <string name="pref_display_feed_list_layout_headlines">Alapealkirjad</string>
+    <string name="pref_display_feed_list_layout_full_text">Täistekst</string>
+    <string name="pref_display_feed_list_layout_web_layout">Veebiküljendus</string>
+    <string name="pref_display_feed_list_layout_card_view">Kaardivaade</string>
 
     <!-- font size scaling definitions -->
     <string name="pref_display_font_size_s">Väike</string>
     <string name="pref_display_font_size_d">Vaikeväärtus</string>
     <string name="pref_display_font_size_l">Suur</string>
+    <string name="pref_display_font_size_xl">Eriti suur</string>
+
     <string name="content_desc_play">Esita</string>
     <string name="content_desc_pause">Paus</string>
+    <string name="content_desc_playback_speed">Taasesituse kiirus</string>
+    <string name="content_desc_rewind">Keri tagasi</string>
     <string name="content_desc_forward">Edasi</string>
+    <string name="content_desc_expand">Laienda</string>
     <string name="content_desc_collapse">Sulge</string>
     <string name="content_desc_mark_as_read">Märgi loetuks</string>
     <string name="content_desc_mark_as_unread">Märgi mitteloetuks</string>
+    <string name="content_desc_tap_to_refresh">Uuendamiseks klõpsi</string>
     <string name="content_desc_add_to_favorites">Lisa lemmikutesse</string>
     <string name="content_desc_remove_from_favorites">Eemalda lemmikutest</string>
-    <string name="content_desc_show_password">Näita parooli</string>
+    <string name="content_desc_show_password">Näita saalsõna</string>
     <string name="content_desc_delete">Kustuta</string>
     <string name="content_desc_download">Laadi alla</string>
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Viga</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Tundub uudisterakendus pole serverisse paigaldatud. Palun esmalt paigalda või lase paigaldada järgnevate juhiste alusel uudisterakendus oma serverisse: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Midagi läks valesti :(</string>
+    <string name="login_dialog_text_zero_version_code">Veebirakendus Nextcloudi serveris andis päringu vastuseks versiooni „0“. Asajakohast teavet leiad siit veakirjeldusest: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">See rakendus ei ühildu uudisterakendusega Nexctcloudi serveris. Palun uuenda uudisterakendus ja sellega seotud teegid või palu seda teistel teha.</string>
     <string name="login_dialog_title_security_warning">Turvahoiatus</string>
+    <string name="login_dialog_text_security_warning">Sa ei kasuta https-protokolli ning seda me tungivalt ei soovita. Võimalik kolmas osapool või lausa pahatahtlik ründaja võib sinu veebiliiklust lugeda ja tuvastada sealt privaatset teavet (näiteks sinu salasõna).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Midagi läks viltu, palun proovi uuesti.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Andmed &amp; sünkroniseerimine</string>
     <string name="pref_title_clearCache">Tühjenda puhver</string>
@@ -181,18 +284,25 @@
     <string name="pref_data_sync_image_cache_never">Mitte kunagi</string>
     <string name="pref_data_sync_image_cache_wifi_only">Ainult üle WiFi</string>
     <string name="pref_data_sync_image_cache_wifi_and_mobile">WiFi &amp; andmeside</string>
-    <string name="pref_data_sync_image_cache_ask">Küsi, kui pole WiFisse ühendatud</string>
+    <string name="pref_data_sync_image_cache_ask">Küsi, kui pole WiFi-sse ühendatud</string>
 
     <string name="array_sync_interval_min_0">Mitte kunagi</string>
     <string name="array_sync_interval_min_5">5 minutit</string>
     <string name="array_sync_interval_min_15">15 minutit</string>
     <string name="array_sync_interval_min_30">30 minutit</string>
+    <string name="array_sync_interval_min_45">45 minutit</string>
     <string name="array_sync_interval_hour_1">1 tund</string>
+    <string name="array_sync_interval_hour_2">2 tundi</string>
     <string name="array_sync_interval_hour_3">3 tundi</string>
     <string name="array_sync_interval_hour_6">6 tundi</string>
     <string name="array_sync_interval_hour_12">12 tundi</string>
     <string name="array_sync_interval_hour_24">24 tundi</string>
-    <string name="switch_account">Vaheta kontot</string>
+    <string name="switch_account">Vaheta kasutajakontot</string>
     
+    <string name="successfully_exported">Eksportimine õnnestus siia:</string>
+    <string name="opml_export">Ekport OPML-faili</string>
+    <string name="parsing_opml">OPML-fail on töötlemisel</string>
     <string name="please_wait">Palun oota...</string>
+    <string name="interval_sync_title">Sünkimisvälp</string>
+
     </resources>

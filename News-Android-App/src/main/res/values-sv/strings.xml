@@ -124,6 +124,12 @@
     <string name="error_field_required">Detta fält obligatoriskt</string>
     <string name="error_invalid_url">Felaktig webbadress</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Markerade %d objekt som läst</item>
+        <item quantity="other">Markerade %d objekt som lästa</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Laddade ner %d gamla artiklar</item>

@@ -127,6 +127,13 @@
     <string name="error_field_required">Ово поље је неопходно</string>
     <string name="error_invalid_url">Неисправна адреса</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Означена %d ставка као прочитана</item>
+        <item quantity="few">Означене %d ставке као прочитане</item>
+        <item quantity="other">Означено %d ставки као прочитане</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Преузета %d стара ставка</item>

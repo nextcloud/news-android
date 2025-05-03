@@ -130,6 +130,14 @@
     <string name="error_field_required">Tuto kolonku je třeba vyplnit</string>
     <string name="error_invalid_url">Nesprávná URL</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Označena %d položka jako přečtená</item>
+        <item quantity="few">Označeny %d položky jako přečtené</item>
+        <item quantity="many">Označeno %d položek jako přečtené</item>
+        <item quantity="other">Označeny %d položky jako přečtené</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Stažena %d stará položka</item>
