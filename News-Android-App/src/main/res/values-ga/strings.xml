@@ -133,6 +133,15 @@
     <string name="error_field_required">Tá an réimse seo ag teastáil</string>
     <string name="error_invalid_url">URL mícheart</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Marcáladh %d mír mar léite</item>
+        <item quantity="two">Marcáladh %d mír mar léite</item>
+        <item quantity="few">Marcáladh %d mír mar léite</item>
+        <item quantity="many">Marcáladh %d mír mar léite</item>
+        <item quantity="other">Marcáladh %d mír mar léite</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Lódáladh %d  earra sean</item>
