@@ -127,6 +127,13 @@
     <string name="error_field_required">Este campo é obrigatório</string>
     <string name="error_invalid_url">URL incorreta</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">%d item marcado como lido</item>
+        <item quantity="many">%d itens marcados como lidos</item>
+        <item quantity="other">%d itens marcados como lidos</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Transferido %d item antigo</item>
