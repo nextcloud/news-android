@@ -43,10 +43,10 @@
     <string name="action_add_new_folder">Adicionar nova pasta</string>
     <string name="action_textToSpeech">Leia</string>
     <string name="action_search">Pesquisar</string>
-    <string name="action_download_articles_offline">Download de artigos offline</string>
+    <string name="action_download_articles_offline">Download de artigos off-line</string>
     <!-- notifications -->
-    <string name="notification_download_articles_offline">Download de artigos para uso offline</string>
-    <string name="notification_download_images_offline">Download de imagens para uso offline</string>
+    <string name="notification_download_articles_offline">Download de artigos para uso off-line</string>
+    <string name="notification_download_images_offline">Download de imagens para uso off-line</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Você tem %d novo item não lido</item>
         <item quantity="many">Você tem %d novos itens não lidos</item>
@@ -284,7 +284,7 @@
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dados &amp; sincronização</string>
     <string name="pref_title_clearCache">Limpar cache</string>
-    <string name="pref_title_CacheImagesOffline">Armazenar imagens offline</string>
+    <string name="pref_title_CacheImagesOffline">Armazenar imagens off-line</string>
     <string name="pref_title_Max_Cache_Size">Tamanho Máximo do Cache</string>
 
     <string name="pref_data_sync_image_cache_never">Nunca</string>
