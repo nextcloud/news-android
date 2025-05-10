@@ -299,7 +299,7 @@
     <string name="array_sync_interval_hour_24">24 Stunden</string>
     <string name="switch_account">Konto wechseln</string>
     
-    <string name="successfully_exported">Erfolgreich exportiert nach:</string>
+    <string name="successfully_exported">Exportiert nach:</string>
     <string name="opml_export">OPML Export</string>
     <string name="parsing_opml">Analysiere OPML</string>
     <string name="please_wait">Bitte warten …</string>
