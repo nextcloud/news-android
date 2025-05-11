@@ -121,6 +121,11 @@
     <string name="error_field_required">此欄位為必填</string>
     <string name="error_invalid_url">錯誤的網路連結</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="other">將 %d 個項目標記為已讀</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">已下載 %d 個舊項目</item>
