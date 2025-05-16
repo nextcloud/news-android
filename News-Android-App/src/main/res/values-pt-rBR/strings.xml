@@ -5,9 +5,9 @@
     <string name="title_activity_sync_interval_selector">Intervalo de Sincronização</string>
     <string name="empty_view_content">Este local está vazio</string>
     <string name="empty_view_content_action">Puxe para baixo para atualizar</string>
-    <string name="toast_GettingMoreItems">Download de mais itens iniciou.Por favor aguarde ...</string>
-    <string name="no_wifi_available">Nenhum WiFi conectado</string>
-    <string name="do_you_want_to_download_without_wifi">Quer baixar as imagens sem uma conexão WiFi?</string>
+    <string name="toast_GettingMoreItems">Download de mais itens foi iniciado. Por favor, aguarde …</string>
+    <string name="no_wifi_available">Nenhum Wi-Fi conectado</string>
+    <string name="do_you_want_to_download_without_wifi">Quer baixar as imagens sem uma conexão Wi-Fi?</string>
     <string name="current_version">Você está usando a versão %s</string>
     <string name="widget_header">Notícias Nextcloud</string>
     <plurals name="message_bar_new_articles_available">
@@ -17,7 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Recarregar</string>
     <string name="allUnreadFeeds">Todos itens não lidos</string>
-    <string name="starredFeeds">Itens vistos</string>
+    <string name="starredFeeds">Itens com estrela</string>
     <string name="downloadedPodcasts">Podcasts baixados</string>
     <string name="title_activity_new_feed">Adicionar novo feed</string>
 
@@ -33,7 +33,7 @@
     <string name="action_read">Ler</string>
     <string name="action_playPodacst">Ouvir o Podcast</string>
     <string name="action_removePodcast">Remover Mídia de Podcast</string>
-    <string name="action_openInBrowser">Abrir no navegador</string>
+    <string name="action_openInBrowser">Abrir no navegador web</string>
     <string name="action_Share">Compartilhar</string>
     <string name="action_login">Configurações do servidor</string>
     <string name="action_save">Salvar</string>
@@ -73,7 +73,7 @@
     <string name="action_link_share">Link de Compartilhamento</string>
     <string name="action_link_open">Abrir o Link no Navegador</string>
     <string name="action_link_copy">Copiar link</string>
-    <string name="toast_img_download_wait">Fazendo download. Por favor aguarde ...</string>
+    <string name="toast_img_download_wait">Baixando. Por favor, aguarde …</string>
     <string name="toast_img_saved">Imagem gravada</string>
     <string name="toast_img_notwriteable">Falhou ao salvar Imagem</string>
     <string name="toast_copied_to_clipboard">Copiado para área de transferência</string>
@@ -82,8 +82,8 @@
 
 
     <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
-    <string name="action_feed_remove">Remover alimentação</string>
-    <string name="action_feed_rename">Renomear Alimentação</string>
+    <string name="action_feed_remove">Remover Feed</string>
+    <string name="action_feed_rename">Renomear Feed</string>
     <string name="action_feed_move">Mover Feed</string>
     <string name="action_feed_notification_settings">Configurações de notificação</string>
     <string name="action_feed_open_in">Configurações de abertura</string>
@@ -91,7 +91,7 @@
     <string name="action_feed_open_in_detailed_view">Visualização detalhada</string>
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
-    <string name="confirm_feed_remove">Você realmente deseja remover esta alimentação? Isso não pode ser desfeito!</string>
+    <string name="confirm_feed_remove">Você realmente deseja remover este Feed? Isso não pode ser desfeito!</string>
     <string name="feed_move_list_description">Selecione a pasta para mover o feed</string>
     <string name="move_feed_root_folder">Pasta raiz</string>
 
@@ -142,9 +142,9 @@
     </plurals>
     <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Já foi buscado %d itens até agora...</item>
-        <item quantity="many">Já foram buscados %d itens até agora...</item>
-        <item quantity="other">Já foram buscados %d itens até agora...</item>
+        <item quantity="one">Já foi buscado %d item até agora …</item>
+        <item quantity="many">Já foram buscados %d itens até agora …</item>
+        <item quantity="other">Já foram buscados %d itens até agora …</item>
     </plurals>
 
 
@@ -170,7 +170,7 @@
     <string name="pref_general_search_in_both">Ambos</string>
 
     <string name="dialog_clearing_cache">Limpando o cache</string>
-    <string name="dialog_clearing_cache_please_wait">Limpando o cache. Por favor, aguarde ...</string>
+    <string name="dialog_clearing_cache_please_wait">Limpando o cache. Por favor, aguarde …</string>
     <string name="reset_cache_unsaved_changes">Há alterações não sincronizadas. Gostaria de redefinir o cache de qualquer maneira?</string>
     <string name="warning">Aviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar na inicialização</string>
@@ -192,7 +192,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nenhum podcast selecionado</string>
     <string name="no_chapters_available">Nenhum capítulo disponível</string>
-    <string name="exit_playback">Sair</string>
+    <string name="exit_playback">Sair do Reprodutor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade do Playback</string>
     <string name="notification_downloading_podcast_title">Baixando podcast</string>
     <string name="dialog_podcast_remove_title">Você tem certeza?</string>
@@ -233,7 +233,7 @@
     <string name="pref_oled_mode">Fundo escuro</string>
     <string name="pref_oled_mode_summary">Para temas escuros em telas OLED</string>
 
-    <string name="pref_external_player">Leitor Externo</string>
+    <string name="pref_external_player">Reprodutor Externo</string>
     <string name="pref_external_player_summary">Reproduza podcasts em seu aplicativo de mídia padrão</string>
 
     <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
@@ -308,7 +308,7 @@
     <string name="successfully_exported">Exportado com sucesso para:</string>
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Analisando o arquivo OPML</string>
-    <string name="please_wait">Por favor aguarde ...</string>
+    <string name="please_wait">Por favor, aguarde …</string>
     <string name="interval_sync_title">Intervalo de atualização</string>
 
     </resources>
