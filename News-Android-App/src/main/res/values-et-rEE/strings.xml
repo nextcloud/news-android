@@ -72,9 +72,9 @@
     <string name="action_link_copy">Kopeeri link</string>
     <string name="toast_img_download_wait">Laadin alla. Palun oota…</string>
     <string name="toast_img_saved">Pilt on salvestatud</string>
-    <string name="toast_img_notwriteable">Pildi kirjutamine ebaõnnestus.</string>
+    <string name="toast_img_notwriteable">Pildi kirjutamine ei õnnestunud.</string>
     <string name="toast_copied_to_clipboard">Kopeeritud lõikepuhvrisse</string>
-    <string name="error_download_failed">Allalaadimine ebaõnnestus</string>
+    <string name="error_download_failed">Allalaadimine ei õnnestunud</string>
     <string name="intent_title_share">Jaga kasutades</string>
 
 
@@ -88,7 +88,7 @@
     <string name="action_feed_open_in_detailed_view">Üksikasjalik vaade</string>
     <string name="feed_remove_button">Eemalda</string>
     <string name="feed_rename_button">Muuda nime</string>
-    <string name="confirm_feed_remove">Kas oled kindel, et soovid selle uudisvoo aamaldada? Seda tegevust ei saa tagasi pöörata.</string>
+    <string name="confirm_feed_remove">Kas oled kindel, et soovid selle uudisvoo eemaldada? Seda tegevust ei saa tagasi pöörata.</string>
     <string name="feed_move_list_description">Vali kaust, kuhu soovid uudisvoo teisaldada</string>
     <string name="move_feed_root_folder">Juurkaust</string>
 
