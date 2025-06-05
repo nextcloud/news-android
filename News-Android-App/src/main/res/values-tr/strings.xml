@@ -166,7 +166,7 @@
     <string name="pref_title_DisableHostnameVerification">Sunucu adı doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
-    <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini kullanıma al</string>
+    <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini etkinleştir</string>
     <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp yazıyı tarayıcıda aç</string>
     <string name="pref_title_BackButtonOpensDrawer">Geri düğmesi menüyü açsın</string>
 
@@ -260,7 +260,7 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hata</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Haberler uygulamanız sunucu üzerinde kurulmamış ya da kullanıma alınmamış gibi görünüyor. Lütfen önce sunucu üzerine haberler uygulamasını kurmak için yönergeyi izleyin: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Haberler uygulamanız sunucu üzerinde kurulmamış ya da etkinleştirilmemiş gibi görünüyor. Lütfen önce sunucu üzerine haberler uygulamasını kurmak için yönergeyi izleyin: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
     <string name="login_dialog_text_zero_version_code">Site haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Bu uygulama sürümü kullandığınız Nextcloud Haberler uygulaması ile uyumlu değil. Lütfen Haberler uygulaması ve uygulama çatısını güncelleyin.</string>
