@@ -124,6 +124,12 @@
     <string name="error_field_required">Dit veld is verplicht</string>
     <string name="error_invalid_url">Onjuiste URL</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">%d item gemarkeerd als gelezen</item>
+        <item quantity="other">%d items gemarkeerd als gelezen</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Downloaden %d oud bericht</item>
@@ -212,7 +218,7 @@
     <string name="pref_display_browser">Browser</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Actie iconen (Detail weergave)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Actiepictogrammen (Detailsweergave)</string>
 
     <string name="pref_display_apptheme_auto">Systeemstandaard</string>
     <string name="pref_display_apptheme_light">Licht</string>
