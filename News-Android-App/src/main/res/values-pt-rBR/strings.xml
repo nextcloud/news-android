@@ -9,7 +9,7 @@
     <string name="no_wifi_available">Nenhum Wi-Fi conectado</string>
     <string name="do_you_want_to_download_without_wifi">Quer baixar as imagens sem uma conexão Wi-Fi?</string>
     <string name="current_version">Você está usando a versão %s</string>
-    <string name="widget_header">Notícias Nextcloud</string>
+    <string name="widget_header">Nextcloud Notícias</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d novo item disponível</item>
         <item quantity="many">%d novos itens disponíveis</item>
@@ -101,10 +101,10 @@
     <string name="action_folder_rename">Renomear pasta</string>
     <string name="folder_remove_button">Remover</string>
     <string name="folder_rename_button">Renomear</string>
-    <string name="confirm_folder_remove">Deseja realmente remover esta pasta? Isto não pode ser desfeito!</string>
+    <string name="confirm_folder_remove">Deseja realmente remover esta pasta? Isso não pode ser desfeito!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
-    <string name="notification_feed_unique">Receba notificações exclusivas para este feed</string>
+    <string name="notification_feed_unique">Receber notificações exclusivas para este feed</string>
     <string name="notification_feed_default">Todos os feeds com as configurações padrão aparecerão em uma notificação</string>
     <string name="notification_feed_none">Sem notificações</string>
 
@@ -122,7 +122,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Entrar</string>
-    <string name="login_progress_signing_in">Fazendo login...</string>
+    <string name="login_progress_signing_in">Fazendo login …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatório</string>
     <string name="error_invalid_url">URL incorreta</string>
@@ -130,7 +130,7 @@
     <!--Snackbar Messages -->
     <plurals name="marked_as_read_message">
         <item quantity="one">%d item marcado como lido</item>
-        <item quantity="many">%d itens marcados como lidos</item>
+        <item quantity="many">%d de itens marcados como lidos</item>
         <item quantity="other">%d itens marcados como lidos</item>
     </plurals>
 
@@ -143,7 +143,7 @@
     <string name="toast_no_more_downloads_available">Nenhum item disponível</string>
     <plurals name="fetched_items_so_far">
         <item quantity="one">Já foi buscado %d item até agora …</item>
-        <item quantity="many">Já foram buscados %d itens até agora …</item>
+        <item quantity="many">Já foram buscados %d de itens até agora …</item>
         <item quantity="other">Já foram buscados %d itens até agora …</item>
     </plurals>
 
@@ -180,7 +180,7 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
     <string name="pref_title_ShowFastActions">Ativar as funções de acesso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltar exibição detalhada e abrir o artigo no navegador</string>
-    <string name="pref_title_BackButtonOpensDrawer">O botão Voltar abre a gaveta</string>
+    <string name="pref_title_BackButtonOpensDrawer">O botão Voltar abre o menu</string>
 
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aceita Certificado Desconhecido?</string>
@@ -210,10 +210,10 @@
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código-fonte</string>
     <string name="pref_privacy">Privacidade</string>
-    <string name="pref_privacy_summary">Política de privacidade do Android para o Nextcloud Notícias</string>
+    <string name="pref_privacy_summary">Política de Privacidade do Nextcloud Notícias para Android</string>
     <string name="pref_news_policy">Contate-nos / Política de Notícias</string>
-    <string name="pref_news_policy_summary">Política de notícias do Android Nextcloud News / Entre em contato conosco</string>
-    <string name="pref_version">Aplicativo Android de Notícias Nextcloud</string>
+    <string name="pref_news_policy_summary">Política de Privacidade do Nextcloud Notícias para Android / Contate-nos</string>
+    <string name="pref_version">Aplicativo Nextcloud Notícias para Android</string>
 
 
     <!-- Settings for Display -->
@@ -234,7 +234,7 @@
     <string name="pref_oled_mode_summary">Para temas escuros em telas OLED</string>
 
     <string name="pref_external_player">Reprodutor Externo</string>
-    <string name="pref_external_player_summary">Reproduza podcasts em seu aplicativo de mídia padrão</string>
+    <string name="pref_external_player_summary">Reproduzir podcasts em seu aplicativo de mídia padrão</string>
 
     <string name="pref_display_browser_cct">Chrome-Custom-Tabs incorporadas</string>
     <string name="pref_display_browser_built_in">Navegador Incorporado</string>
@@ -254,15 +254,15 @@
     <string name="pref_display_font_size_l">Grande</string>
     <string name="pref_display_font_size_xl">Extra Grande</string>
 
-    <string name="content_desc_play">Executar</string>
+    <string name="content_desc_play">Reproduzir</string>
     <string name="content_desc_pause">Pausar</string>
     <string name="content_desc_playback_speed">Velocidade de reprodução</string>
-    <string name="content_desc_rewind">Retornar</string>
+    <string name="content_desc_rewind">Retroceder</string>
     <string name="content_desc_forward">Avançar</string>
     <string name="content_desc_expand">Expandir</string>
     <string name="content_desc_collapse">Recolher</string>
-    <string name="content_desc_mark_as_read">Marcar como lida</string>
-    <string name="content_desc_mark_as_unread">Marcar como não lida</string>
+    <string name="content_desc_mark_as_read">Marcar como lido</string>
+    <string name="content_desc_mark_as_unread">Marcar como não lido</string>
     <string name="content_desc_tap_to_refresh">Toque para atualizar</string>
     <string name="content_desc_add_to_favorites">Adicionar aos favoritos</string>
     <string name="content_desc_remove_from_favorites">Remover dos favoritos</string>
@@ -309,6 +309,6 @@
     <string name="opml_export">Exportar OPML</string>
     <string name="parsing_opml">Analisando o arquivo OPML</string>
     <string name="please_wait">Por favor, aguarde …</string>
-    <string name="interval_sync_title">Intervalo de atualização</string>
+    <string name="interval_sync_title">Sincronização em Intervalo</string>
 
     </resources>

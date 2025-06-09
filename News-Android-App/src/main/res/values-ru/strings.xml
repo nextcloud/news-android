@@ -130,6 +130,14 @@
     <string name="error_field_required">Это поле обязательно для заполнения</string>
     <string name="error_invalid_url">Некорректный адрес</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">%d объект помечен прочитанным</item>
+        <item quantity="few">%d объекта помечены прочитанными</item>
+        <item quantity="many">%d объектов помечены прочитанными</item>
+        <item quantity="other">%d объектов помечены прочитанными</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Скачан %d старый элемент</item>
