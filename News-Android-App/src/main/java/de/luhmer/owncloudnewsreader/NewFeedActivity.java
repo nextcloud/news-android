@@ -19,6 +19,8 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +32,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -72,7 +75,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewFeedActivity extends AppCompatActivity {
+public class NewFeedActivity extends AppCompatActivity implements MenuProvider {
 
     private static final String TAG = NewFeedActivity.class.getCanonicalName();
     public final static String ADD_NEW_SUCCESS = "success";
@@ -437,15 +440,18 @@ public class NewFeedActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) { }
+
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
         // Respond to the action bar's Up/Home button
-        if (item.getItemId() == android.R.id.home) {//NavUtils.navigateUpFromSameTask(this);
+        if (menuItem.getItemId() == android.R.id.home) {//NavUtils.navigateUpFromSameTask(this);
             finish();
             return true;
         } else {
             Log.v(TAG, "Unknown option selected..");
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     /**
