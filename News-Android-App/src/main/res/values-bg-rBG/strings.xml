@@ -238,7 +238,7 @@
     <string name="content_desc_mark_as_read">Маркиране като прочетено</string>
     <string name="content_desc_mark_as_unread">Маркиране като непрочетено</string>
     <string name="content_desc_tap_to_refresh">Докосване за опресняване</string>
-    <string name="content_desc_add_to_favorites">Добавяне към любими</string>
+    <string name="content_desc_add_to_favorites">Добави в любими</string>
     <string name="content_desc_remove_from_favorites">Премахване от любими</string>
     <string name="content_desc_show_password">Показване на парола</string>
     <string name="content_desc_delete">Изтриване</string>
