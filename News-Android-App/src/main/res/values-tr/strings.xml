@@ -124,6 +124,12 @@
     <string name="error_field_required">Bu alanın doldurulması zorunludur</string>
     <string name="error_invalid_url">Adres yanlış</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">%d öge okunmuş olarak işaretlendi</item>
+        <item quantity="other">%d öge okunmuş olarak işaretlendi</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d eski öge indirildi</item>
