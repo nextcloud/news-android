@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="auto_sync_string">Usawazishaji kiotomatiki</string>
+    <string name="title_activity_sync_interval_selector">Muda wa Kusawazisha</string>
+    <string name="empty_view_content">Hakuna vipengee hapa</string>
+    <string name="empty_view_content_action">Vuta chini ili kuonyesha upya</string>
+    <string name="toast_GettingMoreItems">Upakuaji wa vipengee zaidi umeanza. Tafadhali subiri…</string>
+    <string name="no_wifi_available">Hakuna WiFi iliyounganishwa</string>
+    <string name="do_you_want_to_download_without_wifi">Je, ungependa kupakua picha bila muunganisho wa Wi-Fi?</string>
+    <string name="current_version">Unatumia Toleo %s</string>
+    <string name="widget_header">Habari za Nextcloud</string>
+    <plurals name="message_bar_new_articles_available">
+        <item quantity="one">%d new item available</item>
+        <item quantity="other">%d vitu vipya vinavyopatikana</item>
+    </plurals>
+    <string name="message_bar_reload">Pakia upya</string>
+    <string name="allUnreadFeeds">Vipengee vyote ambavyo havijasomwa</string>
+    <string name="starredFeeds">Vipengee vyenye nyota</string>
+    <string name="downloadedPodcasts">Podikasti zilizopakuliwa</string>
+    <string name="title_activity_new_feed">Ongeza malisho mapya</string>
+
+    <string name="menu_update">Onyesha upya</string>
+    <string name="menu_markAllAsRead">Weka alama zote kama zimesomwa</string>
+    <string name="menu_StartImageCaching">Pakua picha</string>
+    <string name="menu_downloadMoreItems">Pakua vipengee zaidi</string>
+
+    <string name="tv_showing_cached_version">Inaonyesha toleo lililohifadhiwa</string>
+
+    <!-- Action Bar Items -->
+    <string name="action_starred">Yenye nyota</string>
+    <string name="action_read">Soma</string>
+    <string name="action_playPodacst">Cheza Podcast</string>
+    <string name="action_removePodcast">Ondoa Media ya Podcast</string>
+    <string name="action_openInBrowser">Fungua katika kivinjari</string>
+    <string name="action_Share">Shirikisha</string>
+    <string name="action_login">Mipangilio ya Seva</string>
+    <string name="action_save">Hifadhi</string>
+    <string name="action_settings">Mipangilio</string>
+    <string name="action_sync_settings">Mipangilio ya Usawazishaji</string>
+    <string name="action_add_new_feed">Ongeza malisho mapya</string>
+    <string name="action_add_new_folder">Ongeza folda mpya</string>
+    <string name="action_textToSpeech">Soma kwa sauti</string>
+    <string name="action_search">Tafuta</string>
+    <string name="action_download_articles_offline">Pakua makala nje ya mtandao</string>
+    <!-- notifications -->
+    <string name="notification_download_articles_offline">Inapakua makala kwa matumizi ya nje ya mtandao</string>
+    <string name="notification_download_images_offline">Inapakua picha kwa matumizi ya nje ya mtandao</string>
+    <plurals name="notification_new_items_ticker">
+        <item quantity="one">You have %d new unread item</item>
+        <item quantity="other">Una vipengee %d vipya ambavyo havijasomwa</item>
+    </plurals>
+    <plurals name="notification_new_items_text">
+        <item quantity="one">%d new unread item available</item>
+        <item quantity="other">%d vipengee vipya ambavyo havijasomwa vinapatikana</item>
+    </plurals>
+
+    <!-- Add new feed -->
+    <string name="hint_feed_url">URL ya mipasho</string>
+    <string name="action_add_feed">Ongeza malisho</string>
+    <string name="import_opml">Ingiza OPML</string>
+    <string name="export_opml">Hamisha OPML</string>
+
+
+    <!-- String related to NewsDetail-ContextMenu Items -->
+    <string name="action_img_download">Pakua kiungo</string>
+    <string name="action_img_sharelink">Shiriki Kiungo cha Picha</string>
+    <string name="action_img_open">Fungua picha katika kivinjari</string>
+    <string name="action_img_copylink">Nakili picha ya kiungo</string>
+    <string name="action_link_share">Shiriki kiungo</string>
+    <string name="action_link_open">Fungua Kiungo katika Kivinjari</string>
+    <string name="action_link_copy">Nakili kiungo</string>
+    <string name="toast_img_download_wait">Inapakua. Tafadhali subiri…</string>
+    <string name="toast_img_saved">Picha imehifadhiwa</string>
+    <string name="toast_img_notwriteable">Imeshindwa kuandika Picha.</string>
+    <string name="toast_copied_to_clipboard">Nakili katika ubao wa kunakili</string>
+    <string name="error_download_failed">Imeshindwa kupakua</string>
+    <string name="intent_title_share">Shiriki kupitia</string>
+
+
+    <!-- Strings related to NewsReaderListDialogFragment (Rename/Remove Feed) -->
+    <string name="action_feed_remove">Ondoa Mlisho</string>
+    <string name="action_feed_rename">Badilisha jina la Mlisho</string>
+    <string name="action_feed_move">Hamisha Mlisho</string>
+    <string name="action_feed_notification_settings">Mipangilio ya arifu</string>
+    <string name="action_feed_open_in">Mipangilio ya wazi</string>
+    <string name="action_feed_open_in_general_setting">Tumia mpangilio wa jumla</string>
+    <string name="action_feed_open_in_detailed_view">Mtazamo wa kina</string>
+    <string name="feed_remove_button">Ondoa</string>
+    <string name="feed_rename_button">Ipe jina jipya</string>
+    <string name="confirm_feed_remove">Je, kweli unataka kuondoa Milisho hii? Hili haliwezi kutenduliwa!</string>
+    <string name="feed_move_list_description">Chagua folda ili kuhamisha malisho</string>
+    <string name="move_feed_root_folder">Folda mzizi</string>
+
+
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Ondoa folda</string>
+    <string name="action_folder_rename">Rename folder</string>
+    <string name="folder_remove_button">Ondoa</string>
+    <string name="folder_rename_button">Ipe jina jipya</string>
+    <string name="confirm_folder_remove">Je, kweli unataka kuondoa folda hii? Hili haliwezi kutenduliwa!</string>
+
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Pokea arifa za kipekee za mpasho huu</string>
+    <string name="notification_feed_default">Milisho yote iliyo na mipangilio chaguomsingi itaonekana katika arifa moja</string>
+    <string name="notification_feed_none">Hakuna arifa hata kidogo</string>
+
+    <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
+    <string name="folder_add_button">Ongeza</string>
+    <string name="hint_folder_name">Jina la kisanduku</string>
+    <string name="folder_already_exists">Folda tayari ipo</string>
+
+    <!-- Strings related to login -->
+    <string name="login_manual">Kuingia kwa mikono</string>
+    <string name="login_sso">Ingia kwa kutumia Nextcloud Files App</string>
+    <string name="pref_title_username">Jina la mtumiaji</string>
+    <string name="pref_title_password">Nenosiri</string>
+    <string name="pref_title_owncloudRootPath">Anwani mzizi ya Nextcloud</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
+
+    <string name="action_sign_in_short">Ingia</string>
+    <string name="login_progress_signing_in">Inaingia...</string>
+    <!-- <string name="error_incorrect_password">Incorrect password</string> -->
+    <string name="error_field_required">Sehemu hii inahitajika</string>
+    <string name="error_invalid_url">URL si sahihi</string>
+
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Marked %d item as read</item>
+        <item quantity="other">Imetia alama vipengee %d kuwa vimesomwa</item>
+    </plurals>
+
+    <!-- Toast Messages -->
+    <plurals name="toast_downloaded_x_items">
+        <item quantity="one">Downloaded %d old item</item>
+        <item quantity="other">Imepakua vipengee %d vya zamani</item>
+    </plurals>
+    <string name="toast_no_more_downloads_available">Hakuna vipengee zaidi vinavyopatikana</string>
+    <plurals name="fetched_items_so_far">
+        <item quantity="one">Fetched %d item so far …</item>
+        <item quantity="other">Imeleta vipengee %d kufikia sasa...</item>
+    </plurals>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Mipangilio</string>
+    <string name="cache_is_cleared">Akiba imefutwa!</string>
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Kuu</string>
+    <string name="pref_title_general_sort_order">Namna ya kupanga</string>
+
+    <string name="pref_general_sort_order_new_old">Mpya → Ya zamani</string>
+    <string name="pref_general_sort_order_old_new">Zamani → Mpya</string>
+
+    <string name="pref_rename_action_swipe_right">Kitendo wakati wa kutelezesha kidole kulia</string>
+    <string name="pref_rename_action_swipe_left">Kitendo wakati wa kutelezesha kidole kushoto</string>
+
+    <string name="pref_title_general_search_in">Tafuta Ndani</string>
+
+    <string name="pref_general_search_in_title">Kichwa cha habari</string>
+    <string name="pref_general_search_in_body">Mwili</string>
+    <string name="pref_general_search_in_both">Wote</string>
+
+    <string name="dialog_clearing_cache">Inafuta akiba</string>
+    <string name="dialog_clearing_cache_please_wait">Inafuta akiba. Tafadhali subiri…</string>
+    <string name="reset_cache_unsaved_changes">Kuna mabadiliko ambayo hayajasawazishwa. Je, ungependa kuweka upya akiba hata hivyo?</string>
+    <string name="warning">Onyo</string>
+    <string name="pref_title_AutoSyncOnStart">Sawazisha unapoanzisha</string>
+    <string name="pref_title_ShowOnlyUnread">Onyesha makala ambazo hazijasomwa pekee</string>
+    <string name="pref_title_DisableHostnameVerification">Zima Uthibitishaji wa Jina la Mwenyeji</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Abiri na vitufe vya sauti</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Weka alama kama imesomwa wakati wa kusogeza chini</string>
+    <string name="pref_title_ShowFastActions">Washa kazi za ufikiaji wa haraka</string>
+    <string name="pref_title_OpenInBrowserDirectly">Ruka mwonekano wa kina na ufungue makala kwenye kivinjari</string>
+    <string name="pref_title_BackButtonOpensDrawer">Kitufe cha kurudi hufungua droo</string>
+
+    <!-- MemorizingTrustManager -->
+    <string name="mtm_accept_cert">Kubali Cheti Kisichojulikana?</string>
+    <string name="mtm_decision_always">Daima</string>
+    <string name="mtm_decision_abort">Ondoa</string>
+    <string name="mtm_notification">Uthibitishaji wa Cheti</string>
+
+
+    <!-- Podcast -->
+    <string name="no_podcast_selected">Hakuna podikasti iliyochaguliwa</string>
+    <string name="no_chapters_available">Hakuna sura zinazopatikana</string>
+    <string name="exit_playback">Ondoka kwenye Kichezaji</string>
+    <string name="podcast_playback_speed_dialog_title">Kasi ya mshindo nyuma</string>
+    <string name="notification_downloading_podcast_title">Inapakua podikasti</string>
+    <string name="dialog_podcast_remove_title">Una uhakika?</string>
+    <string name="dialog_podcast_remove_body">Je, unataka kuondoa midia iliyopakuliwa kwa %1$s?</string>
+    <string name="dialog_podcast_status_failed">Imeshindwa kuondoa midia kwa %1$s</string>
+    <string name="dialog_podcast_status_success">Vyombo vya habari kwa %1$s vimeondolewa</string>
+    <string name="dialog_podcast_remove_confirm">Ondoa</string>
+
+    <!-- Settings for About -->
+    <string name="pref_header_about">Kuhusu</string>
+    <string name="pref_license">Leseni</string>
+    <string name="pref_license_summary">GNU Leseni ya Umma ya Affero (AGPL) toleo la 3</string>
+    <string name="pref_report_issue">Ripoti tatizo</string>
+    <string name="pref_report_issue_summary">Inahitaji akaunti ya GitHub (huru)</string>
+    <string name="pref_contribute">Changia!</string>
+    <string name="pref_contribute_summary">Pata msimbo wa chanzo</string>
+    <string name="pref_privacy">Faragha</string>
+    <string name="pref_privacy_summary">Sera ya Faragha ya Habari za Nextcloud Android </string>
+    <string name="pref_news_policy">Wasiliana Nasi / Sera ya Habari</string>
+    <string name="pref_news_policy_summary">Sera ya Habari ya Android ya Nextcloud News / Wasiliana Nasi</string>
+    <string name="pref_version">Programu ya Android ya Nextcloud News</string>
+
+
+    <!-- Settings for Display -->
+    <string name="pref_header_display">Onyesho</string>
+    <string name="pref_title_app_theme">Mandhari</string>
+    <string name="pref_title_feed_list_layout">Mpangilio wa orodha ya mipasho</string>
+    <string name="pref_title_font_size">Ukubwa wa herufi</string>
+    <string name="pref_display_browser">Kivinjari</string>
+
+
+    <string name="pref_display_news_detail_actionbar_icons_title">Aikoni za vitendo (Mtazamo wa kina)</string>
+
+    <string name="pref_display_apptheme_auto">Chaguomsingi ya Mfumo</string>
+    <string name="pref_display_apptheme_light">Mwanga</string>
+    <string name="pref_display_apptheme_dark">Giza</string>
+
+    <string name="pref_oled_mode">Mandhari nyeusi</string>
+    <string name="pref_oled_mode_summary">Kwa mandhari meusi kwenye skrini za OLED</string>
+
+    <string name="pref_external_player">Mchezaji wa nje</string>
+    <string name="pref_external_player_summary">Cheza podikasti katika programu yako chaguomsingi ya midia</string>
+
+    <string name="pref_display_browser_cct">Vichupo-Vilivyojumuishwa vya Chrome</string>
+    <string name="pref_display_browser_built_in">Kivinjari Kilichojengwa ndani</string>
+    <string name="pref_display_browser_external">Kivinjari cha Nje</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Vijipicha (vichwa vya habari pekee)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Picha ndogo ndogo</string>
+    <string name="pref_display_feed_list_layout_simple_text">Maandishi rahisi</string>
+    <string name="pref_display_feed_list_layout_headlines">Vichwa vya habari</string>
+    <string name="pref_display_feed_list_layout_full_text">Maandishi kamili</string>
+    <string name="pref_display_feed_list_layout_web_layout">Mpangilio wa wavuti</string>
+    <string name="pref_display_feed_list_layout_card_view">Mwonekano wa kadi</string>
+
+    <!-- font size scaling definitions -->
+    <string name="pref_display_font_size_s">Ndogo</string>
+    <string name="pref_display_font_size_d">Chaguo msingi</string>
+    <string name="pref_display_font_size_l">Kubwa</string>
+    <string name="pref_display_font_size_xl">Kubwa zaidi</string>
+
+    <string name="content_desc_play">Cheza</string>
+    <string name="content_desc_pause">Sitisha</string>
+    <string name="content_desc_playback_speed">Kasi ya mshindo nyuma</string>
+    <string name="content_desc_rewind">Rudisha nyuma</string>
+    <string name="content_desc_forward">Mbele</string>
+    <string name="content_desc_expand">Panuka</string>
+    <string name="content_desc_collapse">Poromoka</string>
+    <string name="content_desc_mark_as_read">Weka alama kama iliyosomwa</string>
+    <string name="content_desc_mark_as_unread">Weka alama kama haijasomwa</string>
+    <string name="content_desc_tap_to_refresh">Gusa ili kuonyesha upya</string>
+    <string name="content_desc_add_to_favorites">Ongeza kwenye pendwa</string>
+    <string name="content_desc_remove_from_favorites">Ondoa kutoka katika pendwa</string>
+    <string name="content_desc_show_password">Onesha nenosiri</string>
+    <string name="content_desc_delete">Futa</string>
+    <string name="content_desc_download">Pakua</string>
+
+    <!-- Login Dialog -->
+    <string name="login_dialog_title_error">Hitilafu</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Inaonekana programu yako ya habari haijasakinishwa au kuwezeshwa kwenye seva yako. Tafadhali fuata maagizo yaliyotolewa hapa ili kusanidi programu ya habari kwenye seva yako kwanza: %1$s</string>
+    <string name="login_dialog_text_something_went_wrong">Hitilafu fulani imetokea :(</string>
+    <string name="login_dialog_text_zero_version_code">Programu ya Habari za Wavuti ilirudisha Toleo \"0\". Tafadhali angalia ripoti ifuatayo ya hitilafu: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Toleo hili la Programu halioani na Programu yako ya Nextcloud News. Tafadhali pata toleo jipya la programu ya habari na mfumo wa programu.</string>
+    <string name="login_dialog_title_security_warning">Onyo la Usalama</string>
+    <string name="login_dialog_text_security_warning">Hutumii HTTPS, ambayo inahimizwa sana. Mshambulizi anaweza kuingilia trafiki yako na kupata ufikiaji wa data nyeti (k.m. nenosiri lako).</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Hitilafu fulani imetokea. Tafadhali jaribu tena.</string>
+
+
+    <!-- Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; kusawazisha</string>
+    <string name="pref_title_clearCache">Futa akiba</string>
+    <string name="pref_title_CacheImagesOffline">Akiba ya picha nje ya mtandao</string>
+    <string name="pref_title_Max_Cache_Size">Ukubwa wa kiwango cha juu wa akiba</string>
+
+    <string name="pref_data_sync_image_cache_never">Kamwe</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Kwa WiFi pekee</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Juu ya WiFi &amp; Simu ya Mkononi</string>
+    <string name="pref_data_sync_image_cache_ask">Uliza wakati haujaunganishwa kwenye WiFi</string>
+
+    <string name="array_sync_interval_min_0">Kamwe</string>
+    <string name="array_sync_interval_min_5">Dakika 5</string>
+    <string name="array_sync_interval_min_15">Dakika 15</string>
+    <string name="array_sync_interval_min_30">Dakika 30</string>
+    <string name="array_sync_interval_min_45">Dakika 45</string>
+    <string name="array_sync_interval_hour_1">Saa 1</string>
+    <string name="array_sync_interval_hour_2">Masaa 2</string>
+    <string name="array_sync_interval_hour_3">Masaa 3</string>
+    <string name="array_sync_interval_hour_6">Masaa 6</string>
+    <string name="array_sync_interval_hour_12">Masaa 12</string>
+    <string name="array_sync_interval_hour_24">Masaa 24</string>
+    <string name="switch_account">Badili akaunti</string>
+    
+    <string name="successfully_exported">Kwa mafanikio imetumwa kwa:</string>
+    <string name="opml_export">Usafirishaji wa OPML</string>
+    <string name="parsing_opml">Inachanganua OPML</string>
+    <string name="please_wait">Tafadhali subiri...</string>
+    <string name="interval_sync_title">Usawazishaji wa Muda</string>
+
+    </resources>
