@@ -236,9 +236,9 @@
 
     <string name="pref_display_feed_list_layout_headline_thumbnails">Küçük görseller (yalnızca başlıklar)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Küçük görseller</string>
-    <string name="pref_display_feed_list_layout_simple_text">Basit metin</string>
+    <string name="pref_display_feed_list_layout_simple_text">Basit yazı</string>
     <string name="pref_display_feed_list_layout_headlines">Başlıklar</string>
-    <string name="pref_display_feed_list_layout_full_text">Tam metin</string>
+    <string name="pref_display_feed_list_layout_full_text">Tam yazı</string>
     <string name="pref_display_feed_list_layout_web_layout">Site yerleşimi</string>
     <string name="pref_display_feed_list_layout_card_view">Kart görünümü</string>
 
