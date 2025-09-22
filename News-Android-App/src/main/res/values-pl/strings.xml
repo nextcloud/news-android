@@ -130,6 +130,14 @@
     <string name="error_field_required">Ten element jest wymagany</string>
     <string name="error_invalid_url">Nieprawidłowy adres URL</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Oznaczono %d rzecz jako przeczytaną</item>
+        <item quantity="few">Oznaczono %d rzeczy jako przeczytane</item>
+        <item quantity="many">Oznaczono %d rzeczy jako przeczytane</item>
+        <item quantity="other">Oznaczono %d rzeczy jako przeczytane</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Pobrano %d starą pozycję</item>

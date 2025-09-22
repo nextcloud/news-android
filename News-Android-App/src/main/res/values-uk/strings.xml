@@ -19,6 +19,7 @@
     <string name="message_bar_reload">Перезавантажити</string>
     <string name="allUnreadFeeds">Всі непрочитані</string>
     <string name="starredFeeds">Із зірочкою</string>
+    <string name="downloadedPodcasts">Завантажені подкасти</string>
     <string name="title_activity_new_feed">Додати нову стрічку</string>
 
     <string name="menu_update">Оновити</string>
@@ -32,6 +33,7 @@
     <string name="action_starred">Із зірочкою</string>
     <string name="action_read">Читати</string>
     <string name="action_playPodacst">Відтворити подкаст</string>
+    <string name="action_removePodcast">Видалити носій подкасту</string>
     <string name="action_openInBrowser">Відкрити у браузері</string>
     <string name="action_Share">Поширити</string>
     <string name="action_login">Налаштування сервера</string>
@@ -87,6 +89,9 @@
     <string name="action_feed_rename">Перейменувати стрічку</string>
     <string name="action_feed_move">Перемістити стрічку</string>
     <string name="action_feed_notification_settings">Налаштування сповіщень</string>
+    <string name="action_feed_open_in">Налаштування відкритого входу</string>
+    <string name="action_feed_open_in_general_setting">Використовуйте загальне налаштування</string>
+    <string name="action_feed_open_in_detailed_view">Детальний перегляд</string>
     <string name="feed_remove_button">Вилучити</string>
     <string name="feed_rename_button">Перейменувати</string>
     <string name="confirm_feed_remove">Дійсно вилучити цю стрічку? Цю дію неможливо буде скасувати!</string>
@@ -124,6 +129,14 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Обов\'язкове поле</string>
     <string name="error_invalid_url">Неправильний URL</string>
+
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Позначено елемент %d як прочитаний</item>
+        <item quantity="few">Позначено %d елементів як прочитані</item>
+        <item quantity="many">Позначено %d елементів як прочитані</item>
+        <item quantity="other">Позначено %d елементів як прочитані</item>
+    </plurals>
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
@@ -173,6 +186,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Помічати прочитаними при прокрутці</string>
     <string name="pref_title_ShowFastActions">Увімкнути функції швидкого доступу</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустити детальний перегляд і відкрити статтю в браузері</string>
+    <string name="pref_title_BackButtonOpensDrawer">Задня кнопка відкриває шухляду</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Підтвердити невідомий сертифікат?</string>
     <string name="mtm_decision_always">Завжди</string>
@@ -187,6 +202,9 @@
     <string name="podcast_playback_speed_dialog_title">Швидкість відтворення</string>
     <string name="notification_downloading_podcast_title">Звантаження подкасту</string>
     <string name="dialog_podcast_remove_title">Ви впевнені?</string>
+    <string name="dialog_podcast_remove_body">Ви хочете видалити завантажені медіа за %1$s?</string>
+    <string name="dialog_podcast_status_failed">Не вдалося вилучити носій для %1$s</string>
+    <string name="dialog_podcast_status_success">Видалено носій для %1$s</string>
     <string name="dialog_podcast_remove_confirm">Видалити</string>
 
     <!-- Settings for About -->
@@ -199,6 +217,8 @@
     <string name="pref_contribute_summary">Отримати вихідний код</string>
     <string name="pref_privacy">Конфіденційність</string>
     <string name="pref_privacy_summary">Політика конфіденційності Nextcloud News Android</string>
+    <string name="pref_news_policy">Контакти / Новини / Політика</string>
+    <string name="pref_news_policy_summary">Nextcloud News Новини Android Політика / Контакти</string>
     <string name="pref_version">Застосунок Nextcloud News для Android</string>
 
 
