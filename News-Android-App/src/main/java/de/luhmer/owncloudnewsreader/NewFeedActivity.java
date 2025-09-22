@@ -76,7 +76,6 @@ public class NewFeedActivity extends AppCompatActivity {
 
     private static final String TAG = NewFeedActivity.class.getCanonicalName();
     public final static String ADD_NEW_SUCCESS = "success";
-    private static final int PERMISSIONS_REQUEST_READ_CODE = 0;
     private static final int PERMISSIONS_REQUEST_WRITE_CODE = 1;
     private final static int REQUEST_CODE_OPML_IMPORT = 2;
 
@@ -197,8 +196,7 @@ public class NewFeedActivity extends AppCompatActivity {
     }
 
     private void openFilePicker() {
-        startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT)
-                .addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"), REQUEST_CODE_OPML_IMPORT);
+        startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"), REQUEST_CODE_OPML_IMPORT);
     }
 
     public void btnAddFeedClick() {
@@ -211,18 +209,7 @@ public class NewFeedActivity extends AppCompatActivity {
     }
 
     public void importOpml() {
-        String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
-
-        if (ContextCompat.checkSelfPermission(this, permission) != PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-                Toast.makeText(this, "Please enable \"Read\" permission for Files and Media for the Nextcloud News App", Toast.LENGTH_SHORT).show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{permission}, PERMISSIONS_REQUEST_READ_CODE);
-            }
-        } else {
-            openFilePicker();
-        }
-
+        openFilePicker();
     }
 
     @Override
@@ -323,10 +310,7 @@ public class NewFeedActivity extends AppCompatActivity {
 
         // check if user granted the requested permission
         if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
-            if (requestCode == PERMISSIONS_REQUEST_READ_CODE) {
-                // user tried to import OPML -> retry after the permission has been granted
-                importOpml();
-            } else if (requestCode == PERMISSIONS_REQUEST_WRITE_CODE) {
+            if (requestCode == PERMISSIONS_REQUEST_WRITE_CODE) {
                 // user tried to export OPML -> retry after the permission has been granted
                 exportOpml();
             }
