@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: set up JDK 17
-        uses: actions/setup-java@v4.7.1
+        uses: actions/setup-java@v5.0.0
         with:
           distribution: 'temurin'
           java-version: 17
@@ -23,9 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: set up JDK 17
-        uses: actions/setup-java@v4.7.1
+        uses: actions/setup-java@v5.0.0
         with:
           distribution: 'temurin'
           java-version: 17

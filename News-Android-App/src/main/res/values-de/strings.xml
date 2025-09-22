@@ -188,7 +188,7 @@
     <string name="no_chapters_available">Keine Kapitel verfügbar</string>
     <string name="exit_playback">Den Player beenden</string>
     <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
-    <string name="notification_downloading_podcast_title">Podcast wird herunterladen</string>
+    <string name="notification_downloading_podcast_title">Podcast wird heruntergeladen</string>
     <string name="dialog_podcast_remove_title">Sind Sie sicher?</string>
     <string name="dialog_podcast_remove_body">Möchten Sie heruntergeladene Medien für %1$s entfernen?</string>
     <string name="dialog_podcast_status_failed">Medien für %1$s konnten nicht entfernt werden</string>

@@ -20,7 +20,7 @@
     <string name="downloadedPodcasts">Downloadede podcasts</string>
     <string name="title_activity_new_feed">Tilføj nyt feed</string>
 
-    <string name="menu_update">Opdater</string>
+    <string name="menu_update">Opdatér</string>
     <string name="menu_markAllAsRead">Marker alle som læst</string>
     <string name="menu_StartImageCaching">Hent billeder</string>
     <string name="menu_downloadMoreItems">Hent flere artikler</string>
