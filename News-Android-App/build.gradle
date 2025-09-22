@@ -11,7 +11,7 @@ android {
     testOptions.unitTests.includeAndroidResources = true
 
     defaultConfig {
-        compileSdk Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+        compileSdk = Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
 
