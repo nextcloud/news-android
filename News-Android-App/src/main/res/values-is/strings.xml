@@ -124,6 +124,12 @@
     <string name="error_field_required">Krafist er að fyllt sé í þennan reit</string>
     <string name="error_invalid_url">Röng slóð</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Merkti %d atriði sem lesið</item>
+        <item quantity="other">Merkti %d atriði  sem lesin</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Sótti %d eldra atriði</item>
