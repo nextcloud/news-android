@@ -17,6 +17,7 @@
     <string name="message_bar_reload">Επαναφόρτωση</string>
     <string name="allUnreadFeeds">Όλα τα μη ανεγνωσμένα</string>
     <string name="starredFeeds">Επισημασμένα αντικείμενα</string>
+    <string name="downloadedPodcasts">Κατεβασμένα podcasts</string>
     <string name="title_activity_new_feed">Προσθήκη νέας ροής</string>
 
     <string name="menu_update">Ανανέωση </string>
@@ -30,6 +31,7 @@
     <string name="action_starred">Με αστέρι</string>
     <string name="action_read">Ανάγνωση</string>
     <string name="action_playPodacst">Αναπαραγωγή Podcast</string>
+    <string name="action_removePodcast">Κατάργηση πολυμέσων podcast</string>
     <string name="action_openInBrowser">Άνοιγμα στον περιηγητή</string>
     <string name="action_Share">Διαμοιρασμός</string>
     <string name="action_login">Ρυθμίσεις Διακομιστή</string>
@@ -81,6 +83,9 @@
     <string name="action_feed_rename">Μετονομασία Ροής</string>
     <string name="action_feed_move">Μετακίνηση Ροής</string>
     <string name="action_feed_notification_settings">Ρυθμίσεις ειδοποιήσεων</string>
+    <string name="action_feed_open_in">Ρυθμίσεις ανοίγματος</string>
+    <string name="action_feed_open_in_general_setting">Χρήση γενικών ρυθμίσεων</string>
+    <string name="action_feed_open_in_detailed_view">Λεπτομερής προβολή</string>
     <string name="feed_remove_button">Αφαίρεση</string>
     <string name="feed_rename_button">Μετονομασία</string>
     <string name="confirm_feed_remove">Θέλετε πραγματικά να αφαιρέσετε αυτή την Ροή; Αυτό δεν μπορεί να αναιρεθεί!</string>
@@ -118,6 +123,12 @@
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Αυτό το πεδίο είναι απαραίτητο</string>
     <string name="error_invalid_url">Εσφαλμένη URL</string>
+
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Επισήμανση %d στοιχείου ως αναγνωσμένου</item>
+        <item quantity="other">Επισήμανση %d στοιχείων ως αναγνωσμένων</item>
+    </plurals>
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
@@ -163,6 +174,8 @@
     <string name="pref_title_MarkAsReadWhileScrolling">Σημείωση ως αναγνωσμένου κατά την κύλιση</string>
     <string name="pref_title_ShowFastActions">Ενεργοποιήστε τις λειτουργίες γρήγορης πρόσβασης</string>
     <string name="pref_title_OpenInBrowserDirectly">Παράλειψη λεπτομερούς προβολής και άνοιγμα αρχείου στον περιηγητή</string>
+    <string name="pref_title_BackButtonOpensDrawer">Το κουμπί «Πίσω» ανοίγει το συρτάρι</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Αποδοχή Άγνωστων Πιστοποιητικών;</string>
     <string name="mtm_decision_always">Πάντα</string>
@@ -177,6 +190,9 @@
     <string name="podcast_playback_speed_dialog_title">Ταχύτητα Αναπαραγωγής</string>
     <string name="notification_downloading_podcast_title">Γίνεται λήψη podcast</string>
     <string name="dialog_podcast_remove_title">Είστε σίγουροι;</string>
+    <string name="dialog_podcast_remove_body">Θέλετε να καταργήσετε τα ληφθέντα αρχεία πολυμέσων για %1$s;</string>
+    <string name="dialog_podcast_status_failed">Αποτυχία κατάργησης μέσου για %1$s</string>
+    <string name="dialog_podcast_status_success">Τα πολυμέσα για %1$s έχουν αφαιρεθεί</string>
     <string name="dialog_podcast_remove_confirm">Αφαίρεση</string>
 
     <!-- Settings for About -->
@@ -189,6 +205,8 @@
     <string name="pref_contribute_summary">Λήψη πηγαίου κώδικα</string>
     <string name="pref_privacy">Ιδιωτικότητα</string>
     <string name="pref_privacy_summary">Πολιτική απορρήτου Android Nextcloud News</string>
+    <string name="pref_news_policy">Επικοινωνήστε μαζί μας / Πολιτική ειδήσεων</string>
+    <string name="pref_news_policy_summary">Νέα Nextcloud Νέα Android Πολιτική / Επικοινωνήστε μαζί μας</string>
     <string name="pref_version">Εφαρμογή Android Nextcloud News</string>
 
 
