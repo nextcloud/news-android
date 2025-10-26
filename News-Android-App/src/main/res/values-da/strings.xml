@@ -58,8 +58,8 @@
     <!-- Add new feed -->
     <string name="hint_feed_url">Feed URL</string>
     <string name="action_add_feed">Tilføj feed</string>
-    <string name="import_opml">Importer OPML</string>
-    <string name="export_opml">Eksporter OPML</string>
+    <string name="import_opml">Importér OPML</string>
+    <string name="export_opml">Eksportér OPML</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
