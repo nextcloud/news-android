@@ -70,7 +70,7 @@
     <string name="action_link_share">Paylaşım bağlantısı</string>
     <string name="action_link_open">Bağlantıyı tarayıcıda aç</string>
     <string name="action_link_copy">Bağlantıyı kopyala</string>
-    <string name="toast_img_download_wait">Lütfen indirilirken bekleyin…</string>
+    <string name="toast_img_download_wait">İndiriliyor. Lütfen bekleyin…</string>
     <string name="toast_img_saved">Görsel kaydedildi</string>
     <string name="toast_img_notwriteable">Görsel diske yazılamadı.</string>
     <string name="toast_copied_to_clipboard">Panoya kopyalandı</string>
@@ -164,7 +164,7 @@
     <string name="pref_general_search_in_both">İkisi de</string>
 
     <string name="dialog_clearing_cache">Ön bellek temizleniyor</string>
-    <string name="dialog_clearing_cache_please_wait">Lütfen ön bellek temizlenirken bekleyin…</string>
+    <string name="dialog_clearing_cache_please_wait">Ön bellek temizleniyor. Lütfen bekleyin…</string>
     <string name="reset_cache_unsaved_changes">Eşitlenmemiş değişiklikler var. Yine de ön belleği sıfırlamak ister misiniz?</string>
     <string name="warning">Uyarı</string>
     <string name="pref_title_AutoSyncOnStart">Başlangıçta eşitle</string>
