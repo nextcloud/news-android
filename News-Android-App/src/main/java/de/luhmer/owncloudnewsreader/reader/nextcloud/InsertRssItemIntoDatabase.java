@@ -21,6 +21,7 @@
 
 package de.luhmer.owncloudnewsreader.reader.nextcloud;
 
+import android.text.Html;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
@@ -132,7 +133,7 @@ class InsertRssItemIntoDatabase {
         if(mediaThumbnail.isEmpty()) {
             List<String> images = ImageHandler.getImageLinksFromText(url, content);
             if (!images.isEmpty()) {
-                mediaThumbnail = images.get(0);
+                mediaThumbnail = Html.fromHtml(images.get(0)).toString();
                 // Log.d(TAG, "extracted mediaThumbnail from body" + mediaThumbnail);
             } else {
                 Log.d(TAG, "extraction of mediaThumbnail not possible - no images detected");
