@@ -206,6 +206,7 @@
     <string name="content_desc_play">נגן</string>
     <string name="content_desc_pause">השהה</string>
     <string name="content_desc_forward">העברה</string>
+    <string name="content_desc_expand">הרחבה</string>
     <string name="content_desc_collapse">קיווץ</string>
     <string name="content_desc_mark_as_read">סימון כנקרא</string>
     <string name="content_desc_mark_as_unread">סימון כלא נקרא</string>
