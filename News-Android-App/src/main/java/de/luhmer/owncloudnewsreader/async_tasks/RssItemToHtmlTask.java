@@ -119,7 +119,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         String rtlDir = isRightToLeft ? "rtl" : "ltr";
 
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("<html dir=\"%s\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0\" />", rtlDir));
+        builder.append(String.format("<html dir=\"%s\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />", rtlDir));
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
 
         // font size scaling
