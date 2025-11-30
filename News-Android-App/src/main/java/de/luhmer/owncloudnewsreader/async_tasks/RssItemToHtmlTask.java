@@ -30,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.luhmer.owncloudnewsreader.R;
+import de.luhmer.owncloudnewsreader.SettingsActivity;
 import de.luhmer.owncloudnewsreader.database.model.Feed;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.helper.ImageHandler;
@@ -119,7 +120,10 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         String rtlDir = isRightToLeft ? "rtl" : "ltr";
 
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("<html dir=\"%s\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />", rtlDir));
+
+        boolean zoomEnabled = mPrefs.getBoolean(SettingsActivity.CB_DETAILED_VIEW_ZOOM, false);
+        String zoomRestrictions = zoomEnabled ? "" : ", maximum-scale=1, minimum-scale=1, user-scalable=0";
+        builder.append(String.format("<html dir=\"%s\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1%s\" />", rtlDir, zoomRestrictions));
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");
 
         // font size scaling
