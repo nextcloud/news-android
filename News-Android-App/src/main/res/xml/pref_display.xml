@@ -45,6 +45,14 @@
             app:iconSpaceReserved="false"/>
 
 
+        <SwitchPreference
+            android:key="cb_detailed_view_zoom"
+            android:title="@string/pref_detailed_view_zoom"
+            android:summary="@string/pref_detailed_view_zoom_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false"/>
+
+
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/pref_display_browser"

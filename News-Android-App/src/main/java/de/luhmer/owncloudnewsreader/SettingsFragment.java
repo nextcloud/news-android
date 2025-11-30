@@ -11,6 +11,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SHOW_FAST_ACTIONS
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNCONSTARTUP_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_VERSION;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_DETAILED_VIEW_ZOOM;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_CLEAR_CACHE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_PASSWORD_STRING;
@@ -222,6 +223,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_OLED_MODE));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FEED_LIST_LAYOUT));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_FONT_SIZE));
+        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_DETAILED_VIEW_ZOOM));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_DISPLAY_BROWSER));
     }
 
