@@ -202,7 +202,7 @@
     <string name="pref_report_issue">Fehler melden</string>
     <string name="pref_report_issue_summary">Erfordert ein (kostenloses) GitHub-Konto</string>
     <string name="pref_contribute">Mitmachen!</string>
-    <string name="pref_contribute_summary">Zum Programmcode</string>
+    <string name="pref_contribute_summary">Zum Quellcode</string>
     <string name="pref_privacy">Datenschutz</string>
     <string name="pref_privacy_summary">Nextcloud News Android App Datenschutzerklärung</string>
     <string name="pref_news_policy">Kontaktieren Sie uns / News-Richtlinie</string>
