@@ -82,6 +82,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static final String SP_APP_THEME = "sp_app_theme";
     public static final String CB_OLED_MODE = "cb_oled_mode";
+    public static final String CB_DETAILED_VIEW_ZOOM = "cb_detailed_view_zoom";
 
     public static final String CB_EXTERNAL_PLAYER = "cb_external_player";
 

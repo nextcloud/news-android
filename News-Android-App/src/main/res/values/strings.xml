@@ -297,6 +297,9 @@
     <string name="pref_oled_mode">Black background</string>
     <string name="pref_oled_mode_summary">For dark theme on OLED screens</string>
 
+    <string name="pref_detailed_view_zoom">Detailed view zoom</string>
+    <string name="pref_detailed_view_zoom_summary">Enable zooming the content in the detailed view</string>
+
     <string name="pref_external_player">External Player</string>
     <string name="pref_external_player_summary">Play podcasts in your default media app</string>
 
