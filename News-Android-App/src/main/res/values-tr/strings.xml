@@ -267,12 +267,12 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Hata</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Haberler uygulamanız sunucu üzerinde kurulmamış ya da kullanıma alınmamış gibi görünüyor. Lütfen önce sunucu üzerine haberler uygulamasını kurmak için yönergeyi izleyin: %1$s</string>
-    <string name="login_dialog_text_something_went_wrong">Bir şeyler ters gitti :(</string>
+    <string name="login_dialog_text_something_went_wrong">Bir sorun çıktı :(</string>
     <string name="login_dialog_text_zero_version_code">Site haberleri uygulamasının sürümü \"0\" olarak görünüyor. Lütfen şu hata raporuna bakın: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Bu uygulama sürümü kullandığınız Nextcloud Haberler uygulaması ile uyumlu değil. Lütfen Haberler uygulaması ve uygulama çatısını güncelleyin.</string>
     <string name="login_dialog_title_security_warning">Güvenlik uyarısı</string>
     <string name="login_dialog_text_security_warning">Kullanılması önemle önerilen HTTPS kullanmıyorsunuz. Bir saldırgan trafiğinizi izleyip önemli verilere erişebilir (parolanız gibi).</string>
-    <string name="login_dialog_select_account_unknown_error_toast">Bir şeyler ters gitti. Lütfen yeniden deneyin.</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Bir sorun çıktı. Lütfen yeniden deneyin.</string>
 
 
     <!-- Data & Sync -->
