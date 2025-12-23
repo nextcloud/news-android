@@ -126,6 +126,7 @@
     <string name="pref_display_font_size_d">Defaut</string>
     <string name="content_desc_play">Aviar</string>
     <string name="content_desc_pause">Pausa</string>
+    <string name="content_desc_playback_speed">Velocitat de lectura</string>
     <string name="content_desc_collapse">Replegar</string>
     <string name="content_desc_mark_as_read">Marcar coma legit</string>
     <string name="content_desc_mark_as_unread">Marcar coma pas legit</string>
