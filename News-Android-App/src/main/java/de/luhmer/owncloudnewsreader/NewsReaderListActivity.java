@@ -123,6 +123,7 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
@@ -241,89 +242,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
 	};
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+    protected DisposableObserver<Boolean> startSyncObserver = new DisposableObserver<>() {
+        @Override
+        public void onNext(@NonNull Boolean nothing) {
+            startSync();
+        }
 
-		SharedPreferences defaultValueSp = getSharedPreferences(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
-		if (!defaultValueSp.getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
-			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_data_sync, true);
-			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_display, true);
-			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_general, true);
-		}
+        @Override
+        public void onError(Throwable e) {
+            Log.e(TAG, e.getMessage());
+        }
 
-		super.onCreate(savedInstanceState);
+        @Override
+        public void onComplete() {
 
-		binding = ActivityNewsreaderBinding.inflate(getLayoutInflater());
-		setContentView(binding.getRoot());
-
-		setSupportActionBar(binding.toolbarLayout.toolbar);
-
-		initAccountManager();
-
-		checkNotificationPermissions();
-
-		// Init config --> if nothing is configured start the login dialog.
-		if (!isUserLoggedIn()) {
-			startLoginActivity();
-		}
-
-		Bundle args = new Bundle();
-		String userName = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
-		String url = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
-		args.putString("accountName", String.format("%s\n%s", userName, url));
-		NewsReaderListFragment newsReaderListFragment = new NewsReaderListFragment();
-		newsReaderListFragment.setArguments(args);
-		// Insert the fragment by replacing any existing fragment
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.left_drawer, newsReaderListFragment)
-				.commit();
-
-		if (binding.drawerLayout != null) {
-			drawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbarLayout.toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
-				@Override
-				public void onDrawerClosed(View drawerView) {
-					super.onDrawerClosed(drawerView);
-					onBackPressedCallback.setEnabled(mBackOpensDrawer);
-
-					syncState();
-				}
-
-				@Override
-				public void onDrawerOpened(View drawerView) {
-					super.onDrawerOpened(drawerView);
-					reloadCountNumbersOfSlidingPaneAdapter();
-
-					// -> handleOnBackPressed() will disable it
-					// onBackPressedCallback.setEnabled(false);
-
-					syncState();
-				}
-			};
-
-			binding.drawerLayout.addDrawerListener(drawerToggle);
-
-			adjustEdgeSizeOfDrawer();
-		}
-		setSupportActionBar(binding.toolbarLayout.toolbar);
-		Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-		if (drawerToggle != null) {
-			drawerToggle.syncState();
-		}
-
-		getPodcastSlidingUpPanelLayout().addPanelSlideListener(panelSlideListener);
-		getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
-
-		//AppRater.app_launched(this);
-		//AppRater.rateNow(this);
-
-		if (savedInstanceState == null) { // When the app starts (no orientation change)
-			updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
-		}
-
-		showChangelogIfNecessary();
-	}
+        }
+    };
 
 	@Override
 	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
@@ -560,6 +494,117 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		syncFinishedHandler();
 	}
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
+
+		SharedPreferences defaultValueSp = getSharedPreferences(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, Context.MODE_PRIVATE);
+		if (!defaultValueSp.getBoolean(PreferenceManager.KEY_HAS_SET_DEFAULT_VALUES, false)) {
+			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_data_sync, true);
+			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_display, true);
+			PreferenceManager.setDefaultValues(this, sharedPreferencesFileName, Context.MODE_PRIVATE, R.xml.pref_general, true);
+		}
+
+		super.onCreate(savedInstanceState);
+
+		binding = ActivityNewsreaderBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
+
+		setSupportActionBar(binding.toolbarLayout.toolbar);
+
+		initAccountManager();
+
+		checkNotificationPermissions();
+
+		// Init config --> if nothing is configured start the login dialog.
+		if (!isUserLoggedIn()) {
+			startLoginActivity();
+		}
+
+		Bundle args = new Bundle();
+		String userName = mPrefs.getString(SettingsActivity.EDT_USERNAME_STRING, null);
+		String url = mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null);
+		args.putString("accountName", String.format("%s\n%s", userName, url));
+		NewsReaderListFragment newsReaderListFragment = new NewsReaderListFragment();
+		newsReaderListFragment.setArguments(args);
+		// Insert the fragment by replacing any existing fragment
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.left_drawer, newsReaderListFragment)
+				.commit();
+
+		if (binding.drawerLayout != null) {
+			drawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbarLayout.toolbar, R.string.news_list_drawer_text, R.string.news_list_drawer_text) {
+				@Override
+				public void onDrawerClosed(View drawerView) {
+					super.onDrawerClosed(drawerView);
+					onBackPressedCallback.setEnabled(mBackOpensDrawer);
+
+					syncState();
+				}
+
+				@Override
+				public void onDrawerOpened(View drawerView) {
+					super.onDrawerOpened(drawerView);
+					reloadCountNumbersOfSlidingPaneAdapter();
+
+					// -> handleOnBackPressed() will disable it
+					// onBackPressedCallback.setEnabled(false);
+
+					syncState();
+				}
+			};
+
+			binding.drawerLayout.addDrawerListener(drawerToggle);
+
+			adjustEdgeSizeOfDrawer();
+		}
+		setSupportActionBar(binding.toolbarLayout.toolbar);
+		Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+		if (drawerToggle != null) {
+			drawerToggle.syncState();
+		}
+
+		getPodcastSlidingUpPanelLayout().addPanelSlideListener(panelSlideListener);
+		getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+
+		//AppRater.app_launched(this);
+		//AppRater.rateNow(this);
+
+        getNewsReaderDetailFragment().syncTrigger
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(startSyncObserver);
+
+		if (savedInstanceState == null) { // When the app starts (no orientation change)
+			updateDetailFragment(SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), true, null, true);
+		}
+
+		showChangelogIfNecessary();
+	}
+
+	@Override
+	protected void onResume() {
+		mBackOpensDrawer = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false);
+		onBackPressedCallback.setEnabled(mBackOpensDrawer);
+
+		reloadSidebar();
+
+		invalidateOptionsMenu();
+		super.onResume();
+	}
+
+	@Override
+	protected PodcastSlidingUpPanelLayout getPodcastSlidingUpPanelLayout() {
+		return binding.slidingLayout;
+	}
+
+	@Override
+	public void onRefresh() {
+		startSync();
+	}
+
 	/**
 	 * @return true if new items count was greater than 0
 	 */
@@ -584,40 +629,27 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			if (firstVisiblePosition == 0 || firstVisiblePosition == -1) {
 				updateCurrentRssView();
 			} else {
-				showSnackbar(newItemsCount);
+                showSnackbarNewItems(newItemsCount);
 			}
 			return true;
 		} else {
+            int firstVisiblePosition = getNewsReaderDetailFragment().getFirstVisibleScrollPosition();
+
 			// update rss view even if no new items are available
 			// If the user just finished reading some articles (e.g. all unread items) - he most
-			// likely wants  the read articles to be removed when the sync is finished
-			updateCurrentRssView();
+            // likely wants the read articles to be removed when the sync is finished
+            if (firstVisiblePosition == 0 || firstVisiblePosition == -1) {
+                // if the app was just started (initial sync - just reload the list)
+                updateCurrentRssView();
+            } else {
+                // otherwise ask user if he want's to reload e.g. when we are scrolled all the way down
+                showSnackbarNoNewItems();
+            }
 		}
 		return false;
 	}
 
-	@Override
-	protected void onResume() {
-		mBackOpensDrawer = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false);
-		onBackPressedCallback.setEnabled(mBackOpensDrawer);
-
-		reloadSidebar();
-
-		invalidateOptionsMenu();
-		super.onResume();
-	}
-
-	@Override
-	protected PodcastSlidingUpPanelLayout getPodcastSlidingUpPanelLayout() {
-		return binding.slidingLayout;
-	}
-
-	@Override
-	public void onRefresh() {
-		startSync();
-	}
-
-	private void showSnackbar(int newItemsCount) {
+    private void showSnackbarNewItems(int newItemsCount) {
 		Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
 				getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
 				Snackbar.LENGTH_LONG);
@@ -773,6 +805,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
         }
     }
 
+    private void showSnackbarNoNewItems() {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
+                getResources().getString(R.string.message_bar_scroll_top),
+                Snackbar.LENGTH_LONG);
+        snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
+        snackbar.show();
+    }
 
     public void startSync()
     {
@@ -780,7 +819,8 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			startLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
-				mPostDelayHandler.stopRunningPostDelayHandler(); //Stop pending sync handler
+                Log.d(TAG, "Starting Sync");
+                mPostDelayHandler.stopRunningPostDelayHandler(); // Stop pending sync handler
 
 				Bundle accBundle = new Bundle();
 				accBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
@@ -794,6 +834,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
                 }
 				//http://stackoverflow.com/questions/5253858/why-does-contentresolver-requestsync-not-trigger-a-sync
 			} else {
+                Log.d(TAG, "Sync is already running - Just update Button Layout");
 				updateButtonLayout();
 			}
 		}
@@ -811,7 +852,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		}
     }
 
-    private NewsReaderDetailFragment updateDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
+    private void updateDetailFragment(long id, Boolean folder, Long optional_folder_id, boolean updateListView) {
         if(menuItemDownloadMoreItems != null) {
             menuItemDownloadMoreItems.setEnabled(true);
         }
@@ -846,7 +887,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		NewsReaderDetailFragment fragment = getNewsReaderDetailFragment();
 		fragment.setData(feedId, folderId, title, updateListView);
-		return fragment;
 	}
 
 	public MenuItem getMenuItemDownloadMoreItems() {

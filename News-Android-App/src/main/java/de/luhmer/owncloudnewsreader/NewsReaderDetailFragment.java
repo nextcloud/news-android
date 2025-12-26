@@ -56,8 +56,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -87,6 +85,7 @@ import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.Search;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import io.reactivex.rxjava3.observers.DisposableObserver;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 /**
  * A fragment representing a single NewsReader detail screen. This fragment is
@@ -119,6 +118,8 @@ public class NewsReaderDetailFragment extends Fragment {
 
     protected @Inject SharedPreferences mPrefs;
     protected @Inject PostDelayHandler mPostDelayHandler;
+
+    public PublishSubject<Boolean> syncTrigger = PublishSubject.create();
 
     private PodcastFragmentActivity mActivity;
 
@@ -350,17 +351,37 @@ public class NewsReaderDetailFragment extends Fragment {
         binding.list.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0) { //check for scroll down
-                    if (mMarkAsReadWhileScrollingEnabled) {
-                        //Log.v(TAG, "Scroll Delta y: " + dy);
-                        handleMarkAsReadScrollEvent();
+                if (dy > 0) { // check for scroll down
+                    Log.v(TAG, "Scroll Delta y: " + dy);
+
+                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) binding.list.getLayoutManager();
+                    NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) binding.list.getAdapter();
+
+                    if (linearLayoutManager != null && adapter != null) {
+                        int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+                        int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                        int visibleItemCount = lastVisibleItem - firstVisibleItem;
+                        int totalItemCount = adapter.getItemCount();
+                        boolean reachedBottom = (lastVisibleItem == (totalItemCount - 1));
+
+                        if (mMarkAsReadWhileScrollingEnabled) {
+                            handleMarkAsReadScrollEvent(firstVisibleItem, lastVisibleItem, visibleItemCount, reachedBottom, adapter);
+                        }
+
+                        // trigger sync (to automatically reload) once we reach the end/bottom
+                        int lastCompletelyVisibleItem = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+                        boolean reachedBottomFully = (lastCompletelyVisibleItem == (totalItemCount - 1));
+                        if (reachedBottomFully) {
+                            Log.d(TAG, "Reached end of list - trigger sync");
+                            syncTrigger.onNext(true);
+                        }
                     }
                 }
             }
         });
 
         itemTouchListener = new RecyclerView.OnItemTouchListener() {
-            final GestureDetectorCompat detector = new GestureDetectorCompat(mActivity, new RecyclerViewOnGestureListener());
+            final GestureDetector detector = new GestureDetector(mActivity, new RecyclerViewOnGestureListener());
 
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
@@ -380,22 +401,12 @@ public class NewsReaderDetailFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void handleMarkAsReadScrollEvent() {
-        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) binding.list.getLayoutManager();
-        NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) binding.list.getAdapter();
-
-        int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-        int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-        int visibleItemCount = lastVisibleItem - firstVisibleItem;
-        int totalItemCount = adapter.getItemCount();
-        boolean reachedBottom = (lastVisibleItem == (totalItemCount - 1));
-
+    private void handleMarkAsReadScrollEvent(int firstVisibleItem, int lastVisibleItem, int visibleItemCount, boolean reachedBottom, NewsListRecyclerAdapter adapter) {
         // Exit if the position didn't change.
         if (firstVisibleItem == previousFirstVisibleItem && !reachedBottom) {
             return;
         }
         previousFirstVisibleItem = firstVisibleItem;
-
 
         //Log.v(TAG, "First visible: " + firstVisibleItem + " - Last visible: " + lastVisibleItem + " - visible count: " + visibleItemCount + " - total count: " + totalItemCount);
 
@@ -420,8 +431,7 @@ public class NewsReaderDetailFragment extends Fragment {
             for (int i = firstVisibleItem; i <= lastVisibleItem; i++) {
                 RecyclerView.ViewHolder vhTemp = binding.list.findViewHolderForLayoutPosition(i);
 
-                if (vhTemp instanceof RssItemViewHolder) { //Check for ViewHolder instance because of ProgressViewHolder
-                    RssItemViewHolder vh = (RssItemViewHolder) vhTemp;
+                if (vhTemp instanceof RssItemViewHolder vh) { //Check for ViewHolder instance because of ProgressViewHolder
 
                     if (!vh.shouldStayUnread()) {
                         adapter.changeReadStateOfItem(vh, true);
@@ -565,7 +575,11 @@ public class NewsReaderDetailFragment extends Fragment {
         }
     }
 
+    // This Gesture listener is only attached when there are few articles on the screen (e.g. less than 10)
+    // because the list onScroll callback won't be triggered when all items fit on the screen. Therefore
+    // we use this gesture listener to detect swipes on the screen
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
         private int minLeftEdgeDistance = -1;
 
         private void initEdgeDistance() {
@@ -594,10 +608,24 @@ public class NewsReaderDetailFragment extends Fragment {
                 return false;
             }
 
+
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) binding.list.getLayoutManager();
+            NewsListRecyclerAdapter adapter = (NewsListRecyclerAdapter) binding.list.getAdapter();
+
+            if (linearLayoutManager == null || adapter == null) {
+                return false;
+            }
+
+            int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+            int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+            int visibleItemCount = lastVisibleItem - firstVisibleItem;
+            int totalItemCount = adapter.getItemCount();
+            boolean reachedBottom = (lastVisibleItem == (totalItemCount - 1));
+
             if (mMarkAsReadWhileScrollingEnabled &&
                     e1.getX() > minLeftEdgeDistance &&   // only if gesture starts a bit away from left window edge
                     (e2.getY() - e1.getY()) < 0) {       // and if swipe direction is upwards
-                handleMarkAsReadScrollEvent();
+                handleMarkAsReadScrollEvent(firstVisibleItem, lastVisibleItem, visibleItemCount, reachedBottom, adapter);
                 return true;
             }
             return false;
