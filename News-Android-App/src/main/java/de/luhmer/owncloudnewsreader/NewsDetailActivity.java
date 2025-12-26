@@ -181,10 +181,10 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 				}
 			}
 			// if article can't be found for whatever reason just use index 0 and prevent app from crashing
-			if(!foundArticle) {
-				item_id = 0;
+            if (!foundArticle) {
+                item_id = 0;
                 Log.e(TAG, "RSS Item with ID " + rssItemId + " cannot be found");
-			}
+            }
 		}
 
 		// Create the adapter that will return a fragment for each of the three
