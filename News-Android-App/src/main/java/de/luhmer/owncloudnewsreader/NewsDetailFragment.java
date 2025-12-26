@@ -305,7 +305,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
         webSettings.setSupportMultipleWindows(false);
 
-        boolean zoomEnabled = mPrefs.getBoolean(SettingsActivity.CB_DETAILED_VIEW_ZOOM, false);
+        boolean zoomEnabled = mPrefs.getBoolean(SettingsActivity.CB_DETAILED_VIEW_ZOOM, true);
         webSettings.setSupportZoom(zoomEnabled);
         webSettings.setBuiltInZoomControls(zoomEnabled);
         webSettings.setDisplayZoomControls(false);
