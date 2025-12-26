@@ -162,12 +162,17 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		rssItems = dbConn.getAllRssItems();
 
-		//If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
+        // If the Activity gets started from the Widget, read the item id and get the selected index in the cursor.
 		if (intent.hasExtra(WidgetProvider.RSS_ITEM_ID)) {
-			boolean foundArticle = false;
-			long rss_item_id = intent.getExtras().getLong(WidgetProvider.RSS_ITEM_ID);
+            boolean foundArticle = false;
+            long rssItemId = intent.getExtras().getLong(WidgetProvider.RSS_ITEM_ID);
+
+            if (Constants.debugModeWidget) {
+                Log.d(TAG, "Activity launched with RSS Item ID: " + rssItemId);
+            }
+
 			for (RssItem rssItem : rssItems) {
-				if (rss_item_id == rssItem.getId()) {
+                if (rssItemId == rssItem.getId()) {
 					getSupportActionBar().setTitle(rssItem.getTitle());
 					foundArticle = true;
 					break;
@@ -178,7 +183,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			// if article can't be found for whatever reason just use index 0 and prevent app from crashing
 			if(!foundArticle) {
 				item_id = 0;
-				Log.e(TAG, "RSS Item with ID " + rss_item_id + " cannot be found");
+                Log.e(TAG, "RSS Item with ID " + rssItemId + " cannot be found");
 			}
 		}
 

@@ -57,37 +57,51 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 		this.context = context;
 		appWidgetId = intent.getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
-		if(Constants.debugModeWidget)
-			Log.d(TAG, "CONSTRUCTOR CALLED - " + appWidgetId);
+        if (Constants.debugModeWidget) {
+            Log.d(TAG, "CONSTRUCTOR CALLED - " + appWidgetId);
+        }
 	}
 
 	@Override
 	public void onCreate() {
-		if(Constants.debugModeWidget)
-			Log.d(TAG, "onCreate");
+        if (Constants.debugModeWidget) {
+            Log.d(TAG, "onCreate");
+        }
+
 
 		dbConn = new DatabaseConnectionOrm(context);
 	}
 
 	@Override
 	public void onDestroy() {
-	    rssItems.close();
+        if (Constants.debugModeWidget) {
+            Log.d(TAG, "onDestroy");
+        }
+        if (rssItems != null) {
+            rssItems.close();
+        }
 	}
 
 	@Override
 	public int getCount() {
-        Log.v(TAG, "getCount");
+        if (Constants.debugModeWidget) {
+            Log.v(TAG, "getCount - rssItems is " + ((rssItems != null) ? "NOT " : "") + "null");
+        }
 
-		return rssItems.size();
+        if (rssItems == null) {
+            return 0;
+        } else {
+            return rssItems.size();
+        }
 	}
 
     // Given the position (index) of a WidgetItem in the array, use the item's text value in
     // combination with the app widget item XML file to construct a RemoteViews object.
     @SuppressLint("SimpleDateFormat")
 	public RemoteViews getViewAt(int position) {
-        if(Constants.debugModeWidget) {
-            Log.d(TAG, "getViewAt: " + position);
-        }
+        // if(Constants.debugModeWidget) {
+        //     Log.d(TAG, "getViewAt: " + position);
+        // }
 
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
 
@@ -129,30 +143,26 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
             rv.setInt(R.id.cb_lv_item_read, "setBackgroundResource", resId);
             rv.setContentDescription(R.id.cb_lv_item_read, context.getString(contentDescriptionId));
 
-            /*
-            if(colorString != null) {
-                rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
-            }
-            */
-
+            // if(colorString != null) {
+            //     rv.setInt(R.id.color_line_feed, "setBackgroundColor", Integer.parseInt(colorString));
+            // }
 
             Bundle mBundle = new Bundle();
             mBundle.putLong(WidgetProvider.RSS_ITEM_ID, id);
 
-
-            //Get a fresh new intent
+            // Get a fresh new intent
             Intent rowIntent = new Intent();
             rowIntent.putExtras(mBundle);
-            //Set it on the list remote view
+            // Set it on the list remote view
             rv.setOnClickFillInIntent(R.id.widget_row_layout, rowIntent);
 
-            //Get a fresh new intent
+            // Get a fresh new intent
             Intent ei = new Intent();
             ei.putExtras(mBundle);
-            //Set it on the list remote view
+            // Set it on the list remote view
             rv.setOnClickFillInIntent(R.id.cb_lv_item_read_wrapper, ei);
 
-            //Get a fresh new intent
+            // Get a fresh new intent
             Intent iCheck = new Intent();
             iCheck.putExtra(WidgetProvider.ACTION_CHECKED_CLICK, true);
             iCheck.putExtras(mBundle);
@@ -167,7 +177,9 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public RemoteViews getLoadingView() {
-        Log.v(TAG, "getLoadingView");
+        if (Constants.debugModeWidget) {
+            Log.v(TAG, "getLoadingView");
+        }
 		return(null);
 	}
 
@@ -178,19 +190,25 @@ public class WidgetNewsViewsFactory implements RemoteViewsService.RemoteViewsFac
 
 	@Override
 	public long getItemId(int position) {
-        //Log.v(TAG, "getItemId: " + position);
+        // if(Constants.debugModeWidget) {
+        //     Log.v(TAG, "getItemId: " + position);
+        // }
 		return(position);
 	}
 
 	@Override
 	public boolean hasStableIds() {
-        Log.v(TAG, "hasStableIds: " + appWidgetId);
+        if (Constants.debugModeWidget) {
+            Log.v(TAG, "hasStableIds: " + appWidgetId);
+        }
 		return(true);
 	}
 
 	@Override
 	public void onDataSetChanged() {
-        Log.v(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
+        if (Constants.debugModeWidget) {
+            Log.v(TAG, "DataSetChanged - WidgetID: " + appWidgetId);
+        }
 
         if (rssItems != null && !rssItems.isClosed()) {
             rssItems.close();
