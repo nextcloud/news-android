@@ -121,7 +121,7 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
 
         StringBuilder builder = new StringBuilder();
 
-        boolean zoomEnabled = mPrefs.getBoolean(SettingsActivity.CB_DETAILED_VIEW_ZOOM, false);
+        boolean zoomEnabled = mPrefs.getBoolean(SettingsActivity.CB_DETAILED_VIEW_ZOOM, true);
         String zoomRestrictions = zoomEnabled ? "" : ", maximum-scale=1, minimum-scale=1, user-scalable=0";
         builder.append(String.format("<html dir=\"%s\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1%s\" />", rtlDir, zoomRestrictions));
         builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"web.css\" />");

@@ -49,7 +49,7 @@
             android:key="cb_detailed_view_zoom"
             android:title="@string/pref_detailed_view_zoom"
             android:summary="@string/pref_detailed_view_zoom_summary"
-            android:defaultValue="false"
+            android:defaultValue="true"
             app:iconSpaceReserved="false"/>
 
 
