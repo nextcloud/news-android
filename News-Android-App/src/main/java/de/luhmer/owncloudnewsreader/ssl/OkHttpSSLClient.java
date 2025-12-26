@@ -31,7 +31,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.internal.Util;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -115,27 +114,20 @@ public class OkHttpSSLClient {
         }
     }
 
-    private static class AuthorizationInterceptor implements Interceptor {
-
-        private final String mCredentials;
-        private final HttpUrl mHostUrl;
-
-        AuthorizationInterceptor(HttpUrl hostUrl, String credentials) {
-            this.mHostUrl = hostUrl;
-            this.mCredentials = credentials;
-        }
+    private record AuthorizationInterceptor(HttpUrl mHostUrl,
+                                            String mCredentials) implements Interceptor {
 
         @NonNull
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
 
-            // only add Authorization header for urls on the configured owncloud/nextcloud host
-            if (mHostUrl.url().getHost().equals(request.url().host()))
-                request = request.newBuilder()
-                        .addHeader("Authorization", mCredentials)
-                        .build();
-            return chain.proceed(request);
+                // only add Authorization header for urls on the configured owncloud/nextcloud host
+                if (mHostUrl.url().getHost().equals(request.url().host()))
+                    request = request.newBuilder()
+                            .addHeader("Authorization", mCredentials)
+                            .build();
+                return chain.proceed(request);
+            }
         }
-    }
 }
