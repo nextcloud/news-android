@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Kas sa soovid pilte alla laadida ka väljaspool WiFi ühendust?</string>
     <string name="current_version">Sa kasutad versioon %s</string>
     <string name="widget_header">Nextcloudi uudised</string>
+    <string name="message_bar_scroll_top">Laadi uuesti ja keri üles äärde</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Saadaval on %d uus kirjet</item>
         <item quantity="other">Saadaval on %d uut kirjet</item>
@@ -226,6 +227,9 @@
 
     <string name="pref_oled_mode">Must taust</string>
     <string name="pref_oled_mode_summary">Tumeda kujunduse jaoks oled-ekraanidel</string>
+
+    <string name="pref_detailed_view_zoom">Suumimine üksikasjalikus vaates</string>
+    <string name="pref_detailed_view_zoom_summary">Võimalda suumida üksikasjalikus vaates</string>
 
     <string name="pref_external_player">Väline meediaesitaja</string>
     <string name="pref_external_player_summary">Kuula taskuhäälinguid oma vaikimisi meediarakenduses</string>

@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Quere descargar as imaxes sen unha conexión wifi?</string>
     <string name="current_version">Está empregando a versión%s</string>
     <string name="widget_header">Novas de Nextcloud</string>
+    <string name="message_bar_scroll_top">Recarga e despraza ata arriba</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d elemento novo dispoñíbel</item>
         <item quantity="other">%d elementos novos dispoñíbeis</item>
@@ -226,6 +227,9 @@
 
     <string name="pref_oled_mode">Fondo escuro</string>
     <string name="pref_oled_mode_summary">Para o tema escuro nas pantallas OLED</string>
+
+    <string name="pref_detailed_view_zoom">Zoom de vista detallada</string>
+    <string name="pref_detailed_view_zoom_summary">Activar o zoom do contido na vista detallada</string>
 
     <string name="pref_external_player">Reprodutor externo</string>
     <string name="pref_external_player_summary">Reproduce podcasts na súa aplicación multimedia predeterminada</string>
