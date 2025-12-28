@@ -1,3 +1,23 @@
+0.9.9.92
+---------------------
+
+- Dependency updates
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1603">!1603 - Automatically
+  trigger sync when bottom is reached</a>
+- Added - <a href="https://github.com/nextcloud/news-android/issues/1367">#1367 - Add Pinch to zoom
+  for images (thanks to @DoHe)</a>
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1531">!1531 - Show snackbar after
+  batch marking items as read (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1590">#1590 - Fixed broken
+  widget</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1591">#1591 - Handle URL
+  encoding when reading mediaThumbnail from body (thanks to @DoHe)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1576">#1576 - Import opml do not
+  work at all</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1510">#1510 - Client sends form
+  data when POSTing instead of JSON</a>
+- Many smaller changes under the hood
+
 0.9.9.91
 ---------------------
 - Dependency updates

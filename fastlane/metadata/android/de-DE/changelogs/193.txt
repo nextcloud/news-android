@@ -1,0 +1,9 @@
+- Dependency updates
+- Added - !1603 - Automatically trigger sync when bottom is reached
+- Added - #1367 - Add Pinch to zoom for images (thanks to @DoHe)
+- Added - !1531 - Show snackbar after batch marking items as read (thanks to @Unpublished)
+- Fixed - #1590 - Fixed broken widget
+- Fixed - #1591 - Handle URL encoding when reading mediaThumbnail from body (thanks to @DoHe)
+- Fixed - #1576 - Import opml do not work at all
+- Fixed - #1510 - Client sends form data when POSTing instead of JSON
+- Many smaller changes under the hood 
