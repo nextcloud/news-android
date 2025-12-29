@@ -222,11 +222,11 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.16'
 
     // Core library
-    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test:core:1.7.0'
 
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation 'androidx.test:runner:1.7.0'
-    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test:rules:1.7.0'
 
     // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.3.0'
