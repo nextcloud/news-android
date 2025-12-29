@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Görselleri bir kablosuz ağ bağlantısı olmadan indirmek ister misiniz?</string>
     <string name="current_version">%s sürümünü kullanıyorsunuz</string>
     <string name="widget_header">Nextcloud News</string>
+    <string name="message_bar_scroll_top">Yeniden yükle ve üste kaydır</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d yeni öge var</item>
         <item quantity="other">%d yeni öge var</item>
@@ -226,6 +227,9 @@
 
     <string name="pref_oled_mode">Siyah arka plan</string>
     <string name="pref_oled_mode_summary">OLED ekranlarda koyu tema için</string>
+
+    <string name="pref_detailed_view_zoom">Ayrıntılı görünüm yakınlaştırması</string>
+    <string name="pref_detailed_view_zoom_summary">Açıldığında, ayrıntılı görünümde içeriği yakınlaştırır</string>
 
     <string name="pref_external_player">Dış oynatıcı</string>
     <string name="pref_external_player_summary">Podcast yayınlarını varsayılan ortam uygulamanızda dinleyin</string>
