@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">是否要在沒有 WiFi 的狀況下下載圖像?</string>
     <string name="current_version">您在使用版本 %s</string>
     <string name="widget_header">Nextcloud 新聞</string>
+    <string name="message_bar_scroll_top">重新載入並捲動至頂部</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d 個新的項目</item>
     </plurals>
@@ -220,6 +221,9 @@
 
     <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_oled_mode_summary">供 OLED 螢幕使用的暗黑主題</string>
+
+    <string name="pref_detailed_view_zoom">詳細資訊檢視縮放</string>
+    <string name="pref_detailed_view_zoom_summary">啟用詳細檢視中的內容縮放功能</string>
 
     <string name="pref_external_player">外部播放器</string>
     <string name="pref_external_player_summary">在您的默認媒體應用程式中播放播客</string>
