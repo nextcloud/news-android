@@ -45,6 +45,8 @@
 # https://github.com/umano/AndroidSlidingUpPanel/issues/921
 -dontwarn com.sothree.slidinguppanel.SlidingUpPanelLayout
 
+# jsoup
+-dontwarn com.google.re2j.*
 
 # Other Libraries
 -dontwarn org.apache.velocity.**
