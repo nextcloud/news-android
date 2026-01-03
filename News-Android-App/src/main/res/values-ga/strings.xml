@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Ar mhaith leat na híomhánna a íoslódáil gan nasc Wi-Fi?</string>
     <string name="current_version"> Tá tú ag úsáid Leagan%s</string>
     <string name="widget_header">Nuacht Nextcloud</string>
+    <string name="message_bar_scroll_top">Athlódáil agus scrollaigh go dtí an barr</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d mír nua ar fáil</item>
         <item quantity="two">%d míreanna nua ar fáil</item>
@@ -244,6 +245,9 @@
 
     <string name="pref_oled_mode">Cúlra dubh</string>
     <string name="pref_oled_mode_summary">Le haghaidh téama dorcha ar scáileáin OLED</string>
+
+    <string name="pref_detailed_view_zoom">Súmáil radhairc mhionsonraithe</string>
+    <string name="pref_detailed_view_zoom_summary">Cumasaigh súmáil isteach an ábhair sa radharc mionsonraithe</string>
 
     <string name="pref_external_player">Imreoir Seachtrach</string>
     <string name="pref_external_player_summary">Seinn podchraoltaí i d\'aip meán réamhshocraithe</string>
