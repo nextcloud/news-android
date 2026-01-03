@@ -310,7 +310,7 @@ public class DatabaseConnectionOrm {
 
         WhereCondition whereCondition = new WhereCondition.StringCondition(RssItemDao.Properties.Id.columnName + " IN " +
                 "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ") AND " +
-                RssItemDao.Properties.Read_temp + "= 0");
+                RssItemDao.Properties.Read_temp.columnName + "= 0");
 
         int iterationCount = 0;
         List<RssItem> rssItemList;
