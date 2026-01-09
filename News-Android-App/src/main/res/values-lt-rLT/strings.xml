@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Auto sinchronizavimas</string>
+    <string name="auto_sync_string">Automatinis sinchronizavimas</string>
     <string name="title_activity_sync_interval_selector">Sinchronizavimo intervalas</string>
-    <string name="empty_view_content">Nėra elementų</string>
-    <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="empty_view_content">Čia nėra jokių elementų</string>
+    <string name="empty_view_content_action">Patraukite žemyn norėdami įkelti iš naujo</string>
     <string name="no_wifi_available">Nėra WiFi ryšio</string>
     <string name="current_version">Jūs naudojate versiją %s</string>
     <string name="widget_header">Nextcloud naujienos</string>
@@ -17,10 +17,11 @@
     <string name="message_bar_reload">Įkelti iš naujo</string>
     <string name="allUnreadFeeds">Visi neskaityti elementai</string>
     <string name="starredFeeds">Pažymėti elementai</string>
+    <string name="downloadedPodcasts">Atsisiųstos tinklalaidės</string>
     <string name="title_activity_new_feed">Pridėti naują kanalą</string>
 
     <string name="menu_update">Įkelti iš naujo</string>
-    <string name="menu_markAllAsRead">Žymėti visus skaitytais</string>
+    <string name="menu_markAllAsRead">Žymėti visus kaip skaitytus</string>
     <string name="menu_StartImageCaching">Atsisiųsti paveikslus</string>
     <string name="menu_downloadMoreItems">Atsiųsti daugiau elementų</string>
 
@@ -33,10 +34,11 @@
     <string name="action_openInBrowser">Atverti saityno naršyklėje</string>
     <string name="action_Share">Bendrinti</string>
     <string name="action_login">Serverio nustatymai</string>
-    <string name="action_save">Išsaugoti</string>
+    <string name="action_save">Įrašyti</string>
     <string name="action_settings">Nustatymai</string>
     <string name="action_sync_settings">Sinchronizavimo nustatymai</string>
     <string name="action_add_new_feed">Pridėti naują kanalą</string>
+    <string name="action_add_new_folder">Pridėti naują aplanką</string>
     <string name="action_search">Ieškoti</string>
     <plurals name="notification_new_items_ticker">
         <item quantity="one">Turite %d neskaitytą elementą</item>
@@ -86,12 +88,16 @@
     <string name="move_feed_root_folder">Šakninis aplankas</string>
 
 
+    <!-- Strings related to FolderOptionsDialogFragment (Rename/Remove folder) -->
+    <string name="action_folder_remove">Šalinti aplanką</string>
     <string name="action_folder_rename">Pervadinti aplanką</string>
     <string name="folder_remove_button">Šalinti</string>
     <string name="folder_rename_button">Pervadinti</string>
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Pridėti</string>
     <string name="hint_folder_name">Aplanko pavadinimas</string>
+    <string name="folder_already_exists">Aplankas jau yra</string>
+
     <!-- Strings related to login -->
     <string name="login_manual">Rankinis prisijungimas</string>
     <string name="pref_title_username">Naudotojo vardas</string>
@@ -100,6 +106,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Prisijungti</string>
+    <string name="login_progress_signing_in">Prisijungiama…</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Šis laukas privalomas</string>
     <string name="error_invalid_url">Neteisingas URL</string>
@@ -198,7 +205,7 @@
     <string name="content_desc_play">Atkurti</string>
     <string name="content_desc_pause">Pristabdyti</string>
     <string name="content_desc_playback_speed">Atkūrimo greitis</string>
-    <string name="content_desc_forward">Persiųsti</string>
+    <string name="content_desc_expand">Išskleisti</string>
     <string name="content_desc_collapse">Suskleisti</string>
     <string name="content_desc_mark_as_read">Žymėti kaip skaitytą</string>
     <string name="content_desc_mark_as_unread">Žymėti kaip neskaitytą</string>
@@ -215,6 +222,9 @@
     <string name="login_dialog_text_zero_version_code">\"Web News\" programa grąžino versiją \"0\". Prašome peržvelgti pranešimą apie klaidas: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Ši programos versija nėra suderinama su jūsų Nextcloud Naujienų programa. Atnaujinkite Naujienų programą ir programų sistemą (appframework).</string>
     <string name="login_dialog_title_security_warning">Saugumo įspėjimas</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Kažkas nutiko. Bandykite dar kartą.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Duomenys ir sinchonizavimas</string>
     <string name="pref_title_clearCache">Išvalyti podėlį</string>
