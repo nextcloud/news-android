@@ -1,1 +1,1 @@
-Android App for Nextcloud News
+Android App for Nextcloud News App (requires own Nextcloud instance)
