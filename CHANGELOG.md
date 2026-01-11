@@ -1,6 +1,5 @@
 0.9.9.93
 ---------------------
-
 - Dependency updates
 - Fixed - <a href="https://github.com/nextcloud/news-android/pull/1612">!1612 - Streamline FAB-aware
   Snackbar usage (thanks to @Unpublished)</a>
