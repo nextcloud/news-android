@@ -1,6 +1,5 @@
 0.9.9.92
 ---------------------
-
 - Dependency updates
 - Added - <a href="https://github.com/nextcloud/news-android/pull/1603">!1603 - Automatically
   trigger sync when bottom is reached</a>
