@@ -91,9 +91,11 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
             BufferedReader in = new BufferedReader(new InputStreamReader(isTemp));
             String inputLine;
             String prevLine = "";
+            int lineNumber = 0;
             while ((inputLine = in.readLine()) != null) {
+                lineNumber++;
                 if(inputLine.trim().isEmpty() && prevLine.startsWith("---")) {
-                    Log.e(TAG, "skip empty line after version code in changelog (please fix changelog - remove all empty lines after the version code line)");
+                    Log.e(TAG, "skip empty line after version code in changelog (please fix changelog - remove all empty lines after the version code line - Line: " + lineNumber + ")");
                 } else {
                     changelogArr.add(inputLine.replace("<", "[").replace(">", "]"));
                 }
@@ -115,27 +117,26 @@ public class DownloadChangelogTask extends AsyncTask<Void, Void, String> {
         builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
         builder.append("<changelog bulletedList=\"true\">");
 
-        boolean versionStarted = false;
+        boolean isFirst = true;
 
+        String previousLine = "";
         for (String line : changelogArr) {
-            if (line.startsWith("- ")) {
+            if (line.contains("---------------------")) {
+                if (!isFirst) {
+                    builder.append("</changelogversion>");
+                }
+                builder.append("<changelogversion versionName=\"").append(previousLine).append("\">");
+                isFirst = false;
+            } else if (line.startsWith("- ")) {
                 // change entry
                 builder.append("<changelogtext>");
                 builder.append(line.substring(2).trim());
                 builder.append("</changelogtext>");
-            } else if (line.equals("")) {
-                // version end
-                if (versionStarted) {
-                    versionStarted = false;
-                    builder.append("</changelogversion>");
-                }
-            } else if (!line.contains("---------------------")) {
-                // version start
-                versionStarted = true;
-                builder.append("<changelogversion versionName=\"").append(line).append("\">");
             }
+            previousLine = line;
         }
 
+        builder.append("</changelogversion>");
         builder.append("</changelog>");
 
         return builder.toString();
