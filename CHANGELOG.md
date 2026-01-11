@@ -1,3 +1,16 @@
+0.9.9.93
+---------------------
+
+- Dependency updates
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1612">!1612 - Streamline FAB-aware
+  Snackbar usage (thanks to @Unpublished)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1609">!1609 - Only mark unread
+  items as read</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1620">#1620 - Fix broken
+  changelog</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/issues/1618">#1618 - Fixed broken sync
+  when tapping nextcloud logo</a>
+
 0.9.9.92
 ---------------------
 - Dependency updates
