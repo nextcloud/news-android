@@ -163,7 +163,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
 		binding.expandableListView.setLongClickable(true);
 		binding.expandableListView.setAdapter(lvAdapter);
 
-		binding.headerView.setOnClickListener(v -> ((NewsReaderListActivity) requireActivity()).startSync());
+        binding.headerLogo.setOnClickListener(v -> ((NewsReaderListActivity) requireActivity()).startSync());
 
         lvAdapter.notifyDataSetChanged();
         reloadAdapter();
@@ -235,7 +235,7 @@ public class NewsReaderListFragment extends Fragment implements OnCreateContextM
                 return true;
             } else if (itemId == R.id.drawer_settings) {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
-                getActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
+                requireActivity().startActivityForResult(intent, NewsReaderListActivity.RESULT_SETTINGS);
                 return true;
             } else if (itemId == R.id.action_add_new_folder) {
                 mCallbacks.onCreateFolderClicked();
