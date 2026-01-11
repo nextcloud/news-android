@@ -3,7 +3,7 @@ version: '3'
 services:
   app:
     # https://hub.docker.com/_/nextcloud/tags
-    image: nextcloud:26.0.1-apache
+    image: nextcloud:31.0.9-apache
     volumes:
       - ./nextcloud-data/:/var/www/html
     #restart: no
