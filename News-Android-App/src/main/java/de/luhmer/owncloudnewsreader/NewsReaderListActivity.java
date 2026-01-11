@@ -69,7 +69,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.nextcloud.android.sso.AccountImporter;
 import com.nextcloud.android.sso.api.NextcloudAPI;
@@ -650,9 +649,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	}
 
     private void showSnackbarNewItems(int newItemsCount) {
-		Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
-				getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
-				Snackbar.LENGTH_LONG);
+        Snackbar snackbar = makeFABAwareSnackbar(
+                getResources().getQuantityString(R.plurals.message_bar_new_articles_available, newItemsCount, newItemsCount),
+                Snackbar.LENGTH_LONG
+        );
 		snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
 		//snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.accent_material_dark));
 		// Setting android:TextColor to #000 in the light theme results in black on black
@@ -806,9 +806,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     }
 
     private void showSnackbarNoNewItems() {
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_layout),
+        Snackbar snackbar = makeFABAwareSnackbar(
                 getResources().getString(R.string.message_bar_scroll_top),
-                Snackbar.LENGTH_LONG);
+                Snackbar.LENGTH_LONG
+        );
         snackbar.setAction(getString(R.string.message_bar_reload), mSnackbarListener);
         snackbar.show();
     }
@@ -1013,20 +1014,12 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				reloadCountNumbersOfSlidingPaneAdapter();
 				ndf.refreshCurrentRssView();
 
-				var fab = ndf.binding.fabDoneAll;
-				var snackbar = Snackbar.make(
-						ndf.getView(),
-						getResources().getQuantityString(
-								R.plurals.marked_as_read_message,
-								deletedCount,
-								deletedCount
-						),
-						BaseTransientBottomBar.LENGTH_SHORT
-				);
-				if (fab.getVisibility() == View.VISIBLE) {
-					snackbar.setAnchorView(fab);
-				}
-				snackbar.show();
+                var snackbar = makeFABAwareSnackbar(getResources().getQuantityString(
+                        R.plurals.marked_as_read_message,
+                        deletedCount,
+                        deletedCount
+                ), Snackbar.LENGTH_SHORT);
+                snackbar.show();
 			}
 			return true;
 		} else if (itemId == R.id.menu_downloadMoreItems) {
@@ -1044,7 +1037,21 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void checkAndStartDownloadWebPagesForOfflineReadingPermission() {
+    private Snackbar makeFABAwareSnackbar(String text, int duration) {
+        NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+        var fab = ndf.binding.fabDoneAll;
+        var snackbar = Snackbar.make(
+                binding.coordinatorLayout,
+                text,
+                duration
+        );
+        if (fab.getVisibility() == View.VISIBLE) {
+            snackbar.setAnchorView(fab);
+        }
+        return snackbar;
+    }
+
+    private void checkAndStartDownloadWebPagesForOfflineReadingPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
                     checkSelfPermission(Manifest.permission.FOREGROUND_SERVICE) == PackageManager.PERMISSION_GRANTED) {
