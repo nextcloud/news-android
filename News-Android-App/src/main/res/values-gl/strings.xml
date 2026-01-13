@@ -17,7 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Volver cargar</string>
     <string name="allUnreadFeeds">Todos os elementos sen ler</string>
-    <string name="starredFeeds">Elementos destacados</string>
+    <string name="starredFeeds">Elementos salientados</string>
     <string name="downloadedPodcasts">Downloaded podcasts</string>
     <string name="title_activity_new_feed">Engadir unha nova fonte</string>
 
@@ -29,7 +29,7 @@
     <string name="tv_showing_cached_version">Amosando a versión na memoria tobo</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Destacado</string>
+    <string name="action_starred">Salientado</string>
     <string name="action_read">Ler</string>
     <string name="action_playPodacst">Reproducir o Podcast</string>
     <string name="action_removePodcast">Retirar os ficheiros multimedia de podcast</string>
