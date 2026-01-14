@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">是否要在没有 WiFi 的状况下下载图像？</string>
     <string name="current_version">您正在使用的版本号为：%s</string>
     <string name="widget_header">Nextcloud 新闻</string>
+    <string name="message_bar_scroll_top">重新加载并回到顶部</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d 条新内容</item>
     </plurals>
@@ -121,6 +122,11 @@
     <string name="error_field_required">这个字段是必填的</string>
     <string name="error_invalid_url">网络地址不正确</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="other">标记 %d 项为已读</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="other">已下载 %d 条旧内容</item>
@@ -215,6 +221,9 @@
 
     <string name="pref_oled_mode">黑色背景</string>
     <string name="pref_oled_mode_summary">用于 OLED 屏幕的深色主题</string>
+
+    <string name="pref_detailed_view_zoom">详细视图缩放</string>
+    <string name="pref_detailed_view_zoom_summary">在详细视图中启用缩放内容</string>
 
     <string name="pref_external_player">外部播放器</string>
     <string name="pref_external_player_summary">在您的默认媒体应用程序中播放博客</string>
