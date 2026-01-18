@@ -109,6 +109,7 @@ public class NewsReaderDetailFragment extends Fragment {
 
     // Variables related to mark as read when scrolling
     private boolean mMarkAsReadWhileScrollingEnabled;
+    private boolean mSyncWhenScrolledToBottomEnabled;
     private int previousFirstVisibleItem = -1;
 
     private Long idFolder;
@@ -210,6 +211,7 @@ public class NewsReaderDetailFragment extends Fragment {
         Log.v(TAG, "onResume called!");
 
         mMarkAsReadWhileScrollingEnabled = mPrefs.getBoolean(SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING, false);
+        mSyncWhenScrolledToBottomEnabled = mPrefs.getBoolean(SettingsActivity.CB_SYNC_WHEN_SCROLLED_TO_BOTTOM_STRING, false);
         this.initFastDoneAll(this.requireView());
 
         //When the fragment is instantiated by the xml file, onResume will be called twice
@@ -371,7 +373,7 @@ public class NewsReaderDetailFragment extends Fragment {
                         // trigger sync (to automatically reload) once we reach the end/bottom
                         int lastCompletelyVisibleItem = linearLayoutManager.findLastCompletelyVisibleItemPosition();
                         boolean reachedBottomFully = (lastCompletelyVisibleItem == (totalItemCount - 1));
-                        if (reachedBottomFully) {
+                        if (mSyncWhenScrolledToBottomEnabled && reachedBottomFully) {
                             Log.d(TAG, "Reached end of list - trigger sync");
                             syncTrigger.onNext(true);
                         }
