@@ -2,6 +2,7 @@ package de.luhmer.owncloudnewsreader;
 
 import static de.luhmer.owncloudnewsreader.Constants.USER_INFO_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_MARK_AS_READ_WHILE_SCROLLING_STRING;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_SYNC_WHEN_SCROLLED_TO_BOTTOM_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_OLED_MODE;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.CB_PREF_BACK_OPENS_DRAWER;
@@ -239,6 +240,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOWONLYUNREAD_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_NAVIGATE_WITH_VOLUME_BUTTONS_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_MARK_AS_READ_WHILE_SCROLLING_STRING));
+        bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SYNC_WHEN_SCROLLED_TO_BOTTOM_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SHOW_FAST_ACTIONS));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_SKIP_DETAILVIEW_AND_OPEN_BROWSER_DIRECTLY_STRING));
         bindPreferenceBooleanToValue(prefFrag.findPreference(CB_PREF_BACK_OPENS_DRAWER));

@@ -69,6 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String LV_CACHE_IMAGES_OFFLINE_STRING = "lv_cacheImagesOffline";
 
     public static final String CB_MARK_AS_READ_WHILE_SCROLLING_STRING = "cb_MarkAsReadWhileScrolling";
+    public static final String CB_SYNC_WHEN_SCROLLED_TO_BOTTOM_STRING = "cb_SyncWhenScrolledToBottom";
     public static final String CB_SHOW_FAST_ACTIONS = "cb_ShowFastActions";
     public static final String CB_PREF_BACK_OPENS_DRAWER = "cb_prefBackButtonOpensDrawer";
     public static final String CB_DISABLE_HOSTNAME_VERIFICATION_STRING = "cb_DisableHostnameVerification";
