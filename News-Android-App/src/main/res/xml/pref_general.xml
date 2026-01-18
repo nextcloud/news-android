@@ -80,7 +80,7 @@
             app:iconSpaceReserved="false"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="cb_SyncWhenScrolledToBottom"
             android:title="@string/pref_title_SyncWhenScrolledToBottom"
             app:iconSpaceReserved="false"/>
