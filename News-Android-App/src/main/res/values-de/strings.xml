@@ -173,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Hostnamen-Nachweis deaktivieren</string>
     <string name="pref_title_NavigateWithVolumeButtons">Mit Lautstärketasten navigieren</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Beim Bildlauf als gelesen markieren</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synchronisieren, wenn nach unten geblättert wird</string>
     <string name="pref_title_ShowFastActions">Schnellzugriffsfunktionen aktivieren</string>
     <string name="pref_title_OpenInBrowserDirectly">Detailansicht überspringen und Artikel in Browser öffnen</string>
     <string name="pref_title_BackButtonOpensDrawer">Die Zurück-Taste öffnet das Menü</string>

@@ -179,6 +179,7 @@
     <string name="pref_title_DisableHostnameVerification">Desativar Verificação de Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar usando os botões de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto navegar</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sincronizar ao rolar até o final</string>
     <string name="pref_title_ShowFastActions">Ativar as funções de acesso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltar exibição detalhada e abrir o artigo no navegador</string>
     <string name="pref_title_BackButtonOpensDrawer">O botão Voltar abre o menu</string>
