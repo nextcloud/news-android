@@ -219,7 +219,7 @@ dependencies {
     //androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     //androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
 
-    testImplementation 'org.robolectric:robolectric:4.16'
+    testImplementation 'org.robolectric:robolectric:4.16.1'
 
     // Core library
     androidTestImplementation 'androidx.test:core:1.7.0'
