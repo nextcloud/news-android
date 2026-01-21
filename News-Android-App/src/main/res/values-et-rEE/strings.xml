@@ -173,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Keela serveri nime kontroll</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Alla äärde kerimisel alusta sünkroonimist</string>
     <string name="pref_title_ShowFastActions">Lülita sisse kiirligipääsu funktsionaalsuse</string>
     <string name="pref_title_OpenInBrowserDirectly">Jäta üksikasjalik vaade avamata ning tee seda veebilehitsejas</string>
     <string name="pref_title_BackButtonOpensDrawer">„Tagasi“ nupp avab menüü</string>
