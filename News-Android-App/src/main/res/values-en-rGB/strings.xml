@@ -173,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Disable Hostname Verification</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigate with volume buttons</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Mark as read whilst scrolling</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sync when scrolled to bottom</string>
     <string name="pref_title_ShowFastActions">Activate fast access functions</string>
     <string name="pref_title_OpenInBrowserDirectly">Skip detailed view and open article in the browser</string>
     <string name="pref_title_BackButtonOpensDrawer">Back button opens drawer</string>
