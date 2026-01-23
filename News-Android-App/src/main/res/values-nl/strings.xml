@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Wil je de afbeeldingen downloaden zonder Wi-Fi verbinding?</string>
     <string name="current_version">U gebruikt versie %s</string>
     <string name="widget_header">Nextcloud nieuws</string>
+    <string name="message_bar_scroll_top">Herladen en scroll naar het begin</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nieuw bericht beschikbaar</item>
         <item quantity="other">%d nieuwe berichten beschikbaar</item>
@@ -172,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Deactiveren Hostname verificatie</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigeren met volumeknoppen</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markeren als gelezen bij scrollen</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sync als naar beneden gescrolld</string>
     <string name="pref_title_ShowFastActions">Snelle toegangsfuncties activeren</string>
     <string name="pref_title_OpenInBrowserDirectly">Sla detailvoorbeeld over en open artikel in browser</string>
     <string name="pref_title_BackButtonOpensDrawer">Terug knop opent lade</string>
@@ -226,6 +228,9 @@
 
     <string name="pref_oled_mode">Zwarte achtergrond</string>
     <string name="pref_oled_mode_summary">Voor donker thema op OLED schermen</string>
+
+    <string name="pref_detailed_view_zoom">Gedetailleerde weergave zoom</string>
+    <string name="pref_detailed_view_zoom_summary">Inschakelen inzoomen op inhoud bij gedetailleerde weergave</string>
 
     <string name="pref_external_player">Externe speler</string>
     <string name="pref_external_player_summary">Speel podcasts in je standaard media app</string>

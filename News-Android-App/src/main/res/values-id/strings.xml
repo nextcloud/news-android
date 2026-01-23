@@ -138,6 +138,7 @@
     <string name="pref_rename_action_swipe_left">Aksi saat menggeser ke kiri</string>
 
     <string name="pref_general_search_in_title">Judul</string>
+    <string name="pref_general_search_in_body">Isi</string>
     <string name="pref_general_search_in_both">Keduanya</string>
 
     <string name="dialog_clearing_cache">Membersihkan cache</string>

@@ -191,6 +191,7 @@
     <string name="pref_title_DisableHostnameVerification">Díchumasaigh Fíorú Óstainm</string>
     <string name="pref_title_NavigateWithVolumeButtons">Déan nascleanúint le cnaipí toirte</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcáil léite agus tú ag scrollú</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sioncrónaigh nuair a scrollaigh go bun</string>
     <string name="pref_title_ShowFastActions">Feidhmeanna rochtana tapa a ghníomhachtú</string>
     <string name="pref_title_OpenInBrowserDirectly">Scipeáil radharc mionsonraithe agus oscail alt sa bhrabhsálaí</string>
     <string name="pref_title_BackButtonOpensDrawer">Osclaíonn an cnaipe ar ais tarraiceán</string>
