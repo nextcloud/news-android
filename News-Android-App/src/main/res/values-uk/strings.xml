@@ -70,7 +70,7 @@
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Звантажити зображення</string>
-    <string name="action_img_sharelink">Поділіться посиланням на зображення</string>
+    <string name="action_img_sharelink">Поділітися посиланням на зображення</string>
     <string name="action_img_open">Відкрийте зображення у браузері</string>
     <string name="action_img_copylink">Копіювати посилання на зображення</string>
     <string name="action_link_share">Поділитися посиланням</string>
