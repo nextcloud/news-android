@@ -1,0 +1,2 @@
+- Dependency updates
+- Fixed - !1628 - Make syncing when reaching the bottom optional (thanks to @DoHe)

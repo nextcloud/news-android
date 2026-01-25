@@ -1,3 +1,8 @@
+0.9.9.94
+---------------------
+- Dependency updates
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1628">!1628 - Make syncing when reaching the bottom optional (thanks to @DoHe)</a>
+
 0.9.9.93
 ---------------------
 - Dependency updates
