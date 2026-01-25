@@ -1,5 +1,2 @@
 - Dependency updates
-- Fixed - !1612 - Streamline FAB-aware Snackbar usage (thanks to @Unpublished)
-- Fixed - !1609 - Only mark unread items as read
-- Fixed - #1620 - Fix broken changelog
-- Fixed - #1618 - Fixed broken sync when tapping nextcloud logo
+- Fixed - !1628 - Make syncing when reaching the bottom optional (thanks to @DoHe)
