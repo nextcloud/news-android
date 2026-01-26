@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Chcete stáhnout obrázky bez Wi-Fi připojení?</string>
     <string name="current_version">Používáte verzi %s</string>
     <string name="widget_header">Nextcloud Novinky</string>
+    <string name="message_bar_scroll_top">Znovu načíst a odrolovat nahoru</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nová položka k dispozici</item>
         <item quantity="few">%d nové položky k dispozici</item>
@@ -184,6 +185,7 @@
     <string name="pref_title_DisableHostnameVerification">Vypnout ověřování názvu hostitele</string>
     <string name="pref_title_NavigateWithVolumeButtons">Pohybovat se pomocí tlačítek hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Posouváním po stránce ji označit jako přečtenou</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synchronizovat při odrolování na konec</string>
     <string name="pref_title_ShowFastActions">Aktivovat funkce pro rychlý přístup</string>
     <string name="pref_title_OpenInBrowserDirectly">Přeskočit podrobné zobrazení a otevřít článek v prohlížeči</string>
     <string name="pref_title_BackButtonOpensDrawer">Tlačítko zpět otevře výsuvný panel</string>
@@ -240,6 +242,8 @@
     <string name="pref_oled_mode_summary">Pro tmavý motiv vzhledu na OLED obrazovkách</string>
 
     <string name="pref_detailed_view_zoom">Přiblížení podrobného zobrazení</string>
+    <string name="pref_detailed_view_zoom_summary">Povolit zvětšení obsahu v detailním pohledu</string>
+
     <string name="pref_external_player">Externí přehrávač</string>
     <string name="pref_external_player_summary">Přehrávat podcasty ve výchozí aplikaci pro média</string>
 
