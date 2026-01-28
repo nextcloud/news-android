@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Je, ungependa kupakua picha bila muunganisho wa Wi-Fi?</string>
     <string name="current_version">Unatumia Toleo %s</string>
     <string name="widget_header">Habari za Nextcloud</string>
+    <string name="message_bar_scroll_top">Pakia upya na usogeze hadi juu</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d new item available</item>
         <item quantity="other">%d vitu vipya vinavyopatikana</item>
@@ -172,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Zima Uthibitishaji wa Jina la Mwenyeji</string>
     <string name="pref_title_NavigateWithVolumeButtons">Abiri na vitufe vya sauti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Weka alama kama imesomwa wakati wa kusogeza chini</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sawazisha inaposogezwa hadi chini</string>
     <string name="pref_title_ShowFastActions">Washa kazi za ufikiaji wa haraka</string>
     <string name="pref_title_OpenInBrowserDirectly">Ruka mwonekano wa kina na ufungue makala kwenye kivinjari</string>
     <string name="pref_title_BackButtonOpensDrawer">Kitufe cha kurudi hufungua droo</string>
@@ -226,6 +228,9 @@
 
     <string name="pref_oled_mode">Mandhari nyeusi</string>
     <string name="pref_oled_mode_summary">Kwa mandhari meusi kwenye skrini za OLED</string>
+
+    <string name="pref_detailed_view_zoom">Kuza kwa kina mtazamo</string>
+    <string name="pref_detailed_view_zoom_summary">Washa ukuzaji wa maudhui katika mwonekano wa kina</string>
 
     <string name="pref_external_player">Mchezaji wa nje</string>
     <string name="pref_external_player_summary">Cheza podikasti katika programu yako chaguomsingi ya midia</string>
