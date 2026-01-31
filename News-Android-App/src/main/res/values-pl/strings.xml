@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Czy chcesz pobrać obrazy bez połączenia Wi-Fi?</string>
     <string name="current_version">Używasz wersji %s</string>
     <string name="widget_header">Nextcloud News</string>
+    <string name="message_bar_scroll_top">Odśwież i przewiń do góry</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nowa dostępna pozycja</item>
         <item quantity="few">%d nowe dostępne pozycje</item>
@@ -184,6 +185,7 @@
     <string name="pref_title_DisableHostnameVerification">Wyłącz weryfikację nazwy hosta</string>
     <string name="pref_title_NavigateWithVolumeButtons">Nawiguj za pomocą przycisków głośności</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Oznacz jako przeczytane podczas przewijania</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synchronizuj po przewinięciu w dół</string>
     <string name="pref_title_ShowFastActions">Aktywuj funkcje szybkiego dostępu</string>
     <string name="pref_title_OpenInBrowserDirectly">Pomiń widok szczegółów i otwórz artykuł w przeglądarce</string>
     <string name="pref_title_BackButtonOpensDrawer">Przycisk wstecz otwiera szufladę</string>
@@ -238,6 +240,9 @@
 
     <string name="pref_oled_mode">Czarne tło</string>
     <string name="pref_oled_mode_summary">Motyw ciemny dla ekranów OLED</string>
+
+    <string name="pref_detailed_view_zoom">Szczegółowy widok powiększenia</string>
+    <string name="pref_detailed_view_zoom_summary">Włącz powiększanie zawartości w widoku szczegółowym</string>
 
     <string name="pref_external_player">Odtwarzacz zewnętrzny</string>
     <string name="pref_external_player_summary">Odtwarzaj podcasty w domyślnej aplikacji multimedialnej</string>

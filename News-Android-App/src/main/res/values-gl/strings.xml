@@ -173,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Desactivar a verificación do nome da máquina/servidor</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegar cos botóns de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido mentres se despraza</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sincronizar ao desprazarse cara abaixo</string>
     <string name="pref_title_ShowFastActions">Activar as funcións de acceso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Omitir a vista detallada e abrir o artigo no navegador</string>
     <string name="pref_title_BackButtonOpensDrawer">O botón de retroceso abre o caixón</string>
