@@ -4,7 +4,7 @@
     <string name="auto_sync_string">Sioncronú uathoibríoch</string>
     <string name="title_activity_sync_interval_selector">Eatramh Sioncronaithe</string>
     <string name="empty_view_content">Uimh míreanna anseo</string>
-    <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="empty_view_content_action">Tarraing síos chun athnuachan</string>
     <string name="toast_GettingMoreItems">Íoslódáil níos mó míreanna tosaithe. Fán le do thoil …</string>
     <string name="no_wifi_available">Níl WiFi ceangailte</string>
     <string name="do_you_want_to_download_without_wifi">Ar mhaith leat na híomhánna a íoslódáil gan nasc Wi-Fi?</string>

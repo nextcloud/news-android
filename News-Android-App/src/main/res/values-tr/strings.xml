@@ -173,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Sunucu adı doğrulanmasın</string>
     <string name="pref_title_NavigateWithVolumeButtons">Ses düğmeleri ile gezilebilsin</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Kaydırırken okundu olarak işaretlensin</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Aşağıya kaydırıldığında eşitlensin</string>
     <string name="pref_title_ShowFastActions">Hızlı erişim işlevlerini aç</string>
     <string name="pref_title_OpenInBrowserDirectly">Ayrıntılı görünümü atlayıp yazıyı tarayıcıda aç</string>
     <string name="pref_title_BackButtonOpensDrawer">Geri düğmesi menüyü açsın</string>

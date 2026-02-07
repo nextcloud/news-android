@@ -209,6 +209,7 @@
     <string name="content_desc_play">Zabava</string>
     <string name="content_desc_pause">Pauza</string>
     <string name="content_desc_forward">Naprijed</string>
+    <string name="content_desc_expand">Proširi</string>
     <string name="content_desc_collapse">Sakrij</string>
     <string name="content_desc_mark_as_read">Označi kao pročitano</string>
     <string name="content_desc_mark_as_unread">Označi kao nepročitano</string>
