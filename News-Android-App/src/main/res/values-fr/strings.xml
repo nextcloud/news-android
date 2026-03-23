@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Voulez-vous télécharger les images sans connexion Wi-Fi ?</string>
     <string name="current_version">Vous utilisez la version %s</string>
     <string name="widget_header">Actualités ownCloud</string>
+    <string name="message_bar_scroll_top">Recharger et défiler tout en haut</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nouvel article disponible</item>
         <item quantity="many">%d nouveaux articles disponibles</item>
@@ -178,6 +179,7 @@
     <string name="pref_title_DisableHostnameVerification">Désactiver la vérification du nom d\'hôte</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synchroniser lors du défilement vers le bas</string>
     <string name="pref_title_ShowFastActions">Activer les fonctions d\'accès rapide</string>
     <string name="pref_title_OpenInBrowserDirectly">Ignorer la vue détaillée et ouvrir dans un navigateur</string>
     <string name="pref_title_BackButtonOpensDrawer">Le bouton Retour ouvre le dossier</string>
@@ -232,6 +234,9 @@
 
     <string name="pref_oled_mode">Arrière-plan sombre</string>
     <string name="pref_oled_mode_summary">Pour le thème sombre sur les écrans OLED</string>
+
+    <string name="pref_detailed_view_zoom">Zoom de la vue détaillée</string>
+    <string name="pref_detailed_view_zoom_summary">Activer le zom sur le contenu de la vue détaillée</string>
 
     <string name="pref_external_player">Lecteur externe</string>
     <string name="pref_external_player_summary">Lire les podcasts dans votre application multimédia par défaut</string>
