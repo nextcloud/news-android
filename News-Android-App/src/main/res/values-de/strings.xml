@@ -89,7 +89,7 @@
     <string name="action_feed_open_in_detailed_view">Detaillierte Ansicht</string>
     <string name="feed_remove_button">Entfernen</string>
     <string name="feed_rename_button">Umbenennen</string>
-    <string name="confirm_feed_remove">Möchten Sie diesen Feed entfernen? Dies kann nicht rückgängig gemacht werden!</string>
+    <string name="confirm_feed_remove">Soll dieser Feed entfernt werden? Dies kann nicht rückgängig gemacht werden!</string>
     <string name="feed_move_list_description">Den Zielordner für den Feed auswählen</string>
     <string name="move_feed_root_folder">Quellordner</string>
 
@@ -99,7 +99,7 @@
     <string name="action_folder_rename">Ordner umbenennen</string>
     <string name="folder_remove_button">Entfernen</string>
     <string name="folder_rename_button">Umbenennen</string>
-    <string name="confirm_folder_remove">Möchten Sie diesen Ordner entfernen? Dies kann nicht rückgängig gemacht werden!</string>
+    <string name="confirm_folder_remove">Soll dieser Ordner entfernt werden? Dies kann nicht rückgängig gemacht werden!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
     <string name="notification_feed_unique">Spezielle Benachrichtigungen für diesen Feed erhalten</string>
@@ -192,7 +192,7 @@
     <string name="podcast_playback_speed_dialog_title">Wiedergabegeschwindigkeit</string>
     <string name="notification_downloading_podcast_title">Podcast wird heruntergeladen</string>
     <string name="dialog_podcast_remove_title">Sind Sie sicher?</string>
-    <string name="dialog_podcast_remove_body">Möchten Sie heruntergeladene Medien für %1$s entfernen?</string>
+    <string name="dialog_podcast_remove_body">Sollen die heruntergeladenen Medien für %1$s entfernt werden?</string>
     <string name="dialog_podcast_status_failed">Medien für %1$s konnten nicht entfernt werden</string>
     <string name="dialog_podcast_status_success">Medien für %1$s wurden entfernt</string>
     <string name="dialog_podcast_remove_confirm">Entfernen</string>
