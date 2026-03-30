@@ -26,6 +26,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.greenrobot.dao.query.LazyList;
+import de.greenrobot.dao.query.Query;
 import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.dao.query.WhereCondition;
 import de.luhmer.owncloudnewsreader.Constants;
@@ -312,24 +313,25 @@ public class DatabaseConnectionOrm {
                 "(SELECT " + CurrentRssItemViewDao.Properties.RssItemId.columnName + " FROM " + CurrentRssItemViewDao.TABLENAME + ") AND " +
                 RssItemDao.Properties.Read_temp.columnName + "= 0");
 
+        Query<RssItem> query = daoSession
+                .getRssItemDao()
+                .queryBuilder()
+                .where(whereCondition)
+                .limit(itemsPerIteration)
+                .build();
+
         int iterationCount = 0;
         List<RssItem> rssItemList;
         do {
-            int offset = iterationCount * itemsPerIteration;
-            rssItemList = daoSession
-                    .getRssItemDao()
-                    .queryBuilder()
-                    .where(whereCondition)
-                    .limit(itemsPerIteration)
-                    .offset(offset)
-                    .listLazy();
+            rssItemList = query.listLazy();
+
             for (RssItem rssItem : rssItemList) {
                 rssItem.setRead_temp(true);
             }
             daoSession.getRssItemDao().updateInTx(rssItemList);
 
             iterationCount++;
-        } while(rssItemList.size() == itemsPerIteration);
+        } while (rssItemList.size() == itemsPerIteration);
         return (iterationCount - 1) * itemsPerIteration + rssItemList.size();
     }
 
