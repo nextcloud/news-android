@@ -1,0 +1,2 @@
+- Dependency updates
+- Fixed - !1637 - Fix bug in "Mark all unread items as read" feature (thanks to @Unpublished)
