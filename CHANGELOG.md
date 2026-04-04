@@ -1,3 +1,8 @@
+0.9.9.95
+---------------------
+- Dependency updates
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1628">!1637 - Fix bug in "Mark all unread items as read" feature (thanks to @Unpublished)</a>
+
 0.9.9.94
 ---------------------
 - Dependency updates
