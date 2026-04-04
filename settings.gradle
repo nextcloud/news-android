@@ -1,3 +1,8 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+}
 include ':News-Android-App'
-// include ':MaterialShowcaseView:library'
 // include ':Android-SingleSignOn:lib'
