@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Letölti a képeket Wi-Fi kapcsolat nélkül?</string>
     <string name="current_version">A(z) %s verziót használja</string>
     <string name="widget_header">Nextcloud hírek</string>
+    <string name="message_bar_scroll_top">Újratöltés és felgörgetés</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d új elem érhető el</item>
         <item quantity="other">%d új elem érhető el</item>
@@ -172,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">A gépnévellenőrzés kikapcsolása</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigáljon a hangerőszabályzó gombokkal</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Görgetés közben megjelölés olvasottként</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Szinkronizálás az aljára görgetéskor</string>
     <string name="pref_title_ShowFastActions">Gyors elérési funkciók aktiválása</string>
     <string name="pref_title_OpenInBrowserDirectly">Részletes nézet megjelenítésének átugrása és megnyitás böngészőben</string>
     <string name="pref_title_BackButtonOpensDrawer">A vissza gomb megnyitja a fiókot</string>
@@ -226,6 +228,9 @@
 
     <string name="pref_oled_mode">Fekete háttér</string>
     <string name="pref_oled_mode_summary">Sötét témához OLED kijelzőkön</string>
+
+    <string name="pref_detailed_view_zoom">Nagyítás részletes nézetben</string>
+    <string name="pref_detailed_view_zoom_summary">Tartalom nagyításának engedélyezése részletes nézetben</string>
 
     <string name="pref_external_player">Külső lejátszó</string>
     <string name="pref_external_player_summary">Podcastok lejátszása az alapértelmezett médiaalkalmazásában</string>
