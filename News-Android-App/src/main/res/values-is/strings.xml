@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Viltu sækja myndirnar án Wi-Fi-tengingar?</string>
     <string name="current_version">Þú ert að nota útgáfu %s</string>
     <string name="widget_header">Nextcloud-fréttir</string>
+    <string name="message_bar_scroll_top">Endurhlaða og skruna efst</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nýtt atriði tiltækt</item>
         <item quantity="other">%d ný atriði tiltæk</item>
@@ -172,6 +173,7 @@
     <string name="pref_title_DisableHostnameVerification">Gera sannvottun hýsilvélar óvirka</string>
     <string name="pref_title_NavigateWithVolumeButtons">Flakka með hnöppum fyrir hljóðstyrk</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Merkja sem lesið við skrun</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Samstilla þegar skrunað er niður til botns</string>
     <string name="pref_title_ShowFastActions">Virkja aðgerðir fyrir skyndiaðgang</string>
     <string name="pref_title_OpenInBrowserDirectly">Sleppa ítarlegri sýn og opna greinina í vafranum</string>
     <string name="pref_title_BackButtonOpensDrawer">Til baka-hnappur opnar sleða</string>
@@ -226,6 +228,9 @@
 
     <string name="pref_oled_mode">Svartur bakgrunnur</string>
     <string name="pref_oled_mode_summary">Fyrir dökkt þema á OLED-skjám</string>
+
+    <string name="pref_detailed_view_zoom">Aðdráttur ítarlegrar sýnar</string>
+    <string name="pref_detailed_view_zoom_summary">Virkja aðdrátt að efni þegar verið er í ítarlegri sýn</string>
 
     <string name="pref_external_player">Utanaðkomandi spilari</string>
     <string name="pref_external_player_summary">Spilaðu hlaðvörp í sjálfgefna margmiðlunarspilaranum þínum</string>
