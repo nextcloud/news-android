@@ -142,6 +142,7 @@
     <string name="pref_title_general_search_in">Ieškoti</string>
 
     <string name="pref_general_search_in_title">Pavadinimas</string>
+    <string name="pref_general_search_in_body">Teksto dalis</string>
     <string name="pref_general_search_in_both">Abu</string>
 
     <string name="dialog_clearing_cache">Išvalomas podėlis</string>
