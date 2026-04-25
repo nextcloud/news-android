@@ -167,6 +167,7 @@
     <string name="pref_title_DisableHostnameVerification">禁用主机名校验</string>
     <string name="pref_title_NavigateWithVolumeButtons">用音量键导航</string>
     <string name="pref_title_MarkAsReadWhileScrolling">当滚动时标记为已读</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">滚动到底部时同步</string>
     <string name="pref_title_ShowFastActions">激活快速访问功能</string>
     <string name="pref_title_OpenInBrowserDirectly">跳过详情查看并在浏览器中打开文章</string>
     <string name="pref_title_BackButtonOpensDrawer">返回按钮打开侧边栏</string>
