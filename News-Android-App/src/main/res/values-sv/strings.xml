@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkintervall </string>
     <string name="empty_view_content">Inga objekt här</string>
     <string name="empty_view_content_action">Dra nedåt för uppdatera</string>
-    <string name="toast_GettingMoreItems">Nedladdning av ytterligare poster har påbörjats. Vänligen vänta...</string>
+    <string name="toast_GettingMoreItems">Nedladdning av ytterligare poster har påbörjats. Vänta...</string>
     <string name="no_wifi_available">Ingen Wi-Fi ansluten</string>
     <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilder utan wifi-anslutning?</string>
     <string name="current_version">Du använder Version %s</string>
@@ -47,8 +47,8 @@
     <string name="notification_download_articles_offline">Hämtar artiklar som kan användas frånkopplad</string>
     <string name="notification_download_images_offline">Hämtar bilder som kan användas frånkopplad</string>
     <plurals name="notification_new_items_ticker">
-        <item quantity="one">Du har %d oläst sak</item>
-        <item quantity="other">Du har %d olästa saker</item>
+        <item quantity="one">Du har %d oläst objekt</item>
+        <item quantity="other">Du har %d olästa objekt</item>
     </plurals>
     <plurals name="notification_new_items_text">
         <item quantity="one">%d ny oläst artikel tillgänglig</item>
@@ -70,7 +70,7 @@
     <string name="action_link_share">Dela länk</string>
     <string name="action_link_open">Öppna länk i webbläsaren</string>
     <string name="action_link_copy">Kopiera länk</string>
-    <string name="toast_img_download_wait">Laddar ner, vänligen vänta …</string>
+    <string name="toast_img_download_wait">Laddar ner, vänta …</string>
     <string name="toast_img_saved">Bild sparad</string>
     <string name="toast_img_notwriteable">Misslyckades att skriva bilden.</string>
     <string name="toast_copied_to_clipboard">Kopierat till urklipp</string>
@@ -164,7 +164,7 @@
     <string name="pref_general_search_in_both">Både</string>
 
     <string name="dialog_clearing_cache">Rensar cachen</string>
-    <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänligen vänta …</string>
+    <string name="dialog_clearing_cache_please_wait">Rensar cachen, vänta …</string>
     <string name="reset_cache_unsaved_changes">Det finns ändringar som ännu inte har synkroniserats. Vill du återställa cachen ändå?</string>
     <string name="warning">Varning</string>
     <string name="pref_title_AutoSyncOnStart">Synkronisera vid uppstart</string>
@@ -279,7 +279,7 @@
     <string name="pref_header_data_sync">Data &amp; synkronisering</string>
     <string name="pref_title_clearCache">Rensa cachen</string>
     <string name="pref_title_CacheImagesOffline">Cacha bilder frånkopplad</string>
-    <string name="pref_title_Max_Cache_Size">Max Cache-storlek</string>
+    <string name="pref_title_Max_Cache_Size">Maximal cachestorlek</string>
 
     <string name="pref_data_sync_image_cache_never">Aldrig</string>
     <string name="pref_data_sync_image_cache_wifi_only">Endast över Wi-Fi</string>
@@ -299,10 +299,10 @@
     <string name="array_sync_interval_hour_24">24 timmar</string>
     <string name="switch_account">Växla konto</string>
     
-    <string name="successfully_exported">Lyckad exportering till:</string>
+    <string name="successfully_exported">Exporten lyckades till:</string>
     <string name="opml_export">OPML-export</string>
     <string name="parsing_opml">Läser OPML</string>
-    <string name="please_wait">Vänlig vänta...</string>
-    <string name="interval_sync_title">Synkningsintervall</string>
+    <string name="please_wait">Vänta...</string>
+    <string name="interval_sync_title">Synkroniseringsintervall</string>
 
     </resources>
