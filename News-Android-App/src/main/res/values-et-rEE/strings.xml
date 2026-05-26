@@ -35,10 +35,10 @@
     <string name="action_removePodcast">Eemalda taskuhäälingu meedia</string>
     <string name="action_openInBrowser">Ava veebilehitsejas</string>
     <string name="action_Share">Jaga</string>
-    <string name="action_login">Serveri seaded</string>
+    <string name="action_login">Serveri seadistused</string>
     <string name="action_save">Salvesta</string>
-    <string name="action_settings">Seaded</string>
-    <string name="action_sync_settings">Sync seaded</string>
+    <string name="action_settings">Seadistused</string>
+    <string name="action_sync_settings">Sünkroonimise seadistused</string>
     <string name="action_add_new_feed">Lisa uudisvoog</string>
     <string name="action_add_new_folder">Lisa uus kaust</string>
     <string name="action_textToSpeech">Loe ette</string>
@@ -144,7 +144,7 @@
 
 
     <!-- Strings related to Settings -->
-    <string name="title_activity_settings">Seaded</string>
+    <string name="title_activity_settings">Seadistused</string>
     <string name="cache_is_cleared">Vahemälu on tühjendatud!</string>
 
 
