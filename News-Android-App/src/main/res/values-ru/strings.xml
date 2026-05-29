@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Вы хотите скачать изображения без Wi-Fi соединения?</string>
     <string name="current_version">Вы используете версию %s</string>
     <string name="widget_header">Новости ownCloud</string>
+    <string name="message_bar_scroll_top">Перезагрузите и прокрутите вверх</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">доступен %d новый элемент</item>
         <item quantity="few">доступно %d новых элемента</item>
@@ -184,6 +185,7 @@
     <string name="pref_title_DisableHostnameVerification">Отключить проверку доменного имени </string>
     <string name="pref_title_NavigateWithVolumeButtons">Навигация с помощью клавиш регулировки громкости</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Отмечать как прочитанное при прокрутке</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Синхронизировать при прокрутке вниз</string>
     <string name="pref_title_ShowFastActions">Включить функции быстрого доступа</string>
     <string name="pref_title_OpenInBrowserDirectly">Пропустить детальный обзор и открыть статью в браузере</string>
     <string name="pref_title_BackButtonOpensDrawer">Кнопка \"Назад\" открывает ящик</string>
@@ -238,6 +240,9 @@
 
     <string name="pref_oled_mode">Чёрный фон</string>
     <string name="pref_oled_mode_summary">Для тёмного стиля оформления на экранах OLED</string>
+
+    <string name="pref_detailed_view_zoom">Масштабирование в подробном предоставлении</string>
+    <string name="pref_detailed_view_zoom_summary">Включить масштабирование содержимого в подробном представлении</string>
 
     <string name="pref_external_player">Внешний плеер</string>
     <string name="pref_external_player_summary">Воспроизводить подкасты в вашем мультимедийном приложении по умолчанию</string>
