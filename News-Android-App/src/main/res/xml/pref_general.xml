@@ -134,6 +134,15 @@
             android:title="@string/pref_title_general_search_in"
             app:iconSpaceReserved="false"/>
 
+        <!-- Opens the system Text-to-Speech settings so the user can pick a better engine/voice. -->
+        <Preference
+            android:key="pref_tts_settings"
+            android:title="@string/pref_title_tts_settings"
+            android:summary="@string/pref_summary_tts_settings"
+            app:iconSpaceReserved="false">
+            <intent android:action="com.android.settings.TTS_SETTINGS" />
+        </Preference>
+
         <!--
              NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
              dismiss it.
