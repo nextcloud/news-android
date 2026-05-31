@@ -297,41 +297,44 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
-        MediaButtonReceiver.handleIntent(mSession, intent);
-
-        if (intent != null) {
-            if (mPlaybackService != null) {
-                mPlaybackService.destroy();
-                mPlaybackService = null;
-            }
-
-            stopProgressUpdates();
-
-            if(intent.hasExtra(MEDIA_ITEM)) {
-                MediaItem mediaItem = (MediaItem) intent.getSerializableExtra(MEDIA_ITEM);
-
-                if (mediaItem instanceof PodcastItem) {
-                    //if (((PodcastItem) mediaItem).isYoutubeVideo()) {
-                    //    mPlaybackService = new YoutubePlaybackService(this, podcastStatusListener, mediaItem);
-                    //} else {
-                        mPlaybackService = new MediaPlayerPlaybackService(this, podcastStatusListener, mediaItem);
-                    //}
-                } else if (mediaItem instanceof TTSItem) {
-                    mPlaybackService = new TTSPlaybackService(this, podcastStatusListener, mediaItem);
-                }
-
-                updateMetadata(mediaItem);
-
-                // Update notification after setting metadata (notification uses metadata information)
-                podcastNotification.createPodcastNotification();
-
-                mPlaybackService.playbackSpeedChanged(currentPlaybackSpeed);
-
-                startProgressUpdates();
-
-                requestAudioFocus();
-            }
+        if (intent == null) {
+            return super.onStartCommand(null, flags, startId);
         }
+
+        if (!intent.hasExtra(MEDIA_ITEM)) {
+            MediaButtonReceiver.handleIntent(mSession, intent);
+            return super.onStartCommand(intent, flags, startId);
+        }
+
+        if (mPlaybackService != null) {
+            mPlaybackService.destroy();
+            mPlaybackService = null;
+        }
+
+        stopProgressUpdates();
+
+        MediaItem mediaItem = (MediaItem) intent.getSerializableExtra(MEDIA_ITEM);
+
+        if (mediaItem instanceof PodcastItem) {
+            //if (((PodcastItem) mediaItem).isYoutubeVideo()) {
+            //    mPlaybackService = new YoutubePlaybackService(this, podcastStatusListener, mediaItem);
+            //} else {
+                mPlaybackService = new MediaPlayerPlaybackService(this, podcastStatusListener, mediaItem);
+            //}
+        } else if (mediaItem instanceof TTSItem) {
+            mPlaybackService = new TTSPlaybackService(this, podcastStatusListener, mediaItem);
+        }
+
+        updateMetadata(mediaItem);
+
+        // Update notification after setting metadata (notification uses metadata information)
+        podcastNotification.createPodcastNotification();
+
+        mPlaybackService.playbackSpeedChanged(currentPlaybackSpeed);
+
+        startProgressUpdates();
+
+        requestAudioFocus();
 
         return super.onStartCommand(intent, flags, startId);
     }
