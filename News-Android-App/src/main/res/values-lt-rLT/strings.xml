@@ -191,7 +191,7 @@
     <string name="pref_title_BackButtonOpensDrawer">Grįžimo mygtukas atveria meniu</string>
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Priimti nežinomą liudijimą?</string>
+    <string name="mtm_accept_cert">Priimti nežinomą sertifikatą?</string>
     <string name="mtm_decision_always">Visada</string>
     <string name="mtm_decision_abort">Nutraukti</string>
     <string name="mtm_notification">Sertifikato patikrinimas</string>
