@@ -43,3 +43,6 @@ News-Android-App/oss/release/*
 fastlane/Appfile
 fastlane/report.xml
 gradle/verification-keyring.gpg
+
+# Environment variables and secrets
+.env

@@ -16,34 +16,69 @@
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
+  private_lane :load_local_env do
+    env_path = File.expand_path("../.env", __dir__)
+    return unless File.exist?(env_path)
+
+    File.foreach(env_path) do |line|
+      trimmed = line.strip
+      next if trimmed.empty? || trimmed.start_with?("#")
+
+      key, value = trimmed.split("=", 2)
+      next if key.nil? || value.nil?
+
+      # Support quoted values in plain KEY=VALUE .env files.
+      value = value.strip.sub(/^['\"]/, "").sub(/['\"]$/, "")
+      ENV[key.strip] = value
+    end
+
+    UI.message("Loaded environment variables from .env")
   end
 
-  desc "Submit a new Beta Build to Google Play"
-  lane :beta do
+  desc "Build signed release APK/AAB locally"
+  private_lane :build_signed_release do
+    load_local_env
+
     gradle(
       task: "clean assemble",
       flavor: "oss",
       build_type: "Release",
       properties: {
-          "android.injected.signing.store.file" => "",
-          "android.injected.signing.store.password" => "",
-          "android.injected.signing.key.alias" => "",
-          "android.injected.signing.key.password" => "",
+          "android.injected.signing.store.file" => ENV["ANDROID_KEYSTORE_PATH"],
+          "android.injected.signing.store.password" => ENV["ANDROID_KEYSTORE_PASSWORD"],
+          "android.injected.signing.key.alias" => ENV["ANDROID_KEY_ALIAS"],
+          "android.injected.signing.key.password" => ENV["ANDROID_KEY_PASSWORD"],
       }
     )
+
+    # Gradle action stores output paths in lane_context after build.
+    artifact_path = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH] ||
+                    Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH] ||
+                    Actions.lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS]&.first ||
+                    Actions.lane_context[SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS]&.first
+
+    artifact_directory = artifact_path ? File.dirname(artifact_path) : "./News-Android-App/build/outputs"
+    UI.success("✅ Release artifact built successfully - directory is: #{artifact_directory}")
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build a release APK locally (dry-run, no upload)"
+  lane :build_release do
+    build_signed_release
+  end
+
+  desc "Submit a new Beta Build to Google Play"
+  lane :beta do
+    build_signed_release
     upload_to_play_store(
         track: 'beta',
         release_status: 'draft',
         mapping: './News-Android-App/build/outputs/mapping/ossRelease/mapping.txt'
     )
+    UI.success("✅ Release APK built and uploaded it to Google Play as a Draft!")
   end
-
-  #desc "Deploy a new version to the Google Play"
-  #lane :deploy do
-  #  gradle(task: "clean assembleRelease")
-  #  upload_to_play_store
-  #end
 end
