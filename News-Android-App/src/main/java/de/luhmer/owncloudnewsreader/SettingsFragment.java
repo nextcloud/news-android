@@ -19,6 +19,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_PASSWORD_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.EDT_USERNAME_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.LV_CACHE_IMAGES_OFFLINE_STRING;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_SYNC_SETTINGS;
+import static de.luhmer.owncloudnewsreader.SettingsActivity.PREF_TTS_SETTINGS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_APP_THEME;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_DISPLAY_BROWSER;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_FEED_LIST_LAYOUT;
@@ -33,6 +34,7 @@ import static de.luhmer.owncloudnewsreader.SettingsActivity.SYNC_INTERVAL_IN_MIN
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -75,6 +77,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     protected @Inject SharedPreferences mPrefs;
     protected @Inject @Named("sharedPreferencesFileName") String sharedPreferencesFileName;
     private static String version = "<loading>";
+    private static final String ACTION_TEXT_TO_SPEECH_SETTINGS = "com.android.settings.TTS_SETTINGS";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -248,6 +251,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SEARCH_IN));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SWIPE_RIGHT_ACTION));
         bindPreferenceSummaryToValue(prefFrag.findPreference(SP_SWIPE_LEFT_ACTION));
+
+        Preference ttsSettingsPreference = prefFrag.findPreference(PREF_TTS_SETTINGS);
+        Intent ttsSettingsIntent = new Intent(ACTION_TEXT_TO_SPEECH_SETTINGS);
+        if (ttsSettingsIntent.resolveActivity(requireContext().getPackageManager()) == null) {
+            ttsSettingsPreference.setEnabled(false);
+        } else {
+            ttsSettingsPreference.setOnPreferenceClickListener(preference -> {
+                try {
+                    startActivity(ttsSettingsIntent);
+                } catch (ActivityNotFoundException e) {
+                    preference.setEnabled(false);
+                }
+                return true;
+            });
+        }
     }
 
     /**
