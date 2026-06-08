@@ -160,9 +160,6 @@
 
     <string name="pref_title_general_search_in">Suche in</string>
 
-    <string name="pref_title_tts_settings">Sprachausgabe und Stimme</string>
-    <string name="pref_summary_tts_settings">Öffnet die Systemeinstellungen, um Modul und Stimme für das Vorlesen von Artikeln zu wählen</string>
-
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Artikel</string>
     <string name="pref_general_search_in_both">Beide</string>
