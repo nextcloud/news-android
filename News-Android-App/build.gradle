@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.devtools.ksp'
     id 'io.gitlab.arturbosch.detekt' version "1.23.8"
-    id "com.diffplug.spotless" version "8.2.1"
+    id "com.diffplug.spotless" version "8.6.0"
 }
 
 android {
