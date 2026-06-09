@@ -4,15 +4,15 @@
     <string name="auto_sync_string">Automaatne sünkimine</string>
     <string name="title_activity_sync_interval_selector">Sünkimise välp</string>
     <string name="empty_view_content">Siin pole kirjeid</string>
-    <string name="empty_view_content_action">Pull down to refresh</string>
+    <string name="empty_view_content_action">Andmete uuendamiseks viipa alla</string>
     <string name="toast_GettingMoreItems">Täiendavate kirjete allalaadimine algas. Palun oota…</string>
     <string name="no_wifi_available">WiFi pole ühendatud</string>
     <string name="do_you_want_to_download_without_wifi">Kas sa soovid pilte alla laadida ka väljaspool WiFi ühendust?</string>
-    <string name="current_version">Sa kasutad versioon %s</string>
+    <string name="current_version">Sa kasutad versiooni %s</string>
     <string name="widget_header">Nextcloudi uudised</string>
     <string name="message_bar_scroll_top">Laadi uuesti ja keri üles äärde</string>
     <plurals name="message_bar_new_articles_available">
-        <item quantity="one">Saadaval on %d uus kirjet</item>
+        <item quantity="one">Saadaval on %d uus kirje</item>
         <item quantity="other">Saadaval on %d uut kirjet</item>
     </plurals>
     <string name="message_bar_reload">Laadi uuesti</string>
@@ -32,7 +32,7 @@
     <string name="action_starred">Tärniga märgitud</string>
     <string name="action_read">Lugemine</string>
     <string name="action_playPodacst">Esita taskuhäälingut</string>
-    <string name="action_removePodcast">Eemalda taskuhäälingu meedia</string>
+    <string name="action_removePodcast">Eemalda taskuhäälingu meedium</string>
     <string name="action_openInBrowser">Ava veebilehitsejas</string>
     <string name="action_Share">Jaga</string>
     <string name="action_login">Serveri seadistused</string>
@@ -116,8 +116,8 @@
     <string name="login_sso">Logi sisse Nextcloudi Failirakendusega</string>
     <string name="pref_title_username">Kasutajanimi</string>
     <string name="pref_title_password">Salasõna</string>
-    <string name="pref_title_owncloudRootPath">Nextcloudii juuraddress</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Nextcloudi juuraddress</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Logi sisse</string>
     <string name="login_progress_signing_in">Sisselogimisel…</string>
@@ -160,13 +160,16 @@
 
     <string name="pref_title_general_search_in">Otsi siit</string>
 
+    <string name="pref_title_tts_settings">Kõnesünteesi mootor ja hääl</string>
+    <string name="pref_summary_tts_settings">Ava süsteemi seadistused ja vali artiklite ettelugemiseks kasutatav kõnesünteesi mootor ja hääl</string>
+
     <string name="pref_general_search_in_title">Pealkiri</string>
     <string name="pref_general_search_in_body">Sisu</string>
     <string name="pref_general_search_in_both">Mõlemad</string>
 
     <string name="dialog_clearing_cache">Tühjendan puhvrit</string>
     <string name="dialog_clearing_cache_please_wait">Vahemälu on kustutamisel, palun oota…</string>
-    <string name="reset_cache_unsaved_changes">Esineb sünkroniseerimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
+    <string name="reset_cache_unsaved_changes">Leidub sünkroonimata muudatusi. Kas soovid puhvri sellegipoolest lähtestada?</string>
     <string name="warning">Hoiatus</string>
     <string name="pref_title_AutoSyncOnStart">Sünkroniseeri käivitamisel</string>
     <string name="pref_title_ShowOnlyUnread">Näita ainult lugemata artikleid</string>
@@ -174,7 +177,7 @@
     <string name="pref_title_NavigateWithVolumeButtons">Navigeeri häälevaljuse nuppudega</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Märgi kerides loetuks</string>
     <string name="pref_title_SyncWhenScrolledToBottom">Alla äärde kerimisel alusta sünkroonimist</string>
-    <string name="pref_title_ShowFastActions">Lülita sisse kiirligipääsu funktsionaalsuse</string>
+    <string name="pref_title_ShowFastActions">Lülita sisse kiirligipääsu funktsionaalsused</string>
     <string name="pref_title_OpenInBrowserDirectly">Jäta üksikasjalik vaade avamata ning tee seda veebilehitsejas</string>
     <string name="pref_title_BackButtonOpensDrawer">„Tagasi“ nupp avab menüü</string>
 
@@ -186,19 +189,19 @@
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Ühtegi podcasti pole valitud</string>
+    <string name="no_podcast_selected">Ühtegi taskuhäälingut pole valitud</string>
     <string name="no_chapters_available">Ühtegi peatükki pole saadaval</string>
     <string name="exit_playback">Sulge meediaesitaja</string>
     <string name="podcast_playback_speed_dialog_title">Taasesituse kiirus</string>
     <string name="notification_downloading_podcast_title">Taskuhääling on allalaadimisel</string>
     <string name="dialog_podcast_remove_title">Kas oled kindel?</string>
-    <string name="dialog_podcast_remove_body">Oled sa kindel, et soovid „%1$s“ allalaaditud meediafailid kustutada?</string>
-    <string name="dialog_podcast_status_failed">„%1$s“ meediafailide kustutamine ei õnnestunud</string>
-    <string name="dialog_podcast_status_success">„%1$s“ meediafailid on kustutatud</string>
+    <string name="dialog_podcast_remove_body">Oled sa kindel, et soovid „%1$s“ allalaaditud meediafaili kustutada?</string>
+    <string name="dialog_podcast_status_failed">„%1$s“ meediumifailide kustutamine ei õnnestunud</string>
+    <string name="dialog_podcast_status_success">„%1$s“ meediumifailid on kustutatud</string>
     <string name="dialog_podcast_remove_confirm">Eemalda</string>
 
     <!-- Settings for About -->
-    <string name="pref_header_about">Info</string>
+    <string name="pref_header_about">Rakenduse teave</string>
     <string name="pref_license">Litsents</string>
     <string name="pref_license_summary">GNU Affero Üldine Avalik Litsents (AGPL), versioon 3</string>
     <string name="pref_report_issue">Teata veast</string>
@@ -265,7 +268,7 @@
     <string name="content_desc_tap_to_refresh">Uuendamiseks klõpsi</string>
     <string name="content_desc_add_to_favorites">Lisa lemmikutesse</string>
     <string name="content_desc_remove_from_favorites">Eemalda lemmikutest</string>
-    <string name="content_desc_show_password">Näita saalsõna</string>
+    <string name="content_desc_show_password">Näita salasõna</string>
     <string name="content_desc_delete">Kustuta</string>
     <string name="content_desc_download">Laadi alla</string>
 
@@ -281,9 +284,9 @@
 
 
     <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Andmed &amp; sünkroniseerimine</string>
+    <string name="pref_header_data_sync">Andmed ja sünkroonimine</string>
     <string name="pref_title_clearCache">Tühjenda puhver</string>
-    <string name="pref_title_CacheImagesOffline">Puhverda pildid võrguta seisu</string>
+    <string name="pref_title_CacheImagesOffline">Puhverda pildid kasutamiseks võrguühenduseta</string>
     <string name="pref_title_Max_Cache_Size">Maksimaalne puhvri suurus</string>
 
     <string name="pref_data_sync_image_cache_never">Mitte kunagi</string>

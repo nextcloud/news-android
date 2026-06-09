@@ -154,6 +154,9 @@
 
     <string name="pref_title_general_search_in">搜尋</string>
 
+    <string name="pref_title_tts_settings">語音引擎與語音</string>
+    <string name="pref_summary_tts_settings">開啟系統設定，選擇用於朗讀文章的引擎與語音</string>
+
     <string name="pref_general_search_in_title">標題</string>
     <string name="pref_general_search_in_body">內文</string>
     <string name="pref_general_search_in_both">皆是</string>

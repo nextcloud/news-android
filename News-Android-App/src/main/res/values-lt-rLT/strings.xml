@@ -172,6 +172,9 @@
 
     <string name="pref_title_general_search_in">Ieškoti</string>
 
+    <string name="pref_title_tts_settings">Kalbos variklis ir balsas</string>
+    <string name="pref_summary_tts_settings">Atidarykite sistemos nustatymus, kad pasirinktumėte variklį ir balsą, naudojamus straipsnių skaitymui garsiai</string>
+
     <string name="pref_general_search_in_title">Pavadinimas</string>
     <string name="pref_general_search_in_body">Teksto dalis</string>
     <string name="pref_general_search_in_both">Abu</string>

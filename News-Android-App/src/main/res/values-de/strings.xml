@@ -160,6 +160,9 @@
 
     <string name="pref_title_general_search_in">Suche in</string>
 
+    <string name="pref_title_tts_settings">Sprachengine und Stimme</string>
+    <string name="pref_summary_tts_settings">Systemeinstellungen öffnen, um die Engine und die Stimme auszuwählen, die zum Vorlesen von Artikeln verwendet werden</string>
+
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Artikel</string>
     <string name="pref_general_search_in_both">Beide</string>
