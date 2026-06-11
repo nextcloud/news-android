@@ -172,6 +172,9 @@
 
     <string name="pref_title_general_search_in">Искать в</string>
 
+    <string name="pref_title_tts_settings">Речевой движок и голос</string>
+    <string name="pref_summary_tts_settings">Откройте настройки системы, чтобы выбрать движок и голос для чтения статей вслух</string>
+
     <string name="pref_general_search_in_title">Заголовок</string>
     <string name="pref_general_search_in_body">Тело</string>
     <string name="pref_general_search_in_both">Оба</string>

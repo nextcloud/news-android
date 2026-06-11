@@ -178,6 +178,9 @@
 
     <string name="pref_title_general_search_in">Cuardach Isteach</string>
 
+    <string name="pref_title_tts_settings">Inneall cainte agus guth</string>
+    <string name="pref_summary_tts_settings">Oscail socruithe an chórais chun an t-inneall agus an guth a úsáidtear chun ailt a léamh os ard a roghnú</string>
+
     <string name="pref_general_search_in_title">Teideal</string>
     <string name="pref_general_search_in_body">Corp</string>
     <string name="pref_general_search_in_both">An dá</string>
