@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">آیا می خواهید تصاویر را بدون اتصال Wi-Fi دانلود کنید؟</string>
     <string name="current_version">از نگارش %s استفاده می‌کنید</string>
     <string name="widget_header">اخبار نکست‌کلود</string>
+    <string name="message_bar_scroll_top">Reload and scroll to the top</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d مورد جدید در دسترس است</item>
         <item quantity="other">%d مورد جدید در دسترس است</item>
@@ -17,6 +18,7 @@
     <string name="message_bar_reload">بار کردن دوباره</string>
     <string name="allUnreadFeeds">تمام موارد خوانده‌نشده</string>
     <string name="starredFeeds">موارد ستاره‌دار</string>
+    <string name="downloadedPodcasts">Downloaded podcasts</string>
     <string name="title_activity_new_feed">افزودن خوراک جدید</string>
 
     <string name="menu_update">تازه‌سازی</string>
@@ -30,6 +32,7 @@
     <string name="action_starred">ستاره‌دار</string>
     <string name="action_read">خواندن</string>
     <string name="action_playPodacst">پخش پادکست</string>
+    <string name="action_removePodcast">Remove Podcast Media</string>
     <string name="action_openInBrowser">گشودن در مرورگر وب</string>
     <string name="action_Share">هم‌رسانی</string>
     <string name="action_login">تنظیمات کارساز</string>
@@ -81,6 +84,9 @@
     <string name="action_feed_rename">تغییر نام خوراک</string>
     <string name="action_feed_move">انتقال خوراک</string>
     <string name="action_feed_notification_settings">تنظیمات اعلان</string>
+    <string name="action_feed_open_in">Open-in settings</string>
+    <string name="action_feed_open_in_general_setting">Use general setting</string>
+    <string name="action_feed_open_in_detailed_view">Detailed view</string>
     <string name="feed_remove_button">برداشتن</string>
     <string name="feed_rename_button">تغییرنام</string>
     <string name="confirm_feed_remove">واقعاً می‌خواهید این خوراک را بردارید؟ این عمل قابل بازگشت نیست!</string>
@@ -119,6 +125,12 @@
     <string name="error_field_required">این زمینه لازم است</string>
     <string name="error_invalid_url">نشانی نادرست</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">Marked %d item as read</item>
+        <item quantity="other">Marked %d items as read</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">%d مورد قدیمی بارگیری شد</item>
@@ -148,6 +160,9 @@
 
     <string name="pref_title_general_search_in">جست‌وجو در</string>
 
+    <string name="pref_title_tts_settings">Speech engine and voice</string>
+    <string name="pref_summary_tts_settings">Open the system settings to choose the engine and voice used for reading articles aloud</string>
+
     <string name="pref_general_search_in_title">عنوان</string>
     <string name="pref_general_search_in_body">متن</string>
     <string name="pref_general_search_in_both">Both</string>
@@ -161,8 +176,11 @@
     <string name="pref_title_DisableHostnameVerification">غیرفعّال کردن تأییدیهٔ نام دامنه</string>
     <string name="pref_title_NavigateWithVolumeButtons">ناوبری با دکمه‌های حجم صدا</string>
     <string name="pref_title_MarkAsReadWhileScrolling">علامت گذاری به عنوان خوانده شده در حال پیمایش</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sync when scrolled to bottom</string>
     <string name="pref_title_ShowFastActions">فعال کردن عمل‌کردهای دسترسی سریع</string>
     <string name="pref_title_OpenInBrowserDirectly">پرش از نمای باجزییات و گشودن مقاله در مرورگر</string>
+    <string name="pref_title_BackButtonOpensDrawer">Back button opens drawer</string>
+
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">پذیرش گواهی‌نامهٔ ناشناس؟</string>
     <string name="mtm_decision_always">همواره</string>
@@ -177,6 +195,9 @@
     <string name="podcast_playback_speed_dialog_title">سرعت پخش</string>
     <string name="notification_downloading_podcast_title">بارگیری پادکست</string>
     <string name="dialog_podcast_remove_title">مطمئنی؟</string>
+    <string name="dialog_podcast_remove_body">Do you want to remove downloaded media for %1$s?</string>
+    <string name="dialog_podcast_status_failed">Failed to remove media for %1$s</string>
+    <string name="dialog_podcast_status_success">Media for %1$s has been removed</string>
     <string name="dialog_podcast_remove_confirm">حذف</string>
 
     <!-- Settings for About -->
@@ -189,6 +210,8 @@
     <string name="pref_contribute_summary">کد منبع را دریافت کنید</string>
     <string name="pref_privacy">حریم خصوصی</string>
     <string name="pref_privacy_summary">خط‌ مشی رازداری Nextcloud News Android</string>
+    <string name="pref_news_policy">Contact Us / News Policy</string>
+    <string name="pref_news_policy_summary">Nextcloud News Android News Policy / Contact Us</string>
     <string name="pref_version">برنامه آندروید Nextcloud News</string>
 
 
@@ -208,6 +231,9 @@
 
     <string name="pref_oled_mode">پس‌زمینهٔ سیاه</string>
     <string name="pref_oled_mode_summary">برای زمینهٔ تیره روی صفحه‌های OLED</string>
+
+    <string name="pref_detailed_view_zoom">Detailed view zoom</string>
+    <string name="pref_detailed_view_zoom_summary">Enable zooming the content in the detailed view</string>
 
     <string name="pref_external_player">پخش کننده خارجی</string>
     <string name="pref_external_player_summary">پادکست‌ها را در برنامه رسانه پیش‌فرض خود پخش کنید.</string>

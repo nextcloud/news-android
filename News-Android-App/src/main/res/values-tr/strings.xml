@@ -160,6 +160,9 @@
 
     <string name="pref_title_general_search_in">Şurada aransın</string>
 
+    <string name="pref_title_tts_settings">Konuşma işleyici ve ses</string>
+    <string name="pref_summary_tts_settings">Yazıları yüksek sesle okumak için kullanılacak işleyiciyi ve sesi seçmek için sistem ayarlarını açın</string>
+
     <string name="pref_general_search_in_title">Başlık</string>
     <string name="pref_general_search_in_body">İçerik</string>
     <string name="pref_general_search_in_both">İkisi de</string>
