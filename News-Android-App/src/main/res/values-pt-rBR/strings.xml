@@ -166,6 +166,9 @@
 
     <string name="pref_title_general_search_in">Procurar em</string>
 
+    <string name="pref_title_tts_settings">Gerador de fala e voz</string>
+    <string name="pref_summary_tts_settings">Abra as configurações do sistema para escolher o mecanismo e a voz usados ​​para a leitura de artigos em voz alta.</string>
+
     <string name="pref_general_search_in_title">Título</string>
     <string name="pref_general_search_in_body">Corpo</string>
     <string name="pref_general_search_in_both">Ambos</string>
