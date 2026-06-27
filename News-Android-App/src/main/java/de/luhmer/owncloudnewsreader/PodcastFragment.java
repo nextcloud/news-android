@@ -27,6 +27,8 @@ import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -263,6 +265,7 @@ public class PodcastFragment extends Fragment {
             //sliding_layout.setEnableDragViewTouchEvents(true);
 
             sliding_layout.addPanelSlideListener(onPanelSlideListener);
+            applyPodcastInsets();
         }
 
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
@@ -277,6 +280,26 @@ public class PodcastFragment extends Fragment {
         binding.sbProgress.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
         return binding.getRoot();
+    }
+
+    private void applyPodcastInsets() {
+        final View root = binding.getRoot();
+        final int rootPaddingLeft = root.getPaddingLeft();
+        final int rootPaddingTop = root.getPaddingTop();
+        final int rootPaddingRight = root.getPaddingRight();
+        final int rootPaddingBottom = root.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(sliding_layout, (View v, WindowInsetsCompat insets) -> {
+            var systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            root.setPadding(rootPaddingLeft, rootPaddingTop, rootPaddingRight, rootPaddingBottom + systemBars.bottom);
+
+            if(mActivity instanceof PodcastFragmentActivity) {
+                ((PodcastFragmentActivity) mActivity).setPodcastPanelBottomInset(systemBars.bottom);
+            }
+
+            return insets;
+        });
+        ViewCompat.requestApplyInsets(sliding_layout);
     }
 
 
