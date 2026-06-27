@@ -34,6 +34,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.core.app.PendingIntentCompat;
+import androidx.core.app.TaskStackBuilder;
 
 import java.util.Arrays;
 
@@ -42,6 +43,7 @@ import javax.inject.Inject;
 import de.luhmer.owncloudnewsreader.Constants;
 import de.luhmer.owncloudnewsreader.NewsDetailActivity;
 import de.luhmer.owncloudnewsreader.NewsReaderApplication;
+import de.luhmer.owncloudnewsreader.NewsReaderListActivity;
 import de.luhmer.owncloudnewsreader.R;
 import de.luhmer.owncloudnewsreader.database.DatabaseConnectionOrm;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
@@ -134,11 +136,19 @@ public class WidgetProvider extends AppWidgetProvider {
 
                         Log.v(TAG, "I'm here!!! Widget update works!");
                     } else {
-                        //Intent intentToDoListAct = new Intent(context, TodoListActivity.class);
-                        Intent intentToDoListAct = new Intent(context, NewsDetailActivity.class);
-                        intentToDoListAct.putExtra(RSS_ITEM_ID, rssItemId);
-                        intentToDoListAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intentToDoListAct);
+                        Intent intentDetailAct = new Intent(context, NewsDetailActivity.class);
+                        intentDetailAct.putExtra(RSS_ITEM_ID, rssItemId);
+
+                        // Build a synthetic back stack so that the behaviour is predictable
+                        // regardless of whether the app was already running:
+                        //  - the requested article is always loaded fresh (avoids reusing a
+                        //    stale NewsDetailActivity instance, which showed the wrong article)
+                        //  - pressing back always returns to the news list, then home, instead
+                        //    of sometimes going straight to the home screen.
+                        TaskStackBuilder.create(context)
+                                .addNextIntent(new Intent(context, NewsReaderListActivity.class))
+                                .addNextIntent(intentDetailAct)
+                                .startActivities();
                     }
 
                     Log.v(TAG, "ListItem Clicked Starting Activity for Item: " + rssItemId);
