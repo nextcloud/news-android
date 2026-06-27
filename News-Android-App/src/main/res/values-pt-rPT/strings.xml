@@ -85,6 +85,7 @@
     <string name="action_feed_rename">Renomear Feed</string>
     <string name="action_feed_move">Mover Feed</string>
     <string name="action_feed_notification_settings">Definições de notificação</string>
+    <string name="action_feed_open_in_general_setting">Usar configuração geral</string>
     <string name="feed_remove_button">Remover</string>
     <string name="feed_rename_button">Renomear</string>
     <string name="confirm_feed_remove">Tem a certeza que deseja remover esta Feed? A operação não pode ser anulada!</string>
@@ -113,6 +114,7 @@
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
 
     <string name="action_sign_in_short">Iniciar Sessão</string>
+    <string name="login_progress_signing_in">Fazendo login …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Este campo é obrigatório</string>
     <string name="error_invalid_url">URL incorreto</string>
@@ -133,11 +135,13 @@
     <string name="pref_header_general">Geral</string>
     <string name="pref_title_general_sort_order">Ordem da ordenação</string>
 
+    <string name="pref_rename_action_swipe_right">Ação ao deslizar para a direita</string>
     <string name="pref_title_general_search_in">Pesquisar em</string>
 
     <string name="pref_general_search_in_title">Título</string>
     <string name="pref_general_search_in_body">Corpo</string>
     <string name="dialog_clearing_cache">Limpar cache</string>
+    <string name="dialog_clearing_cache_please_wait">Limpando o cache. Por favor, aguarde …</string>
     <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
     <string name="warning">Aviso</string>
     <string name="pref_title_AutoSyncOnStart">Sincronizar no arranque</string>
@@ -155,6 +159,7 @@
     <!-- Podcast -->
     <string name="no_podcast_selected">Nenhum podcast selecionado</string>
     <string name="no_chapters_available">Sem capítulos disponíveis</string>
+    <string name="exit_playback">Sair do Reprodutor</string>
     <string name="podcast_playback_speed_dialog_title">Velocidade de Reprodução</string>
     <string name="notification_downloading_podcast_title">A transferir \"podcast\"</string>
     <string name="dialog_podcast_remove_title">Tem a certeza?</string>
@@ -170,6 +175,7 @@
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código fonte</string>
     <string name="pref_privacy">Privacidade</string>
+    <string name="pref_news_policy_summary">Política de Privacidade do Nextcloud Notícias para Android / Contate-nos</string>
     <string name="pref_version">Aplicação Nextcloud News Android</string>
 
 
@@ -188,6 +194,8 @@
 
     <string name="pref_oled_mode">Fundo preto</string>
     <string name="pref_oled_mode_summary">Para o tema escuro nos ecrãs OLED</string>
+
+    <string name="pref_external_player_summary">Reproduzir podcasts em seu aplicativo de mídia padrão</string>
 
     <string name="pref_display_browser_cct">Separadores-Personalizado-Chrome Integrados</string>
     <string name="pref_display_browser_built_in">Navegador Integrado</string>
@@ -210,6 +218,8 @@
     <string name="content_desc_pause">Pausar</string>
     <string name="content_desc_forward">Encaminhar</string>
     <string name="content_desc_collapse">Expandir</string>
+    <string name="content_desc_mark_as_read">Marcar como lido</string>
+    <string name="content_desc_mark_as_unread">Marcar como não lido</string>
     <string name="content_desc_add_to_favorites">Adicionar aos favoritos</string>
     <string name="content_desc_remove_from_favorites">Remover dos favoritos</string>
     <string name="content_desc_show_password">Mostrar senha</string>
@@ -219,6 +229,7 @@
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Erro</string>
     <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>
+    <string name="login_dialog_text_zero_version_code">O aplicativo Web News retornou a versão \"0\". Por favor, veja o seguinte relatório de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dados &amp; sincronização</string>
@@ -235,6 +246,7 @@
     <string name="array_sync_interval_min_5">5 minutos</string>
     <string name="array_sync_interval_min_15">15 minutos</string>
     <string name="array_sync_interval_min_30">30 minutos</string>
+    <string name="array_sync_interval_min_45">45 minutos</string>
     <string name="array_sync_interval_hour_1">1 hora</string>
     <string name="array_sync_interval_hour_2">2 horas</string>
     <string name="array_sync_interval_hour_3">3 horas</string>
