@@ -160,6 +160,9 @@
 
     <string name="pref_title_general_search_in">Search In</string>
 
+    <string name="pref_title_tts_settings">Speech engine and voice</string>
+    <string name="pref_summary_tts_settings">Open the system settings to choose the engine and voice used for reading articles aloud</string>
+
     <string name="pref_general_search_in_title">Title</string>
     <string name="pref_general_search_in_body">Body</string>
     <string name="pref_general_search_in_both">Both</string>
