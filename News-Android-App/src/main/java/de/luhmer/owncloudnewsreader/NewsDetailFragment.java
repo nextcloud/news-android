@@ -59,14 +59,17 @@ import java.net.URL;
 import javax.inject.Inject;
 
 import de.luhmer.owncloudnewsreader.adapter.ProgressBarWebChromeClient;
+import de.luhmer.owncloudnewsreader.async_tasks.FetchFullTextTask;
 import de.luhmer.owncloudnewsreader.async_tasks.RssItemToHtmlTask;
 import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.databinding.FragmentNewsDetailBinding;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.ColorHelper;
+import de.luhmer.owncloudnewsreader.model.ClientItemState;
+import de.luhmer.owncloudnewsreader.repository.ClientItemStateRepository;
 import de.luhmer.owncloudnewsreader.services.DownloadWebPageService;
 
-public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener {
+public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Listener, FetchFullTextTask.Listener {
 
 	public  static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
     private static final String RSS_ITEM_PAGE_URL = "about:blank";
@@ -76,6 +79,7 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
 	protected FragmentNewsDetailBinding binding;
 
     protected @Inject SharedPreferences mPrefs;
+    protected @Inject ClientItemStateRepository mClientItemStateRepository;
 
     private int section_number;
     protected String html;
@@ -257,8 +261,95 @@ public class NewsDetailFragment extends Fragment implements RssItemToHtmlTask.Li
         init_webView();
         RssItem rssItem = ndActivity.rssItems.get(section_number);
         Log.d(TAG, "startLoadRssItemToWebViewTask: " + rssItem.getTitle());
-        RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this, mPrefs);
+        ClientItemState state = mClientItemStateRepository.get(rssItem.getId());
+        String bodyOverride = state.isShowingFullText() ? state.getFullTextHtml() : null;
+        RssItemToHtmlTask task = new RssItemToHtmlTask(ndActivity, rssItem, this, mPrefs, bodyOverride);
         AsyncTaskHelper.StartAsyncTask(task);
+    }
+
+    public boolean isShowingFullText(RssItem rssItem) {
+        ClientItemState state = mClientItemStateRepository.get(rssItem.getId());
+        return state.isShowingFullText();
+    }
+
+    /**
+     * Toggles between the feed-provided content and the full text extracted from the original
+     * website. The first time full text is requested it is fetched from the network; afterwards the
+     * cached version is reused (kept in {@link ClientItemStateRepository} so it survives swiping
+     * away and back).
+     */
+    public void toggleFullText(RssItem rssItem) {
+        NewsDetailActivity ndActivity = (NewsDetailActivity) getActivity();
+        if (ndActivity == null) {
+            return;
+        }
+
+        ClientItemState state = mClientItemStateRepository.get(rssItem.getId());
+
+        if (state.isShowingFullText()) {
+            // switch back to the original feed content
+            state.setShowingFullText(false);
+            startLoadRssItemToWebViewTask(ndActivity);
+            ndActivity.updateActionBarIcons();
+        } else if (state.hasFullText()) {
+            // already fetched - just show the cached version
+            state.setShowingFullText(true);
+            startLoadRssItemToWebViewTask(ndActivity);
+            ndActivity.updateActionBarIcons();
+        } else {
+            fetchFullText(ndActivity, rssItem);
+        }
+    }
+
+    private void fetchFullText(NewsDetailActivity ndActivity, RssItem rssItem) {
+        ClientItemState state = mClientItemStateRepository.get(rssItem.getId());
+        if (state.isFetchingFullText()) {
+            // a fetch for this item is already running (possibly started by another fragment instance)
+            return;
+        }
+
+        String link = rssItem.getLink();
+        if (link == null || link.trim().isEmpty()) {
+            Toast.makeText(ndActivity, R.string.full_text_no_link, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        state.setFetchingFullText(true);
+        binding.webview.setVisibility(View.GONE);
+        binding.progressBarLoading.setVisibility(View.VISIBLE);
+
+        AsyncTaskHelper.StartAsyncTask(new FetchFullTextTask(link, rssItem.getId(), mClientItemStateRepository, this));
+    }
+
+    /**
+     * @return true if this fragment is currently displaying the item with the given id. Used to
+     * ignore fetch callbacks meant for an item this (recycled) fragment no longer shows.
+     */
+    private boolean isNotShowingFullText(long itemId) {
+        NewsDetailActivity ndActivity = (NewsDetailActivity) getActivity();
+        return ndActivity == null || ndActivity.rssItems.get(section_number).getId() != itemId;
+    }
+
+    @Override
+    public void onFullTextFetched(long itemId, String bodyHtml) {
+        // State was already updated by the task; we only need to re-render if we still show this item.
+        if (isNotShowingFullText(itemId)) {
+            return;
+        }
+        NewsDetailActivity ndActivity = (NewsDetailActivity) getActivity();
+        startLoadRssItemToWebViewTask(ndActivity);
+        ndActivity.updateActionBarIcons();
+    }
+
+    @Override
+    public void onFullTextError(long itemId, @Nullable Exception exception) {
+        if (isNotShowingFullText(itemId)) {
+            return;
+        }
+        NewsDetailActivity ndActivity = (NewsDetailActivity) getActivity();
+        // restore the previously shown content (the spinner is hidden once it finishes rendering)
+        startLoadRssItemToWebViewTask(ndActivity);
+        Toast.makeText(ndActivity, R.string.full_text_failed, Toast.LENGTH_LONG).show();
     }
 
     @Override

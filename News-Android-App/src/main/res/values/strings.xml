@@ -39,6 +39,9 @@
     <string name="action_playPodacst">Play Podcast</string>
     <string name="action_removePodcast">Remove Podcast Media</string>
     <string name="action_openInBrowser">Open in Web browser</string>
+    <string name="action_fullText">Load full text</string>
+    <string name="full_text_failed">Could not load full text for this article</string>
+    <string name="full_text_no_link">This article has no link to load full text from</string>
     <string name="action_Share">Share</string>
     <string name="action_login">Server Settings</string>
     <string name="action_save">Save</string>

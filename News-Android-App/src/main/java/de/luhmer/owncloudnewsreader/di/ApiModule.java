@@ -15,6 +15,7 @@ import dagger.Module;
 import dagger.Provides;
 import de.luhmer.owncloudnewsreader.helper.PostDelayHandler;
 import de.luhmer.owncloudnewsreader.helper.ThemeChooser;
+import de.luhmer.owncloudnewsreader.repository.ClientItemStateRepository;
 import de.luhmer.owncloudnewsreader.ssl.MemorizingTrustManager;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -94,6 +95,12 @@ public class ApiModule {
     @Singleton
     PostDelayHandler providePostDelayHandler() {
         return new PostDelayHandler(mApplication);
+    }
+
+    @Provides
+    @Singleton
+    ClientItemStateRepository provideClientItemStateRepository() {
+        return new ClientItemStateRepository();
     }
 
 
