@@ -199,7 +199,11 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		// Start auto sync if enabled (and user is logged in)
 		if (isUserLoggedIn() && mPrefs.getBoolean(SettingsActivity.CB_SYNCONSTARTUP_STRING, true)) {
-			startSync();
+            if (mSearchString != null && !mSearchString.isEmpty()) {
+                Log.d(TAG, "Don't allow Pull-To-refresh or Auto-Sync when search is active");
+            } else {
+                startSync();
+            }
 		}
 	}
 
@@ -816,7 +820,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
     public void startSync()
     {
-		if (!isUserLoggedIn()) {
+        if (!isUserLoggedIn()) {
 			startLoginActivity();
 		} else {
 			if (!OwnCloudSyncService.isSyncRunning()) {
@@ -925,6 +929,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
+                mSearchString = ""; // reset search string
                 //onQueryTextChange(""); // Reset search
                 mSearchView.setQuery("", true);
                 clearSearchViewFocus();
