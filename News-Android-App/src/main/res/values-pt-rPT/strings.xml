@@ -32,6 +32,7 @@
     <string name="action_starred">Marcado</string>
     <string name="action_read">Lido</string>
     <string name="action_playPodacst">Reproduzir Podcast</string>
+    <string name="action_removePodcast">Remover Mídia de Podcast</string>
     <string name="action_openInBrowser">Abrir no navegador da Web</string>
     <string name="action_Share">Partilhar</string>
     <string name="action_login">Definições do Servidor</string>
@@ -100,6 +101,8 @@
     <string name="folder_rename_button">Renomear</string>
     <string name="confirm_folder_remove">Deseja realmente remover esta pasta? Isto não pode ser desfeito!</string>
 
+    <string name="notification_feed_none">Sem notificações</string>
+
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Adicionar</string>
     <string name="hint_folder_name">Nome da pasta</string>
@@ -136,10 +139,14 @@
     <string name="pref_title_general_sort_order">Ordem da ordenação</string>
 
     <string name="pref_rename_action_swipe_right">Ação ao deslizar para a direita</string>
+    <string name="pref_rename_action_swipe_left">Ação ao deslizar para a esquerda</string>
+
     <string name="pref_title_general_search_in">Pesquisar em</string>
 
     <string name="pref_general_search_in_title">Título</string>
     <string name="pref_general_search_in_body">Corpo</string>
+    <string name="pref_general_search_in_both">Ambos</string>
+
     <string name="dialog_clearing_cache">Limpar cache</string>
     <string name="dialog_clearing_cache_please_wait">Limpando o cache. Por favor, aguarde …</string>
     <string name="reset_cache_unsaved_changes">Há mudanças não sincronizadas. Gostaria de repor a cache na mesma?</string>
@@ -149,6 +156,7 @@
     <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome de Anfitrião</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
+    <string name="pref_title_ShowFastActions">Ativar as funções de acesso rápido</string>
     <!-- MemorizingTrustManager -->
     <string name="mtm_accept_cert">Aceitar os certificados desconhecidos?</string>
     <string name="mtm_decision_always">Sempre</string>
@@ -175,6 +183,7 @@
     <string name="pref_contribute">Contribua!</string>
     <string name="pref_contribute_summary">Obter o código fonte</string>
     <string name="pref_privacy">Privacidade</string>
+    <string name="pref_privacy_summary">Política de Privacidade do Nextcloud Notícias para Android</string>
     <string name="pref_news_policy_summary">Política de Privacidade do Nextcloud Notícias para Android / Contate-nos</string>
     <string name="pref_version">Aplicação Nextcloud News Android</string>
 
@@ -195,6 +204,7 @@
     <string name="pref_oled_mode">Fundo preto</string>
     <string name="pref_oled_mode_summary">Para o tema escuro nos ecrãs OLED</string>
 
+    <string name="pref_external_player">Reprodutor Externo</string>
     <string name="pref_external_player_summary">Reproduzir podcasts em seu aplicativo de mídia padrão</string>
 
     <string name="pref_display_browser_cct">Separadores-Personalizado-Chrome Integrados</string>
@@ -220,6 +230,7 @@
     <string name="content_desc_collapse">Expandir</string>
     <string name="content_desc_mark_as_read">Marcar como lido</string>
     <string name="content_desc_mark_as_unread">Marcar como não lido</string>
+    <string name="content_desc_tap_to_refresh">Toque para atualizar</string>
     <string name="content_desc_add_to_favorites">Adicionar aos favoritos</string>
     <string name="content_desc_remove_from_favorites">Remover dos favoritos</string>
     <string name="content_desc_show_password">Mostrar senha</string>
@@ -231,6 +242,9 @@
     <string name="login_dialog_text_something_went_wrong">Ocorreu algo de errado :(</string>
     <string name="login_dialog_text_zero_version_code">O aplicativo Web News retornou a versão \"0\". Por favor, veja o seguinte relatório de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
+    <string name="login_dialog_select_account_unknown_error_toast">Algo deu errado. Por favor, tente novamente.</string>
+
+
     <!-- Data & Sync -->
     <string name="pref_header_data_sync">Dados &amp; sincronização</string>
     <string name="pref_title_clearCache">Limpar a cache</string>
