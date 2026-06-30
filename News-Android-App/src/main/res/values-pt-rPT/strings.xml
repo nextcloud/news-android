@@ -198,6 +198,7 @@
 
     <string name="pref_display_news_detail_actionbar_icons_title">Ícones de Ação (Visualização Detalhada)</string>
 
+    <string name="pref_display_apptheme_auto">Padrão do Sistema</string>
     <string name="pref_display_apptheme_light">Claro</string>
     <string name="pref_display_apptheme_dark">Escuro</string>
 
@@ -270,4 +271,6 @@
     <string name="switch_account">Trocar de conta</string>
     
     <string name="please_wait">Aguarde...</string>
+    <string name="interval_sync_title">Sincronização em Intervalo</string>
+
     </resources>
