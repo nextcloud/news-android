@@ -166,6 +166,11 @@ dependencies {
 
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     implementation 'org.jsoup:jsoup:1.22.2'
+    // Mozilla Readability port for extracting full article text from web pages (see NewsDetailFragment#fetchFullText)
+    implementation ('net.dankito.readability4j:readability4j:1.0.8') {
+        // We ship our own (newer) jsoup above; avoid pulling in readability4j's older transitive jsoup
+        exclude group: 'org.jsoup', module: 'jsoup'
+    }
     implementation ('net.rdrei.android.dirchooser:library:3.2@aar') {
         exclude group: 'com.google.auto.value', module: 'auto-value'
         transitive = true

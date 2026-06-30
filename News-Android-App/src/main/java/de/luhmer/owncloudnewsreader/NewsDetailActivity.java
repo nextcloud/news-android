@@ -96,6 +96,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	private MenuItem menuItem_Starred;
 	private MenuItem menuItem_Read;
 	private MenuItem menuItem_Incognito;
+	private MenuItem menuItem_FullText;
 
 	private DatabaseConnectionOrm dbConn;
 	protected ActivityNewsDetailBinding binding;
@@ -427,6 +428,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 			binding.faDetailBar.faMarkAsRead.setImageResource(res);
 		}
 
+		if (menuItem_FullText != null) {
+			NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
+			boolean showingFullText = fragment != null && fragment.isShowingFullText(rssItem);
+			menuItem_FullText.setChecked(showingFullText);
+			int res = showingFullText ? R.drawable.ic_article_filled_24_theme_aware : R.drawable.ic_article_24_theme_aware;
+			menuItem_FullText.setIcon(res);
+		}
+
 		if (menuItem_Incognito != null) {
 			if (isIncognitoEnabled()) {
 				// always show incognito icon if incognito mode is enabled
@@ -457,6 +466,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		menuItem_PlayPodcast = menu.findItem(R.id.action_playPodcast);
 		menuItem_RemovePodcast = menu.findItem(R.id.action_removePodcast);
 		menuItem_Incognito = menu.findItem(R.id.action_incognito_mode);
+		menuItem_FullText = menu.findItem(R.id.action_full_text);
 
 		if (mShowFastActions) {
 			menuItem_Starred.setVisible(false);
@@ -520,6 +530,13 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		} else if (itemId == R.id.action_incognito_mode) {
 			toggleIncognitoMode();
 			updateActionBarIcons();
+		} else if (itemId == R.id.action_full_text) {
+			NewsDetailFragment fragment = getNewsDetailFragmentAtPosition(currentPosition);
+			if (fragment != null) {
+				fragment.toggleFullText(rssItem);
+			} else {
+				Toast.makeText(this, "NewsDetailFragment is not initialized - please try again", Toast.LENGTH_LONG).show();
+			}
 		}
 
 		return super.onOptionsItemSelected(item);

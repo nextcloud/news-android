@@ -48,6 +48,11 @@
 # jsoup
 -dontwarn com.google.re2j.*
 
+# Readability4J (full-text extraction) pulls in slf4j-api without a logging binding.
+# slf4j 1.7.x degrades to no-op logging at runtime when org.slf4j.impl.StaticLoggerBinder
+# is absent, so we just suppress the missing-class warning instead of adding a binding.
+-dontwarn org.slf4j.**
+
 # Other Libraries
 -dontwarn org.apache.velocity.**
 -dontwarn freemarker.**

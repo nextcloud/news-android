@@ -23,6 +23,13 @@
         android:title="@string/action_read" />
     
     <item
+        android:id="@+id/action_full_text"
+        app:showAsAction="ifRoom"
+        android:checkable="true"
+        android:icon="@drawable/ic_article_24_theme_aware"
+        android:title="@string/action_fullText"/>
+
+    <item
         android:id="@+id/action_openInBrowser"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_action_open_in_browser_24_theme_aware"

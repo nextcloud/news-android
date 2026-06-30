@@ -56,6 +56,9 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     private final SharedPreferences mPrefs;
     private final boolean isRightToLeft;
     private final RequestManager mGlide;
+    /** When non-null this HTML is rendered as the article body instead of {@link RssItem#getBody()}.
+     *  Used to show full text extracted from the original website (see NewsDetailFragment#fetchFullText). */
+    @Nullable private final String mBodyOverride;
 
     public interface Listener {
         /**
@@ -65,19 +68,19 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
         void onRssItemParsed(String htmlPage);
     }
 
-
-    public RssItemToHtmlTask(Context context, RssItem rssItem, Listener listener, SharedPreferences prefs) {
+    public RssItemToHtmlTask(Context context, RssItem rssItem, Listener listener, SharedPreferences prefs, @Nullable String bodyOverride) {
         this.mRssItem = rssItem;
         this.mListener = listener;
         this.mPrefs = prefs;
         this.mGlide = Glide.with(context);
+        this.mBodyOverride = bodyOverride;
 
         this.isRightToLeft = context.getResources().getBoolean(R.bool.is_right_to_left);
     }
 
     @Override
     protected String doInBackground(Void... params) {
-        return getHtmlPage(this.mGlide, mRssItem, true, mPrefs, isRightToLeft);
+        return getHtmlPage(this.mGlide, mRssItem, true, mPrefs, isRightToLeft, mBodyOverride);
     }
 
     @Override
@@ -87,15 +90,17 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
     }
 
     public static String getHtmlPage(RequestManager glide, RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, Context context) {
-        return getHtmlPage(glide, rssItem, showHeader, mPrefs, context.getResources().getBoolean(R.bool.is_right_to_left));
+        return getHtmlPage(glide, rssItem, showHeader, mPrefs, context.getResources().getBoolean(R.bool.is_right_to_left), null);
     }
 
     /**
      * @param rssItem       item to parse
      * @param showHeader    true if a header with item title, feed title, etc. should be included
+     * @param bodyOverride  when non-null, used as the article body instead of {@link RssItem#getBody()}
+     *                      (e.g. full text extracted from the original website)
      * @return given RSS item as full HTML page
      */
-    public static String getHtmlPage(RequestManager glide, RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, boolean isRightToLeft) {
+    public static String getHtmlPage(RequestManager glide, RssItem rssItem, boolean showHeader, SharedPreferences mPrefs, boolean isRightToLeft, @Nullable String bodyOverride) {
         boolean incognitoMode = mPrefs.getBoolean(INCOGNITO_MODE_ENABLED, false);
 
         String favIconUrl = null;
@@ -139,12 +144,12 @@ public class RssItemToHtmlTask extends AsyncTask<Void, Void, String> {
             );
         }
 
-        String description = rssItem.getBody();
+        String description = bodyOverride != null ? bodyOverride : rssItem.getBody();
 
         if (!description.isEmpty()) {
             description = removeLineBreaksFromHtml(description);
         }
-        else if(rssItem.getMediaDescription() != null) {
+        else if(bodyOverride == null && rssItem.getMediaDescription() != null) {
             // in case the rss body is empty, fallback to the media description (e.g. youtube / ted talks)
             description = rssItem.getMediaDescription();
         }
