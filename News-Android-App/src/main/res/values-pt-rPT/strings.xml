@@ -87,6 +87,7 @@
     <string name="action_feed_rename">Renomear Feed</string>
     <string name="action_feed_move">Mover Feed</string>
     <string name="action_feed_notification_settings">Definições de notificação</string>
+    <string name="action_feed_open_in">Configurações de abertura</string>
     <string name="action_feed_open_in_general_setting">Usar configuração geral</string>
     <string name="action_feed_open_in_detailed_view">Visualização detalhada</string>
     <string name="feed_remove_button">Remover</string>
@@ -148,6 +149,8 @@
     <string name="pref_title_general_search_in">Pesquisar em</string>
 
     <string name="pref_title_tts_settings">Gerador de fala e voz</string>
+    <string name="pref_summary_tts_settings">Abra as configurações do sistema para escolher o mecanismo e a voz usados ​​para a leitura de artigos em voz alta.</string>
+
     <string name="pref_general_search_in_title">Título</string>
     <string name="pref_general_search_in_body">Corpo</string>
     <string name="pref_general_search_in_both">Ambos</string>
@@ -161,6 +164,7 @@
     <string name="pref_title_DisableHostnameVerification">Desativar a Verificação do Nome de Anfitrião</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navegue com os botões do volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marcar como lido enquanto rolar com o rato</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sincronizar ao rolar até o final</string>
     <string name="pref_title_ShowFastActions">Ativar as funções de acesso rápido</string>
     <string name="pref_title_OpenInBrowserDirectly">Saltar exibição detalhada e abrir o artigo no navegador</string>
     <string name="pref_title_BackButtonOpensDrawer">O botão Voltar abre o menu</string>
@@ -214,6 +218,7 @@
     <string name="pref_oled_mode">Fundo preto</string>
     <string name="pref_oled_mode_summary">Para o tema escuro nos ecrãs OLED</string>
 
+    <string name="pref_detailed_view_zoom">Zoom na visualização detalhada</string>
     <string name="pref_detailed_view_zoom_summary">Habilitar o zoom do conteúdo na visualização detalhada</string>
 
     <string name="pref_external_player">Reprodutor Externo</string>
@@ -239,6 +244,8 @@
 
     <string name="content_desc_play">Reproduzir</string>
     <string name="content_desc_pause">Pausar</string>
+    <string name="content_desc_playback_speed">Velocidade de reprodução</string>
+    <string name="content_desc_rewind">Retroceder</string>
     <string name="content_desc_forward">Encaminhar</string>
     <string name="content_desc_expand">Expandir</string>
     <string name="content_desc_collapse">Expandir</string>
@@ -258,6 +265,7 @@
     <string name="login_dialog_text_zero_version_code">O aplicativo Web News retornou a versão \"0\". Por favor, veja o seguinte relatório de erro: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Esta versão do aplicativo não é compatível com o seu aplicativo Nextcloud News. Atualize o aplicativo de notícias e o quadro de aplicativos.</string>
     <string name="login_dialog_title_security_warning">Aviso de Segurança</string>
+    <string name="login_dialog_text_security_warning">Você não está usando HTTPS, que é fortemente encorajado. Um invasor pode interceptar seu tráfego e obter acesso a alguns dados confidenciais (sua senha, por exemplo).</string>
     <string name="login_dialog_select_account_unknown_error_toast">Algo deu errado. Por favor, tente novamente.</string>
 
 
