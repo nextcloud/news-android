@@ -104,6 +104,7 @@
     <string name="folder_rename_button">Renomear</string>
     <string name="confirm_folder_remove">Deseja realmente remover esta pasta? Isto não pode ser desfeito!</string>
 
+    <string name="notification_feed_default">Todos os feeds com as configurações padrão aparecerão em uma notificação</string>
     <string name="notification_feed_none">Sem notificações</string>
 
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
@@ -197,6 +198,7 @@
     <string name="pref_contribute_summary">Obter o código fonte</string>
     <string name="pref_privacy">Privacidade</string>
     <string name="pref_privacy_summary">Política de Privacidade do Nextcloud Notícias para Android</string>
+    <string name="pref_news_policy">Contate-nos / Política de Notícias</string>
     <string name="pref_news_policy_summary">Política de Privacidade do Nextcloud Notícias para Android / Contate-nos</string>
     <string name="pref_version">Aplicação Nextcloud News Android</string>
 
