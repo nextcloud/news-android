@@ -35,6 +35,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -69,7 +71,7 @@ import de.luhmer.owncloudnewsreader.view.PodcastSlidingUpPanelLayout;
 import de.luhmer.owncloudnewsreader.widget.WidgetProvider;
 
 
-public class NewsDetailActivity extends PodcastFragmentActivity {
+public class NewsDetailActivity extends PodcastFragmentActivity implements MenuProvider {
 
 	private static final String TAG = NewsDetailActivity.class.getCanonicalName();
 	public static final String INCOGNITO_MODE_ENABLED = "INCOGNITO_MODE_ENABLED";
@@ -445,9 +447,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.news_detail, menu);
+	public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+		menuInflater.inflate(R.menu.news_detail, menu);
 
 		MenuItem menuItem_OpenInBrowser = menu.findItem(R.id.action_openInBrowser);
 		MenuItem menuItem_ShareItem = menu.findItem(R.id.action_ShareItem);
@@ -487,42 +488,48 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		initIncognitoMode();
 
 		updateActionBarIcons();
-
-		return true;
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
 		RssItem rssItem = rssItems.get(currentPosition);
 
-		final int itemId = item.getItemId();
+		final int itemId = menuItem.getItemId();
 		if (itemId == android.R.id.home) {
 			onBackPressed();
 			return true;
 		} else if (itemId == R.id.action_read) {
 			this.markRead(currentPosition);
+			return true;
 		} else if (itemId == R.id.action_starred) {
 			toggleRssItemStarredState();
+			return true;
 		} else if (itemId == R.id.action_openInBrowser) {
 			this.openInBrowser(currentPosition);
+			return true;
 		} else if (itemId == R.id.action_playPodcast) {
 			openPodcast(rssItem);
+			return true;
 		} else if (itemId == R.id.action_removePodcast) {
 			removePodcastMedia(rssItem, (result) -> {
 				if (menuItem_RemovePodcast != null) {
 					menuItem_RemovePodcast.setVisible(!result);
 				}
 			});
+			return true;
 		} else if (itemId == R.id.action_tts) {
 			this.startTTS(currentPosition);
+			return true;
 		} else if (itemId == R.id.action_ShareItem) {
 			this.share(currentPosition);
+			return true;
 		} else if (itemId == R.id.action_incognito_mode) {
 			toggleIncognitoMode();
 			updateActionBarIcons();
+			return true;
 		}
 
-		return super.onOptionsItemSelected(item);
+		return false;
 	}
 
 	/**
