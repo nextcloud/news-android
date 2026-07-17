@@ -41,6 +41,7 @@ import de.luhmer.owncloudnewsreader.database.model.RssItem;
 import de.luhmer.owncloudnewsreader.database.model.RssItemDao;
 import de.luhmer.owncloudnewsreader.helper.AsyncTaskHelper;
 import de.luhmer.owncloudnewsreader.helper.NewsFileUtils;
+import de.luhmer.owncloudnewsreader.helper.PodcastPositionStore;
 import de.luhmer.owncloudnewsreader.helper.StopWatch;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -80,6 +81,7 @@ public class DatabaseConnectionOrm {
         daoSession.getFeedDao().deleteAll();
         daoSession.getFolderDao().deleteAll();
         daoSession.getCurrentRssItemViewDao().deleteAll();
+        new PodcastPositionStore(context).clearAll();
     }
 
     public DatabaseConnectionOrm(Context context) {
@@ -802,6 +804,37 @@ public class DatabaseConnectionOrm {
         } else {
             Log.v(TAG, "Clearing Database oversize not necessary");
         }
+
+        clearStalePodcastPositions();
+    }
+
+    /**
+     * Removes stored podcast playback positions (see issue #504) of rss items
+     * that no longer exist in the database.
+     */
+    private void clearStalePodcastPositions() {
+        PodcastPositionStore positionStore = new PodcastPositionStore(context);
+        List<Long> storedItemIds = positionStore.getStoredItemIds();
+        if (storedItemIds.isEmpty()) {
+            return;
+        }
+
+        // Resolve which of the stored ids still exist in a single query instead
+        // of one lookup per stored position.
+        Set<Long> existingIds = new HashSet<>();
+        for (RssItem item : daoSession.getRssItemDao().queryBuilder()
+                .where(RssItemDao.Properties.Id.in(storedItemIds))
+                .list()) {
+            existingIds.add(item.getId());
+        }
+
+        List<Long> staleItemIds = new ArrayList<>();
+        for (Long itemId : storedItemIds) {
+            if (!existingIds.contains(itemId)) {
+                staleItemIds.add(itemId);
+            }
+        }
+        positionStore.removePositions(staleItemIds);
     }
 
     public long getLastModified()

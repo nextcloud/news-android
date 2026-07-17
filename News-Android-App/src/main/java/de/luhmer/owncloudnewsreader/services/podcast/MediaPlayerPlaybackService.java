@@ -23,7 +23,7 @@ public class MediaPlayerPlaybackService extends PlaybackService {
     private final MediaPlayer mMediaPlayer;
     //private View parentView;
 
-    public MediaPlayerPlaybackService(final Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem) {
+    public MediaPlayerPlaybackService(final Context context, PodcastStatusListener podcastStatusListener, MediaItem mediaItem, final int startPositionMillis) {
         super(podcastStatusListener, mediaItem);
 
         mMediaPlayer = new MediaPlayer();
@@ -42,7 +42,19 @@ public class MediaPlayerPlaybackService extends PlaybackService {
         mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
             podcastStatusListener.podcastStatusUpdated();
             setStatus(PlaybackStateCompat.STATE_PAUSED);
-            play();
+
+            // resume where the user left off last time (issue #504). seekTo() is
+            // async - especially for streamed episodes - so wait for it to land
+            // before starting playback, otherwise we'd briefly play from 0.
+            if (startPositionMillis > 0 && startPositionMillis < mediaPlayer.getDuration()) {
+                mediaPlayer.setOnSeekCompleteListener(mp -> {
+                    mp.setOnSeekCompleteListener(null);
+                    play();
+                });
+                mediaPlayer.seekTo(startPositionMillis);
+            } else {
+                play();
+            }
         });
 
         mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
