@@ -779,11 +779,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 					return;
 				}
 				title = folder.getLabel();
-			} else if (idFolder == -10) {
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
 				title = getString(R.string.allUnreadFeeds);
-			} else if (idFolder == -11) {
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue()) {
 				title = getString(R.string.starredFeeds);
-			} else if (idFolder == -13) {
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS.getValue()) {
+				title = getString(R.string.allItems);
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_DOWNLOADED_PODCASTS.getValue()) {
 				title = getString(R.string.downloadedPodcasts);
 			}
 		} else {
@@ -879,11 +881,13 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			int idFolder = (int) id;
 			if (idFolder >= 0) {
 				title = dbConn.getFolderById(id).getLabel();
-			} else if (idFolder == -10) {
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()) {
 				title = getString(R.string.allUnreadFeeds);
-			} else if (idFolder == -11) {
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue()) {
 				title = getString(R.string.starredFeeds);
-			} else if (idFolder == -13) {
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS.getValue()) {
+				title = getString(R.string.allItems);
+			} else if (idFolder == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_DOWNLOADED_PODCASTS.getValue()) {
 				title = getString(R.string.downloadedPodcasts);
 			}
 		}
@@ -967,7 +971,9 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 	private void syncMenuItemUnreadOnly() {
 		if (menuItemOnlyUnread != null && currentFolderId != null) {
-			menuItemOnlyUnread.setVisible(!(currentFolderId == -11 || currentFolderId == -10));
+			menuItemOnlyUnread.setVisible(!(currentFolderId == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue()
+					|| currentFolderId == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue()
+					|| currentFolderId == SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS.getValue()));
 		}
 	}
 

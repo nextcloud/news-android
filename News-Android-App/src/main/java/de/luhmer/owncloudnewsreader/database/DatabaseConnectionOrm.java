@@ -608,7 +608,7 @@ public class DatabaseConnectionOrm {
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
-        if(!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue()) || ID_FOLDER == ALL_ITEMS.getValue())//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+        if(!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue() || ID_FOLDER == ALL_ITEMS.getValue()))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
         {
             buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
                     "(SELECT sc." + FeedDao.Properties.Id.columnName +
@@ -619,6 +619,8 @@ public class DatabaseConnectionOrm {
             if(onlyUnread)
                 buildSQL += " AND " + RssItemDao.Properties.Read_temp.columnName + " != 1";
         }
+        // ALL_ITEMS (-12) intentionally has no branch here: it shows all articles
+        // (read + unread) with no feed or read filter.
         else if(ID_FOLDER == ALL_UNREAD_ITEMS.getValue())
             buildSQL += " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1";
         else if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
@@ -638,7 +640,7 @@ public class DatabaseConnectionOrm {
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
-        if (!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue()) || ID_FOLDER == ALL_ITEMS.getValue())//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
+        if (!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_ITEMS.getValue()))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
         {
             buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
                     "(SELECT sc." + FeedDao.Properties.Id.columnName +
@@ -684,6 +686,8 @@ public class DatabaseConnectionOrm {
 
         if(specialFolder != null && specialFolder.equals(SPECIAL_FOLDERS.ALL_STARRED_ITEMS)) {
             buildSQL += " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1 ";
+        } else if(specialFolder != null && specialFolder.equals(SPECIAL_FOLDERS.ALL_ITEMS)) {
+            // "All articles" shows read + unread items, so count every item (no filter)
         } else {
             buildSQL += " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1 ";
         }
@@ -738,6 +742,7 @@ public class DatabaseConnectionOrm {
 
 
         values[0].put(SPECIAL_FOLDERS.ALL_UNREAD_ITEMS.getValue(), String.valueOf(totalUnreadItemsCount));
+        values[0].put(SPECIAL_FOLDERS.ALL_ITEMS.getValue(), getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS.ALL_ITEMS));
         values[0].put(SPECIAL_FOLDERS.ALL_STARRED_ITEMS.getValue(), getUnreadItemsCountForSpecificFolder(SPECIAL_FOLDERS.ALL_STARRED_ITEMS));
 
 
