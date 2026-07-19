@@ -57,7 +57,7 @@
     <string name="hint_feed_url">提要URL</string>
     <string name="action_add_feed">新增訂閱</string>
     <string name="import_opml">導入OPML格式</string>
-    <string name="export_opml">導出OPML格式</string>
+    <string name="export_opml">匯出OPML格式</string>
 
 
     <!-- String related to NewsDetail-ContextMenu Items -->
@@ -298,8 +298,8 @@
     <string name="array_sync_interval_hour_24">24小時</string>
     <string name="switch_account">切換賬號</string>
     
-    <string name="successfully_exported">成功導出到：</string>
-    <string name="opml_export">導出 OPML</string>
+    <string name="successfully_exported">成功匯出到：</string>
+    <string name="opml_export">匯出 OPML</string>
     <string name="parsing_opml">分析 OPML …</string>
     <string name="please_wait">請稍候 …</string>
     <string name="interval_sync_title">間隔同步</string>
