@@ -295,24 +295,25 @@ public class MemorizingTrustManager implements X509TrustManager {
 		return null;
 	}
 
-	KeyStore loadAppKeyStore() {
-		KeyStore ks;
+KeyStore loadAppKeyStore() {
+	KeyStore ks;
+	try {
+		ks = KeyStore.getInstance(KeyStore.getDefaultType());
+	} catch (KeyStoreException e) {
+		Log.e(TAG, "getAppKeyStore()", e);
+		return null;
+	}
+	if (keyStoreFile != null) {
 		try {
-			ks = KeyStore.getInstance(KeyStore.getDefaultType());
-		} catch (KeyStoreException e) {
-			Log.e(TAG, "getAppKeyStore()", e);
-			return null;
-		}
-		try {
-			ks.load(null, null);
-			if(keyStoreFile.canRead()) {
-				ks.load(new java.io.FileInputStream(keyStoreFile), "MTM".toCharArray());
-			}
+			ks.load(new java.io.FileInputStream(keyStoreFile), "MTM".toCharArray());
 		} catch (Exception e) {
 			Log.e(TAG, "getAppKeyStore(" + keyStoreFile + ")", e);
 		}
-		return ks;
+	} else {
+		ks.load(null, null);
 	}
+	return ks;
+}
 
 	void storeCert(X509Certificate[] chain) {
 		// add all certs from chain to appKeyStore
