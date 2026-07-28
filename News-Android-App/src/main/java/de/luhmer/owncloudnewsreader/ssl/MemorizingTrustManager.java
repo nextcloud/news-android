@@ -291,7 +291,11 @@ public class MemorizingTrustManager implements X509TrustManager {
 					return (X509TrustManager)t;
 				}
 			}
-		} catch (Exception e) {
+try {
+    loadAppKeyStore();
+} catch (Exception e) {
+    Log.e("loadAppKeyStore", "Failed to load App Key Store: " + e);
+}
 			// Here, we are covering up errors. It might be more useful
 			// however to throw them out of the constructor so the
 			// embedding app knows something went wrong.
