@@ -257,7 +257,12 @@ public class MemorizingTrustManager implements X509TrustManager {
 		try {
 			fos = new java.io.FileOutputStream(keyStoreFile);
 			appKeyStore.store(fos, "MTM".toCharArray());
-		} catch (Exception e) {
+} catch (Exception e) {
+    if (keyStore == null) {
+        keyStore = loadAppKeyStore();
+    }
+    // ...
+}
 			e.printStackTrace();
 			//LOGGER.log(Level.SEVERE, "storeCert(" + keyStoreFile + ")", e);
 		} finally {
