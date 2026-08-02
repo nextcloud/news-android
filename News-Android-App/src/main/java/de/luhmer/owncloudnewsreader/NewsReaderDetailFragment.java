@@ -23,6 +23,7 @@ package de.luhmer.owncloudnewsreader;
 
 import static java.util.Objects.requireNonNull;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_DOWNLOADED_PODCASTS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
 import static de.luhmer.owncloudnewsreader.SettingsActivity.SP_SWIPE_LEFT_ACTION;
@@ -531,7 +532,7 @@ public class NewsReaderDetailFragment extends Fragment {
                 }
                 sqlSelectStatement = dbConn.getAllItemsIdsForFeedSQL(idFeed, onlyUnreadItems, onlyStarredItems, sortDirection);
             } else if (idFolder != null) {
-                if (idFolder == ALL_STARRED_ITEMS.getValue() || idFolder == ALL_DOWNLOADED_PODCASTS.getValue())
+                if (idFolder == ALL_STARRED_ITEMS.getValue() || idFolder == ALL_DOWNLOADED_PODCASTS.getValue() || idFolder == ALL_ITEMS.getValue())
                     onlyUnreadItems = false;
                 sqlSelectStatement = dbConn.getAllItemsIdsForFolderSQL(idFolder, onlyUnreadItems, sortDirection, mActivity);
             }
