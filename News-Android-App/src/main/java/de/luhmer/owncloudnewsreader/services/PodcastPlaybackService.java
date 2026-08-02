@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.media.MediaBrowserServiceCompat;
 import androidx.media.session.MediaButtonReceiver;
 
@@ -131,10 +132,6 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             return mPlaybackService.getMediaItem();
         }
         return null;
-    }
-
-    public boolean isActive() {
-        return mPlaybackService != null;
     }
 
     static final AtomicLong NEXT_ID = new AtomicLong(0);
@@ -260,15 +257,14 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     public void onDestroy() {
         Log.v(TAG, "onDestroy PodcastPlaybackService - ID: " + id);
 
-        if (!isActive()) {
-            Log.v(TAG, "Stopping PodcastPlaybackService/PlaybackService because of inactivity");
-            stopSelf();
+        // Cancel the 1s progress tick before releasing the session, otherwise an
+        // already-queued update could run setPlaybackState() on a released session.
+        stopProgressUpdates();
 
-            if (mSession != null) {
-                mSession.release();
-            }
-        } else {
-            Log.v(TAG, "Stopping PlaybackService is not active - skip exit");
+        // Always release the media session on destroy. Leaving it around lets the
+        // system keep routing media buttons here and resurrect the dead service.
+        if (mSession != null) {
+            mSession.release();
         }
 
         try {
@@ -403,12 +399,15 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             mPlaybackService = null;
         }
 
+        // With no media loaded this runs the STATE_NONE branch, which already
+        // stops the foreground state, deactivates the session and cancels the
+        // notification - so no explicit teardown is needed here.
         syncMediaAndPlaybackStatus();
 
-        Log.d(TAG, "cancel notification");
-        podcastNotification.cancel();
-
         abandonAudioFocus();
+
+        // No media remains, don't keep the service alive idle.
+        stopSelf();
     }
 
     @Subscribe
@@ -491,9 +490,12 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     }
 
     public void pause() {
-        if(mPlaybackService != null) {
-            mPlaybackService.pause();
+        // Ignore pause events (incoming call, BT/headset button, audio focus loss)
+        // when nothing is loaded, so the idle service doesn't post a notification.
+        if(mPlaybackService == null) {
+            return;
         }
+        mPlaybackService.pause();
         stopProgressUpdates();
 
         abandonAudioFocus();
@@ -570,7 +572,10 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                     .setState(playbackState, currentPosition, 1.0f)
                     .setActions(buildPlaybackActions(playbackState, false))
                     .build());
-            stopForeground(false);
+            // Nothing is loaded: remove the notification instead of keeping a
+            // stale foreground notification around.
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
+            podcastNotification.cancel();
         } else {
             currentPosition = mPlaybackService.getCurrentPosition();
             totalDuration = mPlaybackService.getTotalDuration();
@@ -579,7 +584,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             if (playbackState== PlaybackStateCompat.STATE_PLAYING) {
                 startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
             } else {
-                stopForeground(false);
+                ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_DETACH);
             }
 
             mSession.setPlaybackState(new PlaybackStateCompat.Builder()
@@ -777,8 +782,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                 // Stop requested (e.g. notification was swiped away)
                 if(keyEvent.getKeyCode() == KEYCODE_MEDIA_STOP) {
                     pause();
-                    endCurrentMediaPlayback();
-                    stopSelf();
+                    endCurrentMediaPlayback(); // already calls stopSelf()
                     /*
                     boolean isPlaying = mSession.getController().getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING;
                     if(isPlaying) {

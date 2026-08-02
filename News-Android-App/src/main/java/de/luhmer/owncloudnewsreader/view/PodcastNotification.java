@@ -50,6 +50,15 @@ public class PodcastNotification {
             return;
         }
 
+        // Don't post a notification when no media is loaded (e.g. idle service).
+        // Otherwise a "00:00 - 00:00" notification appears out of nowhere and
+        // gets re-posted right after the user swipes it away.
+        if (status == PlaybackStateCompat.STATE_NONE) {
+            lastStatus = status;
+            cancel();
+            return;
+        }
+
         if (status != lastStatus) {
             lastStatus = status;
 
