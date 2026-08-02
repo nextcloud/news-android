@@ -608,8 +608,15 @@ public class DatabaseConnectionOrm {
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
-        if(!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue() || ID_FOLDER == ALL_ITEMS.getValue()))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
-        {
+        if (ID_FOLDER == ALL_UNREAD_ITEMS.getValue())
+            buildSQL += " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1";
+        else if (ID_FOLDER == ALL_STARRED_ITEMS.getValue())
+            buildSQL += " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1";
+        else if (ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue()) {
+            var ids = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
+            var files = Arrays.stream(ids).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
+            buildSQL += " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + ")";
+        } else if (ID_FOLDER != ALL_ITEMS.getValue()) {
             buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
                     "(SELECT sc." + FeedDao.Properties.Id.columnName +
                     " FROM " + FeedDao.TABLENAME + " sc " +
@@ -621,15 +628,6 @@ public class DatabaseConnectionOrm {
         }
         // ALL_ITEMS (-12) intentionally has no branch here: it shows all articles
         // (read + unread) with no feed or read filter.
-        else if(ID_FOLDER == ALL_UNREAD_ITEMS.getValue())
-            buildSQL += " WHERE " + RssItemDao.Properties.Read_temp.columnName + " != 1";
-        else if(ID_FOLDER == ALL_STARRED_ITEMS.getValue())
-            buildSQL += " WHERE " + RssItemDao.Properties.Starred_temp.columnName + " = 1";
-        else if (ID_FOLDER == ALL_DOWNLOADED_PODCASTS.getValue()) {
-            var ids = NewsFileUtils.getDownloadedPodcastsFingerprints(context);
-            var files = Arrays.stream(ids).map((f) -> "\"" + f + "\"").collect(Collectors.toList());
-            buildSQL += " WHERE " + RssItemDao.Properties.Fingerprint.columnName + " in (" + String.join(",", files) + ")";
-        }
 
         buildSQL += " ORDER BY " + RssItemDao.Properties.PubDate.columnName + " " + sortDirection.toString();
 
@@ -640,8 +638,8 @@ public class DatabaseConnectionOrm {
         String buildSQL = "SELECT " + RssItemDao.Properties.Id.columnName +
                 " FROM " + RssItemDao.TABLENAME;
 
-        if (!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_ITEMS.getValue()))//Wenn nicht Alle Artikel ausgewaehlt wurde (-10) oder (-11) fuer Starred Feeds
-        {
+        // Wenn nicht "Alle Artikel" (-12), "Alle ungelesenen Artikel" (-10) oder "Alle markierten Artikel" (-11) ausgewaehlt wurde
+        if (!(ID_FOLDER == ALL_UNREAD_ITEMS.getValue() || ID_FOLDER == ALL_STARRED_ITEMS.getValue() || ID_FOLDER == ALL_ITEMS.getValue())) {
             buildSQL += " WHERE " + RssItemDao.Properties.FeedId.columnName + " IN " +
                     "(SELECT sc." + FeedDao.Properties.Id.columnName +
                     " FROM " + FeedDao.TABLENAME + " sc " +
