@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Vill du ladda ner bilder utan wifi-anslutning?</string>
     <string name="current_version">Du använder Version %s</string>
     <string name="widget_header">Nextcloud nyheter</string>
+    <string name="message_bar_scroll_top">Uppdatera och rulla längst upp</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d ny artikel tillgänglig</item>
         <item quantity="other">%d nya artiklar tillgängliga</item>
@@ -159,6 +160,9 @@
 
     <string name="pref_title_general_search_in">Sök i</string>
 
+    <string name="pref_title_tts_settings">Talsyntesmotor och röst</string>
+    <string name="pref_summary_tts_settings">Öppna systeminställningarna för att välja den motor och röst som används när artiklar läses upp</string>
+
     <string name="pref_general_search_in_title">Rubrik</string>
     <string name="pref_general_search_in_body">Textyta</string>
     <string name="pref_general_search_in_both">Både</string>
@@ -172,6 +176,7 @@
     <string name="pref_title_DisableHostnameVerification">Inaktivera verifiering av värdnamn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigera med volymknapparna</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Markera som läst vid bläddring</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synkronisera när du har rullat längst ned</string>
     <string name="pref_title_ShowFastActions">Aktivera snabbåtkomstsfunktioner</string>
     <string name="pref_title_OpenInBrowserDirectly">Hoppa över detaljerad vy och öppna artikeln i webbläsare</string>
     <string name="pref_title_BackButtonOpensDrawer">Bakåtknappen öppnar panelen</string>
@@ -226,6 +231,9 @@
 
     <string name="pref_oled_mode">Svart bakgrund</string>
     <string name="pref_oled_mode_summary">För mörkt tema på OLED-skärmar</string>
+
+    <string name="pref_detailed_view_zoom">Zoomning i detaljvyn</string>
+    <string name="pref_detailed_view_zoom_summary">Aktivera zoomning av innehållet i detaljvyn</string>
 
     <string name="pref_external_player">Extern spelare</string>
     <string name="pref_external_player_summary">Spela podcasts i din standardapp för media</string>

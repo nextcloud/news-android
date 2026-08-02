@@ -22,6 +22,7 @@
 package de.luhmer.owncloudnewsreader.ListView;
 
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_DOWNLOADED_PODCASTS;
+import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_STARRED_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ALL_UNREAD_ITEMS;
 import static de.luhmer.owncloudnewsreader.ListView.SubscriptionExpandableListAdapter.SPECIAL_FOLDERS.ITEMS_WITHOUT_FOLDER;
@@ -309,6 +310,10 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
                 viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
                 viewHolder.binding.imgViewFavicon.setVisibility(View.VISIBLE);
                 viewHolder.binding.imgViewFavicon.setImageResource(R.drawable.ic_baseline_play_arrow_24_theme_aware);
+        	} else if(group.id_database == ALL_ITEMS.getValue()) {
+                viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
+                viewHolder.binding.imgViewFavicon.setVisibility(View.VISIBLE);
+                viewHolder.binding.imgViewFavicon.setImageResource(R.drawable.ic_list_24_theme_aware);
         	} else if (getChildrenCount( groupPosition ) == 0 ) {
 	        	viewHolder.binding.imgViewExpandableIndicator.setVisibility(View.GONE);
                 viewHolder.binding.imgViewFavicon.setVisibility(View.INVISIBLE);
@@ -376,6 +381,7 @@ public class SubscriptionExpandableListAdapter extends BaseExpandableListAdapter
 
         ArrayList<AbstractItem> mCategories = new ArrayList<>();
         mCategories.add(new FolderSubscribtionItem(mContext.getString(R.string.allUnreadFeeds), null, ALL_UNREAD_ITEMS.getValue()));
+        mCategories.add(new FolderSubscribtionItem(mContext.getString(R.string.allItems), null, ALL_ITEMS.getValue()));
         mCategories.add(new FolderSubscribtionItem(mContext.getString(R.string.starredFeeds), null, ALL_STARRED_ITEMS.getValue()));
         mCategories.add(new FolderSubscribtionItem(mContext.getString(R.string.downloadedPodcasts), null, ALL_DOWNLOADED_PODCASTS.getValue()));
 
