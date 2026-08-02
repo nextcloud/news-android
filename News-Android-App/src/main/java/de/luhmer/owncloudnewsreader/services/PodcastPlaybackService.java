@@ -58,6 +58,7 @@ import de.luhmer.owncloudnewsreader.events.podcast.SeekPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.SpeedPodcast;
 import de.luhmer.owncloudnewsreader.events.podcast.TogglePlayerStateEvent;
 import de.luhmer.owncloudnewsreader.events.podcast.WindPodcast;
+import de.luhmer.owncloudnewsreader.helper.PodcastPositionStore;
 import de.luhmer.owncloudnewsreader.model.MediaItem;
 import de.luhmer.owncloudnewsreader.model.PodcastFeedItem;
 import de.luhmer.owncloudnewsreader.model.PodcastItem;
@@ -107,7 +108,15 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
     private static final long PROGRESS_UPDATE_INTERNAL = 1000;
     private static final long PROGRESS_UPDATE_INITIAL_INTERVAL = 100;
 
+    // resume position handling (issue #504)
+    private static final long POSITION_SAVE_INTERVAL = 5000;
+    private static final long POSITION_MIN_SAVE_POSITION = 5000;
+    private static final long POSITION_COMPLETED_REMAINING = 15000;
+    private static final float POSITION_COMPLETED_PERCENT = 0.95f;
+
     private PodcastNotification podcastNotification;
+    private PodcastPositionStore mPositionStore;
+    private long mLastPositionSaveTime = 0;
 
     private EventBus eventBus;
     private Handler mHandler;
@@ -232,6 +241,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         initMediaSessions();
 
         podcastNotification = new PodcastNotification(this, mSession);
+        mPositionStore = new PodcastPositionStore(this);
         mHandler = new Handler();
         eventBus = EventBus.getDefault();
         eventBus.register(this);
@@ -303,9 +313,14 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         }
 
         if (mPlaybackService != null) {
+            persistPlaybackPosition(); // remember position when switching episodes
             mPlaybackService.destroy();
             mPlaybackService = null;
         }
+
+        // reset the throttle so the new episode's first periodic save is a full
+        // interval in, not carried over from the previous episode
+        mLastPositionSaveTime = 0;
 
         stopProgressUpdates();
 
@@ -315,7 +330,9 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             //if (((PodcastItem) mediaItem).isYoutubeVideo()) {
             //    mPlaybackService = new YoutubePlaybackService(this, podcastStatusListener, mediaItem);
             //} else {
-                mPlaybackService = new MediaPlayerPlaybackService(this, podcastStatusListener, mediaItem);
+                PodcastItem podcastItem = (PodcastItem) mediaItem;
+                int startPosition = (int) mPositionStore.getPosition(podcastItem.itemId, podcastItem.fingerprint);
+                mPlaybackService = new MediaPlayerPlaybackService(this, podcastStatusListener, mediaItem, startPosition);
             //}
         } else if (mediaItem instanceof TTSItem) {
             mPlaybackService = new TTSPlaybackService(this, podcastStatusListener, mediaItem);
@@ -381,7 +398,16 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
         public void podcastCompleted() {
             Log.d(TAG, "Podcast completed, cleaning up");
 
+            MediaItem mediaItem = getCurrentlyPlayingPodcast();
+
             endCurrentMediaPlayback();
+
+            // Episode finished: forget any stored position so it starts from the
+            // beginning next time. Done after teardown so it always wins over the
+            // position persist that runs inside endCurrentMediaPlayback().
+            if (mediaItem instanceof PodcastItem) {
+                mPositionStore.clearPosition(mediaItem.itemId);
+            }
 
             EventBus.getDefault().post(new PodcastCompletedEvent());
         }
@@ -389,6 +415,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
     private void endCurrentMediaPlayback() {
         Log.d(TAG, "endCurrentMediaPlayback() called");
+        persistPlaybackPosition();
         stopProgressUpdates();
 
         // Set metadata
@@ -408,6 +435,34 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
 
         // No media remains, don't keep the service alive idle.
         stopSelf();
+    }
+
+    /**
+     * Remembers the current playback position of the active podcast so it can
+     * be resumed later (issue #504). Clears the stored position instead when
+     * the episode is (almost) finished.
+     */
+    private void persistPlaybackPosition() {
+        if (!(mPlaybackService instanceof MediaPlayerPlaybackService)) {
+            return; // e.g. TTS playback
+        }
+
+        MediaItem mediaItem = mPlaybackService.getMediaItem();
+        if (!(mediaItem instanceof PodcastItem) || !mPlaybackService.isMediaLoaded()) {
+            return;
+        }
+
+        long position = mPlaybackService.getCurrentPosition();
+        long duration = mPlaybackService.getTotalDuration();
+        if (duration <= 0) {
+            return; // e.g. live streams
+        }
+
+        if (position >= duration * POSITION_COMPLETED_PERCENT || position >= duration - POSITION_COMPLETED_REMAINING) {
+            mPositionStore.clearPosition(mediaItem.itemId);
+        } else if (position >= POSITION_MIN_SAVE_POSITION) {
+            mPositionStore.savePosition(mediaItem.itemId, ((PodcastItem) mediaItem).fingerprint, position, duration);
+        }
     }
 
     @Subscribe
@@ -496,6 +551,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             return;
         }
         mPlaybackService.pause();
+        persistPlaybackPosition();
         stopProgressUpdates();
 
         abandonAudioFocus();
@@ -580,6 +636,12 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             currentPosition = mPlaybackService.getCurrentPosition();
             totalDuration = mPlaybackService.getTotalDuration();
             playbackState = mPlaybackService.getStatus();
+
+            if (playbackState == PlaybackStateCompat.STATE_PLAYING
+                    && System.currentTimeMillis() - mLastPositionSaveTime >= POSITION_SAVE_INTERVAL) {
+                mLastPositionSaveTime = System.currentTimeMillis();
+                persistPlaybackPosition();
+            }
 
             if (playbackState== PlaybackStateCompat.STATE_PLAYING) {
                 startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
