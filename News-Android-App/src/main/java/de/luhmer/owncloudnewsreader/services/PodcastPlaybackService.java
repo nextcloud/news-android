@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.media.MediaBrowserServiceCompat;
 import androidx.media.session.MediaButtonReceiver;
 
@@ -573,7 +574,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
                     .build());
             // Nothing is loaded: remove the notification instead of keeping a
             // stale foreground notification around.
-            stopForeground(true);
+            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
             podcastNotification.cancel();
         } else {
             currentPosition = mPlaybackService.getCurrentPosition();
@@ -583,7 +584,7 @@ public class PodcastPlaybackService extends MediaBrowserServiceCompat {
             if (playbackState== PlaybackStateCompat.STATE_PLAYING) {
                 startForeground(PodcastNotification.NOTIFICATION_ID, podcastNotification.getNotification());
             } else {
-                stopForeground(false);
+                ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_DETACH);
             }
 
             mSession.setPlaybackState(new PlaybackStateCompat.Builder()
