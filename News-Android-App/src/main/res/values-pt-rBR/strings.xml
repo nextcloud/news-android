@@ -18,6 +18,7 @@
     </plurals>
     <string name="message_bar_reload">Recarregar</string>
     <string name="allUnreadFeeds">Todos itens não lidos</string>
+    <string name="allItems">Todos os artigos locais</string>
     <string name="starredFeeds">Itens com estrela</string>
     <string name="downloadedPodcasts">Podcasts baixados</string>
     <string name="title_activity_new_feed">Adicionar novo feed</string>

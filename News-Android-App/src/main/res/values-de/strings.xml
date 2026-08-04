@@ -17,6 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Aktualisieren</string>
     <string name="allUnreadFeeds">Alle ungelesenen Artikel</string>
+    <string name="allItems">Alle lokalen Artikel</string>
     <string name="starredFeeds">Favorisierte Artikel</string>
     <string name="downloadedPodcasts">Heruntergeladene Podcasts</string>
     <string name="title_activity_new_feed">Einen neuen Feed hinzufügen</string>

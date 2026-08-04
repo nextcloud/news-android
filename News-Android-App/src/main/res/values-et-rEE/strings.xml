@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Automaatne sünkimine</string>
-    <string name="title_activity_sync_interval_selector">Sünkimise välp</string>
+    <string name="auto_sync_string">Automaatne sünkroonimine</string>
+    <string name="title_activity_sync_interval_selector">Sünkroonimise välp</string>
     <string name="empty_view_content">Siin pole kirjeid</string>
     <string name="empty_view_content_action">Andmete uuendamiseks viipa alla</string>
     <string name="toast_GettingMoreItems">Täiendavate kirjete allalaadimine algas. Palun oota…</string>
@@ -17,6 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Laadi uuesti</string>
     <string name="allUnreadFeeds">Kõik lugemata kirjed</string>
+    <string name="allItems">Kõik kohalikud artiklid</string>
     <string name="starredFeeds">Tärniga märgitud kirjed</string>
     <string name="downloadedPodcasts">Allalaaditud taskuhäälingud</string>
     <string name="title_activity_new_feed">Lisa uudisvoog</string>

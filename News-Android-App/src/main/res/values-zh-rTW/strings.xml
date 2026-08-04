@@ -16,6 +16,7 @@
     </plurals>
     <string name="message_bar_reload">重新載入</string>
     <string name="allUnreadFeeds">所有未閱讀項目</string>
+    <string name="allItems">所有本機文章</string>
     <string name="starredFeeds">星號項目</string>
     <string name="downloadedPodcasts">下載 podcast</string>
     <string name="title_activity_new_feed">加入新訂閱</string>
