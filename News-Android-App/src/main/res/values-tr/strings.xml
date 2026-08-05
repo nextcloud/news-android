@@ -42,7 +42,7 @@
     <string name="action_add_new_feed">Yeni akış ekle</string>
     <string name="action_add_new_folder">Yeni klasör ekle</string>
     <string name="action_textToSpeech">Sesli oku</string>
-    <string name="action_search">Arama</string>
+    <string name="action_search">Ara</string>
     <string name="action_download_articles_offline">Yazıları çevrim dışı olarak indir</string>
     <!-- notifications -->
     <string name="notification_download_articles_offline">Yazılar çevrim dışı kullanılmak üzere indiriliyor</string>
