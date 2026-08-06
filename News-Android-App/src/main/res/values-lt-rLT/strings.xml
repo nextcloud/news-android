@@ -19,6 +19,7 @@
     </plurals>
     <string name="message_bar_reload">Įkelti iš naujo</string>
     <string name="allUnreadFeeds">Visi neskaityti elementai</string>
+    <string name="allItems">Visi vietiniai straipsniai</string>
     <string name="starredFeeds">Pažymėti elementai</string>
     <string name="downloadedPodcasts">Atsisiųstos tinklalaidės</string>
     <string name="title_activity_new_feed">Pridėti naują kanalą</string>
