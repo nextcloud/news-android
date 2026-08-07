@@ -17,6 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Volver cargar</string>
     <string name="allUnreadFeeds">Todos os elementos sen ler</string>
+    <string name="allItems">Todos os artigos locais</string>
     <string name="starredFeeds">Elementos salientados</string>
     <string name="downloadedPodcasts">Downloaded podcasts</string>
     <string name="title_activity_new_feed">Engadir unha nova fonte</string>
@@ -159,6 +160,9 @@
     <string name="pref_rename_action_swipe_left">Acción ao esvarar cara á esquerda</string>
 
     <string name="pref_title_general_search_in">Buscar en</string>
+
+    <string name="pref_title_tts_settings">Motor de voz</string>
+    <string name="pref_summary_tts_settings">Abrir os axustes do sistema para escoller o motor de voz para ler os artigos en voz alta</string>
 
     <string name="pref_general_search_in_title">Título</string>
     <string name="pref_general_search_in_body">Corpo</string>

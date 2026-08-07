@@ -17,6 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Yeniden yükle</string>
     <string name="allUnreadFeeds">Tüm okunmamış ögeler</string>
+    <string name="allItems">Tüm yerel yazılar</string>
     <string name="starredFeeds">Yıldızlanmış ögeler</string>
     <string name="downloadedPodcasts">İndirilmiş Podcast ortamları</string>
     <string name="title_activity_new_feed">Yeni akış ekle</string>
