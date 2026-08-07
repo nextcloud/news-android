@@ -64,6 +64,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     private EventBus eventBus;
     private PodcastFragment mPodcastFragment;
+    private int podcastPanelBottomInset;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -248,7 +249,22 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
     }
 
     private void expandPodcastView() {
-        getPodcastSlidingUpPanelLayout().setPanelHeight((int) dipToPx(68));
+        getPodcastSlidingUpPanelLayout().setPanelHeight(getVisiblePodcastPanelHeight());
+    }
+
+    void setPodcastPanelBottomInset(int bottomInset) {
+        if(podcastPanelBottomInset == bottomInset) {
+            return;
+        }
+
+        podcastPanelBottomInset = bottomInset;
+        if(getPodcastSlidingUpPanelLayout().getPanelHeight() > 0) {
+            getPodcastSlidingUpPanelLayout().setPanelHeight(getVisiblePodcastPanelHeight());
+        }
+    }
+
+    private int getVisiblePodcastPanelHeight() {
+        return (int) dipToPx(68) + podcastPanelBottomInset;
     }
 
     @Subscribe
