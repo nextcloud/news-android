@@ -179,7 +179,7 @@
     <string name="reset_cache_unsaved_changes">Certaines modifications ne sont pas synchronisées. Voulez-vous tout de même réinitialiser le cache ?</string>
     <string name="warning">Attention</string>
     <string name="pref_title_AutoSyncOnStart">Synchro. au démarrage</string>
-    <string name="pref_title_ShowOnlyUnread">Masquer les articles lus</string>
+    <string name="pref_title_ShowOnlyUnread">Ne montrer que les articles non-lus</string>
     <string name="pref_title_DisableHostnameVerification">Désactiver la vérification du nom d\'hôte</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviguer avec les boutons de volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marquer comme lu lors du défilement</string>
