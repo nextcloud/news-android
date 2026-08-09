@@ -20,6 +20,7 @@
     </plurals>
     <string name="message_bar_reload">Athlódáil</string>
     <string name="allUnreadFeeds">Gach mír neamhléite</string>
+    <string name="allItems">Gach alt áitiúil</string>
     <string name="starredFeeds">Míreanna le réiltín</string>
     <string name="downloadedPodcasts">Podchraoltaí íoslódáilte</string>
     <string name="title_activity_new_feed">Cuir fotha nua leis</string>
