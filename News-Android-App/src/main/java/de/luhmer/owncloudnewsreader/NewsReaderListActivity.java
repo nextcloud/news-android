@@ -164,6 +164,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private ActionBarDrawerToggle drawerToggle;
 	private SearchView mSearchView;
 	private String mSearchString;
+	private MenuItem mSearchMenuItem;
 	private static final String SEARCH_KEY = "SEARCH_KEY";
 
 	private PublishSubject<String> searchPublishSubject;
@@ -675,6 +676,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (binding.drawerLayout != null)
 			binding.drawerLayout.closeDrawer(GravityCompat.START);
 
+		clearActiveSearch();
 		updateDetailFragment(idFeed, isFolder, optional_folder_id, true);
 	}
 
@@ -683,6 +685,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		if (binding.drawerLayout != null)
 			binding.drawerLayout.closeDrawer(GravityCompat.START);
 
+		clearActiveSearch();
 		updateDetailFragment(idFeed, false, optional_folder_id, true);
 	}
 
@@ -920,6 +923,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		menuItemDownloadMoreItems.setEnabled(false);
 
 		MenuItem searchItem = menu.findItem(R.id.menu_search);
+		mSearchMenuItem = searchItem;
 		menuItemOnlyUnread = menu.findItem(R.id.menu_toggleShowOnlyUnread);
 		menuItemOnlyUnread.setChecked(mPrefs.getBoolean(SettingsActivity.CB_SHOWONLYUNREAD_STRING, false));
 		syncMenuItemUnreadOnly();
@@ -1401,4 +1405,22 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
     public void clearSearchViewFocus() {
         mSearchView.clearFocus();
     }
+
+	/**
+	 * Clear any active search when switching feeds/folders so a leftover query
+	 * cannot filter a different list (e.g. All unread after searching a feed).
+	 */
+	private void clearActiveSearch() {
+		if (mSearchMenuItem != null && mSearchMenuItem.isActionViewExpanded()) {
+			mSearchMenuItem.collapseActionView();
+			return;
+		}
+		mSearchString = "";
+		if (mSearchView != null) {
+			mSearchView.setQuery("", false);
+		}
+		if (searchPublishSubject != null) {
+			searchPublishSubject.onNext("");
+		}
+	}
 }
