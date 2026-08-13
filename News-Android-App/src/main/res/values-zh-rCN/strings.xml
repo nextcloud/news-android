@@ -14,7 +14,7 @@
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d 条新内容</item>
     </plurals>
-    <string name="message_bar_reload">刷新</string>
+    <string name="message_bar_reload">重新加载</string>
     <string name="allUnreadFeeds">所有未读内容</string>
     <string name="starredFeeds">标星内容</string>
     <string name="downloadedPodcasts">已下载播客</string>
