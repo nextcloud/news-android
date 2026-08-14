@@ -1364,7 +1364,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	public boolean onLongClick(RssItemViewHolder vh, int position) {
 		RssItem rssItem = vh.getRssItem();
 		DialogFragment newFragment =
-				NewsDetailImageDialogFragment.newInstanceUrl(rssItem.getTitle(), rssItem.getLink());
+				NewsDetailImageDialogFragment.newInstanceUrl(rssItem.getTitle(), rssItem.getLink(), position);
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		Fragment prev = getSupportFragmentManager().findFragmentByTag("menu_fragment_dialog");
 		if (prev != null) {
@@ -1373,6 +1373,25 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		ft.addToBackStack(null);
 		newFragment.show(ft, "menu_fragment_dialog");
 		return true;
+	}
+
+	public void markItemsAboveAsRead(int position) {
+		NewsReaderDetailFragment ndf = getNewsReaderDetailFragment();
+		if (ndf == null || ndf.getRecyclerView().getAdapter() == null) {
+			return;
+		}
+
+		int updatedCount = ((NewsListRecyclerAdapter) ndf.getRecyclerView().getAdapter()).markItemsAboveAsRead(position);
+		if (updatedCount > 0) {
+			reloadCountNumbersOfSlidingPaneAdapter();
+			ndf.refreshCurrentRssView();
+		}
+
+		makeFABAwareSnackbar(getResources().getQuantityString(
+				R.plurals.marked_as_read_message,
+				updatedCount,
+				updatedCount
+		), Snackbar.LENGTH_SHORT).show();
 	}
 
 	@Override
