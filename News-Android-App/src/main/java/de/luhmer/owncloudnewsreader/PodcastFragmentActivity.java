@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Toast;
 
@@ -67,6 +66,7 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     private EventBus eventBus;
     private PodcastFragment mPodcastFragment;
+    private int podcastPanelBottomInset;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -272,7 +272,23 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
     }
 
     private void expandPodcastView() {
-        getPodcastSlidingUpPanelLayout().setPanelHeight((int) dipToPx(68));
+        getPodcastSlidingUpPanelLayout().setPanelHeight(getVisiblePodcastPanelHeight());
+    }
+
+    void setPodcastPanelBottomInset(int bottomInset) {
+        if(podcastPanelBottomInset == bottomInset) {
+            return;
+        }
+
+        podcastPanelBottomInset = bottomInset;
+        if(getPodcastSlidingUpPanelLayout().getPanelHeight() > 0) {
+            getPodcastSlidingUpPanelLayout().setPanelHeight(getVisiblePodcastPanelHeight());
+        }
+    }
+
+    private int getVisiblePodcastPanelHeight() {
+        // has to match the header of the panel, which is all that is visible while collapsed
+        return getResources().getDimensionPixelSize(R.dimen.podcast_header_height) + podcastPanelBottomInset;
     }
 
     @Subscribe
@@ -284,10 +300,6 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
     public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
-    }
-
-    private float dipToPx(@SuppressWarnings("SameParameterValue") float dip) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
     }
 
     @VisibleForTesting
