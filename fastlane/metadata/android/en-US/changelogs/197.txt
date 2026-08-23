@@ -1,4 +1,3 @@
-- Dependency updates
 - Added - !1684 - Remember podcast playback position (thanks to @Kernel-Error)
 - Added - !1683 - Add "All articles" entry to navigation drawer
 - Fixed - !1682 - Don't post podcast notification when no media is loaded
