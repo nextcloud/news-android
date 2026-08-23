@@ -1,3 +1,24 @@
+0.9.9.96
+---------------------
+
+- Dependency updates
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1684">!1684 - Remember podcast
+  playback
+  position (thanks to @Kernel-Error)</a>
+- Added - <a href="https://github.com/nextcloud/news-android/pull/1683">!1683 - Add "All articles"
+  entry
+  to navigation drawer</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1682">!1682 - Don't post podcast
+  notification when no media is loaded</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1675">!1675 - Fix bug in
+  search</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1673">!1673 - Fix inconsistent
+  handling
+  of Widget Clicks / Back navigation after click on Widget</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1661">!1661 - Fix text to speech
+  for
+  long articles, add pause/resume and voice settings shortcut (thanks to @Kernel-Error)</a>
+
 0.9.9.95
 ---------------------
 - Dependency updates

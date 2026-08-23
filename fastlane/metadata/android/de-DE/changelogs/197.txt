@@ -1,0 +1,7 @@
+- Dependency updates
+- Added - !1684 - Remember podcast playback position (thanks to @Kernel-Error)
+- Added - !1683 - Add "All articles" entry to navigation drawer
+- Fixed - !1682 - Don't post podcast notification when no media is loaded
+- Fixed - !1675 - Fix bug in search
+- Fixed - !1673 - Fix inconsistent handling of Widget Clicks / Back navigation after click on Widget
+- Fixed - !1661 - Fix text to speech for long articles, add pause/resume and voice settings shortcut (thanks to @Kernel-Error)
