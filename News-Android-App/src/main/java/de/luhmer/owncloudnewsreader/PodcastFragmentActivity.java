@@ -12,6 +12,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,6 +20,8 @@ import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.nextcloud.android.sso.FilesAppTypeRegistry;
 import com.nextcloud.android.sso.helper.VersionCheckHelper;
@@ -91,7 +94,28 @@ public abstract class PodcastFragmentActivity extends AppCompatActivity implemen
 
         eventBus = EventBus.getDefault();
 
+        applyHorizontalInsets(findViewById(android.R.id.content));
         updatePodcastView();
+    }
+
+    /**
+     * Android 15+ enforces edge-to-edge, so the layout has to keep clear of the system bars on its
+     * own. The top and bottom insets are taken care of by the individual views, while the navigation
+     * bar ends up at the side of the screen in landscape, where nothing kept the toolbar and the
+     * content clear of it. Padding the content view moves the whole layout, the drawer and the
+     * podcast panel included, out of the way in a single place.
+     *
+     * <p>A display cutout is deliberately not taken into account. It is centered on the long edge of
+     * the screen, so in landscape it sits halfway down the side, far away from the toolbar - keeping
+     * clear of it would cost the width of the whole cutout without any element gaining from it.
+     */
+    @VisibleForTesting
+    public static void applyHorizontalInsets(View content) {
+        ViewCompat.setOnApplyWindowInsetsListener(content, (View v, WindowInsetsCompat insets) -> {
+            var bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(bars.left, v.getPaddingTop(), bars.right, v.getPaddingBottom());
+            return insets;
+        });
     }
 
     @Override
