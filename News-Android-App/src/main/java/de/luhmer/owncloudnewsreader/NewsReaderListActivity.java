@@ -256,7 +256,6 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 		boolean canOpenDrawer = mBackOpensDrawer && binding.drawerLayout != null;
 		onBackPressedCallback.setEnabled(panelIsOpen || canOpenDrawer);
 	}
-	}
 
     protected DisposableObserver<Boolean> startSyncObserver = new DisposableObserver<>() {
         @Override
