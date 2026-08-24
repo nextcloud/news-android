@@ -650,21 +650,21 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	}
 
 	public void initIncognitoMode() {
-        if (isIncognitoEnabled()) {
-            boolean isLightTheme = !ThemeChooser.isDarkTheme(this);
-            if (isLightTheme) {
-
-                int color = getResources().getColor(isIncognitoEnabled() ? R.color.material_grey_900 : R.color.colorPrimary);
-                ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
-                // the first three menu items are from the fast actions (if enabled)
-                int skipItems = mShowFastActions ? 3 : 0;
-                int white = getResources().getColor(android.R.color.white);
-                ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
-                clearLightStatusBar();
-                // no-op on Android 15+, but still colours the status bar on older releases
-                getWindow().setStatusBarColor(color);
-            }
+        if (ThemeChooser.isDarkTheme(this)) {
+            return;
         }
+
+        boolean incognito = isIncognitoEnabled();
+        if (incognito) {
+            int color = getResources().getColor(R.color.material_grey_900);
+            ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
+            // the first three menu items are from the fast actions (if enabled)
+            int skipItems = mShowFastActions ? 3 : 0;
+            int white = getResources().getColor(android.R.color.white);
+            ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
+        }
+
+        applyIncognitoStatusBar(incognito);
 
 
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);
@@ -676,11 +676,20 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 
 	/**
-	 * The incognito toolbar is dark, so the status bar icons on top of it have to stay light.
+	 * Tinting the status bar dark and switching its icons to light only works below Android 15.
+	 * From there on setStatusBarColor() is ignored and the status bar shows whatever the window
+	 * draws behind it, which stays light in day mode - so light icons would be invisible and the
+	 * status bar keeps following the theme instead.
 	 */
-	private void clearLightStatusBar() {
+	private void applyIncognitoStatusBar(boolean incognito) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+			return;
+		}
+
+		getWindow().setStatusBarColor(getResources().getColor(
+				incognito ? R.color.material_grey_900 : R.color.surface));
 		WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
-				.setAppearanceLightStatusBars(false);
+				.setAppearanceLightStatusBars(!incognito);
 	}
 
 
