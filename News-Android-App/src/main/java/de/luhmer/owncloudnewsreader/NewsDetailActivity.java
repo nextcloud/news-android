@@ -106,6 +106,9 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 	private boolean mShowFastActions;
 
+	/** Whether the toolbar and the status bar currently carry the incognito colours. */
+	private boolean mIncognitoColorsApplied;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		((NewsReaderApplication) getApplication()).getAppComponent().injectActivity(this);
@@ -654,21 +657,27 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             return;
         }
 
-        // Switching incognito mode off does not restore the toolbar - it keeps its dark colours
-        // until the activity is recreated. So the status bar must not be restored on its own
-        // either, or a light status bar would sit on top of a still dark toolbar.
-        if (!isIncognitoEnabled()) {
+        boolean incognito = isIncognitoEnabled();
+        if (!incognito && !mIncognitoColorsApplied) {
+            // nothing to restore, toolbar and status bar still follow the theme
             return;
         }
 
-        int color = getResources().getColor(R.color.material_grey_900);
-        ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
+        int background = getResources().getColor(incognito ? R.color.material_grey_900 : R.color.surface);
+        int foreground = getResources().getColor(incognito ? android.R.color.white : R.color.onSurface);
         // the first three menu items are from the fast actions (if enabled)
         int skipItems = mShowFastActions ? 3 : 0;
-        int white = getResources().getColor(android.R.color.white);
-        ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
 
-        applyIncognitoStatusBar();
+        ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, background);
+        if (incognito) {
+            ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, foreground, skipItems);
+        } else {
+            ThemeUtils.resetToolbarForeground(binding.toolbarLayout.toolbar, foreground, skipItems);
+        }
+
+        applyIncognitoStatusBar(incognito);
+
+        mIncognitoColorsApplied = incognito;
 
 
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);
@@ -685,14 +694,15 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * draws behind it, which stays light in day mode - so light icons would be invisible and the
 	 * status bar keeps following the theme instead.
 	 */
-	private void applyIncognitoStatusBar() {
+	private void applyIncognitoStatusBar(boolean incognito) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
 			return;
 		}
 
-		getWindow().setStatusBarColor(getResources().getColor(R.color.material_grey_900));
+		getWindow().setStatusBarColor(getResources().getColor(
+				incognito ? R.color.material_grey_900 : R.color.surface));
 		WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
-				.setAppearanceLightStatusBars(false);
+				.setAppearanceLightStatusBars(!incognito);
 	}
 
 
