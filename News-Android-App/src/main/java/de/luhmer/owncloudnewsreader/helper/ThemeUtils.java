@@ -34,6 +34,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
@@ -73,9 +74,26 @@ public class ThemeUtils {
      * @param skipMenuItems          how many menu items should not be colored
      */
     public static void colorizeToolbarForeground(Toolbar toolbarView, @ColorInt int toolbarForegroundColor, int skipMenuItems) {
+        applyToolbarForeground(toolbarView, toolbarForegroundColor,
+                new PorterDuffColorFilter(toolbarForegroundColor, PorterDuff.Mode.SRC_IN), skipMenuItems);
+    }
+
+    /**
+     * Undoes {@link #colorizeToolbarForeground}: the icons drop their color filter, so that they
+     * are drawn in their own (theme aware) tint again instead of a single flat color. Only the
+     * title has to be set to a color, as there is nothing to reset it to.
+     *
+     * @param toolbarView            toolbar view being reset
+     * @param toolbarForegroundColor the title color of the theme
+     * @param skipMenuItems          how many menu items should not be reset
+     */
+    public static void resetToolbarForeground(Toolbar toolbarView, @ColorInt int toolbarForegroundColor, int skipMenuItems) {
+        applyToolbarForeground(toolbarView, toolbarForegroundColor, null, skipMenuItems);
+    }
+
+    private static void applyToolbarForeground(Toolbar toolbarView, @ColorInt int toolbarForegroundColor, @Nullable ColorFilter cf, int skipMenuItems) {
         toolbarView.setTitleTextColor(toolbarForegroundColor);
 
-        ColorFilter cf = new PorterDuffColorFilter(toolbarForegroundColor, PorterDuff.Mode.SRC_IN);
         Drawable drawable = toolbarView.getOverflowIcon();
         if (drawable != null) {
             drawable.setColorFilter(cf);

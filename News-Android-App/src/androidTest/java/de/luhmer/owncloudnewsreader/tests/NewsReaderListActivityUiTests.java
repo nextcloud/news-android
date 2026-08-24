@@ -50,6 +50,7 @@ import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;
 
 import static androidx.core.util.Preconditions.checkNotNull;
+import static org.junit.Assume.assumeTrue;
 import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.InstrumentationRegistry.registerInstance;
 import static androidx.test.espresso.Espresso.onView;
@@ -109,6 +110,26 @@ public class NewsReaderListActivityUiTests {
         initMaterialShowCaseView(getActivity());
     }
 
+    private int currentOrientation() {
+        return getActivity().getResources().getConfiguration().orientation;
+    }
+
+    /**
+     * Waits for the orientation to differ from the one before the rotation was requested. Polling
+     * instead of a fixed delay keeps a slow rotation from being mistaken for an ignored one, which
+     * would silently skip the test instead of failing it.
+     */
+    private boolean awaitOrientationChange(int orientationBeforeRotation) {
+        long deadline = SystemClock.uptimeMillis() + 5000;
+        while (SystemClock.uptimeMillis() < deadline) {
+            if (currentOrientation() != orientationBeforeRotation) {
+                return true;
+            }
+            sleep(250);
+        }
+        return false;
+    }
+
     @Test
     public void testPositionAfterOrientationChange_sameActivity() {
         NewsReaderDetailFragment ndf = (NewsReaderDetailFragment) waitForFragment(R.id.content_frame, 5000);
@@ -116,10 +137,19 @@ public class NewsReaderListActivityUiTests {
         onView(withId(R.id.list)).perform(
                 RecyclerViewActions.scrollToPosition(scrollPosition));
 
+        int orientationBeforeRotation = currentOrientation();
+
         onView(isRoot()).perform(OrientationChangeAction.orientationLandscape(getActivity()));
         //onView(isRoot()).perform(OrientationChangeAction.orientationPortrait(getActivity()));
 
         sleep(2000);
+
+        // Android 16 ignores orientation requests on displays with a smallest width of 600dp or
+        // more, so on those devices the rotation never happens and there is nothing to assert.
+        // Comparing against the orientation before the request also covers devices that are
+        // already in landscape, where checking for landscape alone would let the test run on.
+        assumeTrue("device ignores requested orientation changes",
+                awaitOrientationChange(orientationBeforeRotation));
 
         LinearLayoutManager llm = (LinearLayoutManager) ndf.getRecyclerView().getLayoutManager();
         int expectedPosition = scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition());
