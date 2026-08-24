@@ -158,10 +158,10 @@ public class PodcastFragment extends Fragment {
     @Override
     public void onDestroyView() {
         if (sliding_layout != null) {
-            // the panel belongs to the activity and outlives this fragment, so the listeners have to
-            // go - otherwise every updatePodcastView() stacks another one on top
+            // the panel belongs to the activity and outlives this fragment, so the listener has to go
+            // - otherwise every activity recreation leaves another one behind on the panel. The insets
+            // listener is left in place on purpose, see applyPodcastInsets().
             sliding_layout.removePanelSlideListener(onPanelSlideListener);
-            ViewCompat.setOnApplyWindowInsetsListener(sliding_layout, null);
             sliding_layout = null;
         }
 
@@ -309,6 +309,12 @@ public class PodcastFragment extends Fragment {
      * The panel spans the whole window in {@link NewsReaderListActivity}, so it has to keep clear of
      * the system bars on its own. {@link NewsDetailActivity} positions it below the toolbar already,
      * which is why only the part of the status bar that is left over is taken into account.
+     *
+     * <p>The listener is not removed in {@link #onDestroyView()}. It belongs to the activity's panel,
+     * and a replacement fragment reaches {@link #onCreateView} before the outgoing one is torn down -
+     * clearing it there would wipe the listener the new fragment has just installed, and the insets
+     * would never reach the panel again. Installing it here overwrites whatever the previous fragment
+     * left behind, which is all the cleanup that is needed.
      */
     private void applyPodcastInsets() {
         final View root = binding.getRoot();
