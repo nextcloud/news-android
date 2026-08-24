@@ -41,6 +41,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -113,6 +114,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		binding = ActivityNewsDetailBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
+
+		getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
 
 		/*
 		//make full transparent statusBar
@@ -438,11 +441,16 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	}
 
 
-	@Override
-	public void onBackPressed() {
-		if (!handlePodcastBackPressed())
-			super.onBackPressed();
-	}
+	private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+		@Override
+		public void handleOnBackPressed() {
+			if (!handlePodcastBackPressed()) {
+				// nothing to collapse - fall back to the default back navigation
+				setEnabled(false);
+				getOnBackPressedDispatcher().onBackPressed();
+			}
+		}
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -497,7 +505,7 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 
 		final int itemId = item.getItemId();
 		if (itemId == android.R.id.home) {
-			onBackPressed();
+			getOnBackPressedDispatcher().onBackPressed();
 			return true;
 		} else if (itemId == R.id.action_read) {
 			this.markRead(currentPosition);
