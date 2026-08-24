@@ -43,6 +43,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -181,6 +182,8 @@ public class LoginDialogActivity extends AppCompatActivity {
         binding = ActivityLoginDialogBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+
         binding.btnSingleSignOn.setOnClickListener((v) -> startSingleSignOn());
         binding.btnLogin.setOnClickListener((v) -> startManualLogin());
         binding.tvManualLogin.setOnClickListener((v) -> manualLogin());
@@ -205,16 +208,19 @@ public class LoginDialogActivity extends AppCompatActivity {
                 .commit());
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
-            // exit application if no account is set uo
-            finishAffinity();
-        } else {
-            // go back to previous activity
-            super.onBackPressed();
+    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            if (mPrefs.getString(SettingsActivity.EDT_OWNCLOUDROOTPATH_STRING, null) == null) {
+                // exit application if no account is set up
+                finishAffinity();
+            } else {
+                // go back to previous activity
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+            }
         }
-    }
+    };
 
     private ProgressDialog buildPendingDialogWhileLoggingIn() {
         ProgressDialog pDialog = new ProgressDialog(this);
