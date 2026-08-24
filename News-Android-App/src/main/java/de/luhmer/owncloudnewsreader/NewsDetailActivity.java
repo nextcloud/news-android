@@ -42,6 +42,7 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -659,7 +660,8 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
                 int skipItems = mShowFastActions ? 3 : 0;
                 int white = getResources().getColor(android.R.color.white);
                 ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
-                clearLightStatusBar(getWindow().getDecorView());
+                clearLightStatusBar();
+                // no-op on Android 15+, but still colours the status bar on older releases
                 getWindow().setStatusBarColor(color);
             }
         }
@@ -670,41 +672,15 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 		//getWindow().setNavigationBarColor(color);
 
 
-		/*
-		switch (ThemeChooser.getSelectedTheme()) {
-			case LIGHT:
-				Log.d(TAG, "initIncognitoMode: LIGHT");
-				getWindow().setStatusBarColor(Color.WHITE);
-				break;
-			case DARK:
-				clearLightStatusBar(getWindow().getDecorView());
-				Log.d(TAG, "initIncognitoMode: DARK");
-				getWindow().setStatusBarColor(getResources().getColor(R.color.material_grey_900));
-				break;
-			case OLED:
-				clearLightStatusBar(getWindow().getDecorView());
-				Log.d(TAG, "initIncognitoMode: OLED");
-				getWindow().setStatusBarColor(Color.BLACK);
-				break;
-		}
-		*/
 	}
 
 
-	private void setLightStatusBar(@NonNull View view) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			int flags = view.getSystemUiVisibility(); // get current flag
-			flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;   // add LIGHT_STATUS_BAR to flag
-			view.setSystemUiVisibility(flags);
-		}
-	}
-
-	public static void clearLightStatusBar(@NonNull View view) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			int flags = view.getSystemUiVisibility();
-			flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-			view.setSystemUiVisibility(flags);
-		}
+	/**
+	 * The incognito toolbar is dark, so the status bar icons on top of it have to stay light.
+	 */
+	private void clearLightStatusBar() {
+		WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
+				.setAppearanceLightStatusBars(false);
 	}
 
 

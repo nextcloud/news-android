@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader.tests;
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -50,6 +51,7 @@ import helper.OrientationChangeAction;
 import helper.RecyclerViewAssertions;
 
 import static androidx.core.util.Preconditions.checkNotNull;
+import static org.junit.Assume.assumeTrue;
 import static androidx.test.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.InstrumentationRegistry.registerInstance;
 import static androidx.test.espresso.Espresso.onView;
@@ -120,6 +122,11 @@ public class NewsReaderListActivityUiTests {
         //onView(isRoot()).perform(OrientationChangeAction.orientationPortrait(getActivity()));
 
         sleep(2000);
+
+        // Android 16 ignores orientation requests on displays with a smallest width of 600dp or
+        // more, so on those devices the rotation never happens and there is nothing to assert.
+        assumeTrue("device ignores requested orientation changes",
+                getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
 
         LinearLayoutManager llm = (LinearLayoutManager) ndf.getRecyclerView().getLayoutManager();
         int expectedPosition = scrollPosition-(scrollPosition-llm.findFirstVisibleItemPosition());
