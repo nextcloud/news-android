@@ -252,7 +252,10 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	private void updateBackPressedCallbackState() {
 		boolean panelIsOpen = SlidingUpPanelLayout.PanelState.EXPANDED
 				.equals(getPodcastSlidingUpPanelLayout().getPanelState());
-		onBackPressedCallback.setEnabled(panelIsOpen || mBackOpensDrawer);
+		// the drawer is absent in the tablet landscape layout, so back must not try to open it
+		boolean canOpenDrawer = mBackOpensDrawer && binding.drawerLayout != null;
+		onBackPressedCallback.setEnabled(panelIsOpen || canOpenDrawer);
+	}
 	}
 
     protected DisposableObserver<Boolean> startSyncObserver = new DisposableObserver<>() {
