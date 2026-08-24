@@ -155,6 +155,19 @@ public class PodcastFragment extends Fragment {
         mActivity = null;
     }
 
+    @Override
+    public void onDestroyView() {
+        if (sliding_layout != null) {
+            // the panel belongs to the activity and outlives this fragment, so the listeners have to
+            // go - otherwise every updatePodcastView() stacks another one on top
+            sliding_layout.removePanelSlideListener(onPanelSlideListener);
+            ViewCompat.setOnApplyWindowInsetsListener(sliding_layout, null);
+            sliding_layout = null;
+        }
+
+        super.onDestroyView();
+    }
+
     protected void tryOpeningPictureinPictureMode() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //moveTaskToBack(false /* nonRoot */);
@@ -228,6 +241,11 @@ public class PodcastFragment extends Fragment {
 
         @Override
         public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+            if (sliding_layout == null || !isAdded()) {
+                // a settling panel still notifies the listeners it captured before it got removed
+                return;
+            }
+
             if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                 sliding_layout.setDragView(binding.llPodcastHeader);
                 binding.viewSwitcherProgress.setDisplayedChild(0);
@@ -324,6 +342,12 @@ public class PodcastFragment extends Fragment {
      * the playback controls stay clear of it.
      */
     private void applyPodcastHeaderInsets() {
+        if (sliding_layout == null || !isAdded()) {
+            // the panel can settle after the fragment got detached, e.g. when a sync finishes while
+            // the user is dragging it - there is nothing left to lay out in that case
+            return;
+        }
+
         boolean expanded = sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED;
         int top = expanded ? panelTopInset : 0;
         int bottom = expanded ? 0 : panelBottomInset;
