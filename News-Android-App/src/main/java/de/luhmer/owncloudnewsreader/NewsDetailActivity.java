@@ -654,17 +654,21 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
             return;
         }
 
-        boolean incognito = isIncognitoEnabled();
-        if (incognito) {
-            int color = getResources().getColor(R.color.material_grey_900);
-            ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
-            // the first three menu items are from the fast actions (if enabled)
-            int skipItems = mShowFastActions ? 3 : 0;
-            int white = getResources().getColor(android.R.color.white);
-            ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
+        // Switching incognito mode off does not restore the toolbar - it keeps its dark colours
+        // until the activity is recreated. So the status bar must not be restored on its own
+        // either, or a light status bar would sit on top of a still dark toolbar.
+        if (!isIncognitoEnabled()) {
+            return;
         }
 
-        applyIncognitoStatusBar(incognito);
+        int color = getResources().getColor(R.color.material_grey_900);
+        ThemeUtils.colorizeToolbar(binding.toolbarLayout.toolbar, color);
+        // the first three menu items are from the fast actions (if enabled)
+        int skipItems = mShowFastActions ? 3 : 0;
+        int white = getResources().getColor(android.R.color.white);
+        ThemeUtils.colorizeToolbarForeground(binding.toolbarLayout.toolbar, white, skipItems);
+
+        applyIncognitoStatusBar();
 
 
 		//ThemeUtils.colorizeToolbar(bottomAppBar, color);
@@ -681,15 +685,14 @@ public class NewsDetailActivity extends PodcastFragmentActivity {
 	 * draws behind it, which stays light in day mode - so light icons would be invisible and the
 	 * status bar keeps following the theme instead.
 	 */
-	private void applyIncognitoStatusBar(boolean incognito) {
+	private void applyIncognitoStatusBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
 			return;
 		}
 
-		getWindow().setStatusBarColor(getResources().getColor(
-				incognito ? R.color.material_grey_900 : R.color.surface));
+		getWindow().setStatusBarColor(getResources().getColor(R.color.material_grey_900));
 		WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
-				.setAppearanceLightStatusBars(!incognito);
+				.setAppearanceLightStatusBars(false);
 	}
 
 
