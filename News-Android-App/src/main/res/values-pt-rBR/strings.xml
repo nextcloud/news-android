@@ -31,7 +31,7 @@
     <string name="tv_showing_cached_version">Mostrando a versão em cache</string>
 
     <!-- Action Bar Items -->
-    <string name="action_starred">Vistos</string>
+    <string name="action_starred">Marcado com estrela</string>
     <string name="action_read">Ler</string>
     <string name="action_playPodacst">Ouvir o Podcast</string>
     <string name="action_removePodcast">Remover Mídia de Podcast</string>
