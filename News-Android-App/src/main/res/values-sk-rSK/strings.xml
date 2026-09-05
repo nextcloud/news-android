@@ -10,6 +10,7 @@
     <string name="do_you_want_to_download_without_wifi">Chcete stiahnuť obrázky bez Wi-Fi pripojenia?</string>
     <string name="current_version">Používate verziu %s</string>
     <string name="widget_header">ownCloud Novinky</string>
+    <string name="message_bar_scroll_top">Znova načítať a posunúť na začiatok</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">Dostupná %d nová položka</item>
         <item quantity="few">Dostupné %d nové položky</item>
@@ -18,6 +19,7 @@
     </plurals>
     <string name="message_bar_reload">Znovu načítať</string>
     <string name="allUnreadFeeds">Všetky neprečítané položky</string>
+    <string name="allItems">Všetky lokálne články</string>
     <string name="starredFeeds">Položky s hviezdičkou</string>
     <string name="downloadedPodcasts">Stiahnuté podcasty</string>
     <string name="title_activity_new_feed">Pridať nový kanál</string>
@@ -171,6 +173,9 @@
 
     <string name="pref_title_general_search_in">Hľadať v</string>
 
+    <string name="pref_title_tts_settings">Syntetizátor reči a hlas</string>
+    <string name="pref_summary_tts_settings">Otvorte systémové nastavenia a vyberte syntetizátor reči a hlas používané na hlasné čítanie článkov</string>
+
     <string name="pref_general_search_in_title">Názov</string>
     <string name="pref_general_search_in_body">Telo</string>
     <string name="pref_general_search_in_both">obidva</string>
@@ -184,6 +189,7 @@
     <string name="pref_title_DisableHostnameVerification">Vypnúť overovanie názvu hostiteľa</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigácia pomocou tlačidiel hlasitosti</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Označiť ako prečítané pri rolovaní stránky</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synchronizovať po posunutí na koniec</string>
     <string name="pref_title_ShowFastActions">Aktivovať funkcie pre rýchly prístup</string>
     <string name="pref_title_OpenInBrowserDirectly">Preskočte podrobné zobrazenie a otvorte článok v prehliadači</string>
     <string name="pref_title_BackButtonOpensDrawer">Tlačidlo Späť otvára zásuvku</string>
@@ -238,6 +244,9 @@
 
     <string name="pref_oled_mode">Čierne pozadie</string>
     <string name="pref_oled_mode_summary">Pre tmavé motívy vzhľadu na obrazovkách OLED</string>
+
+    <string name="pref_detailed_view_zoom">Priblíženie podrobného zobrazenia</string>
+    <string name="pref_detailed_view_zoom_summary">Povoliť približovanie obsahu v podrobnom zobrazení</string>
 
     <string name="pref_external_player">Externý prehrávač</string>
     <string name="pref_external_player_summary">Prehrávajte podcasty vo svojej predvolenej mediálnej aplikácii</string>
