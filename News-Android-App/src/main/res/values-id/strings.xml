@@ -261,6 +261,7 @@
     <string name="array_sync_interval_hour_3">3 jam</string>
     <string name="array_sync_interval_hour_6">6 jam</string>
     <string name="array_sync_interval_hour_12">12 jam</string>
+    <string name="array_sync_interval_hour_24">24 jam</string>
     <string name="switch_account">Pindah akun</string>
     
     <string name="please_wait">Harap tunggu...</string>

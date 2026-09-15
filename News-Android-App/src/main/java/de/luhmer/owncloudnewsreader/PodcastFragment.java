@@ -27,6 +27,8 @@ import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -81,6 +83,9 @@ public class PodcastFragment extends Fragment {
 
     private long currentPositionInMillis = 0;
     private long maxPositionInMillis = 100000;
+
+    private int panelTopInset = 0;
+    private int panelBottomInset = 0;
 
     protected FragmentPodcastBinding binding;
 
@@ -148,6 +153,19 @@ public class PodcastFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mActivity = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (sliding_layout != null) {
+            // the panel belongs to the activity and outlives this fragment, so the listener has to go
+            // - otherwise every activity recreation leaves another one behind on the panel. The insets
+            // listener is left in place on purpose, see applyPodcastInsets().
+            sliding_layout.removePanelSlideListener(onPanelSlideListener);
+            sliding_layout = null;
+        }
+
+        super.onDestroyView();
     }
 
     protected void tryOpeningPictureinPictureMode() {
@@ -223,12 +241,19 @@ public class PodcastFragment extends Fragment {
 
         @Override
         public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+            if (sliding_layout == null || !isAdded()) {
+                // a settling panel still notifies the listeners it captured before it got removed
+                return;
+            }
+
             if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                 sliding_layout.setDragView(binding.llPodcastHeader);
                 binding.viewSwitcherProgress.setDisplayedChild(0);
+                applyPodcastHeaderInsets();
             } else if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
                 sliding_layout.setDragView(binding.viewSwitcherProgress);
                 binding.viewSwitcherProgress.setDisplayedChild(1);
+                applyPodcastHeaderInsets();
             }
         }
     };
@@ -263,6 +288,7 @@ public class PodcastFragment extends Fragment {
             //sliding_layout.setEnableDragViewTouchEvents(true);
 
             sliding_layout.addPanelSlideListener(onPanelSlideListener);
+            applyPodcastInsets();
         }
 
         PodcastFeedArrayAdapter mArrayAdapter = new PodcastFeedArrayAdapter(getActivity(), new PodcastFeedItem[0]);
@@ -277,6 +303,65 @@ public class PodcastFragment extends Fragment {
         binding.sbProgress.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
         return binding.getRoot();
+    }
+
+    /**
+     * The panel spans the whole window in {@link NewsReaderListActivity}, so it has to keep clear of
+     * the system bars on its own. {@link NewsDetailActivity} positions it below the toolbar already,
+     * which is why only the part of the status bar that is left over is taken into account.
+     *
+     * <p>The listener is not removed in {@link #onDestroyView()}. It belongs to the activity's panel,
+     * and a replacement fragment reaches {@link #onCreateView} before the outgoing one is torn down -
+     * clearing it there would wipe the listener the new fragment has just installed, and the insets
+     * would never reach the panel again. Installing it here overwrites whatever the previous fragment
+     * left behind, which is all the cleanup that is needed.
+     */
+    private void applyPodcastInsets() {
+        final View root = binding.getRoot();
+        final int rootPaddingLeft = root.getPaddingLeft();
+        final int rootPaddingTop = root.getPaddingTop();
+        final int rootPaddingRight = root.getPaddingRight();
+        final int rootPaddingBottom = root.getPaddingBottom();
+        final int slidingLayoutTop = ((ViewGroup.MarginLayoutParams) sliding_layout.getLayoutParams()).topMargin;
+
+        ViewCompat.setOnApplyWindowInsetsListener(sliding_layout, (View v, WindowInsetsCompat insets) -> {
+            var systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            root.setPadding(rootPaddingLeft, rootPaddingTop, rootPaddingRight, rootPaddingBottom + systemBars.bottom);
+
+            if(mActivity instanceof PodcastFragmentActivity) {
+                ((PodcastFragmentActivity) mActivity).setPodcastPanelBottomInset(systemBars.bottom);
+            }
+
+            panelTopInset = Math.max(0, systemBars.top - slidingLayoutTop);
+            panelBottomInset = systemBars.bottom;
+            applyPodcastHeaderInsets();
+
+            return insets;
+        });
+        ViewCompat.requestApplyInsets(sliding_layout);
+    }
+
+    /**
+     * The header is the only part of the panel that is visible while it is collapsed, so it is the
+     * one that touches the bottom of the screen then - and the top of it once the panel is expanded.
+     * It grows by the inset of that edge, so that its background reaches behind the system bar while
+     * the playback controls stay clear of it.
+     */
+    private void applyPodcastHeaderInsets() {
+        if (sliding_layout == null || !isAdded()) {
+            // the panel can settle after the fragment got detached, e.g. when a sync finishes while
+            // the user is dragging it - there is nothing left to lay out in that case
+            return;
+        }
+
+        boolean expanded = sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED;
+        int top = expanded ? panelTopInset : 0;
+        int bottom = expanded ? 0 : panelBottomInset;
+
+        final View header = binding.viewSwitcherProgress;
+        header.setPadding(0, top, 0, bottom);
+        header.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.podcast_header_height) + top + bottom;
+        header.requestLayout();
     }
 
 

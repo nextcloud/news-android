@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,6 +48,8 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
         ThemeChooser.afterOnCreate(this);
 
         setContentView(R.layout.activity_pip_video_playback);
+
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && getPackageManager().hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
             //moveTaskToBack(false);
@@ -169,15 +172,18 @@ public class PiPVideoPlaybackActivity extends AppCompatActivity {
     */
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Log.d(TAG, "onBackPressed() called");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            enterPictureInPictureMode();
+    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            Log.d(TAG, "handleOnBackPressed() called");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                enterPictureInPictureMode();
+            } else {
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+            }
         }
-    }
+    };
 
 
 

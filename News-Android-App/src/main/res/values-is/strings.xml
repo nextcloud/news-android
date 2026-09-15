@@ -17,6 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Endurhlaða</string>
     <string name="allUnreadFeeds">Öll ólesin atriði</string>
+    <string name="allItems">Allar greinar á tækinu</string>
     <string name="starredFeeds">Stjörnumerkt atriði</string>
     <string name="downloadedPodcasts">Sótt hlaðvörp</string>
     <string name="title_activity_new_feed">Bæta við nýjum fréttastraumi</string>
@@ -88,7 +89,7 @@
     <string name="action_feed_open_in_general_setting">Nota almenna stillingu</string>
     <string name="action_feed_open_in_detailed_view">Ítarleg sýn</string>
     <string name="feed_remove_button">Fjarlægja</string>
-    <string name="feed_rename_button">Endurskýra</string>
+    <string name="feed_rename_button">Endurnefna</string>
     <string name="confirm_feed_remove">Ertu viss um að þú viljir fjarlægja þetta streymi? Þetta er ekki hægt að afturkalla!</string>
     <string name="feed_move_list_description">Veldu möppu sem á að færa streymið í</string>
     <string name="move_feed_root_folder">Rótarmappa</string>
@@ -114,7 +115,7 @@
     <!-- Strings related to login -->
     <string name="login_manual">Handvirk innskráning</string>
     <string name="login_sso">Skrá inn með Nextcloud-skráaforritinu</string>
-    <string name="pref_title_username">Notendanafn</string>
+    <string name="pref_title_username">Notandanafn</string>
     <string name="pref_title_password">Lykilorð</string>
     <string name="pref_title_owncloudRootPath">Rótarvistfang Nextcloud</string>
     <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
@@ -159,6 +160,9 @@
     <string name="pref_rename_action_swipe_left">Aðgerð þegar strokið er til vinstri</string>
 
     <string name="pref_title_general_search_in">Leita í</string>
+
+    <string name="pref_title_tts_settings">Talvél og rödd</string>
+    <string name="pref_summary_tts_settings">Opnaðu kerfisstillingarnar til að velja þá talvél og röddina sem verður notuð til að lesa greinar upphátt</string>
 
     <string name="pref_general_search_in_title">Titill</string>
     <string name="pref_general_search_in_body">Meginmál</string>

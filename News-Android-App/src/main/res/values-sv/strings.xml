@@ -17,6 +17,7 @@
     </plurals>
     <string name="message_bar_reload">Uppdatera</string>
     <string name="allUnreadFeeds">Alla olästa objekt</string>
+    <string name="allItems">Alla lokala artiklar</string>
     <string name="starredFeeds">Stjärnmärkta objekt</string>
     <string name="downloadedPodcasts">Nedladdade podcasts</string>
     <string name="title_activity_new_feed">Lägg till flöde</string>

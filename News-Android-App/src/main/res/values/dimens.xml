@@ -17,6 +17,7 @@
 
     <dimen name="podcast_horizontal_margin">16dp</dimen>
 
+    <dimen name="podcast_header_height">68dp</dimen>
     <dimen name="podcast_media_control_height">80dp</dimen>
 
     <dimen name="empty_content_font_size">26sp</dimen>

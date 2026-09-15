@@ -7,14 +7,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="?attr/colorSecondaryContainer">
 
 
     <!-- HEADER -->
     <ViewSwitcher
         android:id="@+id/viewSwitcherProgress"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="@dimen/podcast_header_height"
         android:inAnimation="@android:anim/fade_in"
         android:outAnimation="@android:anim/fade_out">
 
@@ -168,6 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
+        android:background="#fff"
         android:paddingStart="@dimen/podcast_horizontal_margin"
         android:paddingEnd="@dimen/podcast_horizontal_margin">
         <!--

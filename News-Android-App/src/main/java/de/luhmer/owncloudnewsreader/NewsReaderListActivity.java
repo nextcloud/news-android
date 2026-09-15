@@ -218,9 +218,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 
 		@Override
 		public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-			boolean panelIsOpen = newState.equals(SlidingUpPanelLayout.PanelState.EXPANDED);
-			// in case the podcast panel is open, we need to close it first (intercept back presses)
-			onBackPressedCallback.setEnabled(panelIsOpen || mBackOpensDrawer);
+			updateBackPressedCallbackState();
 		}
 	};
 
@@ -244,6 +242,20 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 			}
 		}
 	};
+
+	/**
+	 * Back navigation has to be intercepted while the podcast panel is expanded, so that it collapses
+	 * the panel instead of leaving the activity - regardless of the "Open Sidebar on Backpress"
+	 * setting. The panel state is read back here rather than tracked, because this is also called
+	 * from onResume(), where the panel may already have been expanded before.
+	 */
+	private void updateBackPressedCallbackState() {
+		boolean panelIsOpen = SlidingUpPanelLayout.PanelState.EXPANDED
+				.equals(getPodcastSlidingUpPanelLayout().getPanelState());
+		// the drawer is absent in the tablet landscape layout, so back must not try to open it
+		boolean canOpenDrawer = mBackOpensDrawer && binding.drawerLayout != null;
+		onBackPressedCallback.setEnabled(panelIsOpen || canOpenDrawer);
+	}
 
     protected DisposableObserver<Boolean> startSyncObserver = new DisposableObserver<>() {
         @Override
@@ -541,7 +553,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 				@Override
 				public void onDrawerClosed(View drawerView) {
 					super.onDrawerClosed(drawerView);
-					onBackPressedCallback.setEnabled(mBackOpensDrawer);
+					updateBackPressedCallbackState();
 
 					syncState();
 				}
@@ -590,7 +602,7 @@ public class NewsReaderListActivity extends PodcastFragmentActivity implements
 	@Override
 	protected void onResume() {
 		mBackOpensDrawer = mPrefs.getBoolean(SettingsActivity.CB_PREF_BACK_OPENS_DRAWER, false);
-		onBackPressedCallback.setEnabled(mBackOpensDrawer);
+		updateBackPressedCallbackState();
 
 		reloadSidebar();
 
