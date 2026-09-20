@@ -304,12 +304,19 @@ public class MemorizingTrustManager implements X509TrustManager {
 			return null;
 		}
 		try {
-			ks.load(null, null);
 			if(keyStoreFile.canRead()) {
 				ks.load(new java.io.FileInputStream(keyStoreFile), "MTM".toCharArray());
+			} else {
+				ks.load(null, null);
 			}
 		} catch (Exception e) {
 			Log.e(TAG, "getAppKeyStore(" + keyStoreFile + ")", e);
+			try {
+				ks = KeyStore.getInstance(KeyStore.getDefaultType());
+				ks.load(null, null);
+			} catch (Exception fallbackException) {
+				Log.e(TAG, "getAppKeyStore()", fallbackException);
+			}
 		}
 		return ks;
 	}
