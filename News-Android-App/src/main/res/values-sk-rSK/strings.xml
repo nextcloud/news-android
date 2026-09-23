@@ -225,7 +225,7 @@
     <string name="pref_privacy_summary">Nextcloud novinky pre Politiku Zabezpečenia Androidu</string>
     <string name="pref_news_policy">Kontaktujte nás / Zásady noviniek</string>
     <string name="pref_news_policy_summary">Nextcloud Novinky Pravidlá Android News / Kontaktujte nás</string>
-    <string name="pref_version">Aplikácia Nextcloud novinky pre Android</string>
+    <string name="pref_version">Aplikácia Nextcloud News pre Android</string>
 
 
     <!-- Settings for Display -->
