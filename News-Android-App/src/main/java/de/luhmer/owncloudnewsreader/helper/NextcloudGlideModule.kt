@@ -46,6 +46,13 @@ class NextcloudGlideModule : AppGlideModule() {
         builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes.toLong()))
         // builder.setDiskCache(ExternalPreferredCacheDiskCacheFactory(context))
 
+        // Decode bitmaps through Android's ImageDecoder (API 29+) instead of BitmapFactory.
+        // It is the platform's preferred decoder and usually needs less memory. Glide falls back
+        // to BitmapFactory on older releases on its own, so no version check is needed here.
+        builder.setImageDecoderEnabledForBitmaps(true)
+        // Let ImageDecoder read local Uris directly instead of going through an InputStream.
+        builder.setUriImageDecoderEnabled(true)
+
         // #00ff00 Memory Cache (Green)
         // #0066ff Disk Cache (Blue)
         // #ff0000 Remote (Red)
