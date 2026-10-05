@@ -10,12 +10,14 @@
     <string name="do_you_want_to_download_without_wifi">Ønsker du at downloade billederne uden en WiFi forbindelse?</string>
     <string name="current_version">Du bruger version %s</string>
     <string name="widget_header">ownCloud nyheder</string>
+    <string name="message_bar_scroll_top">Genindlæs, og rul til toppen</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="one">%d nyt element er tilgængeligt</item>
         <item quantity="other">%d nye elementer er tilgængelige</item>
     </plurals>
     <string name="message_bar_reload">Genindlæs</string>
     <string name="allUnreadFeeds">Alle ulæste artikler</string>
+    <string name="allItems">Alle lokale artikler</string>
     <string name="starredFeeds">Markerede artikler</string>
     <string name="downloadedPodcasts">Downloadede podcasts</string>
     <string name="title_activity_new_feed">Tilføj nyt feed</string>
@@ -124,6 +126,12 @@
     <string name="error_field_required">Dette felt er påkrævet</string>
     <string name="error_invalid_url">Ukorrekt URL</string>
 
+    <!--Snackbar Messages -->
+    <plurals name="marked_as_read_message">
+        <item quantity="one">%d artikel er markeret som læst</item>
+        <item quantity="other">%d artikler er markeret som læst</item>
+    </plurals>
+
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
         <item quantity="one">Hentede %d gammelt element</item>
@@ -153,6 +161,9 @@
 
     <string name="pref_title_general_search_in">Søg i</string>
 
+    <string name="pref_title_tts_settings">Talemaskine og stemme</string>
+    <string name="pref_summary_tts_settings">Åbn systemindstillingerne for at vælge den maskine og stemme, der bruges til oplæsning af artikler</string>
+
     <string name="pref_general_search_in_title">Titel</string>
     <string name="pref_general_search_in_body">Krop</string>
     <string name="pref_general_search_in_both">Begge</string>
@@ -166,6 +177,7 @@
     <string name="pref_title_DisableHostnameVerification">Deaktiver verifikation af værtsnavn</string>
     <string name="pref_title_NavigateWithVolumeButtons">Naviger med lydknapper</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Marker som læst når der rulles</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Synkroniser, når der er rullet til bunden</string>
     <string name="pref_title_ShowFastActions">Aktiver hurtigadgangsfunktioner</string>
     <string name="pref_title_OpenInBrowserDirectly">Spring detaljeret visning over og åbn artikel i browseren</string>
     <string name="pref_title_BackButtonOpensDrawer">Tilbageknap åbner skuffe</string>
@@ -220,6 +232,9 @@
 
     <string name="pref_oled_mode">Sort baggrund</string>
     <string name="pref_oled_mode_summary">Til mørkt tema for OLED skærme</string>
+
+    <string name="pref_detailed_view_zoom">Zoom i detaljeret visning</string>
+    <string name="pref_detailed_view_zoom_summary">Aktivér zoom af indholdet i detaljeret visning</string>
 
     <string name="pref_external_player">Ekstern afspiller</string>
     <string name="pref_external_player_summary">Afspil podcasts i din standard medieapp</string>
