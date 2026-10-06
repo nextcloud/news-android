@@ -222,7 +222,7 @@
     <string name="pref_contribute">Prispievať!</string>
     <string name="pref_contribute_summary">Získajte zdrojový kód</string>
     <string name="pref_privacy">Súkromie</string>
-    <string name="pref_privacy_summary">Nextcloud novinky pre Politiku Zabezpečenia Androidu</string>
+    <string name="pref_privacy_summary">Zásady ochrany súkromia aplikácie Nextcloud Novinky pre Android</string>
     <string name="pref_news_policy">Kontaktujte nás / Zásady noviniek</string>
     <string name="pref_news_policy_summary">Nextcloud Novinky Pravidlá Android News / Kontaktujte nás</string>
     <string name="pref_version">Aplikácia Nextcloud News pre Android</string>
