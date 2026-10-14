@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Интервал синхронизации</string>
     <string name="empty_view_content">Здесь нет элементов</string>
     <string name="empty_view_content_action">Потяните вниз, чтобы обновить</string>
-    <string name="toast_GettingMoreItems">Началась загрузка дополнительных элементов. Пожалуйста, подождите ...</string>
+    <string name="toast_GettingMoreItems">Началось скачивание дополнительных элементов. Подождите…</string>
     <string name="no_wifi_available">Нет соединения с Wi-Fi</string>
     <string name="do_you_want_to_download_without_wifi">Вы хотите скачать изображения без Wi-Fi соединения?</string>
     <string name="current_version">Вы используете версию %s</string>
@@ -77,7 +77,7 @@
     <string name="action_link_share">Поделиться ссылкой</string>
     <string name="action_link_open">Открыть ссылку в браузере</string>
     <string name="action_link_copy">Копировать ссылку</string>
-    <string name="toast_img_download_wait">Загрузка. Пожалуйста, подождите ...</string>
+    <string name="toast_img_download_wait">Скачивание. Подождите…</string>
     <string name="toast_img_saved">Изображение записано</string>
     <string name="toast_img_notwriteable">Не удалось записать изображение.</string>
     <string name="toast_copied_to_clipboard">Скопировано в буфер обмена</string>
@@ -205,7 +205,7 @@
     <string name="no_chapters_available">Нет доступных глав</string>
     <string name="exit_playback">Выйти из проигрывателя</string>
     <string name="podcast_playback_speed_dialog_title">Скорость воспроизведения</string>
-    <string name="notification_downloading_podcast_title">Загрузка подкастов</string>
+    <string name="notification_downloading_podcast_title">Скачивание подкаста</string>
     <string name="dialog_podcast_remove_title">Вы уверены?</string>
     <string name="dialog_podcast_remove_body">Вы хотите удалить загруженные медиафайлы для %1$s?</string>
     <string name="dialog_podcast_status_failed">Не удалось удалить медиафайл для %1$s</string>
