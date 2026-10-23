@@ -5,7 +5,7 @@
     <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
     <string name="empty_view_content">Her er ingen artikler</string>
     <string name="empty_view_content_action">Træk ned for at genindlæse</string>
-    <string name="toast_GettingMoreItems">Download af flere elementer begyndt. Vent venligst...</string>
+    <string name="toast_GettingMoreItems">Download af flere elementer er startet. Vent et øjeblik …</string>
     <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
     <string name="do_you_want_to_download_without_wifi">Ønsker du at downloade billederne uden en WiFi forbindelse?</string>
     <string name="current_version">Du bruger version %s</string>
@@ -72,7 +72,7 @@
     <string name="action_link_share">Del Link</string>
     <string name="action_link_open">Åbn Link i Browser</string>
     <string name="action_link_copy">Kopier link</string>
-    <string name="toast_img_download_wait">Henter. Vent venligst ...</string>
+    <string name="toast_img_download_wait">Henter. Vent et øjeblik …</string>
     <string name="toast_img_saved">Billede gemp</string>
     <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -84,7 +84,7 @@
     <string name="action_feed_remove">Fjern feed</string>
     <string name="action_feed_rename">Omdøb feed</string>
     <string name="action_feed_move">Flyt feed</string>
-    <string name="action_feed_notification_settings">Meddelelsesindstillinger</string>
+    <string name="action_feed_notification_settings">Indstillinger for notifikationer</string>
     <string name="action_feed_open_in">Åbn i indstillinger</string>
     <string name="action_feed_open_in_general_setting">Brug generelle indstillinger</string>
     <string name="action_feed_open_in_detailed_view">Detaljerede visning</string>
@@ -169,7 +169,7 @@
     <string name="pref_general_search_in_both">Begge</string>
 
     <string name="dialog_clearing_cache">Nulstil mellemlager</string>
-    <string name="dialog_clearing_cache_please_wait">Rydder cache. Vent venligst...</string>
+    <string name="dialog_clearing_cache_please_wait">Rydder cache. Vent et øjeblik …</string>
     <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
     <string name="warning">Advarsel</string>
     <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
@@ -262,8 +262,8 @@
     <string name="content_desc_playback_speed">Afspilningshastighed</string>
     <string name="content_desc_rewind">Spol tilbage</string>
     <string name="content_desc_forward">Videresend</string>
-    <string name="content_desc_expand">Udvid</string>
-    <string name="content_desc_collapse">Sammenfold</string>
+    <string name="content_desc_expand">Fold ud</string>
+    <string name="content_desc_collapse">Fold sammen</string>
     <string name="content_desc_mark_as_read">Marker som læst</string>
     <string name="content_desc_mark_as_unread">Marker som ulæst</string>
     <string name="content_desc_tap_to_refresh">Tryk for at genopfriske</string>
@@ -275,10 +275,10 @@
 
     <!-- Login Dialog -->
     <string name="login_dialog_title_error">Fejl</string>
-    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det ser ud til at nyheds app\'en ikke er installeret eller aktiveret på din server. Følg venligst instruktionerne her for at installere nyheds app\'en på din server først: %1$s</string>
+    <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Det ser ud til, at nyhedsappen ikke er installeret eller aktiveret på din server. Følg vejledningen her for først at konfigurere nyhedsappen på din server: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Noget gik galt :(</string>
-    <string name="login_dialog_text_zero_version_code">Web nyheds app\'en returnerede version \"0\". Se venligst i den følgende fejlrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
-    <string name="login_dialog_text_not_compatible">Denne app version er ikke kompatibel med din Nextcloud nyheds app. Opgrader venligst nyheds app\'en og dens framework</string>
+    <string name="login_dialog_text_zero_version_code">Nyhedsappen på serveren returnerede version \"0\". Se følgende fejlrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
+    <string name="login_dialog_text_not_compatible">Denne version af appen er ikke kompatibel med din Nextcloud-nyhedsapp. Opgrader nyhedsappen og appframeworket.</string>
     <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
     <string name="login_dialog_text_security_warning">Du benytter ikke HTTPS, hvilket er stærkt anbefalet. En hacker kunne opsnappe din forbindelse og få adgang til følsomme data (f.eks. din adgangskode).</string>
     <string name="login_dialog_select_account_unknown_error_toast">Noget gik galt. Prøv igen.</string>
@@ -311,7 +311,7 @@
     <string name="successfully_exported">Eksporterede til:</string>
     <string name="opml_export">OPML-eksport</string>
     <string name="parsing_opml">Analyserer OPML</string>
-    <string name="please_wait">Vent venligst …</string>
+    <string name="please_wait">Vent et øjeblik …</string>
     <string name="interval_sync_title">Intervalsynkronisering</string>
 
     </resources>
