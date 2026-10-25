@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="auto_sync_string">Automatisk synkronisering </string>
+    <string name="auto_sync_string">Automatisk synkronisering</string>
     <string name="title_activity_sync_interval_selector">Synkroniseringsinterval</string>
-    <string name="empty_view_content">Her er ingen artikler</string>
+    <string name="empty_view_content">Ingen artikler her</string>
     <string name="empty_view_content_action">Træk ned for at genindlæse</string>
     <string name="toast_GettingMoreItems">Download af flere elementer er startet. Vent et øjeblik …</string>
-    <string name="no_wifi_available">Ingen WiFi-forbindelse</string>
-    <string name="do_you_want_to_download_without_wifi">Ønsker du at downloade billederne uden en WiFi forbindelse?</string>
+    <string name="no_wifi_available">Ingen Wi-Fi-forbindelse</string>
+    <string name="do_you_want_to_download_without_wifi">Vil du downloade billederne uden Wi-Fi-forbindelse?</string>
     <string name="current_version">Du bruger version %s</string>
-    <string name="widget_header">ownCloud nyheder</string>
+    <string name="widget_header">Nextcloud Nyheder</string>
     <string name="message_bar_scroll_top">Genindlæs, og rul til toppen</string>
     <plurals name="message_bar_new_articles_available">
-        <item quantity="one">%d nyt element er tilgængeligt</item>
-        <item quantity="other">%d nye elementer er tilgængelige</item>
+        <item quantity="one">%d ny artikel er tilgængelig</item>
+        <item quantity="other">%d nye artikler er tilgængelige</item>
     </plurals>
     <string name="message_bar_reload">Genindlæs</string>
     <string name="allUnreadFeeds">Alle ulæste artikler</string>
     <string name="allItems">Alle lokale artikler</string>
-    <string name="starredFeeds">Markerede artikler</string>
+    <string name="starredFeeds">Stjernemarkerede artikler</string>
     <string name="downloadedPodcasts">Downloadede podcasts</string>
     <string name="title_activity_new_feed">Tilføj nyt feed</string>
 
@@ -27,16 +27,16 @@
     <string name="menu_StartImageCaching">Hent billeder</string>
     <string name="menu_downloadMoreItems">Hent flere artikler</string>
 
-    <string name="tv_showing_cached_version">Viser version fra midlertidigt lager</string>
+    <string name="tv_showing_cached_version">Viser cachelagret version</string>
 
     <!-- Action Bar Items -->
     <string name="action_starred">Stjernemarkeret</string>
     <string name="action_read">Læst</string>
     <string name="action_playPodacst">Afspil podcast</string>
-    <string name="action_removePodcast">Fjern podcastmediet</string>
+    <string name="action_removePodcast">Fjern podcastmedier</string>
     <string name="action_openInBrowser">Åbn i browser</string>
     <string name="action_Share">Del</string>
-    <string name="action_login">Server-indstillinger</string>
+    <string name="action_login">Serverindstillinger</string>
     <string name="action_save">Gem</string>
     <string name="action_settings">Indstillinger</string>
     <string name="action_sync_settings">Synkroniseringsindstillinger</string>
@@ -49,16 +49,16 @@
     <string name="notification_download_articles_offline">Henter artikler til offline brug</string>
     <string name="notification_download_images_offline">Henter billeder til offline brug</string>
     <plurals name="notification_new_items_ticker">
-        <item quantity="one">Du har %d nyt, ulæst element</item>
-        <item quantity="other">Du har %d nye, ulæste elementer</item>
+        <item quantity="one">Du har %d ny ulæst artikel</item>
+        <item quantity="other">Du har %d nye ulæste artikler</item>
     </plurals>
     <plurals name="notification_new_items_text">
-        <item quantity="one">%d nyt, ulæst element er tilgængeligt</item>
-        <item quantity="other">%d nye, ulæste elementer er tilgængelige</item>
+        <item quantity="one">%d ny ulæst artikel er tilgængelig</item>
+        <item quantity="other">%d nye ulæste artikler er tilgængelige</item>
     </plurals>
 
     <!-- Add new feed -->
-    <string name="hint_feed_url">Feed URL</string>
+    <string name="hint_feed_url">Feed-URL</string>
     <string name="action_add_feed">Tilføj feed</string>
     <string name="import_opml">Importér OPML</string>
     <string name="export_opml">Eksportér OPML</string>
@@ -66,17 +66,17 @@
 
     <!-- String related to NewsDetail-ContextMenu Items -->
     <string name="action_img_download">Download billede</string>
-    <string name="action_img_sharelink">Del Billedlink</string>
-    <string name="action_img_open">Åbn Billede i Browser</string>
-    <string name="action_img_copylink">Kopier Billedlink</string>
-    <string name="action_link_share">Del Link</string>
-    <string name="action_link_open">Åbn Link i Browser</string>
-    <string name="action_link_copy">Kopier link</string>
+    <string name="action_img_sharelink">Del billedlink</string>
+    <string name="action_img_open">Åbn billede i browser</string>
+    <string name="action_img_copylink">Kopiér billedlink</string>
+    <string name="action_link_share">Del link</string>
+    <string name="action_link_open">Åbn link i browser</string>
+    <string name="action_link_copy">Kopiér link</string>
     <string name="toast_img_download_wait">Henter. Vent et øjeblik …</string>
-    <string name="toast_img_saved">Billede gemp</string>
-    <string name="toast_img_notwriteable">Fejl ved lagring af billede.</string>
+    <string name="toast_img_saved">Billedet er gemt</string>
+    <string name="toast_img_notwriteable">Billedet kunne ikke gemmes.</string>
     <string name="toast_copied_to_clipboard">Kopieret til udklipsholder</string>
-    <string name="error_download_failed">Download fejlede</string>
+    <string name="error_download_failed">Download mislykkedes</string>
     <string name="intent_title_share">Del via</string>
 
 
@@ -85,13 +85,13 @@
     <string name="action_feed_rename">Omdøb feed</string>
     <string name="action_feed_move">Flyt feed</string>
     <string name="action_feed_notification_settings">Indstillinger for notifikationer</string>
-    <string name="action_feed_open_in">Åbn i indstillinger</string>
-    <string name="action_feed_open_in_general_setting">Brug generelle indstillinger</string>
-    <string name="action_feed_open_in_detailed_view">Detaljerede visning</string>
+    <string name="action_feed_open_in">Indstillinger for åbning</string>
+    <string name="action_feed_open_in_general_setting">Brug generel indstilling</string>
+    <string name="action_feed_open_in_detailed_view">Detaljeret visning</string>
     <string name="feed_remove_button">Fjern</string>
     <string name="feed_rename_button">Omdøb</string>
-    <string name="confirm_feed_remove">Ønsker du virkelig at slette denne strøm. Det kan ikke fortrydes?</string>
-    <string name="feed_move_list_description">Vælg mappe at flytte strøm til </string>
+    <string name="confirm_feed_remove">Vil du virkelig fjerne dette feed? Det kan ikke fortrydes!</string>
+    <string name="feed_move_list_description">Vælg den mappe, som feedet skal flyttes til</string>
     <string name="move_feed_root_folder">Rodmappe</string>
 
 
@@ -100,31 +100,31 @@
     <string name="action_folder_rename">Omdøb mappe</string>
     <string name="folder_remove_button">Fjern</string>
     <string name="folder_rename_button">Omdøb</string>
-    <string name="confirm_folder_remove">Vil du gerne fjerne denne mappe? Dette kan ikke fortrydes!</string>
+    <string name="confirm_folder_remove">Vil du virkelig fjerne denne mappe? Det kan ikke fortrydes!</string>
 
     <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
-    <string name="notification_feed_unique">Få unikke notifikationer for dette feed</string>
-    <string name="notification_feed_default">Alle feeds med standardindstillingerne vil vises i en notifikation</string>
+    <string name="notification_feed_unique">Få separate notifikationer for dette feed</string>
+    <string name="notification_feed_default">Alle feeds med standardindstillingerne vises i én notifikation</string>
     <string name="notification_feed_none">Ingen notifikationer overhovedet</string>
 
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
     <string name="folder_add_button">Tilføj</string>
     <string name="hint_folder_name">Mappenavn</string>
-    <string name="folder_already_exists">Mappen eksistere allerede</string>
+    <string name="folder_already_exists">Mappen findes allerede</string>
 
     <!-- Strings related to login -->
-    <string name="login_manual">Manuel login</string>
-    <string name="login_sso">Login ved hjælp af Nextcloud Files app\'en</string>
+    <string name="login_manual">Manuelt login</string>
+    <string name="login_sso">Log ind med Nextcloud-appen</string>
     <string name="pref_title_username">Brugernavn</string>
     <string name="pref_title_password">Adgangskode</string>
-    <string name="pref_title_owncloudRootPath">rodadressen for ownCloud</string>
-    <string name="pref_default_owncloudRootPath">https://1.2.3.4/owncloud</string>
+    <string name="pref_title_owncloudRootPath">Nextclouds rodadresse</string>
+    <string name="pref_default_owncloudRootPath">https://1.2.3.4/nextcloud</string>
 
     <string name="action_sign_in_short">Log ind</string>
-    <string name="login_progress_signing_in">Logger ind ...</string>
+    <string name="login_progress_signing_in">Logger ind …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
     <string name="error_field_required">Dette felt er påkrævet</string>
-    <string name="error_invalid_url">Ukorrekt URL</string>
+    <string name="error_invalid_url">Ugyldig URL</string>
 
     <!--Snackbar Messages -->
     <plurals name="marked_as_read_message">
@@ -134,13 +134,13 @@
 
     <!-- Toast Messages -->
     <plurals name="toast_downloaded_x_items">
-        <item quantity="one">Hentede %d gammelt element</item>
-        <item quantity="other">Hentede %d gamle elementer</item>
+        <item quantity="one">Hentede %d gammel artikel</item>
+        <item quantity="other">Hentede %d gamle artikler</item>
     </plurals>
-    <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelig</string>
+    <string name="toast_no_more_downloads_available">Der er ikke flere artikler tilgængelige</string>
     <plurals name="fetched_items_so_far">
-        <item quantity="one">Hentet %dartikel indtil nu... </item>
-        <item quantity="other">Hentet %d artikler indtil nu... </item>
+        <item quantity="one">Hentede %d artikel indtil nu …</item>
+        <item quantity="other">Hentede %d artikler indtil nu …</item>
     </plurals>
 
 
@@ -151,13 +151,13 @@
 
     <!-- General settings -->
     <string name="pref_header_general">Generelt</string>
-    <string name="pref_title_general_sort_order">Rækkefølge for sortering</string>
+    <string name="pref_title_general_sort_order">Sorteringsrækkefølge</string>
 
-    <string name="pref_general_sort_order_new_old">Ny → Gammel</string>
-    <string name="pref_general_sort_order_old_new">Gammel → Ny</string>
+    <string name="pref_general_sort_order_new_old">Ny → gammel</string>
+    <string name="pref_general_sort_order_old_new">Gammel → ny</string>
 
-    <string name="pref_rename_action_swipe_right">Aktion når der skydes til højre</string>
-    <string name="pref_rename_action_swipe_left">Aktion når skydes til venstre</string>
+    <string name="pref_rename_action_swipe_right">Handling ved strygning til højre</string>
+    <string name="pref_rename_action_swipe_left">Handling ved strygning til venstre</string>
 
     <string name="pref_title_general_search_in">Søg i</string>
 
@@ -165,40 +165,40 @@
     <string name="pref_summary_tts_settings">Åbn systemindstillingerne for at vælge den maskine og stemme, der bruges til oplæsning af artikler</string>
 
     <string name="pref_general_search_in_title">Titel</string>
-    <string name="pref_general_search_in_body">Krop</string>
+    <string name="pref_general_search_in_body">Brødtekst</string>
     <string name="pref_general_search_in_both">Begge</string>
 
-    <string name="dialog_clearing_cache">Nulstil mellemlager</string>
+    <string name="dialog_clearing_cache">Rydder cache</string>
     <string name="dialog_clearing_cache_please_wait">Rydder cache. Vent et øjeblik …</string>
-    <string name="reset_cache_unsaved_changes">Der er ændringer som ikke er synkroniseret. Vil du nulstille mellemlageret alligevel?</string>
+    <string name="reset_cache_unsaved_changes">Der er ændringer, som ikke er synkroniseret. Vil du alligevel nulstille cachen?</string>
     <string name="warning">Advarsel</string>
-    <string name="pref_title_AutoSyncOnStart">Synkroniserer ved opstart</string>
+    <string name="pref_title_AutoSyncOnStart">Synkroniser ved opstart</string>
     <string name="pref_title_ShowOnlyUnread">Vis kun ulæste artikler</string>
-    <string name="pref_title_DisableHostnameVerification">Deaktiver verifikation af værtsnavn</string>
-    <string name="pref_title_NavigateWithVolumeButtons">Naviger med lydknapper</string>
-    <string name="pref_title_MarkAsReadWhileScrolling">Marker som læst når der rulles</string>
+    <string name="pref_title_DisableHostnameVerification">Deaktiver bekræftelse af værtsnavn</string>
+    <string name="pref_title_NavigateWithVolumeButtons">Naviger med lydstyrkeknapperne</string>
+    <string name="pref_title_MarkAsReadWhileScrolling">Marker som læst ved rulning</string>
     <string name="pref_title_SyncWhenScrolledToBottom">Synkroniser, når der er rullet til bunden</string>
     <string name="pref_title_ShowFastActions">Aktiver hurtigadgangsfunktioner</string>
     <string name="pref_title_OpenInBrowserDirectly">Spring detaljeret visning over og åbn artikel i browseren</string>
-    <string name="pref_title_BackButtonOpensDrawer">Tilbageknap åbner skuffe</string>
+    <string name="pref_title_BackButtonOpensDrawer">Tilbage-knappen åbner menuen</string>
 
     <!-- MemorizingTrustManager -->
-    <string name="mtm_accept_cert">Accepter ukendt certifikat? </string>
+    <string name="mtm_accept_cert">Accepter ukendt certifikat?</string>
     <string name="mtm_decision_always">Altid</string>
     <string name="mtm_decision_abort">Afbryd</string>
-    <string name="mtm_notification">Verificering af certifikat</string>
+    <string name="mtm_notification">Bekræftelse af certifikat</string>
 
 
     <!-- Podcast -->
-    <string name="no_podcast_selected">Der er ikke valgt podcasts</string>
+    <string name="no_podcast_selected">Der er ikke valgt nogen podcast</string>
     <string name="no_chapters_available">Ingen kapitler tilgængelige</string>
     <string name="exit_playback">Afslut afspiller</string>
     <string name="podcast_playback_speed_dialog_title">Afspilningshastighed</string>
     <string name="notification_downloading_podcast_title">Henter podcast</string>
     <string name="dialog_podcast_remove_title">Er du sikker?</string>
-    <string name="dialog_podcast_remove_body">Vil du gerne fjerne downloadede medie for %1$s?</string>
-    <string name="dialog_podcast_status_failed">Kunne ikke fjerne medie for %1$s</string>
-    <string name="dialog_podcast_status_success">Medie for %1$s er blevet fjernet </string>
+    <string name="dialog_podcast_remove_body">Vil du fjerne hentede medier for %1$s?</string>
+    <string name="dialog_podcast_status_failed">Kunne ikke fjerne medier for %1$s</string>
+    <string name="dialog_podcast_status_success">Medierne for %1$s er fjernet</string>
     <string name="dialog_podcast_remove_confirm">Fjern</string>
 
     <!-- Settings for About -->
@@ -206,49 +206,49 @@
     <string name="pref_license">Licens</string>
     <string name="pref_license_summary">GNU Affero General Public License (AGPL) version 3</string>
     <string name="pref_report_issue">Rapporter et problem</string>
-    <string name="pref_report_issue_summary">Kræver en (gratis) GitHub konto</string>
-    <string name="pref_contribute">Medvirk!</string>
-    <string name="pref_contribute_summary">Hent kildeteksten</string>
+    <string name="pref_report_issue_summary">Kræver en (gratis) GitHub-konto</string>
+    <string name="pref_contribute">Bidrag!</string>
+    <string name="pref_contribute_summary">Hent kildekoden</string>
     <string name="pref_privacy">Privatliv</string>
-    <string name="pref_privacy_summary">Nextcloud nyheder Android privathedspolitik</string>
+    <string name="pref_privacy_summary">Privatlivspolitik for Nextcloud Nyheder til Android</string>
     <string name="pref_news_policy">Kontakt os / nyhedspolitik</string>
-    <string name="pref_news_policy_summary">Nextcloud nyheder Android nyhedspolitik / Kontakt os</string>
-    <string name="pref_version">Nextcloud nyheder Android app</string>
+    <string name="pref_news_policy_summary">Nyhedspolitik for Nextcloud Nyheder til Android / Kontakt os</string>
+    <string name="pref_version">Nextcloud Nyheder til Android</string>
 
 
     <!-- Settings for Display -->
-    <string name="pref_header_display">Vis</string>
+    <string name="pref_header_display">Visning</string>
     <string name="pref_title_app_theme">Tema</string>
-    <string name="pref_title_feed_list_layout">Layout for feed-liste</string>
+    <string name="pref_title_feed_list_layout">Layout for feedliste</string>
     <string name="pref_title_font_size">Skriftstørrelse</string>
     <string name="pref_display_browser">Browser</string>
 
 
-    <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (Detaljeret visning)</string>
+    <string name="pref_display_news_detail_actionbar_icons_title">Handlingsikoner (detaljeret visning)</string>
 
-    <string name="pref_display_apptheme_auto">System Standard</string>
+    <string name="pref_display_apptheme_auto">Systemstandard</string>
     <string name="pref_display_apptheme_light">Lys</string>
     <string name="pref_display_apptheme_dark">Mørk</string>
 
     <string name="pref_oled_mode">Sort baggrund</string>
-    <string name="pref_oled_mode_summary">Til mørkt tema for OLED skærme</string>
+    <string name="pref_oled_mode_summary">Til mørkt tema på OLED-skærme</string>
 
     <string name="pref_detailed_view_zoom">Zoom i detaljeret visning</string>
     <string name="pref_detailed_view_zoom_summary">Aktivér zoom af indholdet i detaljeret visning</string>
 
     <string name="pref_external_player">Ekstern afspiller</string>
-    <string name="pref_external_player_summary">Afspil podcasts i din standard medieapp</string>
+    <string name="pref_external_player_summary">Afspil podcasts i din standardmedieapp</string>
 
     <string name="pref_display_browser_cct">Indbyggede Chrome-Custom-Tabs</string>
     <string name="pref_display_browser_built_in">Indbygget browser</string>
     <string name="pref_display_browser_external">Ekstern browser</string>
 
-    <string name="pref_display_feed_list_layout_headline_thumbnails">Thumbnails (kun overskrifter)</string>
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Miniaturer (kun overskrifter)</string>
     <string name="pref_display_feed_list_layout_thumbnails">Miniaturer</string>
     <string name="pref_display_feed_list_layout_simple_text">Simpel tekst</string>
     <string name="pref_display_feed_list_layout_headlines">Overskrifter</string>
     <string name="pref_display_feed_list_layout_full_text">Fuld tekst</string>
-    <string name="pref_display_feed_list_layout_web_layout">Web layout</string>
+    <string name="pref_display_feed_list_layout_web_layout">Weblayout</string>
     <string name="pref_display_feed_list_layout_card_view">Kortvisning</string>
 
     <!-- font size scaling definitions -->
@@ -261,12 +261,12 @@
     <string name="content_desc_pause">Pause</string>
     <string name="content_desc_playback_speed">Afspilningshastighed</string>
     <string name="content_desc_rewind">Spol tilbage</string>
-    <string name="content_desc_forward">Videresend</string>
+    <string name="content_desc_forward">Spol frem</string>
     <string name="content_desc_expand">Fold ud</string>
     <string name="content_desc_collapse">Fold sammen</string>
     <string name="content_desc_mark_as_read">Marker som læst</string>
     <string name="content_desc_mark_as_unread">Marker som ulæst</string>
-    <string name="content_desc_tap_to_refresh">Tryk for at genopfriske</string>
+    <string name="content_desc_tap_to_refresh">Tryk for at opdatere</string>
     <string name="content_desc_add_to_favorites">Tilføj til favoritter</string>
     <string name="content_desc_remove_from_favorites">Fjern fra favoritter</string>
     <string name="content_desc_show_password">Vis adgangskode</string>
@@ -280,20 +280,20 @@
     <string name="login_dialog_text_zero_version_code">Nyhedsappen på serveren returnerede version \"0\". Se følgende fejlrapport: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Denne version af appen er ikke kompatibel med din Nextcloud-nyhedsapp. Opgrader nyhedsappen og appframeworket.</string>
     <string name="login_dialog_title_security_warning">Sikkerhedsadvarsel</string>
-    <string name="login_dialog_text_security_warning">Du benytter ikke HTTPS, hvilket er stærkt anbefalet. En hacker kunne opsnappe din forbindelse og få adgang til følsomme data (f.eks. din adgangskode).</string>
+    <string name="login_dialog_text_security_warning">Du bruger ikke HTTPS, hvilket kraftigt anbefales. En angriber kan opsnappe din trafik og få adgang til følsomme data (fx din adgangskode).</string>
     <string name="login_dialog_select_account_unknown_error_toast">Noget gik galt. Prøv igen.</string>
 
 
     <!-- Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-    <string name="pref_title_clearCache">Ryd mellemlageret</string>
-    <string name="pref_title_CacheImagesOffline">Foretag mellemlagring af billeder offline</string>
-    <string name="pref_title_Max_Cache_Size">Maksimumstørrelse på mellemlageret</string>
+    <string name="pref_header_data_sync">Data &amp; synkronisering</string>
+    <string name="pref_title_clearCache">Ryd cache</string>
+    <string name="pref_title_CacheImagesOffline">Cachelagr billeder offline</string>
+    <string name="pref_title_Max_Cache_Size">Maksimal cachestørrelse</string>
 
     <string name="pref_data_sync_image_cache_never">Aldrig</string>
-    <string name="pref_data_sync_image_cache_wifi_only">Kun via wifi</string>
-    <string name="pref_data_sync_image_cache_wifi_and_mobile">Via wifi &amp; mobil</string>
-    <string name="pref_data_sync_image_cache_ask">Spørg når der ikke er wifi-forbindelse</string>
+    <string name="pref_data_sync_image_cache_wifi_only">Kun via Wi-Fi</string>
+    <string name="pref_data_sync_image_cache_wifi_and_mobile">Via Wi-Fi &amp; mobildata</string>
+    <string name="pref_data_sync_image_cache_ask">Spørg, når der ikke er forbindelse til Wi-Fi</string>
 
     <string name="array_sync_interval_min_0">Aldrig</string>
     <string name="array_sync_interval_min_5">5 minutter</string>
@@ -308,9 +308,9 @@
     <string name="array_sync_interval_hour_24">24 timer</string>
     <string name="switch_account">Skift konto</string>
     
-    <string name="successfully_exported">Eksporterede til:</string>
+    <string name="successfully_exported">Eksporteret til:</string>
     <string name="opml_export">OPML-eksport</string>
-    <string name="parsing_opml">Analyserer OPML</string>
+    <string name="parsing_opml">Fortolker OPML</string>
     <string name="please_wait">Vent et øjeblik …</string>
     <string name="interval_sync_title">Intervalsynkronisering</string>
 
