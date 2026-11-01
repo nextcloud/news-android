@@ -123,7 +123,7 @@
     <string name="action_sign_in_short">Log ind</string>
     <string name="login_progress_signing_in">Logger ind …</string>
     <!-- <string name="error_incorrect_password">Incorrect password</string> -->
-    <string name="error_field_required">Dette felt er påkrævet</string>
+    <string name="error_field_required">Dette felt er obligatorisk</string>
     <string name="error_invalid_url">Ugyldig URL</string>
 
     <!--Snackbar Messages -->
