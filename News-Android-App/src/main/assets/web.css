@@ -80,10 +80,14 @@ body iframe:not([src]) {
     display: none;
 }
 
-img {
-    /* make images fill the whole screen */
-    max-width:   calc(100% + 2rem) !important;
-    margin-left: -1rem !important;
+/* web.js marks images that are at least as wide as the text column,
+   those fill the whole screen width instead */
+#content img.nextcloud-news-img-full {
+    display:      block;
+    width:        100vw !important;
+    max-width:    none !important;
+    margin-left:  calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
 }
 
 div#content > p {
