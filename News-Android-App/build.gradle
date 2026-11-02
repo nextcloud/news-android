@@ -23,8 +23,8 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        versionCode 197
-        versionName "0.9.9.96"
+        versionCode 198
+        versionName "0.9.9.97"
     }
 
     buildFeatures {

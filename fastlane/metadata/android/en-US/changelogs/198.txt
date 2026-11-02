@@ -1,0 +1,8 @@
+- Changed - !1711 - Android 6.0 is now required (prev. Android 5.0)
+- Changed - !1704 - Target Android 16
+- Fixed - !1697 - Podcast player drawn under system bars (thanks to @mvanhorn)
+- Fixed - !1698 - Toolbar drawn under side navigation bar
+- Fixed - !1705 - Crash when expanding the podcast panel
+- Fixed - !1707 - Podcast panel insets lost after rotation
+- Fixed - !1708 - Back not collapsing podcast panel after resume
+- Fixed - !1716 - Fix for self-signed certificates (thanks to @jpantonow)

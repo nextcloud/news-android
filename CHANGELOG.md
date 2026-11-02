@@ -1,3 +1,24 @@
+0.9.9.97
+---------------------
+
+- Dependency updates
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1711">!1711 - Android 6.0 or
+  newer is now required (update Glide to 5.0.9 / switch to ImageDecoder)</a>
+- Changed - <a href="https://github.com/nextcloud/news-android/pull/1704">!1704 - Target Android 16
+  (API level 36)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1697">!1697 - Podcast player is
+  drawn under the system bars (thanks to @mvanhorn)</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1698">!1698 - Toolbar and content
+  are drawn under a side navigation bar</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1705">!1705 - Fix crash when the
+  podcast panel settles after the fragment detached</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1707">!1707 - Podcast panel loses
+  its window insets after an activity recreation</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1708">!1708 - Fix back not
+  collapsing the podcast panel after a resume</a>
+- Fixed - <a href="https://github.com/nextcloud/news-android/pull/1716">!1716 - Fix loading of
+  stored certificates (thanks to @jpantonow)</a>
+
 0.9.9.96
 ---------------------
 
