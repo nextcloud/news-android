@@ -140,7 +140,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.google.android.material/material
     implementation "com.google.android.material:material:1.13.0"
-    implementation "androidx.palette:palette:1.0.0"
+    implementation "androidx.palette:palette:1.1.0"
     implementation "androidx.recyclerview:recyclerview:1.4.0"
     implementation "androidx.browser:browser:1.10.0"
     implementation "androidx.cardview:cardview:1.0.0"
