@@ -337,6 +337,20 @@ public class DatabaseConnectionOrm {
         return (iterationCount - 1) * itemsPerIteration + rssItemList.size();
     }
 
+    public int markItemsAsRead(List<RssItem> rssItemList) {
+        List<RssItem> unreadItems = new ArrayList<>();
+
+        for (RssItem rssItem : rssItemList) {
+            if (!rssItem.getRead_temp()) {
+                rssItem.setRead_temp(true);
+                unreadItems.add(rssItem);
+            }
+        }
+
+        daoSession.getRssItemDao().updateInTx(unreadItems);
+        return unreadItems.size();
+    }
+
 
     public List<String> getRssItemsIdsFromList(List<RssItem> rssItemList) {
         List<String> itemIds = new ArrayList<>();

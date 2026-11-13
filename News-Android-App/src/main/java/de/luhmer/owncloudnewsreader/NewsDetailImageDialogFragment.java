@@ -1,6 +1,7 @@
 package de.luhmer.owncloudnewsreader;
 
 import static androidx.core.content.PermissionChecker.checkSelfPermission;
+import static java.util.Objects.requireNonNull;
 
 import android.Manifest;
 import android.app.Activity;
@@ -62,6 +63,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
     private String mDialogText;
     private URL mImageUrl;
     private TYPE mDialogType;
+    private int mMarkAbovePosition = -1;
 
     private long downloadID;
     private DownloadManager downloadManager;
@@ -98,6 +100,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         return f;
     }
 
+    protected static NewsDetailImageDialogFragment newInstanceUrl(String dialogTitle, String dialogText, int markAbovePosition) {
+        NewsDetailImageDialogFragment f = newInstanceUrl(dialogTitle, dialogText);
+        requireNonNull(f.getArguments()).putInt("markAbovePosition", markAbovePosition);
+        return f;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +115,7 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
         mDialogText = args.getString("text");
         mImageUrl = (URL) args.getSerializable("imageUrl");
         mDialogType = (TYPE) args.getSerializable("dialogType");
+        mMarkAbovePosition = args.getInt("markAbovePosition", -1);
 
         mMenuItems = new LinkedHashMap<>();
 
@@ -158,6 +167,12 @@ public class NewsDetailImageDialogFragment extends DialogFragment {
                 });
                 mMenuItems.put(getString(R.string.action_link_share), this::shareLink);
                 mMenuItems.put(getString(R.string.action_link_copy), () -> copyToClipboard(mDialogTitle, mDialogText));
+                if (mMarkAbovePosition > 0) {
+                    mMenuItems.put(getString(R.string.menu_markAboveAsRead), () -> {
+                        ((NewsReaderListActivity) requireActivity()).markItemsAboveAsRead(mMarkAbovePosition);
+                        dismiss();
+                    });
+                }
                 break;
         }
 
