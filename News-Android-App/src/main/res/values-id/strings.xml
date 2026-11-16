@@ -10,12 +10,15 @@
     <string name="do_you_want_to_download_without_wifi">Apakah Anda ingin mengunduh gambar tanpa koneksi Wi-Fi?</string>
     <string name="current_version">Anda menggunakan Versi %s</string>
     <string name="widget_header">Berita ownCloud</string>
+    <string name="message_bar_scroll_top">Muat ulang dan gulir ke atas</string>
     <plurals name="message_bar_new_articles_available">
         <item quantity="other">%d item baru tersedia</item>
     </plurals>
     <string name="message_bar_reload">Muat ulang</string>
     <string name="allUnreadFeeds">Semua item yang belum dibaca</string>
+    <string name="allItems">Semua artikel lokal</string>
     <string name="starredFeeds">Item yang dibintangi</string>
+    <string name="downloadedPodcasts">Podcast yang diunduh</string>
     <string name="title_activity_new_feed">Tambah feed baru</string>
 
     <string name="menu_update">Segarkan</string>
@@ -23,10 +26,13 @@
     <string name="menu_StartImageCaching">Unduh gambar</string>
     <string name="menu_downloadMoreItems">Unduh beberapa item</string>
 
+    <string name="tv_showing_cached_version">Menampilkan versi cache</string>
+
     <!-- Action Bar Items -->
     <string name="action_starred">Dibintangi</string>
     <string name="action_read">Baca</string>
     <string name="action_playPodacst">Putar Siniar</string>
+    <string name="action_removePodcast">Hapus Media Podcast</string>
     <string name="action_openInBrowser">Buka di browser</string>
     <string name="action_Share">Bagikan</string>
     <string name="action_login">Pengaturan Server</string>
@@ -76,11 +82,13 @@
     <string name="action_feed_rename">Ubah Nama Feed</string>
     <string name="action_feed_move">Pindahkan Feed</string>
     <string name="action_feed_notification_settings">Pengaturan notifikasi</string>
+    <string name="action_feed_open_in">Pengaturan buka dengan</string>
     <string name="action_feed_open_in_general_setting">Gunakan pengaturan umum</string>
     <string name="action_feed_open_in_detailed_view">Tampilan detail</string>
     <string name="feed_remove_button">Hapus</string>
     <string name="feed_rename_button">Ubah nama</string>
     <string name="confirm_feed_remove">Apakah Anda yakin ingin menghapus Feed ini? Tindakan ini tidak dapat dibatalkan!</string>
+    <string name="feed_move_list_description">Pilih folder tujuan pemindahan umpan</string>
     <string name="move_feed_root_folder">Folder akar</string>
 
 
@@ -91,6 +99,9 @@
     <string name="folder_rename_button">Ubah nama</string>
     <string name="confirm_folder_remove">Apakah Anda benar-benar ingin menghapus folder ini? Tindakan ini tidak dapat diurungkan!</string>
 
+    <!-- Strings related to NewsReaderListDialogFragment (Notification Settings) -->
+    <string name="notification_feed_unique">Terima notifikasi tersendiri untuk umpan ini</string>
+    <string name="notification_feed_default">Semua umpan dengan pengaturan bawaan akan muncul dalam satu notifikasi</string>
     <string name="notification_feed_none">Tidak ada notifikasi sama sekali</string>
 
     <!-- Strings related to AddFolderDialogFragment (Add Folder) -->
@@ -137,6 +148,11 @@
     <string name="pref_rename_action_swipe_right">Aksi saat menggeser ke kanan</string>
     <string name="pref_rename_action_swipe_left">Aksi saat menggeser ke kiri</string>
 
+    <string name="pref_title_general_search_in">Cari di</string>
+
+    <string name="pref_title_tts_settings">Mesin dan suara sintesis ucapan</string>
+    <string name="pref_summary_tts_settings">Buka pengaturan sistem untuk memilih mesin dan suara yang digunakan untuk membacakan artikel</string>
+
     <string name="pref_general_search_in_title">Judul</string>
     <string name="pref_general_search_in_body">Isi</string>
     <string name="pref_general_search_in_both">Keduanya</string>
@@ -150,6 +166,7 @@
     <string name="pref_title_DisableHostnameVerification">Nonaktifkan Verifikasi Hostname</string>
     <string name="pref_title_NavigateWithVolumeButtons">Navigasi dengan tombol volume</string>
     <string name="pref_title_MarkAsReadWhileScrolling">Tandai telah dibaca saat bergulir</string>
+    <string name="pref_title_SyncWhenScrolledToBottom">Sinkronkan saat digulir ke bawah</string>
     <string name="pref_title_ShowFastActions">Aktifkan fungsi akses cepat</string>
     <string name="pref_title_OpenInBrowserDirectly">Lewati tampilan detail dan buka artikel di browser</string>
     <string name="pref_title_BackButtonOpensDrawer">Tombol kembali membuka laci</string>
@@ -168,6 +185,9 @@
     <string name="podcast_playback_speed_dialog_title">Kecepatan Pemutaran</string>
     <string name="notification_downloading_podcast_title">Unduh podcast</string>
     <string name="dialog_podcast_remove_title">Apakah Anda yakin?</string>
+    <string name="dialog_podcast_remove_body">Apakah Anda ingin menghapus media yang diunduh untuk %1$s?</string>
+    <string name="dialog_podcast_status_failed">Gagal menghapus media untuk %1$s</string>
+    <string name="dialog_podcast_status_success">Media untuk %1$s telah dihapus</string>
     <string name="dialog_podcast_remove_confirm">Hapus</string>
 
     <!-- Settings for About -->
@@ -180,6 +200,8 @@
     <string name="pref_contribute_summary">Dapatkan kode sumber</string>
     <string name="pref_privacy">Privasi</string>
     <string name="pref_privacy_summary">Kebijakan Privasi Berita Nextcloud Android</string>
+    <string name="pref_news_policy">Hubungi Kami / Kebijakan Berita</string>
+    <string name="pref_news_policy_summary">Kebijakan Berita Nextcloud News Android / Hubungi Kami</string>
     <string name="pref_version">Aplikasi Android Berita Nextcloud</string>
 
 
@@ -191,6 +213,8 @@
     <string name="pref_display_browser">Peramban</string>
 
 
+    <string name="pref_display_news_detail_actionbar_icons_title">Ikon tindakan (Tampilan Detail)</string>
+
     <string name="pref_display_apptheme_auto">Bawaan Sistem</string>
     <string name="pref_display_apptheme_light">Terang</string>
     <string name="pref_display_apptheme_dark">Gelap</string>
@@ -198,10 +222,18 @@
     <string name="pref_oled_mode">Latar belakang hitam</string>
     <string name="pref_oled_mode_summary">Untuk tema gelap pada layar OLED</string>
 
+    <string name="pref_detailed_view_zoom">Perbesaran tampilan detail</string>
+    <string name="pref_detailed_view_zoom_summary">Aktifkan perbesaran konten dalam tampilan detail</string>
+
     <string name="pref_external_player">Pemutar Eksternal</string>
     <string name="pref_external_player_summary">Putar podcast di aplikasi media bawaan Anda</string>
 
     <string name="pref_display_browser_cct">Tab-Khusus-Chrome Bawaan</string>
+    <string name="pref_display_browser_built_in">Peramban Bawaan</string>
+    <string name="pref_display_browser_external">Peramban Eksternal</string>
+
+    <string name="pref_display_feed_list_layout_headline_thumbnails">Gambar mini (hanya Judul Berita)</string>
+    <string name="pref_display_feed_list_layout_thumbnails">Gambar mini</string>
     <string name="pref_display_feed_list_layout_simple_text">Teks sederhana</string>
     <string name="pref_display_feed_list_layout_headlines">Tajuk</string>
     <string name="pref_display_feed_list_layout_full_text">Teks lengkap</string>
@@ -234,6 +266,7 @@
     <string name="login_dialog_title_error">Kesalahan</string>
     <string name="login_dialog_text_news_app_not_installed_on_server" formatted="true">Sepertinya aplikasi berita Anda belum terinstal atau diaktifkan di server Anda. Silakan ikuti petunjuk yang diberikan di sini untuk melakukan penyiapan aplikasi berita di server Anda terlebih dahulu: %1$s</string>
     <string name="login_dialog_text_something_went_wrong">Ada yang tidak beres :(</string>
+    <string name="login_dialog_text_zero_version_code">Aplikasi Web News mengembalikan Versi \"0\". Silakan lihat laporan bug berikut: https://github.com/nextcloud/news/issues/5#issuecomment-242883795</string>
     <string name="login_dialog_text_not_compatible">Versi Aplikasi ini tidak kompatibel dengan Aplikasi Berita Nextcloud Anda. Harap tingkatkan aplikasi berita dan kerangka kerjanya.</string>
     <string name="login_dialog_title_security_warning">Peringatan Keamanan</string>
     <string name="login_dialog_text_security_warning">Anda tidak menggunakan HTTPS, yang sangat dianjurkan. Penyerang dapat mengintersep lalu lintas Anda dan mendapatkan akses ke beberapa data sensitif (misalnya, sandi Anda).</string>
@@ -264,5 +297,10 @@
     <string name="array_sync_interval_hour_24">24 jam</string>
     <string name="switch_account">Pindah akun</string>
     
+    <string name="successfully_exported">Berhasil diekspor ke:</string>
+    <string name="opml_export">Ekspor OPML</string>
+    <string name="parsing_opml">Mengurai OPML</string>
     <string name="please_wait">Harap tunggu...</string>
+    <string name="interval_sync_title">Sinkronisasi Berkala</string>
+
     </resources>
