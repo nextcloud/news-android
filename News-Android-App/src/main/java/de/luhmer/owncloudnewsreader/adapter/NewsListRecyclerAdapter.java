@@ -334,6 +334,32 @@ public class NewsListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         changeReadStateOfItem(viewHolder, isRead);
     }
 
+    public int markItemsAboveAsRead(int position) {
+        if (lazyList == null || position <= 0) {
+            return 0;
+        }
+
+        int itemCountAbove = Math.min(position, lazyList.size());
+        List<RssItem> rssItemsAbove = new ArrayList<>();
+        for (int i = 0; i < itemCountAbove; i++) {
+            RssItem rssItem = lazyList.get(i);
+            if (rssItem != null && !rssItem.getRead_temp()) {
+                rssItemsAbove.add(rssItem);
+            }
+        }
+
+        int updatedCount = dbConn.markItemsAsRead(rssItemsAbove);
+        if (updatedCount > 0) {
+            for (RssItem rssItem : rssItemsAbove) {
+                NewsReaderListActivity.stayUnreadItems.add(rssItem.getId());
+            }
+            pDelayHandler.delayTimer();
+            notifyItemRangeChanged(0, itemCountAbove);
+        }
+
+        return updatedCount;
+    }
+
     public void toggleStarredStateOfItem(RssItemViewHolder viewHolder) {
         RssItem rssItem = viewHolder.getRssItem();
         boolean isStarred = !rssItem.getStarred_temp();
